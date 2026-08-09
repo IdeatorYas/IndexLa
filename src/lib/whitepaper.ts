@@ -9,6 +9,9 @@ export type WhitepaperSection = {
   slug: string;
   index: number;
   number: number;
+  /** Exact major-section headline from the whitepaper (no number prefix) */
+  headline: string;
+  /** Sidebar/nav label: "N. Headline" */
   title: string;
   markdown: string;
   subsections: TocItem[];
@@ -127,11 +130,25 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
       slug: slugifyHeading(`${start.number}-${start.title}`),
       index,
       number: start.number,
+      headline: start.title,
       title: `${start.number}. ${start.title}`,
       markdown,
       subsections,
     };
   });
+}
+
+/** Remove the competitor markdown table; rendered by CompetitorComparisonTable instead */
+export function stripCompetitorMarkdownTable(markdown: string): string {
+  return markdown
+    .replace(
+      /\n\| Capability[\s\S]*?\| Yes — brokerage assets \|\n+/,
+      "\n\n",
+    )
+    .replace(
+      /\*Competitive features reflect publicly available product positioning and may evolve over time\.\*\n*/,
+      "",
+    );
 }
 
 export function markKeyStatements(markdown: string): string {

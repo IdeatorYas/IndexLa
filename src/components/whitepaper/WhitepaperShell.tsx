@@ -4,7 +4,10 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { TocItem, WhitepaperSection } from "@/lib/whitepaper";
-import { formatProgress } from "@/lib/whitepaper";
+import {
+  formatProgress,
+  stripCompetitorMarkdownTable,
+} from "@/lib/whitepaper";
 import { WhitepaperSidebar } from "@/components/whitepaper/WhitepaperSidebar";
 import { WhitepaperSectionBody } from "@/components/whitepaper/WhitepaperSectionBody";
 
@@ -16,6 +19,14 @@ function sidebarSubsections(section: WhitepaperSection): TocItem[] {
   const roots = section.subsections;
   if (roots.length === 1) return roots[0].children;
   return roots;
+}
+
+function prepareBodyMarkdown(slug: string, markdown: string): string {
+  let body = stripMajorHeading(markdown);
+  if (slug === "5-why-indexla-is-different") {
+    body = stripCompetitorMarkdownTable(body);
+  }
+  return body;
 }
 
 export function WhitepaperShell({
@@ -38,10 +49,11 @@ export function WhitepaperShell({
   const total = sections.length;
   const prev = activeIndex > 0 ? sections[activeIndex - 1] : null;
   const next = activeIndex < total - 1 ? sections[activeIndex + 1] : null;
+  const sectionLabel = String(section.number).padStart(2, "0");
 
   const bodyMarkdown = useMemo(
-    () => stripMajorHeading(section.markdown),
-    [section.markdown],
+    () => prepareBodyMarkdown(section.slug, section.markdown),
+    [section.markdown, section.slug],
   );
 
   const subs = useMemo(() => sidebarSubsections(section), [section]);
@@ -85,20 +97,18 @@ export function WhitepaperShell({
         aria-hidden
       />
 
-      <div className="section-pad relative z-10 mx-auto max-w-[84rem] pt-24 pb-5 md:pt-28">
-        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-5">
-          <div>
+      <div className="section-pad relative z-10 mx-auto max-w-[84rem] pt-24 pb-4 md:pt-28">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
               {docTitle}
             </p>
-            <div className="mt-2 flex flex-wrap items-baseline gap-3">
-              <h1 className="display text-[clamp(1.7rem,3.4vw,2.45rem)] tracking-[-0.03em] text-ink">
-                {section.title}
-              </h1>
-              <p className="text-[0.85rem] font-semibold tabular-nums text-electric">
-                {formatProgress(activeIndex, total)}
-              </p>
-            </div>
+            <span className="hidden text-muted-dim sm:inline" aria-hidden>
+              ·
+            </span>
+            <p className="text-[0.85rem] font-semibold tabular-nums text-electric">
+              {formatProgress(activeIndex, total)}
+            </p>
           </div>
           <button
             type="button"
@@ -134,6 +144,15 @@ export function WhitepaperShell({
         />
 
         <article className="min-w-0">
+          <header className="mb-8 border-b border-line pb-6">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-electric">
+              Section {sectionLabel}
+            </p>
+            <h1 className="display mt-3 text-[clamp(1.85rem,3.6vw,2.65rem)] tracking-[-0.03em] text-ink text-balance">
+              {section.headline}
+            </h1>
+          </header>
+
           <WhitepaperSectionBody slug={section.slug} markdown={bodyMarkdown} />
 
           <nav
@@ -155,7 +174,7 @@ export function WhitepaperShell({
                     Previous
                   </p>
                   <p className="mt-1 text-[0.95rem] font-semibold text-ink">
-                    {prev.title}
+                    {prev.headline}
                   </p>
                 </Link>
               ) : (
@@ -170,7 +189,7 @@ export function WhitepaperShell({
                     Next
                   </p>
                   <p className="mt-1 text-[0.95rem] font-semibold text-ink">
-                    {next.title}
+                    {next.headline}
                   </p>
                 </Link>
               ) : null}

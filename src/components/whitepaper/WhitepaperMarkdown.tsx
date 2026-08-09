@@ -55,9 +55,15 @@ function isPureStrongParagraph(children: ReactNode): boolean {
 export function WhitepaperMarkdown({
   markdown,
   resetTop = false,
+  card = false,
+  accentLists = false,
 }: {
   markdown: string;
   resetTop?: boolean;
+  /** Compact heading styles for concept cards */
+  card?: boolean;
+  /** Render unordered lists as accent concept chips */
+  accentLists?: boolean;
 }) {
   const usedIds = new Map<string, number>();
 
@@ -72,125 +78,149 @@ export function WhitepaperMarkdown({
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-        h1: ({ children }) => {
-          const id = nextHeadingId(usedIds, children);
-          return (
-            <h2
-              id={id}
-              className="display scroll-mt-28 border-t border-line pt-10 mt-10 text-[clamp(1.55rem,2.8vw,1.95rem)] tracking-[-0.02em] text-ink"
-            >
-              {children}
-            </h2>
-          );
-        },
-        h2: ({ children }) => {
-          const id = nextHeadingId(usedIds, children);
-          return (
-            <h3
-              id={id}
-              className="display scroll-mt-28 mt-9 text-[clamp(1.2rem,2.1vw,1.45rem)] tracking-[-0.02em] text-ink"
-            >
-              {children}
-            </h3>
-          );
-        },
-        h3: ({ children }) => {
-          const id = nextHeadingId(usedIds, children);
-          return (
-            <h4
-              id={id}
-              className="scroll-mt-28 mt-8 text-[1.05rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.12rem]"
-            >
-              {children}
-            </h4>
-          );
-        },
-        h4: ({ children }) => {
-          const id = nextHeadingId(usedIds, children);
-          return (
-            <h5
-              id={id}
-              className="scroll-mt-28 mt-6 text-[0.98rem] font-semibold tracking-[-0.01em] text-electric"
-            >
-              {children}
-            </h5>
-          );
-        },
-        p: ({ children }) => {
-          if (isPureStrongParagraph(children)) {
+          h1: ({ children }) => {
+            const id = nextHeadingId(usedIds, children);
             return (
-              <p className="my-5 border-l-2 border-electric/45 bg-electric/[0.04] px-4 py-3 text-[1.02rem] leading-relaxed text-ink sm:px-5">
+              <h2
+                id={id}
+                className="display scroll-mt-28 border-t border-line pt-10 mt-10 text-[clamp(1.55rem,2.8vw,1.95rem)] tracking-[-0.02em] text-ink"
+              >
+                {children}
+              </h2>
+            );
+          },
+          h2: ({ children }) => {
+            const id = nextHeadingId(usedIds, children);
+            return (
+              <h3
+                id={id}
+                className="display scroll-mt-28 mt-10 border-l-2 border-electric/40 pl-3.5 text-[clamp(1.22rem,2.1vw,1.5rem)] tracking-[-0.02em] text-ink sm:pl-4"
+              >
+                {children}
+              </h3>
+            );
+          },
+          h3: ({ children }) => {
+            const id = nextHeadingId(usedIds, children);
+            return (
+              <h4
+                id={id}
+                className={
+                  card
+                    ? "scroll-mt-28 text-[1.05rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.1rem]"
+                    : "scroll-mt-28 mt-8 text-[1.05rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.12rem]"
+                }
+              >
+                {children}
+              </h4>
+            );
+          },
+          h4: ({ children }) => {
+            const id = nextHeadingId(usedIds, children);
+            return (
+              <h5
+                id={id}
+                className="scroll-mt-28 mt-6 text-[0.98rem] font-semibold tracking-[-0.01em] text-electric"
+              >
+                {children}
+              </h5>
+            );
+          },
+          p: ({ children }) => {
+            if (isPureStrongParagraph(children)) {
+              return (
+                <p className="my-5 rounded-lg border border-electric/20 bg-electric/[0.06] px-4 py-3.5 text-[1.05rem] leading-relaxed text-ink sm:px-5">
+                  {children}
+                </p>
+              );
+            }
+            return (
+              <p
+                className={
+                  card
+                    ? "mt-2 text-[0.98rem] leading-[1.7] text-muted"
+                    : "my-4 text-[1.02rem] leading-[1.75] text-muted"
+                }
+              >
                 {children}
               </p>
             );
-          }
-          return (
-            <p className="my-4 text-[1.02rem] leading-[1.75] text-muted">
+          },
+          blockquote: ({ children }) => (
+            <blockquote className="my-3 rounded-r-lg border-l-2 border-electric/50 bg-electric/[0.05] px-4 py-3 text-[1.02rem] leading-relaxed text-ink sm:px-5 [&>p]:my-0 [&>p]:text-ink">
               {children}
-            </p>
-          );
-        },
-        blockquote: ({ children }) => (
-          <blockquote className="my-2.5 border-l-2 border-electric/45 bg-electric/[0.04] px-4 py-2.5 text-[1.02rem] leading-relaxed text-ink sm:px-5 [&>p]:my-0 [&>p]:text-ink">
-            {children}
-          </blockquote>
-        ),
-        strong: ({ children }) => (
-          <strong className="font-semibold text-ink">{children}</strong>
-        ),
-        em: ({ children }) => (
-          <em className="text-[0.92rem] not-italic text-muted-dim">{children}</em>
-        ),
-        ul: ({ children }) => (
-          <ul className="my-4 space-y-2 [&>li]:relative [&>li]:pl-5 [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:top-[0.7em] [&>li]:before:h-1 [&>li]:before:w-1 [&>li]:before:rounded-full [&>li]:before:bg-electric/70">
-            {children}
-          </ul>
-        ),
-        ol: ({ children }) => (
-          <ol className="my-4 list-decimal space-y-2 pl-5 marker:font-semibold marker:text-electric">
-            {children}
-          </ol>
-        ),
-        li: ({ children }) => (
-          <li className="text-[1.02rem] leading-[1.7] text-muted">{children}</li>
-        ),
-        hr: () => <hr className="my-12 border-0 border-t border-line" />,
-        a: ({ href, children }) => (
-          <a
-            href={href}
-            className="font-medium text-electric underline-offset-2 hover:underline"
-          >
-            {children}
-          </a>
-        ),
-        table: ({ children }) => (
-          <div className="my-6 -mx-1 overflow-x-auto rounded-xl border border-line bg-void/40 sm:mx-0">
-            <table className="w-full min-w-[40rem] border-collapse text-left text-[0.88rem] sm:text-[0.9rem]">
+            </blockquote>
+          ),
+          strong: ({ children }) => (
+            <strong className="font-semibold text-ink">{children}</strong>
+          ),
+          em: ({ children }) => (
+            <em className="text-[0.92rem] not-italic text-muted-dim">
               {children}
-            </table>
-          </div>
-        ),
-        thead: ({ children }) => (
-          <thead className="border-b border-line bg-panel/50">{children}</thead>
-        ),
-        tbody: ({ children }) => <tbody>{children}</tbody>,
-        tr: ({ children }) => (
-          <tr className="border-b border-line last:border-b-0">{children}</tr>
-        ),
-        th: ({ children }) => (
-          <th className="whitespace-nowrap px-3.5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-muted-dim sm:px-4">
-            {children}
-          </th>
-        ),
-        td: ({ children }) => (
-          <td className="px-3.5 py-3 align-top leading-snug text-ink/95 sm:px-4">
-            {children}
-          </td>
-        ),
-      }}
-    >
-      {markdown}
-    </ReactMarkdown>
+            </em>
+          ),
+          ul: ({ children }) =>
+            accentLists ? (
+              <ul className="my-5 grid gap-2 sm:grid-cols-2">
+                {children}
+              </ul>
+            ) : (
+              <ul className="my-4 space-y-2 [&>li]:relative [&>li]:pl-5 [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:top-[0.7em] [&>li]:before:h-1 [&>li]:before:w-1 [&>li]:before:rounded-full [&>li]:before:bg-electric/70">
+                {children}
+              </ul>
+            ),
+          ol: ({ children }) => (
+            <ol className="my-4 list-decimal space-y-2 pl-5 marker:font-semibold marker:text-electric">
+              {children}
+            </ol>
+          ),
+          li: ({ children }) =>
+            accentLists ? (
+              <li className="rounded-lg border border-line bg-deep/55 px-3.5 py-3 text-[0.95rem] font-medium leading-snug text-ink">
+                {children}
+              </li>
+            ) : (
+              <li className="text-[1.02rem] leading-[1.7] text-muted">
+                {children}
+              </li>
+            ),
+          hr: () => <hr className="my-12 border-0 border-t border-line" />,
+          a: ({ href, children }) => (
+            <a
+              href={href}
+              className="font-medium text-electric underline-offset-2 hover:underline"
+            >
+              {children}
+            </a>
+          ),
+          table: ({ children }) => (
+            <div className="my-6 -mx-1 overflow-x-auto rounded-xl border border-line bg-void/40 sm:mx-0">
+              <table className="w-full min-w-[40rem] border-collapse text-left text-[0.88rem] sm:text-[0.9rem]">
+                {children}
+              </table>
+            </div>
+          ),
+          thead: ({ children }) => (
+            <thead className="border-b border-line bg-panel/50">{children}</thead>
+          ),
+          tbody: ({ children }) => <tbody>{children}</tbody>,
+          tr: ({ children }) => (
+            <tr className="border-b border-line last:border-b-0">{children}</tr>
+          ),
+          th: ({ children }) => (
+            <th className="whitespace-nowrap px-3.5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-muted-dim sm:px-4">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="px-3.5 py-3 align-top leading-snug text-ink/95 sm:px-4">
+              {children}
+            </td>
+          ),
+        }}
+      >
+        {markdown}
+      </ReactMarkdown>
     </div>
   );
 }

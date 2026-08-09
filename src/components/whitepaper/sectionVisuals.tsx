@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CompetitorComparisonTable } from "@/components/whitepaper/CompetitorComparisonTable";
 import {
   BurnBuybackFlowDiagram,
   CreatorMarketplaceFlowDiagram,
@@ -56,6 +57,15 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           id: "nc-flow",
           placement: "before",
           node: <NonCustodialFlowDiagram />,
+        },
+      ];
+    case "5-why-indexla-is-different":
+      return [
+        {
+          id: "competitor-table",
+          placement: "after",
+          afterHeadingId: "one-portfolio-layer-across-a-fragmented-market",
+          node: <CompetitorComparisonTable />,
         },
       ];
     case "6-creator-marketplace":

@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { WhitepaperMarkdown } from "@/components/whitepaper/WhitepaperMarkdown";
 import {
   getSectionVisuals,
@@ -10,7 +11,26 @@ import { slugifyHeading } from "@/lib/whitepaper";
 type Block = {
   id: string | null;
   markdown: string;
+  level: number | null;
 };
+
+/** Sections where ### topics become scannable concept cards */
+const CARDIFY_H3_SECTIONS = new Set([
+  "2-the-problem",
+  "5-why-indexla-is-different",
+  "8-competitive-moat",
+  "10-strategy-engine",
+  "16-security-risk",
+]);
+
+/** Sections where bullet lists become accent concept tiles */
+const ACCENT_LIST_SECTIONS = new Set([
+  "1-executive-summary",
+  "8-competitive-moat",
+  "11-business-model",
+  "15-investor-platform-disclaimer",
+  "19-what-we-need",
+]);
 
 function plainHeading(raw: string): string {
   return raw.replace(/\*\*/g, "").replace(/`/g, "").trim();
@@ -21,12 +41,13 @@ function splitIntoHeadingBlocks(markdown: string): Block[] {
   const blocks: Block[] = [];
   let current: string[] = [];
   let currentId: string | null = null;
+  let currentLevel: number | null = null;
   const usedIds = new Map<string, number>();
 
   const push = () => {
     const text = current.join("\n").trim();
     if (!text) return;
-    blocks.push({ id: currentId, markdown: text });
+    blocks.push({ id: currentId, markdown: text, level: currentLevel });
   };
 
   for (const line of lines) {
@@ -39,6 +60,7 @@ function splitIntoHeadingBlocks(markdown: string): Block[] {
       usedIds.set(id, count + 1);
       if (count > 0) id = `${id}-${count + 1}`;
       currentId = id;
+      currentLevel = match[1].length;
       current = [line];
     } else {
       current.push(line);
@@ -59,6 +81,27 @@ function visualsAfter(
   );
 }
 
+function ConceptCard({
+  children,
+  index,
+}: {
+  children: ReactNode;
+  index: number;
+}) {
+  return (
+    <div className="relative my-4 overflow-hidden rounded-xl border border-line bg-deep/45 px-4 py-4 sm:px-5 sm:py-5">
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b from-electric via-purple-bright/80 to-transparent"
+        aria-hidden
+      />
+      <p className="mb-2 text-[0.65rem] font-semibold tabular-nums tracking-[0.14em] text-electric">
+        {String(index + 1).padStart(2, "0")}
+      </p>
+      {children}
+    </div>
+  );
+}
+
 export function WhitepaperSectionBody({
   slug,
   markdown,
@@ -67,11 +110,15 @@ export function WhitepaperSectionBody({
   markdown: string;
 }) {
   const visuals = getSectionVisuals(slug);
-  const before = visuals.filter((v) => v.placement === "before" && !v.afterHeadingId);
+  const before = visuals.filter(
+    (v) => v.placement === "before" && !v.afterHeadingId,
+  );
   const blocks = splitIntoHeadingBlocks(markdown);
-
-  // Visuals with afterHeadingId that match; also support after null = after prologue if any
   const prologueVisuals = visualsAfter(visuals, null);
+  const cardify = CARDIFY_H3_SECTIONS.has(slug);
+  const accentLists = ACCENT_LIST_SECTIONS.has(slug);
+
+  let h3CardIndex = 0;
 
   return (
     <div>
@@ -80,22 +127,36 @@ export function WhitepaperSectionBody({
       ))}
 
       {blocks.length === 0 ? (
-        <WhitepaperMarkdown markdown={markdown} />
+        <WhitepaperMarkdown markdown={markdown} accentLists={accentLists} />
       ) : (
-        blocks.map((block, index) => (
-          <div key={`${block.id ?? "block"}-${index}`}>
+        blocks.map((block, index) => {
+          const asCard = cardify && block.level === 3;
+          const cardIndex = asCard ? h3CardIndex++ : 0;
+          const content = (
             <WhitepaperMarkdown
               markdown={block.markdown}
-              resetTop={index === 0}
+              resetTop={index === 0 || asCard}
+              card={asCard}
+              accentLists={accentLists && !asCard}
             />
-            {visualsAfter(visuals, block.id).map((v) => (
-              <div key={v.id}>{v.node}</div>
-            ))}
-            {index === 0 && block.id === null
-              ? prologueVisuals.map((v) => <div key={v.id}>{v.node}</div>)
-              : null}
-          </div>
-        ))
+          );
+
+          return (
+            <div key={`${block.id ?? "block"}-${index}`}>
+              {asCard ? (
+                <ConceptCard index={cardIndex}>{content}</ConceptCard>
+              ) : (
+                content
+              )}
+              {visualsAfter(visuals, block.id).map((v) => (
+                <div key={v.id}>{v.node}</div>
+              ))}
+              {index === 0 && block.id === null
+                ? prologueVisuals.map((v) => <div key={v.id}>{v.node}</div>)
+                : null}
+            </div>
+          );
+        })
       )}
     </div>
   );
