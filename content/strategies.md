@@ -1,250 +1,263 @@
-# Strategies
+# **Strategies**
 
-## Stop reacting to markets. Start following rules.
+## **Stop Reacting To Markets. Start Following Rules.**
 
-You already know what fear, greed, momentum, and overbought markets look like.
+Markets move 24/7.
 
-The problem is execution.
+Fear. Greed. Momentum. Oversold conditions. Profit targets. Allocation drift.
 
-Fear makes investors sell. Greed makes them FOMO. A sudden move happens while they are asleep, distracted, or waiting for confirmation.
+You don't need to predict every move.
 
-INDEXLA turns proven investment approaches into automated rules.
+You need a predefined response when the conditions you care about appear.
 
-**You define the rules. INDEXLA watches the market and executes them.**
+**Define the rules. INDEXLA monitors the conditions and coordinates execution.**
+
+Your assets remain in your wallet. Strategy execution happens on-chain across supported networks.
+
+
 
 ---
 
-## Buy Fear. Sell Greed.
+# **Buy Fear. Sell Greed.**
 
-### You don't need to time the bottom.
+## **Accumulate Into Extreme Fear. Reduce Exposure Into Extreme Greed.**
 
-The goal isn't to predict the exact market bottom or sell the exact cycle top.
+You don't need to call the exact bottom or top.
 
-Nobody consistently can.
-
-INDEXLA lets you **DCA into extreme fear** and **DCA out during extreme greed**.
-
-**Fear increases → Gradually accumulate.**
-
-**Greed increases → Gradually reduce exposure.**
-
-Instead of making one perfect entry or exit, the strategy spreads execution across the conditions you define.
-
-Human nature makes this difficult. We sell when markets feel dangerous and buy when everyone is euphoric.
-
-INDEXLA removes that emotional decision.
-
-### The pattern
+Define your sentiment thresholds and let the strategy respond progressively.
 
 **Extreme Fear → DCA In**
 
 **Extreme Greed → DCA Out**
 
-You don't need to call the bottom.
+Fear increases → Gradually accumulate.
 
-You don't need to call the top.
+Greed increases → Gradually reduce exposure.
 
-**You need a rule that keeps executing when emotions tell you to do the opposite.**
+Instead of making one emotional decision at the bottom or top, your rules spread execution across the conditions you define.
 
-### Bitcoin — two historical cycles
+### **Historical context**
 
-**2018–2021**
+During the 2018–2021 Bitcoin cycle, BTC entered extreme fear around the $3K–$6K range before eventually reaching approximately $69K.
 
-BTC entered extreme fear around **$3K–$6K** before the next major bull cycle.
+During the 2022–2025 cycle, BTC entered another extreme-fear period around $15K–$17K before eventually reaching approximately $126K.
 
-Using **$4,000** as a representative entry:
+**Historical market context only. Not INDEXLA strategy performance.**
 
-**$4,000 → $69,045 = +1,626%**
+  
 
-**2022–2025**
-
-BTC entered another extreme-fear period around **$15K–$17K**.
-
-Using **$16,000** as a representative entry:
-
-**$16,000 → $126,080 = +688%**
-
-### Ethereum — two historical cycles
-
-**2018–2021**
-
-ETH traded below **$100** during extreme fear before entering its major 2021 expansion.
-
-Using **$100** as a representative entry:
-
-**$100 → $4,815 = +4,715%**
-
-**2022–2025**
-
-ETH fell to roughly **$880** during the 2022 fear cycle.
-
-**$880 → $4,946 = +462%**
-
-*These are historical price movements, not claimed INDEXLA strategy returns.*
-
-### The opportunity isn't predicting the next cycle.
-
-It's having a predefined response when fear and greed reach your conditions.
-
-**Fear → DCA In**
-
-**Greed → DCA Out**
-
-**INDEXLA executes the plan.**
 
 ---
 
-## RSI
+# **RSI Strategy**
 
-### Buy oversold. Reduce overbought.
+## **Buy Oversold. Reduce Overbought.**
 
-RSI identifies when momentum becomes stretched.
+RSI identifies when price momentum becomes stretched.
 
-**Oversold → Accumulate**
+You define the threshold.
 
-**Overbought → Reduce exposure**
+**Oversold → DCA In**
 
-### Bitcoin — 2020
+**Overbought → DCA Out**
 
-During the COVID crash, BTC fell to roughly **$5,000** while weekly RSI reached deeply oversold levels.
+The strategy responds when your defined RSI conditions are reached instead of relying on a manual decision.
 
-The following cycle took BTC to approximately **$64,800**.
+### **Historical context**
 
-**$5,000 → $64,800 = +1,196%**
+During the March 2020 crash, Bitcoin traded around $5,000 while weekly RSI reached deeply oversold levels.
 
-### Ethereum — 2020
+BTC later reached approximately $64,800.
 
-ETH traded around **$110** during the March 2020 crash as momentum became deeply oversold.
+**Historical market context only. Not claimed RSI strategy performance.**
 
-By November 2021:
+  
 
-**$110 → $4,815 = +4,277%**
 
-*These are historical price moves around oversold conditions, not claimed RSI strategy returns.*
 
-**You choose the threshold. INDEXLA watches it.**
 
 ---
 
-## Momentum
 
-### Follow the trend. Don't chase the noise.
 
-Momentum strategies increase or reduce exposure as defined market trends change.
+# **Momentum**
+
+## **Follow The Trend. Don't Chase The Noise.**
+
+Momentum strategies respond when defined market trends change.
 
 **Bullish trend → Increase exposure**
 
 **Bearish trend → Reduce exposure**
 
-Choose the timeframe and rules that fit your strategy.
+Choose the timeframe and conditions that fit your strategy.
 
-INDEXLA monitors the conditions continuously and executes when your rules are met.
+INDEXLA monitors the defined signals continuously and coordinates execution when your rules are triggered.
 
----
-
-## Take Profit
-
-### Decide your exit before the market decides for you.
-
-Set a target before entering a position.
-
-**Position reaches your target → Reduce exposure.**
-
-No waiting for the perfect top.
-
-No turning profit into another round-trip.
-
-Your exit is decided before emotion takes over.
-
----
-
-## Rebalancing
-
-### Keep your portfolio on target.
-
-Markets move. Allocations drift.
-
-If your portfolio target is **60% BTC / 40% ETH**, a large BTC move can completely change that balance.
-
-Set your ranges.
-
-INDEXLA monitors the portfolio and rebalances when your conditions are triggered.
-
----
-
-## AI watches. Your rules decide. INDEXLA executes.
-
-You don't need to watch charts all day.
-
-AI monitors market conditions, evaluates the signals your strategy depends on, and coordinates execution.
-
-**You define the strategy.**
-
-**AI watches the market.**
-
-**INDEXLA executes according to your rules.**
-
-Markets move 24/7.
-
-**Your strategy should too.**
-
----
-
-## Strategy suitability
-
-Built for **liquid, established assets with strong fundamentals and long-term relevance**.
-
-These strategies are not designed to make speculative, illiquid, or short-lived assets safer.
-
-**Asset selection still determines the underlying risk.**
-
-Historical examples are market history, not claimed strategy returns. Verified backtests will show actual strategy performance when available.
-
----
-
-## One system. Multiple strategies.
-
-Use proven templates or combine strategies across your portfolio.
-
-**Fear & Greed · RSI · Momentum · Take Profit · Rebalancing**
-
-Choose your assets, allocations, thresholds, and execution rules.
-
-Build the system around your conviction.
-
----
-
-## Built for discipline, not prediction.
-
-INDEXLA isn't trying to predict every market move.
-
-It gives you a way to act consistently when the conditions you defined actually happen.
-
-**Define the rule.**
-
-**Let the market trigger it.**
-
-**Let INDEXLA execute.**
-
-**Build Your Strategy**
-
-**Explore Strategies**
-
----
-
-## Strategy & Risk Disclaimer
-
-INDEXLA provides portfolio management and automation tools. Investors choose the assets, allocations, strategies, and execution parameters. **INDEXLA does not guarantee that any strategy will perform profitably.**
-
-Strategies may perform differently across assets, market conditions, timeframes, and liquidity environments. A strategy that works well with established, liquid assets may perform poorly on speculative, illiquid, or short-lived assets.
-
-**Asset selection matters. Strategy selection matters. Market conditions matter.**
-
-Historical examples are illustrative market history, not guaranteed or claimed INDEXLA strategy returns. **Past performance does not guarantee future results.**
-
-INDEXLA provides the infrastructure to execute your chosen strategy. The investment decision and resulting risk remain with the investor, including the possibility of partial or total loss of capital.  
   
 
 
+---
+
+# **Take Profit**
+
+## **Decide The Exit Before Emotion Takes Over.**
+
+Set your target before entering a position.
+
+**Target reached → Reduce exposure**
+
+No waiting for the perfect top.
+
+No turning a profitable position into another round trip.
+
+Your exit is defined before the market tests your discipline.
+
+  
+**Stop Loss**
+
+## Protect The Downside Before It Gets Worse.
+
+Set the maximum loss you are willing to accept before entering a position.
+
+Price reaches your stop level → Reduce or exit exposure
+
+No waiting for a recovery that may never come.
+
+No emotional decision while the market is falling.
+
+Your downside rule is defined before the position is opened.
+
+
+
+---
+
+# **Rebalancing**
+
+## **Keep Your Portfolio On Target.**
+
+Markets move. Allocations drift.
+
+A portfolio targeting **60% BTC / 40% ETH** can quickly become something very different after a major move.
+
+Define your target allocations and acceptable ranges.
+
+When your conditions are triggered, INDEXLA can rebalance the portfolio toward your rules.
+
+
+
+---
+
+---
+
+# **Match The Strategy To The Asset.**
+
+Different assets respond differently to the same strategy.
+
+### **Crypto**
+
+**BTC · ETH · Major liquid assets**
+
+Fear & Greed · RSI · Momentum · Rebalancing
+
+### **Tokenized Stocks**
+
+Momentum · RSI · Take Profit
+
+### **Commodities & RWAs**
+
+Rebalancing · Momentum · Take Profit
+
+### **Hybrid Portfolios**
+
+Combine supported asset classes and apply different rules across the portfolio.
+
+Asset selection still determines the underlying risk.
+
+A strategy does not make an illiquid or speculative asset safe.
+
+
+
+---
+
+# **You Define. AI Watches. INDEXLA Executes.**
+
+AI monitors the market conditions your strategy depends on.
+
+The execution process is rule-driven:
+
+**Market Signal → Strategy Rules → Risk Checks → Execution → On-Chain Transaction**
+
+AI coordinates monitoring and execution.
+
+It does not take custody of your assets or decide what you should invest in.
+
+**You define the strategy.**  
+**Your wallet holds the assets.**  
+**Your rules determine the response.**
+
+Supported strategies can run across supported networks and assets.
+
+Markets don't stop when you sleep.
+
+Your strategy doesn't have to either.
+
+
+
+---
+
+# **Build Your First Strategy.**
+
+Choose your assets.
+
+Set your allocations.
+
+Define your conditions.
+
+Let the system monitor them.
+
+**Build Your Strategy**
+
+
+
+---
+
+# **Strategy Suitability**
+
+INDEXLA strategies are designed for assets with sufficient liquidity, reliable market data, and a clear market structure.
+
+Strategy selection does not remove underlying asset risk.
+
+A strategy that works with BTC or ETH may behave very differently with speculative, illiquid, or short-lived assets.
+
+**Asset selection matters.**  
+**Strategy selection matters.**  
+**Market conditions matter.**
+
+Historical examples on this page are illustrative market history, not claimed INDEXLA strategy returns.
+
+Verified backtests will show actual strategy performance when available.
+
+
+
+---
+
+# **Strategy & Risk Disclaimer**
+
+INDEXLA provides non-custodial portfolio management and automation infrastructure. Investors choose the assets, allocations, strategies, thresholds, and execution parameters.
+
+INDEXLA does not guarantee profitable performance and does not provide investment advice or recommendations.
+
+Strategies may perform differently across assets, market conditions, timeframes, liquidity environments, execution costs, and market volatility.
+
+Past performance does not guarantee future results.
+
+Historical examples shown on this page are market history only and are not claimed INDEXLA strategy returns.
+
+Execution may be affected by network conditions, liquidity, slippage, fees, and other market factors.
+
+INDEXLA provides the infrastructure to execute your chosen strategy. The investment decision and resulting risk remain with the investor, including the possibility of partial or total loss of capital.
+
+  
 
 
