@@ -1,1 +1,98 @@
 @import "tailwindcss";
+
+@theme {
+  --color-void: #0a0614;
+  --color-deep: #12081f;
+  --color-panel: #1a0f2e;
+  --color-panel-elevated: #22143a;
+  --color-purple: #7c3aed;
+  --color-purple-bright: #a78bfa;
+  --color-purple-deep: #4c1d95;
+  --color-blue: #3b82f6;
+  --color-electric: #38bdf8;
+  --color-cyan: #22d3ee;
+  --color-ink: #f4f1ff;
+  --color-muted: #a89bc4;
+  --color-muted-dim: #6e6288;
+  --color-line: rgba(167, 139, 250, 0.14);
+  --color-line-strong: rgba(56, 189, 248, 0.28);
+  --color-success: #34d399;
+  --color-danger: #f87171;
+
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--color-void);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-electric) 40%, transparent);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .section-pad {
+    padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  .container-max {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    background-image: linear-gradient(120deg, #c4b5fd 0%, #38bdf8 55%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-glow {
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 35%, rgba(124, 58, 237, 0.35), transparent 58%),
+      radial-gradient(ellipse 45% 40% at 75% 55%, rgba(56, 189, 248, 0.18), transparent 55%),
+      radial-gradient(ellipse 40% 35% at 20% 70%, rgba(167, 139, 250, 0.12), transparent 50%);
+  }
+
+  .glass {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+  }
+
+  .glass-soft {
+    background: rgba(26, 15, 46, 0.65);
+    border: 1px solid rgba(167, 139, 250, 0.14);
+    backdrop-filter: blur(12px);
+  }
+}
