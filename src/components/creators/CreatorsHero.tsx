@@ -18,8 +18,9 @@ export function CreatorsHero() {
       />
 
       <div className="section-pad container-max relative z-10">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12 xl:gap-16">
           <motion.div
+            className="flex flex-col justify-center"
             initial={reduce ? false : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -83,7 +84,11 @@ export function CreatorsHero() {
             </div>
           </motion.div>
 
-          <HeroCreatorPortfolioCard />
+          <div className="flex items-center justify-center lg:justify-end">
+            <div className="w-full max-w-xl">
+              <HeroCreatorPortfolioCard />
+            </div>
+          </div>
         </div>
       </div>
     </section>
