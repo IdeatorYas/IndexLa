@@ -27,16 +27,13 @@ export function FaqHero() {
           </h1>
         </motion.div>
 
-        <nav
-          aria-label="FAQ categories"
-          className="mx-auto mt-8 max-w-4xl"
-        >
-          <ul className="flex flex-wrap items-center justify-center gap-2">
+        <nav aria-label="FAQ categories" className="mx-auto mt-9 max-w-4xl border-t border-line/80 pt-7">
+          <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1.5 sm:gap-x-2">
             {FAQ_SECTIONS.map((section) => (
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
-                  className="inline-flex rounded-full border border-line bg-void/50 px-3.5 py-2 text-[0.78rem] font-semibold tracking-[-0.01em] text-muted transition-colors hover:border-electric/40 hover:text-electric sm:text-[0.82rem]"
+                  className="inline-flex px-3 py-2 text-[0.8rem] font-semibold tracking-[-0.01em] text-muted transition-colors hover:text-electric sm:px-3.5 sm:text-[0.84rem]"
                 >
                   {section.title}
                 </a>

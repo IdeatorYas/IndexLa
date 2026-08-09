@@ -1,12 +1,14 @@
 "use client";
 
 import { useId, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FaqAnswer } from "@/components/faq/FaqAnswer";
 import type { FaqItem } from "@/components/faq/faqData";
 
 export function FaqAccordionItem({ item }: { item: FaqItem }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  const reduce = useReducedMotion();
 
   return (
     <div className="border-b border-line last:border-b-0">
@@ -16,14 +18,16 @@ export function FaqAccordionItem({ item }: { item: FaqItem }) {
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setOpen((v) => !v)}
-          className="flex w-full items-start justify-between gap-4 py-4 text-left transition-colors hover:text-electric sm:py-5"
+          className="group flex w-full items-start justify-between gap-4 py-4 text-left sm:py-5"
         >
-          <span className="display text-[1.05rem] leading-snug tracking-[-0.02em] text-ink sm:text-[1.12rem]">
+          <span className="display text-[1.05rem] leading-snug tracking-[-0.02em] text-ink transition-colors group-hover:text-electric sm:text-[1.12rem]">
             {item.q}
           </span>
           <span
-            className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-electric transition-transform duration-300 ${
-              open ? "rotate-45 border-electric/40 bg-electric/10" : "bg-void/40"
+            className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-electric transition-all duration-300 ${
+              open
+                ? "rotate-45 border-electric/45 bg-electric/10"
+                : "border-line bg-void/40 group-hover:border-electric/35"
             }`}
             aria-hidden
           >
@@ -38,14 +42,24 @@ export function FaqAccordionItem({ item }: { item: FaqItem }) {
           </span>
         </button>
       </h3>
-      <div
-        id={panelId}
-        role="region"
-        hidden={!open}
-        className={open ? "pb-5 pr-10 sm:pb-6" : undefined}
-      >
-        {open ? <FaqAnswer paragraphs={item.a} /> : null}
-      </div>
+      <AnimatePresence initial={false}>
+        {open ? (
+          <motion.div
+            id={panelId}
+            role="region"
+            key="panel"
+            initial={reduce ? false : { height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={reduce ? undefined : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-5 pr-10 sm:pb-6">
+              <FaqAnswer paragraphs={item.a} />
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }
