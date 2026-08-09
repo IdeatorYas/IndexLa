@@ -11,26 +11,31 @@ const steps = [
     n: "01",
     title: "SELECT ASSETS",
     body: "Choose what you want to build around.",
-    detail: "Crypto · Tokenized Stocks · Commodities · RWAs · or Hybrid",
+    detail: "Crypto · Tokenized Stocks · Commodities · RWAs · Hybrid",
   },
   {
     n: "02",
     title: "ALLOCATE",
-    body: "Choose the assets and decide how capital is allocated across your portfolio.",
+    body: "Choose the assets and set the allocation.",
     detail: null,
   },
   {
     n: "03",
     title: "SELECT STRATEGY",
-    body: "Choose how your portfolio should respond to the market.",
+    body: "Define how the portfolio responds when the market moves.",
     detail: "Fear & Greed · RSI · Momentum · Take Profit · Stop Loss · Rebalancing",
   },
   {
     n: "04",
-    title: "PUBLISH",
-    body: "Fund your portfolio with the minimum $100 Creator Deposit.",
+    title: "FUND",
+    body: "Start with a minimum $100 Creator Deposit.",
     detail: "Your deposit is capital in your portfolio, not a platform fee.",
-    note: "Your deposit remains your capital",
+  },
+  {
+    n: "05",
+    title: "PUBLISH",
+    body: "Make your portfolio public so investors can discover and allocate to it.",
+    detail: null,
   },
 ];
 
@@ -40,21 +45,36 @@ export function CreatorBuildFlowSection() {
   return (
     <section
       id="build-flow"
-      className="relative scroll-mt-24 border-t border-line bg-deep py-14 md:py-20"
+      className="relative scroll-mt-24 border-t border-line bg-deep py-14 md:py-18"
     >
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(2rem,4.5vw,3.2rem)] uppercase tracking-[-0.02em] text-balance">
-            Turn Your Thesis Into A Portfolio{" "}
-            <span className="gradient-text">Investors Can Back</span>
+          <h2 className="display text-[clamp(2rem,4.5vw,3.15rem)] uppercase tracking-[-0.02em] text-balance">
+            Make Your Conviction{" "}
+            <span className="gradient-text">Investable.</span>
           </h2>
-          <p className="mt-5 text-[1.05rem] leading-relaxed text-muted">
-            INDEXLA gives you the infrastructure to turn your market thesis into
-            a live portfolio.
-          </p>
+          <div className="mt-5 space-y-2 text-[1.05rem] leading-relaxed text-muted">
+            <p>No trading infrastructure to build. No execution stack to maintain.</p>
+            <p>You decide what to own and how the portfolio should behave.</p>
+          </div>
         </FadeIn>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <FadeIn className="mt-6">
+          <div className="rounded-[1.25rem] border border-electric/35 bg-gradient-to-r from-electric/12 via-purple/10 to-transparent px-5 py-4 sm:px-6 sm:py-5">
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
+              Early Creator Access
+            </p>
+            <p className="mt-2 display text-[clamp(1.15rem,2.2vw,1.45rem)] text-ink">
+              Your first portfolio is free to publish at launch.
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              Start with one flagship strategy. Build the track record before
+              the marketplace gets crowded.
+            </p>
+          </div>
+        </FadeIn>
+
+        <div className="mt-8 grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
           <FadeIn>
             <div className="flex flex-col gap-2">
               {steps.map((step, i) => (
@@ -62,86 +82,65 @@ export function CreatorBuildFlowSection() {
                   key={step.n}
                   type="button"
                   onClick={() => setActive(i)}
-                  className={`rounded-2xl border px-4 py-4 text-left transition-all ${
+                  className={`rounded-2xl border px-4 py-3.5 text-left transition-all ${
                     active === i
-                      ? "border-electric/40 bg-white/[0.06] shadow-[0_0_28px_rgba(56,189,248,0.1)]"
-                      : "border-line bg-transparent hover:border-white/20 hover:bg-white/[0.03]"
+                      ? "border-electric/40 bg-white/[0.06]"
+                      : "border-line hover:border-white/20 hover:bg-white/[0.03]"
                   }`}
                 >
-                  <span className="text-[0.68rem] font-semibold text-electric">
+                  <span className="text-[0.65rem] font-semibold text-electric">
                     {step.n}
                   </span>
-                  <span className="mt-1 block display text-[1.15rem]">
+                  <span className="mt-0.5 block display text-[1.1rem]">
                     {step.title}
                   </span>
                 </button>
               ))}
-              <div className="mt-2 rounded-2xl border border-line bg-void/40 px-4 py-4">
-                <span className="text-[0.68rem] font-semibold text-muted-dim">
-                  05
-                </span>
-                <p className="mt-1 display text-[1.1rem]">BURN $DEXLA</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  Once the $DEXLA publishing model is live, burn{" "}
-                  <span className="font-semibold text-ink">1,000 $DEXLA</span> to
-                  publish additional portfolios on the marketplace.
-                </p>
-              </div>
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.06}>
-            <div className="relative min-h-[22rem] overflow-hidden rounded-[1.5rem] glass p-6 sm:p-8">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
-                Product flow · step {steps[active].n}
-              </p>
+          <FadeIn delay={0.05}>
+            <div className="min-h-[20rem] rounded-[1.35rem] glass p-5 sm:p-7">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={steps[active].n}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.28 }}
-                  className="mt-5"
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.25 }}
                 >
-                  <h3 className="display text-[1.8rem]">{steps[active].title}</h3>
-                  <p className="mt-3 max-w-md text-[1.05rem] leading-relaxed text-muted">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+                    Step {steps[active].n}
+                  </p>
+                  <h3 className="display mt-2 text-[1.7rem]">
+                    {steps[active].title}
+                  </h3>
+                  <p className="mt-3 text-[1.02rem] leading-relaxed text-muted">
                     {steps[active].body}
                   </p>
                   {steps[active].detail && (
-                    <p className="mt-4 text-sm font-semibold text-ink/90">
+                    <p className="mt-3 text-sm font-semibold text-ink/90">
                       {steps[active].detail}
-                    </p>
-                  )}
-                  {steps[active].note && (
-                    <p className="mt-3 text-sm font-semibold text-electric">
-                      {steps[active].note}
                     </p>
                   )}
 
                   {active === 0 && (
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {(
-                        [
-                          "Crypto",
-                          "Tokenized Stocks",
-                          "Commodities",
-                          "RWAs",
-                          "Hybrid",
-                        ] as const
-                      ).map((label) => (
-                        <span
-                          key={label}
-                          className="rounded-full border border-line bg-void/50 px-3 py-1.5 text-xs font-semibold text-muted"
-                        >
-                          {label}
-                        </span>
-                      ))}
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {["Crypto", "Tokenized Stocks", "Commodities", "RWAs", "Hybrid"].map(
+                        (label) => (
+                          <span
+                            key={label}
+                            className="rounded-full border border-line bg-void/50 px-3 py-1.5 text-xs font-semibold text-muted"
+                          >
+                            {label}
+                          </span>
+                        ),
+                      )}
                     </div>
                   )}
 
                   {active === 1 && (
-                    <div className="mt-6 space-y-3">
+                    <div className="mt-5 space-y-2.5">
                       {(
                         [
                           { key: "btc" as const, pct: 35 },
@@ -151,16 +150,16 @@ export function CreatorBuildFlowSection() {
                         ] as const
                       ).map((row) => (
                         <div key={row.key} className="flex items-center gap-3">
-                          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-line bg-void/50">
-                            <AssetLogo asset={row.key} size={16} />
+                          <span className="flex h-7 w-7 items-center justify-center rounded-full border border-line bg-void/50">
+                            <AssetLogo asset={row.key} size={14} />
                           </span>
-                          <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/5">
+                          <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/5">
                             <div
                               className="h-full rounded-full bg-gradient-to-r from-purple to-electric"
                               style={{ width: `${row.pct}%` }}
                             />
                           </div>
-                          <span className="w-10 text-right text-xs text-muted">
+                          <span className="w-8 text-right text-xs tabular-nums text-muted">
                             {row.pct}%
                           </span>
                         </div>
@@ -169,7 +168,7 @@ export function CreatorBuildFlowSection() {
                   )}
 
                   {active === 2 && (
-                    <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
                       {[
                         "Fear & Greed",
                         "RSI",
@@ -180,7 +179,7 @@ export function CreatorBuildFlowSection() {
                       ].map((rule) => (
                         <span
                           key={rule}
-                          className="rounded-xl border border-line bg-void/45 px-3 py-3 text-center text-xs font-semibold text-ink"
+                          className="rounded-xl border border-line bg-void/45 px-3 py-2.5 text-center text-xs font-semibold text-ink"
                         >
                           {rule}
                         </span>
@@ -189,16 +188,39 @@ export function CreatorBuildFlowSection() {
                   )}
 
                   {active === 3 && (
-                    <div className="mt-6 rounded-2xl border border-line bg-void/45 p-5">
-                      <p className="text-[0.65rem] uppercase tracking-[0.14em] text-muted-dim">
+                    <div className="mt-5 rounded-2xl border border-line bg-void/45 p-5">
+                      <p className="text-[0.62rem] uppercase tracking-[0.14em] text-muted-dim">
                         Creator deposit
                       </p>
-                      <p className="display mt-2 text-[2rem] gradient-text">
-                        $100
-                      </p>
+                      <p className="display mt-2 text-[2.2rem] gradient-text">$100</p>
                       <p className="mt-2 text-sm text-muted">
-                        Minimum capital in your portfolio — not a platform fee.
+                        Capital in your portfolio — not a platform fee.
                       </p>
+                    </div>
+                  )}
+
+                  {active === 4 && (
+                    <div className="mt-5 space-y-3">
+                      <div className="rounded-2xl border border-line bg-void/45 p-4">
+                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                          Public
+                        </p>
+                        <p className="mt-2 text-sm leading-relaxed text-muted">
+                          Burn{" "}
+                          <span className="font-semibold text-ink">1,000 $DEXLA</span>{" "}
+                          to publish additional portfolios once the $DEXLA
+                          publishing model is live.
+                        </p>
+                      </div>
+                      <div className="rounded-2xl border border-line bg-void/45 p-4">
+                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+                          Private
+                        </p>
+                        <p className="mt-2 text-sm leading-relaxed text-muted">
+                          Keep your portfolio private with no $DEXLA burn
+                          required.
+                        </p>
+                      </div>
                     </div>
                   )}
                 </motion.div>
@@ -207,17 +229,9 @@ export function CreatorBuildFlowSection() {
           </FadeIn>
         </div>
 
-        <FadeIn className="mt-10 space-y-5">
-          <p className="display text-[clamp(1.15rem,2.3vw,1.5rem)] text-ink">
-            Start with one. Build your track record.
-          </p>
-          <p className="max-w-2xl text-[1.02rem] leading-relaxed text-muted">
-            At launch, early-access creators can publish their first portfolio
-            for free. Focus on one flagship strategy, grow its AUM, and build a
-            track record investors can follow.
-          </p>
-          <Button href="#build-flow" className="min-w-[13.5rem]">
-            Create Your first Portfolio
+        <FadeIn className="mt-8">
+          <Button href="#build-flow" className="min-w-[13rem]">
+            Register For Early Access
           </Button>
         </FadeIn>
       </div>

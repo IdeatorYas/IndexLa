@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CreatorBuildFlowSection } from "@/components/creators/CreatorBuildFlowSection";
+import { CreatorDisclaimer } from "@/components/creators/CreatorDisclaimer";
 import { CreatorDistributionSection } from "@/components/creators/CreatorDistributionSection";
 import { CreatorEconomicsSection } from "@/components/creators/CreatorEconomicsSection";
 import { CreatorLeaderboardSection } from "@/components/creators/CreatorLeaderboardSection";
@@ -23,6 +24,7 @@ export default function CreatorsPage() {
       <CreatorTrackRecordSection />
       <CreatorLeaderboardSection />
       <CreatorsFinalCta />
+      <CreatorDisclaimer />
     </main>
   );
 }

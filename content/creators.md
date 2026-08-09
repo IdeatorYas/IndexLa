@@ -1,22 +1,22 @@
 # **Creators**
 
-## **Turn Your Alpha Into An Investable Product.** 
+## **Your Alpha. Turned Into An Investable Product.**
 
-You already share market calls on X, YouTube, Telegram, Discord, and everywhere your audience follows you.
+You already have the audience. You already have the thesis.
 
-You already tell people what you believe will outperform.
+Turn what you post into a portfolio investors can actually allocate to.
 
-### Turn that conviction into a portfolio investors can actually allocate to.
+**Choose the assets. Set the allocations. Define the strategy. Publish.**
 
-**Choose the assets. Set the allocations. Define the strategy. Publish it.**
+Keep posting. Keep educating. Keep pushing your thesis.
 
- Keep doing what you already do: create, educate, and share your thesis.
-
-As your portfolio attracts capital and trading activity, you earn from the activity you generate.
+Your portfolio becomes the destination for the people who want to put capital behind it.
 
 ### **Set it up once. Keep building. Keep earning.**
 
 **Become a Creator**
+
+*Connect MetaMask, Phantom, Backpack, or any supported wallet.*
 
 Build and publish your first portfolio in under 5 minutes.
 
@@ -24,85 +24,73 @@ Build and publish your first portfolio in under 5 minutes.
 
 ---
 
-# **Turn Your Thesis Into A Portfolio Investors Can Back**
+# Make Your Conviction Investable.
 
-INDEXLA gives you the infrastructure to turn your market thesis into a live portfolio.
+No trading infrastructure to build. No execution stack to maintain.
+
+You decide what to own and how the portfolio should behave.
 
 ### **01 — SELECT ASSETS**
 
 Choose what you want to build around.
 
-**Crypto · Tokenized Stocks · Commodities · RWAs · or Hybrid**
+**Crypto · Tokenized Stocks · Commodities · RWAs · Hybrid**
 
 ### **02 — ALLOCATE**
 
-Choose the assets and decide how capital is allocated across your portfolio.
+Choose the assets and set the allocation.
 
 ### **03 — SELECT STRATEGY**
 
-Choose how your portfolio should respond to the market.
+Define how the portfolio responds when the market moves.
 
 **Fear & Greed · RSI · Momentum · Take Profit · Stop Loss · Rebalancing**
 
-### **04 — PUBLISH**
+### **04 — FUND**
 
-Fund your portfolio with the minimum **$100 Creator Deposit**.
+Start with a minimum **$100 Creator Deposit**.
 
 Your deposit is capital in your portfolio, not a platform fee.
 
-**Your deposit remains your capital** 
+### **05 — PUBLISH**
 
-**05 — BURN $DEXLA**
+Make your portfolio public so investors can discover and allocate to it.
 
-Once the $DEXLA publishing model is live, burn **1,000 $DEXLA** to publish additional portfolios on the marketplace.
+**Public:** Burn **1,000 $DEXLA** to publish additional portfolios once the $DEXLA publishing model is live.
 
-### **START WITH ONE. BUILD YOUR TRACK RECORD.**
+**Private:** Keep your portfolio private with no $DEXLA burn required.
 
-At launch, early-access creators can publish their first portfolio for free.
+### **EARLY CREATOR ACCESS**
 
-Focus on one flagship strategy, grow its AUM, and build a track record investors can follow.
+**Your first portfolio is free to publish at launch.**
 
-**Create Your first Portfolio**
+Start with one flagship strategy. Build the track record before the marketplace gets crowded.
 
----
-
-# **Turn Your Content Into A Distribution Engine.**
-
-Keep doing what you already do.
-
-### **X / TWITTER**
-
-Share your thesis. Discuss your portfolio. Explain allocation changes.
-
-### **YOUTUBE**
-
-Build videos around your strategy, market views, and portfolio performance.
-
-### **TELEGRAM / DISCORD**
-
-Give your community a live portfolio they can discover and follow.
-
-### **EDUCATION**
-
-Teach people why you selected the assets, allocations, and strategy.
-
-Instead of sending your audience to another temporary signal or affiliate link, give them something that can keep growing with your audience.
-
-### **Your content → Your portfolio → Investor capital → AUM → Trading activity → Creator earnings**
-
-Keep educating.
-
-Keep promoting.
-
-Keep building.
-
-### **Your portfolio becomes part of your content  and your content becomes distribution for your portfolio.**
+**Register For Early Access** 
 
 
 
----
+# **Your Content Becomes Distribution.**
 
-# **Turn AUM Into Creator Earnings.**
+You don't need another affiliate link.
+
+Give your audience something they can actually allocate to.
+
+**X · YouTube · Telegram · Discord → Portfolio → Investor Capital → AUM → Trading Activity**
+
+Mention it in threads.
+
+Feature it in videos.
+
+Share allocation changes.
+
+Every piece of content becomes a discovery point for your portfolio.
+
+### **Keep talking about what you believe in. Your portfolio keeps working underneath it.**
+
+
+
+# **Turn AUM Into Earnings.**
 
 When investors trade through your portfolio, INDEXLA charges a **1% execution fee**.
 
@@ -110,7 +98,7 @@ When investors trade through your portfolio, INDEXLA charges a **1% execution fe
 
 Creator earnings accrue daily and are paid daily.
 
-The more capital your portfolio attracts and the more active it becomes, the greater your potential earnings.
+The bigger your AUM and the more activity your portfolio generates, the more you can earn.
 
 ### **Illustrative Creator Economics**
 
@@ -123,106 +111,82 @@ The more capital your portfolio attracts and the more active it becomes, the gre
 | Large         | $20M    | $40M                        | $400K                  | $200K                   |
 
 
-*Illustrative scenarios only. Actual creator earnings depend on AUM, execution volume, and the applicable execution fee.*
-
-### **Build the portfolio.**
-
-### **Grow the AUM.**
-
-### **Earn from the activity your conviction generates.**
+*Illustrative scenarios only. Actual earnings depend on AUM, execution volume, and applicable execution fees.*
 
 
 
 ---
 
-# **Your Track Record Becomes Your Reputation.**
 
-Your best ideas shouldn't disappear into a Telegram message.
 
-Publish a portfolio investors can discover, evaluate, and allocate to.
+# **Your Track Record Is Public.**
 
-They can see:
+Your best call shouldn't disappear into a Telegram scroll.
+
+Your portfolio gives your thesis a public track record investors can evaluate.
 
 **Allocations · Strategy · PnL · Performance · Activity · AUM**
 
-### **Your PnL is public by design.**
+Your PnL is public.
 
-Strong calls build credibility.
+Your wins are public.
 
-Consistent execution builds a track record.
+Your mistakes are public.
 
-Growing AUM shows that investors believe in your thesis.
+That's the point.
 
-### **Your portfolio becomes a living record of your market conviction.**
+### **Build something you can stand behind.**
 
-
-
----
+*Investors allocate at their own risk. INDEXLA provides the portfolio infrastructure and relevant platform disclosures.*
 
 
 
 # **Climb The Leaderboard. Earn More.**
 
-INDEXLA gives creators a public ranking based on the metrics that matter.
+INDEXLA ranks creators using three things:
 
-### **HOW YOUR RANK IS CALCULATED**
-
-**50% — PORTFOLIO PERFORMANCE**
+### **50% — PERFORMANCE**
 
 How your portfolio performs.
 
-**30% — AUM**
+### **30% — AUM**
 
 How much investor capital your portfolio attracts.
 
-**20% — TRADING VOLUME**
+### **20% — VOLUME**
 
-How much activity your portfolio generates.
+How much trading activity your portfolio generates.
 
-### **Top 25 creators share the monthly prize pool.**
+### **Top 25 creators share the monthly prize pool funded by protocol revenue.**
 
-Leaderboard rewards are separate from your **50% share of the 1% execution fee**.
+Leaderboard rewards are separate from your **50% share of execution fees**.
 
-You can earn from portfolio activity while competing for additional monthly rewards.
+**Performance · AUM · Volume → Score → Ranking**
 
-### **Build your portfolio.**
-
-### **Grow your AUM.**
-
-### **Perform.**
-
-### **Climb the leaderboard.**
-
-**Start early. Build your track record. Earn your position.**
+Start early. Build your track record. Earn your position.
 
 
 
 ---
 
+# Your Calls Get Forgotten. Your Portfolio Lives On-Chain.
+
+Build the portfolio behind your conviction.
+
+Give your audience somewhere to put their capital.
+
+Keep creating. Keep building.keep earning
+
+### **Become a Creator**  
 
 
-# **Your Audience Is Already Listening.**
+### **Investment Disclaimer**
 
-Now give them something to invest in.
+*Investing involves risk, including possible loss of capital. Investors are solely responsible for their investment decisions and should conduct their own research or seek independent professional advice.*
 
-Build your flagship portfolio.
+*INDEXLA and its creators do not provide financial advice, investment recommendations, or guarantees of performance.*
 
-Share your thesis.
-
-Educate your audience.
-
-Grow your AUM.
-
-Earn from the activity you generate.
-
-Compete for the leaderboard.
-
-### **Turn your conviction into something that can grow with your audience.**
-
-**Become a Creator**
-
-**Explore Marketplace**
-
+  
   
 
 
