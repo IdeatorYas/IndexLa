@@ -49,31 +49,6 @@ export function Hero() {
             <span>0% Exit Fees</span>
           </p>
 
-          <div className="mt-8 space-y-2">
-            <p className="display text-[clamp(1.55rem,3.4vw,2.35rem)] tracking-[-0.03em] text-ink">
-              Stop Trading Your Emotions.
-            </p>
-            <p className="display text-[clamp(1.55rem,3.4vw,2.35rem)] tracking-[-0.03em] gradient-text">
-              Trade Your Rules.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-7 max-w-xl space-y-3.5 text-[1.02rem] leading-relaxed text-muted sm:text-[1.1rem] sm:leading-[1.65]">
-            <p>Most investors know what they should do.</p>
-            <p>
-              Buy when fear is high. Take profits when markets get euphoric.
-              Rebalance when allocations drift.
-            </p>
-            <p className="font-medium text-ink/90">
-              The hard part is doing it consistently.
-            </p>
-            <p>
-              INDEXLA lets you build or discover portfolios, define the rules
-              behind them, and automate execution while your assets remain under
-              your control.
-            </p>
-          </div>
-
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className="min-w-[13.5rem]">
               Build Your First Portfolio

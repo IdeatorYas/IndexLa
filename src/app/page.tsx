@@ -6,12 +6,14 @@ import { FlowSection } from "@/components/home/FlowSection";
 import { Hero } from "@/components/home/Hero";
 import { OnePortfolioSection } from "@/components/home/OnePortfolioSection";
 import { PortfolioExamplesSection } from "@/components/home/PortfolioExamplesSection";
+import { RulesThesisSection } from "@/components/home/RulesThesisSection";
 import { StrategyEngineSection } from "@/components/home/StrategyEngineSection";
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <RulesThesisSection />
       <OnePortfolioSection />
       <PortfolioExamplesSection />
       <StrategyEngineSection />
