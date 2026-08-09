@@ -23,24 +23,49 @@ You hesitate. You FOMO. You panic. Or you simply miss the moment.
 
 ---
 
-# **YOUR CONVICTION. AUTOMATED.**
+# **YOUR CONVICTION. DEFINE THE RESPONSE.**
 
-Markets move 24/7.
+### You don't need to predict the market. You need to decide how your portfolio should respond when conditions change.
 
-Your portfolio shouldn't depend on you checking your phone.
+### INDEXLA monitors the conditions you define and coordinates execution when your strategy is triggered.
 
-INDEXLA monitors the conditions you define and coordinates execution when your rules are triggered.
+### BUILD YOUR STRATEGY
 
-**AI monitors the market.**
+### Choose your assets, allocations, and portfolio.
 
-**Your strategy determines the action.**
+### DEFINE YOUR RULES
 
-**INDEXLA coordinates execution.**
+### Set when to buy, sell, take profit, rebalance, or adjust exposure.
 
-While you're sleeping. While you're working. While the market is moving.
+### AUTOMATE EXECUTION
 
-### **Your portfolio shouldn't require constant attention.**
+### INDEXLA monitors conditions and coordinates execution according to your strategy.
 
+### Then show the strategy cards:
+
+### BUY FEAR  
+ Accumulate when defined fear conditions are reached.
+
+### SELL GREED  
+ Reduce exposure when defined greed conditions are reached.
+
+### TAKE PROFIT  
+ Reduce positions when predefined targets are reached.
+
+### REBALANCE  
+ Return toward target allocations when positions drift.
+
+### MOMENTUM  
+ Adjust exposure as defined trends change.
+
+### RSI  
+ React to defined oversold and overbought conditions.
+
+### Your strategy. Your rules. Automated execution.
+
+### Create Your Portfolio
+
+  
 
 
 ---
@@ -84,8 +109,6 @@ Manage supported assets across multiple chains through one portfolio interface, 
 
 
 ---
-
-
 
 # **ONE PORTFOLIO. EVERY MARKET YOU WANT TO ACCESS.**
 
@@ -132,44 +155,6 @@ No surrendering your assets to a manager.
 ---
 
 
-
-# **DON'T PREDICT THE MARKET. DEFINE YOUR RESPONSE.**
-
-You don't need to know exactly what the market will do.
-
-You need to know what you'll do when it does.
-
-Use proven strategy templates or build your own custom rules.
-
-### **BUY FEAR**
-
-Accumulate when defined fear conditions are reached.
-
-### **SELL GREED**
-
-Reduce exposure when markets enter defined greed conditions.
-
-### **TAKE PROFIT**
-
-Automatically reduce positions when predefined profit targets are reached.
-
-### **REBALANCE**
-
-Bring your portfolio back toward target allocations when positions drift.
-
-### **MOMENTUM**
-
-Increase or reduce exposure as defined market trends change.
-
-### **RSI**
-
-Accumulate during oversold conditions and reduce exposure during overbought conditions.
-
-### **Choose the rules that fit your conviction.**
-
-### **INDEXLA handles the execution.**
-
-**Create Your Portfolio**
 
 
 

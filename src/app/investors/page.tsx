@@ -5,12 +5,10 @@ import { InvestorDisclaimer } from "@/components/investors/InvestorDisclaimer";
 import { InvestorFeesSection } from "@/components/investors/InvestorFeesSection";
 import { InvestorFinalCta } from "@/components/investors/InvestorFinalCta";
 import { InvestorHero } from "@/components/investors/InvestorHero";
-import { InvestorStrategiesSection } from "@/components/investors/InvestorStrategiesSection";
 import { MarketplaceSection } from "@/components/investors/MarketplaceSection";
 import { MultiAssetSection } from "@/components/investors/MultiAssetSection";
 import { MultiChainSection } from "@/components/investors/MultiChainSection";
 import { OwnershipSection } from "@/components/investors/OwnershipSection";
-import { ThreeStepsSection } from "@/components/investors/ThreeStepsSection";
 
 export const metadata: Metadata = {
   title: "Investors — INDEXLA",
@@ -23,11 +21,9 @@ export default function InvestorsPage() {
     <main>
       <InvestorHero />
       <ConvictionAutomatedSection />
-      <ThreeStepsSection />
       <MultiChainSection />
       <MultiAssetSection />
       <OwnershipSection />
-      <InvestorStrategiesSection />
       <MarketplaceSection />
       <InvestorFeesSection />
       <DisciplineSection />
