@@ -52,11 +52,23 @@ function isPureStrongParagraph(children: ReactNode): boolean {
   return meaningful.length === 1 && isStrongNode(meaningful[0]);
 }
 
-export function WhitepaperMarkdown({ markdown }: { markdown: string }) {
+export function WhitepaperMarkdown({
+  markdown,
+  resetTop = false,
+}: {
+  markdown: string;
+  resetTop?: boolean;
+}) {
   const usedIds = new Map<string, number>();
 
   return (
-    <div className="[&>*:first-child]:!mt-0 [&>*:first-child]:!border-t-0 [&>*:first-child]:!pt-0">
+    <div
+      className={
+        resetTop
+          ? "[&>*:first-child]:!mt-0 [&>*:first-child]:!border-t-0 [&>*:first-child]:!pt-0"
+          : undefined
+      }
+    >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -65,7 +77,7 @@ export function WhitepaperMarkdown({ markdown }: { markdown: string }) {
           return (
             <h2
               id={id}
-              className="display scroll-mt-28 border-t border-line pt-12 mt-14 text-[clamp(1.65rem,3vw,2.15rem)] tracking-[-0.02em] text-ink first:mt-0 first:border-t-0 first:pt-0"
+              className="display scroll-mt-28 border-t border-line pt-10 mt-10 text-[clamp(1.55rem,2.8vw,1.95rem)] tracking-[-0.02em] text-ink"
             >
               {children}
             </h2>
@@ -76,7 +88,7 @@ export function WhitepaperMarkdown({ markdown }: { markdown: string }) {
           return (
             <h3
               id={id}
-              className="display scroll-mt-28 mt-10 text-[clamp(1.25rem,2.2vw,1.55rem)] tracking-[-0.02em] text-ink"
+              className="display scroll-mt-28 mt-9 text-[clamp(1.2rem,2.1vw,1.45rem)] tracking-[-0.02em] text-ink"
             >
               {children}
             </h3>

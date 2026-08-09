@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { WhitepaperShell } from "@/components/whitepaper/WhitepaperShell";
 import { getWhitepaperMarkdown } from "@/lib/whitepaper.server";
 import {
-  buildWhitepaperToc,
   extractWhitepaperTitle,
+  markKeyStatements,
+  splitWhitepaperSections,
   stripDocumentTitle,
 } from "@/lib/whitepaper";
 
@@ -13,17 +15,24 @@ export const metadata: Metadata = {
     "INDEXLA whitepaper: non-custodial multi-asset portfolio infrastructure, strategy automation, creator marketplace, and $DEXLA token economics.",
 };
 
-/** Mark standalone bold paragraphs as blockquotes for callout rendering */
-function markKeyStatements(markdown: string): string {
-  return markdown.replace(/^(\*\*[^*\n]+\*\*)\s*$/gm, "> $1");
-}
-
 export default function WhitepaperPage() {
   const raw = getWhitepaperMarkdown();
-  const title = extractWhitepaperTitle(raw);
-  const body = stripDocumentTitle(raw, title);
-  const toc = buildWhitepaperToc(body);
-  const markdown = markKeyStatements(body);
+  const docTitle = extractWhitepaperTitle(raw);
+  const body = stripDocumentTitle(raw, docTitle);
+  const sections = splitWhitepaperSections(body).map((section) => ({
+    ...section,
+    markdown: markKeyStatements(section.markdown),
+  }));
 
-  return <WhitepaperShell title={title} markdown={markdown} toc={toc} />;
+  return (
+    <Suspense
+      fallback={
+        <main className="section-pad mx-auto max-w-[84rem] pt-28 text-muted">
+          Loading whitepaper…
+        </main>
+      }
+    >
+      <WhitepaperShell docTitle={docTitle} sections={sections} />
+    </Suspense>
+  );
 }

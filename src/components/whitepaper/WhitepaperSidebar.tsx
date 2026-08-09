@@ -1,111 +1,78 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import type { TocItem } from "@/lib/whitepaper";
-import { flattenToc } from "@/lib/whitepaper";
-
-function TocLink({
-  item,
-  activeId,
-  onNavigate,
-}: {
-  item: TocItem;
-  activeId: string;
-  onNavigate?: () => void;
-}) {
-  const active = activeId === item.id;
-  const childActive = item.children.some(
-    (child) =>
-      child.id === activeId ||
-      child.children.some((g) => g.id === activeId),
-  );
-
-  return (
-    <li>
-      <a
-        href={`#${item.id}`}
-        onClick={onNavigate}
-        className={`block rounded-md px-2.5 py-1.5 transition-colors ${
-          item.depth === 1
-            ? "text-[0.8rem] font-semibold tracking-[-0.01em]"
-            : item.depth === 2
-              ? "pl-3 text-[0.76rem] font-medium"
-              : "pl-5 text-[0.72rem] font-medium"
-        } ${
-          active
-            ? "bg-electric/10 text-electric"
-            : childActive
-              ? "text-ink"
-              : "text-muted hover:bg-panel/60 hover:text-ink"
-        }`}
-      >
-        {item.title}
-      </a>
-      {item.children.length > 0 ? (
-        <ul className="mt-0.5 space-y-0.5 border-l border-line ml-2.5">
-          {item.children.map((child) => (
-            <TocLink
-              key={child.id}
-              item={child}
-              activeId={activeId}
-              onNavigate={onNavigate}
-            />
-          ))}
-        </ul>
-      ) : null}
-    </li>
-  );
-}
+import Link from "next/link";
+import type { WhitepaperSection } from "@/lib/whitepaper";
 
 export function WhitepaperSidebar({
-  toc,
+  sections,
+  activeSlug,
   mobileOpen,
   onMobileClose,
 }: {
-  toc: TocItem[];
+  sections: WhitepaperSection[];
+  activeSlug: string;
   mobileOpen: boolean;
   onMobileClose: () => void;
 }) {
-  const flat = useMemo(() => flattenToc(toc), [toc]);
-  const [activeId, setActiveId] = useState(flat[0]?.id ?? "");
-
-  useEffect(() => {
-    const syncActive = () => {
-      const offset = 120;
-      let current = flat[0]?.id ?? "";
-      for (const item of flat) {
-        const el = document.getElementById(item.id);
-        if (!el) continue;
-        if (el.getBoundingClientRect().top - offset <= 0) {
-          current = item.id;
-        }
-      }
-      setActiveId(current);
-    };
-
-    syncActive();
-    window.addEventListener("scroll", syncActive, { passive: true });
-    window.addEventListener("resize", syncActive);
-    return () => {
-      window.removeEventListener("scroll", syncActive);
-      window.removeEventListener("resize", syncActive);
-    };
-  }, [flat]);
-
   const nav = (
     <nav aria-label="Whitepaper contents">
       <p className="mb-3 px-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
         Contents
       </p>
       <ul className="space-y-0.5">
-        {toc.map((item) => (
-          <TocLink
-            key={item.id}
-            item={item}
-            activeId={activeId}
-            onNavigate={onMobileClose}
-          />
-        ))}
+        {sections.map((section) => {
+          const isActive = section.slug === activeSlug;
+          return (
+            <li key={section.slug}>
+              <Link
+                href={`/whitepaper?section=${section.slug}`}
+                scroll
+                onClick={onMobileClose}
+                className={`block rounded-md px-2.5 py-1.5 text-[0.8rem] font-semibold tracking-[-0.01em] transition-colors ${
+                  isActive
+                    ? "bg-electric/10 text-electric"
+                    : "text-muted hover:bg-panel/60 hover:text-ink"
+                }`}
+              >
+                <span className="mr-1.5 tabular-nums text-muted-dim">
+                  {String(section.number).padStart(2, "0")}
+                </span>
+                {section.title.replace(/^\d+\.\s*/, "")}
+              </Link>
+
+              {isActive && section.subsections.length > 0 ? (
+                <ul className="mt-0.5 space-y-0.5 border-l border-line ml-3">
+                  {section.subsections.map((sub) => (
+                    <li key={sub.id}>
+                      <a
+                        href={`#${sub.id}`}
+                        onClick={onMobileClose}
+                        className="block rounded-md py-1 pl-3 pr-2 text-[0.72rem] font-medium text-muted transition-colors hover:text-electric"
+                      >
+                        {sub.title}
+                      </a>
+                      {sub.children.length > 0 ? (
+                        <ul className="mt-0.5 space-y-0.5">
+                          {sub.children.map((child) => (
+                            <li key={child.id}>
+                              <a
+                                href={`#${child.id}`}
+                                onClick={onMobileClose}
+                                className="block rounded-md py-1 pl-5 pr-2 text-[0.7rem] text-muted-dim transition-colors hover:text-electric"
+                              >
+                                {child.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

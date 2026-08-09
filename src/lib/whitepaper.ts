@@ -5,11 +5,21 @@ export type TocItem = {
   children: TocItem[];
 };
 
+export type WhitepaperSection = {
+  slug: string;
+  index: number;
+  number: number;
+  title: string;
+  markdown: string;
+  subsections: TocItem[];
+};
+
 export function slugifyHeading(text: string): string {
   return text
     .toLowerCase()
     .replace(/\$/g, "")
-    .replace(/[^a-z0-9\s.-]/g, "")
+    .replace(/[.]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
     .trim()
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
@@ -19,6 +29,14 @@ function plainTextFromHeading(raw: string): string {
   return raw.replace(/\*\*/g, "").replace(/`/g, "").trim();
 }
 
+function nextUniqueId(usedIds: Map<string, number>, title: string): string {
+  let id = slugifyHeading(title);
+  const count = usedIds.get(id) ?? 0;
+  usedIds.set(id, count + 1);
+  if (count > 0) id = `${id}-${count + 1}`;
+  return id;
+}
+
 export function extractWhitepaperTitle(markdown: string): string {
   const firstLine = markdown
     .split(/\r?\n/)
@@ -26,23 +44,35 @@ export function extractWhitepaperTitle(markdown: string): string {
   return firstLine?.trim() || "INDEXLA WHITEPAPER";
 }
 
-export function buildWhitepaperToc(markdown: string): TocItem[] {
+export function stripDocumentTitle(markdown: string, title: string): string {
+  const lines = markdown.split(/\r?\n/);
+  const idx = lines.findIndex(
+    (line) => line.trim() === title || line.trim().endsWith(title),
+  );
+  if (idx === -1) return markdown.trim();
+  return lines
+    .slice(idx + 1)
+    .join("\n")
+    .trim();
+}
+
+/** Top-level numbered chapters: `## 1. ...` or `# 2. ...` */
+function isMajorSectionHeading(line: string): RegExpMatchArray | null {
+  return /^(#{1,2})\s+(\d+)\.\s+(.+)$/.exec(line);
+}
+
+export function buildHeadingTree(markdown: string): TocItem[] {
   const roots: TocItem[] = [];
   const stack: TocItem[] = [];
   const usedIds = new Map<string, number>();
 
-  const lines = markdown.split(/\r?\n/);
-  for (const line of lines) {
+  for (const line of markdown.split(/\r?\n/)) {
     const match = /^(#{1,4})\s+(.+)$/.exec(line);
     if (!match) continue;
 
     const depth = match[1].length as 1 | 2 | 3 | 4;
     const title = plainTextFromHeading(match[2]);
-    let id = slugifyHeading(title);
-    const count = usedIds.get(id) ?? 0;
-    usedIds.set(id, count + 1);
-    if (count > 0) id = `${id}-${count + 1}`;
-
+    const id = nextUniqueId(usedIds, title);
     const item: TocItem = { id, title, depth, children: [] };
 
     while (stack.length > 0 && stack[stack.length - 1].depth >= depth) {
@@ -60,7 +90,6 @@ export function buildWhitepaperToc(markdown: string): TocItem[] {
   return roots;
 }
 
-/** Flat list of heading ids in document order for scroll spy */
 export function flattenToc(items: TocItem[]): TocItem[] {
   const out: TocItem[] = [];
   const walk = (nodes: TocItem[]) => {
@@ -73,14 +102,44 @@ export function flattenToc(items: TocItem[]): TocItem[] {
   return out;
 }
 
-export function stripDocumentTitle(markdown: string, title: string): string {
-  const lines = markdown.split(/\r?\n/);
-  const idx = lines.findIndex(
-    (line) => line.trim() === title || line.trim().endsWith(title),
-  );
-  if (idx === -1) return markdown.trim();
-  return lines
-    .slice(idx + 1)
-    .join("\n")
-    .trim();
+export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection[] {
+  const lines = bodyMarkdown.split(/\r?\n/);
+  const starts: { lineIndex: number; number: number; title: string }[] = [];
+
+  lines.forEach((line, lineIndex) => {
+    const match = isMajorSectionHeading(line);
+    if (!match) return;
+    starts.push({
+      lineIndex,
+      number: Number(match[2]),
+      title: plainTextFromHeading(match[3]),
+    });
+  });
+
+  return starts.map((start, index) => {
+    const end = starts[index + 1]?.lineIndex ?? lines.length;
+    const chunkLines = lines.slice(start.lineIndex, end);
+    // Keep major heading in markdown for hierarchy; shell also shows title.
+    const markdown = chunkLines.join("\n").replace(/^---\s*$/gm, "").trim();
+    const subsections = buildHeadingTree(markdown);
+
+    return {
+      slug: slugifyHeading(`${start.number}-${start.title}`),
+      index,
+      number: start.number,
+      title: `${start.number}. ${start.title}`,
+      markdown,
+      subsections,
+    };
+  });
+}
+
+export function markKeyStatements(markdown: string): string {
+  return markdown.replace(/^(\*\*[^*\n]+\*\*)\s*$/gm, "> $1");
+}
+
+export function formatProgress(index: number, total: number): string {
+  const current = String(index + 1).padStart(2, "0");
+  const end = String(total).padStart(2, "0");
+  return `${current} / ${end}`;
 }
