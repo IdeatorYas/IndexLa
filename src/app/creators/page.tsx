@@ -7,6 +7,7 @@ import { CreatorLeaderboardSection } from "@/components/creators/CreatorLeaderbo
 import { CreatorTrackRecordSection } from "@/components/creators/CreatorTrackRecordSection";
 import { CreatorsFinalCta } from "@/components/creators/CreatorsFinalCta";
 import { CreatorsHero } from "@/components/creators/CreatorsHero";
+import { CreatorWorkflowBand } from "@/components/creators/CreatorWorkflowBand";
 
 export const metadata: Metadata = {
   title: "Creators — INDEXLA",
@@ -18,6 +19,7 @@ export default function CreatorsPage() {
   return (
     <main>
       <CreatorsHero />
+      <CreatorWorkflowBand />
       <CreatorBuildFlowSection />
       <CreatorDistributionSection />
       <CreatorEconomicsSection />
