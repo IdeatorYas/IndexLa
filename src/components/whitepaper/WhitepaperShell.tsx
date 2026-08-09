@@ -13,8 +13,17 @@ import { DocsEditionSwitcher } from "@/components/whitepaper/DocsEditionSwitcher
 import { WhitepaperSidebar } from "@/components/whitepaper/WhitepaperSidebar";
 import { WhitepaperSectionBody } from "@/components/whitepaper/WhitepaperSectionBody";
 
-function stripMajorHeading(markdown: string): string {
-  return markdown.replace(/^#{1,3}\s+\d+\.\s+.+\n*/, "").trim();
+function stripMajorHeading(
+  markdown: string,
+  sectionNumber: number,
+  headline: string,
+): string {
+  const escaped = headline.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(
+    `^#{1,3}\\s+${sectionNumber}\\.\\s+${escaped}\\s*\\n+`,
+    "m",
+  );
+  return markdown.replace(pattern, "").trim();
 }
 
 function sidebarSubsections(section: WhitepaperSection): TocItem[] {
@@ -33,13 +42,16 @@ function sidebarSubsections(section: WhitepaperSection): TocItem[] {
 
 function prepareBodyMarkdown(
   edition: DocsEdition,
-  slug: string,
-  markdown: string,
+  section: WhitepaperSection,
 ): string {
-  let body = stripMajorHeading(markdown);
+  let body = stripMajorHeading(
+    section.markdown,
+    section.number,
+    section.headline,
+  );
   if (
     edition === "whitepaper" &&
-    slug === "5-why-indexla-is-different"
+    section.slug === "5-why-indexla-is-different"
   ) {
     body = stripCompetitorMarkdownTable(body);
   }
@@ -74,8 +86,8 @@ export function WhitepaperShell({
   const sectionLabel = String(section.number).padStart(2, "0");
 
   const bodyMarkdown = useMemo(
-    () => prepareBodyMarkdown(edition, section.slug, section.markdown),
-    [edition, section.markdown, section.slug],
+    () => prepareBodyMarkdown(edition, section),
+    [edition, section],
   );
 
   const subs = useMemo(() => sidebarSubsections(section), [section]);
