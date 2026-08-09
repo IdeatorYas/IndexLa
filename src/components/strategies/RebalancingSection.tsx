@@ -22,8 +22,8 @@ export function RebalancingSection() {
   return (
     <section className="relative border-t border-line bg-void py-14 md:py-18 lg:py-20">
       <div className="section-pad container-max">
-        <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-10 xl:gap-12">
-          <FadeIn>
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-12">
+          <FadeIn className="min-w-0">
             <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] uppercase tracking-[-0.02em] text-balance">
               Rebalancing
             </h2>
@@ -52,44 +52,44 @@ export function RebalancingSection() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.05}>
-            <div className="mx-auto w-full max-w-md rounded-[1.2rem] border border-line glass-soft p-4 sm:p-5 lg:mx-0 lg:max-w-none">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+          <FadeIn delay={0.04} className="min-w-0">
+            <div className="w-full max-w-sm rounded-[1.15rem] border border-line glass-soft p-3.5 sm:p-4 lg:ml-auto">
+              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                 Allocation comparison
               </p>
 
-              <div className="mt-3 rounded-xl border border-electric/25 bg-electric/8 p-3.5">
-                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-electric">
+              <div className="mt-2.5 rounded-xl border border-electric/25 bg-electric/8 p-3">
+                <p className="text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-electric">
                   Target
                 </p>
 
-                <ul className="mt-2.5 space-y-1.5">
+                <ul className="mt-2 space-y-1">
                   {diversified.map((asset) => (
                     <li
                       key={asset.key}
-                      className="grid grid-cols-[1.75rem_minmax(0,1fr)_2.75rem] items-center gap-2.5 rounded-lg border border-line/80 bg-void/50 px-2.5 py-1.5"
+                      className="grid grid-cols-[1.5rem_2.75rem_1fr] items-center gap-2 rounded-md border border-line/70 bg-void/55 px-2 py-1.5"
                     >
-                      <span className="flex h-7 w-7 items-center justify-center rounded-full border border-line bg-deep">
-                        <AssetLogo asset={asset.key} size={15} />
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full border border-line bg-deep">
+                        <AssetLogo asset={asset.key} size={14} />
                       </span>
-                      <span className="text-[0.8rem] font-semibold tracking-[-0.01em] text-muted">
+                      <span className="text-[0.75rem] font-semibold tracking-[-0.01em] text-muted">
                         {asset.ticker}
                       </span>
-                      <span className="text-right text-[0.9rem] font-semibold tabular-nums tracking-[-0.02em] text-ink">
+                      <span className="text-right text-[0.85rem] font-semibold tabular-nums tracking-[-0.02em] text-ink">
                         {asset.weight}
                       </span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-2.5 flex h-2 overflow-hidden rounded-full">
+                <div className="mt-2 flex h-1.5 overflow-hidden rounded-full">
                   {diversified.map((asset) => (
                     <div key={asset.key} className={`w-1/5 ${asset.color}`} />
                   ))}
                 </div>
               </div>
 
-              <ol className="mt-3 space-y-1.5">
+              <ol className="mt-2.5 space-y-1">
                 {[
                   "Market moves",
                   "Allocation drifts",
@@ -98,16 +98,16 @@ export function RebalancingSection() {
                 ].map((step, i) => (
                   <li
                     key={step}
-                    className="flex items-center gap-2.5 rounded-lg border border-line bg-void/40 px-2.5 py-2"
+                    className="flex items-center gap-2 rounded-md border border-line bg-void/40 px-2 py-1.5"
                   >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-electric/30 text-[0.6rem] font-semibold text-electric">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-electric/30 text-[0.55rem] font-semibold text-electric">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="display text-[0.92rem] tracking-[-0.02em]">
+                    <span className="text-[0.8rem] font-medium tracking-[-0.01em] text-ink">
                       {step}
                     </span>
                     {i < 3 && (
-                      <span className="ml-auto text-electric/45" aria-hidden>
+                      <span className="ml-auto text-[0.7rem] text-electric/40" aria-hidden>
                         →
                       </span>
                     )}

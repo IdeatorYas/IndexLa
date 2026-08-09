@@ -18,7 +18,7 @@ export function BuyFearSellGreedSection() {
       <div className="pointer-events-none absolute inset-0 hero-glow opacity-20" aria-hidden />
       <div className="section-pad container-max relative">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-12">
-          <FadeIn className="flex flex-col">
+          <FadeIn className="min-w-0">
             <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] uppercase tracking-[-0.02em] text-balance">
               Buy Fear.{" "}
               <span className="gradient-text">Sell Greed.</span>
@@ -54,45 +54,37 @@ export function BuyFearSellGreedSection() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.05} className="flex flex-col gap-4">
-            <FearGreedIndexVisual />
+          <FadeIn delay={0.04} className="min-w-0">
+            <div className="rounded-[1.3rem] border border-electric/25 bg-gradient-to-b from-purple/10 via-void/50 to-transparent p-3.5 sm:p-4">
+              <FearGreedIndexVisual />
 
-            <div className="rounded-[1.25rem] border border-electric/25 bg-gradient-to-br from-purple/12 via-void/70 to-electric/8 p-4 sm:p-5">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                Market sentiment
-              </p>
-              <ol className="mt-3 space-y-0">
-                {sentiment.map((step, i) => (
-                  <li key={`${step.label}-${i}`}>
-                    <div
-                      className={`rounded-xl border px-3 py-2.5 text-center ${
-                        step.tone === "buy"
-                          ? "border-success/30 bg-success/10"
-                          : step.tone === "sell"
-                            ? "border-danger/30 bg-danger/10"
-                            : "border-line bg-void/45"
-                      }`}
-                    >
+              <div className="mt-3 border-t border-line pt-3">
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+                  Market sentiment
+                </p>
+                <ol className="mt-2.5 flex flex-wrap items-center gap-1.5">
+                  {sentiment.map((step, i) => (
+                    <li key={`${step.label}-${i}`} className="flex items-center gap-1.5">
                       <span
-                        className={`display text-[1rem] tracking-[-0.02em] sm:text-[1.05rem] ${
-                          step.label === "DCA In"
-                            ? "text-success"
-                            : step.label === "DCA Out"
-                              ? "text-danger"
-                              : "text-ink"
+                        className={`rounded-lg border px-2.5 py-1.5 text-[0.78rem] font-semibold tracking-[-0.01em] ${
+                          step.tone === "buy"
+                            ? "border-success/30 bg-success/10 text-success"
+                            : step.tone === "sell"
+                              ? "border-danger/30 bg-danger/10 text-danger"
+                              : "border-line bg-void/50 text-ink"
                         }`}
                       >
                         {step.label}
                       </span>
-                    </div>
-                    {i < sentiment.length - 1 && (
-                      <div className="flex justify-center py-0.5" aria-hidden>
-                        <span className="text-[0.75rem] text-electric/45">↓</span>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ol>
+                      {i < sentiment.length - 1 && (
+                        <span className="text-electric/40" aria-hidden>
+                          →
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
           </FadeIn>
         </div>
