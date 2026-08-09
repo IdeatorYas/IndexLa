@@ -40,7 +40,7 @@ export function StrategyEngineSection() {
       <div className="section-pad container-max relative">
         <FadeIn className="max-w-3xl">
           <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] uppercase tracking-[-0.02em] text-balance">
-            The Strategy Is The Product.
+            The Strategy Becomes The System.
           </h2>
           <div className="mt-6 space-y-4 text-[1.08rem] leading-relaxed text-muted">
             <p>Markets move fast. Emotions move faster.</p>
