@@ -108,7 +108,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
         {
           id: "burn",
           placement: "after",
-          afterHeadingId: "deflationary-mechanisms",
+          afterHeadingId: "3-treasury-profit-buyback-burn",
           node: <BurnBuybackFlowDiagram />,
         },
       ];
