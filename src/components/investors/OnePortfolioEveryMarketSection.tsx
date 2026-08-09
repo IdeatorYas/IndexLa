@@ -11,6 +11,8 @@ const classes: { label: string; assets: AssetKey[] }[] = [
   { label: "RWAs", assets: ["ondo", "sp500"] },
 ];
 
+const chains = ["Ethereum", "Base", "Arbitrum", "BNB Chain", "Sui"];
+
 export function OnePortfolioEveryMarketSection() {
   return (
     <section className="relative border-t border-line bg-void py-14 md:py-20">
@@ -39,19 +41,31 @@ export function OnePortfolioEveryMarketSection() {
             <p className="mt-6 display text-[clamp(1.1rem,2.2vw,1.4rem)] text-ink">
               One portfolio. Multiple assets. Multiple chains.
             </p>
+            <p className="mt-4 text-[0.95rem] font-semibold tracking-[-0.01em] text-electric">
+              Ethereum · Base · Arbitrum · BNB Chain · Sui
+            </p>
+            <p className="mt-3 text-[0.98rem] leading-relaxed text-muted">
+              Access supported tokenized assets across the markets INDEXLA
+              connects to.
+            </p>
           </FadeIn>
 
           <FadeIn delay={0.06}>
             <div className="rounded-[1.35rem] glass p-5 sm:p-6">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
-                  Unified portfolio
-                </p>
-                <span className="rounded-full border border-electric/30 bg-electric/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-electric">
-                  Multi-chain
-                </span>
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+                Supported coverage
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {chains.map((chain) => (
+                  <span
+                    key={chain}
+                    className="rounded-full border border-line bg-void/50 px-3 py-1.5 text-xs font-semibold text-ink"
+                  >
+                    {chain}
+                  </span>
+                ))}
               </div>
-              <div className="mt-4 space-y-2.5">
+              <div className="mt-5 space-y-2.5">
                 {classes.map((row) => (
                   <div
                     key={row.label}

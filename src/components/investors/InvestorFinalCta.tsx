@@ -22,15 +22,17 @@ export function InvestorFinalCta() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="display text-[clamp(2rem,4.8vw,3.4rem)] uppercase tracking-[-0.03em] text-balance">
-            Don&apos;t Chase The Market.{" "}
-            <span className="gradient-text">Define Your Response.</span>
+          <h2 className="display text-[clamp(2.1rem,5vw,3.5rem)] uppercase tracking-[-0.03em] text-balance">
+            Write The Rules Before{" "}
+            <span className="gradient-text">The Market Tests You.</span>
           </h2>
 
           <div className="mt-6 space-y-2 text-[1.08rem] leading-relaxed text-muted">
-            <p>Stop watching the market.</p>
-            <p>Stop reacting to every move.</p>
-            <p>Define how you want your portfolio to respond.</p>
+            <p>The market won&apos;t wait for you to get disciplined.</p>
+            <p>Write the rules now.</p>
+            <p>
+              Let INDEXLA execute them while everyone else is still hesitating.
+            </p>
           </div>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">

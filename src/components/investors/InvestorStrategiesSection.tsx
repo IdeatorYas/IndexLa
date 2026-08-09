@@ -52,12 +52,12 @@ const strategies: Strategy[] = [
     title: "MOMENTUM",
     body: [
       "Follow changing market trends.",
-      "When the Momentum Money Line flips bullish, increase exposure through DCA.",
+      "When the indicator Momentum Money Line flips bullish, increase exposure through DCA.",
       "When it flips bearish, reduce exposure through DCA.",
     ],
     flows: [
-      { trigger: "Bullish Momentum", action: "DCA IN" },
-      { trigger: "Bearish Momentum", action: "DCA OUT" },
+      { trigger: "Momentum Money Line bullish", action: "DCA IN" },
+      { trigger: "Momentum Money Line bearish", action: "DCA OUT" },
     ],
   },
   {
@@ -97,9 +97,13 @@ export function InvestorStrategiesSection() {
             <span className="gradient-text">Your Thesis.</span>
           </h2>
           <div className="mt-5 space-y-3 text-[1.05rem] leading-relaxed text-muted">
+            <p>Most portfolios sit still while the market moves.</p>
+            <p className="display text-[clamp(1.15rem,2.2vw,1.4rem)] text-ink">
+              Yours doesn&apos;t have to.
+            </p>
             <p>
-              Don&apos;t settle for a fixed portfolio. Define how you want it to
-              respond.
+              Define exactly how you want your portfolio to respond — then let
+              it run.
             </p>
             <p>
               Choose from proven rule-based strategies or combine conditions to

@@ -41,6 +41,12 @@ export function OwnershipSection() {
               <p className="mt-6 display text-[clamp(1.15rem,2.2vw,1.4rem)] text-ink">
                 Your assets remain under your control.
               </p>
+              <p className="mt-4 text-[1.02rem] font-semibold text-ink">
+                No lock-ups. No fund manager. No surrendering control.
+              </p>
+              <p className="mt-3 display text-[clamp(1.15rem,2.2vw,1.4rem)] gradient-text">
+                Your capital. Your rules. Your wallet.
+              </p>
             </div>
           </FadeIn>
 

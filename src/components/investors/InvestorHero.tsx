@@ -44,7 +44,7 @@ export function InvestorHero() {
               Stop letting emotions manage your portfolio.
             </p>
             <p className="display text-[clamp(1.2rem,2.4vw,1.55rem)] gradient-text">
-              Define your strategy. Let INDEXLA execute it.
+              Define your rules once. Let INDEXLA execute them 24/7.
             </p>
           </div>
 
@@ -56,6 +56,10 @@ export function InvestorHero() {
               Explore Marketplace
             </Button>
           </div>
+
+          <p className="mt-5 text-sm text-muted-dim">
+            Connect MetaMask, Phantom, Backpack, or other leading wallets.
+          </p>
         </motion.div>
       </div>
     </section>
