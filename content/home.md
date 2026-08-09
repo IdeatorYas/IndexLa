@@ -49,6 +49,23 @@ Discover, allocate, rebalance, and automate from one place.
 
 ### **Cross-chain. Cross-asset. One portfolio.**
 
+
+
+## **THE ASSETS ARE BEING TOKENIZED. THE DISTRIBUTION LAYER IS NEXT.**
+
+Tokenization is bringing stocks, commodities, real-world assets, and other financial instruments on-chain.
+
+But creating the asset is only the beginning.
+
+**INDEXLA is building the distribution layer that turns tokenized assets into investable portfolios.**
+
+Discover them. Allocate across them. Combine them with crypto and other markets. Define your rules. Automate execution.
+
+One portfolio. Multiple asset classes. On-chain execution.
+
+  
+
+
 ---
 
 # **DISCOVER PORTFOLIOS BUILT AROUND A THESIS.**

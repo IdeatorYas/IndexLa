@@ -8,6 +8,7 @@ import { OnePortfolioSection } from "@/components/home/OnePortfolioSection";
 import { PortfolioExamplesSection } from "@/components/home/PortfolioExamplesSection";
 import { RulesThesisSection } from "@/components/home/RulesThesisSection";
 import { StrategyEngineSection } from "@/components/home/StrategyEngineSection";
+import { TokenizationSection } from "@/components/home/TokenizationSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <RulesThesisSection />
       <OnePortfolioSection />
+      <TokenizationSection />
       <PortfolioExamplesSection />
       <StrategyEngineSection />
       <AiExecutionSection />
