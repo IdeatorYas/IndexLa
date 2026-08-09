@@ -9,22 +9,22 @@ const actions = [
   {
     n: "01",
     title: "DISCOVER",
-    body: "Find portfolios built by creators and investors across different markets.",
+    body: "Find portfolios built around different assets and investment theses.",
   },
   {
     n: "02",
     title: "FOLLOW",
-    body: "Follow a strategy that matches your conviction.",
+    body: "Choose a strategy that matches your conviction.",
   },
   {
     n: "03",
     title: "CUSTOMIZE",
-    body: "Adjust the assets, allocations, and rules to fit your own thesis.",
+    body: "Adjust the assets, allocations, and rules to fit your strategy.",
   },
   {
     n: "04",
     title: "BUILD",
-    body: "Create your portfolio from scratch and define exactly how it should respond to the market.",
+    body: "Create your own portfolio from scratch.",
   },
 ];
 
@@ -32,30 +32,27 @@ export function MarketplaceSection() {
   const previews = PORTFOLIOS.slice(0, 3);
 
   return (
-    <section className="relative border-t border-line bg-deep py-20 md:py-28 lg:py-32">
+    <section className="relative border-t border-line bg-void py-16 md:py-24">
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
           <h2 className="display text-[clamp(2rem,4.5vw,3.35rem)] uppercase tracking-[-0.02em] text-balance">
             Discover. Follow. Customize.{" "}
-            <span className="gradient-text">Or Build Your Own.</span>
+            <span className="gradient-text">Or Build.</span>
           </h2>
-          <div className="mt-6 space-y-4 text-[1.08rem] leading-relaxed text-muted">
-            <p>Not every investor has the same thesis.</p>
-            <p>
-              Explore portfolios created around different assets, markets, and
-              strategies.
-            </p>
-          </div>
+          <p className="mt-6 text-[1.08rem] leading-relaxed text-muted">
+            Explore portfolios created by investors and creators across different
+            markets and strategies.
+          </p>
         </FadeIn>
 
-        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {actions.map((action, i) => (
-            <FadeIn key={action.title} delay={i * 0.06}>
-              <article className="relative h-full rounded-[1.35rem] glass-soft p-5">
+            <FadeIn key={action.title} delay={i * 0.05}>
+              <article className="h-full rounded-[1.25rem] glass-soft p-5">
                 <span className="text-[0.7rem] font-semibold text-electric">
                   {action.n}
                 </span>
-                <h3 className="mt-3 display text-[1.25rem]">{action.title}</h3>
+                <h3 className="mt-3 display text-[1.2rem]">{action.title}</h3>
                 <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
                   {action.body}
                 </p>
@@ -64,20 +61,12 @@ export function MarketplaceSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-10">
-          <div className="rounded-[1.75rem] glass p-5 sm:p-6">
-            <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-              <div>
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
-                  Marketplace · product preview
-                </p>
-                <p className="display mt-2 text-[1.35rem]">Strategy discovery</p>
-              </div>
-              <p className="text-xs text-muted-dim">
-                Illustrative portfolios — no performance claims
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
+        <FadeIn className="mt-8">
+          <div className="rounded-[1.5rem] glass p-5 sm:p-6">
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+              Marketplace
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
               {previews.map((portfolio) => (
                 <article
                   key={portfolio.id}
@@ -86,7 +75,7 @@ export function MarketplaceSection() {
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-electric">
                     {portfolio.type}
                   </p>
-                  <h3 className="display mt-2 text-[1.15rem]">{portfolio.name}</h3>
+                  <h3 className="display mt-2 text-[1.1rem]">{portfolio.name}</h3>
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {portfolio.assets.slice(0, 5).map((key) => (
                       <span
@@ -106,18 +95,13 @@ export function MarketplaceSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-10 space-y-6">
-          <p className="display text-[clamp(1.2rem,2.4vw,1.6rem)] text-ink">
-            Your capital. Your strategy. Your control.
+        <FadeIn className="mt-10 space-y-5">
+          <p className="display text-[clamp(1.15rem,2.3vw,1.5rem)] text-ink">
+            Your capital. Your strategy. Your choice.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button href="/strategies" className="min-w-[12.5rem]">
-              Explore Marketplace
-            </Button>
-            <Button href="/creators" variant="secondary" className="min-w-[12.5rem]">
-              Create Your Portfolio
-            </Button>
-          </div>
+          <Button href="/strategies" className="min-w-[13.5rem]">
+            Explore Marketplace
+          </Button>
         </FadeIn>
       </div>
     </section>

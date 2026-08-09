@@ -8,121 +8,125 @@ Take profits when markets get euphoric.
 
 Rebalance when your portfolio drifts.
 
-Then the market moves.
-
-You hesitate. You FOMO. You panic. Or you simply miss the moment.
+Then the market moves. You hesitate, FOMO, panic, or simply miss the moment.
 
 ### Stop letting emotions manage your portfolio.
 
-### Define your rules. Let INDEXLA execute them.
+### Define your strategy. Let INDEXLA execute it.
 
-**Create Your Portfolio**  
+**Build Your First Portfolio**  
 **Explore Marketplace**
 
 
 
 ---
 
-# **YOUR CONVICTION. DEFINE THE RESPONSE.**
+# **YOUR CONVICTION. AUTOMATED.**
 
-### You don't need to predict the market. You need to decide how your portfolio should respond when conditions change.
+Markets don't wait for you.
 
-### INDEXLA monitors the conditions you define and coordinates execution when your strategy is triggered.
+INDEXLA turns your investment thesis into a portfolio with rules that respond to the conditions you define.
 
-### BUILD YOUR STRATEGY
+**AI monitors the market.**  
+**Your strategy determines the action.**  
+**INDEXLA coordinates execution.**
 
-### Choose your assets, allocations, and portfolio.
+INDEXLA doesn't decide what you invest in. 
 
-### DEFINE YOUR RULES
+You define the strategy; the infrastructure coordinates execution.
 
-### Set when to buy, sell, take profit, rebalance, or adjust exposure.
+### **From conviction to execution, without constant monitoring.**
 
-### AUTOMATE EXECUTION
 
-### INDEXLA monitors conditions and coordinates execution according to your strategy.
 
-### Then show the strategy cards:
+---
 
-### BUY FEAR  
- Accumulate when defined fear conditions are reached.
+# **BUILD. DEFINE. AUTOMATE.**
 
-### SELL GREED  
- Reduce exposure when defined greed conditions are reached.
+### **01 — BUILD**
 
-### TAKE PROFIT  
- Reduce positions when predefined targets are reached.
+Choose your assets, allocations, and portfolio.
 
-### REBALANCE  
- Return toward target allocations when positions drift.
+### **02 — DEFINE**
 
-### MOMENTUM  
- Adjust exposure as defined trends change.
+Set the conditions that determine when your portfolio should act.
 
-### RSI  
- React to defined oversold and overbought conditions.
+### **03 — AUTOMATE**
 
-### Your strategy. Your rules. Automated execution.
+Approve your strategy and let INDEXLA monitor conditions and coordinate execution.
 
-### Create Your Portfolio
+### **Build your strategy once. Let it work continuously.**
+
+**Build Your First Portfolio**
+
+
+
+---
+
+# **STRATEGIES BUILT AROUND YOUR THESIS.**
+
+Don't settle for a fixed portfolio. Define how you want it to respond to the market.
+
+Choose from proven rule-based strategies or combine conditions to build your own.
+
+### **BUY FEAR — DCA IN**
+
+Accumulate through DCA when market sentiment reaches Extreme Fear.
+
+### **SELL GREED — DCA OUT**
+
+Reduce exposure through DCA as market sentiment moves into Greed and Extreme Greed.
+
+### **TAKE PROFIT**
+
+Scale out when predefined price or profit targets are reached.
+
+### **STOP LOSS**
+
+Limit downside when a position moves against you.
+
+### **REBALANCE**
+
+Restore target allocations when portfolio positions drift beyond your defined range.
+
+### **MOMENTUM**
+
+Follow changing market trends.
+
+When the Momentum Money Line flips bullish, increase exposure through DCA.
+
+When it flips bearish, reduce exposure through DCA.
+
+### **RSI**
+
+React to longer-term market conditions using weekly RSI.
+
+When weekly RSI enters Oversold territory, accumulate through DCA.
+
+When weekly RSI enters Overbought territory, reduce exposure through DCA.
+
+### **Combine conditions. Define thresholds. Build the response that fits your thesis.**
+
+**Build Your First Portfolio**
 
   
 
 
 ---
 
-# **From Conviction To Execution In Three Steps.**
-
-### **01 — BUILD**
-
-Choose your assets, allocations, and portfolio strategy.
-
-### **02 — DEFINE**
-
-Set the rules that determine when INDEXLA should act.
-
-### **03 — AUTOMATE**
-
-Approve your strategy and let INDEXLA monitor conditions and coordinate execution.
-
-### **Your strategy runs while you live your life.**
-
-**Create Your Portfolio**
 
 
+# **ONE PORTFOLIO. EVERY MARKET. EVERY CHAIN.**
 
----
+Managing a multi-asset portfolio can mean moving between wallets, networks, bridges, exchanges, and platforms.
 
-# **YOUR ASSETS ARE EVERYWHERE. YOUR PORTFOLIO SHOULDN'T BE.**
-
-Managing a multi-chain portfolio today can mean jumping between wallets, networks, bridges, exchanges, and applications.
-
-Different assets. Different wallets. Different interfaces.
-
-Moving capital across chains can mean switching networks, finding the right bridge, and managing transactions across multiple platforms.
-
-### **INDEXLA brings the portfolio together.**
-
-Manage supported assets across multiple chains through one portfolio interface, with cross-chain execution powered by the infrastructure underneath.
-
-### **One portfolio. Multiple chains. One place to manage it.**
-
-
-
----
-
-# **ONE PORTFOLIO. EVERY MARKET YOU WANT TO ACCESS.**
-
-Bring different asset classes into one portfolio instead of managing them across disconnected platforms.
+INDEXLA brings supported markets and assets into one portfolio experience with cross-chain execution underneath.
 
 **Crypto · Tokenized Stocks · Commodities · RWAs · Hybrid Portfolios**
 
-Build crypto-only portfolios.
+Build across one asset class or combine multiple markets into a single strategy.
 
-Build tokenized-asset portfolios.
-
-Or combine multiple asset classes into one strategy.
-
-### **One portfolio. Multiple assets. Cross-chain execution.**
+### **One portfolio. Multiple assets. Multiple chains.**
 
 
 
@@ -130,11 +134,7 @@ Or combine multiple asset classes into one strategy.
 
 # **OWN THE ASSETS. NOT A WRAPPER.**
 
-Traditional indexes often give you exposure through a single product.
-
-INDEXLA takes a different approach.
-
-Your portfolio is built from the underlying assets themselves.
+INDEXLA is built around the underlying assets themselves.
 
 No wrapper token representing your portfolio.
 
@@ -142,60 +142,47 @@ No centralized custody.
 
 No surrendering your assets to a manager.
 
-**You choose the assets.**
-
-**You choose the allocations.**
-
+**You choose the assets.**  
+**You choose the allocations.**  
 **You choose the strategy.**
 
-**You stay in control.**
+### **Non-custodial by design. Your assets remain in your wallet and under your control.**
 
 
 
 ---
 
+# **DISCOVER. FOLLOW. CUSTOMIZE. OR BUILD.**
 
-
-
-
----
-
-# **DISCOVER. FOLLOW. CUSTOMIZE. OR BUILD YOUR OWN.**
-
-Not every investor has the same thesis.
-
-Explore portfolios created around different assets, markets, and strategies.
+Explore portfolios created by investors and creators across different markets and strategies.
 
 ### **DISCOVER**
 
-Find portfolios built by creators and investors across different markets.
+Find portfolios built around different assets and investment theses.
 
 ### **FOLLOW**
 
-Follow a strategy that matches your conviction.
+Choose a strategy that matches your conviction.
 
 ### **CUSTOMIZE**
 
-Adjust the assets, allocations, and rules to fit your own thesis.
+Adjust the assets, allocations, and rules to fit your strategy.
 
 ### **BUILD**
 
-Create your portfolio from scratch and define exactly how it should respond to the market.
+Create your own portfolio from scratch.
 
-### **Your capital. Your strategy. Your control.**
+### **Your capital. Your strategy. Your choice.**
 
-**Explore Marketplace**  
-**Create Your Portfolio**
+**Explore Marketplace**
 
 
 
 ---
 
-
-
 # **PORTFOLIO MANAGEMENT WITHOUT THE MANAGEMENT FEES.**
 
-Traditional portfolio management can take a percentage of your assets and your profits.
+Traditional portfolio management can charge a percentage of your assets and profits.
 
 INDEXLA doesn't.
 
@@ -211,7 +198,7 @@ No percentage of your gains.
 
 No fee for leaving.
 
-You pay a **1% execution fee** when transactions are actually executed through the platform.
+You pay a **1% execution fee** when transactions are executed through the platform.
 
 ### **More of what you make stays yours.**
 
@@ -219,37 +206,11 @@ You pay a **1% execution fee** when transactions are actually executed through t
 
 ---
 
-# **BUILT FOR INVESTORS WHO WANT DISCIPLINE.**
+# **TURN YOUR THESIS INTO A PORTFOLIO.**
 
-You don't need to predict every move.
+Build your strategy. Put it to work.
 
-You need to decide how you want to respond before the market tests you.
-
-INDEXLA turns that conviction into a portfolio that can execute according to your strategy.
-
-**Define your strategy.**
-
-**Own the assets.**
-
-**Automate the response.**
-
-**Stay in control.**
-
-
-
----
-
-# **WRITE THE RULES BEFORE THE MARKET TESTS YOU.**
-
-Stop FOMOing into green candles.
-
-Stop panic-selling red ones.
-
-Stop waking up wishing you had acted.
-
-### **Turn your investment strategy into rules you can actually follow.**
-
-**Create Your Portfolio**  
+**Build Your First Portfolio**  
 **Explore Marketplace**
 
 

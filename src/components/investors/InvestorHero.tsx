@@ -36,25 +36,25 @@ export function InvestorHero() {
               <p>Rebalance when your portfolio drifts.</p>
             </div>
 
-            <div className="mt-6 space-y-2 text-[1.05rem] leading-relaxed text-muted">
-              <p>Then the market moves.</p>
-              <p>You hesitate. You FOMO. You panic. Or you simply miss the moment.</p>
-            </div>
+            <p className="mt-6 text-[1.05rem] leading-relaxed text-muted">
+              Then the market moves. You hesitate, FOMO, panic, or simply miss
+              the moment.
+            </p>
 
             <div className="mt-8 space-y-3">
               <p className="display text-[clamp(1.2rem,2.4vw,1.55rem)] text-ink">
                 Stop letting emotions manage your portfolio.
               </p>
               <p className="display text-[clamp(1.2rem,2.4vw,1.55rem)] gradient-text">
-                Define your rules. Let INDEXLA execute them.
+                Define your strategy. Let INDEXLA execute it.
               </p>
             </div>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href="/creators" className="min-w-[12.5rem]">
-                Create Your Portfolio
+              <Button href="/creators" className="min-w-[13.5rem]">
+                Build Your First Portfolio
               </Button>
-              <Button href="/strategies" variant="secondary" className="min-w-[12.5rem]">
+              <Button href="/strategies" variant="secondary" className="min-w-[13.5rem]">
                 Explore Marketplace
               </Button>
             </div>
@@ -72,7 +72,7 @@ export function InvestorHero() {
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
                     Portfolio · Rules engine
                   </p>
-                  <p className="display mt-2 text-[1.35rem]">Conviction Desk</p>
+                  <p className="display mt-2 text-[1.35rem]">Your strategy</p>
                 </div>
                 <span className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-[0.7rem] font-semibold text-success">
                   <span className="relative flex h-2 w-2">
@@ -98,37 +98,22 @@ export function InvestorHero() {
 
               <div className="mt-5 space-y-2">
                 {[
-                  { rule: "BUY FEAR", state: "Armed", tone: "text-electric" },
-                  { rule: "TAKE PROFIT", state: "Armed", tone: "text-electric" },
-                  { rule: "REBALANCE", state: "Watching drift", tone: "text-purple-bright" },
+                  { rule: "BUY FEAR — DCA IN", state: "Armed" },
+                  { rule: "STOP LOSS", state: "Armed" },
+                  { rule: "REBALANCE", state: "Watching" },
                 ].map((row) => (
                   <div
                     key={row.rule}
                     className="flex items-center justify-between rounded-2xl border border-line bg-void/45 px-4 py-3"
                   >
-                    <span className="text-sm font-semibold tracking-[-0.01em]">{row.rule}</span>
-                    <span className={`text-xs font-semibold uppercase tracking-[0.12em] ${row.tone}`}>
+                    <span className="text-sm font-semibold tracking-[-0.01em]">
+                      {row.rule}
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-[0.12em] text-electric">
                       {row.state}
                     </span>
                   </div>
                 ))}
-              </div>
-
-              <div className="mt-5 rounded-2xl border border-line bg-void/50 p-4">
-                <div className="flex items-center justify-between text-xs text-muted">
-                  <span>Target allocation</span>
-                  <span>On track</span>
-                </div>
-                <div className="mt-3 flex h-2.5 overflow-hidden rounded-full bg-white/5">
-                  <div className="w-[42%] bg-gradient-to-r from-purple to-purple-bright" />
-                  <div className="w-[33%] bg-electric/80" />
-                  <div className="w-[25%] bg-blue/70" />
-                </div>
-                <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[0.7rem] text-muted-dim">
-                  <span>Crypto 42%</span>
-                  <span>Equities 33%</span>
-                  <span>Commodities 25%</span>
-                </div>
               </div>
             </div>
           </motion.div>
