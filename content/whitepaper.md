@@ -648,7 +648,7 @@ Together, these mechanisms connect token deflation to creator growth, protocol e
 | Private             | 10%  | 3-month cliff, 18-month linear                                         |
 | Public              | 15%  | Remaining allocation released linearly over 6 months                   |
 | DEX Liquidity       | 100% | Available at TGE                                                       |
-| Treasury            | —    | 24-month lock                                                          |
+| Treasury            | —    | 36-month lock                                                          |
 | Team                | —    | 12-month cliff, then 24-month linear                                   |
 | Community           | —    | Progressive release                                                    |
 | Advisors            | —    | 6-month cliff, then 12-month linear                                    |
