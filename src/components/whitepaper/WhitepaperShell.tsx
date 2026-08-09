@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type { TocItem, WhitepaperSection } from "@/lib/whitepaper";
 import { formatProgress } from "@/lib/whitepaper";
 import { WhitepaperSidebar } from "@/components/whitepaper/WhitepaperSidebar";
@@ -21,15 +21,15 @@ function sidebarSubsections(section: WhitepaperSection): TocItem[] {
 export function WhitepaperShell({
   docTitle,
   sections,
+  activeSlug,
 }: {
   docTitle: string;
   sections: WhitepaperSection[];
+  activeSlug: string;
 }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const activeSlug = searchParams.get("section") || sections[0]?.slug || "";
   const activeIndex = Math.max(
     0,
     sections.findIndex((s) => s.slug === activeSlug),
@@ -50,24 +50,19 @@ export function WhitepaperShell({
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [section.slug]);
 
-  // Ensure URL always has a section param
-  useEffect(() => {
-    if (!searchParams.get("section") && sections[0]) {
-      router.replace(`/whitepaper?section=${sections[0].slug}`, { scroll: false });
-    }
-  }, [router, searchParams, sections]);
-
-  // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      ) {
         return;
       }
       if (e.key === "ArrowRight" && next) {
-        router.push(`/whitepaper?section=${next.slug}`);
+        router.push(`/whitepaper/${next.slug}`);
       }
       if (e.key === "ArrowLeft" && prev) {
-        router.push(`/whitepaper?section=${prev.slug}`);
+        router.push(`/whitepaper/${prev.slug}`);
       }
     };
     window.addEventListener("keydown", onKey);
@@ -149,14 +144,11 @@ export function WhitepaperShell({
               <p className="text-[0.8rem] font-semibold tabular-nums text-muted">
                 {formatProgress(activeIndex, total)}
               </p>
-              <p className="text-[0.75rem] text-muted-dim">
-                Use ← → to navigate
-              </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {prev ? (
                 <Link
-                  href={`/whitepaper?section=${prev.slug}`}
+                  href={`/whitepaper/${prev.slug}`}
                   className="rounded-xl border border-line bg-deep/60 px-4 py-3.5 transition-colors hover:border-electric/40"
                 >
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
@@ -171,8 +163,8 @@ export function WhitepaperShell({
               )}
               {next ? (
                 <Link
-                  href={`/whitepaper?section=${next.slug}`}
-                  className="rounded-xl border border-line bg-deep/60 px-4 py-3.5 text-right transition-colors hover:border-electric/40 sm:justify-self-end sm:text-right"
+                  href={`/whitepaper/${next.slug}`}
+                  className="rounded-xl border border-line bg-deep/60 px-4 py-3.5 transition-colors hover:border-electric/40 sm:text-right"
                 >
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
                     Next

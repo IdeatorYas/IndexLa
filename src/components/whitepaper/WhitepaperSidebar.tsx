@@ -25,7 +25,7 @@ export function WhitepaperSidebar({
           return (
             <li key={section.slug}>
               <Link
-                href={`/whitepaper?section=${section.slug}`}
+                href={`/whitepaper/${section.slug}`}
                 scroll
                 onClick={onMobileClose}
                 className={`block rounded-md px-2.5 py-1.5 text-[0.8rem] font-semibold tracking-[-0.01em] transition-colors ${
