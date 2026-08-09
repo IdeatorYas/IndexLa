@@ -19,8 +19,6 @@ Then the market moves. You hesitate, FOMO, panic, or simply miss the moment.
 
 **Connect MetaMask, Phantom, Backpack, or other leading wallets.**
 
-
-
 ---
 
 # **YOUR CONVICTION. AUTOMATED.**
@@ -41,13 +39,14 @@ INDEXLA turns your investment thesis into a portfolio with rules that respond to
 
 ### **INDEXLA doesn't decide what you invest in. You define the rules. We coordinate the execution.**
 
-
-
 ---
 
+# **BUILD. DEFINE. AUTOMATE.**  
 
 
-# **BUILD. DEFINE. AUTOMATE.**
+**Build your portfolio. Define your strategy. Automate it** 
+
+ **all in under 5 minutes.** 
 
 ### **01 — BUILD**
 
@@ -61,10 +60,12 @@ Set the conditions that determine when your portfolio should act.
 
 Approve your strategy and let INDEXLA monitor conditions and coordinate execution.
 
-### **Build your strategy once. Let it work continuously.**
+  
+
 
 **Build Your First Portfolio**
 
+  
 
 
 ---
@@ -119,11 +120,7 @@ When weekly RSI enters **Overbought** territory, reduce exposure through DCA.
 
 **Build Your First Portfolio**
 
-
-
 ---
-
-
 
 # **ONE PORTFOLIO. EVERY MARKET. EVERY CHAIN.**
 
@@ -140,8 +137,6 @@ Build across one asset class or combine multiple markets into a single strategy.
 **Ethereum · Base · Arbitrum · BNB Chain · Sui**
 
 Access supported tokenized assets across the markets INDEXLA connects to.
-
-
 
 ---
 
@@ -166,8 +161,6 @@ No surrendering your assets to a manager.
 **No lock-ups. No fund manager. No surrendering control.**
 
 **Your capital. Your rules. Your wallet.**
-
-
 
 ---
 
@@ -195,11 +188,7 @@ Create your own portfolio from scratch.
 
 **Explore Marketplace**
 
-
-
 ---
-
-
 
 # **PORTFOLIO MANAGEMENT WITHOUT THE MANAGEMENT FEES.**
 
@@ -223,8 +212,6 @@ You pay a **1% execution fee** when transactions are executed through the platfo
 
 ### **More of what you make stays yours.**
 
-
-
 ---
 
 # WRITE THE RULES BEFORE THE MARKET TESTS YOU
@@ -238,8 +225,6 @@ Let INDEXLA execute them while everyone else is still hesitating.
 **Build Your First Portfolio**  
 **Explore Marketplace**
 
-
-
 ---
 
 # **Investment Disclaimer**
@@ -247,7 +232,3 @@ Let INDEXLA execute them while everyone else is still hesitating.
 *INDEXLA provides technology and infrastructure for managing and automating multi-chain, multi-asset portfolios. We are not financial advisers and do not provide investment advice or recommendations.*
 
 *Investing involves risk, including the possible loss of capital. Past performance does not guarantee future results. You are solely responsible for your investment decisions and should conduct your own research or consult a qualified financial professional before investing.*
-
-  
-
-

@@ -31,6 +31,10 @@ export function BuildDefineAutomateSection() {
             Build. Define.{" "}
             <span className="gradient-text">Automate.</span>
           </h2>
+          <p className="mt-5 display text-[clamp(1.2rem,2.5vw,1.65rem)] tracking-[-0.02em] text-balance text-ink">
+            Build your portfolio. Define your strategy. Automate it —{" "}
+            <span className="gradient-text">all in under 5 minutes.</span>
+          </p>
         </FadeIn>
 
         <ol className="mt-8 grid gap-3 md:grid-cols-3">
@@ -49,10 +53,7 @@ export function BuildDefineAutomateSection() {
           ))}
         </ol>
 
-        <FadeIn className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="display text-[clamp(1.1rem,2.2vw,1.4rem)] text-ink">
-            Build your strategy once. Let it work continuously.
-          </p>
+        <FadeIn className="mt-8">
           <Button href="/creators" className="w-fit min-w-[13.5rem]">
             Build Your First Portfolio
           </Button>
