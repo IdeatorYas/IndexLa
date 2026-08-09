@@ -13,15 +13,14 @@ export function FaqSections() {
             const isSafety = section.id === "safety-risk";
             return (
               <FadeIn key={section.id}>
-                <section
-                  id={section.id}
-                  className={
-                    isSafety
-                      ? "scroll-mt-28 border-l-2 border-electric/45 pl-4 sm:pl-5"
-                      : "scroll-mt-28"
-                  }
-                >
-                  <div className="flex items-end justify-between gap-4 border-b border-line pb-4">
+                <section id={section.id} className="scroll-mt-28">
+                  <div
+                    className={
+                      isSafety
+                        ? "flex items-end justify-between gap-4 border-b border-line border-l-2 border-l-electric/50 pb-4 pl-4 sm:pl-5"
+                        : "flex items-end justify-between gap-4 border-b border-line pb-4"
+                    }
+                  >
                     <h2 className="display text-[clamp(1.55rem,3.2vw,2.15rem)] tracking-[-0.02em] text-ink">
                       {section.title}
                     </h2>
