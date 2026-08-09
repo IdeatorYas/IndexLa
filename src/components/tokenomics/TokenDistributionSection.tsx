@@ -22,7 +22,7 @@ const CIRC = 2 * Math.PI * RADIUS;
 function DonutChart() {
   let offset = 0;
   return (
-    <svg viewBox="0 0 200 200" className="mx-auto h-auto w-full max-w-[15.5rem]">
+    <svg viewBox="0 0 200 200" className="mx-auto aspect-square h-auto w-full max-w-[18rem]">
       <circle
         cx="100"
         cy="100"
@@ -90,24 +90,24 @@ export function TokenDistributionSection() {
           </p>
         </FadeIn>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-10">
-          <FadeIn>
-            <div className="rounded-[1.35rem] border border-line glass-soft p-5 sm:p-6">
+        <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-8">
+          <FadeIn className="h-full">
+            <div className="flex h-full min-h-full flex-col items-center justify-center rounded-[1.35rem] border border-line glass-soft p-6 sm:p-8">
               <DonutChart />
-              <p className="mt-4 text-center text-[0.85rem] text-muted-dim">
+              <p className="mt-5 text-center text-[0.85rem] text-muted-dim">
                 100,000,000 $DEXLA
               </p>
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.04}>
-            <div className="overflow-hidden rounded-[1.25rem] border border-line bg-void/40">
+          <FadeIn delay={0.04} className="h-full">
+            <div className="flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-line bg-void/40">
               <div className="grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] gap-2 border-b border-line px-4 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5">
                 <span>Allocation</span>
                 <span className="text-right">Percentage</span>
                 <span className="text-right">Tokens</span>
               </div>
-              <ul>
+              <ul className="flex-1">
                 {allocations.map((row) => (
                   <li
                     key={row.label}
@@ -132,7 +132,7 @@ export function TokenDistributionSection() {
                   </li>
                 ))}
               </ul>
-              <div className="grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] gap-2 border-t border-line bg-deep/70 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5">
+              <div className="mt-auto grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] gap-2 border-t border-line bg-deep/70 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5">
                 <span className="text-[0.92rem] font-semibold text-ink">Total</span>
                 <span className="text-right text-[0.92rem] font-semibold tabular-nums text-electric">
                   100%

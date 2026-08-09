@@ -51,16 +51,22 @@ export function TokenomicsHero() {
             <p className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
               $DEXLA utility flywheel
             </p>
-            <ol className="mt-5 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <ol className="mt-5 flex flex-col gap-2 sm:flex-row sm:items-stretch sm:gap-0">
               {flywheel.map((step, i) => (
-                <li key={step} className="flex flex-1 items-center gap-2 sm:flex-col sm:gap-0">
-                  <div className="w-full rounded-xl border border-electric/30 bg-electric/10 px-3 py-3.5 text-center">
+                <li
+                  key={step}
+                  className="flex flex-1 flex-col items-stretch sm:flex-row sm:items-stretch"
+                >
+                  <div className="flex min-h-[3.75rem] flex-1 items-center justify-center rounded-xl border border-electric/30 bg-electric/10 px-3 py-3 text-center sm:min-h-[4.25rem]">
                     <p className="display text-[0.98rem] tracking-[-0.02em] text-ink sm:text-[1.05rem]">
                       {step}
                     </p>
                   </div>
                   {i < flywheel.length - 1 && (
-                    <span className="shrink-0 text-electric/50 sm:mt-2" aria-hidden>
+                    <span
+                      className="flex shrink-0 items-center justify-center py-1 text-electric/50 sm:w-8 sm:px-0 sm:py-0"
+                      aria-hidden
+                    >
                       <span className="sm:hidden">↓</span>
                       <span className="hidden sm:inline">→</span>
                     </span>
