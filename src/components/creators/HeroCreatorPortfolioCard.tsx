@@ -20,7 +20,7 @@ export function HeroCreatorPortfolioCard() {
       className="rounded-[1.5rem] glass p-5 sm:p-6"
       initial={reduce ? false : { opacity: 0, y: 22 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="flex items-start gap-3">
         <div
