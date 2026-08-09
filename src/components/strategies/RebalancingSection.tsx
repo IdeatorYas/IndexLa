@@ -3,6 +3,21 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { TriggerAction } from "@/components/strategies/TriggerAction";
 import { AssetLogo } from "@/components/ui/AssetLogo";
+import type { AssetKey } from "@/lib/site";
+
+const diversified: {
+  key: AssetKey;
+  ticker: string;
+  weight: string;
+  bar: string;
+  color: string;
+}[] = [
+  { key: "btc", ticker: "BTC", weight: "20%", bar: "w-1/5", color: "bg-[#f7931a]" },
+  { key: "eth", ticker: "ETH", weight: "20%", bar: "w-1/5", color: "bg-[#627eea]" },
+  { key: "nvidia", ticker: "NVDA", weight: "20%", bar: "w-1/5", color: "bg-[#76b900]" },
+  { key: "sp500", ticker: "SPX", weight: "20%", bar: "w-1/5", color: "bg-[#38bdf8]" },
+  { key: "gold", ticker: "XAU", weight: "20%", bar: "w-1/5", color: "bg-[#d4af37]" },
+];
 
 export function RebalancingSection() {
   return (
@@ -50,21 +65,33 @@ export function RebalancingSection() {
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-electric">
                   Target
                 </p>
-                <div className="mt-3 grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-2 rounded-xl border border-line bg-void/50 px-3 py-3">
-                    <AssetLogo asset="btc" size={20} />
-                    <span className="display text-[1.15rem] tabular-nums">60%</span>
-                    <span className="text-sm text-muted">BTC</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-xl border border-line bg-void/50 px-3 py-3">
-                    <AssetLogo asset="eth" size={20} />
-                    <span className="display text-[1.15rem] tabular-nums">40%</span>
-                    <span className="text-sm text-muted">ETH</span>
-                  </div>
+
+                <div className="mt-3 grid grid-cols-1 gap-2">
+                  {diversified.map((asset) => (
+                    <div
+                      key={asset.key}
+                      className="flex items-center gap-3 rounded-xl border border-line bg-void/50 px-3 py-2.5"
+                    >
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line bg-deep">
+                        <AssetLogo asset={asset.key} size={18} />
+                      </span>
+                      <span className="min-w-[3.25rem] text-sm font-semibold text-muted">
+                        {asset.ticker}
+                      </span>
+                      <span className="display ml-auto text-[1.1rem] tabular-nums tracking-[-0.02em]">
+                        {asset.weight}
+                      </span>
+                    </div>
+                  ))}
                 </div>
+
                 <div className="mt-3 flex h-2.5 overflow-hidden rounded-full">
-                  <div className="w-[60%] bg-[#f7931a]" />
-                  <div className="w-[40%] bg-[#627eea]" />
+                  {diversified.map((asset) => (
+                    <div
+                      key={asset.key}
+                      className={`${asset.bar} ${asset.color}`}
+                    />
+                  ))}
                 </div>
               </div>
 

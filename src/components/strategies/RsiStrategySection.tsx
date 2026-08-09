@@ -45,37 +45,81 @@ export function RsiStrategySection() {
                 <p className="display text-[2rem] text-electric">RSI</p>
               </div>
 
-              <div className="relative mt-8 h-36 overflow-hidden rounded-2xl border border-line bg-void/70 px-3 py-4">
-                <div
-                  className="absolute inset-x-3 top-[22%] border-t border-dashed border-danger/50"
-                  aria-hidden
-                />
-                <div
-                  className="absolute inset-x-3 bottom-[22%] border-t border-dashed border-success/50"
-                  aria-hidden
-                />
-                <svg
-                  viewBox="0 0 320 120"
-                  className="relative h-full w-full"
-                  aria-hidden
-                >
-                  <path
-                    d="M0 70 C40 68, 55 95, 85 92 C115 89, 130 35, 165 32 C200 29, 220 78, 250 74 C280 70, 300 48, 320 45"
-                    fill="none"
-                    stroke="url(#rsiStroke)"
-                    strokeWidth="2.5"
-                  />
-                  <defs>
-                    <linearGradient id="rsiStroke" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#34d399" />
-                      <stop offset="50%" stopColor="#38bdf8" />
-                      <stop offset="100%" stopColor="#f87171" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <div className="pointer-events-none absolute inset-x-3 top-2 flex justify-between text-[0.65rem] font-semibold uppercase tracking-[0.1em]">
-                  <span className="text-danger/80">Overbought</span>
-                  <span className="text-success/80">Oversold</span>
+              {/* Chart: RSI 0–100, zones <20 and >80 highlighted */}
+              <div className="relative mt-6 overflow-hidden rounded-2xl border border-line bg-void/70">
+                <div className="grid grid-cols-[2.25rem_1fr]">
+                  <div className="relative border-r border-line py-3 text-[0.6rem] font-semibold text-muted-dim">
+                    <span className="absolute right-1.5 top-[8%]">100</span>
+                    <span className="absolute right-1.5 top-[28%] text-danger">
+                      80
+                    </span>
+                    <span className="absolute right-1.5 top-[48%]">50</span>
+                    <span className="absolute right-1.5 top-[68%] text-success">
+                      20
+                    </span>
+                    <span className="absolute right-1.5 bottom-[8%]">0</span>
+                  </div>
+
+                  <div className="relative h-48 sm:h-52">
+                    {/* Overbought / overvalued zone >80 */}
+                    <div
+                      className="absolute inset-x-0 top-0 h-[20%] bg-danger/20"
+                      aria-hidden
+                    />
+                    <div
+                      className="absolute inset-x-0 top-[20%] border-t border-dashed border-danger/70"
+                      aria-hidden
+                    />
+                    {/* Oversold / undervalued zone <20 */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 h-[20%] bg-success/20"
+                      aria-hidden
+                    />
+                    <div
+                      className="absolute inset-x-0 bottom-[20%] border-t border-dashed border-success/70"
+                      aria-hidden
+                    />
+
+                    <svg
+                      viewBox="0 0 320 100"
+                      preserveAspectRatio="none"
+                      className="absolute inset-0 h-full w-full"
+                      aria-hidden
+                    >
+                      {/* RSI path mapped roughly: y=0 is RSI 100, y=100 is RSI 0 */}
+                      <path
+                        d="M0 55 C30 52, 45 88, 70 90 C95 92, 110 22, 145 18 C180 14, 205 70, 235 68 C265 66, 290 28, 320 25"
+                        fill="none"
+                        stroke="url(#rsiStroke2)"
+                        strokeWidth="2.5"
+                        vectorEffect="non-scaling-stroke"
+                      />
+                      <defs>
+                        <linearGradient id="rsiStroke2" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0%" stopColor="#34d399" />
+                          <stop offset="50%" stopColor="#38bdf8" />
+                          <stop offset="100%" stopColor="#f87171" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+
+                    <div className="pointer-events-none absolute left-2 top-1.5 max-w-[9.5rem]">
+                      <p className="text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.06em] text-danger">
+                        Overbought / Overvalued
+                      </p>
+                      <p className="mt-0.5 text-[0.7rem] font-semibold text-danger">
+                        above 80
+                      </p>
+                    </div>
+                    <div className="pointer-events-none absolute bottom-1.5 left-2 max-w-[9.5rem]">
+                      <p className="text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.06em] text-success">
+                        Oversold / Undervalued
+                      </p>
+                      <p className="mt-0.5 text-[0.7rem] font-semibold text-success">
+                        below 20
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -84,11 +128,17 @@ export function RsiStrategySection() {
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-success">
                     Oversold
                   </p>
+                  <p className="mt-1 text-[0.78rem] font-semibold text-success/90">
+                    &lt; 20
+                  </p>
                   <p className="mt-1 display text-[1rem] text-ink">DCA In</p>
                 </div>
                 <div className="rounded-xl border border-danger/30 bg-danger/10 px-3 py-3 text-center">
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-danger">
                     Overbought
+                  </p>
+                  <p className="mt-1 text-[0.78rem] font-semibold text-danger/90">
+                    &gt; 80
                   </p>
                   <p className="mt-1 display text-[1rem] text-ink">DCA Out</p>
                 </div>

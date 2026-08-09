@@ -2,6 +2,7 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import { TriggerAction } from "@/components/strategies/TriggerAction";
+import { FearGreedIndexVisual } from "@/components/strategies/FearGreedIndexVisual";
 
 const sentiment = [
   { label: "Extreme Fear", tone: "buy" as const },
@@ -34,7 +35,11 @@ export function BuyFearSellGreedSection() {
               </p>
             </div>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-6">
+              <FearGreedIndexVisual />
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <TriggerAction trigger="Extreme Fear" action="DCA In" tone="buy" />
               <TriggerAction
                 trigger="Extreme Greed"
@@ -54,7 +59,7 @@ export function BuyFearSellGreedSection() {
           </FadeIn>
 
           <FadeIn delay={0.06}>
-            <div className="rounded-[1.5rem] border border-electric/30 bg-gradient-to-br from-purple/15 via-void/80 to-electric/10 p-5 sm:p-7">
+            <div className="rounded-[1.5rem] border border-electric/30 bg-gradient-to-br from-purple/15 via-void/80 to-electric/10 p-5 sm:p-7 lg:sticky lg:top-28">
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
                 Market sentiment
               </p>
