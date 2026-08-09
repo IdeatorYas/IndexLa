@@ -1,11 +1,13 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { FadeIn } from "@/components/ui/FadeIn";
 
-const mechanisms = [
-  "Creators permanently burn $DEXLA to publish public portfolios and indexes.",
-  "The protocol uses a share of execution fees to buy and permanently burn $DEXLA.",
-  "The Treasury uses a share of realized profits to buy and permanently burn $DEXLA.",
+const flywheel = [
+  "Platform Activity",
+  "Token Utility",
+  "Burns",
+  "Scarcity",
 ] as const;
 
 export function TokenomicsHero() {
@@ -27,66 +29,63 @@ export function TokenomicsHero() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="mx-auto mb-7 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
-
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-electric">
             Tokenomics
           </p>
-
-          <h1 className="display mt-4 text-[clamp(2.1rem,5vw,3.5rem)] uppercase tracking-[-0.03em] text-balance">
-            $DEXLA: The Engine of the{" "}
+          <h1 className="display mt-4 text-[clamp(2.1rem,5vw,3.45rem)] uppercase tracking-[-0.03em] text-balance">
+            $DEXLA: The Engine Of The{" "}
             <span className="gradient-text">INDEXLA Ecosystem</span>
           </h1>
-
-          <p className="mx-auto mt-6 max-w-xl text-[1.08rem] leading-relaxed text-muted">
-            $DEXLA is the native utility token of INDEXLA.
+          <p className="mx-auto mt-6 max-w-2xl text-[1.08rem] leading-relaxed text-muted">
+            $DEXLA connects the growth of INDEXLA to a token model driven by real
+            platform activity.
           </p>
-
-          <p className="mx-auto mt-4 max-w-xl text-[1.02rem] leading-relaxed text-muted">
-            Its utility is built around three concrete mechanisms:
+          <p className="mx-auto mt-3 max-w-2xl text-[1.02rem] leading-relaxed text-muted">
+            As the ecosystem grows, creator publishing and investor activity
+            activate mechanisms that reduce supply and strengthen token utility.
           </p>
+        </motion.div>
 
-          <ul className="mx-auto mt-6 max-w-2xl space-y-3 text-left">
-            {mechanisms.map((item) => (
-              <li
-                key={item}
-                className="rounded-xl border border-line bg-void/45 px-4 py-3 text-[0.98rem] leading-relaxed text-muted"
-              >
-                <span className="mr-2 text-electric" aria-hidden>
-                  →
-                </span>
-                {item.includes("Creators permanently burn") ? (
-                  <>
-                    <span className="font-semibold text-ink">
-                      Creators permanently burn $DEXLA
-                    </span>{" "}
-                    to publish public portfolios and indexes.
-                  </>
-                ) : item.includes("protocol uses a share") ? (
-                  <>
-                    <span className="font-semibold text-ink">
-                      The protocol uses a share of execution fees
-                    </span>{" "}
-                    to buy and permanently burn $DEXLA.
-                  </>
-                ) : (
-                  <>
-                    <span className="font-semibold text-ink">
-                      The Treasury uses a share of realized profits
-                    </span>{" "}
-                    to buy and permanently burn $DEXLA.
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
+        <FadeIn className="mx-auto mt-10 max-w-4xl">
+          <div className="rounded-[1.35rem] border border-line-strong glass-soft p-4 sm:p-6">
+            <p className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+              $DEXLA utility flywheel
+            </p>
+            <ol className="mt-5 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:justify-between">
+              {flywheel.map((step, i) => (
+                <li key={step} className="flex flex-1 items-center gap-2 sm:flex-col sm:gap-0">
+                  <div className="w-full rounded-xl border border-electric/30 bg-electric/10 px-3 py-3.5 text-center">
+                    <p className="display text-[0.98rem] tracking-[-0.02em] text-ink sm:text-[1.05rem]">
+                      {step}
+                    </p>
+                  </div>
+                  {i < flywheel.length - 1 && (
+                    <span className="shrink-0 text-electric/50 sm:mt-2" aria-hidden>
+                      <span className="sm:hidden">↓</span>
+                      <span className="hidden sm:inline">→</span>
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </FadeIn>
 
-          <div className="mx-auto mt-8 max-w-2xl space-y-3 text-[1.02rem] leading-relaxed text-muted">
-            <p>Demand is created by platform activity.</p>
-            <p>
-              Supply is reduced through permanent burns as that activity grows.
+        <FadeIn className="mx-auto mt-8 max-w-3xl">
+          <div className="rounded-[1.35rem] border border-electric/40 bg-gradient-to-br from-electric/12 via-purple/10 to-transparent px-5 py-6 sm:px-8 sm:py-7">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+              Why This Model
+            </p>
+            <p className="mt-3 text-[1.05rem] leading-relaxed text-ink">
+              $DEXLA is designed around usage, not inflationary incentives or
+              speculative points systems.
+            </p>
+            <p className="display mt-5 text-[clamp(1.15rem,2.4vw,1.45rem)] leading-snug text-balance">
+              More platform activity → More token utility →{" "}
+              <span className="gradient-text">More supply removed</span>
             </p>
           </div>
-        </motion.div>
+        </FadeIn>
       </div>
     </section>
   );

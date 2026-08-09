@@ -22,7 +22,7 @@ const CIRC = 2 * Math.PI * RADIUS;
 function DonutChart() {
   let offset = 0;
   return (
-    <svg viewBox="0 0 200 200" className="mx-auto h-auto w-full max-w-[16rem]">
+    <svg viewBox="0 0 200 200" className="mx-auto h-auto w-full max-w-[15.5rem]">
       <circle
         cx="100"
         cy="100"
@@ -33,7 +33,6 @@ function DonutChart() {
       />
       {allocations.map((item) => {
         const len = (item.pct / 100) * CIRC;
-        const dash = `${len} ${CIRC - len}`;
         const el = (
           <circle
             key={item.label}
@@ -43,7 +42,7 @@ function DonutChart() {
             fill="none"
             stroke={item.color}
             strokeWidth="28"
-            strokeDasharray={dash}
+            strokeDasharray={`${len} ${CIRC - len}`}
             strokeDashoffset={-offset}
             transform="rotate(-90 100 100)"
           />
@@ -79,7 +78,7 @@ function DonutChart() {
 
 export function TokenDistributionSection() {
   return (
-    <section className="relative border-t border-line bg-void py-14 md:py-20">
+    <section className="relative border-t border-line bg-deep py-14 md:py-20">
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
           <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] uppercase tracking-[-0.02em]">
@@ -101,9 +100,9 @@ export function TokenDistributionSection() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.05}>
-            <div className="overflow-hidden rounded-[1.25rem] border border-line bg-deep/60">
-              <div className="grid grid-cols-[minmax(0,1fr)_5.5rem_6.5rem] gap-2 border-b border-line px-4 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim sm:grid-cols-[minmax(0,1fr)_6rem_7.5rem] sm:px-5">
+          <FadeIn delay={0.04}>
+            <div className="overflow-hidden rounded-[1.25rem] border border-line bg-void/40">
+              <div className="grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] gap-2 border-b border-line px-4 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5">
                 <span>Allocation</span>
                 <span className="text-right">Percentage</span>
                 <span className="text-right">Tokens</span>
@@ -112,7 +111,7 @@ export function TokenDistributionSection() {
                 {allocations.map((row) => (
                   <li
                     key={row.label}
-                    className="grid grid-cols-[minmax(0,1fr)_5.5rem_6.5rem] items-center gap-2 border-b border-line/70 px-4 py-2.5 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_6rem_7.5rem] sm:px-5"
+                    className="grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] items-center gap-2 border-b border-line/70 px-4 py-2.5 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5"
                   >
                     <span className="flex min-w-0 items-center gap-2.5">
                       <span
@@ -133,7 +132,7 @@ export function TokenDistributionSection() {
                   </li>
                 ))}
               </ul>
-              <div className="grid grid-cols-[minmax(0,1fr)_5.5rem_6.5rem] gap-2 border-t border-line bg-void/40 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_6rem_7.5rem] sm:px-5">
+              <div className="grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] gap-2 border-t border-line bg-deep/70 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5">
                 <span className="text-[0.92rem] font-semibold text-ink">Total</span>
                 <span className="text-right text-[0.92rem] font-semibold tabular-nums text-electric">
                   100%
@@ -148,8 +147,8 @@ export function TokenDistributionSection() {
 
         <FadeIn className="mt-6 max-w-3xl">
           <p className="text-[1.02rem] leading-relaxed text-muted">
-            The allocation is designed to support fundraising, liquidity,
-            ecosystem growth, team alignment, and long-term protocol development.
+            The allocation supports fundraising, liquidity, ecosystem growth,
+            team alignment, and long-term protocol development.
           </p>
         </FadeIn>
       </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { TokenomicsHero } from "@/components/tokenomics/TokenomicsHero";
 import { TokenUtilitySection } from "@/components/tokenomics/TokenUtilitySection";
+import { TokenBurnMechanismSection } from "@/components/tokenomics/TokenBurnMechanismSection";
 import { TokenDistributionSection } from "@/components/tokenomics/TokenDistributionSection";
 import { VestingScheduleSection } from "@/components/tokenomics/VestingScheduleSection";
 import { TgeCirculatingSection } from "@/components/tokenomics/TgeCirculatingSection";
@@ -10,7 +11,7 @@ import { TokenModelAlignedSection } from "@/components/tokenomics/TokenModelAlig
 export const metadata: Metadata = {
   title: "Tokenomics — INDEXLA",
   description:
-    "$DEXLA is the native utility token of INDEXLA — creator burns, fee discounts, protocol buybacks, and treasury buybacks aligned with real platform usage.",
+    "$DEXLA connects INDEXLA growth to real platform activity through creator burns, fee discounts, protocol buybacks, and treasury buybacks.",
 };
 
 export default function TokenomicsPage() {
@@ -18,6 +19,7 @@ export default function TokenomicsPage() {
     <main>
       <TokenomicsHero />
       <TokenUtilitySection />
+      <TokenBurnMechanismSection />
       <TokenDistributionSection />
       <VestingScheduleSection />
       <TgeCirculatingSection />
