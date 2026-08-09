@@ -53,11 +53,6 @@ export function StrategiesHero() {
               </p>
             </div>
 
-            <p className="display mt-5 text-[clamp(1.12rem,2.1vw,1.38rem)] leading-snug text-ink text-balance">
-              Define the rules. INDEXLA monitors the conditions and coordinates
-              execution.
-            </p>
-
             <div className="mt-5 flex flex-1 flex-col rounded-2xl border border-electric/40 bg-gradient-to-br from-electric/12 via-purple/10 to-transparent px-5 py-5 sm:px-6">
               <p className="display text-[clamp(1.02rem,1.8vw,1.2rem)] leading-snug text-ink text-balance">
                 Your assets remain in your wallet. Strategy execution happens
