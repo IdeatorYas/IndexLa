@@ -125,17 +125,53 @@ export function CreatorBuildFlowSection() {
                   )}
 
                   {active === 0 && (
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {["Crypto", "Tokenized Stocks", "Commodities", "RWAs", "Hybrid"].map(
-                        (label) => (
-                          <span
-                            key={label}
-                            className="rounded-full border border-line bg-void/50 px-3 py-1.5 text-xs font-semibold text-muted"
-                          >
-                            {label}
-                          </span>
-                        ),
-                      )}
+                    <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+                      {(
+                        [
+                          {
+                            name: "Crypto",
+                            assets: ["btc", "eth", "sol"] as const,
+                          },
+                          {
+                            name: "Tokenized Stocks",
+                            assets: ["nvidia", "apple", "google"] as const,
+                          },
+                          {
+                            name: "Commodities",
+                            assets: ["gold", "silver"] as const,
+                          },
+                          {
+                            name: "RWAs",
+                            assets: ["ondo", "sp500"] as const,
+                          },
+                          {
+                            name: "Hybrid",
+                            assets: ["btc", "nvidia", "gold"] as const,
+                          },
+                        ] as const
+                      ).map((category) => (
+                        <button
+                          key={category.name}
+                          type="button"
+                          className="rounded-2xl border border-line bg-void/45 p-3.5 text-left transition-colors hover:border-electric/35 hover:bg-white/[0.04] sm:last:col-span-2"
+                        >
+                          <div className="flex items-center gap-2">
+                            <div className="flex -space-x-2">
+                              {category.assets.map((key) => (
+                                <span
+                                  key={key}
+                                  className="flex h-8 w-8 items-center justify-center rounded-full border border-line bg-panel"
+                                >
+                                  <AssetLogo asset={key} size={15} />
+                                </span>
+                              ))}
+                            </div>
+                            <span className="text-sm font-semibold text-ink">
+                              {category.name}
+                            </span>
+                          </div>
+                        </button>
+                      ))}
                     </div>
                   )}
 

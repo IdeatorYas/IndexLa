@@ -4,11 +4,13 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { HeroCreatorPortfolioCard } from "@/components/creators/HeroCreatorPortfolioCard";
 
+const flowSteps = ["Choose", "Allocate", "Define", "Publish"] as const;
+
 export function CreatorsHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-void pt-28 pb-14 md:pb-18 md:pt-32">
+    <section className="relative isolate overflow-hidden bg-void pt-28 pb-14 md:pb-20 md:pt-32">
       <div className="pointer-events-none absolute inset-0 hero-glow opacity-80" aria-hidden />
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-void to-transparent"
@@ -35,11 +37,6 @@ export function CreatorsHero() {
               </p>
             </div>
 
-            <p className="mt-5 text-[1.02rem] font-semibold leading-relaxed text-ink">
-              Choose the assets. Set the allocations. Define the strategy.
-              Publish.
-            </p>
-
             <div className="mt-4 space-y-2 text-[1.02rem] leading-relaxed text-muted">
               <p>Keep posting. Keep educating. Keep pushing your thesis.</p>
               <p>
@@ -52,7 +49,28 @@ export function CreatorsHero() {
               Set it up once. Keep building. Keep earning.
             </p>
 
-            <div className="mt-8">
+            <div className="mt-8 rounded-[1.25rem] border border-electric/25 bg-gradient-to-br from-electric/10 via-purple/5 to-transparent p-5 sm:p-6">
+              <p className="display text-[clamp(1.2rem,2.6vw,1.65rem)] tracking-[-0.025em] text-balance text-ink">
+                Choose the assets. Set the allocations. Define the strategy.
+                Publish.
+              </p>
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                {flowSteps.map((step, i) => (
+                  <div key={step} className="flex items-center gap-2">
+                    <span className="rounded-full border border-line bg-void/50 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                      {step}
+                    </span>
+                    {i < flowSteps.length - 1 && (
+                      <span className="text-electric/50" aria-hidden>
+                        →
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-7">
               <Button href="#build-flow" className="min-w-[12.5rem]">
                 Become a Creator
               </Button>
