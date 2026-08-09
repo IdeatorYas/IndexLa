@@ -10,24 +10,24 @@ const sentiment = [
   { label: "Neutral", tone: "neutral" as const },
   { label: "Extreme Greed", tone: "sell" as const },
   { label: "DCA Out", tone: "sell" as const },
-];
+] as const;
 
 export function BuyFearSellGreedSection() {
   return (
-    <section className="relative border-t border-line bg-deep py-14 md:py-20 lg:py-24">
-      <div className="pointer-events-none absolute inset-0 hero-glow opacity-25" aria-hidden />
+    <section className="relative border-t border-line bg-deep py-14 md:py-18 lg:py-20">
+      <div className="pointer-events-none absolute inset-0 hero-glow opacity-20" aria-hidden />
       <div className="section-pad container-max relative">
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
-          <FadeIn>
-            <h2 className="display text-[clamp(2rem,4.5vw,3.25rem)] uppercase tracking-[-0.02em] text-balance">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-12">
+          <FadeIn className="flex flex-col">
+            <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] uppercase tracking-[-0.02em] text-balance">
               Buy Fear.{" "}
               <span className="gradient-text">Sell Greed.</span>
             </h2>
-            <p className="display mt-5 text-[clamp(1.15rem,2.4vw,1.45rem)] text-ink text-balance">
+            <p className="display mt-4 text-[clamp(1.1rem,2.2vw,1.35rem)] leading-snug text-ink text-balance">
               Accumulate Into Extreme Fear. Reduce Exposure Into Extreme Greed.
             </p>
 
-            <div className="mt-6 space-y-3 text-[1.05rem] leading-relaxed text-muted">
+            <div className="mt-5 space-y-2.5 text-[1.02rem] leading-relaxed text-muted">
               <p>You don&apos;t need to call the exact bottom or top.</p>
               <p>
                 Define your sentiment thresholds and let the strategy respond
@@ -35,11 +35,7 @@ export function BuyFearSellGreedSection() {
               </p>
             </div>
 
-            <div className="mt-6">
-              <FearGreedIndexVisual />
-            </div>
-
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
               <TriggerAction trigger="Extreme Fear" action="DCA In" tone="buy" />
               <TriggerAction
                 trigger="Extreme Greed"
@@ -48,7 +44,7 @@ export function BuyFearSellGreedSection() {
               />
             </div>
 
-            <div className="mt-6 space-y-2 text-[1.02rem] leading-relaxed text-muted">
+            <div className="mt-5 space-y-2 text-[1rem] leading-relaxed text-muted">
               <p>Fear increases → Gradually accumulate.</p>
               <p>Greed increases → Gradually reduce exposure.</p>
               <p>
@@ -58,26 +54,27 @@ export function BuyFearSellGreedSection() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.06}>
-            <div className="rounded-[1.5rem] border border-electric/30 bg-gradient-to-br from-purple/15 via-void/80 to-electric/10 p-5 sm:p-7 lg:sticky lg:top-28">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+          <FadeIn delay={0.05} className="flex flex-col gap-4">
+            <FearGreedIndexVisual />
+
+            <div className="rounded-[1.25rem] border border-electric/25 bg-gradient-to-br from-purple/12 via-void/70 to-electric/8 p-4 sm:p-5">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                 Market sentiment
               </p>
-
-              <div className="mt-5 space-y-0">
+              <ol className="mt-3 space-y-0">
                 {sentiment.map((step, i) => (
-                  <div key={`${step.label}-${i}`}>
+                  <li key={`${step.label}-${i}`}>
                     <div
-                      className={`rounded-2xl border px-4 py-3.5 text-center ${
+                      className={`rounded-xl border px-3 py-2.5 text-center ${
                         step.tone === "buy"
-                          ? "border-success/35 bg-success/10"
+                          ? "border-success/30 bg-success/10"
                           : step.tone === "sell"
-                            ? "border-danger/35 bg-danger/10"
-                            : "border-line bg-void/50"
+                            ? "border-danger/30 bg-danger/10"
+                            : "border-line bg-void/45"
                       }`}
                     >
                       <span
-                        className={`display text-[1.1rem] tracking-[-0.02em] ${
+                        className={`display text-[1rem] tracking-[-0.02em] sm:text-[1.05rem] ${
                           step.label === "DCA In"
                             ? "text-success"
                             : step.label === "DCA Out"
@@ -89,51 +86,35 @@ export function BuyFearSellGreedSection() {
                       </span>
                     </div>
                     {i < sentiment.length - 1 && (
-                      <div className="flex justify-center py-1" aria-hidden>
-                        <span className="text-electric/50">↓</span>
+                      <div className="flex justify-center py-0.5" aria-hidden>
+                        <span className="text-[0.75rem] text-electric/45">↓</span>
                       </div>
                     )}
-                  </div>
+                  </li>
                 ))}
-              </div>
-
-              <div
-                className="mt-6 h-2 overflow-hidden rounded-full"
-                aria-hidden
-              >
-                <div className="flex h-full w-full">
-                  <div className="w-[34%] bg-success/70" />
-                  <div className="w-[32%] bg-muted-dim/50" />
-                  <div className="w-[34%] bg-danger/70" />
-                </div>
-              </div>
-              <div className="mt-2 flex justify-between text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                <span>Fear</span>
-                <span>Neutral</span>
-                <span>Greed</span>
-              </div>
+              </ol>
             </div>
           </FadeIn>
         </div>
 
-        <FadeIn className="mt-10">
-          <div className="rounded-2xl border border-line bg-void/40 p-5 sm:p-6">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+        <FadeIn className="mt-8">
+          <div className="rounded-2xl border border-line bg-void/40 p-4 sm:p-5">
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
               Historical context
             </p>
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              <p className="text-[0.95rem] leading-relaxed text-muted">
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              <p className="text-[0.92rem] leading-relaxed text-muted">
                 During the 2018–2021 Bitcoin cycle, BTC entered extreme fear
                 around the $3K–$6K range before eventually reaching approximately
                 $69K.
               </p>
-              <p className="text-[0.95rem] leading-relaxed text-muted">
+              <p className="text-[0.92rem] leading-relaxed text-muted">
                 During the 2022–2025 cycle, BTC entered another extreme-fear
                 period around $15K–$17K before eventually reaching approximately
                 $126K.
               </p>
             </div>
-            <p className="mt-5 text-[0.85rem] font-semibold tracking-[-0.01em] text-muted-dim">
+            <p className="mt-4 text-[0.82rem] font-semibold tracking-[-0.01em] text-muted-dim">
               Historical market context only. Not INDEXLA strategy performance.
             </p>
           </div>
