@@ -3,43 +3,65 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { TocItem, WhitepaperSection } from "@/lib/whitepaper";
+import type { DocsEdition, TocItem, WhitepaperSection } from "@/lib/whitepaper";
 import {
+  docsBasePath,
   formatProgress,
   stripCompetitorMarkdownTable,
 } from "@/lib/whitepaper";
+import { DocsEditionSwitcher } from "@/components/whitepaper/DocsEditionSwitcher";
 import { WhitepaperSidebar } from "@/components/whitepaper/WhitepaperSidebar";
 import { WhitepaperSectionBody } from "@/components/whitepaper/WhitepaperSectionBody";
 
 function stripMajorHeading(markdown: string): string {
-  return markdown.replace(/^#{1,2}\s+\d+\.\s+.+\n*/, "").trim();
+  return markdown.replace(/^#{1,3}\s+\d+\.\s+.+\n*/, "").trim();
 }
 
 function sidebarSubsections(section: WhitepaperSection): TocItem[] {
   const roots = section.subsections;
+  const major = roots.find(
+    (item) =>
+      item.title === section.headline || item.title === section.title,
+  );
+  if (major?.children.length) return major.children;
   if (roots.length === 1) return roots[0].children;
-  return roots;
+  return roots.filter(
+    (item) =>
+      item.title !== section.headline && item.title !== section.title,
+  );
 }
 
-function prepareBodyMarkdown(slug: string, markdown: string): string {
+function prepareBodyMarkdown(
+  edition: DocsEdition,
+  slug: string,
+  markdown: string,
+): string {
   let body = stripMajorHeading(markdown);
-  if (slug === "5-why-indexla-is-different") {
+  if (
+    edition === "whitepaper" &&
+    slug === "5-why-indexla-is-different"
+  ) {
     body = stripCompetitorMarkdownTable(body);
   }
   return body;
 }
 
 export function WhitepaperShell({
+  edition,
   docTitle,
   sections,
   activeSlug,
+  switcherHrefs,
 }: {
+  edition: DocsEdition;
   docTitle: string;
   sections: WhitepaperSection[];
   activeSlug: string;
+  switcherHrefs: { whitepaper: string; technical: string };
 }) {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const basePath = docsBasePath(edition);
 
   const activeIndex = Math.max(
     0,
@@ -52,15 +74,15 @@ export function WhitepaperShell({
   const sectionLabel = String(section.number).padStart(2, "0");
 
   const bodyMarkdown = useMemo(
-    () => prepareBodyMarkdown(section.slug, section.markdown),
-    [section.markdown, section.slug],
+    () => prepareBodyMarkdown(edition, section.slug, section.markdown),
+    [edition, section.markdown, section.slug],
   );
 
   const subs = useMemo(() => sidebarSubsections(section), [section]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [section.slug]);
+  }, [section.slug, edition]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -71,15 +93,15 @@ export function WhitepaperShell({
         return;
       }
       if (e.key === "ArrowRight" && next) {
-        router.push(`/whitepaper/${next.slug}`);
+        router.push(`${basePath}/${next.slug}`);
       }
       if (e.key === "ArrowLeft" && prev) {
-        router.push(`/whitepaper/${prev.slug}`);
+        router.push(`${basePath}/${prev.slug}`);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [next, prev, router]);
+  }, [basePath, next, prev, router]);
 
   const sectionsForSidebar = useMemo(
     () =>
@@ -99,32 +121,37 @@ export function WhitepaperShell({
 
       <div className="section-pad relative z-10 mx-auto max-w-[84rem] pt-24 pb-4 md:pt-28">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
-              {docTitle}
-            </p>
-            <span className="hidden text-muted-dim sm:inline" aria-hidden>
-              ·
-            </span>
+          <DocsEditionSwitcher
+            edition={edition}
+            whitepaperHref={switcherHrefs.whitepaper}
+            technicalHref={switcherHrefs.technical}
+          />
+          <div className="flex flex-wrap items-center gap-3">
             <p className="text-[0.85rem] font-semibold tabular-nums text-electric">
               {formatProgress(activeIndex, total)}
             </p>
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="inline-flex items-center gap-2 rounded-md border border-line bg-deep/80 px-3.5 py-2 text-sm font-semibold text-ink transition-colors hover:border-electric/40 hover:text-electric lg:hidden"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                <path
+                  d="M2 3.5h10M2 7h10M2 10.5h10"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                />
+              </svg>
+              Contents
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => setMobileOpen(true)}
-            className="inline-flex items-center gap-2 rounded-md border border-line bg-deep/80 px-3.5 py-2 text-sm font-semibold text-ink transition-colors hover:border-electric/40 hover:text-electric lg:hidden"
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-              <path
-                d="M2 3.5h10M2 7h10M2 10.5h10"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-              />
-            </svg>
-            Contents
-          </button>
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+            {docTitle}
+          </p>
         </div>
 
         <div className="mt-3 h-1 overflow-hidden rounded-full bg-panel">
@@ -137,6 +164,7 @@ export function WhitepaperShell({
 
       <div className="section-pad relative z-10 mx-auto grid max-w-[84rem] gap-10 pb-10 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[18rem_minmax(0,42rem)] xl:justify-between">
         <WhitepaperSidebar
+          basePath={basePath}
           sections={sectionsForSidebar}
           activeSlug={section.slug}
           mobileOpen={mobileOpen}
@@ -167,7 +195,7 @@ export function WhitepaperShell({
             <div className="grid gap-3 sm:grid-cols-2">
               {prev ? (
                 <Link
-                  href={`/whitepaper/${prev.slug}`}
+                  href={`${basePath}/${prev.slug}`}
                   className="rounded-xl border border-line bg-deep/60 px-4 py-3.5 transition-colors hover:border-electric/40"
                 >
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
@@ -182,7 +210,7 @@ export function WhitepaperShell({
               )}
               {next ? (
                 <Link
-                  href={`/whitepaper/${next.slug}`}
+                  href={`${basePath}/${next.slug}`}
                   className="rounded-xl border border-line bg-deep/60 px-4 py-3.5 transition-colors hover:border-electric/40 sm:text-right"
                 >
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">

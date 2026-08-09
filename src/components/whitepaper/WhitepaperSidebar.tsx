@@ -4,18 +4,20 @@ import Link from "next/link";
 import type { WhitepaperSection } from "@/lib/whitepaper";
 
 export function WhitepaperSidebar({
+  basePath,
   sections,
   activeSlug,
   mobileOpen,
   onMobileClose,
 }: {
+  basePath: string;
   sections: WhitepaperSection[];
   activeSlug: string;
   mobileOpen: boolean;
   onMobileClose: () => void;
 }) {
   const nav = (
-    <nav aria-label="Whitepaper contents">
+    <nav aria-label="Document contents">
       <p className="mb-3 px-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
         Contents
       </p>
@@ -25,7 +27,7 @@ export function WhitepaperSidebar({
           return (
             <li key={section.slug}>
               <Link
-                href={`/whitepaper/${section.slug}`}
+                href={`${basePath}/${section.slug}`}
                 scroll
                 onClick={onMobileClose}
                 className={`block rounded-md px-2.5 py-1.5 text-[0.8rem] font-semibold tracking-[-0.01em] transition-colors ${

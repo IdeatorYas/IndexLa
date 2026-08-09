@@ -5,17 +5,38 @@ export type TocItem = {
   children: TocItem[];
 };
 
+export type DocsEdition = "whitepaper" | "technical-paper";
+
 export type WhitepaperSection = {
   slug: string;
   index: number;
   number: number;
-  /** Exact major-section headline from the whitepaper (no number prefix) */
+  /** Exact major-section headline (no number prefix) */
   headline: string;
   /** Sidebar/nav label: "N. Headline" */
   title: string;
   markdown: string;
   subsections: TocItem[];
 };
+
+export const DOCS_EDITIONS: {
+  id: DocsEdition;
+  label: string;
+  basePath: string;
+}[] = [
+  { id: "whitepaper", label: "Whitepaper", basePath: "/whitepaper" },
+  {
+    id: "technical-paper",
+    label: "Technical Paper",
+    basePath: "/whitepaper/technical",
+  },
+];
+
+export function docsBasePath(edition: DocsEdition): string {
+  return (
+    DOCS_EDITIONS.find((item) => item.id === edition)?.basePath ?? "/whitepaper"
+  );
+}
 
 export function slugifyHeading(text: string): string {
   return text
@@ -44,14 +65,17 @@ export function extractWhitepaperTitle(markdown: string): string {
   const firstLine = markdown
     .split(/\r?\n/)
     .find((line) => line.trim().length > 0);
-  return firstLine?.trim() || "INDEXLA WHITEPAPER";
+  return (
+    firstLine?.trim().replace(/^#+\s*/, "") || "INDEXLA WHITEPAPER"
+  );
 }
 
 export function stripDocumentTitle(markdown: string, title: string): string {
   const lines = markdown.split(/\r?\n/);
-  const idx = lines.findIndex(
-    (line) => line.trim() === title || line.trim().endsWith(title),
-  );
+  const idx = lines.findIndex((line) => {
+    const trimmed = line.trim().replace(/^#+\s*/, "");
+    return trimmed === title || trimmed.endsWith(title);
+  });
   if (idx === -1) return markdown.trim();
   return lines
     .slice(idx + 1)
@@ -59,7 +83,15 @@ export function stripDocumentTitle(markdown: string, title: string): string {
     .trim();
 }
 
-/** Top-level numbered chapters: `## 1. ...` or `# 2. ...` */
+/**
+ * Technical Paper uses `### 1.` for the first chapter and `# N.` thereafter.
+ * Promote numbered H3 chapter headings to H1 so the shared splitter works.
+ */
+export function normalizeTechnicalPaperBody(bodyMarkdown: string): string {
+  return bodyMarkdown.replace(/^### (\d+\.\s+)/gm, "# $1");
+}
+
+/** Top-level numbered chapters: `# N. ...` or `## N. ...` */
 function isMajorSectionHeading(line: string): RegExpMatchArray | null {
   return /^(#{1,2})\s+(\d+)\.\s+(.+)$/.exec(line);
 }
@@ -121,8 +153,13 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
 
   return starts.map((start, index) => {
     const end = starts[index + 1]?.lineIndex ?? lines.length;
-    const chunkLines = lines.slice(start.lineIndex, end);
-    // Keep major heading in markdown for hierarchy; shell also shows title.
+    let chunkLines = lines.slice(start.lineIndex, end);
+
+    // Keep any document prologue (e.g. Technical Paper subtitle) with section 1
+    if (index === 0 && start.lineIndex > 0) {
+      chunkLines = [...lines.slice(0, start.lineIndex), ...chunkLines];
+    }
+
     const markdown = chunkLines.join("\n").replace(/^---\s*$/gm, "").trim();
     const subsections = buildHeadingTree(markdown);
 
