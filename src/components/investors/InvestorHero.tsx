@@ -52,8 +52,8 @@ export function InvestorHero() {
             <Button href="/creators" className="min-w-[13.5rem]">
               Build Your First Portfolio
             </Button>
-            <Button href="#how-it-works" variant="secondary" className="min-w-[13.5rem]">
-              See How It Works
+            <Button href="/strategies" variant="secondary" className="min-w-[13.5rem]">
+              Explore Marketplace
             </Button>
           </div>
         </motion.div>

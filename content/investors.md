@@ -15,7 +15,7 @@ Then the market moves. You hesitate, FOMO, panic, or simply miss the moment.
 ### Define your strategy. Let INDEXLA execute it.
 
 **Build Your First Portfolio**  
-**See How It Works**
+**Explore Marketplace**
 
 ---
 
@@ -187,7 +187,7 @@ You pay a **1% execution fee** when transactions are executed through the platfo
 
 ---
 
-# WRITE THE RULES BEFORE THE MARKET TESTS YOU.
+# DON'T CHASE THE MARKET. DEFINE YOUR RESPONSE.
 
 Stop watching the market.
 
@@ -195,10 +195,10 @@ Stop reacting to every move.
 
 Define how you want your portfolio to respond.
 
-### Build your first portfolio. Put your strategy to work.
+
 
 **Build Your First Portfolio**  
-**See How It Works**
+**Explore Marketplace**
 
 ---
 
