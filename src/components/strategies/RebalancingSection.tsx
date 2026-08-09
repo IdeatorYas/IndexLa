@@ -8,21 +8,27 @@ import type { AssetKey } from "@/lib/site";
 const diversified: {
   key: AssetKey;
   ticker: string;
-  weight: string;
   color: string;
 }[] = [
-  { key: "btc", ticker: "BTC", weight: "20%", color: "bg-[#f7931a]" },
-  { key: "eth", ticker: "ETH", weight: "20%", color: "bg-[#627eea]" },
-  { key: "nvidia", ticker: "NVDA", weight: "20%", color: "bg-[#76b900]" },
-  { key: "sp500", ticker: "SPX", weight: "20%", color: "bg-[#38bdf8]" },
-  { key: "gold", ticker: "XAU", weight: "20%", color: "bg-[#d4af37]" },
+  { key: "btc", ticker: "BTC", color: "bg-[#f7931a]" },
+  { key: "eth", ticker: "ETH", color: "bg-[#627eea]" },
+  { key: "nvidia", ticker: "NVDA", color: "bg-[#76b900]" },
+  { key: "sp500", ticker: "SPX", color: "bg-[#38bdf8]" },
+  { key: "gold", ticker: "XAU", color: "bg-[#d4af37]" },
 ];
+
+const flow = [
+  "Market moves",
+  "Allocation drifts",
+  "Defined range exceeded",
+  "Rebalance",
+] as const;
 
 export function RebalancingSection() {
   return (
     <section className="relative border-t border-line bg-void py-14 md:py-18 lg:py-20">
       <div className="section-pad container-max">
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-12">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-10 xl:gap-12">
           <FadeIn className="min-w-0">
             <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] uppercase tracking-[-0.02em] text-balance">
               Rebalancing
@@ -53,13 +59,13 @@ export function RebalancingSection() {
           </FadeIn>
 
           <FadeIn delay={0.04} className="min-w-0">
-            <div className="w-full max-w-sm rounded-[1.15rem] border border-line glass-soft p-3.5 sm:p-4 lg:ml-auto">
-              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+            <div className="w-full max-w-[22rem] rounded-[1.1rem] border border-line glass-soft p-3.5 lg:ml-auto">
+              <p className="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                 Allocation comparison
               </p>
 
               <div className="mt-2.5 rounded-xl border border-electric/25 bg-electric/8 p-3">
-                <p className="text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                <p className="text-[0.58rem] font-semibold uppercase tracking-[0.12em] text-electric">
                   Target
                 </p>
 
@@ -67,16 +73,16 @@ export function RebalancingSection() {
                   {diversified.map((asset) => (
                     <li
                       key={asset.key}
-                      className="grid grid-cols-[1.5rem_2.75rem_1fr] items-center gap-2 rounded-md border border-line/70 bg-void/55 px-2 py-1.5"
+                      className="grid grid-cols-[1.4rem_2.6rem_1fr] items-center gap-2 rounded-md border border-line/70 bg-void/55 px-2 py-1"
                     >
                       <span className="flex h-6 w-6 items-center justify-center rounded-full border border-line bg-deep">
-                        <AssetLogo asset={asset.key} size={14} />
+                        <AssetLogo asset={asset.key} size={13} />
                       </span>
-                      <span className="text-[0.75rem] font-semibold tracking-[-0.01em] text-muted">
+                      <span className="text-[0.72rem] font-semibold tracking-[-0.01em] text-muted">
                         {asset.ticker}
                       </span>
-                      <span className="text-right text-[0.85rem] font-semibold tabular-nums tracking-[-0.02em] text-ink">
-                        {asset.weight}
+                      <span className="text-right text-[0.8rem] font-semibold tabular-nums tracking-[-0.02em] text-ink">
+                        20%
                       </span>
                     </li>
                   ))}
@@ -89,25 +95,17 @@ export function RebalancingSection() {
                 </div>
               </div>
 
-              <ol className="mt-2.5 space-y-1">
-                {[
-                  "Market moves",
-                  "Allocation drifts",
-                  "Defined range exceeded",
-                  "Rebalance",
-                ].map((step, i) => (
-                  <li
-                    key={step}
-                    className="flex items-center gap-2 rounded-md border border-line bg-void/40 px-2 py-1.5"
-                  >
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-electric/30 text-[0.55rem] font-semibold text-electric">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-[0.8rem] font-medium tracking-[-0.01em] text-ink">
+              <ol className="mt-2.5 flex flex-wrap items-center gap-1">
+                {flow.map((step, i) => (
+                  <li key={step} className="flex items-center gap-1">
+                    <span className="rounded-md border border-line bg-void/50 px-2 py-1 text-[0.68rem] font-medium text-ink">
+                      <span className="mr-1 text-electric">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
                       {step}
                     </span>
-                    {i < 3 && (
-                      <span className="ml-auto text-[0.7rem] text-electric/40" aria-hidden>
+                    {i < flow.length - 1 && (
+                      <span className="text-[0.65rem] text-electric/40" aria-hidden>
                         →
                       </span>
                     )}
