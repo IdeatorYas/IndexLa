@@ -119,15 +119,15 @@ export function WhitepaperSidebar({
       </aside>
 
       {mobileOpen ? (
-        <div className="fixed inset-0 z-[60] lg:hidden" role="dialog" aria-modal>
+        <div className="fixed inset-0 z-[70] lg:hidden" role="dialog" aria-modal>
           <button
             type="button"
             className="absolute inset-0 bg-void/70 backdrop-blur-sm"
             aria-label="Close contents"
             onClick={onMobileClose}
           />
-          <div className="absolute inset-y-0 left-0 flex w-[min(20rem,88vw)] flex-col border-r border-line bg-deep shadow-2xl">
-            <div className="flex items-center justify-between border-b border-line px-4 py-3">
+          <div className="absolute inset-y-0 left-0 flex w-full max-w-[20rem] flex-col border-r border-line bg-deep shadow-2xl">
+            <div className="flex items-center justify-between border-b border-line px-4 py-3.5">
               <p className="text-sm font-semibold text-ink">Contents</p>
               <button
                 type="button"

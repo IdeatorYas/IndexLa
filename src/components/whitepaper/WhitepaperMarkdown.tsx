@@ -56,9 +56,10 @@ export function WhitepaperMarkdown({ markdown }: { markdown: string }) {
   const usedIds = new Map<string, number>();
 
   return (
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
-      components={{
+    <div className="[&>*:first-child]:!mt-0 [&>*:first-child]:!border-t-0 [&>*:first-child]:!pt-0">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
         h1: ({ children }) => {
           const id = nextHeadingId(usedIds, children);
           return (
@@ -117,6 +118,11 @@ export function WhitepaperMarkdown({ markdown }: { markdown: string }) {
             </p>
           );
         },
+        blockquote: ({ children }) => (
+          <blockquote className="my-2.5 border-l-2 border-electric/45 bg-electric/[0.04] px-4 py-2.5 text-[1.02rem] leading-relaxed text-ink sm:px-5 [&>p]:my-0 [&>p]:text-ink">
+            {children}
+          </blockquote>
+        ),
         strong: ({ children }) => (
           <strong className="font-semibold text-ink">{children}</strong>
         ),
@@ -146,8 +152,8 @@ export function WhitepaperMarkdown({ markdown }: { markdown: string }) {
           </a>
         ),
         table: ({ children }) => (
-          <div className="my-6 overflow-x-auto rounded-xl border border-line bg-void/40">
-            <table className="w-full min-w-[36rem] border-collapse text-left text-[0.9rem]">
+          <div className="my-6 -mx-1 overflow-x-auto rounded-xl border border-line bg-void/40 sm:mx-0">
+            <table className="w-full min-w-[40rem] border-collapse text-left text-[0.88rem] sm:text-[0.9rem]">
               {children}
             </table>
           </div>
@@ -160,18 +166,19 @@ export function WhitepaperMarkdown({ markdown }: { markdown: string }) {
           <tr className="border-b border-line last:border-b-0">{children}</tr>
         ),
         th: ({ children }) => (
-          <th className="whitespace-nowrap px-3.5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-muted-dim sm:px-4">
+          <th className="whitespace-nowrap px-3.5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-muted-dim sm:px-4">
             {children}
           </th>
         ),
         td: ({ children }) => (
-          <td className="px-3.5 py-3 align-top text-muted sm:px-4">
-            <span className="text-ink/95">{children}</span>
+          <td className="px-3.5 py-3 align-top leading-snug text-ink/95 sm:px-4">
+            {children}
           </td>
         ),
       }}
     >
       {markdown}
     </ReactMarkdown>
+    </div>
   );
 }
