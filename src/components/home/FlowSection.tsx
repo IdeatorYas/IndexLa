@@ -9,28 +9,23 @@ const steps = [
   {
     n: "02",
     title: "ALLOCATE",
-    body: "Choose how much capital to put behind it. Your assets remain under your control.",
+    body: "Choose how much capital to deploy. Your assets remain under your control.",
   },
   {
     n: "03",
     title: "AUTOMATE",
-    body: "Approve the strategy and let INDEXLA execute your rules across supported chains and assets.",
+    body: "Approve your strategy and let INDEXLA execute when your defined conditions are met.",
   },
 ];
 
 export function FlowSection() {
   return (
-    <section className="relative border-t border-line bg-void py-24 md:py-32">
+    <section className="relative border-t border-line bg-deep py-24 md:py-32">
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] text-balance">
-            Investing Should Be One Flow.
+          <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] uppercase tracking-[-0.02em] text-balance">
+            Investing In Three Steps.
           </h2>
-          <div className="mt-6 space-y-3 text-[1.08rem] text-muted">
-            <p>No jumping between chains.</p>
-            <p>No managing multiple platforms.</p>
-            <p>No manually coordinating every transaction.</p>
-          </div>
         </FadeIn>
 
         <ol className="mt-14 grid gap-5 md:grid-cols-3">

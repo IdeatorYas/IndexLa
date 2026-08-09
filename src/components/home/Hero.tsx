@@ -23,7 +23,7 @@ export function Hero() {
 
       <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-16 pt-28">
         <motion.div
-          className="mx-auto w-full max-w-[46rem] text-center"
+          className="mx-auto w-full max-w-[48rem] text-center"
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -35,6 +35,11 @@ export function Hero() {
             <br className="hidden sm:block" />{" "}
             <span className="gradient-text">Portfolio Management</span>
           </h1>
+
+          <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted sm:text-[1.2rem]">
+            Build rule-based portfolios across crypto, tokenized stocks &amp;
+            commodities
+          </p>
 
           <p className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 rounded-full border border-line bg-white/[0.035] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted sm:text-[0.72rem]">
             <span>0% Management Fees</span>

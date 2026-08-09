@@ -15,15 +15,15 @@ const strategies = [
   },
   {
     title: "TAKE PROFIT",
-    body: "Automatically reduce positions when predefined targets are reached.",
+    body: "Reduce positions when predefined targets are reached.",
   },
   {
     title: "REBALANCE",
-    body: "Bring your portfolio back toward target allocations as markets move.",
+    body: "Return the portfolio toward target allocations as markets move.",
   },
   {
     title: "MOMENTUM",
-    body: "Increase or reduce exposure as defined market trends change.",
+    body: "Adjust exposure as defined market trends change.",
   },
   {
     title: "RSI",
@@ -39,17 +39,13 @@ export function StrategyEngineSection() {
       <div className="pointer-events-none absolute inset-0 hero-glow opacity-40" aria-hidden />
       <div className="section-pad container-max relative">
         <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] text-balance">
-            The New Unit Of Investing Isn&apos;t The Asset.
+          <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] uppercase tracking-[-0.02em] text-balance">
+            The Strategy Is The Product.
           </h2>
-          <p className="display mt-3 text-[clamp(1.6rem,3.5vw,2.4rem)] gradient-text">
-            It&apos;s The Strategy.
-          </p>
           <div className="mt-6 space-y-4 text-[1.08rem] leading-relaxed text-muted">
             <p>Markets move fast. Emotions move faster.</p>
             <p>
-              INDEXLA turns investment strategies into clear rules and automates
-              execution across your portfolio.
+              INDEXLA turns your investment strategy into executable rules.
             </p>
           </div>
         </FadeIn>

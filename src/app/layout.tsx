@@ -17,9 +17,9 @@ const body = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "INDEXLA — Stop Trading Your Emotions. Trade Your Rules.",
+  title: "INDEXLA — Decentralized Portfolio Management",
   description:
-    "INDEXLA lets you build or discover portfolios, define the rules behind them, and automate execution while your assets remain under your control.",
+    "Build rule-based portfolios across crypto, tokenized stocks & commodities. Stop trading your emotions. Trade your rules.",
 };
 
 export default function RootLayout({

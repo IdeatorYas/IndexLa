@@ -1,12 +1,14 @@
 # **INDEXLA HOMEPAGE**
 
-## **DECENTRALIZED PORTFOLIO MANAGEMENT**
+# **DECENTRALIZED PORTFOLIO MANAGEMENT**
 
-**0% MANAGEMENT FEES · 0% PERFORMANCE FEES · 0% EXIT FEES**
+# **Build rule-based portfolios across crypto, tokenized stocks & commodities**
 
-### **Stop Trading Your Emotions.**
+# **0% MANAGEMENT FEES · 0% PERFORMANCE FEES · 0% EXIT FEES**
 
-### **Trade Your Rules.**
+# **Stop Trading Your Emotions.**
+
+# **Trade Your Rules.**
 
 Most investors know what they should do.
 
@@ -27,17 +29,11 @@ INDEXLA lets you build or discover portfolios, define the rules behind them, and
 
 
 
-# **One Portfolio. Every Market.**
+# **ONE PORTFOLIO. EVERY MARKET.**
 
-Today, investments are scattered across chains, platforms, wallets, and asset classes.
+Your investments are scattered across chains, platforms, wallets, and asset classes.
 
-One chain for crypto. Another platform for tokenized stocks. Another interface for RWAs. Another for commodities.
-
-Different wallets. Different transactions. Different execution routes.
-
-INDEXLA brings supported assets into one portfolio.
-
-Build across chains and asset classes, define your allocations, and manage your strategy through one unified experience.
+INDEXLA brings supported assets into one portfolio, so you can define allocations and manage your strategy through one unified experience.
 
 ### **MULTI-CHAIN**
 
@@ -53,7 +49,7 @@ One allocation across the assets you want to own.
 
 ### **ONE EXPERIENCE**
 
-Discover, allocate, rebalance, and manage from one place.
+Discover, allocate, rebalance, and automate from one place.
 
 ### **Cross-chain. Cross-asset. One portfolio.**
 
@@ -63,47 +59,18 @@ Discover, allocate, rebalance, and manage from one place.
 
 
 
-# **Not Another Basket Token.**
+# **DISCOVER PORTFOLIOS BUILT AROUND A THESIS.**
 
-Traditional index products package multiple assets into one product.
+Explore strategies created by INDEXLA and independent creators.
 
-You own the basket representation.
+### **AI POWER MIX**
 
-INDEXLA takes a different approach.
+**type -Hybrid Index**
 
-You build the portfolio.
+**Assets:**  
+TAO · NEAR · ICP · Google · NVIDIA
 
-You own the underlying assets.
-
-The portfolio defines the strategy. Your assets remain yours.
-
-
-
----
-
-
-
-# **The World Is Tokenizing Assets.**
-
-Stocks. Bonds. Funds. Commodities. Real estate. Private markets.
-
-More financial assets are moving onto programmable blockchain infrastructure.
-
-But tokenizing an asset is only half the problem.
-
-Investors still need a way to discover assets, combine them into portfolios, allocate capital, and manage exposure across markets.
-
-### **Tokenization creates the assets.**
-
-### **INDEXLA creates the portfolio and distribution layer around them.**
-
-Asset issuers create the products.
-
-Creators build strategies around them.
-
-Investors discover, combine, allocate, and automate exposure.
-
-**More assets on-chain means a larger universe for programmable portfolios.**
+**Strategy:** Buy Fear / Sell Greed
 
 
 
@@ -111,13 +78,51 @@ Investors discover, combine, allocate, and automate exposure.
 
 
 
-# **The New Unit Of Investing Isn't The Asset.**
+### **MIX DREAM TEAM**
 
-## **It's The Strategy.**
+**type-Hybrid Portfolio**
+
+**Assets:**  
+BTC · SOL · ETH · S&P 500 · NVIDIA · TAO · Gold
+
+**Strategy:** RSI Weekly Signal
+
+
+
+---
+
+
+
+### **STOCKS POWER HOUSE**
+
+**type-Stocks Portfolio**
+
+**Assets:**  
+NVIDIA · Google · S&P 500 · Microsoft · Apple
+
+**Strategy:** Momentum Shifts
+
+
+
+---
+
+
+
+**Demo portfolios are illustrative and do not represent actual or guaranteed performance.**
+
+**Explore All Strategies**
+
+
+
+---
+
+
+
+# **THE STRATEGY IS THE PRODUCT.**
 
 Markets move fast. Emotions move faster.
 
-INDEXLA turns investment strategies into clear rules and automates execution across your portfolio.
+INDEXLA turns your investment strategy into executable rules.
 
 ### **BUY FEAR**
 
@@ -129,41 +134,29 @@ Reduce exposure when defined greed conditions are reached.
 
 ### **TAKE PROFIT**
 
-Automatically reduce positions when predefined targets are reached.
+Reduce positions when predefined targets are reached.
 
 ### **REBALANCE**
 
-Bring your portfolio back toward target allocations as markets move.
+Return the portfolio toward target allocations as markets move.
 
 ### **MOMENTUM**
 
-Increase or reduce exposure as defined market trends change.
+Adjust exposure as defined market trends change.
 
 ### **RSI**
 
 Accumulate during oversold conditions and reduce exposure during overbought conditions.
 
+## **AI WATCHES. YOUR RULES DECIDE. INDEXLA EXECUTES.**
 
+You define the strategy.
 
----
+AI monitors the conditions you specify, such as sentiment, RSI, momentum, and allocation drift.
 
+INDEXLA coordinates transaction execution across supported chains and assets when your defined conditions are met.
 
-
-## **AI Watches. Your Rules Decide. INDEXLA Executes.**
-
-Once you approve a strategy, AI monitors the conditions you define and coordinates execution across supported chains and assets.
-
-You don't need to watch the market 24/7.
-
-**You define what should happen.**
-
-**AI monitors when it should happen.**
-
-**INDEXLA coordinates the execution.**
-
-### **Your assets stay under your control.**
-
-### **Your strategy does the work.**
+**Your assets stay under your control.**
 
 
 
@@ -171,13 +164,7 @@ You don't need to watch the market 24/7.
 
 
 
-# **Investing Should Be One Flow.**
-
-No jumping between chains.
-
-No managing multiple platforms.
-
-No manually coordinating every transaction.
+# **INVESTING IN THREE STEPS.**
 
 ### **01 — DISCOVER**
 
@@ -187,13 +174,13 @@ See its assets, allocations, strategy, performance, and activity.
 
 ### **02 — ALLOCATE**
 
-Choose how much capital to put behind it.
+Choose how much capital to deploy.
 
 Your assets remain under your control.
 
 ### **03 — AUTOMATE**
 
-Approve the strategy and let INDEXLA execute your rules across supported chains and assets.
+Approve your strategy and let INDEXLA execute when your defined conditions are met.
 
 ### **Discover. Allocate. Automate.**
 
@@ -203,19 +190,15 @@ Approve the strategy and let INDEXLA execute your rules across supported chains 
 
 
 
-# **Stop Monetizing Attention. Monetize Your Strategy.**
+# **STOP SELLING SIGNALS. MONETIZE YOUR STRATEGY.**
 
-Crypto creators already monetize their knowledge through Telegram groups, Discord communities, paid subscriptions, signals, and private calls.
+Creators already influence where capital moves.
 
-But content disappears. Subscribers churn. Calls get buried.
-
-INDEXLA gives creators a new way to monetize their investment edge.
-
-Turn your thesis into a public, investable portfolio that can build a verified track record, attract capital, and generate revenue.
+INDEXLA lets them turn their investment thesis into a public portfolio that can build a verified track record, attract capital, and generate recurring revenue.
 
 ### **BUILD**
 
-Turn your market thesis, allocations, and rules into a portfolio.
+Turn your thesis, allocations, and rules into a portfolio.
 
 ### **PUBLISH**
 
@@ -223,15 +206,15 @@ Put it in front of investors through the INDEXLA marketplace.
 
 ### **ATTRACT**
 
-Turn followers into investors, grow AUM, and build an on-chain track record.
+Grow AUM and build a verified on-chain track record.
 
 ### **EARN**
 
-Earn 50% of the execution fees generated by investor activity through your portfolio.
+Receive **50% of execution fees generated by investor activity through your portfolio.**
 
-### **Stop selling access to your knowledge. Build an investable product around it.**
+**Stop selling access to your knowledge. Build an investable product around it.**
 
-Your calls disappear. Your portfolio can compound.
+**Launch Your Portfolio**
 
 
 
@@ -239,67 +222,17 @@ Your calls disappear. Your portfolio can compound.
 
 
 
-# **Portfolio Management Without The Management Fee.**
+# **SIMPLE ECONOMICS. ALIGNED INCENTIVES.**
 
-Traditional portfolio managers charge for managing your capital.
-
-INDEXLA doesn't.
-
-### **0%**
-
-**MANAGEMENT**
-
-### **0%**
-
-**PERFORMANCE**
-
-### **0%**
-
-**EXIT**
-
-No percentage of your portfolio.
-
-No percentage of your profits.
-
-No fee for leaving.
+**0% MANAGEMENT · 0% PERFORMANCE · 0% EXIT**
 
 INDEXLA charges a **1% execution fee when transactions occur**.
 
-Creators receive **50% of execution fees generated by their portfolios**, while the remaining protocol revenue supports the platform, Treasury, rewards, and $DEXLA buyback and burn.
+Creators receive **50% of execution fees generated by their portfolios**.
 
-### **You keep ownership. You keep the upside.**
+The remaining protocol revenue supports platform operations, Treasury, rewards, and $DEXLA buyback and burn.
 
-
-
----
-
-
-
-# **The Distribution Layer For On-Chain Assets.**
-
-The tokenization race is creating a growing universe of investable assets.
-
-The next bottleneck is distribution.
-
-How do investors discover them?
-
-How do they combine them?
-
-How do they allocate across them?
-
-How do they automate their strategy?
-
-INDEXLA is building that layer.
-
-Asset issuers create the assets.
-
-Creators build strategies around them.
-
-Investors allocate capital.
-
-INDEXLA connects them through portfolios and execution.
-
-### **One marketplace connecting assets, strategies, creators, and capital.**
+**You keep ownership. You keep the upside.**
 
 
 
@@ -307,23 +240,20 @@ INDEXLA connects them through portfolios and execution.
 
 
 
-# **Your Portfolio Should Work As Hard As You Do.**
+# **BUILD YOUR PORTFOLIO.**
 
-Markets are always moving.
-
-Your portfolio shouldn't depend on you being online when they do.
-
-INDEXLA gives you one place to own assets, deploy strategies, and automate execution across supported markets and chains.
-
-Choose what you believe.
+Define what you believe.
 
 Define how you want to act.
 
-Let your portfolio execute.
-
-### **Own the assets. Own the strategy. Control the execution.**
+Let INDEXLA execute the rules.
 
 **Build Your First Portfolio**  
 **Explore Marketplace**
 
+**Launching Early Access**
+
   
+  
+
+

@@ -1,4 +1,5 @@
 import { PortfolioCard } from "@/components/home/PortfolioCard";
+import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { PORTFOLIOS } from "@/lib/site";
 
@@ -7,16 +8,11 @@ export function PortfolioExamplesSection() {
     <section className="relative border-t border-line bg-void py-24 md:py-32">
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-electric">
-            Investable products
-          </p>
-          <h2 className="display mt-4 text-[clamp(2rem,4.5vw,3.3rem)] text-balance">
-            Portfolio Examples
+          <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] uppercase tracking-[-0.02em] text-balance">
+            Discover Portfolios Built Around A Thesis.
           </h2>
           <p className="mt-5 text-[1.08rem] leading-relaxed text-muted">
-            Premium hybrid indexes, hybrid portfolios, stocks portfolios, and
-            crypto portfolios — built as real investment products with strategy,
-            allocation, and activity. Demo metrics shown for illustration.
+            Explore strategies created by INDEXLA and independent creators.
           </p>
         </FadeIn>
 
@@ -27,6 +23,14 @@ export function PortfolioExamplesSection() {
             </FadeIn>
           ))}
         </div>
+
+        <FadeIn className="mt-12 max-w-2xl space-y-6">
+          <p className="text-sm leading-relaxed text-muted-dim">
+            Demo portfolios are illustrative and do not represent actual or
+            guaranteed performance.
+          </p>
+          <Button href="/strategies">Explore All Strategies</Button>
+        </FadeIn>
       </div>
     </section>
   );

@@ -83,7 +83,7 @@ export type Portfolio = {
   activity: string;
 };
 
-/** Demo / illustrative values clearly labeled in UI */
+/** Demo / illustrative values clearly labeled in UI — from approved home.md */
 export const PORTFOLIOS: Portfolio[] = [
   {
     id: "ai-power-mix",
@@ -105,7 +105,7 @@ export const PORTFOLIOS: Portfolio[] = [
     name: "MIX DREAM TEAM",
     type: "Hybrid Portfolio",
     assets: ["btc", "sol", "eth", "sp500", "nvidia", "tao", "gold"],
-    strategy: "Buy Fear / Sell Greed",
+    strategy: "RSI Weekly Signal",
     aum: "$12.8M",
     performance: "+24.1%",
     performancePositive: true,
@@ -130,38 +130,6 @@ export const PORTFOLIOS: Portfolio[] = [
       { label: "Index", pct: 28 },
     ],
     activity: "Momentum update 1d ago",
-  },
-  {
-    id: "crypto-leaders",
-    name: "CRYPTO LEADERS",
-    type: "Crypto Portfolio",
-    assets: ["btc", "eth", "sol", "tao", "hype", "peaq", "chainlink", "ondo"],
-    strategy: "Weekly RSI — Oversold Buy / Overbought Sell",
-    aum: "$6.1M",
-    performance: "+31.7%",
-    performancePositive: true,
-    allocation: [
-      { label: "L1s", pct: 52 },
-      { label: "AI / Infra", pct: 28 },
-      { label: "DeFi / RWA", pct: 20 },
-    ],
-    activity: "RSI buy zone active",
-  },
-  {
-    id: "the-bad-boys",
-    name: "THE BAD BOYS",
-    type: "Hybrid Portfolio",
-    assets: ["btc", "eth", "sp500", "gold", "silver"],
-    strategy: "Rebalancing",
-    aum: "$9.4M",
-    performance: "+9.8%",
-    performancePositive: true,
-    allocation: [
-      { label: "Crypto", pct: 40 },
-      { label: "Equities", pct: 30 },
-      { label: "Metals", pct: 30 },
-    ],
-    activity: "Auto-rebalanced weekly",
   },
 ];
 

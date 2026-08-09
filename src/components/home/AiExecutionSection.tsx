@@ -17,24 +17,22 @@ export function AiExecutionSection() {
     <section className="relative border-t border-line bg-void py-24 md:py-32">
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] text-balance">
+          <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] uppercase tracking-[-0.02em] text-balance">
             AI Watches. Your Rules Decide.{" "}
             <span className="gradient-text">INDEXLA Executes.</span>
           </h2>
           <div className="mt-6 space-y-4 text-[1.08rem] leading-relaxed text-muted">
+            <p>You define the strategy.</p>
             <p>
-              Once you approve a strategy, AI monitors the conditions you define
-              and coordinates execution across supported chains and assets.
+              AI monitors the conditions you specify, such as sentiment, RSI,
+              momentum, and allocation drift.
             </p>
-            <p>You don&apos;t need to watch the market 24/7.</p>
-            <p className="font-medium text-ink/90">
-              You define what should happen.
-            </p>
-            <p className="font-medium text-ink/90">
-              AI monitors when it should happen.
+            <p>
+              INDEXLA coordinates transaction execution across supported chains
+              and assets when your defined conditions are met.
             </p>
             <p className="font-medium text-ink/90">
-              INDEXLA coordinates the execution.
+              Your assets stay under your control.
             </p>
           </div>
         </FadeIn>
@@ -46,7 +44,7 @@ export function AiExecutionSection() {
             </p>
             <ol className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
               {steps.map((step, i) => (
-                <li key={step} className="relative">
+                <li key={step}>
                   <motion.div
                     initial={{ opacity: 0.5 }}
                     whileInView={{ opacity: 1 }}
@@ -72,15 +70,7 @@ export function AiExecutionSection() {
                 </li>
               ))}
             </ol>
-            <p className="mt-8 text-center text-[1.05rem] font-semibold text-ink">
-              Your rules decide. AI monitors. INDEXLA executes.
-            </p>
           </div>
-        </FadeIn>
-
-        <FadeIn className="mt-8 space-y-2 text-[1.05rem] text-muted">
-          <p>Your assets stay under your control.</p>
-          <p>Your strategy does the work.</p>
         </FadeIn>
       </div>
     </section>
