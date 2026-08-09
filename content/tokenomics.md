@@ -1,177 +1,158 @@
-# **Tokenomics**
+# Tokenomics
 
-## **$DEXLA: The Engine Of The INDEXLA Ecosystem**
+## $DEXLA: The Engine of the INDEXLA Ecosystem
 
-$DEXLA is the native utility token powering the INDEXLA ecosystem.
+$DEXLA is the native utility token of INDEXLA.
 
-The token is designed to align creators, investors, and the protocol by connecting platform activity with long-term token utility.
+Its utility is built around three concrete mechanisms:
 
-As INDEXLA grows, $DEXLA utility grows through portfolio creation, ecosystem participation, and protocol-driven mechanisms.
+- **Creators permanently burn $DEXLA** to publish public portfolios and indexes.
+- **The protocol uses a share of execution fees** to buy and permanently burn $DEXLA.
+- **The Treasury uses a share of realized profits** to buy and permanently burn $DEXLA.
 
----
+Demand is created by platform activity.
 
-# **Token Utility**
-
-## **Publish To Earn**
-
-Creating public portfolios and indexes requires $DEXLA.
-
-Creators must permanently burn **1,000 $DEXLA** to publish a portfolio or index on the INDEXLA Marketplace.
-
-This creates a direct connection between creator activity and token demand while maintaining a high-quality marketplace.
+Supply is reduced through permanent burns as that activity grows.
 
 ---
 
-## **Trading Fee Discounts**
+# Token Utility
 
-Investors holding $DEXLA receive reduced execution fees.
+## Publish to Earn
 
-Benefits:
+Creating a public portfolio or index on the INDEXLA Marketplace requires a permanent burn of **1,000 $DEXLA**.
 
-**2,500 $DEXLA** → 15% fee discount  
-**5,000 $DEXLA** → 25% fee discount  
-**10,000 $DEXLA** → 35% fee discount
+This connects creator activity directly to token utility while helping maintain a high-quality marketplace.
+
+Private portfolios do not require the $DEXLA publishing burn.
+
+## Trading Fee Discounts
+
+Investors holding $DEXLA receive reduced execution fees:
+
+- **2,500 $DEXLA** → 15% fee discount
+- **5,000 $DEXLA** → 25% fee discount
+- **10,000 $DEXLA** → 35% fee discount
 
 Discounts remain active while the required token balance is maintained.
 
- 
-
 ---
 
-# **Token Burn Mechanism**
+# Token Burn Mechanism
 
 $DEXLA follows an activity-driven deflationary model.
 
-As INDEXLA adoption increases, token supply is reduced through predefined mechanisms.
+## Creator Burns
 
-## **Creator Burns**
-
-Every published portfolio or index requires a permanent burn of:
+Every published public portfolio or index permanently removes:
 
 **1,000 $DEXLA**
 
-More creators publishing strategies means more tokens removed from circulation.
+More creators publishing strategies means more tokens permanently removed from circulation.
+
+## Protocol Buybacks
+
+**10% of execution fee revenue** is used to buy $DEXLA from the market and permanently burn the acquired tokens.
+
+## Treasury Buybacks
+
+**25% of realized Treasury profits** are allocated to purchasing and permanently burning $DEXLA.
 
 ---
 
-## **Protocol Buybacks**
+# Token Distribution
 
-A portion of INDEXLA protocol revenue is used to buy $DEXLA from the market and permanently burn acquired tokens.
-
-**10% of execution fee revenue** is allocated to protocol buybacks and burns.
-
----
-
-## **Treasury Buybacks**
-
-The INDEXLA Treasury accumulates assets through protocol growth.
-
-**25% of realized treasury profits** are allocated toward purchasing and burning $DEXLA.
-
----
-
-# **Token Distribution**
-
-The $DEXLA supply is allocated to support fundraising, ecosystem growth, liquidity, decentralization, and long-term development.
+## Total Supply: 100,000,000 $DEXLA
 
 
-|                    |                |
-| ------------------ | -------------- |
-| **Allocation**     | **Percentage** |
-| Pre-Seed Round     | 1.5%           |
-| Seed Round         | 6%             |
-| Private Sale       | 10%            |
-| Public Sale        | 20%            |
-| DEX Liquidity      | 10%            |
-| Treasury           | 20%            |
-| Team               | 15%            |
-| Community Airdrops | 10%            |
-| CEX Listings       | 5%             |
-| Advisors           | 2.5%           |
+| Allocation         | Percentage |
+| ------------------ | ---------- |
+| Pre-Seed Round     | 1.5%       |
+| Seed Round         | 6%         |
+| Private Sale       | 10%        |
+| Public Sale        | 20%        |
+| DEX Liquidity      | 10%        |
+| Treasury           | 20%        |
+| Team               | 15%        |
+| Community Airdrops | 10%        |
+| CEX Listings       | 5%         |
+| Advisors           | 2.5%       |
 
 
-**Total Supply: 100,000,000 $DEXLA**
+The allocation is designed to support fundraising, liquidity, ecosystem growth, team alignment, and long-term protocol development.
 
 ---
 
-# **Vesting Schedule**
+# Vesting Schedule
 
-To support long-term alignment and reduce sell pressure:
+## Built for Long-Term Alignment
 
-## **Pre-Seed Round**
+### Pre-Seed, Seed & Private Sale
 
-10% unlocked at TGE, followed by a 3-month cliff and 18-month linear vesting.
+**10% unlocked at TGE**, followed by a **3-month cliff** and **18-month linear vesting**.
 
-## **Seed Round**
+### Public Sale
 
-10% unlocked at TGE, followed by a 3-month cliff and 18-month linear vesting.
+**15% unlocked at TGE**, with the remaining allocation vested linearly over **6 months**.
 
-## **Private Sale**
+### Team
 
-10% unlocked at TGE, followed by a 3-month cliff and 18-month linear vesting.
+**12-month cliff**, followed by **24-month linear vesting**.
 
-## **Public Sale**
+### Advisors
 
-15% unlocked at TGE, with the remaining allocation vested linearly over 6 months.
+**6-month cliff**, followed by **12-month linear vesting**.
 
-## **Team**
+### Treasury & Community Airdrops
 
-12-month cliff followed by 24-month linear vesting.
+Released progressively according to the protocol's treasury and ecosystem framework to support creator incentives, ecosystem growth, strategic initiatives, and long-term development.
 
-## **Advisors**
+### DEX Liquidity
 
-6-month cliff followed by 12-month linear vesting.
+Allocated at TGE to support healthy market liquidity.
 
-## **Treasury & Community**
-
-Released progressively to support:
-
-●      Ecosystem growth.
-
-●      Creator incentives.
-
-●      Strategic initiatives.
-
-●      Long-term protocol development.
-
-## **Liquidity**
-
-Allocated at TGE to support healthy market liquidity across DEXs and future exchange listings.
+All unlocks are designed to be transparent and verifiable through smart contracts where applicable.
 
 ---
 
-# **Initial Circulating Supply At TGE**
+# Initial Circulating Supply at TGE
 
-Initial circulating supply:
+## 14.75% of Total Supply
 
-**14.75% of total supply**
-
-**14.75M $DEXLA tokens**
+**14.75M $DEXLA**
 
 TGE circulating supply includes:
 
-●      Public Sale unlock: 3%
+- **Public Sale:** 3%
+- **DEX Liquidity:** 10%
+- **CEX Listings:** 0.75%
+- **Other unlocked allocations:** 1%
 
-●      DEX Liquidity: 10%
-
-●      CEX Listings: 0.75%
-
-●      Other unlocked allocations: 1%
-
-All token releases are designed to be transparent and verifiable through smart contracts where applicable.
+The remaining allocations are subject to their respective vesting or release schedules.
 
 ---
 
-# **A Token Model Aligned With Usage**
+# Launch Timing
 
-$DEXLA is not designed around speculative incentives.
+$DEXLA launches as the INDEXLA ecosystem scales.
 
-Its utility grows with real ecosystem activity:
+The platform can launch and onboard creators before the token is introduced.
 
-More creators → More burns  
-More investors → More platform activity  
-More protocol revenue → More buybacks
+Once $DEXLA is live, publishing public portfolios and indexes will require the **1,000 $DEXLA permanent burn**.
 
-The growth of INDEXLA directly strengthens the $DEXLA ecosystem.
+Private portfolios can remain private without the publishing burn.
 
- 
+---
+
+# A Token Model Aligned With Usage
+
+$DEXLA is built around real INDEXLA activity:
+
+**More creators → More permanent burns**
+
+**More trading activity → More protocol buybacks**
+
+**More Treasury profits → More buybacks**
+
+As INDEXLA activity grows, $DEXLA utility, demand, and burn activity can grow with it.
+
