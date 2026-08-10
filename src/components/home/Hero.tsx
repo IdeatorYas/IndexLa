@@ -34,17 +34,40 @@ export function Hero() {
             <span className="gradient-text">Decentralized Portfolio Management</span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted sm:mt-6 sm:text-[1.15rem]">
-            Invest in Everything. Own Everything. Control Everything.
+          <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.7] text-muted sm:mt-6 sm:text-[1.15rem]">
+            The non custodial portfolio distribution layer for crypto and
+            tokenized assets.
           </p>
+
+          <p className="mx-auto mt-4 max-w-2xl text-[0.98rem] leading-[1.7] text-muted-dim sm:text-[1.05rem]">
+            Own the underlying assets across chains. Define the rules once.
+            Automate execution. Keep the keys.
+          </p>
+
+          <div
+            className="mx-auto mt-7 max-w-lg rounded-2xl border border-electric/20 bg-white/[0.035] px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm sm:px-6 sm:py-5"
+            aria-label="Fee structure highlights"
+          >
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+              {[
+                { value: "0%", label: "management" },
+                { value: "0%", label: "performance" },
+                { value: "0%", label: "exit" },
+              ].map((item) => (
+                <div key={item.label} className="text-center">
+                  <p className="display text-[1.35rem] leading-none text-ink sm:text-[1.55rem]">
+                    {item.value}
+                  </p>
+                  <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted sm:text-[0.72rem]">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
 
           <p className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-muted-dim sm:text-[1.02rem]">
-            Only a 1% execution fee when trades occur. No hidden recurring
-            charges.
-          </p>
-
-          <p className="mx-auto mt-2 max-w-xl text-[0.95rem] leading-relaxed text-muted-dim sm:text-[1.02rem]">
-            0% management fees. 0% performance fees. 0% exit fees.
+            Only 1% execution fee when trades occur
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -57,8 +80,8 @@ export function Hero() {
           </div>
 
           <p className="mt-8 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted sm:text-[0.78rem]">
-            Multi Asset · Multi Chain · Non Custodial · Programmable · Creator
-            Native
+            Multi Asset · Cross Chain · Non Custodial · Automated · Creator
+            Marketplace
           </p>
         </motion.div>
       </div>

@@ -1,19 +1,23 @@
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
+import {
+  homeBody,
+  homeH2,
+  homeLede,
+  homeSection,
+} from "@/components/home/homeRhythm";
 
 export function CreatorsSection() {
   return (
-    <section className="relative border-t border-line bg-void py-20 md:py-28">
+    <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
           <FadeIn>
-            <h2 className="display text-[clamp(2rem,4.2vw,3.2rem)] tracking-[-0.03em] text-balance">
-              Built for Creators
-            </h2>
-            <p className="mt-5 text-[1.2rem] font-semibold leading-snug text-ink sm:text-[1.3rem]">
+            <h2 className={homeH2}>Built for Creators</h2>
+            <p className={homeLede}>
               Turn your investment thesis into a portfolio.
             </p>
-            <div className="mt-6 space-y-4 text-[1.05rem] leading-relaxed text-muted">
+            <div className={`mt-6 space-y-4 ${homeBody}`}>
               <p>
                 Instead of telling your audience what to buy, create a portfolio
                 they can choose to follow.
@@ -38,7 +42,9 @@ export function CreatorsSection() {
               </p>
             </div>
             <div className="mt-8">
-              <Button href="/creators">Create Your Portfolio</Button>
+              <Button href="/creators" className="min-w-[13.5rem]">
+                Create Your Portfolio
+              </Button>
             </div>
           </FadeIn>
 
@@ -47,24 +53,30 @@ export function CreatorsSection() {
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 Example economics
               </p>
-              <div className="mt-6 space-y-4">
+              <div className="mt-6 space-y-3.5">
                 <div className="rounded-2xl border border-line bg-void/45 px-5 py-4">
                   <p className="text-[0.7rem] uppercase tracking-[0.12em] text-muted-dim">
                     Weekly execution volume
                   </p>
-                  <p className="display mt-2 text-[2rem] text-ink">$100,000</p>
+                  <p className="display mt-2 text-[1.85rem] text-ink sm:text-[2rem]">
+                    $100,000
+                  </p>
                 </div>
                 <div className="rounded-2xl border border-line bg-void/45 px-5 py-4">
                   <p className="text-[0.7rem] uppercase tracking-[0.12em] text-muted-dim">
                     1% execution fee
                   </p>
-                  <p className="display mt-2 text-[2rem] text-ink">$1,000</p>
+                  <p className="display mt-2 text-[1.85rem] text-ink sm:text-[2rem]">
+                    $1,000
+                  </p>
                 </div>
                 <div className="rounded-2xl border border-electric/30 bg-electric/10 px-5 py-4">
                   <p className="text-[0.7rem] uppercase tracking-[0.12em] text-electric">
                     Creator share (50%)
                   </p>
-                  <p className="display mt-2 text-[2rem] gradient-text">$500</p>
+                  <p className="display mt-2 text-[1.85rem] gradient-text sm:text-[2rem]">
+                    $500
+                  </p>
                 </div>
               </div>
             </div>

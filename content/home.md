@@ -1,16 +1,23 @@
 # INDEXLA
 
-## Hero
+# Hero
 
-### Decentralized Portfolio Management
+### **Decentralized Portfolio Management**
 
-**Invest in Everything. Own Everything. Control Everything.**
+**The non custodial portfolio distribution layer for crypto and tokenized assets.**
 
-**1% execution fee. 0% management fees. 0% performance fees. 0% exit fees.**
+
+
+0% management · 0% performance · 0% exit  
+ Only 1% execution fee when trades occur
+
+
 
 [Create Your Portfolio] [Join Early Access]
 
-**Multi Asset · Multi Chain · Non Custodial · Programmable · Creator Native**
+Multi Asset · Cross Chain · Non Custodial · Automated · Creator Marketplace
+
+
 
 ---
 
@@ -19,8 +26,6 @@
 **INDEXLA is a non custodial portfolio management layer for investing across crypto, tokenized stocks, commodities, and RWAs, with programmable strategies and cross chain execution in one portfolio.**
 
 Build your portfolio, define your rules, and let INDEXLA coordinate authorized execution while your assets remain under your control.
-
-
 
 ### One Portfolio. Every Asset. Full Control.
 

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { AssetLogo } from "@/components/ui/AssetLogo";
+import { homeH2, homeSection } from "@/components/home/homeRhythm";
 import type { AssetKey } from "@/lib/site";
 
 const STEP_MS = 7000;
@@ -373,7 +374,7 @@ export function HowItWorksSection() {
   const step = STEPS[active];
 
   return (
-    <section className="relative border-t border-line bg-deep py-20 md:py-28">
+    <section className={`${homeSection} bg-deep`}>
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(56,189,248,0.08),transparent_45%),radial-gradient(ellipse_at_20%_80%,rgba(124,58,237,0.08),transparent_40%)]"
         aria-hidden
@@ -381,10 +382,8 @@ export function HowItWorksSection() {
 
       <div className="section-pad container-max relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className="display text-[clamp(2rem,4.5vw,3.3rem)] tracking-[-0.03em] text-balance">
-            How It Works
-          </h2>
-          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-muted">
+          <h2 className={homeH2}>How It Works</h2>
+          <p className="mt-4 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
             Connect → Allocate → Automate → Fund &amp; Activate
           </p>
         </FadeIn>

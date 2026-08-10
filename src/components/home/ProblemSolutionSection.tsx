@@ -1,4 +1,11 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import {
+  homeBody,
+  homeEyebrow,
+  homeH2,
+  homeH3,
+  homeSection,
+} from "@/components/home/homeRhythm";
 
 const problems = [
   {
@@ -42,7 +49,7 @@ const shifts = [
 
 export function ProblemSolutionSection() {
   return (
-    <section className="relative border-t border-line bg-deep py-20 md:py-28">
+    <section className={`${homeSection} bg-void`}>
       <div
         className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(ellipse_at_80%_40%,rgba(56,189,248,0.07),transparent_55%)]"
         aria-hidden
@@ -50,31 +57,27 @@ export function ProblemSolutionSection() {
 
       <div className="section-pad container-max relative">
         <FadeIn className="max-w-3xl">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
-            The Problem vs Solution
-          </p>
-          <h2 className="display mt-4 text-[clamp(1.85rem,4.2vw,3rem)] tracking-[-0.03em] text-ink text-balance">
+          <p className={homeEyebrow}>The Problem vs Solution</p>
+          <h2 className={`mt-4 ${homeH2}`}>
             Modern investing is fragmented, opaque, and increasingly difficult to
             manage across assets and chains.
           </h2>
         </FadeIn>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2">
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
           {problems.map((item, i) => (
             <FadeIn key={item.n} delay={i * 0.05}>
-              <article className="flex h-full flex-col rounded-3xl border border-line bg-void/35 p-6 sm:p-7">
+              <article className="flex h-full flex-col rounded-2xl border border-line bg-deep/50 p-6 sm:p-7">
                 <div className="flex items-baseline gap-3">
                   <span className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
                     {item.n}
                   </span>
-                  <h3 className="display text-[1.35rem] tracking-[-0.02em] text-ink">
+                  <h3 className="display text-[1.25rem] tracking-[-0.02em] text-ink sm:text-[1.35rem]">
                     {item.title}
                   </h3>
                 </div>
-                <p className="mt-4 flex-1 text-[0.98rem] leading-relaxed text-muted">
-                  {item.problem}
-                </p>
-                <p className="mt-5 border-t border-line pt-4 text-[0.98rem] leading-relaxed text-ink">
+                <p className={`mt-4 flex-1 ${homeBody}`}>{item.problem}</p>
+                <p className="mt-5 border-t border-line pt-4 text-[1.02rem] leading-[1.65] text-ink">
                   <span className="font-semibold text-electric">INDEXLA: </span>
                   {item.solution}
                 </p>
@@ -83,9 +86,9 @@ export function ProblemSolutionSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-16">
+        <FadeIn className="mt-12">
           <div className="rounded-3xl glass p-7 sm:p-10">
-            <h3 className="display text-[clamp(1.5rem,3vw,2.15rem)] tracking-[-0.03em] text-ink text-balance">
+            <h3 className={homeH3}>
               One Layer. One Portfolio. Full Asset Ownership.
             </h3>
 
@@ -95,20 +98,20 @@ export function ProblemSolutionSection() {
                   key={shift.from}
                   className="flex items-center gap-3 rounded-2xl border border-line bg-void/45 px-4 py-3.5"
                 >
-                  <span className="min-w-0 flex-1 text-sm text-muted">
+                  <span className="min-w-0 flex-1 text-sm leading-snug text-muted">
                     {shift.from}
                   </span>
                   <span className="shrink-0 text-electric" aria-hidden>
                     →
                   </span>
-                  <span className="min-w-0 flex-1 text-sm font-semibold text-ink">
+                  <span className="min-w-0 flex-1 text-sm font-semibold leading-snug text-ink">
                     {shift.to}
                   </span>
                 </div>
               ))}
             </div>
 
-            <p className="mt-8 max-w-3xl text-[1.05rem] leading-relaxed text-muted">
+            <p className={`mt-8 max-w-3xl ${homeBody}`}>
               INDEXLA lets you buy the assets, hold the full basket, and control
               your portfolio directly.
             </p>
@@ -116,7 +119,7 @@ export function ProblemSolutionSection() {
         </FadeIn>
 
         <FadeIn className="mt-10">
-          <p className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted sm:text-[0.78rem]">
+          <p className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
             Multi Asset · Multi Chain · Non Custodial · Programmable · Creator
             Native
           </p>

@@ -1,4 +1,10 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import {
+  homeBody,
+  homeH2,
+  homeLede,
+  homeSection,
+} from "@/components/home/homeRhythm";
 
 const stats = [
   { label: "Distributed Asset Value", value: "$38.14B" },
@@ -8,20 +14,16 @@ const stats = [
 
 export function TokenizationSection() {
   return (
-    <section className="relative border-t border-line bg-void py-20 md:py-28">
+    <section className={`${homeSection} bg-deep`}>
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_30%,rgba(124,58,237,0.1),transparent_50%),radial-gradient(ellipse_at_80%_70%,rgba(56,189,248,0.08),transparent_45%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_30%,rgba(124,58,237,0.08),transparent_50%),radial-gradient(ellipse_at_80%_70%,rgba(56,189,248,0.06),transparent_45%)]"
         aria-hidden
       />
 
       <div className="section-pad container-max relative">
         <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(2rem,4.6vw,3.4rem)] tracking-[-0.03em] text-ink text-balance">
-            The Financial System Is Being Tokenized
-          </h2>
-          <p className="mt-5 text-[1.15rem] font-semibold leading-snug text-ink sm:text-[1.25rem]">
-            Everything is moving on chain.
-          </p>
+          <h2 className={homeH2}>The Financial System Is Being Tokenized</h2>
+          <p className={homeLede}>Everything is moving on chain.</p>
         </FadeIn>
 
         <FadeIn className="mt-10">
@@ -29,12 +31,12 @@ export function TokenizationSection() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-3xl border border-line bg-deep/60 px-6 py-7 text-center"
+                className="rounded-2xl border border-line bg-void/45 px-5 py-7 text-center sm:px-6"
               >
-                <p className="display text-[clamp(1.85rem,4vw,2.6rem)] leading-none gradient-text">
+                <p className="display text-[clamp(1.75rem,3.5vw,2.4rem)] leading-none gradient-text">
                   {stat.value}
                 </p>
-                <p className="mt-3 text-sm font-semibold tracking-[0.04em] text-muted">
+                <p className="mt-3 text-[0.8rem] font-semibold tracking-[0.04em] text-muted">
                   {stat.label}
                 </p>
               </div>
@@ -42,7 +44,7 @@ export function TokenizationSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-10 max-w-3xl space-y-5 text-[1.05rem] leading-[1.7] text-muted sm:text-[1.1rem]">
+        <FadeIn className={`mt-10 max-w-3xl space-y-5 ${homeBody}`}>
           <p>
             Treasuries, bonds, equities, commodities, funds, credit, and other
             RWAs are moving onto programmable blockchains.

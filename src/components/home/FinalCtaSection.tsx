@@ -3,16 +3,22 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
+import {
+  homeBody,
+  homeEyebrow,
+  homeH2,
+  homeSection,
+} from "@/components/home/homeRhythm";
 
 export function NextGenerationSection() {
   return (
-    <section className="relative border-t border-line bg-deep py-20 md:py-28">
+    <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className="display text-[clamp(2rem,4.5vw,3.2rem)] tracking-[-0.03em] text-balance">
+          <h2 className={homeH2}>
             Built for the Next Generation of Investing
           </h2>
-          <div className="mx-auto mt-6 max-w-2xl space-y-4 text-[1.05rem] leading-relaxed text-muted sm:text-[1.08rem]">
+          <div className={`mx-auto mt-6 max-w-2xl space-y-4 ${homeBody}`}>
             <p>
               Gen Z is growing up in a digital, instant economy. Investing should
               work the same way.
@@ -42,7 +48,7 @@ export function FinalCtaSection() {
   return (
     <section
       id="early-access"
-      className="relative overflow-hidden border-t border-line bg-void py-20 md:py-28"
+      className={`relative overflow-hidden ${homeSection} bg-void`}
     >
       <div className="pointer-events-none absolute inset-0 hero-glow" aria-hidden />
       <div className="section-pad container-max relative text-center">
@@ -53,13 +59,11 @@ export function FinalCtaSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
-            Early Access
-          </p>
-          <h2 className="display mt-4 text-[clamp(2rem,4.6vw,3.3rem)] tracking-[-0.03em] text-balance">
+          <p className={homeEyebrow}>Early Access</p>
+          <h2 className={`mt-4 ${homeH2}`}>
             Build the next generation of programmable portfolios.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-[1.08rem] leading-relaxed text-muted">
+          <p className={`mx-auto mt-6 max-w-2xl ${homeBody}`}>
             Join early access for founders, creators, and crypto native
             investors.
           </p>
