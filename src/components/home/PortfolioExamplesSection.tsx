@@ -47,7 +47,7 @@ export function PortfolioExamplesSection() {
           </div>
         </FadeIn>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {PORTFOLIOS.slice(0, 3).map((portfolio, i) => (
             <FadeIn key={portfolio.id} delay={i * 0.05}>
               <PortfolioCard portfolio={portfolio} />
@@ -55,12 +55,12 @@ export function PortfolioExamplesSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-8">
-          <p className="inline-flex items-center gap-2 rounded-xl border border-success/30 bg-success/[0.09] px-4 py-3 text-[1.05rem] leading-snug text-ink sm:text-[1.1rem]">
+        <FadeIn className="mt-7">
+          <p className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-xl border border-success/30 bg-success/[0.09] px-4 py-3">
             <span className="rounded-md border border-success/35 bg-success/15 px-2 py-0.5 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-success">
               Illustrative
             </span>
-            <span className="text-muted">
+            <span className={homeBody}>
               portfolios shown for demonstration purposes.
             </span>
           </p>

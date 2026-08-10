@@ -2,6 +2,11 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { FloatingAssetUniverse } from "@/components/home/FloatingAssetUniverse";
+import {
+  homeBody,
+  homeBodyDim,
+  homeLabel,
+} from "@/components/home/homeRhythm";
 import { Button } from "@/components/ui/Button";
 
 export function Hero() {
@@ -21,7 +26,7 @@ export function Hero() {
 
       <FloatingAssetUniverse />
 
-      <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-16 pt-28">
+      <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-14 pt-28">
         <motion.div
           className="mx-auto w-full max-w-[48rem] text-center"
           initial={reduce ? false : { opacity: 0, y: 28 }}
@@ -30,18 +35,23 @@ export function Hero() {
         >
           <div className="mx-auto mb-8 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
 
-          <h1 className="display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold tracking-[-0.035em] text-balance">
+          <h1 className="display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold tracking-[-0.035em] text-balance text-pretty">
             <span className="gradient-text">Decentralized Portfolio Management</span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-2xl text-[1.125rem] leading-[1.75] text-muted sm:mt-6 sm:text-[1.2rem]">
+          <p className={`mx-auto mt-5 max-w-2xl sm:mt-6 ${homeBody}`}>
             The non custodial portfolio distribution layer for crypto and
             tokenized assets.
           </p>
 
-          <p className="mx-auto mt-4 max-w-[36rem] text-[1.08rem] leading-[1.8] text-pretty text-muted-dim sm:max-w-[40rem] sm:text-[1.125rem]">
-            Own the underlying assets across chains. Define the rules once.
-            Automate execution. Keep the keys.
+          <p
+            className={`mx-auto mt-4 max-w-[34rem] text-center text-pretty sm:max-w-[38rem] ${homeBodyDim}`}
+          >
+            Own the underlying assets across&nbsp;chains. Define the
+            rules&nbsp;once.{" "}
+            <span className="whitespace-nowrap">
+              Automate execution. Keep the&nbsp;keys.
+            </span>
           </p>
 
           <div
@@ -58,7 +68,7 @@ export function Hero() {
                   <p className="display text-[1.35rem] leading-none text-ink sm:text-[1.55rem]">
                     {item.value}
                   </p>
-                  <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted sm:text-[0.72rem]">
+                  <p className={`mt-2 ${homeLabel}`}>
                     {item.label}
                   </p>
                 </div>
@@ -66,11 +76,11 @@ export function Hero() {
             </div>
           </div>
 
-          <p className="mx-auto mt-4 max-w-xl text-[1.05rem] leading-relaxed text-muted-dim sm:text-[1.1rem]">
+          <p className={`mx-auto mt-4 max-w-xl ${homeBodyDim}`}>
             Only 1% execution fee when trades occur
           </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className="min-w-[13.5rem]">
               Create Your Portfolio
             </Button>
@@ -79,9 +89,9 @@ export function Hero() {
             </Button>
           </div>
 
-          <p className="mt-8 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted sm:text-[0.78rem]">
-            Multi Asset · Cross Chain · Non Custodial · Automated · Creator
-            Marketplace
+          <p className="mt-7 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted text-balance">
+            Multi&nbsp;Asset · Cross&nbsp;Chain · Non&nbsp;Custodial · Automated ·
+            Creator&nbsp;Marketplace
           </p>
         </motion.div>
       </div>

@@ -110,7 +110,7 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
         ))}
       </div>
 
-      <p className="mt-5 border-t border-line pt-4 text-sm text-muted">
+      <p className="mt-5 border-t border-line pt-4 text-[1.05rem] leading-snug text-muted">
         <span className="text-electric">Activity · </span>
         {portfolio.activity}
         <span className="ml-2 inline-flex items-center rounded-md border border-success/30 bg-success/10 px-1.5 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-success">

@@ -21,13 +21,17 @@ export function FeesSection() {
           <p className={homeLede}>Pay for execution, not management.</p>
         </FadeIn>
 
-        <FadeIn className="mt-10">
+        <FadeIn className="mt-8">
           <div className="rounded-3xl glass px-6 py-8 text-center sm:px-10">
             <p className="display text-[clamp(2.6rem,7vw,4rem)] leading-none gradient-text">
               1%
             </p>
-            <p className="mt-3 text-sm font-semibold text-ink">execution fee</p>
-            <p className="mt-3 text-sm text-muted">No subscription required.</p>
+            <p className="mt-3 text-[1.05rem] font-semibold text-ink sm:text-[1.125rem]">
+              execution fee
+            </p>
+            <p className={`mx-auto mt-3 max-w-sm ${homeBody}`}>
+              No subscription required.
+            </p>
           </div>
         </FadeIn>
 
@@ -41,7 +45,7 @@ export function FeesSection() {
                 <p className="display text-[2.35rem] leading-none text-ink sm:text-[2.6rem]">
                   {item.value}
                 </p>
-                <p className="mt-3 text-sm font-semibold tracking-[0.04em] text-muted">
+                <p className="mt-3 text-[1.05rem] font-semibold tracking-[0.02em] text-muted sm:text-[1.1rem]">
                   {item.label}
                 </p>
               </div>
@@ -49,7 +53,7 @@ export function FeesSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-10 max-w-3xl">
+        <FadeIn className="mt-8 max-w-3xl">
           <p className={homeBody}>
             Creator portfolios share 50% of applicable execution fees with the
             creator.

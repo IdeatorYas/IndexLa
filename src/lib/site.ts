@@ -3,12 +3,14 @@ export const LOGO_TRANSPARENT = "/logo/indexla-logo-transparent.png";
 export const LOGO_LIGHT = "/logo/indexla tranparent logo background.jpg";
 
 export const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/investors", label: "Investors" },
   { href: "/creators", label: "Creators" },
   { href: "/strategies", label: "Strategies" },
   { href: "/tokenomics", label: "Tokenomics" },
   { href: "/faq", label: "FAQ" },
   { href: "/whitepaper", label: "Whitepaper" },
+  { href: "/whitepaper/technical", label: "Technical Paper" },
 ] as const;
 
 export type AssetKey =

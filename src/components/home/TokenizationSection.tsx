@@ -26,7 +26,7 @@ export function TokenizationSection() {
           <p className={homeLede}>Everything is moving on chain.</p>
         </FadeIn>
 
-        <FadeIn className="mt-10">
+        <FadeIn className="mt-8">
           <div className="grid gap-4 sm:grid-cols-3">
             {stats.map((stat) => (
               <div
@@ -36,7 +36,7 @@ export function TokenizationSection() {
                 <p className="display text-[clamp(1.75rem,3.5vw,2.4rem)] leading-none gradient-text">
                   {stat.value}
                 </p>
-                <p className="mt-3 text-[0.8rem] font-semibold tracking-[0.04em] text-muted">
+                <p className="mt-3 text-[0.95rem] font-semibold tracking-[0.02em] text-muted">
                   {stat.label}
                 </p>
               </div>
@@ -44,7 +44,7 @@ export function TokenizationSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className={`mt-10 max-w-3xl space-y-5 ${homeBody}`}>
+        <FadeIn className={`mt-8 max-w-3xl space-y-5 ${homeBody}`}>
           <p>
             Treasuries, bonds, equities, commodities, funds, credit, and other
             RWAs are moving onto programmable blockchains.

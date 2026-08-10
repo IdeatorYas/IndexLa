@@ -4,7 +4,13 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { AssetLogo } from "@/components/ui/AssetLogo";
-import { homeH2, homeSection } from "@/components/home/homeRhythm";
+import {
+  homeBody,
+  homeBodyDim,
+  homeBodyStrong,
+  homeH2,
+  homeSection,
+} from "@/components/home/homeRhythm";
 import type { AssetKey } from "@/lib/site";
 
 const STEP_MS = 7000;
@@ -128,10 +134,10 @@ function ConnectDemo() {
           <p className="display mt-3 text-[1.5rem] text-ink sm:text-[1.7rem]">
             Connect your wallet
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
+          <p className={`mt-2 ${homeBody}`}>
             Connect your wallet and create your portfolio.
           </p>
-          <p className="mt-4 text-sm font-semibold text-ink">
+          <p className="mt-4 text-[1.05rem] font-semibold leading-snug text-ink sm:text-[1.125rem]">
             Your assets remain under your control.
           </p>
         </div>
@@ -173,7 +179,7 @@ function AllocateDemo() {
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
             02 — Allocate
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
+          <p className={`mt-2 ${homeBody}`}>
             Choose what you want to invest in and define the allocation.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -245,7 +251,7 @@ function AutomateDemo({
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
             03 — Automate
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
+          <p className={`mt-2 ${homeBody}`}>
             Choose a strategy and configure its rules.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -269,9 +275,7 @@ function AutomateDemo({
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
             {strategy.name}
           </p>
-          <p className="mt-3 text-[1.05rem] leading-relaxed text-ink">
-            {strategy.body}
-          </p>
+          <p className={`mt-3 ${homeBodyStrong}`}>{strategy.body}</p>
           <div className="mt-5 grid grid-cols-3 gap-2">
             {["Condition", "Rule", "Action"].map((label, i) => (
               <div
@@ -333,10 +337,10 @@ function ActivateDemo() {
           </div>
         </div>
         <div className="rounded-2xl border border-electric/30 bg-electric/10 px-5 py-4">
-          <p className="text-sm leading-relaxed text-muted">
+          <p className={homeBody}>
             Assets stay in your wallet. Permissions authorize execution.
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-ink">
+          <p className={`mt-3 ${homeBodyStrong}`}>
             INDEXLA monitors the configured conditions and coordinates authorized
             execution across supported networks.
           </p>
@@ -474,13 +478,9 @@ export function HowItWorksSection() {
               <p className="display mt-3 text-[1.45rem] text-ink">
                 {step.n} {step.title}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                {step.summary}
-              </p>
+              <p className={`mt-3 ${homeBody}`}>{step.summary}</p>
               {step.detail ? (
-                <p className="mt-3 text-sm leading-relaxed text-ink/90">
-                  {step.detail}
-                </p>
+                <p className={`mt-3 ${homeBodyDim}`}>{step.detail}</p>
               ) : null}
             </div>
           </FadeIn>
@@ -512,7 +512,7 @@ export function HowItWorksSection() {
               </AnimatePresence>
 
               <div className="mt-5 flex items-center justify-between gap-3">
-                <p className="text-sm text-muted lg:hidden">
+                <p className={`${homeBody} lg:hidden`}>
                   <span className="font-semibold text-ink">
                     {step.n} {step.title}.
                   </span>{" "}

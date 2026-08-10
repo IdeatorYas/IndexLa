@@ -49,7 +49,7 @@ export function OnePortfolioSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-12 max-w-3xl">
+        <FadeIn className="mt-10 max-w-3xl">
           <p className={homeEyebrow}>Supported Networks</p>
           <div className="mt-5 flex flex-wrap gap-2.5">
             {networks.map((network) => (
@@ -58,11 +58,11 @@ export function OnePortfolioSection() {
               </span>
             ))}
           </div>
-          <p className={`mt-8 max-w-2xl ${homeBody}`}>
+          <p className={`mt-7 max-w-2xl ${homeBody}`}>
             Your portfolio becomes the single layer through which you define
             allocations, strategies, and execution rules.
           </p>
-          <div className="mt-8">
+          <div className="mt-7">
             <Button href="/creators" className="min-w-[13.5rem]">
               Create Your Portfolio
             </Button>

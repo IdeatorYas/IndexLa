@@ -1,9 +1,11 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
+  homeBodyStrong,
   homeEyebrow,
-  homeGreenBox,
-  homeGreenBoxText,
+  homeGreenChip,
+  homeGreenChipText,
+  homeGreenRow,
   homeH2,
   homeH3,
   homeSection,
@@ -62,24 +64,22 @@ export function ProblemSolutionSection() {
           <p className={homeEyebrow}>The Problem vs Solution</p>
           <h2 className={`mt-4 ${homeH2}`}>
             Modern investing is fragmented, opaque, and increasingly difficult to
-            manage across assets and chains.
+            manage across assets&nbsp;and&nbsp;chains.
           </h2>
         </FadeIn>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
           {problems.map((item, i) => (
             <FadeIn key={item.n} delay={i * 0.05}>
               <article className="flex h-full flex-col rounded-2xl border border-line bg-deep/50 p-6 sm:p-7">
                 <div className="flex items-baseline gap-3">
-                  <span className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
                     {item.n}
                   </span>
-                  <h3 className="display text-[1.25rem] tracking-[-0.02em] text-ink sm:text-[1.35rem]">
-                    {item.title}
-                  </h3>
+                  <h3 className={homeH3}>{item.title}</h3>
                 </div>
                 <p className={`mt-4 flex-1 ${homeBody}`}>{item.problem}</p>
-                <p className="mt-5 border-t border-line pt-4 text-[1.02rem] leading-[1.65] text-ink">
+                <p className={`mt-5 border-t border-line pt-4 ${homeBodyStrong}`}>
                   <span className="font-semibold text-electric">INDEXLA: </span>
                   {item.solution}
                 </p>
@@ -88,45 +88,54 @@ export function ProblemSolutionSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-12">
+        <FadeIn className="mt-10">
           <div className="rounded-3xl glass p-7 sm:p-10">
             <h3 className={homeH3}>
               One Layer. One Portfolio. Full Asset Ownership.
             </h3>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {shifts.map((shift) => (
                 <div
                   key={shift.from}
                   className="flex items-center gap-3 rounded-2xl border border-line bg-void/45 px-4 py-3.5"
                 >
-                  <span className="min-w-0 flex-1 text-sm leading-snug text-muted">
+                  <span className="min-w-0 flex-1 text-[1.05rem] leading-snug text-muted sm:text-[1.1rem]">
                     {shift.from}
                   </span>
                   <span className="shrink-0 text-electric" aria-hidden>
                     →
                   </span>
-                  <span className="min-w-0 flex-1 text-sm font-semibold leading-snug text-ink">
+                  <span className="min-w-0 flex-1 text-[1.05rem] font-semibold leading-snug text-ink sm:text-[1.1rem]">
                     {shift.to}
                   </span>
                 </div>
               ))}
             </div>
 
-            <p className={`mt-8 max-w-3xl ${homeBody}`}>
+            <p className={`mt-7 max-w-3xl ${homeBody}`}>
               INDEXLA lets you buy the assets, hold the full basket, and control
               your portfolio directly.
             </p>
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-8 flex justify-center">
-          <div className={homeGreenBox}>
-            <p className={`${homeGreenBoxText} text-[0.95rem] uppercase tracking-[0.12em] sm:text-[1rem]`}>
-              Multi Asset · Multi Chain · Non Custodial · Programmable · Creator
-              Native
-            </p>
-          </div>
+        <FadeIn className={`mt-7 ${homeGreenRow}`}>
+          {[
+            "Multi Asset",
+            "Multi Chain",
+            "Non Custodial",
+            "Programmable",
+            "Creator Native",
+          ].map((item) => (
+            <div key={item} className={homeGreenChip}>
+              <p
+                className={`${homeGreenChipText} uppercase tracking-[0.1em]`}
+              >
+                {item}
+              </p>
+            </div>
+          ))}
         </FadeIn>
       </div>
     </section>

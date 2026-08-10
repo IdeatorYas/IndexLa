@@ -1,12 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Button } from "@/components/ui/Button";
 import { NAV_LINKS } from "@/lib/site";
 
+function linkIsActive(href: string, pathname: string) {
+  if (href === "/") return pathname === "/";
+  // Keep Whitepaper and Technical Paper mutually exclusive in the active state.
+  if (href === "/whitepaper") {
+    return (
+      pathname === "/whitepaper" ||
+      (pathname.startsWith("/whitepaper/") &&
+        !pathname.startsWith("/whitepaper/technical"))
+    );
+  }
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function SiteHeader() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -17,6 +32,10 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -25,29 +44,37 @@ export function SiteHeader() {
           : "bg-transparent"
       }`}
     >
-      <div className="section-pad container-max flex h-[4.5rem] items-center justify-between gap-4">
+      <div className="section-pad container-max flex h-[4.75rem] items-center justify-between gap-3 lg:gap-4">
         <BrandLogo priority />
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[0.875rem] font-medium text-muted transition-colors hover:text-ink"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav
+          className="hidden items-center gap-3.5 lg:flex xl:gap-4 2xl:gap-5"
+          aria-label="Primary"
+        >
+          {NAV_LINKS.map((link) => {
+            const active = linkIsActive(link.href, pathname);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`whitespace-nowrap text-[0.9375rem] font-medium tracking-[-0.01em] transition-colors xl:text-[0.98rem] ${
+                  active ? "text-ink" : "text-muted hover:text-ink"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/strategies"
-            className="text-[0.875rem] font-semibold text-muted transition-colors hover:text-electric"
+            className="hidden whitespace-nowrap text-[0.9375rem] font-semibold text-muted transition-colors hover:text-electric 2xl:inline"
           >
             Explore Strategies
           </Link>
-          <Button href="/creators" className="!px-5 !py-2.5 text-sm">
+          <Button href="/creators" className="!px-4 !py-2.5 text-[0.9rem] xl:!px-5 xl:text-[0.9375rem]">
             Build Your First Portfolio
           </Button>
         </div>
@@ -70,16 +97,21 @@ export function SiteHeader() {
       {open && (
         <div className="border-t border-line bg-deep/95 backdrop-blur-xl lg:hidden">
           <nav className="section-pad flex flex-col gap-1 py-4">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-lg px-3 py-3 text-muted hover:bg-white/5 hover:text-ink"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const active = linkIsActive(link.href, pathname);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`rounded-lg px-3 py-3.5 text-[1.05rem] font-medium transition-colors hover:bg-white/5 hover:text-ink ${
+                    active ? "text-ink" : "text-muted"
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <div className="mt-3 flex flex-col gap-2 px-3 pb-2">
               <Button href="/creators" className="w-full">
                 Build Your First Portfolio

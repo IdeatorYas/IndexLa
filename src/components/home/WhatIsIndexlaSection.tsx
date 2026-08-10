@@ -1,11 +1,18 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
-  homeBodyDim,
-  homeGreenBox,
-  homeGreenBoxText,
+  homeBody,
+  homeGreenChip,
+  homeGreenChipText,
+  homeGreenRow,
   homeH2,
   homeSection,
 } from "@/components/home/homeRhythm";
+
+const controlHighlights = [
+  "One Portfolio",
+  "Every Asset",
+  "Full Control",
+] as const;
 
 export function WhatIsIndexlaSection() {
   return (
@@ -20,23 +27,23 @@ export function WhatIsIndexlaSection() {
 
           <h2 className={homeH2}>What is INDEXLA?</h2>
 
-          <p className="mt-7 text-[1.2rem] font-medium leading-[1.75] text-ink sm:text-[1.35rem] sm:leading-[1.7]">
+          <p className={`mx-auto mt-5 max-w-[42rem] ${homeBody}`}>
             INDEXLA is a non custodial portfolio management layer for investing
             across crypto, tokenized stocks, commodities, and RWAs, with
             programmable strategies and cross chain execution in one portfolio.
           </p>
 
-          <p className={`mx-auto mt-5 max-w-[40rem] ${homeBodyDim}`}>
+          <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>
             Build your portfolio, define your rules, and let INDEXLA coordinate
             authorized execution while your assets remain under your control.
           </p>
 
-          <div className="mt-9 flex justify-center">
-            <div className={homeGreenBox}>
-              <p className={homeGreenBoxText}>
-                One Portfolio. Every Asset. Full Control.
-              </p>
-            </div>
+          <div className={`mt-8 ${homeGreenRow}`}>
+            {controlHighlights.map((item) => (
+              <div key={item} className={homeGreenChip}>
+                <p className={homeGreenChipText}>{item}</p>
+              </div>
+            ))}
           </div>
         </FadeIn>
       </div>

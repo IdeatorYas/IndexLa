@@ -8,16 +8,16 @@ export function SiteFooter() {
       <div className="section-pad container-max flex flex-col gap-10 py-14 md:flex-row md:justify-between">
         <div className="max-w-sm">
           <BrandLogo />
-          <p className="mt-5 text-[0.95rem] leading-relaxed text-muted">
+          <p className="mt-5 text-[1.05rem] leading-relaxed text-muted">
             Own the assets. Own the strategy. Control the execution.
           </p>
         </div>
-        <nav className="grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3">
+        <nav className="grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted transition-colors hover:text-electric"
+              className="text-[0.95rem] font-medium text-muted transition-colors hover:text-electric"
             >
               {link.label}
             </Link>

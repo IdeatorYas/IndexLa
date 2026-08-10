@@ -31,25 +31,25 @@ export function DistributionSection() {
           <h2 className={homeH2}>The Missing Layer: Distribution</h2>
         </FadeIn>
 
-        <FadeIn className="mt-10">
+        <FadeIn className="mt-8">
           <div className="grid gap-3 sm:grid-cols-3">
             {layers.map((layer) => (
               <div
                 key={layer.title}
                 className="rounded-2xl border border-line bg-deep/55 px-5 py-5"
               >
-                <p className="text-sm font-semibold text-ink">{layer.title}</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                  {layer.body}
+                <p className="text-[1.1rem] font-semibold text-ink sm:text-[1.15rem]">
+                  {layer.title}
                 </p>
+                <p className={`mt-1.5 ${homeBody}`}>{layer.body}</p>
               </div>
             ))}
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-8">
+        <FadeIn className="mt-7">
           <div className="rounded-3xl glass p-7 sm:p-10">
-            <p className="text-[1.08rem] font-semibold leading-snug text-ink sm:text-[1.15rem]">
+            <p className="text-[1.15rem] font-semibold leading-snug text-ink text-pretty sm:text-[1.25rem]">
               INDEXLA provides the portfolio distribution layer.
             </p>
             <p className={`mt-5 ${homeBody}`}>

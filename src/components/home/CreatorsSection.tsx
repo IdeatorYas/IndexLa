@@ -11,7 +11,7 @@ export function CreatorsSection() {
   return (
     <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
-        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12">
           <FadeIn>
             <h2 className={homeH2}>Built for Creators</h2>
             <p className={homeLede}>
