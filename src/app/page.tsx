@@ -12,11 +12,13 @@ import { PortfolioExamplesSection } from "@/components/home/PortfolioExamplesSec
 import { ProblemSolutionSection } from "@/components/home/ProblemSolutionSection";
 import { StrategyExecutedSection } from "@/components/home/StrategyExecutedSection";
 import { TokenizationSection } from "@/components/home/TokenizationSection";
+import { WhatIsIndexlaSection } from "@/components/home/WhatIsIndexlaSection";
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <WhatIsIndexlaSection />
       <ProblemSolutionSection />
       <TokenizationSection />
       <DistributionSection />

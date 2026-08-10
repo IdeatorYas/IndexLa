@@ -23,35 +23,29 @@ export function Hero() {
 
       <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-16 pt-28">
         <motion.div
-          className="mx-auto w-full max-w-[52rem] text-center"
+          className="mx-auto w-full max-w-[48rem] text-center"
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="mx-auto mb-7 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
+          <div className="mx-auto mb-8 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
 
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-electric">
-            Decentralized Portfolio Management
-          </p>
-
-          <h1 className="display mt-4 text-[clamp(1.85rem,5vw,3.55rem)] font-semibold tracking-[-0.03em] text-balance text-ink">
-            Invest in Everything. Own Everything.{" "}
-            <span className="gradient-text">Control Everything.</span>
+          <h1 className="display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold tracking-[-0.035em] text-balance">
+            <span className="gradient-text">Decentralized Portfolio Management</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-[1.05rem] leading-relaxed text-muted sm:text-[1.15rem]">
-            INDEXLA is a non custodial portfolio management layer for investing
-            across crypto, tokenized stocks, commodities, and RWAs, with
-            programmable strategies and cross chain execution in one portfolio.
+          <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted sm:mt-6 sm:text-[1.15rem]">
+            Invest in Everything. Own Everything. Control Everything.
           </p>
 
-          <div className="mx-auto mt-6 max-w-xl space-y-1.5 text-[0.98rem] leading-relaxed text-muted-dim sm:text-[1.02rem]">
-            <p>0% management fees. 0% performance fees. 0% exit fees.</p>
-            <p>
-              Only a 1% execution fee when trades occur. No hidden recurring
-              charges.
-            </p>
-          </div>
+          <p className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-muted-dim sm:text-[1.02rem]">
+            Only a 1% execution fee when trades occur. No hidden recurring
+            charges.
+          </p>
+
+          <p className="mx-auto mt-2 max-w-xl text-[0.95rem] leading-relaxed text-muted-dim sm:text-[1.02rem]">
+            0% management fees. 0% performance fees. 0% exit fees.
+          </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className="min-w-[13.5rem]">

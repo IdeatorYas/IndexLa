@@ -2,25 +2,29 @@
 
 ## Hero
 
-### **Decentralized Portfolio Management**
+### Decentralized Portfolio Management
 
 **Invest in Everything. Own Everything. Control Everything.**
 
-INDEXLA is a non custodial portfolio management layer for investing across crypto, tokenized stocks, commodities, and RWAs, with programmable strategies and cross chain execution in one portfolio.
-
-0% management fees. 0% performance fees. 0% exit fees.
-
-Only a 1% execution fee when trades occur. No hidden recurring charges.
+**1% execution fee. 0% management fees. 0% performance fees. 0% exit fees.**
 
 [Create Your Portfolio] [Join Early Access]
 
 **Multi Asset · Multi Chain · Non Custodial · Programmable · Creator Native**
 
-
-
 ---
 
+# What is INDEXLA?
 
+**INDEXLA is a non custodial portfolio management layer for investing across crypto, tokenized stocks, commodities, and RWAs, with programmable strategies and cross chain execution in one portfolio.**
+
+Build your portfolio, define your rules, and let INDEXLA coordinate authorized execution while your assets remain under your control.
+
+
+
+### One Portfolio. Every Asset. Full Control.
+
+---
 
 # The Problem vs Solution
 
@@ -32,7 +36,7 @@ Assets and execution are scattered across chains, wallets, bridges, and platform
 
 INDEXLA: One portfolio layer connecting supported assets and networks.
 
-### 02 —Single Token Products 
+### 02 —Single Token Products
 
 A single token can represent a basket while hiding the underlying assets and allocations. 
 
@@ -64,11 +68,7 @@ INDEXLA lets you buy the assets, hold the full basket, and control your portfoli
 
 **Multi Asset · Multi Chain · Non Custodial · Programmable · Creator Native**
 
-
-
 ---
-
-
 
 # The Financial System Is Being Tokenized
 
@@ -88,13 +88,7 @@ The supply is growing fast.
 
 The next infrastructure opportunity is distribution.
 
-
-
-
-
 ---
-
-
 
 # The Missing Layer: Distribution
 
@@ -118,9 +112,6 @@ Investors allocate to portfolios.
 
 INDEXLA connects assets, portfolios, strategies, and investors.
 
-  
-
-
 # One Portfolio. Every Market.
 
 Build portfolios across:
@@ -133,20 +124,9 @@ Ethereum · Base · Arbitrum · BNB Chain · Solana · Sui · Robinhood · and m
 
 Your portfolio becomes the single layer through which you define allocations, strategies, and execution rules.
 
-  
-
-
 [Create Your Portfolio]
 
-
-
 ---
-
-
-
-  
-  
-
 
 # How It Works
 
@@ -195,17 +175,9 @@ Assets stay in your wallet. Permissions authorize execution.
 
 INDEXLA monitors the configured conditions and coordinates authorized execution across supported networks.
 
-
-
 ---
 
-
-
-
-
 ---
-
-
 
 # Discover Portfolios
 
@@ -221,11 +193,7 @@ All portfolio activity remains non custodial.
 
 Illustrative portfolios shown for demonstration purposes.
 
-
-
 ---
-
-
 
 # Built for Creators
 
@@ -243,11 +211,7 @@ Creator retention and recurring portfolio activity are core metrics for marketpl
 
 [Create Your Portfolio]
 
-
-
 ---
-
-
 
 # Simple Economics
 
@@ -265,17 +229,9 @@ No subscription required.
 
 Creator portfolios share 50% of applicable execution fees with the creator.
 
-
-
 ---
 
-
-
-
-
 ---
-
-
 
 # Built for the Next Generation of Investing
 
@@ -287,18 +243,7 @@ INDEXLA brings assets, strategies, and execution into one portfolio layer.
 
 Build your portfolio. Define your rules. Keep control. Let the infrastructure handle the execution.
 
-  
-  
-
-
-
-
 ---
-
-
-
-  
-
 
 # **Your Strategy. Executed.**
 
@@ -309,9 +254,6 @@ Routing infrastructure handles authorized transactions across supported networks
 
 **INDEXLA is your AI assisted portfolio management layer, helping you monitor, manage, and automate your portfolio within your defined rules and permissions.**
 
-  
-
-
 # Early Access
 
 ### Build the next generation of programmable portfolios.
@@ -320,16 +262,8 @@ Join early access for founders, creators, and crypto native investors.
 
 [Join Early Access]
 
-
-
 ---
-
-
 
 # INDEXLA
 
 Invest in Everything. Own Everything. Control Everything.
-
-  
-
-
