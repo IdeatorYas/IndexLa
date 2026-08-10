@@ -188,7 +188,7 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
 export function stripCompetitorMarkdownTable(markdown: string): string {
   return markdown
     .replace(
-      /\n(?:\|[^\n]*\n\|[-:\s|]+\n)?\|[^\n]*Capability[\s\S]*?Model dependent\s*\|\n+/i,
+      /\n\|[^\n]*Capability[\s\S]*?\| Exit fee[^\n]*\|\n+/i,
       "\n\n",
     )
     .replace(

@@ -53,7 +53,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
       return [
         {
           id: "competitor-table",
-          placement: "before",
+          placement: "after",
           node: <CompetitorComparisonTable />,
         },
       ];
