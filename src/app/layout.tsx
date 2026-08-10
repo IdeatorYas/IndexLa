@@ -19,7 +19,7 @@ const body = Source_Sans_3({
 export const metadata: Metadata = {
   title: "INDEXLA — Decentralized Portfolio Management",
   description:
-    "Build rule-based portfolios across crypto, tokenized stocks & commodities. Stop trading your emotions. Trade your rules.",
+    "Invest across crypto, tokenized stocks, commodities, and RWAs. Define your strategy. Keep control of your assets.",
 };
 
 export default function RootLayout({

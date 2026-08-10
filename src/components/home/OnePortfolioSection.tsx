@@ -1,65 +1,73 @@
+import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 
-const pillars = [
-  {
-    title: "MULTI-CHAIN",
-    body: "Access supported blockchain ecosystems from one portfolio.",
-  },
-  {
-    title: "MULTI-ASSET",
-    body: "Combine crypto, tokenized stocks, RWAs, commodities, and other supported assets.",
-  },
-  {
-    title: "ONE PORTFOLIO",
-    body: "One allocation across the assets you want to own.",
-  },
-  {
-    title: "ONE EXPERIENCE",
-    body: "Discover, allocate, rebalance, and automate from one place.",
-  },
-];
+const markets = [
+  "Crypto",
+  "Tokenized Stocks",
+  "Commodities",
+  "RWAs",
+  "Hybrid Portfolios",
+] as const;
+
+const networks = [
+  "Ethereum",
+  "Base",
+  "Arbitrum",
+  "BNB Chain",
+  "Solana",
+  "Sui",
+  "Robinhood",
+  "and more",
+] as const;
 
 export function OnePortfolioSection() {
   return (
-    <section className="relative border-t border-line bg-deep py-24 md:py-32">
+    <section className="relative border-t border-line bg-void py-20 md:py-28">
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(2rem,4.5vw,3.4rem)] uppercase tracking-[-0.02em] text-balance">
+          <h2 className="display text-[clamp(2rem,4.5vw,3.4rem)] tracking-[-0.03em] text-balance">
             One Portfolio.{" "}
             <span className="gradient-text">Every Market.</span>
           </h2>
-          <div className="mt-6 space-y-4 text-[1.08rem] leading-relaxed text-muted">
-            <p>
-              Your investments are scattered across chains, platforms, wallets,
-              and asset classes.
-            </p>
-            <p>
-              INDEXLA brings supported assets into one portfolio, so you can
-              define allocations and manage your strategy through one unified
-              experience.
-            </p>
+          <p className="mt-5 text-[1.08rem] leading-relaxed text-muted">
+            Build portfolios across:
+          </p>
+        </FadeIn>
+
+        <FadeIn className="mt-8">
+          <div className="flex flex-wrap gap-2.5">
+            {markets.map((market) => (
+              <span
+                key={market}
+                className="rounded-full border border-line bg-deep/80 px-4 py-2 text-sm font-semibold text-ink"
+              >
+                {market}
+              </span>
+            ))}
           </div>
         </FadeIn>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {pillars.map((pillar, i) => (
-            <FadeIn key={pillar.title} delay={i * 0.06}>
-              <article className="h-full rounded-3xl glass-soft p-6">
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
-                  {pillar.title}
-                </p>
-                <p className="mt-4 text-[1rem] leading-relaxed text-muted">
-                  {pillar.body}
-                </p>
-              </article>
-            </FadeIn>
-          ))}
-        </div>
-
-        <FadeIn className="mt-10">
-          <p className="display text-[clamp(1.25rem,2.5vw,1.75rem)] text-ink">
-            Cross-chain. Cross-asset. One portfolio.
+        <FadeIn className="mt-14 max-w-3xl">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
+            Supported Networks
           </p>
+          <div className="mt-5 flex flex-wrap gap-2.5">
+            {networks.map((network) => (
+              <span
+                key={network}
+                className="rounded-xl border border-electric/20 bg-electric/10 px-3.5 py-2 text-sm font-semibold text-ink"
+              >
+                {network}
+              </span>
+            ))}
+          </div>
+          <p className="mt-8 max-w-2xl text-[1.05rem] leading-relaxed text-muted">
+            Your portfolio becomes the single layer through which you define
+            allocations, strategies, and execution rules.
+          </p>
+          <div className="mt-8">
+            <Button href="/creators">Create Your Portfolio</Button>
+          </div>
         </FadeIn>
       </div>
     </section>

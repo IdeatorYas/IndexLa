@@ -1,4 +1,5 @@
-export const LOGO_DARK = "/logo/INDEXLA LOGO 2.png";
+export const LOGO_DARK = "/logo/indexla-logo-transparent.png";
+export const LOGO_TRANSPARENT = "/logo/indexla-logo-transparent.png";
 export const LOGO_LIGHT = "/logo/indexla tranparent logo background.jpg";
 
 export const NAV_LINKS = [

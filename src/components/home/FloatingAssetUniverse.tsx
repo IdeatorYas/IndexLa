@@ -35,7 +35,7 @@ export function FloatingAssetUniverse() {
         {HERO_ASSETS.map((item) => (
           <div
             key={item.key}
-            className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
+            className="absolute -translate-x-1/2 -translate-y-1/2"
             style={{
               left: item.x,
               top: item.y,
@@ -93,29 +93,40 @@ function Bubble({
   depth: 0 | 1 | 2;
   reduce: boolean | null;
 }) {
-  const drift = depth === 2 ? 11 : depth === 1 ? 8 : 5;
-  const duration = 7 + delay * 4 + depth;
+  const amplitudeY = depth === 2 ? 7 : depth === 1 ? 5.5 : 4;
+  const amplitudeX = depth === 2 ? 3 : depth === 1 ? 2 : 1.5;
+  // Staggered 10–18s loops so bubbles don't sync
+  const duration = 10 + delay * 18 + depth * 0.6;
 
   return (
+    // Outer: one-shot entrance only — never fights continuous float
     <motion.div
-      initial={reduce ? false : { opacity: 0, scale: 0.82 }}
+      initial={reduce ? false : { opacity: 0, scale: 0.88 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
       style={{ width: size, height: size }}
       className="relative"
     >
+      {/* Inner: continuous float only (static when reduced motion) */}
       <motion.div
-        whileHover={{ scale: 1.1 }}
-        animate={reduce ? undefined : { y: [0, -drift, 0] }}
-        transition={{
-          y: {
-            duration,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: delay * 1.5,
-          },
-          scale: { type: "spring", stiffness: 280, damping: 20 },
-        }}
+        animate={
+          reduce
+            ? undefined
+            : {
+                y: [0, -amplitudeY, 0, amplitudeY * 0.65, 0],
+                x: [0, amplitudeX, 0, -amplitudeX * 0.7, 0],
+              }
+        }
+        transition={
+          reduce
+            ? undefined
+            : {
+                duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: delay * 2,
+              }
+        }
         className="relative flex h-full w-full items-center justify-center rounded-full"
         style={{
           background:

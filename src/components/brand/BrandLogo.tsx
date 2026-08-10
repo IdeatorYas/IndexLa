@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LOGO_DARK } from "@/lib/site";
+import { LOGO_TRANSPARENT } from "@/lib/site";
 
 type BrandLogoProps = {
   className?: string;
@@ -12,16 +12,16 @@ export function BrandLogo({ className = "", priority = false }: BrandLogoProps) 
     <Link
       href="/"
       aria-label="INDEXLA home"
-      className={`relative inline-flex items-center overflow-hidden ${className}`}
+      className={`relative inline-flex items-center ${className}`}
     >
-      <span className="relative block h-12 w-[9.75rem] sm:h-[3.35rem] sm:w-[11rem]">
+      <span className="relative block h-11 w-[7.5rem] sm:h-12 sm:w-[8.75rem]">
         <Image
-          src={LOGO_DARK}
+          src={LOGO_TRANSPARENT}
           alt="INDEXLA"
           fill
-          sizes="176px"
+          sizes="(max-width: 640px) 120px, 140px"
           priority={priority}
-          className="object-contain object-[center_42%] mix-blend-screen scale-[1.55]"
+          className="object-contain object-left"
         />
       </span>
     </Link>

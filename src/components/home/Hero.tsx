@@ -23,44 +23,48 @@ export function Hero() {
 
       <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-16 pt-28">
         <motion.div
-          className="mx-auto w-full max-w-[48rem] text-center"
+          className="mx-auto w-full max-w-[52rem] text-center"
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="mx-auto mb-7 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
 
-          <h1 className="display text-[clamp(1.85rem,5.2vw,3.85rem)] font-semibold uppercase tracking-[0.04em] text-balance text-ink sm:tracking-[0.06em]">
-            Decentralized
-            <br className="hidden sm:block" />{" "}
-            <span className="gradient-text">Portfolio Management</span>
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-electric">
+            Decentralized Portfolio Management
+          </p>
+
+          <h1 className="display mt-4 text-[clamp(1.85rem,5vw,3.55rem)] font-semibold tracking-[-0.03em] text-balance text-ink">
+            Invest in Everything. Own Everything.{" "}
+            <span className="gradient-text">Control Everything.</span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-muted sm:text-[1.2rem]">
-            Build rule-based portfolios across crypto, tokenized stocks &amp;
-            commodities
+          <p className="mx-auto mt-6 max-w-2xl text-[1.05rem] leading-relaxed text-muted sm:text-[1.15rem]">
+            INDEXLA is a non custodial portfolio management layer for investing
+            across crypto, tokenized stocks, commodities, and RWAs, with
+            programmable strategies and cross chain execution in one portfolio.
           </p>
 
-          <p className="mt-5 inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 rounded-full border border-line bg-white/[0.035] px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted sm:text-[0.72rem]">
-            <span>0% Management Fees</span>
-            <span className="text-electric/50">·</span>
-            <span>0% Performance Fees</span>
-            <span className="text-electric/50">·</span>
-            <span>0% Exit Fees</span>
-          </p>
+          <div className="mx-auto mt-6 max-w-xl space-y-1.5 text-[0.98rem] leading-relaxed text-muted-dim sm:text-[1.02rem]">
+            <p>0% management fees. 0% performance fees. 0% exit fees.</p>
+            <p>
+              Only a 1% execution fee when trades occur. No hidden recurring
+              charges.
+            </p>
+          </div>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className="min-w-[13.5rem]">
-              Build Your First Portfolio
+              Create Your Portfolio
             </Button>
-            <Button href="/strategies" variant="secondary" className="min-w-[13.5rem]">
-              Explore Strategies
+            <Button href="#early-access" variant="secondary" className="min-w-[13.5rem]">
+              Join Early Access
             </Button>
           </div>
 
-          <p className="mt-5 text-sm text-muted-dim">
-            Only a 1% execution fee when trades occur. No hidden recurring
-            charges.
+          <p className="mt-8 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted sm:text-[0.78rem]">
+            Multi Asset · Multi Chain · Non Custodial · Programmable · Creator
+            Native
           </p>
         </motion.div>
       </div>
