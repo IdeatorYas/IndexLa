@@ -210,32 +210,33 @@ If INDEXLA infrastructure becomes unavailable, automated monitoring and executio
 
 
 
-# **5. Competitive Landscape**
+# 5. Competitive Landscape
 
-INDEXLA operates alongside established on-chain portfolio and asset-management infrastructure.
-
-
-|                               |             |                 |                   |                 |
-| ----------------------------- | ----------- | --------------- | ----------------- | --------------- |
-| **Capability**                | **INDEXLA** | **Enzyme**      | **dHEDGE**        | **Velvet**      |
-| Non-custodial architecture    | ✓           | ✓               | ✓                 | ✓               |
-| Multi-asset portfolios        | ✓           | ✓               | ✓                 | ✓               |
-| Cross-chain execution         | ✓           | Limited         | Limited           | ✓               |
-| Rule-based automation         | ✓           | ✓               | ✓                 | ✓               |
-| AI-assisted monitoring        | ✓           | Limited         | Limited           | ✓               |
-| Creator portfolio model       | ✓           | Limited         | ✓                 | ✓               |
-| Creator execution-fee share   | 50%         | —               | —                 | Different model |
-| Public portfolio distribution | ✓           | ✓               | ✓                 | ✓               |
-| Management fee                | 0%          | Model dependent | Model dependent   | Model dependent |
-| Performance fee               | 0%          | Model dependent | Manager dependent | Model dependent |
-| Exit fee                      | 0%          | Model dependent | Model dependent   | Model dependent |
+INDEXLA operates at the intersection of decentralized portfolio management, on-chain asset allocation, and creator-driven investment distribution.
 
 
-**INDEXLA's wedge is individual asset ownership + creator revenue participation + rule-based portfolio execution across chains.**
+| **Capability**                | **INDEXLA** | **SoSoValue**   | **Velvet**      | **Reserve**     | **Autopilot**   |
+| ----------------------------- | ----------- | --------------- | --------------- | --------------- | --------------- |
+| Non-custodial architecture    | ✓           | ✓               | ✓               | ✓               | ✓               |
+| Multi-asset portfolios        | ✓           | ✓               | ✓               | ✓               | ✓               |
+| Cross-chain execution         | ✓           | Limited         | ✓               | ✓               | Limited         |
+| Rule-based automation         | ✓           | Limited         | ✓               | Limited         | ✓               |
+| AI-assisted monitoring        | ✓           | ✓               | ✓               | Limited         | ✓               |
+| Creator portfolio model       | ✓           | Limited         | ✓               | Limited         | Limited         |
+| Creator execution-fee share   | **50%**     | —               | Different model | —               | —               |
+| Public portfolio distribution | ✓           | ✓               | ✓               | ✓               | ✓               |
+| Management fee                | **0%**      | Model dependent | Model dependent | Model dependent | Model dependent |
+| Performance fee               | **0%**      | Model dependent | Model dependent | Model dependent | Model dependent |
+| Exit fee                      | **0%**      | Model dependent | Model dependent | Model dependent | Model dependent |
+
+
+### INDEXLA's Wedge
+
+**INDEXLA combines individual asset ownership, cross-chain portfolio execution, rule-based automation, AI-assisted monitoring, and creator revenue participation in a single portfolio-management infrastructure layer.**
 
 The objective is not to create another centralized trading terminal or traditional managed fund.
 
-INDEXLA is designed as infrastructure connecting users, creators, portfolio rules, liquidity, and execution.
+INDEXLA is designed as infrastructure connecting **users, creators, portfolio rules, liquidity, and execution** while keeping users in control of their assets.
 
 
 

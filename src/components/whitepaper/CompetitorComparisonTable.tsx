@@ -1,26 +1,66 @@
 "use client";
 
-/** Exact competitor comparison rows from content/whitepaper.md */
-const HEADERS = ["Capability", "INDEXLA", "Enzyme", "dHEDGE", "Velvet"] as const;
+/** Exact competitor comparison from content/whitepaper.md Section 5 */
+const HEADERS = [
+  "Capability",
+  "INDEXLA",
+  "SoSoValue",
+  "Velvet",
+  "Reserve",
+  "Autopilot",
+] as const;
 
 const ROWS: string[][] = [
-  ["Non-custodial architecture", "✓", "✓", "✓", "✓"],
-  ["Multi-asset portfolios", "✓", "✓", "✓", "✓"],
-  ["Cross-chain execution", "✓", "Limited", "Limited", "✓"],
-  ["Rule-based automation", "✓", "✓", "✓", "✓"],
-  ["AI-assisted monitoring", "✓", "Limited", "Limited", "✓"],
-  ["Creator portfolio model", "✓", "Limited", "✓", "✓"],
-  ["Creator execution-fee share", "50%", "—", "—", "Different model"],
-  ["Public portfolio distribution", "✓", "✓", "✓", "✓"],
-  ["Management fee", "0%", "Model dependent", "Model dependent", "Model dependent"],
-  ["Performance fee", "0%", "Model dependent", "Manager dependent", "Model dependent"],
-  ["Exit fee", "0%", "Model dependent", "Model dependent", "Model dependent"],
+  ["Non-custodial architecture", "✓", "✓", "✓", "✓", "✓"],
+  ["Multi-asset portfolios", "✓", "✓", "✓", "✓", "✓"],
+  ["Cross-chain execution", "✓", "Limited", "✓", "✓", "Limited"],
+  ["Rule-based automation", "✓", "Limited", "✓", "Limited", "✓"],
+  ["AI-assisted monitoring", "✓", "✓", "✓", "Limited", "✓"],
+  ["Creator portfolio model", "✓", "Limited", "✓", "Limited", "Limited"],
+  [
+    "Creator execution-fee share",
+    "50%",
+    "—",
+    "Different model",
+    "—",
+    "—",
+  ],
+  ["Public portfolio distribution", "✓", "✓", "✓", "✓", "✓"],
+  [
+    "Management fee",
+    "0%",
+    "Model dependent",
+    "Model dependent",
+    "Model dependent",
+    "Model dependent",
+  ],
+  [
+    "Performance fee",
+    "0%",
+    "Model dependent",
+    "Model dependent",
+    "Model dependent",
+    "Model dependent",
+  ],
+  [
+    "Exit fee",
+    "0%",
+    "Model dependent",
+    "Model dependent",
+    "Model dependent",
+    "Model dependent",
+  ],
 ];
 
 function cellTone(value: string, isIndexla: boolean): string {
   if (isIndexla) return "bg-electric/10 font-semibold text-ink";
   if (value === "✓" || value === "0%" || value === "50%") return "text-ink";
-  if (value === "—" || value.startsWith("Limited") || value.startsWith("Model") || value.startsWith("Manager") || value.startsWith("Different"))
+  if (
+    value === "—" ||
+    value.startsWith("Limited") ||
+    value.startsWith("Model") ||
+    value.startsWith("Different")
+  )
     return "text-muted-dim";
   return "text-muted";
 }
@@ -79,7 +119,7 @@ export function CompetitorComparisonTable() {
 
       {/* Desktop / tablet: full comparison table */}
       <div className="hidden overflow-x-auto rounded-xl border border-line bg-void/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] md:block">
-        <table className="w-full min-w-[44rem] border-collapse text-left">
+        <table className="w-full min-w-[52rem] border-collapse text-left">
           <thead>
             <tr className="border-b border-line bg-panel/60">
               {HEADERS.map((header, i) => (
