@@ -6,6 +6,8 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
   homeEyebrow,
+  homeGreenBox,
+  homeGreenBoxText,
   homeH2,
   homeSection,
 } from "@/components/home/homeRhythm";
@@ -72,12 +74,16 @@ export function FinalCtaSection() {
               Join Early Access
             </Button>
           </div>
-          <p className="mt-14 text-sm font-semibold uppercase tracking-[0.18em] text-muted-dim">
+          <p className="mt-12 text-sm font-semibold uppercase tracking-[0.18em] text-muted-dim">
             INDEXLA
           </p>
-          <p className="mt-3 text-[1.05rem] text-ink">
-            Invest in Everything. Own Everything. Control Everything.
-          </p>
+          <div className="mt-4 flex justify-center">
+            <div className={homeGreenBox}>
+              <p className={homeGreenBoxText}>
+                Invest in Everything. Own Everything. Control Everything.
+              </p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

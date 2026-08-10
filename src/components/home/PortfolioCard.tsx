@@ -38,13 +38,16 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
         </div>
         <div className="text-right">
           <p
-            className={`text-lg font-semibold ${
+            className={`text-lg font-semibold tabular-nums ${
               portfolio.performancePositive ? "text-success" : "text-danger"
             }`}
           >
             {portfolio.performance}
           </p>
-          <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-dim">
+          <p className="mt-1 inline-flex items-center rounded-md border border-success/35 bg-success/10 px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-success">
+            Illustrative
+          </p>
+          <p className="mt-1.5 text-[0.7rem] font-medium leading-snug text-muted">
             Demo performance
           </p>
         </div>
@@ -107,10 +110,12 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
         ))}
       </div>
 
-      <p className="mt-5 border-t border-line pt-4 text-xs text-muted">
+      <p className="mt-5 border-t border-line pt-4 text-sm text-muted">
         <span className="text-electric">Activity · </span>
         {portfolio.activity}
-        <span className="ml-2 text-muted-dim">(illustrative)</span>
+        <span className="ml-2 inline-flex items-center rounded-md border border-success/30 bg-success/10 px-1.5 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-success">
+          Illustrative
+        </span>
       </p>
     </motion.article>
   );

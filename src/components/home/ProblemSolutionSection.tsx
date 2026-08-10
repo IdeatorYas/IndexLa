@@ -2,6 +2,8 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
   homeEyebrow,
+  homeGreenBox,
+  homeGreenBoxText,
   homeH2,
   homeH3,
   homeSection,
@@ -118,11 +120,13 @@ export function ProblemSolutionSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-10">
-          <p className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
-            Multi Asset · Multi Chain · Non Custodial · Programmable · Creator
-            Native
-          </p>
+        <FadeIn className="mt-8 flex justify-center">
+          <div className={homeGreenBox}>
+            <p className={`${homeGreenBoxText} text-[0.95rem] uppercase tracking-[0.12em] sm:text-[1rem]`}>
+              Multi Asset · Multi Chain · Non Custodial · Programmable · Creator
+              Native
+            </p>
+          </div>
         </FadeIn>
       </div>
     </section>

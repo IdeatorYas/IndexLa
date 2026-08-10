@@ -34,12 +34,12 @@ export function Hero() {
             <span className="gradient-text">Decentralized Portfolio Management</span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.7] text-muted sm:mt-6 sm:text-[1.15rem]">
+          <p className="mx-auto mt-5 max-w-2xl text-[1.125rem] leading-[1.75] text-muted sm:mt-6 sm:text-[1.2rem]">
             The non custodial portfolio distribution layer for crypto and
             tokenized assets.
           </p>
 
-          <p className="mx-auto mt-4 max-w-2xl text-[0.98rem] leading-[1.7] text-muted-dim sm:text-[1.05rem]">
+          <p className="mx-auto mt-4 max-w-[36rem] text-[1.08rem] leading-[1.8] text-pretty text-muted-dim sm:max-w-[40rem] sm:text-[1.125rem]">
             Own the underlying assets across chains. Define the rules once.
             Automate execution. Keep the keys.
           </p>
@@ -66,7 +66,7 @@ export function Hero() {
             </div>
           </div>
 
-          <p className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-muted-dim sm:text-[1.02rem]">
+          <p className="mx-auto mt-4 max-w-xl text-[1.05rem] leading-relaxed text-muted-dim sm:text-[1.1rem]">
             Only 1% execution fee when trades occur
           </p>
 
