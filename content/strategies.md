@@ -10,11 +10,7 @@ You don't need to predict every move.
 
 You need a predefined response when the conditions you care about appear.
 
-**Define the rules. INDEXLA monitors the conditions and coordinates execution.**
-
 Your assets remain in your wallet. Strategy execution happens on-chain across supported networks.
-
-
 
 ---
 
@@ -44,9 +40,6 @@ During the 2022–2025 cycle, BTC entered another extreme-fear period around $15
 
 **Historical market context only. Not INDEXLA strategy performance.**
 
-  
-
-
 ---
 
 # **RSI Strategy**
@@ -71,14 +64,7 @@ BTC later reached approximately $64,800.
 
 **Historical market context only. Not claimed RSI strategy performance.**
 
-  
-
-
-
-
 ---
-
-
 
 # **Momentum**
 
@@ -93,9 +79,6 @@ Momentum strategies respond when defined market trends change.
 Choose the timeframe and conditions that fit your strategy.
 
 INDEXLA monitors the defined signals continuously and coordinates execution when your rules are triggered.
-
-  
-
 
 ---
 
@@ -113,7 +96,6 @@ No turning a profitable position into another round trip.
 
 Your exit is defined before the market tests your discipline.
 
-  
 **Stop Loss**
 
 ## Protect The Downside Before It Gets Worse.
@@ -128,8 +110,6 @@ No emotional decision while the market is falling.
 
 Your downside rule is defined before the position is opened.
 
-
-
 ---
 
 # **Rebalancing**
@@ -143,8 +123,6 @@ A portfolio targeting **60% BTC / 40% ETH** can quickly become something very di
 Define your target allocations and acceptable ranges.
 
 When your conditions are triggered, INDEXLA can rebalance the portfolio toward your rules.
-
-
 
 ---
 
@@ -176,8 +154,6 @@ Asset selection still determines the underlying risk.
 
 A strategy does not make an illiquid or speculative asset safe.
 
-
-
 ---
 
 # **You Define. AI Watches. INDEXLA Executes.**
@@ -202,8 +178,6 @@ Markets don't stop when you sleep.
 
 Your strategy doesn't have to either.
 
-
-
 ---
 
 # **Build Your First Strategy.**
@@ -217,8 +191,6 @@ Define your conditions.
 Let the system monitor them.
 
 **Build Your Strategy**
-
-
 
 ---
 
@@ -238,8 +210,6 @@ Historical examples on this page are illustrative market history, not claimed IN
 
 Verified backtests will show actual strategy performance when available.
 
-
-
 ---
 
 # **Strategy & Risk Disclaimer**
@@ -257,7 +227,3 @@ Historical examples shown on this page are market history only and are not claim
 Execution may be affected by network conditions, liquidity, slippage, fees, and other market factors.
 
 INDEXLA provides the infrastructure to execute your chosen strategy. The investment decision and resulting risk remain with the investor, including the possibility of partial or total loss of capital.
-
-  
-
-
