@@ -20,7 +20,7 @@ function stripMajorHeading(
 ): string {
   const escaped = headline.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const pattern = new RegExp(
-    `^#{1,3}\\s+${sectionNumber}\\.\\s+${escaped}\\s*\\n+`,
+    `^#{1,3}\\s+(?:\\*\\*)?${sectionNumber}\\.\\s+(?:\\*\\*)?${escaped}(?:\\*\\*)?\\s*\\n+`,
     "m",
   );
   return markdown.replace(pattern, "").trim();
@@ -51,7 +51,7 @@ function prepareBodyMarkdown(
   );
   if (
     edition === "whitepaper" &&
-    section.slug === "5-why-indexla-is-different"
+    section.slug === "5-competitive-landscape"
   ) {
     body = stripCompetitorMarkdownTable(body);
   }

@@ -66,15 +66,17 @@ export function extractWhitepaperTitle(markdown: string): string {
     .split(/\r?\n/)
     .find((line) => line.trim().length > 0);
   return (
-    firstLine?.trim().replace(/^#+\s*/, "") || "INDEXLA WHITEPAPER"
+    plainTextFromHeading(firstLine?.trim().replace(/^#+\s*/, "") || "") ||
+    "INDEXLA WHITEPAPER"
   );
 }
 
 export function stripDocumentTitle(markdown: string, title: string): string {
   const lines = markdown.split(/\r?\n/);
+  const plainTitle = plainTextFromHeading(title);
   const idx = lines.findIndex((line) => {
-    const trimmed = line.trim().replace(/^#+\s*/, "");
-    return trimmed === title || trimmed.endsWith(title);
+    const trimmed = plainTextFromHeading(line.trim().replace(/^#+\s*/, ""));
+    return trimmed === plainTitle || trimmed.endsWith(plainTitle);
   });
   if (idx === -1) return markdown.trim();
   return lines
@@ -91,9 +93,16 @@ export function normalizeTechnicalPaperBody(bodyMarkdown: string): string {
   return bodyMarkdown.replace(/^### (\d+\.\s+)/gm, "# $1");
 }
 
-/** Top-level numbered chapters: `# N. ...` or `## N. ...` */
+/**
+ * Top-level numbered chapters use H1 only:
+ * `# N. ...` or `# **N. ...**`
+ * (H2 numbered headings inside a chapter, e.g. Why Now, stay subsections.)
+ */
 function isMajorSectionHeading(line: string): RegExpMatchArray | null {
-  return /^(#{1,2})\s+(\d+)\.\s+(.+)$/.exec(line);
+  return (
+    /^#\s+\*\*(\d+)\.\s+(.+?)\*\*\s*$/.exec(line) ||
+    /^#\s+(\d+)\.\s+(.+)$/.exec(line)
+  );
 }
 
 export function buildHeadingTree(markdown: string): TocItem[] {
@@ -146,8 +155,8 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
     if (!match) return;
     starts.push({
       lineIndex,
-      number: Number(match[2]),
-      title: plainTextFromHeading(match[3]),
+      number: Number(match[1]),
+      title: plainTextFromHeading(match[2]),
     });
   });
 
@@ -179,11 +188,11 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
 export function stripCompetitorMarkdownTable(markdown: string): string {
   return markdown
     .replace(
-      /\n\| Capability[\s\S]*?\| Yes — brokerage assets \|\n+/,
+      /\n(?:\|[^\n]*\n\|[-:\s|]+\n)?\|[^\n]*Capability[\s\S]*?Model dependent\s*\|\n+/i,
       "\n\n",
     )
     .replace(
-      /\*Competitive features reflect publicly available product positioning and may evolve over time\.\*\n*/,
+      /\*Competitive features reflect publicly available product positioning and may evolve over time\.\*\n*/i,
       "",
     );
 }

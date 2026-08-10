@@ -31,9 +31,17 @@ export function ProtocolArchitectureDiagram() {
 
 export function SolutionFlowDiagram() {
   return (
-    <DiagramFrame title="Portfolio construction flow">
+    <DiagramFrame title="Core portfolio flow">
       <FlowSteps
-        steps={["Select Assets", "Allocate", "Choose Strategy", "Execute"]}
+        steps={[
+          "Select Assets",
+          "Define Allocations",
+          "Configure Strategies",
+          "Authorize",
+          "Monitor",
+          "Execute",
+          "Reconcile",
+        ]}
       />
     </DiagramFrame>
   );
@@ -85,9 +93,9 @@ export function NonCustodialFlowDiagram() {
         steps={[
           "Authorize permissions",
           "Monitor markets",
-          "Strategy trigger",
+          "Strategy triggered",
           "Prepare transaction",
-          "Execution",
+          "Execution occurs",
         ]}
       />
       <p className="mt-4 text-center text-[0.85rem] text-muted">
@@ -119,15 +127,8 @@ export function InvestorExecutionStackDiagram() {
 
 export function CreatorMarketplaceFlowDiagram() {
   return (
-    <DiagramFrame title="Creator marketplace flow">
-      <FlowSteps
-        steps={[
-          "Bring alpha",
-          "Build portfolio",
-          "Attract capital",
-          "Earn from activity",
-        ]}
-      />
+    <DiagramFrame title="Creator workflow">
+      <FlowSteps steps={["Create", "Publish", "Distribute", "Earn"]} />
     </DiagramFrame>
   );
 }
@@ -193,13 +194,14 @@ export function FeeDistributionDiagram() {
 
 export function EconomicFlywheelDiagram() {
   const steps = [
-    "Creators build",
-    "Investors allocate",
-    "Fees generated",
-    "Creators earn",
-    "Rewards incentivize",
-    "Treasury funds growth",
-    "$DEXLA burned",
+    "Creators",
+    "Portfolio Creation",
+    "Audience Distribution",
+    "Investor Allocation",
+    "Portfolio Execution",
+    "Protocol Revenue",
+    "Creator Revenue + Ecosystem Growth",
+    "More Creators & Users",
   ];
 
   return (
@@ -393,32 +395,311 @@ export function BurnBuybackFlowDiagram() {
 
 export function RoadmapPhasesDiagram() {
   const phases = [
-    { name: "Phase 1 — Foundation", gate: "Secure portfolio infrastructure ready for private users." },
-    { name: "Phase 2 — MVP & Private Beta", gate: "Demonstrate repeat portfolio creation and real investor activity." },
-    { name: "Phase 3 — Public Launch", gate: "Establish repeatable creator-led acquisition and measurable portfolio volume." },
-    { name: "Phase 4 — Creator Ownership", gate: "Top creators become economically and strategically aligned with long-term growth." },
+    { quarter: "Q3 2026", name: "Foundation" },
+    { quarter: "Q4 2026", name: "Architecture & MVP" },
+    { quarter: "Q1 2027", name: "Testing & Full Platform Launch" },
+    { quarter: "Q2 2027", name: "Partnerships, Token & Scale" },
+    { quarter: "Q3 2027", name: "Mobile & Global Expansion" },
   ];
 
   return (
-    <DiagramFrame title="Roadmap phases">
+    <DiagramFrame title="Progressive deployment roadmap">
       <ol className="space-y-2">
         {phases.map((phase, i) => (
           <li
-            key={phase.name}
-            className="grid gap-1 rounded-lg border border-line bg-deep/60 px-3.5 py-3 sm:grid-cols-[1.75rem_1fr] sm:gap-3"
+            key={phase.quarter}
+            className={`grid gap-1 rounded-lg border px-3.5 py-3 sm:grid-cols-[4.5rem_1fr] sm:items-center sm:gap-4 ${
+              i === 0
+                ? "border-electric/40 bg-electric/10"
+                : "border-line bg-deep/60"
+            }`}
           >
-            <span className="text-[0.75rem] font-semibold text-electric">
-              {String(i + 1).padStart(2, "0")}
+            <span className="text-[0.78rem] font-semibold tabular-nums text-electric">
+              {phase.quarter}
             </span>
-            <div>
-              <p className="text-[0.92rem] font-semibold text-ink">{phase.name}</p>
-              <p className="mt-1 text-[0.82rem] text-muted">
-                Strategic Gate: {phase.gate}
-              </p>
-            </div>
+            <p className="text-[0.92rem] font-semibold text-ink">{phase.name}</p>
           </li>
         ))}
       </ol>
+      <p className="mt-4 text-center text-[0.82rem] text-muted">
+        Foundation → MVP → Full Product → Scale → Mobile
+      </p>
+    </DiagramFrame>
+  );
+}
+
+export function StrategyEngineDiagram() {
+  const strategies = [
+    { name: "DCA", rule: "Accumulates on defined schedules and parameters" },
+    {
+      name: "Fear & Greed",
+      rule: "Accumulate or reduce when sentiment conditions are reached",
+    },
+    {
+      name: "RSI",
+      rule: "Executes on configured overbought and oversold conditions",
+    },
+    {
+      name: "Momentum",
+      rule: "Adjusts exposure using configured momentum signals",
+    },
+    {
+      name: "Take Profit",
+      rule: "Reduces exposure when profit conditions are reached",
+    },
+    {
+      name: "Stop Loss",
+      rule: "Restricts downside according to configured conditions",
+    },
+    {
+      name: "Rebalancing",
+      rule: "Maintains target allocations as portfolio weights change",
+    },
+  ];
+
+  return (
+    <DiagramFrame title="Strategy engine">
+      <div className="grid gap-2 sm:grid-cols-2">
+        {strategies.map((item) => (
+          <div
+            key={item.name}
+            className="rounded-lg border border-line bg-deep/70 px-3.5 py-3"
+          >
+            <p className="text-[0.78rem] font-semibold uppercase tracking-[0.08em] text-electric">
+              {item.name}
+            </p>
+            <p className="mt-2 text-[0.88rem] leading-snug text-muted">
+              {item.rule}
+            </p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-4 text-center text-[0.85rem] text-muted">
+        Below threshold = pause, never force.
+      </p>
+    </DiagramFrame>
+  );
+}
+
+export function SecurityRiskDiagram() {
+  const risks = [
+    "Smart Contract Risk",
+    "Oracle & Data Risk",
+    "Cross-Chain Risk",
+    "Liquidity Risk",
+    "Market Risk",
+    "Asset Risk",
+    "Regulatory Risk",
+  ];
+
+  return (
+    <DiagramFrame title="Security & risk management">
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        {risks.map((risk) => (
+          <div
+            key={risk}
+            className="rounded-lg border border-line bg-deep/70 px-3 py-3 text-center"
+          >
+            <p className="text-[0.84rem] font-semibold text-ink">{risk}</p>
+          </div>
+        ))}
+      </div>
+    </DiagramFrame>
+  );
+}
+
+export function GtmGrowthFlywheelDiagram() {
+  return (
+    <DiagramFrame title="Go-to-market growth flywheel">
+      <FlowSteps
+        steps={[
+          "Creators bring audiences",
+          "Direct acquisition",
+          "Partnerships expand reach",
+          "More users & Creators",
+          "Stronger ecosystem",
+        ]}
+      />
+      <div className="mt-4 grid gap-2 sm:grid-cols-3">
+        {[
+          "Creator & Influencer Distribution",
+          "Direct User Acquisition & Brand",
+          "Strategic Partnerships",
+        ].map((label, i) => (
+          <div
+            key={label}
+            className="rounded-lg border border-line bg-deep/70 px-3 py-3 text-center"
+          >
+            <p className="text-[0.65rem] font-semibold text-electric">
+              Strategy {i + 1}
+            </p>
+            <p className="mt-1 text-[0.82rem] font-semibold text-ink">{label}</p>
+          </div>
+        ))}
+      </div>
+    </DiagramFrame>
+  );
+}
+
+export function FeeDiscountTiersDiagram() {
+  const tiers = [
+    { hold: "2,500 $DEXLA", discount: "15%" },
+    { hold: "5,000 $DEXLA", discount: "25%" },
+    { hold: "10,000 $DEXLA", discount: "35%" },
+  ];
+
+  return (
+    <DiagramFrame title="Investor fee-discount tiers">
+      <div className="grid gap-3 sm:grid-cols-3">
+        {tiers.map((tier) => (
+          <div
+            key={tier.hold}
+            className="rounded-lg border border-electric/30 bg-electric/10 px-3.5 py-4 text-center"
+          >
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+              Hold
+            </p>
+            <p className="mt-1 text-[0.95rem] font-semibold text-ink">
+              {tier.hold}
+            </p>
+            <p className="mt-3 text-[1.35rem] font-semibold tabular-nums text-electric">
+              {tier.discount}
+            </p>
+            <p className="mt-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+              Execution-fee discount
+            </p>
+          </div>
+        ))}
+      </div>
+    </DiagramFrame>
+  );
+}
+
+export function CreatorAlignmentDiagram() {
+  return (
+    <DiagramFrame title="Creator-aligned marketplace relationship">
+      <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-2">
+        {["Platform", "Creator", "Investor"].map((label, i) => (
+          <div key={label} className="flex items-center gap-2">
+            <div className="rounded-lg border border-electric/35 bg-electric/10 px-5 py-3 text-center">
+              <p className="text-[0.92rem] font-semibold text-ink">{label}</p>
+            </div>
+            {i < 2 ? (
+              <span className="hidden text-electric sm:inline" aria-hidden>
+                ↔
+              </span>
+            ) : null}
+          </div>
+        ))}
+      </div>
+      <p className="mt-4 text-center text-[0.85rem] text-muted">
+        Creators receive 50% of execution-fee revenue — long-term participants,
+        not acquisition channels.
+      </p>
+    </DiagramFrame>
+  );
+}
+
+export function MultiAssetEcosystemDiagram() {
+  const assets = [
+    "Native crypto",
+    "ERC-20 / SPL",
+    "Stablecoins",
+    "Tokenized stocks",
+    "Commodities",
+    "RWAs",
+    "Hybrid portfolios",
+  ];
+
+  return (
+    <DiagramFrame title="Supported asset categories">
+      <div className="flex flex-wrap justify-center gap-2">
+        {assets.map((asset) => (
+          <span
+            key={asset}
+            className="rounded-lg border border-line bg-deep/70 px-3.5 py-2.5 text-[0.88rem] font-semibold text-ink"
+          >
+            {asset}
+          </span>
+        ))}
+      </div>
+      <p className="mt-4 text-center text-[0.85rem] text-muted">
+        Availability depends on integration readiness, liquidity, and
+        jurisdiction.
+      </p>
+    </DiagramFrame>
+  );
+}
+
+export function FeeModelDiagram() {
+  const rows = [
+    { label: "Execution Fee", value: "1%" },
+    { label: "Management Fee", value: "0%" },
+    { label: "Performance Fee", value: "0%" },
+    { label: "Exit Fee", value: "0%" },
+    { label: "Creator Revenue Share", value: "50%" },
+  ];
+
+  return (
+    <DiagramFrame title="INDEXLA fee model">
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+        {rows.map((row) => (
+          <div
+            key={row.label}
+            className="rounded-lg border border-line bg-deep/70 px-3 py-3.5 text-center"
+          >
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-muted-dim">
+              {row.label}
+            </p>
+            <p className="mt-2 text-[1.25rem] font-semibold tabular-nums text-electric">
+              {row.value}
+            </p>
+          </div>
+        ))}
+      </div>
+    </DiagramFrame>
+  );
+}
+
+export function TechnicalLayersDiagram() {
+  const layers = [
+    {
+      label: "User Layer",
+      detail: "Wallet · Portfolio creation · Assets · Strategies · Controls",
+    },
+    {
+      label: "Portfolio Layer",
+      detail: "State · Allocations · Permissions · Performance · AUM",
+    },
+    {
+      label: "Valuation Layer",
+      detail: "Balances · Chains · Prices · Allocations · Buying power",
+    },
+    {
+      label: "AI Monitoring Layer",
+      detail: "Signals · Workflows · Notifications · Constrained orchestration",
+    },
+    {
+      label: "Execution Layer",
+      detail: "Routing · Cross-chain · Risk controls · Reconciliation",
+    },
+  ];
+
+  return (
+    <DiagramFrame title="Technical architecture layers">
+      <div className="space-y-2">
+        {layers.map((layer) => (
+          <div
+            key={layer.label}
+            className="grid gap-2 rounded-lg border border-line bg-deep/70 px-3.5 py-3 sm:grid-cols-[10rem_1fr] sm:items-center sm:gap-4"
+          >
+            <p className="text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-electric">
+              {layer.label}
+            </p>
+            <p className="text-[0.92rem] leading-snug text-muted">{layer.detail}</p>
+          </div>
+        ))}
+      </div>
     </DiagramFrame>
   );
 }

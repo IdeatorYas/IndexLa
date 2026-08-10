@@ -5,14 +5,17 @@ import {
   CreatorMarketplaceFlowDiagram,
   CrossChainExecutionDiagram,
   EconomicFlywheelDiagram,
-  FeeDistributionDiagram,
+  FeeDiscountTiersDiagram,
+  FeeModelDiagram,
+  GtmGrowthFlywheelDiagram,
   InvestorExecutionStackDiagram,
+  MultiAssetEcosystemDiagram,
   NonCustodialFlowDiagram,
-  ProtocolArchitectureDiagram,
   RoadmapPhasesDiagram,
+  SecurityRiskDiagram,
   SolutionFlowDiagram,
-  TokenAllocationDiagram,
-  VestingTimelineDiagram,
+  StrategyEngineDiagram,
+  TechnicalLayersDiagram,
 } from "@/components/whitepaper/diagrams/WhitepaperDiagrams";
 
 export type VisualPlacement = "before" | "after";
@@ -20,7 +23,6 @@ export type VisualPlacement = "before" | "after";
 export type SectionVisual = {
   id: string;
   placement: VisualPlacement;
-  /** Insert after this heading id within the section markdown; omit for section start/end */
   afterHeadingId?: string;
   node: ReactNode;
 };
@@ -33,25 +35,13 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
     case "3-the-indexla-solution":
       return [
         {
-          id: "architecture",
-          placement: "after",
-          afterHeadingId: "one-portfolio-layer-for-assets-strategies-execution-and-distribution",
-          node: <ProtocolArchitectureDiagram />,
-        },
-        {
           id: "solution-flow",
           placement: "after",
-          afterHeadingId: "one-portfolio-layer-for-assets-strategies-execution-and-distribution",
+          afterHeadingId: "core-flow",
           node: <SolutionFlowDiagram />,
         },
-        {
-          id: "cross-chain",
-          placement: "after",
-          afterHeadingId: "multi-asset-cross-chain-execution",
-          node: <CrossChainExecutionDiagram />,
-        },
       ];
-    case "4-non-custodial-execution":
+    case "4-non-custodial-architecture":
       return [
         {
           id: "nc-flow",
@@ -59,75 +49,116 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <NonCustodialFlowDiagram />,
         },
       ];
-    case "5-why-indexla-is-different":
+    case "5-competitive-landscape":
       return [
         {
           id: "competitor-table",
-          placement: "after",
-          afterHeadingId: "one-portfolio-layer-across-a-fragmented-market",
+          placement: "before",
           node: <CompetitorComparisonTable />,
         },
       ];
-    case "6-creator-marketplace":
+    case "6-multi-asset-cross-chain-infrastructure":
       return [
         {
-          id: "creator-flow",
+          id: "multi-asset",
           placement: "after",
-          afterHeadingId: "turn-investment-conviction-into-an-investable-portfolio",
-          node: <CreatorMarketplaceFlowDiagram />,
+          afterHeadingId: "supported-asset-categories",
+          node: <MultiAssetEcosystemDiagram />,
+        },
+        {
+          id: "cross-chain",
+          placement: "after",
+          afterHeadingId: "cross-chain-execution",
+          node: <CrossChainExecutionDiagram />,
         },
       ];
-    case "7-investor-experience":
+    case "7-strategy-engine":
       return [
         {
-          id: "investor-stack",
-          placement: "after",
-          afterHeadingId: "ai-watches-your-rules-decide",
+          id: "strategy-engine",
+          placement: "before",
+          node: <StrategyEngineDiagram />,
+        },
+      ];
+    case "8-ai-automation":
+      return [
+        {
+          id: "ai-stack",
+          placement: "before",
           node: <InvestorExecutionStackDiagram />,
         },
       ];
     case "11-business-model":
       return [
         {
-          id: "fee-dist",
-          placement: "after",
-          afterHeadingId: "execution-fee-distribution",
-          node: <FeeDistributionDiagram />,
-        },
-        {
-          id: "flywheel",
-          placement: "after",
-          afterHeadingId: "economic-flywheel",
-          node: <EconomicFlywheelDiagram />,
+          id: "fee-model",
+          placement: "before",
+          node: <FeeModelDiagram />,
         },
       ];
-    case "12-dexla-token-economics":
+    case "12-creator-economy":
       return [
         {
-          id: "allocation",
+          id: "creator-flow",
           placement: "after",
-          afterHeadingId: "token-allocation",
-          node: <TokenAllocationDiagram />,
+          afterHeadingId: "creator-workflow",
+          node: <CreatorMarketplaceFlowDiagram />,
         },
+      ];
+    case "13-dexla-utility":
+      return [
         {
-          id: "vesting",
+          id: "fee-discounts",
           placement: "after",
-          afterHeadingId: "vesting-release-schedule",
-          node: <VestingTimelineDiagram />,
+          afterHeadingId: "execution-fee-discounts",
+          node: <FeeDiscountTiersDiagram />,
         },
         {
           id: "burn",
           placement: "after",
-          afterHeadingId: "3-treasury-profit-buyback-burn",
+          afterHeadingId: "buyback-burn",
           node: <BurnBuybackFlowDiagram />,
         },
       ];
-    case "17-roadmap":
+    case "16-security-risk-management":
+      return [
+        {
+          id: "security-risk",
+          placement: "before",
+          node: <SecurityRiskDiagram />,
+        },
+      ];
+    case "17-technical-architecture":
+      return [
+        {
+          id: "tech-layers",
+          placement: "before",
+          node: <TechnicalLayersDiagram />,
+        },
+      ];
+    case "19-progressive-deployment-roadmap":
       return [
         {
           id: "roadmap",
           placement: "before",
           node: <RoadmapPhasesDiagram />,
+        },
+      ];
+    case "20-go-to-market-strategy":
+      return [
+        {
+          id: "gtm-flywheel",
+          placement: "after",
+          afterHeadingId: "growth-flywheel",
+          node: <GtmGrowthFlywheelDiagram />,
+        },
+      ];
+    case "21-economic-flywheel":
+      return [
+        {
+          id: "eco-flywheel",
+          placement: "before",
+          node: <EconomicFlywheelDiagram />,
         },
       ];
     default:

@@ -194,26 +194,28 @@ export function WhitepaperMarkdown({
             </a>
           ),
           table: ({ children }) => (
-            <div className="my-6 -mx-1 overflow-x-auto rounded-xl border border-line bg-void/40 sm:mx-0">
-              <table className="w-full min-w-[40rem] border-collapse text-left text-[0.88rem] sm:text-[0.9rem]">
+            <div className="my-6 -mx-1 overflow-x-auto rounded-xl border border-line bg-void/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:mx-0">
+              <table className="w-full min-w-[28rem] border-collapse text-left text-[0.88rem] sm:min-w-[36rem] sm:text-[0.9rem]">
                 {children}
               </table>
             </div>
           ),
           thead: ({ children }) => (
-            <thead className="border-b border-line bg-panel/50">{children}</thead>
+            <thead className="border-b border-line bg-panel/60">{children}</thead>
           ),
           tbody: ({ children }) => <tbody>{children}</tbody>,
           tr: ({ children }) => (
-            <tr className="border-b border-line last:border-b-0">{children}</tr>
+            <tr className="border-b border-line odd:bg-transparent even:bg-deep/30 last:border-b-0">
+              {children}
+            </tr>
           ),
           th: ({ children }) => (
-            <th className="whitespace-nowrap px-3.5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-muted-dim sm:px-4">
+            <th className="whitespace-nowrap px-3.5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-muted-dim first:sticky first:left-0 first:z-[1] first:bg-panel/95 first:backdrop-blur-sm sm:px-4">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-3.5 py-3 align-top leading-snug text-ink/95 sm:px-4">
+            <td className="px-3.5 py-3 align-top leading-snug text-ink/95 first:sticky first:left-0 first:z-[1] first:min-w-[8.5rem] first:border-r first:border-line/80 first:bg-void/95 first:font-semibold first:backdrop-blur-sm sm:px-4">
               {children}
             </td>
           ),

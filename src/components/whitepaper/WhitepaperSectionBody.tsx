@@ -14,22 +14,21 @@ type Block = {
   level: number | null;
 };
 
-/** Sections where ### topics become scannable concept cards */
-const CARDIFY_H3_SECTIONS = new Set([
-  "2-the-problem",
-  "5-why-indexla-is-different",
-  "8-competitive-moat",
-  "10-strategy-engine",
-  "16-security-risk",
-]);
+/** Sections where ### or ## topics become scannable concept cards */
+const CARDIFY_SECTIONS: Record<string, number> = {
+  "2-the-problem": 3,
+  "7-strategy-engine": 2,
+  "16-security-risk-management": 2,
+  "23-core-principles": 3,
+};
 
 /** Sections where bullet lists become accent concept tiles */
 const ACCENT_LIST_SECTIONS = new Set([
   "1-executive-summary",
-  "8-competitive-moat",
-  "11-business-model",
-  "15-investor-platform-disclaimer",
-  "19-what-we-need",
+  "4-non-custodial-architecture",
+  "6-multi-asset-cross-chain-infrastructure",
+  "12-creator-economy",
+  "14-treasury",
 ]);
 
 function plainHeading(raw: string): string {
@@ -115,10 +114,10 @@ export function WhitepaperSectionBody({
   );
   const blocks = splitIntoHeadingBlocks(markdown);
   const prologueVisuals = visualsAfter(visuals, null);
-  const cardify = CARDIFY_H3_SECTIONS.has(slug);
+  const cardifyLevel = CARDIFY_SECTIONS[slug] ?? null;
   const accentLists = ACCENT_LIST_SECTIONS.has(slug);
 
-  let h3CardIndex = 0;
+  let cardIndexCounter = 0;
 
   return (
     <div>
@@ -130,8 +129,9 @@ export function WhitepaperSectionBody({
         <WhitepaperMarkdown markdown={markdown} accentLists={accentLists} />
       ) : (
         blocks.map((block, index) => {
-          const asCard = cardify && block.level === 3;
-          const cardIndex = asCard ? h3CardIndex++ : 0;
+          const asCard =
+            cardifyLevel != null && block.level === cardifyLevel;
+          const cardIndex = asCard ? cardIndexCounter++ : 0;
           const content = (
             <WhitepaperMarkdown
               markdown={block.markdown}
