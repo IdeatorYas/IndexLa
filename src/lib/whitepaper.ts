@@ -94,15 +94,19 @@ export function normalizeTechnicalPaperBody(bodyMarkdown: string): string {
 }
 
 /**
- * Top-level numbered chapters use H1 only:
- * `# N. ...` or `# **N. ...**`
- * (H2 numbered headings inside a chapter, e.g. Why Now, stay subsections.)
+ * Top-level numbered chapters:
+ * `# N. ...`, `## N. ...`, or bold wrappers.
+ * Numbered H3 subsections (### 1.) stay inside chapters.
  */
 function isMajorSectionHeading(line: string): RegExpMatchArray | null {
   return (
-    /^#\s+\*\*(\d+)\.\s+(.+?)\*\*\s*$/.exec(line) ||
-    /^#\s+(\d+)\.\s+(.+)$/.exec(line)
+    /^#{1,2}\s+\*\*(\d+)\.\s+(.+?)\*\*\s*$/.exec(line) ||
+    /^#{1,2}\s+(\d+)\.\s+(.+)$/.exec(line)
   );
+}
+
+function isDisclaimerHeading(line: string): boolean {
+  return /^#\s+\*?\*?Disclaimer\*?\*?\s*$/i.test(line.trim());
 }
 
 export function buildHeadingTree(markdown: string): TocItem[] {
@@ -152,12 +156,21 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
 
   lines.forEach((line, lineIndex) => {
     const match = isMajorSectionHeading(line);
-    if (!match) return;
-    starts.push({
-      lineIndex,
-      number: Number(match[1]),
-      title: plainTextFromHeading(match[2]),
-    });
+    if (match) {
+      starts.push({
+        lineIndex,
+        number: Number(match[1]),
+        title: plainTextFromHeading(match[2]),
+      });
+      return;
+    }
+    if (isDisclaimerHeading(line)) {
+      starts.push({
+        lineIndex,
+        number: starts.length > 0 ? starts[starts.length - 1].number + 1 : 1,
+        title: "Disclaimer",
+      });
+    }
   });
 
   return starts.map((start, index) => {
@@ -171,13 +184,20 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
 
     const markdown = chunkLines.join("\n").replace(/^---\s*$/gm, "").trim();
     const subsections = buildHeadingTree(markdown);
+    const slug =
+      start.title === "Disclaimer"
+        ? "disclaimer"
+        : slugifyHeading(`${start.number}-${start.title}`);
 
     return {
-      slug: slugifyHeading(`${start.number}-${start.title}`),
+      slug,
       index,
       number: start.number,
       headline: start.title,
-      title: `${start.number}. ${start.title}`,
+      title:
+        start.title === "Disclaimer"
+          ? "Disclaimer"
+          : `${start.number}. ${start.title}`,
       markdown,
       subsections,
     };

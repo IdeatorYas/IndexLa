@@ -17,18 +17,22 @@ type Block = {
 /** Sections where ### or ## topics become scannable concept cards */
 const CARDIFY_SECTIONS: Record<string, number> = {
   "2-the-problem": 3,
-  "7-strategy-engine": 2,
-  "16-security-risk-management": 2,
-  "23-core-principles": 3,
+  "3-the-indexla-solution": 3,
+  "4-why-now": 3,
+  "6-market-opportunity": 3,
+  "7-how-indexla-works": 3,
+  "8-execution-liquidity-risk-controls": 3,
+  "21-risk-factors": 3,
 };
 
 /** Sections where bullet lists become accent concept tiles */
 const ACCENT_LIST_SECTIONS = new Set([
-  "1-executive-summary",
-  "4-non-custodial-architecture",
-  "6-multi-asset-cross-chain-infrastructure",
+  "2-the-problem",
+  "7-how-indexla-works",
+  "10-multi-asset-tokenized-assets",
   "12-creator-economy",
-  "14-treasury",
+  "13-business-model",
+  "19-what-must-be-proven",
 ]);
 
 function plainHeading(raw: string): string {

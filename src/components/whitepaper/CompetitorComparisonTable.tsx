@@ -11,14 +11,14 @@ const HEADERS = [
 ] as const;
 
 const ROWS: string[][] = [
-  ["Non-custodial architecture", "✓", "✓", "✓", "✓", "✓"],
-  ["Multi-asset portfolios", "✓", "✓", "✓", "✓", "✓"],
-  ["Cross-chain execution", "✓", "Limited", "✓", "✓", "Limited"],
-  ["Rule-based automation", "✓", "Limited", "✓", "Limited", "✓"],
-  ["AI-assisted monitoring", "✓", "✓", "✓", "Limited", "✓"],
+  ["Non custodial architecture", "✓", "✓", "✓", "✓", "✓"],
+  ["Multi asset portfolios", "✓", "✓", "✓", "✓", "✓"],
+  ["Cross chain execution", "✓", "Limited", "✓", "✓", "Limited"],
+  ["Rule based automation", "✓", "Limited", "✓", "Limited", "✓"],
+  ["AI assisted monitoring", "✓", "✓", "✓", "Limited", "✓"],
   ["Creator portfolio model", "✓", "Limited", "✓", "Limited", "Limited"],
   [
-    "Creator execution-fee share",
+    "Creator execution fee share",
     "50%",
     "—",
     "Different model",
@@ -72,7 +72,6 @@ export function CompetitorComparisonTable() {
         Competitive landscape
       </figcaption>
 
-      {/* Mobile: stacked capability cards */}
       <div className="space-y-3 md:hidden">
         {ROWS.map((row) => (
           <div
@@ -117,7 +116,6 @@ export function CompetitorComparisonTable() {
         ))}
       </div>
 
-      {/* Desktop / tablet: full comparison table */}
       <div className="hidden overflow-x-auto rounded-xl border border-line bg-void/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] md:block">
         <table className="w-full min-w-[52rem] border-collapse text-left">
           <thead>

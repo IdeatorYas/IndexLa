@@ -18,6 +18,9 @@ function stripMajorHeading(
   sectionNumber: number,
   headline: string,
 ): string {
+  if (headline === "Disclaimer") {
+    return markdown.replace(/^#\s+\*?\*?Disclaimer\*?\*?\s*\n+/im, "").trim();
+  }
   const escaped = headline.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const pattern = new RegExp(
     `^#{1,3}\\s+(?:\\*\\*)?${sectionNumber}\\.\\s+(?:\\*\\*)?${escaped}(?:\\*\\*)?\\s*\\n+`,
