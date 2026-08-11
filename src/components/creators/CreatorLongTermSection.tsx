@@ -22,18 +22,22 @@ export function CreatorLongTermSection() {
   return (
     <section className={`${crSection} bg-deep`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
+        <FadeIn className="mx-auto max-w-[42rem] text-center">
           <h2 className={`${crH2} uppercase`}>
             Built For{" "}
             <span className="gradient-text">Long-Term Conviction.</span>
           </h2>
-          <p className={`mt-5 ${crBody}`}>
+          <p className={`mx-auto mt-5 max-w-[36rem] ${crBody} text-balance`}>
             INDEXLA is built around investment strategies designed for long-term
-            portfolio management, not day-trading noise.
+            portfolio management,
+            <br className="hidden sm:block" />
+            not day-trading noise.
           </p>
-          <p className={`mt-3 ${crBody}`}>
+          <p className={`mx-auto mt-3 max-w-[36rem] ${crBody} text-balance`}>
             Build around market cycles, accumulation, profit taking,
-            rebalancing, momentum, and other predefined conditions.
+            rebalancing, momentum,
+            <br className="hidden md:block" />
+            and other predefined conditions.
           </p>
         </FadeIn>
 

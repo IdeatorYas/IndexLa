@@ -43,6 +43,10 @@ A long-term portfolio built around a creator's conviction across markets.
 10% Solana  
 10% NVIDIA
 
+### BUY FEAR → SELL GREED
+
+A long-term cycle strategy that accumulates during predefined fear conditions and takes profits as greed increases.
+
 One portfolio. Multiple assets. Multiple networks.
 
 Your thesis becomes something your audience can actually allocate to.
@@ -137,8 +141,6 @@ Your strategy and track record can be evaluated by the people who choose to foll
 You decide what your portfolio holds and how it behaves.
 
 Followers decide whether to allocate.
-
-Portfolio performance can go up or down. Creators are responsible for communicating their strategy and risks clearly.
 
 ### Don't sell certainty. Build something you can stand behind.
 

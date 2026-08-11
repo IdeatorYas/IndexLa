@@ -30,13 +30,16 @@ export function CreatorBecomeSection() {
       className={`${crSection} scroll-mt-24 bg-deep`}
     >
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
+        <FadeIn className="mx-auto max-w-[40rem] text-center">
           <h2 className={`${crH2} uppercase`}>
             Become A Decentralized{" "}
             <span className="gradient-text">Portfolio Creator.</span>
           </h2>
-          <p className={`mt-5 ${crBody}`}>
+          <p
+            className={`mx-auto mt-5 max-w-[34rem] ${crBody} text-balance`}
+          >
             Turn your investment thesis into a structured, multi-asset portfolio
+            <br className="hidden sm:block" />
             your audience can choose to follow.
           </p>
         </FadeIn>
@@ -47,7 +50,7 @@ export function CreatorBecomeSection() {
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
                 Non-custodial by design
               </p>
-              <p className="mt-2 display text-[clamp(1.35rem,2.8vw,1.85rem)] text-ink">
+              <p className="mt-2 display text-[clamp(1.35rem,2.8vw,1.85rem)] text-ink text-balance">
                 Your Followers Keep Their Keys.
               </p>
             </div>
@@ -62,7 +65,7 @@ export function CreatorBecomeSection() {
                   }`}
                 >
                   <p className={crBodyStrong}>{item.title}</p>
-                  <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-muted text-pretty">
                     {item.body}
                   </p>
                 </div>

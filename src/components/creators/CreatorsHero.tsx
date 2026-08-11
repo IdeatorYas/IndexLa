@@ -90,7 +90,7 @@ export function CreatorsHero() {
               </span>
             </h1>
 
-            <p className={`mt-7 ${crBody}`}>
+            <p className={`mt-7 max-w-xl ${crBody} text-balance`}>
               Turn your investment conviction into a portfolio your audience can
               follow, customize, and automate.
             </p>

@@ -2,7 +2,6 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
-  crBody,
   crGreenBox,
   crGreenText,
   crH2,
@@ -27,25 +26,18 @@ export function CreatorTransparencySection() {
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <div className="mx-auto max-w-2xl space-y-3">
+          <div className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-3">
             {points.map((line) => (
               <div
                 key={line}
-                className="rounded-xl border border-line bg-void/45 px-5 py-4 text-center"
+                className="rounded-xl border border-line bg-void/45 px-4 py-5 text-center"
               >
-                <p className="text-[1rem] font-medium leading-relaxed text-ink sm:text-[1.05rem]">
+                <p className="text-[0.95rem] font-medium leading-snug text-ink text-pretty sm:text-[1rem]">
                   {line}
                 </p>
               </div>
             ))}
           </div>
-        </FadeIn>
-
-        <FadeIn className="mx-auto mt-6 max-w-2xl text-center">
-          <p className={crBody}>
-            Portfolio performance can go up or down. Creators are responsible
-            for communicating their strategy and risks clearly.
-          </p>
         </FadeIn>
 
         <FadeIn className="mt-7 text-center">
