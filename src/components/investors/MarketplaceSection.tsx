@@ -2,8 +2,6 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/Button";
-import { PortfolioCard } from "@/components/home/PortfolioCard";
-import { PORTFOLIOS } from "@/lib/site";
 import {
   invBody,
   invGreenBox,
@@ -12,80 +10,85 @@ import {
   invSection,
 } from "@/components/investors/investorRhythm";
 
-const actions = [
+const steps = [
   {
     n: "01",
-    title: "DISCOVER",
+    title: "Discover",
     body: "Find portfolios built around different markets and strategies.",
   },
   {
     n: "02",
-    title: "FOLLOW",
+    title: "Follow",
     body: "Choose a portfolio that matches your conviction.",
   },
   {
     n: "03",
-    title: "CUSTOMIZE",
+    title: "Customize",
     body: "Adjust assets, allocations, and rules to fit your strategy.",
   },
   {
     n: "04",
-    title: "BUILD",
+    title: "Build",
     body: "Create your own portfolio from the ground up.",
   },
 ];
 
 export function MarketplaceSection() {
-  const previews = PORTFOLIOS.slice(0, 3);
-
   return (
     <section className={`${invSection} bg-deep`}>
       <div className="section-pad container-max">
-        <FadeIn className="max-w-3xl">
+        <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${invH2} uppercase`}>
             Discover. Follow. Customize.{" "}
             <span className="gradient-text">Build.</span>
           </h2>
           <p className={`mt-5 ${invBody}`}>
-            You don&apos;t always need to start from scratch. Explore portfolios
-            built around different investment theses and strategies.
+            You don&apos;t always need to start from scratch.
+          </p>
+          <p className={`mt-2 ${invBody}`}>
+            Explore portfolios built around different investment theses and
+            strategies.
           </p>
         </FadeIn>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {actions.map((action, i) => (
-            <FadeIn key={action.title} delay={i * 0.04}>
-              <article className="h-full rounded-[1.2rem] border border-line bg-void/40 p-5">
-                <span className="text-[0.7rem] font-semibold text-electric">
-                  {action.n}
-                </span>
-                <h3 className="mt-2 display text-[1.1rem]">{action.title}</h3>
-                <p className="mt-3 text-[0.92rem] leading-relaxed text-muted">
-                  {action.body}
+        <FadeIn className="mt-10">
+          <ol className="mx-auto grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step) => (
+              <li
+                key={step.title}
+                className="rounded-[1.15rem] border border-line bg-void/45 px-4 py-5 text-center"
+              >
+                <p className="text-[0.7rem] font-semibold text-electric">
+                  {step.n}
                 </p>
-              </article>
-            </FadeIn>
-          ))}
-        </div>
-
-        <FadeIn className="mt-8">
-          <div className="grid gap-4 md:grid-cols-3">
-            {previews.map((portfolio) => (
-              <PortfolioCard key={portfolio.id} portfolio={portfolio} />
+                <h3 className="mt-1 display text-[1.1rem] text-ink">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-[0.88rem] leading-relaxed text-muted">
+                  {step.body}
+                </p>
+              </li>
             ))}
-          </div>
+          </ol>
+          <p className="mt-4 text-center text-[0.85rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+            Discover → Follow → Customize → Build
+          </p>
         </FadeIn>
 
-        <FadeIn className="mt-8 space-y-5">
-          <div className={invGreenBox}>
-            <p className={invGreenText}>
-              Don&apos;t blindly copy someone else&apos;s conviction. Make it
-              yours.
-            </p>
+        <FadeIn className="mt-8 space-y-5 text-center">
+          <div className="inline-flex justify-center">
+            <div className={invGreenBox}>
+              <p className={invGreenText}>
+                Don&apos;t blindly copy someone else&apos;s conviction. Make it
+                yours.
+              </p>
+            </div>
           </div>
-          <Button href="/strategies" className="min-w-[13.5rem]">
-            Explore Marketplace
-          </Button>
+          <div>
+            <Button href="/strategies" className="min-w-[13.5rem]">
+              Explore Marketplace
+            </Button>
+          </div>
         </FadeIn>
       </div>
     </section>

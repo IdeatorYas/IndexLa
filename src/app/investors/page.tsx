@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AiAutomationSection } from "@/components/investors/AiAutomationSection";
 import { BuildDefineAutomateSection } from "@/components/investors/BuildDefineAutomateSection";
 import { DisciplineSection } from "@/components/investors/DisciplineSection";
 import { InvestorDisclaimer } from "@/components/investors/InvestorDisclaimer";
@@ -21,14 +22,15 @@ export default function InvestorsPage() {
   return (
     <main>
       <InvestorHero />
+      <MarketCyclesSection />
+      <StrategyWorksSection />
+      <InvestorStrategiesSection />
+      <AiAutomationSection />
       <DisciplineSection />
       <BuildDefineAutomateSection />
-      <InvestorStrategiesSection />
-      <StrategyWorksSection />
       <OnePortfolioLayerSection />
       <OwnershipSection />
       <MarketplaceSection />
-      <MarketCyclesSection />
       <InvestorFinalOwnership />
       <InvestorDisclaimer />
     </main>

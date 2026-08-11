@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { Button } from "@/components/ui/Button";
 import {
   invBody,
   invH2,
@@ -11,8 +12,9 @@ export function InvestorFinalOwnership() {
   const reduce = useReducedMotion();
 
   return (
-    <section className={`${invSection} bg-deep`}>
-      <div className="section-pad container-max">
+    <section className={`${invSection} overflow-hidden bg-void`}>
+      <div className="pointer-events-none absolute inset-0 hero-glow opacity-50" aria-hidden />
+      <div className="section-pad container-max relative">
         <motion.div
           className="mx-auto max-w-3xl text-center"
           initial={reduce ? false : { opacity: 0, y: 16 }}
@@ -25,10 +27,15 @@ export function InvestorFinalOwnership() {
             <span className="gradient-text">Your Rules.</span>
           </h2>
           <p className={`mt-6 ${invBody}`}>
-            Build your strategy around your own thesis, define how your portfolio
-            should respond, and automate execution without giving up control of
-            your assets.
+            Build your strategy around your own thesis, define how your
+            portfolio should respond, and automate execution without giving up
+            control of your assets.
           </p>
+          <div className="mt-9">
+            <Button href="/creators" className="min-w-[13.5rem]">
+              Build Your Portfolio & Automate Your Strategy in 5 Minutes
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>

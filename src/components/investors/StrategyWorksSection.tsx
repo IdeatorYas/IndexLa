@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   invBody,
   invBodyStrong,
-  invCard,
   invEyebrow,
   invGreenBox,
   invGreenText,
@@ -16,65 +14,35 @@ import {
   invSection,
 } from "@/components/investors/investorRhythm";
 
-const phases = [
+const flow = [
   {
-    id: "extreme-fear",
-    n: "01",
-    title: "EXTREME FEAR",
-    trigger: "Fear & Greed Index falls below 20.",
-    body: [
-      "Your strategy begins accumulating.",
-      "For example, you could configure INDEXLA to deploy 10% of your allocated capital per DCA action while extreme fear conditions remain.",
-      "As long as sentiment stays in the extreme fear zone, the strategy continues accumulating according to your rules.",
-    ],
-    action: "Fear → DCA IN",
+    stage: "EXTREME FEAR",
+    meta: "Fear & Greed < 20",
+    action: "DCA IN",
+    detail: "10% of allocated capital",
   },
   {
-    id: "neutral",
-    n: "02",
-    title: "NEUTRAL",
-    trigger: "Sentiment recovers into the 45–55 range.",
-    body: [
-      "Your strategy pauses. No buying. No selling.",
-      "Your portfolio simply holds while the market establishes its next direction.",
-    ],
-    action: "Neutral → HOLD",
+    stage: "NEUTRAL",
+    meta: "45–55",
+    action: "HOLD",
+    detail: "No buying. No selling.",
   },
   {
-    id: "greed",
-    n: "03",
-    title: "GREED",
-    trigger: "Sentiment rises above 70.",
-    body: [
-      "The strategy begins taking profits.",
-      "Instead of trying to predict the exact top, INDEXLA can gradually reduce exposure through DCA out according to the percentages you defined.",
-    ],
-    action: "Greed → DCA OUT",
+    stage: "GREED",
+    meta: "> 70",
+    action: "DCA OUT",
+    detail: "Reduce exposure gradually",
   },
   {
-    id: "extreme-greed",
-    n: "04",
-    title: "EXTREME GREED",
-    trigger: "Sentiment reaches extreme greed.",
-    body: [
-      "Your strategy increases the pace of profit taking according to your predefined rules.",
-      "For example, you could configure larger DCA out percentages in extreme greed than during normal greed conditions.",
-    ],
-    action: "Extreme Greed → TAKE MORE PROFIT",
+    stage: "EXTREME GREED",
+    meta: "Euphoria zone",
+    action: "Increase profit taking",
+    detail: "Larger DCA out percentages",
   },
-];
-
-const cycleSummary = [
-  { phase: "Fear", action: "Accumulate" },
-  { phase: "Neutral", action: "Hold" },
-  { phase: "Greed", action: "Take Profit" },
-  { phase: "Extreme Greed", action: "Take More Profit" },
 ];
 
 export function StrategyWorksSection() {
   const reduce = useReducedMotion();
-  const [activeId, setActiveId] = useState("extreme-fear");
-  const active = phases.find((p) => p.id === activeId) ?? phases[0];
 
   return (
     <section className={`${invSection} bg-void`}>
@@ -85,14 +53,17 @@ export function StrategyWorksSection() {
             <span className="gradient-text">Strategy Works.</span>
           </h2>
           <p className={invLede}>Example: Buy Fear. Sell Greed.</p>
-          <p className={`mt-4 ${invBody}`}>
-            Instead of reacting to every market move, define your response to
-            the market cycle in advance.
+          <p className={`mt-3 ${invBody}`}>
+            Built for long-term investors, not day traders.
+          </p>
+          <p className={`mt-3 ${invBody}`}>
+            Instead of reacting to short-term price movements, define your
+            response to the broader market cycle in advance.
           </p>
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <div className={invCard}>
+          <div className="rounded-[1.25rem] border border-line bg-deep/50 p-5 sm:p-6">
             <p className={invEyebrow}>You define</p>
             <ul className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {[
@@ -103,126 +74,132 @@ export function StrategyWorksSection() {
               ].map((item) => (
                 <li
                   key={item}
-                  className="rounded-lg border border-line bg-void/50 px-3 py-2 text-[0.95rem] text-muted"
+                  className="rounded-lg border border-line bg-void/50 px-3 py-2.5 text-[0.95rem] text-muted"
                 >
                   {item}
                 </li>
               ))}
             </ul>
             <p className={`mt-4 ${invBodyStrong}`}>
-              INDEXLA then follows those rules as market sentiment changes.
+              INDEXLA follows those rules as market conditions change.
             </p>
           </div>
         </FadeIn>
 
-        {/* Phase timeline — unique to this section, not a cycle ring */}
-        <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          {/* Vertical strategy progression */}
           <FadeIn delay={0.04}>
-            <div className="rounded-[1.25rem] border border-line bg-deep/50 p-4 sm:p-5">
-              <p className={invEyebrow}>Strategy phases</p>
-              <ol className="mt-4 space-y-2">
-                {phases.map((phase) => {
-                  const isActive = activeId === phase.id;
-                  return (
-                    <li key={phase.id}>
-                      <button
-                        type="button"
-                        onClick={() => setActiveId(phase.id)}
-                        className={`flex w-full items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition-colors ${
-                          isActive
-                            ? "border-electric/40 bg-electric/10"
-                            : "border-line bg-void/40 hover:border-electric/25"
-                        }`}
-                      >
-                        <span
-                          className={`display text-[1.1rem] ${
-                            isActive ? "gradient-text" : "text-muted"
-                          }`}
-                        >
-                          {phase.n}
+            <div className="rounded-[1.35rem] border border-line bg-deep/60 p-5 sm:p-6">
+              <p className={invEyebrow}>Strategy progression</p>
+              <ol className="mt-5 space-y-0">
+                {flow.map((step, i) => (
+                  <li key={step.stage}>
+                    <motion.div
+                      className="rounded-xl border border-line bg-void/45 p-4"
+                      initial={reduce ? false : { opacity: 0, x: -8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06 }}
+                    >
+                      <div className="flex flex-wrap items-start justify-between gap-2">
+                        <div>
+                          <p className="display text-[1.05rem] tracking-[-0.02em] text-ink">
+                            {step.stage}
+                          </p>
+                          <p className="mt-1 text-[0.85rem] text-muted">
+                            {step.meta}
+                          </p>
+                        </div>
+                        <span className="rounded-lg border border-electric/35 bg-electric/10 px-2.5 py-1 text-[0.78rem] font-semibold text-electric">
+                          {step.action}
                         </span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-[0.9rem] font-semibold text-ink">
-                            {phase.title}
-                          </span>
-                          <span className="mt-0.5 block text-[0.8rem] text-muted">
-                            {phase.action}
-                          </span>
-                        </span>
-                      </button>
-                    </li>
-                  );
-                })}
+                      </div>
+                      <p className="mt-2 text-[0.9rem] text-muted">{step.detail}</p>
+                    </motion.div>
+                    {i < flow.length - 1 && (
+                      <div className="flex justify-center py-2 text-electric/60" aria-hidden>
+                        ↓
+                      </div>
+                    )}
+                  </li>
+                ))}
               </ol>
+              <div className="mt-2 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-center">
+                <p className="text-[0.85rem] font-semibold uppercase tracking-[0.12em] text-success">
+                  Cycle Repeats
+                </p>
+              </div>
             </div>
           </FadeIn>
 
+          {/* Rule builder product UI */}
           <FadeIn delay={0.08}>
-            <motion.article
-              key={active.id}
-              initial={reduce ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="rounded-[1.25rem] border border-electric/25 bg-deep/40 p-6 sm:p-7"
-            >
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
-                {active.n} — {active.title}
+            <div className="rounded-[1.35rem] border border-electric/30 bg-gradient-to-b from-electric/[0.08] to-void/40 p-5 sm:p-6">
+              <p className={invEyebrow}>INDEXLA Rule Builder</p>
+              <p className="mt-2 display text-[1.2rem] tracking-[-0.02em] text-ink">
+                Buy Fear — DCA In
               </p>
-              <p className={`mt-4 ${invBodyStrong}`}>{active.trigger}</p>
-              <div className="mt-4 space-y-3">
-                {active.body.map((line) => (
-                  <p key={line} className={invBody}>
-                    {line}
-                  </p>
+
+              <div className="mt-5 space-y-3">
+                {[
+                  { label: "Condition", value: "Fear & Greed < 20" },
+                  { label: "Action", value: "DCA Buy" },
+                  { label: "Allocation", value: "10%" },
+                  { label: "Frequency", value: "Weekly" },
+                ].map((row) => (
+                  <div
+                    key={row.label}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-line bg-void/55 px-4 py-3"
+                  >
+                    <span className="text-[0.85rem] text-muted">{row.label}</span>
+                    <span className="text-right text-[0.95rem] font-semibold text-ink">
+                      {row.value}
+                    </span>
+                  </div>
                 ))}
+                <div className="flex items-center justify-between rounded-xl border border-success/40 bg-success/10 px-4 py-3">
+                  <span className="text-[0.85rem] text-muted">Status</span>
+                  <span className="flex items-center gap-2 text-[0.95rem] font-semibold text-success">
+                    <span className="relative flex h-2 w-2">
+                      {!reduce && (
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-50" />
+                      )}
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+                    </span>
+                    Active
+                  </span>
+                </div>
               </div>
-              <p className="mt-5 display text-[1.15rem] text-electric">
-                {active.action}
+
+              <p className={`mt-5 ${invBody}`}>
+                Fear → Accumulate · Neutral → Hold · Greed → Take Profit ·
+                Extreme Greed → Take More Profit
               </p>
-            </motion.article>
+            </div>
           </FadeIn>
         </div>
 
-        <FadeIn className="mt-12 space-y-6">
-          <div>
-            <p className={`${invH3} uppercase`}>Then the cycle repeats.</p>
-            <p className={`mt-3 ${invBody}`}>
-              Then, when fear returns, accumulation begins again.
+        <FadeIn className="mt-10 max-w-3xl space-y-4">
+          <p className={`${invH3} uppercase`}>Then the cycle repeats.</p>
+          <p className={invBody}>
+            When the market eventually moves from euphoria back toward fear,
+            your strategy is already defined.
+          </p>
+          <p className={invBody}>
+            When fear returns, accumulation begins again.
+          </p>
+          <div className={invGreenBox}>
+            <p className={invGreenText}>
+              You don&apos;t need to predict the top or bottom.
             </p>
           </div>
-
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            {cycleSummary.map((row) => (
-              <div
-                key={row.phase}
-                className="rounded-xl border border-line bg-void/40 px-4 py-3 text-center"
-              >
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                  {row.phase}
-                </p>
-                <p className="mt-1 text-[0.95rem] font-semibold text-electric">
-                  → {row.action}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            <div className={invGreenBox}>
-              <p className={invGreenText}>
-                You don&apos;t need to predict the top or bottom.
-              </p>
-            </div>
-            <div className={invGreenBox}>
-              <p className={invGreenText}>
-                You need to be prepared for the cycle.
-              </p>
-            </div>
-          </div>
-
           <p className={invBody}>
-            INDEXLA monitors the conditions and coordinates execution according
-            to the rules and permissions you approved.
+            You define how your portfolio should respond to the cycle. INDEXLA
+            monitors the conditions and coordinates execution according to the
+            rules and permissions you approved.
+          </p>
+          <p className={invBodyStrong}>
+            The strategy stays disciplined even when the market isn&apos;t.
           </p>
         </FadeIn>
       </div>

@@ -1,6 +1,6 @@
 export function InvestorDisclaimer() {
   return (
-    <section className="border-t border-line bg-void py-10 md:py-12">
+    <section className="border-t border-line bg-deep py-10 md:py-12">
       <div className="section-pad container-max">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-muted">
