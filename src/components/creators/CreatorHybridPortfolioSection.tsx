@@ -107,7 +107,7 @@ export function CreatorHybridPortfolioSection() {
                 <p className="mt-1 display text-[1.35rem] tracking-[-0.02em] text-ink sm:text-[1.55rem]">
                   Hybrid Wealth Strategy
                 </p>
-                <p className="mt-2 max-w-xl text-[0.95rem] leading-relaxed text-muted text-pretty">
+                <p className="mt-2 max-w-xl text-[0.95rem] leading-relaxed text-muted text-pretty text-balance">
                   A long-term portfolio built around a creator&apos;s conviction
                   across markets.
                 </p>
@@ -305,10 +305,10 @@ export function CreatorHybridPortfolioSection() {
               </div>
 
               <div className="mt-5 rounded-xl border border-success/30 bg-success/10 px-4 py-3.5 text-center">
-                <p className={crBodyStrong}>
+                <p className={`${crBodyStrong} text-balance`}>
                   One portfolio. Multiple assets. Multiple networks.
                 </p>
-                <p className={`mt-2 ${crBody}`}>
+                <p className={`mt-2 ${crBody} text-balance`}>
                   Your thesis becomes something your audience can actually
                   allocate to.
                 </p>

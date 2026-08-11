@@ -97,7 +97,7 @@ export function CreatorsHero() {
 
             <div className="mt-6">
               <div className={crGreenBox}>
-                <p className={crGreenText}>
+                <p className={`${crGreenText} text-balance`}>
                   Build your strategy. Grow your audience. Earn from its use.
                 </p>
               </div>
