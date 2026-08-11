@@ -1,153 +1,145 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Button } from "@/components/ui/Button";
+import {
+  invBody,
+  invH2,
+  invSection,
+} from "@/components/investors/investorRhythm";
 
 type TriggerAction = { trigger: string; action: string };
 
 type Strategy = {
   title: string;
-  body: string[];
+  body: string;
   flows: TriggerAction[];
+  accent?: "fear" | "greed" | "neutral" | "combine";
 };
 
 const strategies: Strategy[] = [
   {
     title: "BUY FEAR — DCA IN",
-    body: [
-      "Accumulate through DCA when market sentiment reaches Extreme Fear.",
-    ],
-    flows: [{ trigger: "Extreme Fear", action: "DCA IN" }],
+    body: "Accumulate through DCA when market sentiment reaches predefined fear conditions.",
+    flows: [{ trigger: "Fear < 20", action: "DCA IN" }],
+    accent: "fear",
   },
   {
     title: "SELL GREED — DCA OUT",
-    body: [
-      "Reduce exposure through DCA as market sentiment moves into Greed and Extreme Greed.",
-    ],
-    flows: [
-      { trigger: "Greed", action: "DCA OUT" },
-      { trigger: "Extreme Greed", action: "DCA OUT" },
-    ],
+    body: "Reduce exposure through DCA as sentiment reaches predefined greed conditions.",
+    flows: [{ trigger: "Greed > 70", action: "DCA OUT" }],
+    accent: "greed",
   },
   {
     title: "TAKE PROFIT",
-    body: ["Scale out when predefined price or profit targets are reached."],
+    body: "Scale out when predefined price or profit targets are reached.",
     flows: [{ trigger: "Profit target", action: "Scale out" }],
   },
   {
     title: "STOP LOSS",
-    body: [
-      "Reduce or exit a position automatically when a predefined price or percentage threshold is reached.",
-    ],
-    flows: [{ trigger: "Stop threshold", action: "Reduce / exit" }],
+    body: "Reduce exposure when a predefined downside threshold is reached.",
+    flows: [{ trigger: "Downside threshold", action: "Reduce" }],
   },
   {
     title: "REBALANCE",
-    body: [
-      "Restore target allocations when portfolio positions drift beyond your defined range.",
-    ],
+    body: "Restore target allocations when portfolio weights move outside your defined range.",
     flows: [{ trigger: "Allocation drift", action: "Rebalance" }],
   },
   {
-    title: "MOMENTUM",
-    body: [
-      "Follow changing market trends.",
-      "When the indicator Momentum Money Line flips bullish, increase exposure through DCA.",
-      "When it flips bearish, reduce exposure through DCA.",
-    ],
+    title: "RSI",
+    body: "React to predefined oversold or overbought conditions.",
     flows: [
-      { trigger: "Momentum Money Line bullish", action: "DCA IN" },
-      { trigger: "Momentum Money Line bearish", action: "DCA OUT" },
+      { trigger: "RSI Oversold", action: "DCA IN" },
+      { trigger: "RSI Overbought", action: "DCA OUT" },
     ],
   },
   {
-    title: "RSI",
-    body: [
-      "React to longer-term market conditions using weekly RSI.",
-      "When weekly RSI enters Oversold territory, accumulate through DCA.",
-      "When weekly RSI enters Overbought territory, reduce exposure through DCA.",
-    ],
+    title: "MOMENTUM",
+    body: "Increase or reduce exposure according to predefined momentum conditions.",
     flows: [
-      { trigger: "Weekly RSI Oversold", action: "DCA IN" },
-      { trigger: "Weekly RSI Overbought", action: "DCA OUT" },
+      { trigger: "Momentum bullish", action: "Increase" },
+      { trigger: "Momentum bearish", action: "Reduce" },
     ],
+  },
+  {
+    title: "COMBINE CONDITIONS",
+    body: "Build more sophisticated responses by combining conditions, thresholds, and actions.",
+    flows: [
+      { trigger: "Multiple conditions", action: "Custom response" },
+    ],
+    accent: "combine",
   },
 ];
 
-function FlowChip({ trigger, action }: TriggerAction) {
+const accentBorder: Record<NonNullable<Strategy["accent"]>, string> = {
+  fear: "border-danger/30 hover:border-danger/50",
+  greed: "border-purple/30 hover:border-purple/50",
+  neutral: "border-line hover:border-electric/30",
+  combine: "border-electric/35 hover:border-electric/55",
+};
+
+function FlowDiagram({ trigger, action }: TriggerAction) {
   return (
-    <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-line bg-void/55 px-3 py-1.5 text-[0.7rem] font-semibold tracking-[-0.01em]">
-      <span className="text-muted">{trigger}</span>
-      <span className="text-electric/70" aria-hidden>
-        →
+    <div className="flex flex-col items-center gap-1 py-2">
+      <span className="rounded-lg border border-line bg-void/60 px-3 py-1.5 text-[0.72rem] font-semibold text-muted">
+        {trigger}
       </span>
-      <span className="text-electric">{action}</span>
+      <span className="text-electric/70" aria-hidden>
+        ↓
+      </span>
+      <span className="rounded-lg border border-electric/35 bg-electric/10 px-3 py-1.5 text-[0.72rem] font-semibold text-electric">
+        {action}
+      </span>
     </div>
   );
 }
 
 export function InvestorStrategiesSection() {
   return (
-    <section className="relative border-t border-line bg-deep py-14 md:py-20 lg:py-24">
-      <div className="pointer-events-none absolute inset-0 hero-glow opacity-20" aria-hidden />
+    <section className={`${invSection} bg-deep`}>
+      <div className="pointer-events-none absolute inset-0 hero-glow opacity-15" aria-hidden />
       <div className="section-pad container-max relative">
         <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(2rem,4.5vw,3.25rem)] uppercase tracking-[-0.02em] text-balance">
+          <h2 className={invH2}>
             Strategies Built Around{" "}
             <span className="gradient-text">Your Thesis.</span>
           </h2>
-          <div className="mt-5 space-y-3 text-[1.05rem] leading-relaxed text-muted">
-            <p>Most portfolios sit still while the market moves.</p>
-            <p className="display text-[clamp(1.15rem,2.2vw,1.4rem)] text-ink">
-              Yours doesn&apos;t have to.
-            </p>
-            <p>
-              Define exactly how you want your portfolio to respond — then let
-              it run.
-            </p>
-            <p>
-              Choose from proven rule-based strategies or combine conditions to
-              build your own.
-            </p>
-          </div>
+          <p className={`mt-5 ${invBody}`}>
+            Choose proven rule based strategies or combine conditions to build
+            your own.
+          </p>
         </FadeIn>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {strategies.map((strategy, i) => (
-            <FadeIn key={strategy.title} delay={(i % 3) * 0.04}>
-              <article className="flex h-full flex-col rounded-[1.25rem] border border-line bg-void/40 p-5 transition-colors hover:border-electric/30">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="display text-[1.15rem] tracking-[-0.02em] sm:text-[1.25rem]">
-                    {strategy.title}
-                  </h3>
-                  <span className="shrink-0 text-[0.65rem] font-semibold text-electric">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="mt-3 space-y-2 text-[0.95rem] leading-relaxed text-muted">
-                  {strategy.body.map((line) => (
-                    <p key={line}>{line}</p>
-                  ))}
-                </div>
-                <div className="mt-4 flex flex-wrap gap-2 border-t border-line pt-4">
+            <FadeIn key={strategy.title} delay={(i % 4) * 0.04}>
+              <motion.article
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                className={`flex h-full flex-col rounded-[1.25rem] border bg-void/40 p-5 transition-colors ${
+                  strategy.accent
+                    ? accentBorder[strategy.accent]
+                    : "border-line hover:border-electric/30"
+                }`}
+              >
+                <h3 className="display text-[1.05rem] tracking-[-0.02em] sm:text-[1.12rem]">
+                  {strategy.title}
+                </h3>
+                <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-muted">
+                  {strategy.body}
+                </p>
+                <div className="mt-4 border-t border-line pt-3">
                   {strategy.flows.map((flow) => (
-                    <FlowChip key={`${flow.trigger}-${flow.action}`} {...flow} />
+                    <FlowDiagram
+                      key={`${flow.trigger}-${flow.action}`}
+                      {...flow}
+                    />
                   ))}
                 </div>
-              </article>
+              </motion.article>
             </FadeIn>
           ))}
         </div>
-
-        <FadeIn className="mt-8 space-y-5">
-          <p className="display max-w-3xl text-[clamp(1.1rem,2.2vw,1.4rem)] text-ink">
-            Combine conditions. Define thresholds. Build the response that fits
-            your thesis.
-          </p>
-          <Button href="/creators" className="min-w-[13.5rem]">
-            Build Your First Portfolio
-          </Button>
-        </FadeIn>
       </div>
     </section>
   );
