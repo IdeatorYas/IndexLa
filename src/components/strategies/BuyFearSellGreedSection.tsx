@@ -22,7 +22,7 @@ const sentiment = [
 
 export function BuyFearSellGreedSection() {
   return (
-    <section className={`${stSection} bg-void`}>
+    <section id="buy-fear-sell-greed" className={`${stSection} scroll-mt-24 bg-void`}>
       <div className="section-pad container-max">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-12">
           <FadeIn className="min-w-0">

@@ -7,12 +7,10 @@ import {
   stSurface,
 } from "@/components/strategies/strategyRhythm";
 
-const thesisChips = ["Programmable", "Automated", "Executed on-chain"] as const;
-
-const flow = [
-  { label: "Strategy", detail: "You define" },
-  { label: "AI monitors", detail: "Conditions" },
-  { label: "Execution", detail: "On-chain" },
+const executionSteps = [
+  "Programmable",
+  "Automated",
+  "Executed on-chain",
 ] as const;
 
 export function StrategiesHero() {
@@ -36,11 +34,13 @@ export function StrategiesHero() {
           <div className="mx-auto mb-7 h-px w-12 bg-gradient-to-r from-transparent via-electric/80 to-transparent" />
 
           <h1 className={stH1}>
-            Stop Reacting.{" "}
-            <span className="gradient-text">Start Following Rules.</span>
+            <span className="block">Stop Reacting.</span>
+            <span className="mt-[0.18em] block gradient-text">
+              Start Following Rules.
+            </span>
           </h1>
 
-          <p className="mt-5 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-electric sm:text-[0.82rem]">
+          <p className="mt-6 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-electric sm:text-[0.82rem]">
             AI-Automated Strategies.
           </p>
 
@@ -53,39 +53,34 @@ export function StrategiesHero() {
             execution.
           </p>
 
-          <div className="mt-8">
-            <p className="display text-[1.05rem] tracking-[-0.02em] text-ink sm:text-[1.15rem]">
-              Your thesis.
-            </p>
-            <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
-              {thesisChips.map((chip, i) => (
-                <div key={chip} className="flex items-center gap-2">
-                  <span className="rounded-full border border-electric/30 bg-electric/[0.08] px-3.5 py-1.5 text-[0.88rem] font-semibold text-ink">
-                    {chip}
-                  </span>
-                  {i < thesisChips.length - 1 && (
-                    <span className="text-electric/40" aria-hidden>
-                      ·
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+          <div className={`mx-auto mt-10 max-w-lg ${stSurface}`}>
+            <div className="px-5 py-6 sm:px-7 sm:py-7">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
+                Your Thesis
+              </p>
 
-          <div className={`mx-auto mt-9 max-w-xl ${stSurface} px-4 py-4 sm:px-5`}>
-            <div className="grid grid-cols-3 gap-2 sm:gap-3">
-              {flow.map((step, i) => (
-                <div key={step.label} className="relative text-center">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-electric">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <p className="mt-1.5 text-[0.88rem] font-semibold text-ink sm:text-[0.95rem]">
-                    {step.label}
-                  </p>
-                  <p className="mt-0.5 text-[0.75rem] text-muted-dim">{step.detail}</p>
-                </div>
-              ))}
+              <div className="my-4 flex flex-col items-center" aria-hidden>
+                <span className="h-6 w-px bg-gradient-to-b from-electric/70 to-electric/20" />
+                <span className="mt-0.5 text-electric/70">↓</span>
+              </div>
+
+              <div className="flex flex-col items-center gap-2.5 sm:flex-row sm:justify-center sm:gap-0">
+                {executionSteps.map((step, i) => (
+                  <div key={step} className="flex items-center gap-2.5 sm:gap-3">
+                    <span className="rounded-xl border border-white/[0.1] bg-void/55 px-3.5 py-2.5 text-[0.9rem] font-semibold tracking-[-0.01em] text-ink sm:text-[0.95rem]">
+                      {step}
+                    </span>
+                    {i < executionSteps.length - 1 && (
+                      <span
+                        className="hidden text-electric/45 sm:inline"
+                        aria-hidden
+                      >
+                        ·
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>

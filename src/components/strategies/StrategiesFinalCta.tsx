@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import {
@@ -42,10 +43,19 @@ export function StrategiesFinalCta() {
             ))}
           </div>
 
-          <div className="mt-9 flex justify-center">
-            <Button href="/creators" className={stCta}>
-              Build Your Strategy
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <Button
+              href="/creators"
+              className={`${stCta} min-w-[17rem] !px-10 !py-4 !text-[1.08rem] shadow-[0_20px_56px_rgba(59,130,246,0.48)]`}
+            >
+              Build Your First Strategy
             </Button>
+            <Link
+              href="#buy-fear-sell-greed"
+              className="text-[0.95rem] font-semibold tracking-[-0.01em] text-electric transition-colors hover:text-ink"
+            >
+              See It In Action
+            </Link>
           </div>
         </motion.div>
       </div>
