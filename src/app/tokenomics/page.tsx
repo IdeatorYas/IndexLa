@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { TokenomicsHero } from "@/components/tokenomics/TokenomicsHero";
 import { TokenUtilitySection } from "@/components/tokenomics/TokenUtilitySection";
-import { UtilityBurnBridgeSection } from "@/components/tokenomics/UtilityBurnBridgeSection";
 import { TokenBurnMechanismSection } from "@/components/tokenomics/TokenBurnMechanismSection";
 import { WhyDexlaExistsSection } from "@/components/tokenomics/WhyDexlaExistsSection";
 import { TokenFlywheelSection } from "@/components/tokenomics/TokenFlywheelSection";
@@ -21,7 +20,6 @@ export default function TokenomicsPage() {
     <main>
       <TokenomicsHero />
       <TokenUtilitySection />
-      <UtilityBurnBridgeSection />
       <TokenBurnMechanismSection />
       <WhyDexlaExistsSection />
       <TokenFlywheelSection />
@@ -32,4 +30,3 @@ export default function TokenomicsPage() {
     </main>
   );
 }
-

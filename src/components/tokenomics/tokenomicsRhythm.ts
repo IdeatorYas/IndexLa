@@ -40,6 +40,34 @@ export const tkUtilityGlow =
 export const tkBurnAccent = "text-danger";
 export const tkBurnBorder = "border-danger/30";
 export const tkBurnPanel =
-  "border border-danger/35 bg-danger/[0.08]";
+  "border border-danger/30 bg-danger/[0.07]";
 export const tkBurnGlow =
   "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(248,113,113,0.11), transparent 60%)";
+
+/** Shared 4×4 architecture card shell — identical for utility & burn */
+export const tkArchGrid =
+  "mt-10 grid gap-3 sm:grid-cols-2 sm:gap-4";
+
+export const tkArchCard =
+  "flex h-full min-h-[22rem] flex-col border px-5 py-5 sm:min-h-[24rem] sm:px-6 sm:py-6";
+
+export const tkArchCardUtility =
+  `${tkArchCard} border-success/30 bg-success/[0.05]`;
+
+export const tkArchCardBurn =
+  `${tkArchCard} border-danger/30 bg-danger/[0.05]`;
+
+export const tkArchNum =
+  "display text-[1.05rem] tabular-nums";
+
+export const tkArchTitle =
+  "display text-[clamp(1.2rem,2.2vw,1.45rem)] tracking-[-0.02em] text-ink uppercase text-balance";
+
+export const tkArchMetric =
+  "mt-auto border px-4 py-5 text-center";
+
+export const tkArchMetricUtility =
+  `${tkArchMetric} border-success/30 bg-success/[0.08]`;
+
+export const tkArchMetricBurn =
+  `${tkArchMetric} border-danger/30 bg-danger/[0.08]`;
