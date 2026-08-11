@@ -8,12 +8,24 @@ import {
   tkSection,
 } from "@/components/tokenomics/tokenomicsRhythm";
 
-const points = [
-  "Creators use it to publish.",
-  "Creators use it to grow distribution.",
-  "Investors use it to reduce execution costs.",
-  "Investors use it to support creators.",
-  "Platform activity creates buyback and burn demand.",
+const stages = [
+  {
+    title: "Creators",
+    utilities: ["Publish", "Feature"],
+  },
+  {
+    title: "Investors",
+    utilities: ["Save", "Tip"],
+  },
+  {
+    title: "INDEXLA Activity",
+    utilities: ["Execution", "Treasury"],
+  },
+  {
+    title: "$DEXLA Demand",
+    utilities: ["Buybacks", "Burns"],
+    accent: true,
+  },
 ] as const;
 
 export function WhyDexlaExistsSection() {
@@ -33,19 +45,47 @@ export function WhyDexlaExistsSection() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mx-auto mt-9 max-w-xl">
-          <ul className="space-y-0 border-y border-white/[0.08]">
-            {points.map((line) => (
-              <li
-                key={line}
-                className="border-b border-white/[0.06] px-2 py-3.5 text-center last:border-b-0"
-              >
-                <p className="text-[1.02rem] font-medium text-ink text-balance">
-                  {line}
-                </p>
-              </li>
-            ))}
-          </ul>
+        <FadeIn className="mt-10">
+          <div className="overflow-hidden border border-white/[0.1] bg-void/40">
+            <div className="grid grid-cols-1 divide-y divide-white/[0.08] sm:grid-cols-4 sm:divide-x sm:divide-y-0">
+              {stages.map((stage, i) => (
+                <div key={stage.title} className="relative p-5 text-center sm:p-6">
+                  {i < stages.length - 1 && (
+                    <span
+                      className="pointer-events-none absolute -bottom-3 left-1/2 z-10 -translate-x-1/2 text-electric/50 sm:bottom-auto sm:left-auto sm:right-[-0.55rem] sm:top-1/2 sm:-translate-y-1/2 sm:translate-x-0"
+                      aria-hidden
+                    >
+                      →
+                    </span>
+                  )}
+                  <p
+                    className={`display text-[1.05rem] tracking-[-0.02em] sm:text-[1.15rem] ${
+                      "accent" in stage && stage.accent
+                        ? "gradient-text"
+                        : "text-ink"
+                    }`}
+                  >
+                    {stage.title}
+                  </p>
+                  <div className="mt-4 space-y-1.5">
+                    {stage.utilities.map((u) => (
+                      <p
+                        key={u}
+                        className="text-[0.88rem] font-medium text-muted"
+                      >
+                        {u}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="border-t border-white/[0.08] px-5 py-3 text-center">
+              <p className="text-[0.85rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+                Creators → Investors → INDEXLA Activity → $DEXLA Demand
+              </p>
+            </div>
+          </div>
         </FadeIn>
 
         <FadeIn className="mt-8 text-center">

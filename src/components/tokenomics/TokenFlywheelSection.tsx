@@ -5,50 +5,43 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   tkH2,
   tkSection,
-  tkSurface,
 } from "@/components/tokenomics/tokenomicsRhythm";
 
-const creators = [
-  "Publish portfolios",
-  "Burn $DEXLA",
-  "Promote portfolios",
-  "Burn more $DEXLA",
+const nodes = [
+  {
+    id: "creators",
+    title: "Creators",
+    detail: "Publish / Feature",
+    sub: "$DEXLA Usage",
+    x: 50,
+    y: 14,
+  },
+  {
+    id: "investors",
+    title: "Investors",
+    detail: "Hold / Tip",
+    sub: "$DEXLA Usage",
+    x: 86,
+    y: 50,
+  },
+  {
+    id: "activity",
+    title: "INDEXLA Activity",
+    detail: "Execution / Treasury",
+    sub: "Buybacks",
+    x: 50,
+    y: 86,
+  },
+  {
+    id: "burns",
+    title: "$DEXLA",
+    detail: "Permanent Burns",
+    sub: "Supply ↓",
+    x: 14,
+    y: 50,
+    burn: true,
+  },
 ] as const;
-
-const investors = [
-  "Hold $DEXLA",
-  "Reduce execution fees",
-  "Follow portfolios",
-  "Tip creators",
-] as const;
-
-const platformDrivers = [
-  "More portfolios",
-  "More execution",
-  "Treasury profits",
-] as const;
-
-function FlowSteps({ steps }: { steps: readonly string[] }) {
-  return (
-    <ol className="mt-5 space-y-0">
-      {steps.map((step, i) => (
-        <li key={step}>
-          <div className="rounded-xl border border-white/[0.08] bg-void/45 px-3.5 py-3 text-center">
-            <p className="text-[0.95rem] font-semibold text-ink">{step}</p>
-          </div>
-          {i < steps.length - 1 && (
-            <div
-              className="flex justify-center py-1.5 text-electric/50"
-              aria-hidden
-            >
-              ↓
-            </div>
-          )}
-        </li>
-      ))}
-    </ol>
-  );
-}
 
 export function TokenFlywheelSection() {
   const reduce = useReducedMotion();
@@ -63,80 +56,186 @@ export function TokenFlywheelSection() {
           </h2>
         </FadeIn>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          <FadeIn>
-            <article className={`h-full ${tkSurface} p-5 sm:p-6`}>
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
-                Creators
-              </p>
-              <FlowSteps steps={creators} />
-            </article>
-          </FadeIn>
+        <FadeIn className="mt-10">
+          <div className="relative mx-auto max-w-3xl overflow-hidden border border-white/[0.1] bg-gradient-to-b from-deep/80 to-void/90 px-3 py-8 sm:px-6 sm:py-10">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-50"
+              style={{
+                background:
+                  "radial-gradient(ellipse 45% 45% at 50% 50%, rgba(56,189,248,0.1), transparent 65%)",
+              }}
+              aria-hidden
+            />
 
-          <FadeIn delay={0.04}>
-            <article className={`h-full ${tkSurface} p-5 sm:p-6`}>
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
-                Investors
-              </p>
-              <FlowSteps steps={investors} />
-            </article>
-          </FadeIn>
-
-          <FadeIn delay={0.08}>
-            <article className={`h-full ${tkSurface} p-5 sm:p-6`}>
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
-                Platform
-              </p>
-              <div className="mt-5 space-y-2">
-                {platformDrivers.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-xl border border-white/[0.08] bg-void/45 px-3.5 py-3 text-center"
+            {/* Desktop / tablet circular diagram */}
+            <div className="relative mx-auto hidden aspect-square w-full max-w-[34rem] md:block">
+              <svg
+                viewBox="0 0 100 100"
+                className="absolute inset-0 h-full w-full"
+                aria-hidden
+              >
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="28"
+                  fill="none"
+                  stroke="rgba(167,139,250,0.18)"
+                  strokeWidth="0.6"
+                  strokeDasharray="2.2 1.8"
+                />
+                <motion.circle
+                  cx="50"
+                  cy="50"
+                  r="28"
+                  fill="none"
+                  stroke="rgba(56,189,248,0.45)"
+                  strokeWidth="0.55"
+                  strokeDasharray="12 160"
+                  strokeLinecap="round"
+                  initial={reduce ? false : { rotate: 0 }}
+                  animate={reduce ? undefined : { rotate: 360 }}
+                  transition={
+                    reduce
+                      ? undefined
+                      : { duration: 18, repeat: Infinity, ease: "linear" }
+                  }
+                  style={{ transformOrigin: "50px 50px" }}
+                />
+                {/* Directional arcs (clockwise) */}
+                <path
+                  d="M 58 18 A 28 28 0 0 1 82 42"
+                  fill="none"
+                  stroke="rgba(56,189,248,0.35)"
+                  strokeWidth="0.5"
+                  markerEnd="url(#fw-arrow)"
+                />
+                <path
+                  d="M 82 58 A 28 28 0 0 1 58 82"
+                  fill="none"
+                  stroke="rgba(56,189,248,0.35)"
+                  strokeWidth="0.5"
+                  markerEnd="url(#fw-arrow)"
+                />
+                <path
+                  d="M 42 82 A 28 28 0 0 1 18 58"
+                  fill="none"
+                  stroke="rgba(248,113,113,0.4)"
+                  strokeWidth="0.5"
+                  markerEnd="url(#fw-arrow-burn)"
+                />
+                <path
+                  d="M 18 42 A 28 28 0 0 1 42 18"
+                  fill="none"
+                  stroke="rgba(56,189,248,0.35)"
+                  strokeWidth="0.5"
+                  markerEnd="url(#fw-arrow)"
+                />
+                <defs>
+                  <marker
+                    id="fw-arrow"
+                    markerWidth="4"
+                    markerHeight="4"
+                    refX="3"
+                    refY="2"
+                    orient="auto"
                   >
-                    <p className="text-[0.95rem] font-semibold text-ink">
-                      {item}
-                    </p>
-                  </div>
-                ))}
-              </div>
+                    <path d="M0,0 L4,2 L0,4 Z" fill="rgba(56,189,248,0.7)" />
+                  </marker>
+                  <marker
+                    id="fw-arrow-burn"
+                    markerWidth="4"
+                    markerHeight="4"
+                    refX="3"
+                    refY="2"
+                    orient="auto"
+                  >
+                    <path d="M0,0 L4,2 L0,4 Z" fill="rgba(248,113,113,0.75)" />
+                  </marker>
+                </defs>
+              </svg>
 
-              <motion.div
-                className="my-3 flex justify-center text-electric/50"
-                aria-hidden
-                initial={reduce ? false : { opacity: 0.35 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-              >
-                ↓
-              </motion.div>
-
-              <div className="rounded-xl border border-electric/35 bg-electric/[0.1] px-3.5 py-3 text-center">
-                <p className="text-[0.95rem] font-semibold text-ink">Buybacks</p>
-              </div>
-
-              <motion.div
-                className="my-3 flex justify-center text-danger/55"
-                aria-hidden
-                initial={reduce ? false : { opacity: 0.35 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                ↓
-              </motion.div>
-
-              <div className="rounded-xl border border-danger/35 bg-danger/[0.1] px-3.5 py-3 text-center">
-                <p className="text-[0.95rem] font-semibold text-danger">
-                  Permanent burns
+              <div className="absolute left-1/2 top-1/2 z-10 w-[7.5rem] -translate-x-1/2 -translate-y-1/2 text-center">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-electric">
+                  $DEXLA
+                </p>
+                <p className="mt-1 display text-[1.05rem] tracking-[-0.02em] text-ink">
+                  Flywheel
                 </p>
               </div>
-            </article>
-          </FadeIn>
-        </div>
 
-        <FadeIn className="mt-7">
-          <p className="mx-auto max-w-2xl text-center text-[0.95rem] font-semibold leading-relaxed text-ink sm:text-[1.05rem]">
-            Creators → Investors → Platform → Buybacks →{" "}
+              {nodes.map((node) => (
+                <div
+                  key={node.id}
+                  className="absolute z-10 w-[9.5rem] -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: `${node.x}%`, top: `${node.y}%` }}
+                >
+                  <div
+                    className={`border px-3 py-3 text-center ${
+                      "burn" in node && node.burn
+                        ? "border-danger/40 bg-danger/[0.1]"
+                        : "border-white/[0.12] bg-void/90"
+                    }`}
+                  >
+                    <p className="display text-[0.95rem] tracking-[-0.02em] text-ink">
+                      {node.title}
+                    </p>
+                    <p className="mt-1.5 text-[0.78rem] font-medium text-muted">
+                      {node.detail}
+                    </p>
+                    <p
+                      className={`mt-1 text-[0.78rem] font-semibold ${
+                        "burn" in node && node.burn
+                          ? "text-danger"
+                          : "text-electric"
+                      }`}
+                    >
+                      {node.sub}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile vertical loop */}
+            <div className="relative space-y-0 md:hidden">
+              {nodes.map((node, i) => (
+                <div key={node.id}>
+                  <div
+                    className={`mx-auto max-w-xs border px-4 py-4 text-center ${
+                      "burn" in node && node.burn
+                        ? "border-danger/40 bg-danger/[0.1]"
+                        : "border-white/[0.12] bg-void/70"
+                    }`}
+                  >
+                    <p className="display text-[1.05rem] text-ink">{node.title}</p>
+                    <p className="mt-1.5 text-[0.88rem] text-muted">{node.detail}</p>
+                    <p
+                      className={`mt-1 text-[0.88rem] font-semibold ${
+                        "burn" in node && node.burn
+                          ? "text-danger"
+                          : "text-electric"
+                      }`}
+                    >
+                      {node.sub}
+                    </p>
+                  </div>
+                  <div
+                    className={`flex justify-center py-2 text-sm ${
+                      i === nodes.length - 1 ? "text-electric/60" : "text-electric/45"
+                    }`}
+                    aria-hidden
+                  >
+                    {i === nodes.length - 1 ? "↻ loop" : "↓"}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn className="mt-6 text-center">
+          <p className="text-[0.95rem] font-semibold text-ink text-balance sm:text-[1.02rem]">
+            Creators → Investors → Activity → Buybacks →{" "}
             <span className="text-danger">Permanent burns</span>
           </p>
         </FadeIn>
