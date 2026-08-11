@@ -13,10 +13,10 @@ export {
 } from "@/components/home/homeRhythm";
 
 export const stSection =
-  "relative border-t border-white/[0.07] py-11 md:py-14 lg:py-16";
+  "relative border-t border-white/[0.07] py-12 md:py-14 lg:py-[4.25rem]";
 
 export const stH1 =
-  "display text-[clamp(2.15rem,5.2vw,3.6rem)] font-semibold tracking-[-0.035em] text-balance text-pretty uppercase leading-[1.06]";
+  "display text-[clamp(2.25rem,5.4vw,3.75rem)] font-semibold tracking-[-0.04em] text-balance text-pretty uppercase leading-[1.04]";
 
 export const stLede =
   "display text-[clamp(1.1rem,2.2vw,1.4rem)] leading-snug tracking-[-0.02em] text-ink text-balance text-pretty";

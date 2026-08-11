@@ -15,7 +15,7 @@ import { StrategyDisclaimer } from "@/components/strategies/StrategyDisclaimer";
 export const metadata: Metadata = {
   title: "Strategies — INDEXLA",
   description:
-    "Stop reacting to markets. Start following rules. Define strategy rules for fear & greed, RSI, momentum, take profit, stop loss, and rebalancing — executed on-chain while assets stay in your wallet.",
+    "Stop reacting. Start following rules. AI-automated strategies that monitor conditions and coordinate on-chain execution while you define the thesis.",
 };
 
 export default function StrategiesPage() {

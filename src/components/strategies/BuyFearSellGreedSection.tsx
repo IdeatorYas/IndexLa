@@ -35,8 +35,10 @@ export function BuyFearSellGreedSection() {
             </p>
 
             <div className={`mt-5 space-y-2.5 ${stBody}`}>
-              <p>You don&apos;t need to call the exact bottom or top.</p>
-              <p>
+              <p className="text-balance">
+                You don&apos;t need to call the exact bottom or top.
+              </p>
+              <p className="text-balance">
                 Define your sentiment thresholds and let the strategy respond
                 progressively.
               </p>

@@ -1,16 +1,22 @@
 # **Strategies**
 
-## **Stop Reacting To Markets. Start Following Rules.**
+## STOP REACTING. START FOLLOWING RULES.
 
-Markets move 24/7.
+### AI-AUTOMATED STRATEGIES.
 
-Fear. Greed. Momentum. Oversold conditions. Profit targets. Allocation drift.
+Markets move through fear, greed, and euphoria.
 
-You don't need to predict every move.
+Define your strategy. INDEXLA monitors conditions and coordinates execution.
 
-You need a predefined response when the conditions you care about appear.
+Your thesis. 
 
-Your assets remain in your wallet. Strategy execution happens on-chain across supported networks.
+Programmable
+
+Automated
+
+Executed on-chain
+
+
 
 ---
 
@@ -27,8 +33,6 @@ Accumulate when opportunity appears. Take profits when conditions change. Rebala
 The goal isn't to predict every move.
 
 It's to have a plan before the market moves.
-
-
 
 # **Buy Fear. Sell Greed.**
 
