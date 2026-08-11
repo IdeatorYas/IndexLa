@@ -1,36 +1,47 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   invBody,
   invBodyStrong,
+  invGreenBox,
+  invGreenText,
   invH2,
   invSection,
 } from "@/components/investors/investorRhythm";
 
-const steps = [
+const strategies = [
   {
-    title: "You Define The Rules",
-    body: "Assets, thresholds, actions, and limits — your thesis, encoded.",
+    title: "Buy Fear — DCA In",
+    body: "Accumulate through DCA when market sentiment reaches predefined fear conditions.",
   },
   {
-    title: "AI Monitors Conditions",
-    body: "INDEXLA watches the signals you selected, continuously.",
+    title: "Sell Greed — DCA Out",
+    body: "Reduce exposure through DCA as sentiment reaches predefined greed conditions.",
   },
   {
-    title: "Permissions Constrain Execution",
-    body: "Nothing runs outside the permissions you approved.",
+    title: "Take Profit",
+    body: "Scale out when predefined price or profit targets are reached.",
   },
   {
-    title: "INDEXLA Coordinates Execution",
-    body: "Authorized transactions only — according to your rules.",
+    title: "Stop Loss",
+    body: "Reduce exposure when a predefined downside threshold is reached.",
+  },
+  {
+    title: "Rebalance",
+    body: "Restore target allocations when portfolio weights move outside your defined range.",
+  },
+  {
+    title: "Momentum",
+    body: "Increase or reduce exposure according to predefined momentum conditions.",
+  },
+  {
+    title: "Combine Conditions",
+    body: "Build sophisticated strategies by combining conditions, thresholds, and actions.",
   },
 ];
 
 export function AiAutomationSection() {
-  const reduce = useReducedMotion();
-
   return (
     <section className={`${invSection} bg-void`}>
       <div className="section-pad container-max">
@@ -40,53 +51,82 @@ export function AiAutomationSection() {
             <span className="gradient-text">Your Thesis.</span>
           </h2>
           <p className={`mt-5 ${invBody}`}>
-            INDEXLA&apos;s AI-assisted automation monitors the conditions you
-            define and coordinates authorized execution.
+            Choose proven rule-based strategies or combine conditions to build
+            your own.
           </p>
         </FadeIn>
 
-        <FadeIn className="mt-10" delay={0.04}>
-          <div className="mx-auto max-w-2xl">
-            {steps.map((step, i) => (
-              <div key={step.title}>
-                <motion.div
-                  className="rounded-[1.15rem] border border-line bg-deep/55 px-5 py-5 sm:px-6"
-                  initial={reduce ? false : { opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.07 }}
+        {/* Strategies as compact list + RSI highlight — not a card grid */}
+        <FadeIn className="mt-10">
+          <div className="overflow-hidden rounded-[1.35rem] border border-line bg-deep/55">
+            <div className="border-b border-line px-5 py-4 sm:px-6">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
+                Strategy library
+              </p>
+            </div>
+            <ul className="divide-y divide-line">
+              {strategies.map((item) => (
+                <li
+                  key={item.title}
+                  className="grid gap-1 px-5 py-4 sm:grid-cols-[minmax(12rem,0.4fr)_1fr] sm:items-baseline sm:gap-6 sm:px-6"
                 >
-                  <div className="flex items-start gap-4">
-                    <span className="display shrink-0 text-[1.4rem] gradient-text">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <p className="display text-[1.15rem] tracking-[-0.02em] text-ink sm:text-[1.25rem]">
-                        {step.title}
-                      </p>
-                      <p className="mt-2 text-[0.95rem] leading-relaxed text-muted sm:text-[1.05rem]">
-                        {step.body}
-                      </p>
-                    </div>
+                  <p className="text-[0.98rem] font-semibold text-ink">
+                    {item.title}
+                  </p>
+                  <p className="text-[0.95rem] leading-relaxed text-muted">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+            </ul>
+
+            {/* RSI — dual mapping */}
+            <div className="border-t border-electric/25 bg-electric/[0.06] px-5 py-5 sm:px-6 sm:py-6">
+              <div className="grid gap-4 lg:grid-cols-[0.4fr_1fr] lg:items-start lg:gap-6">
+                <div>
+                  <p className="text-[0.98rem] font-semibold text-ink">RSI</p>
+                  <p className="mt-1 text-[0.95rem] leading-relaxed text-muted">
+                    React to predefined oversold or overbought conditions.
+                  </p>
+                </div>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  <div className="rounded-xl border border-success/30 bg-success/10 px-4 py-3">
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-success">
+                      Weekly Oversold
+                    </p>
+                    <p className="mt-1.5 text-[0.95rem] font-semibold text-ink">
+                      RSI Weekly Oversold → DCA In
+                    </p>
                   </div>
-                </motion.div>
-                {i < steps.length - 1 && (
-                  <div className="flex justify-center py-2.5 text-electric/55" aria-hidden>
-                    ↓
+                  <div className="rounded-xl border border-purple/30 bg-purple/10 px-4 py-3">
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-purple-bright">
+                      Weekly Overbought
+                    </p>
+                    <p className="mt-1.5 text-[0.95rem] font-semibold text-ink">
+                      RSI Weekly Overbought → Take Profit
+                    </p>
                   </div>
-                )}
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </FadeIn>
 
-        <FadeIn className="mx-auto mt-10 max-w-2xl space-y-3 text-center">
-          <p className={invBodyStrong}>
-            AI monitors the market. Your rules control the strategy.
-          </p>
-          <p className={invBody}>
-            Your thesis becomes a programmable strategy.
-          </p>
+        <FadeIn className="mt-10">
+          <div className="mx-auto max-w-2xl rounded-[1.35rem] border border-electric/30 bg-gradient-to-br from-electric/[0.1] via-void/40 to-purple/[0.08] px-6 py-8 text-center sm:px-8">
+            <div className={invGreenBox}>
+              <p className={invGreenText}>
+                AI monitors the market. Your rules control the strategy.
+              </p>
+            </div>
+            <p className={`mt-5 ${invBody}`}>
+              INDEXLA&apos;s AI-assisted automation monitors the conditions you
+              define and coordinates authorized execution.
+            </p>
+            <p className={`mt-3 ${invBodyStrong}`}>
+              Your thesis becomes a programmable strategy.
+            </p>
+          </div>
         </FadeIn>
       </div>
     </section>

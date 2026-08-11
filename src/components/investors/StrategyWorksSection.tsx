@@ -15,6 +15,24 @@ import {
   invSection,
 } from "@/components/investors/investorRhythm";
 
+const buildSteps = [
+  {
+    n: "01",
+    title: "BUILD",
+    body: "Choose your assets and allocate your capital.",
+  },
+  {
+    n: "02",
+    title: "DEFINE",
+    body: "Set your DCA percentage, frequency, conditions, and thresholds.",
+  },
+  {
+    n: "03",
+    title: "AUTOMATE",
+    body: "Approve the rules and let INDEXLA monitor conditions and coordinate execution.",
+  },
+];
+
 type Phase = {
   id: string;
   stage: string;
@@ -31,9 +49,10 @@ const phases: Phase[] = [
   {
     id: "extreme-fear",
     stage: "EXTREME FEAR",
-    meta: "Fear & Greed < 20",
+    meta: "Fear & Greed Index falls below 20.",
     action: "DCA IN",
-    detail: "10% of allocated capital",
+    detail:
+      "Your strategy begins accumulating. For example, you could configure INDEXLA to deploy 10% of your allocated capital per DCA action while extreme fear conditions remain.",
     ruleTitle: "Buy Fear — DCA In",
     rules: [
       { label: "Condition", value: "Fear & Greed < 20" },
@@ -47,9 +66,9 @@ const phases: Phase[] = [
   {
     id: "neutral",
     stage: "NEUTRAL",
-    meta: "45–55",
+    meta: "Sentiment recovers into the 45–55 range.",
     action: "HOLD",
-    detail: "No buying. No selling.",
+    detail: "Your strategy pauses. No buying. No selling.",
     ruleTitle: "Neutral — Hold",
     rules: [
       { label: "Condition", value: "Fear & Greed 45–55" },
@@ -63,9 +82,10 @@ const phases: Phase[] = [
   {
     id: "greed",
     stage: "GREED",
-    meta: "> 70",
+    meta: "Sentiment rises above 70.",
     action: "DCA OUT",
-    detail: "Reduce exposure gradually",
+    detail:
+      "The strategy begins taking profits. INDEXLA gradually reduces exposure through DCA out according to your defined percentages.",
     ruleTitle: "Sell Greed — DCA Out",
     rules: [
       { label: "Condition", value: "Fear & Greed > 70" },
@@ -79,9 +99,10 @@ const phases: Phase[] = [
   {
     id: "extreme-greed",
     stage: "EXTREME GREED",
-    meta: "Euphoria zone",
-    action: "Increase profit taking",
-    detail: "Larger DCA out percentages",
+    meta: "Sentiment reaches extreme greed.",
+    action: "TAKE MORE PROFIT",
+    detail:
+      "Your strategy increases the pace of profit taking according to your predefined rules.",
     ruleTitle: "Extreme Greed — Take More Profit",
     rules: [
       { label: "Condition", value: "Extreme Greed" },
@@ -107,13 +128,31 @@ export function StrategyWorksSection() {
         : "border-line bg-void/55 text-muted";
 
   return (
-    <section className={`${invSection} bg-void`}>
+    <section className={`${invSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
           <h2 className={`${invH2} uppercase`}>
             See How A{" "}
             <span className="gradient-text">Strategy Works.</span>
           </h2>
+          <p className={`mt-4 ${invEyebrow}`}>Build → Define → Automate</p>
+        </FadeIn>
+
+        <div className="mt-8 grid gap-3 md:grid-cols-3">
+          {buildSteps.map((step, i) => (
+            <FadeIn key={step.n} delay={i * 0.04}>
+              <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-5">
+                <p className="display text-[1.4rem] gradient-text">{step.n}</p>
+                <h3 className="mt-1 display text-[1.2rem] tracking-[-0.02em] text-ink">
+                  {step.title}
+                </h3>
+                <p className={`mt-3 ${invBody}`}>{step.body}</p>
+              </article>
+            </FadeIn>
+          ))}
+        </div>
+
+        <FadeIn className="mt-10 max-w-3xl">
           <p className={invLede}>Example: Buy Fear. Sell Greed.</p>
           <p className={`mt-3 ${invBody}`}>
             Built for long-term investors, not day traders.
@@ -124,33 +163,9 @@ export function StrategyWorksSection() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mt-8">
-          <div className="rounded-[1.25rem] border border-line bg-deep/50 p-5 sm:p-6">
-            <p className={invEyebrow}>You define</p>
-            <ul className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                "Your capital allocation.",
-                "Your DCA percentage.",
-                "Your execution frequency.",
-                "Your sentiment thresholds.",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="rounded-lg border border-line bg-void/50 px-3 py-2.5 text-[0.95rem] text-muted"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className={`mt-4 ${invBodyStrong}`}>
-              INDEXLA follows those rules as market conditions change.
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Unified product demonstration */}
+        {/* Unified product demo */}
         <FadeIn className="mt-10" delay={0.04}>
-          <div className="overflow-hidden rounded-[1.35rem] border border-line bg-deep/70">
+          <div className="overflow-hidden rounded-[1.35rem] border border-line bg-void/50">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-5 py-3.5 sm:px-6">
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 INDEXLA Strategy Demo
@@ -161,7 +176,6 @@ export function StrategyWorksSection() {
             </div>
 
             <div className="grid lg:grid-cols-2 lg:items-stretch">
-              {/* Left: progression */}
               <div className="border-b border-line p-5 sm:p-6 lg:border-b-0 lg:border-r">
                 <p className={invEyebrow}>Strategy progression</p>
                 <ol className="mt-4 flex flex-col gap-2">
@@ -175,7 +189,7 @@ export function StrategyWorksSection() {
                           className={`w-full rounded-xl border px-4 py-3.5 text-left transition-colors ${
                             isActive
                               ? "border-electric/45 bg-electric/10"
-                              : "border-line bg-void/40 hover:border-electric/25"
+                              : "border-line bg-deep/40 hover:border-electric/25"
                           }`}
                         >
                           <div className="flex items-start justify-between gap-3">
@@ -185,9 +199,6 @@ export function StrategyWorksSection() {
                               </p>
                               <p className="mt-1 text-[0.85rem] text-muted">
                                 {step.meta}
-                              </p>
-                              <p className="mt-1.5 text-[0.88rem] text-muted">
-                                {step.detail}
                               </p>
                             </div>
                             <span
@@ -207,12 +218,11 @@ export function StrategyWorksSection() {
                 </ol>
                 <div className="mt-2 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-center">
                   <p className="text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-success">
-                    Cycle Repeats
+                    Then The Cycle Repeats
                   </p>
                 </div>
               </div>
 
-              {/* Right: rule builder synced to selection */}
               <div className="flex flex-col p-5 sm:p-6">
                 <p className={invEyebrow}>INDEXLA Rule Builder</p>
                 <motion.div
@@ -225,12 +235,13 @@ export function StrategyWorksSection() {
                   <p className="display text-[1.15rem] tracking-[-0.02em] text-ink sm:text-[1.25rem]">
                     {active.ruleTitle}
                   </p>
+                  <p className={`mt-2 ${invBody}`}>{active.detail}</p>
 
                   <div className="mt-4 flex flex-1 flex-col justify-center gap-2.5">
                     {active.rules.map((row) => (
                       <div
                         key={row.label}
-                        className="flex items-center justify-between gap-3 rounded-xl border border-line bg-void/55 px-4 py-3"
+                        className="flex items-center justify-between gap-3 rounded-xl border border-line bg-deep/55 px-4 py-3"
                       >
                         <span className="text-[0.85rem] text-muted">
                           {row.label}
@@ -258,8 +269,14 @@ export function StrategyWorksSection() {
                     </div>
                   </div>
 
-                  <p className="mt-4 text-[0.9rem] leading-relaxed text-muted">
-                    {active.stage}: {active.meta} → {active.action}
+                  <p className="mt-4 text-[0.9rem] font-semibold text-electric">
+                    {active.stage.split(" ")[0] === "EXTREME"
+                      ? active.action === "DCA IN"
+                        ? "Fear → DCA IN"
+                        : "Extreme Greed → TAKE MORE PROFIT"
+                      : active.action === "HOLD"
+                        ? "Neutral → HOLD"
+                        : "Greed → DCA OUT"}
                   </p>
                 </motion.div>
               </div>
@@ -270,10 +287,6 @@ export function StrategyWorksSection() {
         <FadeIn className="mt-10 max-w-3xl space-y-4">
           <p className={`${invH3} uppercase`}>Then the cycle repeats.</p>
           <p className={invBody}>
-            When the market eventually moves from euphoria back toward fear,
-            your strategy is already defined.
-          </p>
-          <p className={invBody}>
             When fear returns, accumulation begins again.
           </p>
           <div className={invGreenBox}>
@@ -282,12 +295,11 @@ export function StrategyWorksSection() {
             </p>
           </div>
           <p className={invBody}>
-            You define how your portfolio should respond to the cycle. INDEXLA
-            monitors the conditions and coordinates execution according to the
-            rules and permissions you approved.
+            You define how your portfolio should respond to the cycle.
           </p>
           <p className={invBodyStrong}>
-            The strategy stays disciplined even when the market isn&apos;t.
+            INDEXLA monitors the conditions and coordinates execution according
+            to the rules and permissions you approved.
           </p>
         </FadeIn>
       </div>

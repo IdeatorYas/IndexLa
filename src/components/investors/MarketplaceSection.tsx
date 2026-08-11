@@ -52,27 +52,35 @@ export function MarketplaceSection() {
         </FadeIn>
 
         <FadeIn className="mt-10">
-          <ol className="mx-auto grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step) => (
-              <li
-                key={step.title}
-                className="rounded-[1.15rem] border border-line bg-void/45 px-4 py-5 text-center"
-              >
-                <p className="text-[0.7rem] font-semibold text-electric">
-                  {step.n}
-                </p>
-                <h3 className="mt-1 display text-[1.1rem] text-ink">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-[0.88rem] leading-relaxed text-muted">
-                  {step.body}
-                </p>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-4 text-center text-[0.85rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-            Discover → Follow → Customize → Build
-          </p>
+          <div className="mx-auto max-w-3xl overflow-hidden rounded-[1.35rem] border border-line bg-void/45">
+            <ol className="divide-y divide-line">
+              {steps.map((step, i) => (
+                <li
+                  key={step.title}
+                  className="flex items-start gap-4 px-5 py-5 sm:gap-5 sm:px-7"
+                >
+                  <span className="display shrink-0 text-[1.35rem] gradient-text">
+                    {step.n}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="display text-[1.15rem] text-ink">
+                        {step.title}
+                      </h3>
+                      {i < steps.length - 1 && (
+                        <span className="text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+                          → {steps[i + 1].title}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">
+                      {step.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </FadeIn>
 
         <FadeIn className="mt-8 space-y-5 text-center">

@@ -9,14 +9,10 @@ import {
 } from "@/components/investors/investorRhythm";
 
 const pillars = [
-  { label: "No Index Token", detail: "Nothing synthetic standing in for ownership." },
-  { label: "No Wrapper", detail: "No share token representing your portfolio." },
-  { label: "No Custody", detail: "Assets stay in your wallet." },
-  {
-    label: "You Own The Underlying Assets",
-    detail: "Direct ownership — your capital, your control.",
-  },
-];
+  "No Index Token",
+  "No Wrapper",
+  "No Custody",
+] as const;
 
 export function OwnershipSection() {
   return (
@@ -30,29 +26,28 @@ export function OwnershipSection() {
           <p className={`mt-5 ${invBody}`}>
             Your assets stay in your wallet.
           </p>
-          <p className={`mt-3 ${invBodyStrong}`}>
-            No index token. No wrapper. No custody. You own the underlying
-            assets.
-          </p>
         </FadeIn>
 
         <FadeIn className="mt-10">
-          <div className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-2">
-            {pillars.map((item) => (
+          <div className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-3">
+            {pillars.map((label) => (
               <div
-                key={item.label}
-                className="rounded-[1.2rem] border border-line bg-deep/50 px-5 py-6 text-center"
+                key={label}
+                className="rounded-[1.2rem] border border-line bg-deep/55 px-5 py-8 text-center"
               >
-                <p className="display text-[1.05rem] tracking-[-0.02em] text-ink sm:text-[1.15rem]">
-                  {item.label}
+                <p className="display text-[1.1rem] tracking-[-0.02em] text-ink sm:text-[1.2rem]">
+                  {label}
                 </p>
-                <p className="mt-2 text-[0.9rem] text-muted">{item.detail}</p>
               </div>
             ))}
           </div>
         </FadeIn>
 
-        <FadeIn className="mx-auto mt-8 max-w-2xl space-y-2 text-center">
+        <FadeIn className="mx-auto mt-8 max-w-2xl space-y-3 text-center">
+          <p className={invBodyStrong}>
+            No index token. No wrapper. No custody. You own the underlying
+            assets.
+          </p>
           <p className={invBody}>
             You choose the assets, allocations, rules, and permissions.
           </p>

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { AiAutomationSection } from "@/components/investors/AiAutomationSection";
-import { DisciplineSection } from "@/components/investors/DisciplineSection";
 import { InvestorDisclaimer } from "@/components/investors/InvestorDisclaimer";
+import { InvestorFeesSection } from "@/components/investors/InvestorFeesSection";
 import { InvestorFinalOwnership } from "@/components/investors/InvestorFinalOwnership";
 import { InvestorHero } from "@/components/investors/InvestorHero";
-import { InvestorStrategiesSection } from "@/components/investors/InvestorStrategiesSection";
 import { MarketCyclesSection } from "@/components/investors/MarketCyclesSection";
 import { MarketplaceSection } from "@/components/investors/MarketplaceSection";
 import { OnePortfolioLayerSection } from "@/components/investors/OnePortfolioLayerSection";
@@ -21,11 +20,10 @@ export default function InvestorsPage() {
   return (
     <main>
       <InvestorHero />
+      <InvestorFeesSection />
       <MarketCyclesSection />
       <StrategyWorksSection />
-      <InvestorStrategiesSection />
       <AiAutomationSection />
-      <DisciplineSection />
       <OnePortfolioLayerSection />
       <OwnershipSection />
       <MarketplaceSection />
