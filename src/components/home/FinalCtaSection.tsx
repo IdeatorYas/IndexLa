@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
   homeEyebrow,
@@ -12,38 +11,6 @@ import {
   homeH2,
   homeSection,
 } from "@/components/home/homeRhythm";
-
-export function NextGenerationSection() {
-  return (
-    <section className={`${homeSection} bg-deep`}>
-      <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={homeH2}>
-            Built for the Next Generation of Investing
-          </h2>
-          <div className={`mx-auto mt-6 max-w-2xl space-y-4 ${homeBody}`}>
-            <p>
-              Gen Z is growing up in a digital, instant economy. Investing should
-              work the same way.
-            </p>
-            <p>
-              They do not want to juggle multiple brokers, exchanges, wallets,
-              approvals, and fragmented platforms just to build one portfolio.
-            </p>
-            <p className="font-medium text-ink">
-              INDEXLA brings assets, strategies, and execution into one portfolio
-              layer.
-            </p>
-            <p>
-              Build your portfolio. Define your rules. Keep control. Let the
-              infrastructure handle the execution.
-            </p>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
 
 export function FinalCtaSection() {
   const reduce = useReducedMotion();

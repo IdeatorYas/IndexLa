@@ -6,18 +6,12 @@
 
 **The non custodial portfolio distribution layer for crypto and tokenized assets.**
 
-
-
 0% management · 0% performance · 0% exit  
  Only 1% execution fee when trades occur
-
-
 
 [Create Your Portfolio] [Join Early Access]
 
 Multi Asset · Cross Chain · Non Custodial · Automated · Creator Marketplace
-
-
 
 ---
 
@@ -133,6 +127,12 @@ Your portfolio becomes the single layer through which you define allocations, st
 
 ---
 
+## **Build & Automate Your Portfolio in Under 5 Minutes**
+
+The next generation of investors expects speed, simplicity, and control. INDEXLA brings multi asset portfolios, programmable strategies, and non custodial execution into a single layer.
+
+
+
 # How It Works
 
 ### 01 — Connect
@@ -235,18 +235,6 @@ No subscription required.
 Creator portfolios share 50% of applicable execution fees with the creator.
 
 ---
-
----
-
-# Built for the Next Generation of Investing
-
-Gen Z is growing up in a digital, instant economy. Investing should work the same way.
-
-They do not want to juggle multiple brokers, exchanges, wallets, approvals, and fragmented platforms just to build one portfolio.
-
-INDEXLA brings assets, strategies, and execution into one portfolio layer.
-
-Build your portfolio. Define your rules. Keep control. Let the infrastructure handle the execution.
 
 ---
 

@@ -1,9 +1,7 @@
 import { CreatorsSection } from "@/components/home/CreatorsSection";
 import { DistributionSection } from "@/components/home/DistributionSection";
-import {
-  FinalCtaSection,
-  NextGenerationSection,
-} from "@/components/home/FinalCtaSection";
+import { BuildAutomateSection } from "@/components/home/BuildAutomateSection";
+import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { FeesSection } from "@/components/home/FeesSection";
 import { Hero } from "@/components/home/Hero";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
@@ -23,11 +21,11 @@ export default function Home() {
       <TokenizationSection />
       <DistributionSection />
       <OnePortfolioSection />
+      <BuildAutomateSection />
       <HowItWorksSection />
       <PortfolioExamplesSection />
       <CreatorsSection />
       <FeesSection />
-      <NextGenerationSection />
       <StrategyExecutedSection />
       <FinalCtaSection />
     </main>
