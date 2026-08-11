@@ -46,7 +46,7 @@ export function TokenDistributionSection() {
           </h2>
           <p className={`mt-5 ${tkStat} gradient-text`}>100,000,000</p>
           <p className="mt-2 text-[0.85rem] font-semibold uppercase tracking-[0.16em] text-muted">
-            $DEXLA
+            $DEXLA maximum supply
           </p>
         </FadeIn>
 

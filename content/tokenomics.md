@@ -14,27 +14,17 @@ The token connects creators, investors, and platform activity through four pract
 
 More creators. More portfolios. More activity. More reasons to use $DEXLA.
 
-
-
 ---
 
 # FOUR CORE UTILITIES
 
 ## 01 — PUBLISH
 
-Creators burn 1,000 $DEXLA to publish a public portfolio or index on the INDEXLA Marketplace.
+Creators use $DEXLA to publish public portfolios and indexes on the INDEXLA Marketplace.
 
 Private portfolios remain free, allowing creators to build and test before going public.
 
-1,000 $DEXLA → Public Portfolio
-
-The protocol may consider transitioning publishing costs to a fixed USD value, paid in $DEXLA at the time of transaction, to maintain predictable creator costs as market conditions change.
-
-
-
 ---
-
-
 
 ## 02 — FEATURE
 
@@ -46,11 +36,7 @@ Featured placement rotates to keep marketplace discovery competitive.
 
 2,500 $DEXLA → 7 Days Featured
 
-
-
 ---
-
-
 
 ## 03 — SAVE
 
@@ -64,11 +50,7 @@ Holding $DEXLA gives investors lower execution fees.
 
 Discounts remain active while the required balance is maintained.
 
-
-
 ---
-
-
 
 ## 04 — TIP CREATORS
 
@@ -76,11 +58,7 @@ Investors and followers can tip creators directly in $DEXLA.
 
 Creators can earn from the value they bring to the ecosystem through research, portfolio construction, market views, and community contribution.
 
-No performance fee is required.
-
 Discover → Follow → Invest → Tip
-
-
 
 ---
 
@@ -94,8 +72,6 @@ Every public portfolio or index published on the Marketplace permanently burns 1
 
 More public portfolios → More $DEXLA removed
 
-
-
 ---
 
 ## 02 — FEATURED BURN
@@ -105,8 +81,6 @@ Every Featured promotion permanently burns 2,500 $DEXLA.
 Creators can return to the marketplace and use promotion again as their audience and portfolio grow.
 
 More promotion → More $DEXLA removed
-
-
 
 ---
 
@@ -122,19 +96,13 @@ Example:
 
 $1M execution volume → $10,000 allocated to buyback & burn
 
-
-
 ---
-
-
 
 ## 04 — TREASURY BUYBACK & BURN
 
 25% of realized Treasury profits are allocated to purchasing and permanently burning $DEXLA.
 
 Treasury assets are protocol-owned capital and stable reserves. Realized profits refer only to gains actually realized from Treasury-managed positions, not investor funds.
-
-
 
 ---
 
@@ -156,20 +124,9 @@ Platform activity creates buyback and burn demand.
 
 That is the INDEXLA token economy.
 
-
-
 ---
 
-
-
-  
-
-
-
-
 ---
-
-
 
 # THE $DEXLA FLYWHEEL
 
@@ -196,9 +153,13 @@ Tip creators
 PLATFORM
 
 More portfolios  
-+  
+
+- 
+
 More execution  
-+  
+
+- 
+
 More Treasury activity  
 ↓  
 Buybacks  
@@ -229,8 +190,6 @@ Permanent burns
 100,000,000 $DEXLA is the absolute maximum supply.
 
 There is no additional minting, inflation, or supply expansion beyond this cap.
-
-
 
 ---
 
@@ -276,8 +235,6 @@ Reserved for exchange liquidity provisioning and market maker partnerships.
 
 All applicable unlocks are designed to be transparent and verifiable through smart contracts.
 
-
-
 ---
 
 # INITIAL CIRCULATING SUPPLY
@@ -296,8 +253,6 @@ CEX Listings: 0.75%
 
 Other unlocked allocations: 1%
 
-
-
 ---
 
 # LAUNCH TIMING
@@ -308,14 +263,5 @@ This allows the platform to establish real users, portfolios, and activity befor
 
 Once $DEXLA launches, the token economy becomes active across publishing, promotion, fee benefits, creator tipping, and the protocol's burn mechanisms.
 
-  
-
-
-
-
 ---
 
-
-
-  
-  

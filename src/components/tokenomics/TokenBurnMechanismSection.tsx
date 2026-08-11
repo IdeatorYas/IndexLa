@@ -7,8 +7,6 @@ import {
   tkH2,
   tkSection,
   tkStat,
-  tkSurface,
-  tkSurfaceSoft,
 } from "@/components/tokenomics/tokenomicsRhythm";
 
 const burns = [
@@ -52,12 +50,24 @@ export function TokenBurnMechanismSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section className={`${tkSection} bg-void`}>
-      <div className="section-pad container-max">
+    <section className={`${tkSection} relative overflow-hidden bg-void`}>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(248,113,113,0.1), transparent 60%)",
+        }}
+        aria-hidden
+      />
+
+      <div className="section-pad container-max relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={`${tkH2} uppercase`}>
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-danger">
+            Supply reduction layer
+          </p>
+          <h2 className={`mt-3 ${tkH2} uppercase`}>
             Four Burn{" "}
-            <span className="gradient-text">Mechanisms</span>
+            <span className="text-danger">Mechanisms</span>
           </h2>
           <p className={`mt-5 ${tkBody} text-balance`}>
             $DEXLA is designed so that real INDEXLA activity can translate into
@@ -65,58 +75,53 @@ export function TokenBurnMechanismSection() {
           </p>
         </FadeIn>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-2">
+        <div className="mt-10 space-y-0 border-y border-danger/20">
           {burns.map((item, i) => (
-            <FadeIn key={item.n} delay={i * 0.04}>
-              <article className={`flex h-full flex-col ${tkSurface}`}>
-                <div className="border-b border-white/[0.07] px-5 py-4 sm:px-6">
-                  <div className="flex items-baseline gap-3">
-                    <span className="display text-[1.05rem] text-electric">
+            <FadeIn key={item.n} delay={i * 0.03}>
+              <article className="grid gap-5 border-b border-danger/15 py-8 last:border-b-0 lg:grid-cols-[minmax(0,1fr)_minmax(14rem,18rem)] lg:items-center lg:gap-8 lg:py-9">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span className="display text-[1.05rem] tabular-nums text-danger">
                       {item.n}
                     </span>
-                    <h3 className="display text-[1.25rem] tracking-[-0.02em] text-ink uppercase sm:text-[1.35rem]">
+                    <h3 className="display text-[clamp(1.25rem,2.4vw,1.55rem)] tracking-[-0.02em] text-ink uppercase text-balance">
                       {item.title}
                     </h3>
                   </div>
-                </div>
-
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  <p className={tkBody}>{item.body}</p>
+                  <p className={`mt-4 ${tkBody}`}>{item.body}</p>
                   {"note" in item && item.note && (
                     <p className={`mt-3 ${tkBody}`}>{item.note}</p>
                   )}
                   {"example" in item && item.example && (
-                    <p className={`mt-3 ${tkSurfaceSoft} px-3.5 py-3 text-[0.95rem] font-medium text-ink`}>
+                    <p className="mt-4 border-l-2 border-danger/40 pl-3.5 text-[0.98rem] font-medium text-ink">
                       Example: {item.example}
                     </p>
                   )}
-
-                  <div className="mt-auto pt-5">
-                    <motion.div
-                      className="rounded-xl border border-danger/30 bg-danger/[0.08] px-4 py-4 text-center"
-                      initial={reduce ? false : { opacity: 0.7 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                    >
-                      <p className={`${tkStat} text-danger`}>{item.amount}</p>
-                      <p className="mt-1 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted">
-                        {item.label}
-                      </p>
-                      <div className="my-2.5 flex items-center justify-center gap-2 text-[0.8rem] font-semibold text-danger/80">
-                        <span>$DEXLA</span>
-                        <span aria-hidden>→</span>
-                        <span className="rounded-full border border-danger/35 bg-danger/10 px-2.5 py-0.5">
-                          Permanently removed
-                        </span>
-                      </div>
-                    </motion.div>
-                    {"outcome" in item && item.outcome && (
-                      <p className="mt-3 text-center text-[0.92rem] font-semibold text-ink">
-                        {item.outcome}
-                      </p>
-                    )}
-                  </div>
+                  {"outcome" in item && item.outcome && (
+                    <p className="mt-4 text-[0.95rem] font-semibold text-ink">
+                      {item.outcome}
+                    </p>
+                  )}
                 </div>
+
+                <motion.div
+                  className="border border-danger/35 bg-danger/[0.08] px-4 py-5 text-center"
+                  initial={reduce ? false : { opacity: 0.65 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <p className={`${tkStat} text-danger`}>{item.amount}</p>
+                  <p className="mt-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">
+                    {item.label}
+                  </p>
+                  <div className="mt-3 flex items-center justify-center gap-2 text-[0.78rem] font-semibold text-danger/85">
+                    <span>$DEXLA</span>
+                    <span aria-hidden>→</span>
+                    <span className="border border-danger/35 px-2 py-0.5">
+                      Removed
+                    </span>
+                  </div>
+                </motion.div>
               </article>
             </FadeIn>
           ))}

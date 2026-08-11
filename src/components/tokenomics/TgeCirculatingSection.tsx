@@ -26,10 +26,13 @@ export function TgeCirculatingSection() {
             Initial Circulating{" "}
             <span className="gradient-text">Supply</span>
           </h2>
-          <p className="mt-5 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-electric">
-            14.75% TGE Float
+          <p className="mt-5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted">
+            TGE Float
           </p>
-          <p className={`mt-3 ${tkStat} gradient-text`}>14.75M $DEXLA</p>
+          <p className={`mt-3 ${tkStat} gradient-text`}>14.75%</p>
+          <p className="mt-2 display text-[clamp(1.2rem,2.5vw,1.55rem)] tracking-[-0.02em] text-ink">
+            14.75M $DEXLA
+          </p>
         </FadeIn>
 
         <FadeIn className="mt-9">
