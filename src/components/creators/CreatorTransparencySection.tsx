@@ -6,6 +6,7 @@ import {
   crGreenText,
   crH2,
   crSection,
+  crSurfaceSoft,
 } from "@/components/creators/creatorRhythm";
 
 const points = [
@@ -16,7 +17,7 @@ const points = [
 
 export function CreatorTransparencySection() {
   return (
-    <section className={`${crSection} bg-deep`}>
+    <section className={`${crSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${crH2} uppercase`}>
@@ -25,12 +26,12 @@ export function CreatorTransparencySection() {
           </h2>
         </FadeIn>
 
-        <FadeIn className="mt-8">
+        <FadeIn className="mt-9">
           <div className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-3">
             {points.map((line) => (
               <div
                 key={line}
-                className="rounded-xl border border-line bg-void/45 px-4 py-5 text-center"
+                className={`${crSurfaceSoft} px-4 py-5 text-center`}
               >
                 <p className="text-[0.95rem] font-medium leading-snug text-ink text-pretty sm:text-[1rem]">
                   {line}
@@ -40,10 +41,10 @@ export function CreatorTransparencySection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-7 text-center">
+        <FadeIn className="mt-8 text-center">
           <div className="inline-flex justify-center">
             <div className={crGreenBox}>
-              <p className={crGreenText}>
+              <p className={`${crGreenText} text-balance`}>
                 Don&apos;t sell certainty. Build something you can stand behind.
               </p>
             </div>

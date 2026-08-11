@@ -12,8 +12,6 @@ Build your strategy. Grow your audience. Earn from its use.
 
 Get early creator access and publish your first portfolio free at launch.
 
-
-
 ---
 
 # BECOME A DECENTRALIZED PORTFOLIO CREATOR.
@@ -53,11 +51,7 @@ Your thesis becomes something your audience can actually allocate to.
 
 [Build Your Portfolio]
 
-
-
 ---
-
-
 
 # BUILT FOR LONG-TERM CONVICTION.
 
@@ -66,22 +60,6 @@ INDEXLA is built around investment strategies designed for long-term portfolio m
 Build around market cycles, accumulation, profit taking, rebalancing, momentum, and other predefined conditions.
 
 ### Turn conviction into a disciplined, programmable portfolio.
-
-
-
----
-
-# YOUR THESIS. AUTOMATED.
-
-You define the assets, allocations, conditions, and strategy.
-
-INDEXLA's AI-assisted automation monitors the conditions you define and coordinates authorized execution according to your rules.
-
-Your strategy can respond as markets change without requiring your audience to manually execute every decision.
-
-### YOU DEFINE THE STRATEGY. INDEXLA COORDINATES EXECUTION.
-
-[Become an INDEXLA Creator]
 
 ---
 
@@ -130,8 +108,6 @@ Creators earn when followers trade, rebalance, take profits, or adjust allocatio
 
 [Become an INDEXLA Creator]
 
-
-
 ---
 
 # TRANSPARENCY BUILDS CREDIBILITY.
@@ -143,8 +119,6 @@ You decide what your portfolio holds and how it behaves.
 Followers decide whether to allocate.
 
 ### Don't sell certainty. Build something you can stand behind.
-
-
 
 ---
 
@@ -176,20 +150,16 @@ Turn proven frameworks into long-term portfolios.
 
 ## YOUR PORTFOLIO CAN KEEP WORKING.
 
-Turn your thesis into something your audience can follow, customize, and allocate to.
+Turn your conviction into a portfolio your audience can follow, customize, and allocate to.
 
-### Your followers keep their keys. You keep your credibility.
+### JOIN EARLY INDEXLA CREATORS.
+
+Be among the first creators building the next generation of programmable portfolios.
 
 [Become an INDEXLA Creator]
-
-
 
 ---
 
 ### CREATOR DISCLAIMER
 
 INDEXLA provides technology and infrastructure for creators to publish and automate portfolio strategies. Creators are responsible for their portfolio construction, communications, disclosures, and compliance with applicable laws and regulations. INDEXLA does not provide financial advice or guarantee portfolio performance. Followers make their own investment decisions and retain custody of their assets.
-
-  
-
-

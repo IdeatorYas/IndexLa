@@ -5,7 +5,6 @@ import { CreatorEconomicsSection } from "@/components/creators/CreatorEconomicsS
 import { CreatorHybridPortfolioSection } from "@/components/creators/CreatorHybridPortfolioSection";
 import { CreatorLongTermSection } from "@/components/creators/CreatorLongTermSection";
 import { CreatorParticipantsSection } from "@/components/creators/CreatorParticipantsSection";
-import { CreatorThesisFlowSection } from "@/components/creators/CreatorThesisFlowSection";
 import { CreatorTransparencySection } from "@/components/creators/CreatorTransparencySection";
 import { CreatorTypesSection } from "@/components/creators/CreatorTypesSection";
 import { CreatorsFinalCta } from "@/components/creators/CreatorsFinalCta";
@@ -24,7 +23,6 @@ export default function CreatorsPage() {
       <CreatorBecomeSection />
       <CreatorHybridPortfolioSection />
       <CreatorLongTermSection />
-      <CreatorThesisFlowSection />
       <CreatorParticipantsSection />
       <CreatorEconomicsSection />
       <CreatorTransparencySection />

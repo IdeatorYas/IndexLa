@@ -4,9 +4,11 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import {
   crBody,
+  crCta,
   crGreenBox,
   crGreenText,
   crH1,
+  crSurface,
 } from "@/components/creators/creatorRhythm";
 
 const journey = [
@@ -21,11 +23,11 @@ function HeroJourneyVisual() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="rounded-[1.35rem] border border-line bg-deep/80 p-5 sm:p-6">
-      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
+    <div className={`${crSurface} p-5 sm:p-6`}>
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
         Creator path
       </p>
-      <p className="mt-2 display text-[1.15rem] tracking-[-0.02em] text-ink sm:text-[1.25rem]">
+      <p className="mt-2 display text-[1.12rem] tracking-[-0.02em] text-ink sm:text-[1.22rem]">
         Thesis → Portfolio → Audience → Revenue
       </p>
 
@@ -33,29 +35,24 @@ function HeroJourneyVisual() {
         {journey.map((step, i) => (
           <motion.div
             key={step.label}
-            className="flex items-center gap-3 rounded-xl border border-line bg-void/50 px-3.5 py-3"
-            initial={reduce ? false : { opacity: 0, x: 12 }}
+            className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-void/45 px-3.5 py-3"
+            initial={reduce ? false : { opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.12 + i * 0.07 }}
+            transition={{ delay: 0.1 + i * 0.06 }}
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-electric/35 bg-electric/10 display text-[0.85rem] text-electric">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-electric/30 bg-electric/[0.08] display text-[0.8rem] text-electric">
               {i + 1}
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-[0.95rem] font-semibold text-ink">{step.label}</p>
-              <p className="text-[0.78rem] text-muted-dim">{step.detail}</p>
+              <p className="text-[0.92rem] font-semibold text-ink">{step.label}</p>
+              <p className="text-[0.76rem] text-muted-dim">{step.detail}</p>
             </div>
-            {i < journey.length - 1 && (
-              <span className="hidden text-electric/45 sm:inline" aria-hidden>
-                →
-              </span>
-            )}
           </motion.div>
         ))}
       </div>
 
-      <div className="mt-4 rounded-xl border border-success/35 bg-success/10 px-4 py-3.5 text-center">
-        <p className="text-[0.88rem] font-semibold text-ink">
+      <div className="mt-4 rounded-xl border border-success/30 bg-success/[0.08] px-4 py-3.5 text-center">
+        <p className="text-[0.88rem] font-semibold leading-snug text-ink text-balance">
           Your thesis becomes something your audience can allocate to.
         </p>
       </div>
@@ -67,25 +64,25 @@ export function CreatorsHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-void pt-28 pb-12 md:pb-16 md:pt-32">
-      <div className="pointer-events-none absolute inset-0 hero-glow opacity-55" aria-hidden />
+    <section className="relative isolate overflow-hidden bg-void pt-28 pb-14 md:pb-16 md:pt-32">
+      <div className="pointer-events-none absolute inset-0 hero-glow opacity-40" aria-hidden />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-void to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-void to-transparent"
         aria-hidden
       />
 
       <div className="section-pad container-max relative z-10">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.12fr_0.88fr] lg:gap-14">
           <motion.div
-            initial={reduce ? false : { opacity: 0, y: 22 }}
+            initial={reduce ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="mb-6 h-px w-14 bg-gradient-to-r from-electric/80 to-transparent" />
+            <div className="mb-7 h-px w-12 bg-gradient-to-r from-electric/70 to-transparent" />
 
             <h1 className={crH1}>
               <span className="block">Your Thesis Deserves</span>
-              <span className="mt-[0.12em] block gradient-text">
+              <span className="mt-[0.1em] block gradient-text">
                 More Than An X Post.
               </span>
             </h1>
@@ -103,30 +100,27 @@ export function CreatorsHero() {
               </div>
             </div>
 
-            <div className="mt-6 rounded-xl border border-electric/40 bg-electric/10 px-4 py-4">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
+            <div className="mt-5 rounded-2xl border border-electric/30 bg-electric/[0.07] px-5 py-4">
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
                 First Portfolio Free At Launch
               </p>
-              <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">
+              <p className="mt-1.5 max-w-md text-[0.95rem] leading-relaxed text-muted text-pretty">
                 Get early creator access and publish your first portfolio free at
                 launch.
               </p>
             </div>
 
             <div className="mt-9">
-              <Button
-                href="#become-creator"
-                className="min-w-[16rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
-              >
+              <Button href="#become-creator" className={crCta}>
                 Become an INDEXLA Creator
               </Button>
             </div>
           </motion.div>
 
           <motion.div
-            initial={reduce ? false : { opacity: 0, y: 16 }}
+            initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.12 }}
+            transition={{ duration: 0.85, delay: 0.1 }}
           >
             <HeroJourneyVisual />
           </motion.div>

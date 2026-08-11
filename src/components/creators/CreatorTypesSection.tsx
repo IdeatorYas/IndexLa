@@ -4,6 +4,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   crH2,
   crSection,
+  crSurfaceSoft,
 } from "@/components/creators/creatorRhythm";
 
 const types = [
@@ -31,7 +32,7 @@ const types = [
 
 export function CreatorTypesSection() {
   return (
-    <section className={`${crSection} bg-void`}>
+    <section className={`${crSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${crH2} uppercase`}>
@@ -40,17 +41,17 @@ export function CreatorTypesSection() {
           </h2>
         </FadeIn>
 
-        <FadeIn className="mt-8">
-          <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-2">
+        <FadeIn className="mt-9">
+          <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-2.5">
             {types.map((item) => (
               <article
                 key={item.title}
-                className="w-full rounded-xl border border-line bg-deep/50 px-4 py-3.5 sm:w-[calc(50%-0.25rem)] lg:w-[calc(33.333%-0.35rem)]"
+                className={`w-full ${crSurfaceSoft} px-4 py-3.5 sm:w-[calc(50%-0.35rem)] lg:w-[calc(33.333%-0.45rem)]`}
               >
-                <h3 className="text-[0.92rem] font-semibold uppercase tracking-[0.04em] text-ink">
+                <h3 className="text-[0.88rem] font-semibold uppercase tracking-[0.06em] text-ink">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-[0.85rem] leading-snug text-muted">
+                <p className="mt-1.5 text-[0.85rem] leading-snug text-muted">
                   {item.body}
                 </p>
               </article>

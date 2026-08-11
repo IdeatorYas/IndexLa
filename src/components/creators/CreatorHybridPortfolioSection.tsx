@@ -10,8 +10,10 @@ import type { AssetKey } from "@/lib/site";
 import {
   crBody,
   crBodyStrong,
+  crCta,
   crH2,
   crSection,
+  crSurface,
 } from "@/components/creators/creatorRhythm";
 
 const allocation: {
@@ -83,9 +85,9 @@ export function CreatorHybridPortfolioSection() {
         </FadeIn>
 
         <FadeIn className="mt-10" delay={0.04}>
-          <div className="overflow-hidden rounded-[1.35rem] border border-line bg-deep/70 shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
+          <div className={crSurface}>
             {/* Product chrome header */}
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-void/40 px-5 py-3.5 sm:px-6">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.07] bg-void/35 px-5 py-3.5 sm:px-6">
               <div className="flex items-center gap-2.5">
                 <span className="flex h-2.5 w-2.5 rounded-full bg-success" />
                 <p className="text-[0.78rem] font-semibold text-ink">
@@ -99,7 +101,7 @@ export function CreatorHybridPortfolioSection() {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line px-5 py-5 sm:px-6">
+            <div className="flex flex-wrap items-end justify-between gap-3 border-b border-white/[0.07] px-5 py-5 sm:px-6">
               <div className="min-w-0">
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
                   Example
@@ -127,14 +129,14 @@ export function CreatorHybridPortfolioSection() {
 
             <div className="grid gap-0 xl:grid-cols-2">
               {/* Portfolio allocation */}
-              <div className="border-b border-line xl:border-b-0 xl:border-r">
-                <div className="border-b border-line px-5 py-3 sm:px-6">
+              <div className="border-b border-white/[0.07] xl:border-b-0 xl:border-r">
+                <div className="border-b border-white/[0.07] px-5 py-3 sm:px-6">
                   <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                     01 — Portfolio
                   </p>
                 </div>
                 <div className="grid gap-0 lg:grid-cols-[0.85fr_1.15fr]">
-                  <div className="flex flex-col items-center justify-center gap-5 border-b border-line p-5 sm:p-6 lg:border-b-0 lg:border-r">
+                  <div className="flex flex-col items-center justify-center gap-5 border-b border-white/[0.07] p-5 sm:p-6 lg:border-b-0 lg:border-r">
                     <div className="relative h-40 w-40 sm:h-48 sm:w-48">
                       <div
                         className="absolute inset-0 rounded-full"
@@ -166,7 +168,7 @@ export function CreatorHybridPortfolioSection() {
                     {allocation.map((row, i) => (
                       <motion.div
                         key={row.key}
-                        className="rounded-xl border border-line bg-void/45 px-3 py-2.5"
+                        className="rounded-xl border border-white/[0.06] bg-void/40 px-3 py-2.5"
                         initial={reduce ? false : { opacity: 0, y: 8 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -213,7 +215,7 @@ export function CreatorHybridPortfolioSection() {
 
               {/* Strategy panel */}
               <div>
-                <div className="border-b border-line px-5 py-3 sm:px-6">
+                <div className="border-b border-white/[0.07] px-5 py-3 sm:px-6">
                   <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                     02 — Investment strategy
                   </p>
@@ -272,7 +274,7 @@ export function CreatorHybridPortfolioSection() {
               </div>
             </div>
 
-            <div className="border-t border-line px-5 py-5 sm:px-6">
+            <div className="border-t border-white/[0.07] px-5 py-5 sm:px-6">
               <p className="text-center text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                 Across networks
               </p>
@@ -280,7 +282,7 @@ export function CreatorHybridPortfolioSection() {
                 {networks.map((n, i) => (
                   <motion.span
                     key={n.name}
-                    className="flex items-center gap-2 rounded-full border border-line bg-void/50 py-1.5 pl-1.5 pr-3"
+                    className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-void/45 py-1.5 pl-1.5 pr-3"
                     initial={reduce ? false : { opacity: 0, y: 6 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -317,11 +319,8 @@ export function CreatorHybridPortfolioSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-8 text-center">
-          <Button
-            href="#become-creator"
-            className="min-w-[14rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
-          >
+        <FadeIn className="mt-9 text-center">
+          <Button href="#become-creator" className={crCta}>
             Build Your Portfolio
           </Button>
         </FadeIn>

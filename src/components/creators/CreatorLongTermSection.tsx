@@ -41,12 +41,12 @@ export function CreatorLongTermSection() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mt-8">
+        <FadeIn className="mt-9">
           <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-2">
             {levers.map((label) => (
               <span
                 key={label}
-                className="rounded-full border border-line bg-void/50 px-3.5 py-2 text-[0.88rem] font-semibold text-ink"
+                className="rounded-full border border-white/[0.08] bg-void/40 px-3.5 py-2 text-[0.86rem] font-semibold text-ink"
               >
                 {label}
               </span>
@@ -54,7 +54,7 @@ export function CreatorLongTermSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-8 text-center">
+        <FadeIn className="mt-9 text-center">
           <div className="inline-flex justify-center">
             <div className={crGreenBox}>
               <p className={crGreenText}>
