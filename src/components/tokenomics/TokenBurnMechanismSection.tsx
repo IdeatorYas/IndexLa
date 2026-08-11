@@ -4,6 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   tkBody,
+  tkBurnGlow,
+  tkBurnPanel,
   tkH2,
   tkSection,
   tkStat,
@@ -50,13 +52,10 @@ export function TokenBurnMechanismSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section className={`${tkSection} relative overflow-hidden bg-void`}>
+    <section className={`${tkSection} relative overflow-hidden bg-deep`}>
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(248,113,113,0.1), transparent 60%)",
-        }}
+        className="pointer-events-none absolute inset-0 opacity-50"
+        style={{ background: tkBurnGlow }}
         aria-hidden
       />
 
@@ -75,7 +74,7 @@ export function TokenBurnMechanismSection() {
           </p>
         </FadeIn>
 
-        <div className="mt-10 space-y-0 border-y border-danger/20">
+        <div className="mt-10 space-y-0 border-y border-danger/25">
           {burns.map((item, i) => (
             <FadeIn key={item.n} delay={i * 0.03}>
               <article className="grid gap-5 border-b border-danger/15 py-8 last:border-b-0 lg:grid-cols-[minmax(0,1fr)_minmax(14rem,18rem)] lg:items-center lg:gap-8 lg:py-9">
@@ -105,7 +104,7 @@ export function TokenBurnMechanismSection() {
                 </div>
 
                 <motion.div
-                  className="border border-danger/35 bg-danger/[0.08] px-4 py-5 text-center"
+                  className={`${tkBurnPanel} px-4 py-5 text-center`}
                   initial={reduce ? false : { opacity: 0.65 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}

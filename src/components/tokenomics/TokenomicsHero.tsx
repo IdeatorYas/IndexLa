@@ -53,41 +53,49 @@ export function TokenomicsHero() {
           </div>
         </motion.div>
 
-        {/* 4 × 4 architecture centerpiece */}
+        {/* 4 × 4 — defining visual signature */}
         <motion.div
           className="mx-auto mt-12 max-w-5xl"
           initial={reduce ? false : { opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative overflow-hidden rounded-[1.35rem] border border-white/[0.1] bg-gradient-to-b from-deep/90 to-void/90 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+          <div className="relative overflow-hidden border border-white/[0.1] bg-void/80 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
             <div
-              className="pointer-events-none absolute inset-0 opacity-60"
+              className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 50% 60% at 25% 40%, rgba(56,189,248,0.12), transparent 55%), radial-gradient(ellipse 50% 60% at 75% 40%, rgba(248,113,113,0.1), transparent 55%)",
+                  "radial-gradient(ellipse 45% 70% at 18% 40%, rgba(52,211,153,0.12), transparent 55%), radial-gradient(ellipse 45% 70% at 82% 40%, rgba(248,113,113,0.12), transparent 55%)",
               }}
               aria-hidden
             />
 
-            <div className="relative grid md:grid-cols-[1fr_auto_1fr]">
-              <div className="border-b border-white/[0.08] p-6 sm:p-8 md:border-b-0 md:border-r">
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-electric">
-                  Architecture
+            <div className="relative border-b border-white/[0.08] px-5 py-3.5 text-center sm:px-8">
+              <p className="display text-[0.95rem] tracking-[-0.01em] text-ink sm:text-[1.05rem]">
+                <span className="text-success">4 Core Utilities</span>
+                <span className="mx-2 text-muted-dim">·</span>
+                <span className="text-danger">4 Burn Mechanisms</span>
+              </p>
+            </div>
+
+            <div className="relative grid md:grid-cols-2">
+              <div className="border-b border-success/20 p-6 sm:p-8 md:border-b-0 md:border-r md:border-success/20">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-success">
+                  Value created
                 </p>
-                <p className="mt-3 display text-[clamp(2.4rem,6vw,3.75rem)] leading-none tracking-[-0.04em] text-ink">
+                <p className="mt-3 display text-[clamp(2.6rem,7vw,4rem)] leading-none tracking-[-0.04em] text-success">
                   4
                 </p>
                 <h2 className="mt-2 display text-[clamp(1.15rem,2.4vw,1.45rem)] tracking-[-0.02em] text-ink uppercase text-balance">
                   Core Utilities
                 </h2>
-                <ul className="mt-6 space-y-2.5">
+                <ul className="mt-6 space-y-0">
                   {utilities.map((item, i) => (
                     <li
                       key={item}
-                      className="flex items-baseline gap-3 border-b border-white/[0.06] pb-2.5 last:border-0"
+                      className="flex items-baseline gap-3 border-b border-success/15 py-2.5 last:border-0"
                     >
-                      <span className="display text-[0.95rem] tabular-nums text-electric/80">
+                      <span className="display text-[0.95rem] tabular-nums text-success">
                         0{i + 1}
                       </span>
                       <span className="text-[1.02rem] font-semibold text-ink">
@@ -98,34 +106,23 @@ export function TokenomicsHero() {
                 </ul>
               </div>
 
-              <div
-                className="hidden items-center justify-center px-2 md:flex"
-                aria-hidden
-              >
-                <div className="flex h-full w-px flex-col items-center justify-center gap-3 py-10">
-                  <div className="h-10 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-                  <span className="display text-[1.1rem] text-muted-dim">×</span>
-                  <div className="h-10 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-                </div>
-              </div>
-
-              <div className="p-6 sm:p-8">
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-danger">
-                  Supply reduction
+              <div className="border-t border-danger/20 p-6 sm:p-8 md:border-t-0">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-danger">
+                  Supply reduced
                 </p>
-                <p className="mt-3 display text-[clamp(2.4rem,6vw,3.75rem)] leading-none tracking-[-0.04em] text-danger">
+                <p className="mt-3 display text-[clamp(2.6rem,7vw,4rem)] leading-none tracking-[-0.04em] text-danger">
                   4
                 </p>
                 <h2 className="mt-2 display text-[clamp(1.15rem,2.4vw,1.45rem)] tracking-[-0.02em] text-ink uppercase text-balance">
                   Burn Mechanisms
                 </h2>
-                <ul className="mt-6 space-y-2.5">
+                <ul className="mt-6 space-y-0">
                   {burns.map((item, i) => (
                     <li
                       key={item}
-                      className="flex items-baseline gap-3 border-b border-white/[0.06] pb-2.5 last:border-0"
+                      className="flex items-baseline gap-3 border-b border-danger/15 py-2.5 last:border-0"
                     >
-                      <span className="display text-[0.95rem] tabular-nums text-danger/80">
+                      <span className="display text-[0.95rem] tabular-nums text-danger">
                         0{i + 1}
                       </span>
                       <span className="text-[1.02rem] font-semibold text-ink">

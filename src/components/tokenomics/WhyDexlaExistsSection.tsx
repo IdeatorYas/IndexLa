@@ -12,25 +12,28 @@ const stages = [
   {
     title: "Creators",
     utilities: ["Publish", "Feature"],
+    tone: "utility" as const,
   },
   {
     title: "Investors",
     utilities: ["Save", "Tip"],
+    tone: "utility" as const,
   },
   {
     title: "INDEXLA Activity",
     utilities: ["Execution", "Treasury"],
+    tone: "neutral" as const,
   },
   {
     title: "$DEXLA Demand",
     utilities: ["Buybacks", "Burns"],
-    accent: true,
+    tone: "burn" as const,
   },
 ] as const;
 
 export function WhyDexlaExistsSection() {
   return (
-    <section className={`${tkSection} bg-deep`}>
+    <section className={`${tkSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>
@@ -46,23 +49,25 @@ export function WhyDexlaExistsSection() {
         </FadeIn>
 
         <FadeIn className="mt-10">
-          <div className="overflow-hidden border border-white/[0.1] bg-void/40">
+          <div className="overflow-hidden border border-white/[0.1] bg-deep/45">
             <div className="grid grid-cols-1 divide-y divide-white/[0.08] sm:grid-cols-4 sm:divide-x sm:divide-y-0">
               {stages.map((stage, i) => (
                 <div key={stage.title} className="relative p-5 text-center sm:p-6">
                   {i < stages.length - 1 && (
                     <span
-                      className="pointer-events-none absolute -bottom-3 left-1/2 z-10 -translate-x-1/2 text-electric/50 sm:bottom-auto sm:left-auto sm:right-[-0.55rem] sm:top-1/2 sm:-translate-y-1/2 sm:translate-x-0"
+                      className="pointer-events-none absolute -bottom-3 left-1/2 z-10 -translate-x-1/2 text-muted-dim sm:bottom-auto sm:left-auto sm:right-[-0.55rem] sm:top-1/2 sm:-translate-y-1/2 sm:translate-x-0"
                       aria-hidden
                     >
                       →
                     </span>
                   )}
                   <p
-                    className={`display text-[1.05rem] tracking-[-0.02em] sm:text-[1.15rem] ${
-                      "accent" in stage && stage.accent
-                        ? "gradient-text"
-                        : "text-ink"
+                    className={`display text-[1.05rem] tracking-[-0.02em] sm:text-[1.12rem] ${
+                      stage.tone === "utility"
+                        ? "text-success"
+                        : stage.tone === "burn"
+                          ? "text-danger"
+                          : "text-ink"
                     }`}
                   >
                     {stage.title}
@@ -81,7 +86,7 @@ export function WhyDexlaExistsSection() {
               ))}
             </div>
             <div className="border-t border-white/[0.08] px-5 py-3 text-center">
-              <p className="text-[0.85rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+              <p className="text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-muted-dim text-balance">
                 Creators → Investors → INDEXLA Activity → $DEXLA Demand
               </p>
             </div>
@@ -89,7 +94,7 @@ export function WhyDexlaExistsSection() {
         </FadeIn>
 
         <FadeIn className="mt-8 text-center">
-          <p className="display text-[1.25rem] tracking-[-0.02em] text-ink">
+          <p className="display text-[1.2rem] tracking-[-0.02em] text-ink">
             That is the INDEXLA token economy.
           </p>
         </FadeIn>

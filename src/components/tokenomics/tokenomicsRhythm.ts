@@ -1,5 +1,6 @@
 /**
  * Tokenomics page presentation tokens — INDEXLA design system.
+ * Green = utility / value created · Red = supply reduction / burn
  */
 export {
   homeH2 as tkH2,
@@ -19,10 +20,26 @@ export const tkH1 =
   "display text-[clamp(2.4rem,6vw,4.25rem)] font-semibold tracking-[-0.04em] text-balance text-pretty uppercase leading-[1.02]";
 
 export const tkSurface =
-  "overflow-hidden rounded-2xl border border-white/[0.08] bg-deep/55 shadow-[0_20px_60px_rgba(0,0,0,0.28)]";
+  "overflow-hidden border border-white/[0.08] bg-deep/55";
 
 export const tkSurfaceSoft =
-  "rounded-2xl border border-white/[0.07] bg-void/40";
+  "border border-white/[0.07] bg-void/40";
 
 export const tkStat =
   "display text-[clamp(1.75rem,4vw,2.75rem)] leading-none tracking-[-0.03em] tabular-nums";
+
+/** Premium utility (green) — value / usage */
+export const tkUtilityAccent = "text-success";
+export const tkUtilityBorder = "border-success/30";
+export const tkUtilityPanel =
+  "border border-success/30 bg-success/[0.07]";
+export const tkUtilityGlow =
+  "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(52,211,153,0.11), transparent 60%)";
+
+/** Premium burn (red) — supply reduction */
+export const tkBurnAccent = "text-danger";
+export const tkBurnBorder = "border-danger/30";
+export const tkBurnPanel =
+  "border border-danger/35 bg-danger/[0.08]";
+export const tkBurnGlow =
+  "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(248,113,113,0.11), transparent 60%)";

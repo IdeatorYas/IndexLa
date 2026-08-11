@@ -6,6 +6,8 @@ import {
   tkH2,
   tkSection,
   tkStat,
+  tkUtilityGlow,
+  tkUtilityPanel,
 } from "@/components/tokenomics/tokenomicsRhythm";
 
 const utilities = [
@@ -50,27 +52,31 @@ const utilities = [
 
 export function TokenUtilitySection() {
   return (
-    <section className={`${tkSection} bg-deep`}>
-      <div className="section-pad container-max">
+    <section className={`${tkSection} relative overflow-hidden bg-deep`}>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-50"
+        style={{ background: tkUtilityGlow }}
+        aria-hidden
+      />
+
+      <div className="section-pad container-max relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-electric">
-            Usage layer
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-success">
+            Value layer
           </p>
           <h2 className={`mt-3 ${tkH2} uppercase`}>
             Four Core{" "}
-            <span className="gradient-text">Utilities</span>
+            <span className="text-success">Utilities</span>
           </h2>
         </FadeIn>
 
-        <div className="mt-10 space-y-0 border-y border-white/[0.08]">
+        <div className="mt-10 space-y-0 border-y border-success/25">
           {utilities.map((item, i) => (
             <FadeIn key={item.n} delay={i * 0.03}>
-              <article
-                className="grid gap-6 border-b border-white/[0.07] py-8 last:border-b-0 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:gap-10 lg:py-9"
-              >
+              <article className="grid gap-6 border-b border-success/15 py-8 last:border-b-0 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:gap-10 lg:py-9">
                 <div>
                   <div className="flex items-baseline gap-3">
-                    <span className="display text-[1.05rem] tabular-nums text-electric">
+                    <span className="display text-[1.05rem] tabular-nums text-success">
                       {item.n}
                     </span>
                     <h3 className="display text-[clamp(1.4rem,2.6vw,1.85rem)] tracking-[-0.02em] text-ink uppercase">
@@ -83,14 +89,14 @@ export function TokenUtilitySection() {
 
                 <div className="min-w-0">
                   {item.kind === "publish" && (
-                    <div className="border border-electric/25 bg-electric/[0.06] px-5 py-6 text-center">
-                      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                    <div className={`${tkUtilityPanel} px-5 py-6 text-center`}>
+                      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-success/80">
                         Access
                       </p>
                       <p className="mt-3 display text-[1.35rem] tracking-[-0.02em] text-ink">
                         $DEXLA
                       </p>
-                      <div className="my-2.5 text-electric/50" aria-hidden>
+                      <div className="my-2.5 text-success/55" aria-hidden>
                         →
                       </div>
                       <p className="display text-[1.2rem] tracking-[-0.02em] text-ink text-balance">
@@ -103,12 +109,12 @@ export function TokenUtilitySection() {
                   )}
 
                   {item.kind === "feature" && (
-                    <div className="border border-purple/30 bg-purple/[0.07] px-5 py-6 text-center">
-                      <p className={`${tkStat} gradient-text`}>{item.value}</p>
+                    <div className={`${tkUtilityPanel} px-5 py-6 text-center`}>
+                      <p className={`${tkStat} text-success`}>{item.value}</p>
                       <p className="mt-1 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted">
                         {item.unit}
                       </p>
-                      <div className="my-2.5 text-electric/50" aria-hidden>
+                      <div className="my-2.5 text-success/55" aria-hidden>
                         →
                       </div>
                       <p className="display text-[1.2rem] tracking-[-0.02em] text-ink">
@@ -118,36 +124,36 @@ export function TokenUtilitySection() {
                   )}
 
                   {item.kind === "save" && (
-                    <div className="space-y-2 border border-success/25 bg-success/[0.05] p-4">
+                    <div className={`${tkUtilityPanel} space-y-0 p-4`}>
                       {item.tiers.map((tier) => (
                         <div
                           key={tier.hold}
-                          className="flex items-center justify-between gap-3 border-b border-white/[0.06] px-1 py-2.5 last:border-0"
+                          className="flex items-center justify-between gap-3 border-b border-success/15 px-1 py-2.5 last:border-0"
                         >
                           <span className="text-[0.92rem] font-medium text-ink">
                             {tier.hold}
                           </span>
-                          <span className="display text-[clamp(1.35rem,3vw,1.75rem)] leading-none gradient-text">
+                          <span className="display text-[clamp(1.35rem,3vw,1.75rem)] leading-none text-success">
                             {tier.discount}
                           </span>
                         </div>
                       ))}
-                      <p className="pt-1 text-center text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+                      <p className="pt-2 text-center text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-success/70">
                         Fee discount
                       </p>
                     </div>
                   )}
 
                   {item.kind === "tip" && (
-                    <div className="border border-white/[0.1] bg-void/40 px-5 py-6">
+                    <div className={`${tkUtilityPanel} px-5 py-6`}>
                       <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
                         {item.flow.map((step, idx) => (
                           <div key={step} className="flex items-center gap-2">
-                            <span className="border-b border-electric/40 pb-0.5 text-[0.95rem] font-semibold text-ink">
+                            <span className="border-b border-success/45 pb-0.5 text-[0.95rem] font-semibold text-ink">
                               {step}
                             </span>
                             {idx < item.flow.length - 1 && (
-                              <span className="text-electric/45" aria-hidden>
+                              <span className="text-success/50" aria-hidden>
                                 →
                               </span>
                             )}

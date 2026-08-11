@@ -15,6 +15,7 @@ const nodes = [
     sub: "$DEXLA Usage",
     x: 50,
     y: 14,
+    tone: "utility" as const,
   },
   {
     id: "investors",
@@ -23,6 +24,7 @@ const nodes = [
     sub: "$DEXLA Usage",
     x: 86,
     y: 50,
+    tone: "utility" as const,
   },
   {
     id: "activity",
@@ -31,6 +33,7 @@ const nodes = [
     sub: "Buybacks",
     x: 50,
     y: 86,
+    tone: "neutral" as const,
   },
   {
     id: "burns",
@@ -39,7 +42,7 @@ const nodes = [
     sub: "Supply ↓",
     x: 14,
     y: 50,
-    burn: true,
+    tone: "burn" as const,
   },
 ] as const;
 
@@ -171,9 +174,11 @@ export function TokenFlywheelSection() {
                 >
                   <div
                     className={`border px-3 py-3 text-center ${
-                      "burn" in node && node.burn
+                      node.tone === "burn"
                         ? "border-danger/40 bg-danger/[0.1]"
-                        : "border-white/[0.12] bg-void/90"
+                        : node.tone === "utility"
+                          ? "border-success/35 bg-success/[0.07]"
+                          : "border-white/[0.12] bg-void/90"
                     }`}
                   >
                     <p className="display text-[0.95rem] tracking-[-0.02em] text-ink">
@@ -184,9 +189,11 @@ export function TokenFlywheelSection() {
                     </p>
                     <p
                       className={`mt-1 text-[0.78rem] font-semibold ${
-                        "burn" in node && node.burn
+                        node.tone === "burn"
                           ? "text-danger"
-                          : "text-electric"
+                          : node.tone === "utility"
+                            ? "text-success"
+                            : "text-electric"
                       }`}
                     >
                       {node.sub}
@@ -202,18 +209,22 @@ export function TokenFlywheelSection() {
                 <div key={node.id}>
                   <div
                     className={`mx-auto max-w-xs border px-4 py-4 text-center ${
-                      "burn" in node && node.burn
+                      node.tone === "burn"
                         ? "border-danger/40 bg-danger/[0.1]"
-                        : "border-white/[0.12] bg-void/70"
+                        : node.tone === "utility"
+                          ? "border-success/35 bg-success/[0.07]"
+                          : "border-white/[0.12] bg-void/70"
                     }`}
                   >
                     <p className="display text-[1.05rem] text-ink">{node.title}</p>
                     <p className="mt-1.5 text-[0.88rem] text-muted">{node.detail}</p>
                     <p
                       className={`mt-1 text-[0.88rem] font-semibold ${
-                        "burn" in node && node.burn
+                        node.tone === "burn"
                           ? "text-danger"
-                          : "text-electric"
+                          : node.tone === "utility"
+                            ? "text-success"
+                            : "text-electric"
                       }`}
                     >
                       {node.sub}
@@ -221,7 +232,7 @@ export function TokenFlywheelSection() {
                   </div>
                   <div
                     className={`flex justify-center py-2 text-sm ${
-                      i === nodes.length - 1 ? "text-electric/60" : "text-electric/45"
+                      i === nodes.length - 1 ? "text-danger/55" : "text-muted-dim"
                     }`}
                     aria-hidden
                   >
