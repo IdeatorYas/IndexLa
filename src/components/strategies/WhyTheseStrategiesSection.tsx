@@ -2,7 +2,6 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
-  stBody,
   stBodyStrong,
   stGreenBox,
   stGreenText,
