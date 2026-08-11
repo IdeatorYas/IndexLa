@@ -136,24 +136,6 @@ export function MarketCyclesSection() {
                 </li>
               ))}
             </ul>
-
-            <div className="border-t border-line bg-void/40 px-5 py-4 sm:px-6">
-              <p className="text-center text-[0.9rem] leading-relaxed text-muted">
-                Bear Market →{" "}
-                <span className="font-semibold text-ink">Accumulate</span>
-                {" · "}
-                Recovery →{" "}
-                <span className="font-semibold text-ink">Build Position</span>
-                {" · "}
-                Bull Market →{" "}
-                <span className="font-semibold text-ink">DCA Out</span>
-                {" · "}
-                Euphoria →{" "}
-                <span className="font-semibold text-ink">
-                  Increase Profit Taking
-                </span>
-              </p>
-            </div>
           </div>
         </FadeIn>
 
