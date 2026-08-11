@@ -62,17 +62,17 @@ export function DisciplineSection() {
 
           <FadeIn delay={0.06}>
             <div className="space-y-4">
-              <div className="rounded-[1.25rem] border border-danger/25 bg-danger/[0.06] p-5 sm:p-6">
+              <div className="flex min-h-[17rem] flex-col items-center justify-center rounded-[1.25rem] border border-danger/25 bg-danger/[0.06] px-6 py-7 text-center sm:min-h-[18rem]">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-danger/80">
                   Emotion
                 </p>
-                <ul className="mt-4 space-y-2.5">
+                <ul className="mt-5 flex w-full flex-col items-center gap-3">
                   {emotions.map((item, i) => (
                     <motion.li
                       key={item}
-                      className="display text-[clamp(1.35rem,2.8vw,1.75rem)] tracking-[-0.03em] text-ink"
-                      initial={reduce ? false : { opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      className="display w-full text-center text-[clamp(1.35rem,2.8vw,1.75rem)] tracking-[-0.03em] text-ink"
+                      initial={reduce ? false : { opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.05 }}
                     >
@@ -84,17 +84,17 @@ export function DisciplineSection() {
               <div className="flex justify-center text-electric/60" aria-hidden>
                 ↓
               </div>
-              <div className="rounded-[1.25rem] border border-success/30 bg-success/[0.07] p-5 sm:p-6">
+              <div className="flex min-h-[14.5rem] flex-col items-center justify-center rounded-[1.25rem] border border-success/30 bg-success/[0.07] px-6 py-7 text-center sm:min-h-[15.5rem]">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-success">
                   Discipline
                 </p>
-                <ul className="mt-4 space-y-2.5">
+                <ul className="mt-5 flex w-full flex-col items-center gap-3">
                   {rules.map((item, i) => (
                     <motion.li
                       key={item}
-                      className="display text-[clamp(1.35rem,2.8vw,1.75rem)] tracking-[-0.03em] text-ink"
-                      initial={reduce ? false : { opacity: 0, x: 10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      className="display w-full text-center text-[clamp(1.35rem,2.8vw,1.75rem)] tracking-[-0.03em] text-ink"
+                      initial={reduce ? false : { opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.05 }}
                     >

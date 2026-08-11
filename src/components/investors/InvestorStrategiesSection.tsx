@@ -24,7 +24,7 @@ const archetypes: {
       },
       {
         title: "RSI Weekly Oversold — DCA In",
-        body: "React to predefined oversold or overbought conditions.",
+        body: "INDEXLA starts DCA in as RSI enters oversold levels.",
       },
     ],
   },
@@ -35,6 +35,10 @@ const archetypes: {
       {
         title: "Sell Greed — DCA Out",
         body: "Reduce exposure through DCA as sentiment reaches predefined greed conditions.",
+      },
+      {
+        title: "RSI Weekly Overbought — DCA Out",
+        body: "INDEXLA starts taking profits as RSI reaches overbought levels.",
       },
       {
         title: "Take Profit",

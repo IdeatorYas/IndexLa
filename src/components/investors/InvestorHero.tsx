@@ -130,9 +130,11 @@ export function InvestorHero() {
           >
             <div className="mb-6 h-px w-14 bg-gradient-to-r from-electric/80 to-transparent" />
 
-            <h1 className={invH1}>
-              You Know What You Should Do.{" "}
-              <span className="gradient-text">You Just Don&apos;t Do It.</span>
+            <h1 className={`${invH1} leading-[1.08]`}>
+              <span className="block">You Know What You Should Do.</span>
+              <span className="mt-[0.18em] block gradient-text">
+                You Just Don&apos;t Do It.
+              </span>
             </h1>
 
             <div className="mt-7 space-y-1.5">
