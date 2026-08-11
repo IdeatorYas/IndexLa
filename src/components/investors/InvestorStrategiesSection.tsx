@@ -100,7 +100,7 @@ export function InvestorStrategiesSection() {
       <div className="pointer-events-none absolute inset-0 hero-glow opacity-15" aria-hidden />
       <div className="section-pad container-max relative">
         <FadeIn className="max-w-3xl">
-          <h2 className={invH2}>
+          <h2 className={`${invH2} uppercase`}>
             Strategies Built Around{" "}
             <span className="gradient-text">Your Thesis.</span>
           </h2>

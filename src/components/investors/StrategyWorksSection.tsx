@@ -4,10 +4,6 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
-  STRATEGY_CYCLE_PHASES,
-  MarketCycleVisual,
-} from "@/components/investors/MarketCycleVisual";
-import {
   invBody,
   invBodyStrong,
   invCard,
@@ -16,6 +12,7 @@ import {
   invGreenText,
   invH2,
   invH3,
+  invLede,
   invSection,
 } from "@/components/investors/investorRhythm";
 
@@ -83,13 +80,11 @@ export function StrategyWorksSection() {
     <section className={`${invSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
-          <h2 className={invH2}>
+          <h2 className={`${invH2} uppercase`}>
             See How A{" "}
             <span className="gradient-text">Strategy Works.</span>
           </h2>
-          <p className="mt-4 text-[1.1rem] font-semibold text-ink sm:text-[1.2rem]">
-            Example: Buy Fear. Sell Greed.
-          </p>
+          <p className={invLede}>Example: Buy Fear. Sell Greed.</p>
           <p className={`mt-4 ${invBody}`}>
             Instead of reacting to every market move, define your response to
             the market cycle in advance.
@@ -108,7 +103,7 @@ export function StrategyWorksSection() {
               ].map((item) => (
                 <li
                   key={item}
-                  className="rounded-lg border border-line bg-void/50 px-3 py-2 text-[0.92rem] text-muted"
+                  className="rounded-lg border border-line bg-void/50 px-3 py-2 text-[0.95rem] text-muted"
                 >
                   {item}
                 </li>
@@ -120,30 +115,45 @@ export function StrategyWorksSection() {
           </div>
         </FadeIn>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        {/* Phase timeline — unique to this section, not a cycle ring */}
+        <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <FadeIn delay={0.04}>
-            <div className="sticky top-28 rounded-[1.35rem] border border-line bg-deep/60 p-5 sm:p-6">
-              <MarketCycleVisual
-                phases={STRATEGY_CYCLE_PHASES}
-                variant="strategy"
-                activePhaseId={activeId}
-              />
-              <div className="mt-4 flex flex-wrap justify-center gap-2">
-                {phases.map((phase) => (
-                  <button
-                    key={phase.id}
-                    type="button"
-                    onClick={() => setActiveId(phase.id)}
-                    className={`rounded-full border px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.08em] transition-colors ${
-                      activeId === phase.id
-                        ? "border-electric bg-electric/15 text-electric"
-                        : "border-line bg-void/40 text-muted hover:border-electric/40"
-                    }`}
-                  >
-                    {phase.n}
-                  </button>
-                ))}
-              </div>
+            <div className="rounded-[1.25rem] border border-line bg-deep/50 p-4 sm:p-5">
+              <p className={invEyebrow}>Strategy phases</p>
+              <ol className="mt-4 space-y-2">
+                {phases.map((phase) => {
+                  const isActive = activeId === phase.id;
+                  return (
+                    <li key={phase.id}>
+                      <button
+                        type="button"
+                        onClick={() => setActiveId(phase.id)}
+                        className={`flex w-full items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition-colors ${
+                          isActive
+                            ? "border-electric/40 bg-electric/10"
+                            : "border-line bg-void/40 hover:border-electric/25"
+                        }`}
+                      >
+                        <span
+                          className={`display text-[1.1rem] ${
+                            isActive ? "gradient-text" : "text-muted"
+                          }`}
+                        >
+                          {phase.n}
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-[0.9rem] font-semibold text-ink">
+                            {phase.title}
+                          </span>
+                          <span className="mt-0.5 block text-[0.8rem] text-muted">
+                            {phase.action}
+                          </span>
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
             </div>
           </FadeIn>
 
@@ -152,10 +162,10 @@ export function StrategyWorksSection() {
               key={active.id}
               initial={reduce ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="rounded-[1.35rem] border border-electric/25 bg-gradient-to-br from-electric/8 via-void/40 to-transparent p-6 sm:p-7"
+              transition={{ duration: 0.35 }}
+              className="rounded-[1.25rem] border border-electric/25 bg-deep/40 p-6 sm:p-7"
             >
-              <p className="text-[0.7rem] font-semibold text-electric">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 {active.n} — {active.title}
               </p>
               <p className={`mt-4 ${invBodyStrong}`}>{active.trigger}</p>
@@ -166,7 +176,7 @@ export function StrategyWorksSection() {
                   </p>
                 ))}
               </div>
-              <p className="mt-5 display text-[1.1rem] text-electric">
+              <p className="mt-5 display text-[1.15rem] text-electric">
                 {active.action}
               </p>
             </motion.article>
@@ -175,7 +185,7 @@ export function StrategyWorksSection() {
 
         <FadeIn className="mt-12 space-y-6">
           <div>
-            <p className={invH3}>Then the cycle repeats.</p>
+            <p className={`${invH3} uppercase`}>Then the cycle repeats.</p>
             <p className={`mt-3 ${invBody}`}>
               Then, when fear returns, accumulation begins again.
             </p>
@@ -190,14 +200,14 @@ export function StrategyWorksSection() {
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
                   {row.phase}
                 </p>
-                <p className="mt-1 text-[0.92rem] font-semibold text-electric">
+                <p className="mt-1 text-[0.95rem] font-semibold text-electric">
                   → {row.action}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="space-y-3">
+          <div className="flex flex-wrap gap-2">
             <div className={invGreenBox}>
               <p className={invGreenText}>
                 You don&apos;t need to predict the top or bottom.

@@ -11,7 +11,7 @@ export function InvestorFinalOwnership() {
   const reduce = useReducedMotion();
 
   return (
-    <section className={`${invSection} border-t border-line bg-deep py-14 md:py-18`}>
+    <section className={`${invSection} bg-deep`}>
       <div className="section-pad container-max">
         <motion.div
           className="mx-auto max-w-3xl text-center"
@@ -20,7 +20,7 @@ export function InvestorFinalOwnership() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className={invH2}>
+          <h2 className={`${invH2} uppercase`}>
             Your Capital. Your Conviction.{" "}
             <span className="gradient-text">Your Rules.</span>
           </h2>

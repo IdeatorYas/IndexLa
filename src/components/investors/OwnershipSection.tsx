@@ -46,7 +46,7 @@ export function OwnershipSection() {
     <section className={`${invSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
-          <h2 className={invH2}>
+          <h2 className={`${invH2} uppercase`}>
             Own The Assets.{" "}
             <span className="gradient-text">Keep Control.</span>
           </h2>

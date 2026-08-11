@@ -1,33 +1,29 @@
-/** Shared visual rhythm for the Investors page — distinct from homepage. */
-export const invSection =
-  "relative border-t border-line py-12 md:py-16 lg:py-20";
-
-export const invH2 =
-  "display text-[clamp(1.85rem,4.2vw,3rem)] font-semibold uppercase tracking-[-0.03em] text-ink text-balance text-pretty";
-
-export const invH3 =
-  "display text-[clamp(1.15rem,2.2vw,1.45rem)] tracking-[-0.025em] text-ink text-balance text-pretty";
-
-export const invEyebrow =
-  "text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric";
-
-export const invBody =
-  "text-[1.05rem] leading-[1.72] text-muted text-pretty sm:text-[1.1rem]";
-
-export const invBodyStrong =
-  "text-[1.05rem] leading-[1.72] font-semibold text-ink text-pretty sm:text-[1.1rem]";
-
-export const invHighlight =
-  "display text-[clamp(1.15rem,2.2vw,1.45rem)] font-semibold tracking-[-0.02em] text-ink text-pretty";
-
-export const invGreenBox =
-  "inline-flex max-w-full items-center justify-center rounded-xl border border-success/55 bg-success/[0.18] px-5 py-3.5 text-center shadow-[inset_0_1px_0_rgba(52,211,153,0.28),0_0_24px_rgba(52,211,153,0.1)]";
-
-export const invGreenText =
-  "text-[1.02rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-pretty sm:text-[1.08rem]";
-
-export const invLabel =
-  "text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim";
+/**
+ * Investors page presentation tokens — mirror homepage design system exactly.
+ * Re-export home rhythm so Investors stays in sync with the source of truth.
+ */
+export {
+  homeSection as invSection,
+  homeH2 as invH2,
+  homeH3 as invH3,
+  homeEyebrow as invEyebrow,
+  homeBody as invBody,
+  homeBodyDim as invBodyDim,
+  homeBodyStrong as invBodyStrong,
+  homeLede as invLede,
+  homeLabel as invLabel,
+  homePill as invPill,
+  homeChip as invChip,
+  homeGreenBox as invGreenBox,
+  homeGreenBoxText as invGreenText,
+  homeGreenRow as invGreenRow,
+  homeGreenChip as invGreenChip,
+  homeGreenChipText as invGreenChipText,
+} from "@/components/home/homeRhythm";
 
 export const invCard =
   "rounded-[1.25rem] border border-line bg-void/40 p-5 sm:p-6";
+
+/** Investors H1 — match homepage hero scale */
+export const invH1 =
+  "display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold tracking-[-0.035em] text-balance text-pretty";

@@ -17,7 +17,7 @@ export function OnePortfolioLayerSection() {
     <section className={`${invSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={invH2}>
+          <h2 className={`${invH2} uppercase`}>
             Manage Your Portfolio From{" "}
             <span className="gradient-text">One Layer.</span>
           </h2>

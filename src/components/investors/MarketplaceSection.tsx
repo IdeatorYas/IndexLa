@@ -42,7 +42,7 @@ export function MarketplaceSection() {
     <section className={`${invSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
-          <h2 className={invH2}>
+          <h2 className={`${invH2} uppercase`}>
             Discover. Follow. Customize.{" "}
             <span className="gradient-text">Build.</span>
           </h2>
