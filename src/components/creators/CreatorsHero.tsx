@@ -3,61 +3,60 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import {
-  TelegramLogo,
-  XLogo,
-  YouTubeLogo,
-} from "@/components/creators/SocialBrandLogos";
-import {
   crBody,
   crGreenBox,
   crGreenText,
   crH1,
 } from "@/components/creators/creatorRhythm";
 
-function HeroThesisVisual() {
+const journey = [
+  { label: "Creator", detail: "Conviction" },
+  { label: "Thesis", detail: "Rules & assets" },
+  { label: "Portfolio", detail: "Publishable" },
+  { label: "Audience", detail: "Follow & allocate" },
+  { label: "Revenue", detail: "Fee share" },
+] as const;
+
+function HeroJourneyVisual() {
   const reduce = useReducedMotion();
 
   return (
     <div className="rounded-[1.35rem] border border-line bg-deep/80 p-5 sm:p-6">
       <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
-        The feed problem
+        Creator path
       </p>
-      <div className="mt-4 space-y-2.5">
-        {[
-          { channel: "Telegram", Logo: TelegramLogo, fate: "Scroll buries it" },
-          { channel: "X", Logo: XLogo, fate: "Timeline moves on" },
-          { channel: "YouTube", Logo: YouTubeLogo, fate: "Video gets buried" },
-        ].map((row, i) => (
+      <p className="mt-2 display text-[1.15rem] tracking-[-0.02em] text-ink sm:text-[1.25rem]">
+        Thesis → Portfolio → Audience → Revenue
+      </p>
+
+      <div className="mt-5 space-y-2">
+        {journey.map((step, i) => (
           <motion.div
-            key={row.channel}
-            className="flex items-center justify-between gap-3 rounded-xl border border-line bg-void/50 px-3.5 py-3"
-            initial={reduce ? false : { opacity: 0, x: 10 }}
+            key={step.label}
+            className="flex items-center gap-3 rounded-xl border border-line bg-void/50 px-3.5 py-3"
+            initial={reduce ? false : { opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.15 + i * 0.08 }}
+            transition={{ delay: 0.12 + i * 0.07 }}
           >
-            <span className="flex items-center gap-2.5">
-              <row.Logo className="h-4 w-4 text-muted" />
-              <span className="text-[0.9rem] font-semibold text-ink">
-                {row.channel}
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-electric/35 bg-electric/10 display text-[0.85rem] text-electric">
+              {i + 1}
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="text-[0.95rem] font-semibold text-ink">{step.label}</p>
+              <p className="text-[0.78rem] text-muted-dim">{step.detail}</p>
+            </div>
+            {i < journey.length - 1 && (
+              <span className="hidden text-electric/45 sm:inline" aria-hidden>
+                →
               </span>
-            </span>
-            <span className="text-[0.8rem] font-medium text-muted-dim">
-              {row.fate}
-            </span>
+            )}
           </motion.div>
         ))}
       </div>
 
-      <div className="my-4 flex justify-center text-electric/60" aria-hidden>
-        ↓
-      </div>
-
-      <div className="rounded-xl border border-success/35 bg-success/10 px-4 py-4 text-center">
-        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-success">
-          INDEXLA
-        </p>
-        <p className="mt-2 display text-[1.15rem] tracking-[-0.02em] text-ink">
-          Thesis → Portfolio → Followers can allocate
+      <div className="mt-4 rounded-xl border border-success/35 bg-success/10 px-4 py-3.5 text-center">
+        <p className="text-[0.88rem] font-semibold text-ink">
+          Your thesis becomes something your audience can allocate to.
         </p>
       </div>
     </div>
@@ -76,7 +75,7 @@ export function CreatorsHero() {
       />
 
       <div className="section-pad container-max relative z-10">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
@@ -85,56 +84,41 @@ export function CreatorsHero() {
             <div className="mb-6 h-px w-14 bg-gradient-to-r from-electric/80 to-transparent" />
 
             <h1 className={crH1}>
-              <span className="block">Your Best Call Shouldn&apos;t</span>
+              <span className="block">Your Thesis Deserves</span>
               <span className="mt-[0.12em] block gradient-text">
-                Disappear Into A Telegram Scroll.
+                More Than An X Post.
               </span>
             </h1>
 
-            <div className="mt-7 space-y-2">
-              <p className={crBody}>
-                You spend hours researching markets, building conviction, and
-                sharing your thesis.
-              </p>
-              <p className={crBody}>Your post gets attention.</p>
-              <p className={crBody}>Then the feed moves on.</p>
-            </div>
+            <p className={`mt-7 ${crBody}`}>
+              Turn your investment conviction into a portfolio your audience can
+              follow, customize, and automate.
+            </p>
 
-            <div className="mt-7">
+            <div className="mt-6">
               <div className={crGreenBox}>
                 <p className={crGreenText}>
-                  Turn your thesis into a portfolio your audience can actually
-                  follow.
+                  Build your strategy. Grow your audience. Earn from its use.
                 </p>
               </div>
-              <p className="mt-4 text-[1.05rem] font-semibold text-ink sm:text-[1.1rem]">
-                Build it. Publish it. Automate it. Earn from it.
-              </p>
             </div>
 
-            <div className="mt-6 rounded-xl border border-electric/35 bg-electric/10 px-4 py-3.5">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
+            <div className="mt-6 rounded-xl border border-electric/40 bg-electric/10 px-4 py-4">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
                 First Portfolio Free At Launch
               </p>
-              <p className="mt-1.5 text-[0.92rem] leading-relaxed text-muted">
-                Early creators get priority marketplace visibility and early
-                access to creator features.
+              <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">
+                Get early creator access and publish your first portfolio free at
+                launch.
               </p>
             </div>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9">
               <Button
                 href="#become-creator"
-                className="min-w-[14rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
+                className="min-w-[16rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
               >
-                Become a Creator
-              </Button>
-              <Button
-                href="/strategies"
-                variant="secondary"
-                className="min-w-[13rem]"
-              >
-                Explore Marketplace
+                Become an INDEXLA Creator
               </Button>
             </div>
           </motion.div>
@@ -144,7 +128,7 @@ export function CreatorsHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12 }}
           >
-            <HeroThesisVisual />
+            <HeroJourneyVisual />
           </motion.div>
         </div>
       </div>

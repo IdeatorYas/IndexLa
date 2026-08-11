@@ -9,29 +9,29 @@ import {
 const types = [
   {
     title: "Crypto KOLs",
-    body: "Turn market conviction into a portfolio your audience can follow.",
+    body: "Turn market views into structured portfolios.",
   },
   {
     title: "Finance Influencers",
-    body: "Turn financial content into structured investment strategies.",
+    body: "Turn financial perspectives into multi-asset allocations.",
   },
   {
     title: "YouTubers",
-    body: "Turn your research into a portfolio that lives beyond the video.",
+    body: "Turn educational content into portfolios your audience can follow.",
   },
   {
     title: "Researchers",
-    body: "Turn analysis into programmable strategies.",
+    body: "Turn research into programmable strategies.",
   },
   {
     title: "Traders & Investors",
-    body: "Turn proven frameworks into long-term portfolio strategies.",
+    body: "Turn proven frameworks into long-term portfolios.",
   },
-];
+] as const;
 
 export function CreatorTypesSection() {
   return (
-    <section className={`${crSection} bg-deep`}>
+    <section className={`${crSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${crH2} uppercase`}>
@@ -41,16 +41,16 @@ export function CreatorTypesSection() {
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <div className="mx-auto grid max-w-4xl gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-2">
             {types.map((item) => (
               <article
                 key={item.title}
-                className="rounded-xl border border-line bg-void/45 px-4 py-4"
+                className="w-full rounded-xl border border-line bg-deep/50 px-4 py-3.5 sm:w-[calc(50%-0.25rem)] lg:w-[calc(33.333%-0.35rem)]"
               >
-                <h3 className="text-[0.95rem] font-semibold text-ink">
+                <h3 className="text-[0.92rem] font-semibold uppercase tracking-[0.04em] text-ink">
                   {item.title}
                 </h3>
-                <p className="mt-1.5 text-[0.88rem] leading-relaxed text-muted">
+                <p className="mt-1 text-[0.85rem] leading-snug text-muted">
                   {item.body}
                 </p>
               </article>
