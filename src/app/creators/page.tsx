@@ -1,30 +1,36 @@
 import type { Metadata } from "next";
-import { CreatorBuildFlowSection } from "@/components/creators/CreatorBuildFlowSection";
 import { CreatorDisclaimer } from "@/components/creators/CreatorDisclaimer";
-import { CreatorDistributionSection } from "@/components/creators/CreatorDistributionSection";
 import { CreatorEconomicsSection } from "@/components/creators/CreatorEconomicsSection";
-import { CreatorLeaderboardSection } from "@/components/creators/CreatorLeaderboardSection";
+import { CreatorHybridPortfolioSection } from "@/components/creators/CreatorHybridPortfolioSection";
+import { CreatorLongTermSection } from "@/components/creators/CreatorLongTermSection";
+import { CreatorNonCustodialSection } from "@/components/creators/CreatorNonCustodialSection";
+import { CreatorStopSellingLinksSection } from "@/components/creators/CreatorStopSellingLinksSection";
+import { CreatorThesisFlowSection } from "@/components/creators/CreatorThesisFlowSection";
 import { CreatorTrackRecordSection } from "@/components/creators/CreatorTrackRecordSection";
+import { CreatorTransparencySection } from "@/components/creators/CreatorTransparencySection";
+import { CreatorTypesSection } from "@/components/creators/CreatorTypesSection";
 import { CreatorsFinalCta } from "@/components/creators/CreatorsFinalCta";
 import { CreatorsHero } from "@/components/creators/CreatorsHero";
-import { CreatorWorkflowBand } from "@/components/creators/CreatorWorkflowBand";
 
 export const metadata: Metadata = {
   title: "Creators — INDEXLA",
   description:
-    "Turn your alpha into an investable product. Publish portfolios, grow AUM, earn from trading activity, and climb the creator leaderboard.",
+    "Turn your thesis into a portfolio your audience can follow. Build it. Publish it. Automate it. Earn from it.",
 };
 
 export default function CreatorsPage() {
   return (
     <main>
       <CreatorsHero />
-      <CreatorWorkflowBand />
-      <CreatorBuildFlowSection />
-      <CreatorDistributionSection />
+      <CreatorStopSellingLinksSection />
+      <CreatorThesisFlowSection />
+      <CreatorNonCustodialSection />
+      <CreatorHybridPortfolioSection />
       <CreatorEconomicsSection />
+      <CreatorLongTermSection />
+      <CreatorTypesSection />
       <CreatorTrackRecordSection />
-      <CreatorLeaderboardSection />
+      <CreatorTransparencySection />
       <CreatorsFinalCta />
       <CreatorDisclaimer />
     </main>
