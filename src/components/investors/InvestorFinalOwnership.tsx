@@ -31,8 +31,11 @@ export function InvestorFinalOwnership() {
             portfolio should respond, and automate execution without giving up
             control of your assets.
           </p>
-          <div className="mt-9">
-            <Button href="/creators" className="min-w-[13.5rem]">
+          <div className="mt-10">
+            <Button
+              href="/creators"
+              className="min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
+            >
               Build Your Portfolio & Automate Your Strategy in 5 Minutes
             </Button>
           </div>
