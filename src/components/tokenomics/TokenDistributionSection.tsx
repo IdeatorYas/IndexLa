@@ -1,154 +1,114 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
+import {
+  tkBody,
+  tkBodyStrong,
+  tkH2,
+  tkSection,
+  tkStat,
+  tkSurface,
+} from "@/components/tokenomics/tokenomicsRhythm";
 
-export const allocations = [
+const allocations = [
   { label: "Pre-Seed Round", pct: 1.5, color: "#7c3aed" },
-  { label: "Seed Round", pct: 6, color: "#a78bfa" },
-  { label: "Private Sale", pct: 10, color: "#38bdf8" },
-  { label: "Public Sale", pct: 20, color: "#22d3ee" },
-  { label: "DEX Liquidity", pct: 10, color: "#34d399" },
-  { label: "Treasury", pct: 20, color: "#3b82f6" },
-  { label: "Team", pct: 15, color: "#f59e0b" },
-  { label: "Community Airdrops", pct: 10, color: "#f472b6" },
-  { label: "CEX Listings", pct: 5, color: "#94a3b8" },
-  { label: "Advisors", pct: 2.5, color: "#c4b5fd" },
+  { label: "Seed Round", pct: 6, color: "#8b5cf6" },
+  { label: "Private Sale", pct: 10, color: "#a78bfa" },
+  { label: "Public Sale", pct: 20, color: "#38bdf8" },
+  { label: "DEX Liquidity", pct: 10, color: "#22d3ee" },
+  { label: "Treasury", pct: 20, color: "#34d399" },
+  { label: "Team", pct: 15, color: "#fbbf24" },
+  { label: "Community Airdrops", pct: 10, color: "#fb923c" },
+  { label: "CEX Listings & Market Making", pct: 5, color: "#f87171" },
+  { label: "Advisors", pct: 2.5, color: "#e879f9" },
 ] as const;
 
-const TOTAL = 100_000_000;
-const RADIUS = 72;
-const CIRC = 2 * Math.PI * RADIUS;
-
-function DonutChart() {
-  let offset = 0;
-  return (
-    <svg viewBox="0 0 200 200" className="mx-auto aspect-square h-auto w-full max-w-[18rem]">
-      <circle
-        cx="100"
-        cy="100"
-        r={RADIUS}
-        fill="none"
-        stroke="rgba(167,139,250,0.12)"
-        strokeWidth="28"
-      />
-      {allocations.map((item) => {
-        const len = (item.pct / 100) * CIRC;
-        const el = (
-          <circle
-            key={item.label}
-            cx="100"
-            cy="100"
-            r={RADIUS}
-            fill="none"
-            stroke={item.color}
-            strokeWidth="28"
-            strokeDasharray={`${len} ${CIRC - len}`}
-            strokeDashoffset={-offset}
-            transform="rotate(-90 100 100)"
-          />
-        );
-        offset += len;
-        return el;
-      })}
-      <text
-        x="100"
-        y="94"
-        textAnchor="middle"
-        fill="#a89bc4"
-        fontSize="10"
-        fontWeight="600"
-        letterSpacing="0.12em"
-      >
-        TOTAL SUPPLY
-      </text>
-      <text
-        x="100"
-        y="116"
-        textAnchor="middle"
-        fill="#f4f1ff"
-        fontSize="15"
-        fontWeight="700"
-        fontFamily="var(--font-display), system-ui, sans-serif"
-      >
-        100M
-      </text>
-    </svg>
-  );
-}
+const conic = (() => {
+  let start = 0;
+  return allocations
+    .map((row) => {
+      const end = start + row.pct * 3.6;
+      const segment = `${row.color} ${start}deg ${end}deg`;
+      start = end;
+      return segment;
+    })
+    .join(", ");
+})();
 
 export function TokenDistributionSection() {
   return (
-    <section className="relative border-t border-line bg-deep py-14 md:py-20">
+    <section className={`${tkSection} bg-deep`}>
       <div className="section-pad container-max">
-        <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] uppercase tracking-[-0.02em]">
-            Token Distribution
+        <FadeIn className="mx-auto max-w-3xl text-center">
+          <h2 className={`${tkH2} uppercase`}>
+            Token{" "}
+            <span className="gradient-text">Distribution</span>
           </h2>
-          <p className="mt-4 display text-[clamp(1.2rem,2.4vw,1.55rem)] text-ink">
-            Total Supply:{" "}
-            <span className="gradient-text tabular-nums">100,000,000 $DEXLA</span>
+          <p className={`mt-5 ${tkStat} gradient-text`}>100,000,000</p>
+          <p className="mt-2 text-[0.85rem] font-semibold uppercase tracking-[0.16em] text-muted">
+            $DEXLA
           </p>
         </FadeIn>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-8">
-          <FadeIn className="h-full">
-            <div className="flex h-full min-h-full flex-col items-center justify-center rounded-[1.35rem] border border-line glass-soft p-6 sm:p-8">
-              <DonutChart />
-              <p className="mt-5 text-center text-[0.85rem] text-muted-dim">
-                100,000,000 $DEXLA
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.04} className="h-full">
-            <div className="flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-line bg-void/40">
-              <div className="grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] gap-2 border-b border-line px-4 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5">
-                <span>Allocation</span>
-                <span className="text-right">Percentage</span>
-                <span className="text-right">Tokens</span>
+        <FadeIn className="mt-10">
+          <div className={`${tkSurface} grid gap-0 lg:grid-cols-[0.9fr_1.1fr]`}>
+            <div className="flex flex-col items-center justify-center border-b border-white/[0.07] p-6 sm:p-8 lg:border-b-0 lg:border-r">
+              <div className="relative h-52 w-52 sm:h-60 sm:w-60">
+                <div
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: `conic-gradient(${conic})` }}
+                  aria-hidden
+                />
+                <div className="absolute inset-[22%] flex flex-col items-center justify-center rounded-full border border-white/[0.08] bg-void text-center">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+                    Total
+                  </p>
+                  <p className="mt-1 display text-[1.35rem] text-ink">100M</p>
+                  <p className="text-[0.75rem] text-muted">$DEXLA</p>
+                </div>
               </div>
-              <ul className="flex-1">
+            </div>
+
+            <div className="p-5 sm:p-6">
+              <div className="mb-3 hidden grid-cols-[1fr_auto] gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim sm:grid">
+                <span>Allocation</span>
+                <span>Percentage</span>
+              </div>
+              <ul className="space-y-1.5">
                 {allocations.map((row) => (
                   <li
                     key={row.label}
-                    className="grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] items-center gap-2 border-b border-line/70 px-4 py-2.5 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5"
+                    className="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-xl border border-white/[0.06] bg-void/35 px-3 py-2.5"
                   >
-                    <span className="flex min-w-0 items-center gap-2.5">
-                      <span
-                        className="h-2.5 w-2.5 shrink-0 rounded-full"
-                        style={{ backgroundColor: row.color }}
-                        aria-hidden
-                      />
-                      <span className="truncate text-[0.92rem] font-medium text-ink">
-                        {row.label}
-                      </span>
+                    <span
+                      className="h-2.5 w-2.5 rounded-full"
+                      style={{ background: row.color }}
+                      aria-hidden
+                    />
+                    <span className="text-[0.9rem] font-medium text-ink">
+                      {row.label}
                     </span>
-                    <span className="text-right text-[0.92rem] font-semibold tabular-nums text-ink">
+                    <span className="display text-[1.05rem] tabular-nums text-electric">
                       {row.pct}%
-                    </span>
-                    <span className="text-right text-[0.88rem] font-semibold tabular-nums text-muted">
-                      {(TOTAL * (row.pct / 100)).toLocaleString("en-US")}
                     </span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto grid grid-cols-[minmax(0,1fr)_5.5rem_7rem] gap-2 border-t border-line bg-deep/70 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_6rem_8rem] sm:px-5">
-                <span className="text-[0.92rem] font-semibold text-ink">Total</span>
-                <span className="text-right text-[0.92rem] font-semibold tabular-nums text-electric">
-                  100%
-                </span>
-                <span className="text-right text-[0.88rem] font-semibold tabular-nums text-electric">
-                  100,000,000
-                </span>
+              <div className="mt-3 flex items-center justify-between border-t border-white/[0.07] pt-3">
+                <span className="text-[0.9rem] font-semibold text-ink">Total</span>
+                <span className="display text-[1.15rem] text-ink">100%</span>
               </div>
             </div>
-          </FadeIn>
-        </div>
+          </div>
+        </FadeIn>
 
-        <FadeIn className="mt-6 max-w-3xl">
-          <p className="text-[1.02rem] leading-relaxed text-muted">
-            The allocation supports fundraising, liquidity, ecosystem growth,
-            team alignment, and long-term protocol development.
+        <FadeIn className="mx-auto mt-8 max-w-2xl text-center">
+          <p className={`${tkBodyStrong} text-balance`}>
+            100,000,000 $DEXLA is the absolute maximum supply.
+          </p>
+          <p className={`mt-3 ${tkBody} text-balance`}>
+            There is no additional minting, inflation, or supply expansion beyond
+            this cap.
           </p>
         </FadeIn>
       </div>

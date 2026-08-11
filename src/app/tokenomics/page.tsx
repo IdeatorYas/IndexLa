@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import { TokenomicsHero } from "@/components/tokenomics/TokenomicsHero";
 import { TokenUtilitySection } from "@/components/tokenomics/TokenUtilitySection";
 import { TokenBurnMechanismSection } from "@/components/tokenomics/TokenBurnMechanismSection";
+import { WhyDexlaExistsSection } from "@/components/tokenomics/WhyDexlaExistsSection";
+import { TokenFlywheelSection } from "@/components/tokenomics/TokenFlywheelSection";
 import { TokenDistributionSection } from "@/components/tokenomics/TokenDistributionSection";
 import { VestingScheduleSection } from "@/components/tokenomics/VestingScheduleSection";
 import { TgeCirculatingSection } from "@/components/tokenomics/TgeCirculatingSection";
 import { LaunchTimingSection } from "@/components/tokenomics/LaunchTimingSection";
-import { TokenModelAlignedSection } from "@/components/tokenomics/TokenModelAlignedSection";
 
 export const metadata: Metadata = {
   title: "Tokenomics — INDEXLA",
   description:
-    "$DEXLA connects INDEXLA growth to real platform activity through creator burns, fee discounts, protocol buybacks, and treasury buybacks.",
+    "$DEXLA is the economic engine of INDEXLA — four utilities, four burn mechanisms, and a hard-capped 100,000,000 supply.",
 };
 
 export default function TokenomicsPage() {
@@ -20,11 +21,12 @@ export default function TokenomicsPage() {
       <TokenomicsHero />
       <TokenUtilitySection />
       <TokenBurnMechanismSection />
+      <WhyDexlaExistsSection />
+      <TokenFlywheelSection />
       <TokenDistributionSection />
       <VestingScheduleSection />
       <TgeCirculatingSection />
       <LaunchTimingSection />
-      <TokenModelAlignedSection />
     </main>
   );
 }

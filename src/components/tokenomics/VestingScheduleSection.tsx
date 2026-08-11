@@ -1,143 +1,176 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
+import {
+  tkBody,
+  tkH2,
+  tkSection,
+  tkSurface,
+  tkSurfaceSoft,
+} from "@/components/tokenomics/tokenomicsRhythm";
 
-type VestingCard = {
+type Mark = { label: string; detail: string };
+
+type Schedule = {
   title: string;
-  summary: string[];
-  highlights: { label: string; value: string }[];
+  body: string;
+  marks: Mark[];
   featured?: boolean;
+  /** Visual timeline segments (relative weights) */
+  timeline?: { label: string; flex: number; tone: "tge" | "cliff" | "linear" | "lock" | "soft" }[];
 };
 
-const vesting: VestingCard[] = [
+const schedules: Schedule[] = [
   {
     title: "Pre-Seed, Seed & Private Sale",
-    summary: [
-      "10% unlocked at TGE, followed by a 3-month cliff and 18-month linear vesting.",
+    body: "10% unlocked at TGE, followed by a 3-month cliff and 18-month linear vesting.",
+    marks: [
+      { label: "TGE", detail: "10%" },
+      { label: "Cliff", detail: "3 mo" },
+      { label: "Linear", detail: "18 mo" },
     ],
-    highlights: [
-      { label: "TGE unlock", value: "10%" },
-      { label: "Cliff", value: "3 months" },
-      { label: "Vesting", value: "18 months linear" },
+    timeline: [
+      { label: "TGE 10%", flex: 2, tone: "tge" },
+      { label: "Cliff 3mo", flex: 3, tone: "cliff" },
+      { label: "Linear 18mo", flex: 8, tone: "linear" },
     ],
   },
   {
     title: "Public Sale",
-    summary: [
-      "15% unlocked at TGE, with the remaining allocation vested linearly over 6 months.",
+    body: "15% unlocked at TGE, with the remaining allocation vested linearly over 6 months.",
+    marks: [
+      { label: "TGE", detail: "15%" },
+      { label: "Linear", detail: "6 mo" },
     ],
-    highlights: [
-      { label: "TGE unlock", value: "15%" },
-      { label: "Vesting", value: "6 months linear" },
+    timeline: [
+      { label: "TGE 15%", flex: 3, tone: "tge" },
+      { label: "Linear 6mo", flex: 7, tone: "linear" },
     ],
   },
   {
     title: "Team",
-    summary: [
-      "12-month cliff followed by 24-month linear vesting.",
-      "Full unlock at month 36.",
+    body: "12-month cliff followed by 24-month linear vesting. Full unlock at month 36.",
+    marks: [
+      { label: "Cliff", detail: "12 mo" },
+      { label: "Linear", detail: "24 mo" },
+      { label: "Full", detail: "Mo 36" },
     ],
-    highlights: [
-      { label: "Cliff", value: "12 months" },
-      { label: "Vesting", value: "24 months linear" },
-      { label: "Full unlock", value: "Month 36" },
+    timeline: [
+      { label: "Cliff 12mo", flex: 4, tone: "cliff" },
+      { label: "Linear 24mo", flex: 8, tone: "linear" },
     ],
   },
   {
     title: "Advisors",
-    summary: ["6-month cliff followed by 12-month linear vesting."],
-    highlights: [
-      { label: "Cliff", value: "6 months" },
-      { label: "Vesting", value: "12 months linear" },
+    body: "6-month cliff followed by 12-month linear vesting.",
+    marks: [
+      { label: "Cliff", detail: "6 mo" },
+      { label: "Linear", detail: "12 mo" },
+    ],
+    timeline: [
+      { label: "Cliff 6mo", flex: 4, tone: "cliff" },
+      { label: "Linear 12mo", flex: 8, tone: "linear" },
     ],
   },
   {
     title: "Treasury",
-    summary: [
-      "36-month lock. Afterward, a portion may be burned or used for additional airdrops, while the remainder is locked again.",
-    ],
-    highlights: [{ label: "Lock", value: "36 months" }],
+    body: "36-month lock. After the lock period, Treasury tokens may be used for ecosystem development, community distributions, or permanently burned according to the protocol framework.",
+    marks: [{ label: "Lock", detail: "36 mo" }],
     featured: true,
+    timeline: [{ label: "36-month lock", flex: 1, tone: "lock" }],
   },
   {
     title: "Community Airdrops",
-    summary: [
-      "Released progressively according to the ecosystem framework to support creator incentives, ecosystem growth, and community participation.",
-    ],
-    highlights: [{ label: "Release", value: "Progressive" }],
+    body: "Released progressively according to the ecosystem framework to support creator incentives, ecosystem growth, and community participation.",
+    marks: [{ label: "Release", detail: "Progressive" }],
+    timeline: [{ label: "Progressive release", flex: 1, tone: "soft" }],
   },
   {
     title: "DEX Liquidity",
-    summary: ["Allocated at TGE to support healthy market liquidity."],
-    highlights: [{ label: "Allocation", value: "At TGE" }],
+    body: "Allocated at TGE to establish and maintain healthy market liquidity.",
+    marks: [{ label: "TGE", detail: "Allocated" }],
+    timeline: [{ label: "Allocated at TGE", flex: 1, tone: "tge" }],
+  },
+  {
+    title: "CEX Listings & Market Making",
+    body: "Reserved for exchange liquidity provisioning and market maker partnerships.",
+    marks: [{ label: "Reserve", detail: "CEX / MM" }],
+    timeline: [{ label: "Reserved", flex: 1, tone: "soft" }],
   },
 ];
 
+const toneClass: Record<NonNullable<Schedule["timeline"]>[number]["tone"], string> = {
+  tge: "bg-electric/70",
+  cliff: "bg-muted-dim/70",
+  linear: "bg-purple-bright/55",
+  lock: "bg-electric/40",
+  soft: "bg-white/15",
+};
+
 export function VestingScheduleSection() {
   return (
-    <section className="relative border-t border-line bg-void py-14 md:py-20">
+    <section className={`${tkSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] uppercase tracking-[-0.02em]">
-            Vesting Schedule
-          </h2>
-          <p className="mt-4 display text-[clamp(1.15rem,2.2vw,1.4rem)] text-ink">
+        <FadeIn className="mx-auto max-w-3xl text-center">
+          <h2 className={`${tkH2} uppercase`}>Vesting</h2>
+          <p className="mt-3 display text-[clamp(1.15rem,2.4vw,1.45rem)] tracking-[-0.02em] text-ink text-balance">
             Built For Long-Term Alignment
           </p>
         </FadeIn>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {vesting.map((item, i) => (
-            <FadeIn key={item.title} delay={(i % 3) * 0.03} className="h-full">
+        <div className="mt-10 grid gap-3 md:grid-cols-2">
+          {schedules.map((item, i) => (
+            <FadeIn key={item.title} delay={i * 0.02}>
               <article
-                className={`flex h-full flex-col rounded-[1.25rem] border p-5 ${
+                className={`flex h-full flex-col ${
                   item.featured
-                    ? "border-electric/45 bg-gradient-to-br from-electric/15 to-void/40"
-                    : "border-line bg-deep/50"
-                }`}
+                    ? "rounded-2xl border border-electric/35 bg-electric/[0.07] shadow-[0_20px_60px_rgba(0,0,0,0.28)]"
+                    : tkSurface
+                } p-5 sm:p-6`}
               >
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="display text-[1.12rem] tracking-[-0.02em] text-ink">
-                    {item.title}
-                  </h3>
-                  {item.featured ? (
-                    <span className="shrink-0 rounded-full border border-electric/40 bg-electric/15 px-2 py-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-electric">
-                      36-mo lock
-                    </span>
-                  ) : null}
-                </div>
+                <h3 className="display text-[1.15rem] tracking-[-0.02em] text-ink">
+                  {item.title}
+                </h3>
+                <p className={`mt-3 flex-1 ${tkBody}`}>{item.body}</p>
 
-                <div
-                  className={`mt-4 grid gap-2 ${
-                    item.highlights.length === 1
-                      ? "grid-cols-1"
-                      : item.highlights.length === 2
-                        ? "grid-cols-2"
-                        : "grid-cols-3"
-                  }`}
-                >
-                  {item.highlights.map((point) => (
+                {item.timeline && (
+                  <div className="mt-5">
+                    <div className="flex h-2.5 overflow-hidden rounded-full border border-white/[0.08]">
+                      {item.timeline.map((seg) => (
+                        <div
+                          key={`${item.title}-${seg.label}`}
+                          className={toneClass[seg.tone]}
+                          style={{ flex: seg.flex }}
+                          title={seg.label}
+                        />
+                      ))}
+                    </div>
+                    <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+                      {item.timeline.map((seg) => (
+                        <p
+                          key={`${item.title}-legend-${seg.label}`}
+                          className="text-[0.72rem] font-medium text-muted"
+                        >
+                          {seg.label}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {item.marks.map((mark) => (
                     <div
-                      key={point.label}
-                      className="rounded-lg border border-line bg-void/55 px-2 py-2.5 text-center"
+                      key={`${item.title}-${mark.label}`}
+                      className={`${tkSurfaceSoft} px-3 py-2`}
                     >
-                      <p className="text-[0.55rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                        {point.label}
+                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+                        {mark.label}
                       </p>
-                      <p
-                        className={`mt-1.5 text-[0.8rem] font-semibold leading-snug ${
-                          item.featured ? "text-electric" : "text-electric"
-                        }`}
-                      >
-                        {point.value}
+                      <p className="mt-0.5 text-[0.9rem] font-semibold text-ink">
+                        {mark.detail}
                       </p>
                     </div>
-                  ))}
-                </div>
-
-                <div className="mt-4 space-y-2 text-[0.92rem] leading-relaxed text-muted">
-                  {item.summary.map((line) => (
-                    <p key={line}>{line}</p>
                   ))}
                 </div>
               </article>
@@ -145,10 +178,10 @@ export function VestingScheduleSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-6">
-          <p className="text-[0.95rem] leading-relaxed text-muted-dim">
-            All unlocks are designed to be transparent and verifiable through
-            smart contracts where applicable.
+        <FadeIn className="mt-8 text-center">
+          <p className={`${tkBody} text-balance`}>
+            All applicable unlocks are designed to be transparent and verifiable
+            through smart contracts.
           </p>
         </FadeIn>
       </div>

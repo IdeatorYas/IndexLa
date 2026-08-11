@@ -1,102 +1,159 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
+import {
+  tkBody,
+  tkH2,
+  tkSection,
+  tkStat,
+  tkSurface,
+  tkSurfaceSoft,
+} from "@/components/tokenomics/tokenomicsRhythm";
 
-const discountTiers = [
-  { hold: "2,500 $DEXLA", discount: "15%" },
-  { hold: "5,000 $DEXLA", discount: "25%" },
-  { hold: "10,000 $DEXLA", discount: "35%" },
+const utilities = [
+  {
+    n: "01",
+    title: "Publish",
+    accent: "border-electric/35 bg-electric/[0.07]",
+    body: "Creators burn 1,000 $DEXLA to publish a public portfolio or index on the INDEXLA Marketplace.",
+    note: "Private portfolios remain free, allowing creators to build and test before going public.",
+    value: "1,000",
+    unit: "$DEXLA",
+    result: "Public Portfolio",
+    extra:
+      "The protocol may consider transitioning publishing costs to a fixed USD value, paid in $DEXLA at the time of transaction, to maintain predictable creator costs as market conditions change.",
+  },
+  {
+    n: "02",
+    title: "Feature",
+    accent: "border-purple/40 bg-purple/[0.08]",
+    body: "Creators can burn 2,500 $DEXLA to feature a published portfolio for 7 days.",
+    note: "Featured portfolios receive premium marketplace placement, a Featured designation, and increased discovery. Featured placement rotates to keep marketplace discovery competitive.",
+    value: "2,500",
+    unit: "$DEXLA",
+    result: "7 Days Featured",
+    extra: null,
+  },
+  {
+    n: "03",
+    title: "Save",
+    accent: "border-success/35 bg-success/[0.07]",
+    body: "Holding $DEXLA gives investors lower execution fees.",
+    note: "Discounts remain active while the required balance is maintained.",
+    value: null,
+    unit: null,
+    result: null,
+    tiers: [
+      { hold: "2,500 $DEXLA", discount: "10%" },
+      { hold: "5,000 $DEXLA", discount: "25%" },
+      { hold: "10,000 $DEXLA", discount: "40%" },
+    ],
+    extra: null,
+  },
+  {
+    n: "04",
+    title: "Tip Creators",
+    accent: "border-white/[0.1] bg-void/50",
+    body: "Investors and followers can tip creators directly in $DEXLA.",
+    note: "Creators can earn from the value they bring to the ecosystem through research, portfolio construction, market views, and community contribution. No performance fee is required.",
+    value: null,
+    unit: null,
+    result: null,
+    flow: ["Discover", "Follow", "Invest", "Tip"],
+    extra: null,
+  },
 ] as const;
 
 export function TokenUtilitySection() {
   return (
-    <section className="relative border-t border-line bg-deep py-14 md:py-20">
+    <section className={`${tkSection} bg-deep`}>
       <div className="section-pad container-max">
-        <FadeIn className="max-w-3xl">
-          <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] uppercase tracking-[-0.02em]">
-            Token Utility
+        <FadeIn className="mx-auto max-w-3xl text-center">
+          <h2 className={`${tkH2} uppercase`}>
+            Four Core{" "}
+            <span className="gradient-text">Utilities</span>
           </h2>
         </FadeIn>
 
-        <div className="mt-8 grid gap-4 lg:grid-cols-2 lg:items-stretch">
-          <FadeIn className="h-full">
-            <article className="flex h-full flex-col rounded-[1.35rem] border border-electric/35 bg-electric/8 p-5 sm:p-6">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                Publish To Earn
-              </p>
-              <p className="display mt-4 text-[clamp(1.35rem,2.6vw,1.75rem)] tracking-[-0.03em] text-ink">
-                Publish →{" "}
-                <span className="text-electric">1,000 $DEXLA Burn</span>
-              </p>
-              <p className="mt-4 text-[1rem] leading-relaxed text-muted">
-                Creating a public portfolio or index on the INDEXLA Marketplace
-                requires a permanent burn of 1,000 $DEXLA.
-              </p>
-
-              <div className="mt-5 space-y-2">
-                <div className="rounded-xl border border-electric/30 bg-void/50 px-4 py-3">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-electric">
-                    Public portfolio
-                  </p>
-                  <p className="mt-1.5 text-[0.98rem] font-semibold text-ink">
-                    Burn 1,000 $DEXLA to publish.
-                  </p>
-                </div>
-                <div className="rounded-xl border border-line bg-void/40 px-4 py-3">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-                    Private portfolio
-                  </p>
-                  <p className="mt-1.5 text-[0.98rem] font-semibold text-ink">
-                    No $DEXLA burn required.
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-auto pt-5 text-[0.92rem] leading-relaxed text-muted-dim">
-                Creators can build and test private portfolios before making them
-                public.
-              </p>
-            </article>
-          </FadeIn>
-
-          <FadeIn delay={0.05} className="h-full">
-            <article className="flex h-full flex-col rounded-[1.35rem] border border-purple-bright/30 bg-purple/10 p-5 sm:p-6">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                Trading Fee Discounts
-              </p>
-              <p className="display mt-4 text-[clamp(1.35rem,2.6vw,1.75rem)] tracking-[-0.03em] text-ink">
-                Hold →{" "}
-                <span className="text-purple-bright">Trading Fee Discounts</span>
-              </p>
-              <p className="mt-4 text-[1rem] leading-relaxed text-muted">
-                Investors holding $DEXLA receive reduced execution fees:
-              </p>
-
-              <ul className="mt-5 space-y-2">
-                {discountTiers.map((tier) => (
-                  <li
-                    key={tier.hold}
-                    className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-line bg-void/50 px-4 py-3"
-                  >
-                    <span className="text-[0.95rem] font-semibold tabular-nums text-ink">
-                      {tier.hold}
+        <div className="mt-10 space-y-4">
+          {utilities.map((item, i) => (
+            <FadeIn key={item.n} delay={i * 0.03}>
+              <article className={`${tkSurface} grid gap-0 lg:grid-cols-[1.15fr_0.85fr]`}>
+                <div className="border-b border-white/[0.07] p-5 sm:p-6 lg:border-b-0 lg:border-r">
+                  <div className="flex items-baseline gap-3">
+                    <span className="display text-[1.1rem] text-electric">
+                      {item.n}
                     </span>
-                    <span className="display text-[1.05rem] tabular-nums text-electric">
-                      {tier.discount}
-                      <span className="ml-1 text-[0.75rem] font-semibold tracking-normal text-muted">
-                        fee discount
-                      </span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                    <h3 className="display text-[clamp(1.35rem,2.5vw,1.75rem)] tracking-[-0.02em] text-ink uppercase">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p className={`mt-4 ${tkBody}`}>{item.body}</p>
+                  <p className={`mt-3 ${tkBody}`}>{item.note}</p>
+                  {item.extra && (
+                    <p className="mt-4 text-[0.92rem] leading-relaxed text-muted-dim text-pretty">
+                      {item.extra}
+                    </p>
+                  )}
+                </div>
 
-              <p className="mt-auto pt-5 text-[0.92rem] leading-relaxed text-muted-dim">
-                Discounts remain active while the required token balance is
-                maintained.
-              </p>
-            </article>
-          </FadeIn>
+                <div className={`flex flex-col justify-center p-5 sm:p-6 ${item.accent}`}>
+                  {item.value && (
+                    <div className="text-center">
+                      <p className={`${tkStat} gradient-text`}>{item.value}</p>
+                      <p className="mt-1 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                        {item.unit}
+                      </p>
+                      <div className="my-3 flex justify-center text-electric/50" aria-hidden>
+                        →
+                      </div>
+                      <p className="display text-[1.2rem] tracking-[-0.02em] text-ink">
+                        {item.result}
+                      </p>
+                    </div>
+                  )}
+
+                  {"tiers" in item && item.tiers && (
+                    <div className="space-y-2">
+                      {item.tiers.map((tier) => (
+                        <div
+                          key={tier.hold}
+                          className={`${tkSurfaceSoft} flex items-center justify-between gap-3 px-3.5 py-3`}
+                        >
+                          <span className="text-[0.9rem] font-semibold text-ink">
+                            {tier.hold}
+                          </span>
+                          <span className="display text-[1.25rem] gradient-text">
+                            {tier.discount}
+                          </span>
+                        </div>
+                      ))}
+                      <p className="pt-1 text-center text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+                        Fee discount
+                      </p>
+                    </div>
+                  )}
+
+                  {"flow" in item && item.flow && (
+                    <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
+                      {item.flow.map((step, idx) => (
+                        <div key={step} className="flex items-center gap-2">
+                          <span className="border-b border-electric/40 pb-0.5 text-[0.95rem] font-semibold text-ink">
+                            {step}
+                          </span>
+                          {idx < item.flow!.length - 1 && (
+                            <span className="text-electric/45" aria-hidden>
+                              →
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            </FadeIn>
+          ))}
         </div>
       </div>
     </section>
