@@ -14,6 +14,22 @@ Your assets remain in your wallet. Strategy execution happens on-chain across su
 
 ---
 
+# WHY THESE STRATEGIES?
+
+These strategies are built for long-term investing, not day trading.
+
+Markets have moved through fear, recovery, greed, and euphoria for generations. The challenge isn't recognizing these cycles. It's responding consistently when they happen.
+
+INDEXLA turns proven investment concepts into programmable rules designed to follow market psychology, reduce emotional decisions, and stay aligned with a long-term thesis.
+
+Accumulate when opportunity appears. Take profits when conditions change. Rebalance when your portfolio drifts.
+
+The goal isn't to predict every move.
+
+It's to have a plan before the market moves.
+
+
+
 # **Buy Fear. Sell Greed.**
 
 ## **Accumulate Into Extreme Fear. Reduce Exposure Into Extreme Greed.**
@@ -123,36 +139,6 @@ A portfolio targeting **60% BTC / 40% ETH** can quickly become something very di
 Define your target allocations and acceptable ranges.
 
 When your conditions are triggered, INDEXLA can rebalance the portfolio toward your rules.
-
----
-
----
-
-# **Match The Strategy To The Asset.**
-
-Different assets respond differently to the same strategy.
-
-### **Crypto**
-
-**BTC · ETH · Major liquid assets**
-
-Fear & Greed · RSI · Momentum · Rebalancing
-
-### **Tokenized Stocks**
-
-Momentum · RSI · Take Profit
-
-### **Commodities & RWAs**
-
-Rebalancing · Momentum · Take Profit
-
-### **Hybrid Portfolios**
-
-Combine supported asset classes and apply different rules across the portfolio.
-
-Asset selection still determines the underlying risk.
-
-A strategy does not make an illiquid or speculative asset safe.
 
 ---
 

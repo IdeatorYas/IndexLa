@@ -1,9 +1,9 @@
 export function StrategyDisclaimer() {
   return (
-    <section className="border-t border-line/60 bg-deep py-8 md:py-10">
+    <section className="border-t border-white/[0.07] bg-deep py-9 md:py-11">
       <div className="section-pad container-max">
-        <div className="mx-auto max-w-3xl space-y-3 text-[0.85rem] leading-relaxed text-muted-dim">
-          <h2 className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+        <div className="mx-auto max-w-3xl space-y-3 text-[0.88rem] leading-relaxed text-muted-dim text-pretty">
+          <h2 className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-muted">
             Strategy &amp; Risk Disclaimer
           </h2>
           <p>
