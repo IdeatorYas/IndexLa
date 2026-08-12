@@ -8,10 +8,10 @@ import {
 } from "@/components/home/homeRhythm";
 
 const utilities = [
-  "Publish portfolios & indexes",
-  "Creator ecosystem access",
-  "Fee discounts",
-  "Governance & ecosystem participation",
+  "Make a portfolio public",
+  "Promote your portfolio",
+  "Save on platform fees",
+  "Tip creators & ranking",
 ] as const;
 
 const burns = [
@@ -20,6 +20,10 @@ const burns = [
   "Promote token burns",
   "Treasury burns — 25% of profits",
 ] as const;
+
+function cardNumber(i: number) {
+  return String(i + 1).padStart(2, "0");
+}
 
 export function DexlaSection() {
   return (
@@ -37,35 +41,46 @@ export function DexlaSection() {
           </p>
         </FadeIn>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <FadeIn>
-            <div className="h-full rounded-3xl border border-success/35 bg-success/[0.06] px-6 py-6 text-center shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14)] sm:px-7">
+        <div className="mt-10 space-y-8">
+          <div>
+            <FadeIn className="text-center">
               <h3 className={`${homeH3} text-success`}>4 Core Utilities</h3>
-              <ol className={`mt-5 space-y-3 ${homeBody}`}>
-                {utilities.map((item, i) => (
-                  <li key={item}>
-                    <span className="tabular-nums text-success">{i + 1}.</span>{" "}
-                    <span className="text-ink">{item}</span>
-                  </li>
-                ))}
-              </ol>
+            </FadeIn>
+            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {utilities.map((item, i) => (
+                <FadeIn key={item} delay={i * 0.04} className="h-full">
+                  <article className="flex h-full min-h-[9.25rem] flex-col items-center justify-center rounded-2xl border border-success/35 bg-success/[0.06] px-4 py-5 text-center shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14)] sm:px-5">
+                    <p className={`${homeBody} leading-snug`}>
+                      <span className="tabular-nums font-semibold text-success">
+                        {cardNumber(i)} —
+                      </span>{" "}
+                      <span className="text-ink">{item}</span>
+                    </p>
+                  </article>
+                </FadeIn>
+              ))}
             </div>
-          </FadeIn>
-          <FadeIn delay={0.05}>
-            <div className="h-full rounded-3xl border border-danger/35 bg-danger/[0.06] px-6 py-6 text-center shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)] sm:px-7">
+          </div>
+
+          <div>
+            <FadeIn className="text-center">
               <h3 className={`${homeH3} text-danger`}>4 Burn Mechanisms</h3>
-              <ol className={`mt-5 space-y-3 ${homeBody}`}>
-                {burns.map((item, i) => (
-                  <li key={item}>
-                    <span className="tabular-nums text-danger">
-                      {String(i + 1).padStart(2, "0")} —
-                    </span>{" "}
-                    <span className="text-ink">{item}</span>
-                  </li>
-                ))}
-              </ol>
+            </FadeIn>
+            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {burns.map((item, i) => (
+                <FadeIn key={item} delay={i * 0.04} className="h-full">
+                  <article className="flex h-full min-h-[9.25rem] flex-col items-center justify-center rounded-2xl border border-danger/35 bg-danger/[0.06] px-4 py-5 text-center shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)] sm:px-5">
+                    <p className={`${homeBody} leading-snug`}>
+                      <span className="tabular-nums font-semibold text-danger">
+                        {cardNumber(i)} —
+                      </span>{" "}
+                      <span className="text-ink">{item}</span>
+                    </p>
+                  </article>
+                </FadeIn>
+              ))}
             </div>
-          </FadeIn>
+          </div>
         </div>
 
         <FadeIn className="mt-7 text-center">
