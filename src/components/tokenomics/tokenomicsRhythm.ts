@@ -17,7 +17,7 @@ export const tkSection =
   "relative border-t border-white/[0.07] py-12 md:py-14 lg:py-16";
 
 export const tkH1 =
-  "display text-[clamp(2.4rem,6vw,4.25rem)] font-semibold tracking-[-0.04em] text-balance text-pretty uppercase leading-[1.02]";
+  "display text-[clamp(2.2rem,5.5vw,3.85rem)] font-semibold tracking-[-0.04em] text-balance text-pretty uppercase leading-[1.02]";
 
 export const tkSurface =
   "overflow-hidden border border-white/[0.08] bg-deep/55";
@@ -26,7 +26,7 @@ export const tkSurfaceSoft =
   "border border-white/[0.07] bg-void/40";
 
 export const tkStat =
-  "display text-[clamp(1.75rem,4vw,2.75rem)] leading-none tracking-[-0.03em] tabular-nums";
+  "display text-[clamp(1.55rem,3.5vw,2.35rem)] leading-none tracking-[-0.03em] tabular-nums";
 
 /** Premium utility (green) — value / usage */
 export const tkUtilityAccent = "text-success";
@@ -34,7 +34,7 @@ export const tkUtilityBorder = "border-success/30";
 export const tkUtilityPanel =
   "border border-success/30 bg-success/[0.07]";
 export const tkUtilityGlow =
-  "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(52,211,153,0.11), transparent 60%)";
+  "radial-gradient(ellipse 50% 40% at 50% 0%, rgba(52,211,153,0.1), transparent 65%)";
 
 /** Premium burn (red) — supply reduction */
 export const tkBurnAccent = "text-danger";
@@ -42,32 +42,37 @@ export const tkBurnBorder = "border-danger/30";
 export const tkBurnPanel =
   "border border-danger/30 bg-danger/[0.07]";
 export const tkBurnGlow =
-  "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(248,113,113,0.11), transparent 60%)";
+  "radial-gradient(ellipse 50% 40% at 50% 0%, rgba(248,113,113,0.1), transparent 65%)";
 
-/** Shared 4×4 architecture card shell — identical for utility & burn */
+/** Shared 4×4 architecture — identical shells for utility & burn */
 export const tkArchGrid =
-  "mt-10 grid gap-3 sm:grid-cols-2 sm:gap-4";
+  "mt-10 grid auto-rows-fr gap-3 sm:grid-cols-2 sm:gap-4";
 
 export const tkArchCard =
-  "flex h-full min-h-[24rem] flex-col border px-5 py-5 transition-[border-color,background-color] duration-300 sm:min-h-[28rem] sm:px-6 sm:py-6";
+  "group relative flex h-full flex-col overflow-hidden border bg-panel/40 px-5 py-5 backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-6 sm:py-6";
 
 export const tkArchCardUtility =
-  `${tkArchCard} border-success/45 bg-success/[0.06] hover:border-success/65 hover:bg-success/[0.09]`;
+  `${tkArchCard} border-success/35 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.12)] hover:border-success/55 hover:bg-success/[0.06] hover:shadow-[inset_0_1px_0_0_rgba(52,211,153,0.2),0_0_0_1px_rgba(52,211,153,0.08)]`;
 
 export const tkArchCardBurn =
-  `${tkArchCard} border-danger/45 bg-danger/[0.06] hover:border-danger/65 hover:bg-danger/[0.09]`;
+  `${tkArchCard} border-danger/35 shadow-[inset_0_1px_0_0_rgba(248,113,113,0.12)] hover:border-danger/55 hover:bg-danger/[0.06] hover:shadow-[inset_0_1px_0_0_rgba(248,113,113,0.2),0_0_0_1px_rgba(248,113,113,0.08)]`;
 
 export const tkArchNum =
-  "display text-[1.05rem] tabular-nums";
+  "display text-[0.95rem] tabular-nums tracking-[0.08em]";
 
 export const tkArchTitle =
-  "display text-[clamp(1.2rem,2.2vw,1.45rem)] tracking-[-0.02em] text-ink uppercase text-balance";
+  "display text-[clamp(1.15rem,2vw,1.35rem)] tracking-[-0.02em] text-ink uppercase text-balance";
 
+/** Fixed metric footing so all 8 cards share the same visual weight */
 export const tkArchMetric =
-  "mt-auto flex min-h-[10.5rem] flex-col items-center justify-center border px-4 py-5 text-center";
+  "mt-auto flex min-h-[9.75rem] flex-col items-center justify-center border px-4 py-4 text-center";
 
 export const tkArchMetricUtility =
-  `${tkArchMetric} border-success/30 bg-success/[0.08]`;
+  `${tkArchMetric} border-success/30 bg-success/[0.07]`;
 
 export const tkArchMetricBurn =
-  `${tkArchMetric} border-danger/30 bg-danger/[0.08]`;
+  `${tkArchMetric} border-danger/30 bg-danger/[0.07]`;
+
+/** Body block height so copy area stays consistent across cards */
+export const tkArchBody =
+  "mt-4 flex min-h-[7.5rem] flex-1 flex-col sm:min-h-[8.25rem]";

@@ -16,8 +16,6 @@ More creators. More portfolios. More activity. More reasons to use $DEXLA.
 
 ---
 
----
-
 # FOUR CORE UTILITIES
 
 ## 01 — PUBLISH
@@ -32,63 +30,81 @@ Private portfolios remain free for building and testing before going public.
 
 ## 02 — FEATURE
 
-Creators can use 2,500 $DEXLA to feature a portfolio at the top of the INDEXLA Marketplace for 7 days.
+Creators use $DEXLA to feature a published portfolio at the top of the INDEXLA Marketplace for 7 days.
 
-As AUM and execution volume grow, creators can promote again to reach more investors and increase earnings.
+This is a Marketing Option.
 
 2,500 $DEXLA → 7 Days Featured
 
+
+
 ---
+
+
 
 ## 03 — SAVE
 
-Holding $DEXLA gives investors lower execution fees.
+Investors holding $DEXLA receive lower execution fees while maintaining the required balance.
 
 2,500 → 10% discount  
 5,000 → 25% discount  
 10,000 → 40% discount
 
-Discounts remain active while the required balance is maintained.
+Hold $DEXLA → Save on execution
+
+
 
 ---
+
+
 
 ## 04 — TIP CREATORS
 
-Investors and followers can tip creators directly in $DEXLA.
-
-Creators earn from the value they bring through research, portfolio construction, market views, and community contribution.
+Investors and followers can tip creators directly in $DEXLA for research, portfolio construction, market views, and community contribution.
 
 Discover → Follow → Invest → Tip
 
+
+
 ---
+
+
 
 # FOUR BURN MECHANISMS
 
-$DEXLA converts real INDEXLA activity into permanent supply reduction.
-
 ## 01 — PUBLISHING BURN
 
-Every public portfolio or index permanently burns 1,000 $DEXLA.
+Every public portfolio or index permanently burns 1,000 $DEXLA from the token supply.
 
 More portfolios → More $DEXLA burned
 
+
+
 ---
+
+
 
 ## 02 — FEATURED BURN
 
-Every Featured promotion permanently burns 2,500 $DEXLA.
+Every Featured promotion permanently burns 2,500 $DEXLA from the token supply.
 
 Creators can promote again as their audience, AUM, and volume grow.
 
 More promotion → More $DEXLA burned
 
+
+
 ---
+
+
 
 ## 03 — EXECUTION FEE BUYBACK & BURN
 
-10% of INDEXLA's execution fee revenue is used to buy and permanently burn $DEXLA.
+10% of INDEXLA’s execution fee revenue is used to buy and permanently burn $DEXLA.
 
 More execution volume → More $DEXLA burned
+
+
 
 ---
 
@@ -96,11 +112,13 @@ More execution volume → More $DEXLA burned
 
 25% of realized Treasury profits are used to buy and permanently burn $DEXLA.
 
-Treasury assets are protocol-owned capital and stable reserves. Realized profits come only from gains on Treasury-managed positions, not investor funds.
+Treasury gains are generated from protocol-owned capital, not investor funds.
 
 More Treasury gains → More $DEXLA burned
 
 
+
+---
 
 # WHY $DEXLA EXISTS
 
