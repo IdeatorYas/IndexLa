@@ -54,12 +54,6 @@ export function CreatorMonthlyRewardsSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-5 text-center">
-          <p className="text-[0.92rem] font-semibold tracking-[-0.01em] text-ink text-balance sm:text-[1.02rem]">
-            Performance 35% + AUM 30% + Volume 20% + Tips 15%
-          </p>
-        </FadeIn>
-
         <FadeIn className="mt-9 text-center">
           <div className="inline-flex justify-center">
             <div className={crGreenBox}>
