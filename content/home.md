@@ -6,10 +6,10 @@
 
 **The non custodial portfolio distribution layer for crypto and tokenized assets.**
 
-0% management · 0% performance · 0% exit  
+0% management · 0% performance · 0% exit · 1% execution
  Only 1% execution fee when trades occur
 
-[Create Your Portfolio] [Join Early Access]
+[Reserve Early Access] [Join Early Access]
 
 Multi Asset · Cross Chain · Non Custodial · Automated · Creator Marketplace
 
@@ -65,6 +65,8 @@ Creator influence → Investable portfolios
 
 INDEXLA lets you buy the assets, hold the full basket, and control your portfolio directly.
 
+One permission layer connects portfolios across chains and asset classes, while execution remains non-custodial and rule-constrained.
+
 **Multi Asset · Multi Chain · Non Custodial · Programmable · Creator Native**
 
 ---
@@ -78,6 +80,8 @@ Distributed Asset Value: $38.14B
 Represented Asset Value: $373.37B
 
 Total Asset Holders: 1.72M
+
+Source: RWA.xyz
 
 Treasuries, bonds, equities, commodities, funds, credit, and other RWAs are moving onto programmable blockchains.
 
@@ -196,6 +200,8 @@ Investors choose which portfolios match their objectives and risk preferences.
 
 All portfolio activity remains non custodial.
 
+SIMULATED DATA — INDEXLA IS NOT YET LIVE
+
 Illustrative portfolios shown for demonstration purposes.
 
 ---
@@ -222,17 +228,15 @@ Creator retention and recurring portfolio activity are core metrics for marketpl
 
 ### Pay for execution, not management.
 
-1% execution fee
-
-0% management fees
-
-0% performance fees
-
-0% exit fees
+0% management · 0% performance · 0% exit · 1% execution
 
 No subscription required.
 
 Creator portfolios share 50% of applicable execution fees with the creator.
+
+4 $DEXLA utilities + 4 burn mechanisms
+
+[Read More →](/tokenomics)
 
 ---
 

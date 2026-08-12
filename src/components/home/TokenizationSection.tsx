@@ -42,6 +42,9 @@ export function TokenizationSection() {
               </div>
             ))}
           </div>
+          <p className="mt-4 text-center text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted">
+            Source: RWA.xyz
+          </p>
         </FadeIn>
 
         <FadeIn className={`mt-8 max-w-3xl space-y-5 ${homeBody}`}>

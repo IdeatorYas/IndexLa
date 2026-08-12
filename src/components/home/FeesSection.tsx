@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
@@ -5,12 +6,6 @@ import {
   homeLede,
   homeSection,
 } from "@/components/home/homeRhythm";
-
-const zeros = [
-  { value: "0%", label: "management fees" },
-  { value: "0%", label: "performance fees" },
-  { value: "0%", label: "exit fees" },
-] as const;
 
 export function FeesSection() {
   return (
@@ -23,33 +18,12 @@ export function FeesSection() {
 
         <FadeIn className="mt-8">
           <div className="rounded-3xl glass px-6 py-8 text-center sm:px-10">
-            <p className="display text-[clamp(2.6rem,7vw,4rem)] leading-none gradient-text">
-              1%
+            <p className="display text-[clamp(1.15rem,3.2vw,1.65rem)] leading-snug tracking-[-0.02em] text-ink text-balance">
+              0% management · 0% performance · 0% exit · 1% execution
             </p>
-            <p className="mt-3 text-[1.05rem] font-semibold text-ink sm:text-[1.125rem]">
-              execution fee
-            </p>
-            <p className={`mx-auto mt-3 max-w-sm ${homeBody}`}>
+            <p className={`mx-auto mt-4 max-w-sm ${homeBody}`}>
               No subscription required.
             </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn className="mt-4">
-          <div className="grid gap-4 sm:grid-cols-3">
-            {zeros.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-2xl border border-line bg-deep/50 px-6 py-8 text-center"
-              >
-                <p className="display text-[2.35rem] leading-none text-ink sm:text-[2.6rem]">
-                  {item.value}
-                </p>
-                <p className="mt-3 text-[1.05rem] font-semibold tracking-[0.02em] text-muted sm:text-[1.1rem]">
-                  {item.label}
-                </p>
-              </div>
-            ))}
           </div>
         </FadeIn>
 
@@ -58,8 +32,18 @@ export function FeesSection() {
             Creator portfolios share 50% of applicable execution fees with the
             creator.
           </p>
+          <p className={`mt-5 ${homeBody}`}>
+            4 $DEXLA utilities + 4 burn mechanisms
+          </p>
+          <Link
+            href="/tokenomics"
+            className="mt-3 inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink"
+          >
+            Read More →
+          </Link>
         </FadeIn>
       </div>
     </section>
   );
 }
+

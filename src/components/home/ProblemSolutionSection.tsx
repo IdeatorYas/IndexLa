@@ -117,6 +117,11 @@ export function ProblemSolutionSection() {
               INDEXLA lets you buy the assets, hold the full basket, and control
               your portfolio directly.
             </p>
+            <p className={`mt-4 max-w-3xl ${homeBodyStrong}`}>
+              One permission layer connects portfolios across chains and asset
+              classes, while execution remains non-custodial and
+              rule-constrained.
+            </p>
           </div>
         </FadeIn>
 

@@ -5,7 +5,6 @@ import { FloatingAssetUniverse } from "@/components/home/FloatingAssetUniverse";
 import {
   homeBody,
   homeBodyDim,
-  homeLabel,
 } from "@/components/home/homeRhythm";
 import { Button } from "@/components/ui/Button";
 
@@ -58,22 +57,9 @@ export function Hero() {
             className="mx-auto mt-7 max-w-lg rounded-2xl border border-electric/20 bg-white/[0.035] px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm sm:px-6 sm:py-5"
             aria-label="Fee structure highlights"
           >
-            <div className="grid grid-cols-3 gap-2 sm:gap-3">
-              {[
-                { value: "0%", label: "management" },
-                { value: "0%", label: "performance" },
-                { value: "0%", label: "exit" },
-              ].map((item) => (
-                <div key={item.label} className="text-center">
-                  <p className="display text-[1.35rem] leading-none text-ink sm:text-[1.55rem]">
-                    {item.value}
-                  </p>
-                  <p className={`mt-2 ${homeLabel}`}>
-                    {item.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <p className="text-center text-[0.92rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1.05rem]">
+              0% management · 0% performance · 0% exit · 1% execution
+            </p>
           </div>
 
           <p className={`mx-auto mt-4 max-w-xl ${homeBodyDim}`}>
@@ -82,7 +68,7 @@ export function Hero() {
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className="min-w-[13.5rem]">
-              Create Your Portfolio
+              Reserve Early Access
             </Button>
             <Button href="#early-access" variant="secondary" className="min-w-[13.5rem]">
               Join Early Access
