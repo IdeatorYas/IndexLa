@@ -153,7 +153,10 @@ export function StrategyWorksSection() {
         </div>
 
         <FadeIn className="mt-12 max-w-3xl">
-          <p className={invLede}>Example: Buy Fear. Sell Greed.</p>
+          <p className={invLede}>
+            Example: When Fear & Greed drops below 20, your approved rule can
+            trigger the defined portfolio allocation.
+          </p>
           <p className={`mt-4 ${invBody}`}>
             Built for long-term investors, not day traders.
           </p>

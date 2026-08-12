@@ -133,20 +133,20 @@ export function InvestorHero() {
             <h1 className={`${invH1} leading-[1.08]`}>
               <span className="block">You Know What You Should Do.</span>
               <span className="mt-[0.18em] block gradient-text">
-                You Just Don&apos;t Do It.
+                You Just Don&apos;t.
               </span>
             </h1>
 
             <div className="mt-7 space-y-2">
-              <p className={invBody}>
-                Buy when fear is high. Take profits at euphoria. Rebalance when
-                allocations drift.
-              </p>
-              <p className={invBody}>
-                The market moves — and you hesitate, chase, panic, and miss the
-                moment.
-              </p>
+              <p className={invBody}>Buy when fear is high.</p>
+              <p className={invBody}>Take profits at euphoria.</p>
+              <p className={invBody}>Rebalance when allocations drift.</p>
             </div>
+
+            <p className={`mt-5 ${invBody}`}>
+              Then the market moves — and you hesitate, chase, panic, and miss
+              it.
+            </p>
 
             <div className="mt-8">
               <div className={invGreenBox}>
@@ -154,10 +154,6 @@ export function InvestorHero() {
                   Stop letting emotions manage your portfolio.
                 </p>
               </div>
-              <p className={`mt-4 ${invBody}`}>
-                Define your rules when you&apos;re calm. Let INDEXLA coordinate
-                execution when the market moves.
-              </p>
             </div>
 
             <div className="mt-10">
@@ -165,11 +161,8 @@ export function InvestorHero() {
                 href="/creators"
                 className="min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
               >
-                Reserve Early Access
+                Build Your Automated Portfolio
               </Button>
-              <p className={`mx-auto mt-4 max-w-md text-center ${invBody}`}>
-                Early access for investors building automated portfolios.
-              </p>
             </div>
           </motion.div>
 
