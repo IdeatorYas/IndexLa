@@ -66,9 +66,9 @@ export function MarketCyclesSection() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mt-10" delay={0.05}>
+        <FadeIn className="mt-12" delay={0.05}>
           <div className="overflow-hidden rounded-[1.35rem] border border-line bg-deep/70">
-            <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line px-5 py-4 sm:px-6">
+            <div className="flex flex-wrap items-end justify-between gap-4 border-b border-line px-5 py-5 sm:px-7 sm:py-6">
               <div>
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
                   Market Cycle Sheet
@@ -82,11 +82,11 @@ export function MarketCyclesSection() {
               </p>
             </div>
 
-            <div className="hidden gap-3 p-6 md:grid md:grid-cols-4">
+            <div className="hidden gap-4 p-7 md:grid md:grid-cols-4">
               {phases.map((phase, i) => (
                 <motion.div
                   key={phase.market}
-                  className={`relative rounded-2xl border p-4 ${phase.tone}`}
+                  className={`relative rounded-2xl border p-5 ${phase.tone}`}
                   initial={reduce ? false : { opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -120,7 +120,7 @@ export function MarketCyclesSection() {
 
             <ul className="divide-y divide-line md:hidden">
               {phases.map((phase, i) => (
-                <li key={phase.market} className="flex items-center gap-4 px-5 py-4">
+                <li key={phase.market} className="flex items-center gap-4 px-5 py-5">
                   <span className="display shrink-0 text-[1.1rem] gradient-text">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -139,7 +139,7 @@ export function MarketCyclesSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mx-auto mt-8 max-w-2xl space-y-3 text-center">
+        <FadeIn className="mx-auto mt-10 max-w-2xl space-y-4 text-center">
           <p className={invBodyStrong}>
             Build your strategy when you&apos;re calm.
           </p>

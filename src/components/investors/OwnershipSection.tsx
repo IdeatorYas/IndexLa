@@ -26,9 +26,13 @@ export function OwnershipSection() {
           <p className={`mt-5 ${invBody}`}>
             Your assets stay in your wallet.
           </p>
+          <p className={`mx-auto mt-4 max-w-2xl font-semibold text-ink ${invBody}`}>
+            Your assets never leave your wallet. INDEXLA only receives the
+            limited permissions you approve.
+          </p>
         </FadeIn>
 
-        <FadeIn className="mt-10">
+        <FadeIn className="mt-12">
           <div className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-3">
             {pillars.map((label) => (
               <div
@@ -43,7 +47,11 @@ export function OwnershipSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mx-auto mt-8 max-w-2xl space-y-3 text-center">
+        <FadeIn className="mx-auto mt-10 max-w-2xl space-y-4 text-center">
+          <p className={`text-[1.05rem] leading-relaxed text-muted sm:text-[1.1rem]`}>
+            Own the underlying assets directly — not a basket token, wrapper, or
+            custodial position.
+          </p>
           <p className={invBodyStrong}>
             No index token. No wrapper. No custody. You own the underlying
             assets.

@@ -36,8 +36,11 @@ export function InvestorFinalOwnership() {
               href="/creators"
               className="min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
             >
-              Build Your Portfolio & Automate Your Strategy in 5 Minutes
+              Reserve Early Access
             </Button>
+            <p className={`mx-auto mt-4 max-w-md ${invBody}`}>
+              Early access for investors building automated portfolios.
+            </p>
           </div>
         </motion.div>
       </div>

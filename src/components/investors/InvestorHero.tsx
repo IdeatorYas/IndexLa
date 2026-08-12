@@ -137,18 +137,16 @@ export function InvestorHero() {
               </span>
             </h1>
 
-            <div className="mt-7 space-y-1.5">
-              <p className={invBody}>Buy when fear is high.</p>
+            <div className="mt-7 space-y-2">
               <p className={invBody}>
-                Take profits when markets become euphoric.
+                Buy when fear is high. Take profits at euphoria. Rebalance when
+                allocations drift.
               </p>
-              <p className={invBody}>Rebalance when your portfolio drifts.</p>
+              <p className={invBody}>
+                The market moves — and you hesitate, chase, panic, and miss the
+                moment.
+              </p>
             </div>
-
-            <p className={`mt-5 ${invBody}`}>Then the market moves.</p>
-            <p className={`mt-2 ${invBody}`}>
-              You hesitate. You chase. You panic. You miss the moment.
-            </p>
 
             <div className="mt-8">
               <div className={invGreenBox}>
@@ -167,8 +165,11 @@ export function InvestorHero() {
                 href="/creators"
                 className="min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
               >
-                Build Your Portfolio & Automate Your Strategy in 5 Minutes
+                Reserve Early Access
               </Button>
+              <p className={`mx-auto mt-4 max-w-md text-center ${invBody}`}>
+                Early access for investors building automated portfolios.
+              </p>
             </div>
           </motion.div>
 

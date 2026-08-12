@@ -138,10 +138,10 @@ export function StrategyWorksSection() {
           <p className={`mt-4 ${invEyebrow}`}>Build → Define → Automate</p>
         </FadeIn>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
           {buildSteps.map((step, i) => (
             <FadeIn key={step.n} delay={i * 0.04}>
-              <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-5">
+              <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-6">
                 <p className="display text-[1.4rem] gradient-text">{step.n}</p>
                 <h3 className="mt-1 display text-[1.2rem] tracking-[-0.02em] text-ink">
                   {step.title}
@@ -152,21 +152,21 @@ export function StrategyWorksSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-10 max-w-3xl">
+        <FadeIn className="mt-12 max-w-3xl">
           <p className={invLede}>Example: Buy Fear. Sell Greed.</p>
-          <p className={`mt-3 ${invBody}`}>
+          <p className={`mt-4 ${invBody}`}>
             Built for long-term investors, not day traders.
           </p>
-          <p className={`mt-3 ${invBody}`}>
+          <p className={`mt-4 ${invBody}`}>
             Instead of reacting to short-term price movements, define your
             response to the broader market cycle in advance.
           </p>
         </FadeIn>
 
         {/* Unified product demo */}
-        <FadeIn className="mt-10" delay={0.04}>
+        <FadeIn className="mt-12" delay={0.04}>
           <div className="overflow-hidden rounded-[1.35rem] border border-line bg-void/50">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-5 py-3.5 sm:px-6">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-4 sm:px-7">
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 INDEXLA Strategy Demo
               </p>
@@ -176,9 +176,9 @@ export function StrategyWorksSection() {
             </div>
 
             <div className="grid lg:grid-cols-2 lg:items-stretch">
-              <div className="border-b border-line p-5 sm:p-6 lg:border-b-0 lg:border-r">
+              <div className="border-b border-line p-6 sm:p-7 lg:border-b-0 lg:border-r">
                 <p className={invEyebrow}>Strategy progression</p>
-                <ol className="mt-4 flex flex-col gap-2">
+                <ol className="mt-5 flex flex-col gap-3">
                   {phases.map((step) => {
                     const isActive = step.id === activeId;
                     return (
@@ -186,7 +186,7 @@ export function StrategyWorksSection() {
                         <button
                           type="button"
                           onClick={() => setActiveId(step.id)}
-                          className={`w-full rounded-xl border px-4 py-3.5 text-left transition-colors ${
+                          className={`w-full rounded-xl border px-4 py-4 text-left transition-colors ${
                             isActive
                               ? "border-electric/45 bg-electric/10"
                               : "border-line bg-deep/40 hover:border-electric/25"
@@ -223,11 +223,11 @@ export function StrategyWorksSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col p-5 sm:p-6">
+              <div className="flex flex-col p-6 sm:p-7">
                 <p className={invEyebrow}>INDEXLA Rule Builder</p>
                 <motion.div
                   key={active.id}
-                  className="mt-4 flex flex-1 flex-col"
+                  className="mt-5 flex flex-1 flex-col"
                   initial={reduce ? false : { opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.28 }}
@@ -235,13 +235,13 @@ export function StrategyWorksSection() {
                   <p className="display text-[1.15rem] tracking-[-0.02em] text-ink sm:text-[1.25rem]">
                     {active.ruleTitle}
                   </p>
-                  <p className={`mt-2 ${invBody}`}>{active.detail}</p>
+                  <p className={`mt-3 ${invBody}`}>{active.detail}</p>
 
-                  <div className="mt-4 flex flex-1 flex-col justify-center gap-2.5">
+                  <div className="mt-5 flex flex-1 flex-col justify-center gap-3">
                     {active.rules.map((row) => (
                       <div
                         key={row.label}
-                        className="flex items-center justify-between gap-3 rounded-xl border border-line bg-deep/55 px-4 py-3"
+                        className="flex items-center justify-between gap-3 rounded-xl border border-line bg-deep/55 px-4 py-3.5"
                       >
                         <span className="text-[0.85rem] text-muted">
                           {row.label}
@@ -284,7 +284,7 @@ export function StrategyWorksSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-10 max-w-3xl space-y-4">
+        <FadeIn className="mt-12 max-w-3xl space-y-5">
           <p className={`${invH3} uppercase`}>Then the cycle repeats.</p>
           <p className={invBody}>
             When fear returns, accumulation begins again.
