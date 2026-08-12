@@ -37,6 +37,10 @@ export function FinalCtaSection() {
             Join early access for founders, creators, and crypto native
             investors.
           </p>
+          <p className={`mx-auto mt-5 max-w-2xl ${homeBody}`}>
+            Join the waitlist. Early access includes MVP access and creator
+            tooling.
+          </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className="min-w-[13.5rem]">
               Reserve Early Access

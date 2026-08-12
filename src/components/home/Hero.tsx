@@ -70,9 +70,6 @@ export function Hero() {
             <Button href="/creators" className="min-w-[13.5rem]">
               Reserve Early Access
             </Button>
-            <Button href="#early-access" variant="secondary" className="min-w-[13.5rem]">
-              Reserve Early Access
-            </Button>
           </div>
 
           <p className="mt-7 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted text-balance">
