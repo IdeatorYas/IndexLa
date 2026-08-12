@@ -15,15 +15,21 @@ const utilities = [
 ] as const;
 
 const burns = [
-  "Creator publishing burns",
-  "Protocol fee burn — 10% of protocol fees",
-  "Promote token burns",
-  "Treasury burns — 25% of profits",
+  { title: "Creator Publishing", rate: "100% Burn" },
+  { title: "Protocol Fees", rate: "10% Burn" },
+  { title: "Promotion Fees", rate: "100% Burn" },
+  { title: "Treasury Profits", rate: "25% Burn" },
 ] as const;
 
 function cardNumber(i: number) {
-  return String(i + 1).padStart(2, "0");
+  return `${String(i + 1).padStart(2, "0")} —`;
 }
+
+const utilityCard =
+  "flex flex-col items-center justify-center gap-2.5 rounded-2xl border border-success/35 bg-success/[0.06] px-5 py-6 text-center shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14)]";
+
+const burnCard =
+  "flex flex-col items-center justify-center gap-2.5 rounded-2xl border border-danger/35 bg-danger/[0.06] px-5 py-6 text-center shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)]";
 
 export function DexlaSection() {
   return (
@@ -46,15 +52,15 @@ export function DexlaSection() {
             <FadeIn className="text-center">
               <h3 className={`${homeH3} text-success`}>4 Core Utilities</h3>
             </FadeIn>
-            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-5 grid items-start gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {utilities.map((item, i) => (
-                <FadeIn key={item} delay={i * 0.04} className="h-full">
-                  <article className="flex h-full min-h-[9.25rem] flex-col items-center justify-center rounded-2xl border border-success/35 bg-success/[0.06] px-4 py-5 text-center shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14)] sm:px-5">
-                    <p className={`${homeBody} leading-snug`}>
-                      <span className="tabular-nums font-semibold text-success">
-                        {cardNumber(i)} —
-                      </span>{" "}
-                      <span className="text-ink">{item}</span>
+                <FadeIn key={item} delay={i * 0.04}>
+                  <article className={utilityCard}>
+                    <p className="text-[1.05rem] font-semibold leading-none tabular-nums tracking-[-0.01em] text-success sm:text-[1.125rem]">
+                      {cardNumber(i)}
+                    </p>
+                    <p className="text-[1.05rem] leading-snug tracking-[-0.015em] text-ink text-pretty sm:text-[1.125rem]">
+                      {item}
                     </p>
                   </article>
                 </FadeIn>
@@ -66,15 +72,18 @@ export function DexlaSection() {
             <FadeIn className="text-center">
               <h3 className={`${homeH3} text-danger`}>4 Burn Mechanisms</h3>
             </FadeIn>
-            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-5 grid items-start gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {burns.map((item, i) => (
-                <FadeIn key={item} delay={i * 0.04} className="h-full">
-                  <article className="grid h-full min-h-[10.5rem] grid-rows-[auto_minmax(0,1fr)] rounded-2xl border border-danger/35 bg-danger/[0.06] px-5 py-6 text-center shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)]">
-                    <p className="text-[1.125rem] font-semibold leading-none tabular-nums text-danger sm:text-[1.2rem]">
-                      {cardNumber(i)} —
+                <FadeIn key={item.title} delay={i * 0.04}>
+                  <article className={burnCard}>
+                    <p className="text-[1.05rem] font-semibold leading-none tabular-nums tracking-[-0.01em] text-danger sm:text-[1.125rem]">
+                      {cardNumber(i)}
                     </p>
-                    <p className="mt-3 flex items-center justify-center text-[1.125rem] leading-snug text-ink text-pretty sm:text-[1.2rem]">
-                      {item}
+                    <p className="text-[1.05rem] leading-snug tracking-[-0.015em] text-ink text-pretty sm:text-[1.125rem]">
+                      {item.title}
+                    </p>
+                    <p className="text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-danger sm:text-[1.125rem]">
+                      {item.rate}
                     </p>
                   </article>
                 </FadeIn>
