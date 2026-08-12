@@ -48,12 +48,12 @@ export function TokenomicsHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative overflow-hidden border border-white/[0.1] bg-panel/50 px-4 py-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] sm:px-5 sm:py-4">
+          <div className="relative overflow-hidden border border-white/[0.14] bg-panel/60 px-4 py-3.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_0_40px_-12px_rgba(56,189,248,0.25)] sm:px-5 sm:py-4">
             <div
-              className="pointer-events-none absolute inset-0 opacity-70"
+              className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(90deg, rgba(52,211,153,0.07) 0%, transparent 42%, transparent 58%, rgba(248,113,113,0.07) 100%)",
+                  "linear-gradient(90deg, rgba(52,211,153,0.09) 0%, transparent 40%, transparent 60%, rgba(248,113,113,0.09) 100%)",
               }}
               aria-hidden
             />

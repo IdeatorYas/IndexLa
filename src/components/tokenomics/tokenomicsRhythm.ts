@@ -65,7 +65,7 @@ export const tkArchTitle =
 
 /** Fixed metric footing so all 8 cards share the same visual weight */
 export const tkArchMetric =
-  "mt-auto flex min-h-[9.75rem] flex-col items-center justify-center border px-4 py-4 text-center";
+  "mt-auto flex min-h-[10.25rem] flex-col items-center justify-center border px-4 py-4 text-center";
 
 export const tkArchMetricUtility =
   `${tkArchMetric} border-success/30 bg-success/[0.07]`;
