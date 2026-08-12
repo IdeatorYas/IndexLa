@@ -3,8 +3,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   crBody,
-  crGreenBox,
-  crGreenText,
   crH2,
   crSection,
   crSurface,
@@ -23,16 +21,14 @@ export function CreatorMonthlyRewardsSection() {
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${crH2} uppercase`}>
-            Monthly Creator{" "}
-            <span className="gradient-text">Rewards</span>
+            Creator Reward{" "}
+            <span className="gradient-text">Scoring</span>
           </h2>
           <p className={`mx-auto mt-5 max-w-2xl ${crBody} text-balance`}>
-            A dedicated share of platform fees funds a monthly rewards pool
-            distributed among the Top 25 performing creators.
+            Top 25 creators ranked by performance points:
           </p>
-          <p className={`mx-auto mt-3 max-w-2xl ${crBody} text-balance`}>
-            Rewards are separate from creator fee sharing and from $DEXLA tips.
-            Creators are ranked using a transparent scoring system:
+          <p className="mx-auto mt-4 display text-[clamp(1rem,2.5vw,1.25rem)] font-semibold tracking-[-0.01em] text-ink">
+            Performance 35% + AUM 30% + Volume 20% + Tips 15%
           </p>
         </FadeIn>
 
@@ -51,17 +47,6 @@ export function CreatorMonthlyRewardsSection() {
                 </p>
               </div>
             ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn className="mt-9 text-center">
-          <div className="inline-flex justify-center">
-            <div className={crGreenBox}>
-              <p className={`${crGreenText} text-balance`}>
-                Build, perform, grow your AUM, and earn your place among the top
-                creators.
-              </p>
-            </div>
           </div>
         </FadeIn>
       </div>

@@ -13,9 +13,9 @@ export function CreatorWhySection() {
               Why INDEXLA
             </p>
             <p className={`mx-auto mt-4 max-w-2xl ${crBody} text-balance`}>
-              Not another tip jar, token, or community. Turn your investment
-              thesis into an investable portfolio while keeping ownership and
-              execution non-custodial.
+              More than copy trading. More than signals. Turn your investment
+              thesis into a portfolio your community can actually participate
+              in.
             </p>
           </div>
         </FadeIn>

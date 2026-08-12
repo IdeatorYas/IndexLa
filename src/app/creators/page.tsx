@@ -23,8 +23,8 @@ export default function CreatorsPage() {
   return (
     <main>
       <CreatorsHero />
-      <CreatorWhySection />
       <CreatorSimulatedDashboard />
+      <CreatorWhySection />
       <CreatorBecomeSection />
       <CreatorHybridPortfolioSection />
       <CreatorLongTermSection />
