@@ -175,6 +175,30 @@ export function StrategyWorksSection() {
               </p>
             </div>
 
+            <div className="border-b border-line bg-deep/45 px-5 py-4 sm:px-7">
+              <p className="text-center text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+                Illustrative flow
+              </p>
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
+                {[
+                  "Fear & Greed: 20",
+                  "Rule Triggered",
+                  "Approved Portfolio Allocation Executes",
+                ].map((step, i, steps) => (
+                  <div key={step} className="flex items-center gap-2">
+                    <span className="rounded-lg border border-electric/30 bg-electric/10 px-3 py-2 text-[0.82rem] font-semibold leading-snug text-ink sm:text-[0.88rem]">
+                      {step}
+                    </span>
+                    {i < steps.length - 1 ? (
+                      <span className="text-electric/60" aria-hidden>
+                        →
+                      </span>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="grid lg:grid-cols-2 lg:items-stretch">
               <div className="border-b border-line p-6 sm:p-7 lg:border-b-0 lg:border-r">
                 <p className={invEyebrow}>Strategy progression</p>
