@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import { homeBody, homeH2, homeSection } from "@/components/home/homeRhythm";
 
 export function BuildAutomateSection() {
@@ -20,12 +20,7 @@ export function BuildAutomateSection() {
             Build your portfolio and automate execution across chains and
             assets.
           </p>
-          <Link
-            href="/investors"
-            className="mt-5 inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink"
-          >
-            Read More →
-          </Link>
+          <HomeReadMore href="/investors" className="mt-5" />
         </FadeIn>
       </div>
     </section>

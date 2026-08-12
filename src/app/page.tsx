@@ -1,4 +1,5 @@
 import { CreatorsSection } from "@/components/home/CreatorsSection";
+import { DexlaSection } from "@/components/home/DexlaSection";
 import { DistributionSection } from "@/components/home/DistributionSection";
 import { BuildAutomateSection } from "@/components/home/BuildAutomateSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
@@ -25,6 +26,7 @@ export default function Home() {
       <HowItWorksSection />
       <PortfolioExamplesSection />
       <CreatorsSection />
+      <DexlaSection />
       <FeesSection />
       <StrategyExecutedSection />
       <FinalCtaSection />

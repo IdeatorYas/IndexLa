@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeH2,
@@ -35,12 +35,7 @@ export function FeesSection() {
           <p className={`mt-5 ${homeBody}`}>
             4 $DEXLA utilities + 4 burn mechanisms
           </p>
-          <Link
-            href="/tokenomics"
-            className="mt-3 inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink"
-          >
-            Read More →
-          </Link>
+          <HomeReadMore href="/tokenomics" className="mt-3" />
         </FadeIn>
       </div>
     </section>
