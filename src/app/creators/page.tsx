@@ -3,6 +3,7 @@ import { CreatorBecomeSection } from "@/components/creators/CreatorBecomeSection
 import { CreatorDisclaimer } from "@/components/creators/CreatorDisclaimer";
 import { CreatorEconomicsSection } from "@/components/creators/CreatorEconomicsSection";
 import { CreatorHybridPortfolioSection } from "@/components/creators/CreatorHybridPortfolioSection";
+import { CreatorMonthlyRewardsSection } from "@/components/creators/CreatorMonthlyRewardsSection";
 import { CreatorLongTermSection } from "@/components/creators/CreatorLongTermSection";
 import { CreatorParticipantsSection } from "@/components/creators/CreatorParticipantsSection";
 import { CreatorTransparencySection } from "@/components/creators/CreatorTransparencySection";
@@ -25,6 +26,7 @@ export default function CreatorsPage() {
       <CreatorLongTermSection />
       <CreatorParticipantsSection />
       <CreatorEconomicsSection />
+      <CreatorMonthlyRewardsSection />
       <CreatorTransparencySection />
       <CreatorTypesSection />
       <CreatorsFinalCta />

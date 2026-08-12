@@ -110,6 +110,19 @@ Creators earn when followers trade, rebalance, take profits, or adjust allocatio
 
 ---
 
+### MONTHLY CREATOR REWARDS
+
+Every month, the Top 25 performing creators compete for a dedicated rewards pool funded by a percentage of platform fees from every transaction.
+
+Creators are ranked using a transparent scoring system:
+
+Performance 35% + AUM 30% + Volume 20% + Tips 15%
+
+Build, perform, grow your AUM, and earn your place among the top creators.
+
+  
+
+
 # TRANSPARENCY BUILDS CREDIBILITY.
 
 Your strategy and track record can be evaluated by the people who choose to follow it.
