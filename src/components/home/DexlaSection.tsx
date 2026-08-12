@@ -69,12 +69,12 @@ export function DexlaSection() {
             <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {burns.map((item, i) => (
                 <FadeIn key={item} delay={i * 0.04} className="h-full">
-                  <article className="flex h-full min-h-[9.25rem] flex-col items-center justify-center rounded-2xl border border-danger/35 bg-danger/[0.06] px-4 py-5 text-center shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)] sm:px-5">
-                    <p className={`${homeBody} leading-snug`}>
-                      <span className="tabular-nums font-semibold text-danger">
-                        {cardNumber(i)} —
-                      </span>{" "}
-                      <span className="text-ink">{item}</span>
+                  <article className="grid h-full min-h-[10.5rem] grid-rows-[auto_minmax(0,1fr)] rounded-2xl border border-danger/35 bg-danger/[0.06] px-5 py-6 text-center shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)]">
+                    <p className="text-[1.125rem] font-semibold leading-none tabular-nums text-danger sm:text-[1.2rem]">
+                      {cardNumber(i)} —
+                    </p>
+                    <p className="mt-3 flex items-center justify-center text-[1.125rem] leading-snug text-ink text-pretty sm:text-[1.2rem]">
+                      {item}
                     </p>
                   </article>
                 </FadeIn>
