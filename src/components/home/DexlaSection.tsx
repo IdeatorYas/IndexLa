@@ -16,9 +16,9 @@ const utilities = [
 
 const burns = [
   "Creator publishing burns",
-  "Protocol revenue buyback & burn",
-  "Ecosystem activity burns",
-  "Treasury-driven strategic burns",
+  "Protocol fee burn — 10% of protocol fees",
+  "Promote token burns",
+  "Treasury burns — 25% of profits",
 ] as const;
 
 export function DexlaSection() {
@@ -57,7 +57,9 @@ export function DexlaSection() {
               <ol className={`mt-5 space-y-3 ${homeBody}`}>
                 {burns.map((item, i) => (
                   <li key={item}>
-                    <span className="tabular-nums text-danger">{i + 1}.</span>{" "}
+                    <span className="tabular-nums text-danger">
+                      {String(i + 1).padStart(2, "0")} —
+                    </span>{" "}
                     <span className="text-ink">{item}</span>
                   </li>
                 ))}
