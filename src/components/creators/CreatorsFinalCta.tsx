@@ -49,14 +49,14 @@ export function CreatorsFinalCta() {
           >
             <div>
               <label
-                htmlFor="creator-x-handle"
+                htmlFor="creator-x-account"
                 className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-dim"
               >
-                X Handle
+                X Account
               </label>
               <input
-                id="creator-x-handle"
-                name="xHandle"
+                id="creator-x-account"
+                name="xAccount"
                 type="text"
                 placeholder="@yourhandle"
                 autoComplete="username"
@@ -65,17 +65,17 @@ export function CreatorsFinalCta() {
             </div>
             <div>
               <label
-                htmlFor="creator-follower-count"
+                htmlFor="creator-email"
                 className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-dim"
               >
-                Follower Count
+                Email
               </label>
               <input
-                id="creator-follower-count"
-                name="followerCount"
-                type="text"
-                inputMode="numeric"
-                placeholder="e.g. 25,000"
+                id="creator-email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                autoComplete="email"
                 className="mt-2 w-full rounded-xl border border-line bg-void/60 px-4 py-3 text-[0.98rem] text-ink outline-none transition-colors placeholder:text-muted-dim focus:border-electric/45 focus:ring-1 focus:ring-electric/25"
               />
             </div>

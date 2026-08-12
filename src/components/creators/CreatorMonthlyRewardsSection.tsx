@@ -21,9 +21,14 @@ export function CreatorMonthlyRewardsSection() {
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${crH2} uppercase`}>
-            Creator Reward{" "}
-            <span className="gradient-text">Scoring</span>
+            Monthly Creator{" "}
+            <span className="gradient-text">Rewards</span>
           </h2>
+          <p className={`mx-auto mt-5 max-w-2xl ${crBody} text-balance`}>
+            10% of execution fees from creator portfolios funds the monthly
+            Creator Rewards Pool, distributed to Top 25 creators based on
+            performance points.
+          </p>
           <p className={`mx-auto mt-5 max-w-2xl ${crBody} text-balance`}>
             Top 25 creators ranked by performance points:
           </p>
