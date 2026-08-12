@@ -57,7 +57,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`whitespace-nowrap text-[1rem] font-medium tracking-[-0.01em] transition-colors xl:text-[1.05rem] ${
+                className={`whitespace-nowrap text-[1.05rem] font-medium tracking-[-0.01em] transition-colors xl:text-[1.1rem] ${
                   active ? "text-ink" : "text-muted hover:text-ink"
                 }`}
               >

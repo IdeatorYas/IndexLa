@@ -41,13 +41,13 @@ export function DexlaSection() {
           <FadeIn>
             <div className="h-full rounded-3xl border border-success/35 bg-success/[0.06] px-6 py-6 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14)] sm:px-7">
               <h3 className={`${homeH3} text-success`}>4 Core Utilities</h3>
-              <ol className={`mt-5 space-y-2.5 ${homeBody}`}>
+              <ol className={`mt-5 space-y-3 ${homeBody}`}>
                 {utilities.map((item, i) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="display w-5 shrink-0 tabular-nums text-success">
+                  <li key={item} className="flex items-baseline gap-3">
+                    <span className="w-6 shrink-0 tabular-nums leading-[inherit] text-success">
                       {i + 1}.
                     </span>
-                    <span className="text-ink">{item}</span>
+                    <span className="leading-[inherit] text-ink">{item}</span>
                   </li>
                 ))}
               </ol>
@@ -56,13 +56,13 @@ export function DexlaSection() {
           <FadeIn delay={0.05}>
             <div className="h-full rounded-3xl border border-danger/35 bg-danger/[0.06] px-6 py-6 shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)] sm:px-7">
               <h3 className={`${homeH3} text-danger`}>4 Burn Mechanisms</h3>
-              <ol className={`mt-5 space-y-2.5 ${homeBody}`}>
+              <ol className={`mt-5 space-y-3 ${homeBody}`}>
                 {burns.map((item, i) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="display w-5 shrink-0 tabular-nums text-danger">
+                  <li key={item} className="flex items-baseline gap-3">
+                    <span className="w-6 shrink-0 tabular-nums leading-[inherit] text-danger">
                       {i + 1}.
                     </span>
-                    <span className="text-ink">{item}</span>
+                    <span className="leading-[inherit] text-ink">{item}</span>
                   </li>
                 ))}
               </ol>

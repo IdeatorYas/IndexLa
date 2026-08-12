@@ -152,7 +152,7 @@ export function WhitepaperMarkdown({
             </blockquote>
           ),
           strong: ({ children }) => (
-            <strong className="font-semibold">{children}</strong>
+            <strong className="font-semibold text-inherit">{children}</strong>
           ),
           em: ({ children }) => (
             <em className="text-[0.92rem] not-italic text-muted-dim">

@@ -6,7 +6,6 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { AssetLogo } from "@/components/ui/AssetLogo";
 import {
   homeBody,
-  homeBodyDim,
   homeBodyStrong,
   homeH2,
   homeSection,
@@ -443,8 +442,8 @@ export function HowItWorksSection() {
           </ol>
         </FadeIn>
 
-        <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-[16.5rem_minmax(0,1fr)] xl:grid-cols-[17.5rem_minmax(0,1fr)]">
-          {/* Mobile / sidebar step list */}
+        <div className="mt-8 lg:mt-10">
+          {/* Mobile step navigation — desktop uses the 01–04 flow rail above */}
           <FadeIn className="lg:hidden">
             <ol className="flex gap-2 overflow-x-auto pb-1">
               {STEPS.map((item, i) => {
@@ -474,22 +473,7 @@ export function HowItWorksSection() {
             </ol>
           </FadeIn>
 
-          <FadeIn className="hidden lg:block">
-            <div className="rounded-2xl border border-line bg-void/40 p-5">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                Current step
-              </p>
-              <p className="display mt-3 text-[1.45rem] text-ink">
-                {step.n} {step.title}
-              </p>
-              <p className={`mt-3 ${homeBody}`}>{step.summary}</p>
-              {step.detail ? (
-                <p className={`mt-3 ${homeBodyDim}`}>{step.detail}</p>
-              ) : null}
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.06}>
+          <FadeIn delay={0.06} className="mt-6 lg:mt-0">
             <div
               className="relative"
               onMouseEnter={() => setPaused(true)}

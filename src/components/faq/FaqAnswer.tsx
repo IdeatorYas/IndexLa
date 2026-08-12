@@ -19,7 +19,7 @@ function renderInline(text: string) {
     }
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={i} className="font-semibold">
+        <strong key={i} className="font-semibold text-inherit">
           {part.slice(2, -2)}
         </strong>
       );
