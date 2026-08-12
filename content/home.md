@@ -230,85 +230,25 @@ Creators can build, publish, monetize, and grow portfolios and indexes.
 
 ---
 
-# $DEXLA
+# $DEXLA — The Utility & Deflation Engine
 
-## THE ECONOMIC ENGINE OF INDEXLA
+$DEXLA powers the INDEXLA ecosystem through 4 core utilities and 4 deflationary burn mechanisms designed to align token demand with platform growth.
 
-Most tokens are built around speculation.
+**4 Core Utilities**
 
-$DEXLA is built around INDEXLA usage.
+1. Publish portfolios & indexes
+2. Creator ecosystem access
+3. Fee discounts
+4. Governance & ecosystem participation
 
-The token connects creators, investors, and platform activity through four practical utilities and four permanent supply-reduction mechanisms.
+**4 Burn Mechanisms**
 
-4 UTILITIES · 4 BURN MECHANISMS
+1. Creator publishing burns
+2. Protocol revenue buyback & burn
+3. Ecosystem activity burns
+4. Treasury-driven strategic burns
 
-More creators. More portfolios. More activity. More reasons to use $DEXLA.
-
-# FOUR CORE UTILITIES
-
-## 01 — PUBLISH
-
-Creators use $DEXLA to publish public portfolios and indexes on the INDEXLA Marketplace.
-
-Private portfolios remain free for building and testing before going public.
-
-1,000 $DEXLA → Public Portfolio
-
-## 02 — FEATURE
-
-Creators use $DEXLA to feature a published portfolio at the top of the INDEXLA Marketplace for 7 days.
-
-This is a Marketing Option.
-
-2,500 $DEXLA → 7 Days Featured
-
-## 03 — SAVE
-
-Investors holding $DEXLA receive lower execution fees while maintaining the required balance.
-
-2,500 → 10% discount  
-5,000 → 25% discount  
-10,000 → 40% discount
-
-Hold $DEXLA → Save on execution
-
-## 04 — TIP CREATORS
-
-Investors and followers can tip creators directly in $DEXLA for research, portfolio construction, market views, and community contribution.
-
-Discover → Follow → Invest → Tip
-
-# FOUR BURN MECHANISMS
-
-## 01 — PUBLISHING BURN
-
-Every public portfolio or index permanently burns 1,000 $DEXLA from the token supply.
-
-More portfolios → More $DEXLA burned
-
-## 02 — FEATURED BURN
-
-Every Featured promotion permanently burns 2,500 $DEXLA from the token supply.
-
-Creators can promote again as their audience, AUM, and volume grow.
-
-More promotion → More $DEXLA burned
-
-## 03 — EXECUTION FEE BUYBACK & BURN
-
-10% of INDEXLA’s execution fee revenue is used to buy and permanently burn $DEXLA.
-
-More execution volume → More $DEXLA burned
-
-## 04 — TREASURY BUYBACK & BURN
-
-25% of realized Treasury profits are used to buy and permanently burn $DEXLA.
-
-Treasury gains are generated from protocol-owned capital, not investor funds.
-
-More Treasury gains → More $DEXLA burned
-
-[Read More →](/tokenomics)
+[Read More → Tokenomics](/tokenomics)
 
 ---
 
