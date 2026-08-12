@@ -72,6 +72,13 @@ export function CreatorBecomeSection() {
             </div>
           </div>
         </FadeIn>
+
+        <FadeIn className="mx-auto mt-10 max-w-2xl text-center">
+          <p className={`${crBody} text-balance`}>
+            Built with eligibility, disclosure, and jurisdiction controls
+            designed into the creator experience.
+          </p>
+        </FadeIn>
       </div>
     </section>
   );

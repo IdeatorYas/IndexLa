@@ -6,21 +6,25 @@ import { CreatorHybridPortfolioSection } from "@/components/creators/CreatorHybr
 import { CreatorMonthlyRewardsSection } from "@/components/creators/CreatorMonthlyRewardsSection";
 import { CreatorLongTermSection } from "@/components/creators/CreatorLongTermSection";
 import { CreatorParticipantsSection } from "@/components/creators/CreatorParticipantsSection";
+import { CreatorSimulatedDashboard } from "@/components/creators/CreatorSimulatedDashboard";
 import { CreatorTransparencySection } from "@/components/creators/CreatorTransparencySection";
 import { CreatorTypesSection } from "@/components/creators/CreatorTypesSection";
+import { CreatorWhySection } from "@/components/creators/CreatorWhySection";
 import { CreatorsFinalCta } from "@/components/creators/CreatorsFinalCta";
 import { CreatorsHero } from "@/components/creators/CreatorsHero";
 
 export const metadata: Metadata = {
   title: "Creators — INDEXLA",
   description:
-    "Turn your investment conviction into a portfolio your audience can follow, customize, and automate.",
+    "Turn your investment thesis into a portfolio your community can follow, invest in, and grow with.",
 };
 
 export default function CreatorsPage() {
   return (
     <main>
       <CreatorsHero />
+      <CreatorWhySection />
+      <CreatorSimulatedDashboard />
       <CreatorBecomeSection />
       <CreatorHybridPortfolioSection />
       <CreatorLongTermSection />

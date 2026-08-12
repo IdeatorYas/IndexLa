@@ -88,8 +88,9 @@ export function CreatorsHero() {
             </h1>
 
             <p className={`mt-7 max-w-xl ${crBody} text-balance`}>
-              Turn your investment conviction into a portfolio your audience can
-              follow, customize, and automate.
+              Turn your investment thesis into a portfolio your community can
+              follow, invest in, and grow with. Earn creator fees as your
+              community participates.
             </p>
 
             <div className="mt-6">
@@ -100,19 +101,9 @@ export function CreatorsHero() {
               </div>
             </div>
 
-            <div className="mt-5 rounded-2xl border border-electric/30 bg-electric/[0.07] px-5 py-4">
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
-                First Portfolio Free At Launch
-              </p>
-              <p className="mt-1.5 max-w-md text-[0.95rem] leading-relaxed text-muted text-pretty">
-                Get early creator access and publish your first portfolio free at
-                launch.
-              </p>
-            </div>
-
             <div className="mt-9">
-              <Button href="#become-creator" className={crCta}>
-                Become an INDEXLA Creator
+              <Button href="#early-access" className={crCta}>
+                Reserve Early Access
               </Button>
             </div>
           </motion.div>

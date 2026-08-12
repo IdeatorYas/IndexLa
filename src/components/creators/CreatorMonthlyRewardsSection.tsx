@@ -27,11 +27,11 @@ export function CreatorMonthlyRewardsSection() {
             <span className="gradient-text">Rewards</span>
           </h2>
           <p className={`mx-auto mt-5 max-w-2xl ${crBody} text-balance`}>
-            Every month, the Top 25 performing creators compete for a dedicated
-            rewards pool funded by a percentage of platform fees from every
-            transaction.
+            A dedicated share of platform fees funds a monthly rewards pool
+            distributed among the Top 25 performing creators.
           </p>
           <p className={`mx-auto mt-3 max-w-2xl ${crBody} text-balance`}>
+            Rewards are separate from creator fee sharing and from $DEXLA tips.
             Creators are ranked using a transparent scoring system:
           </p>
         </FadeIn>

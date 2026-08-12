@@ -320,8 +320,8 @@ export function CreatorHybridPortfolioSection() {
         </FadeIn>
 
         <FadeIn className="mt-9 text-center">
-          <Button href="#become-creator" className={crCta}>
-            Build Your Portfolio
+          <Button href="#early-access" className={crCta}>
+            Reserve Early Access
           </Button>
         </FadeIn>
       </div>
