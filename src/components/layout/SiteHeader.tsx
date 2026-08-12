@@ -44,7 +44,7 @@ export function SiteHeader() {
           : "bg-transparent"
       }`}
     >
-      <div className="section-pad container-max flex h-[4.75rem] items-center justify-between gap-3 lg:gap-4">
+      <div className="section-pad container-max flex h-20 items-center justify-between gap-3 lg:gap-4">
         <BrandLogo priority />
 
         <nav
@@ -57,7 +57,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`whitespace-nowrap text-[0.9375rem] font-medium tracking-[-0.01em] transition-colors xl:text-[0.98rem] ${
+                className={`whitespace-nowrap text-[1rem] font-medium tracking-[-0.01em] transition-colors xl:text-[1.05rem] ${
                   active ? "text-ink" : "text-muted hover:text-ink"
                 }`}
               >
@@ -97,7 +97,7 @@ export function SiteHeader() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-lg px-3 py-3.5 text-[1.05rem] font-medium transition-colors hover:bg-white/5 hover:text-ink ${
+                  className={`rounded-lg px-3 py-3.5 text-[1.1rem] font-medium transition-colors hover:bg-white/5 hover:text-ink ${
                     active ? "text-ink" : "text-muted"
                   }`}
                   onClick={() => setOpen(false)}

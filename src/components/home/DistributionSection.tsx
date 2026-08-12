@@ -84,7 +84,7 @@ export function DistributionSection() {
             <div className={`mt-8 space-y-4 ${homeBody}`}>
               <p>Creators bring investment theses.</p>
               <p>Investors allocate to portfolios.</p>
-              <p className="font-semibold text-ink">
+              <p className="font-semibold">
                 INDEXLA connects assets, portfolios, strategies, and investors.
               </p>
             </div>

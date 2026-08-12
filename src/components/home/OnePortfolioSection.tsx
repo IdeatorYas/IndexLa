@@ -3,6 +3,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
   homeChip,
+  homeCta,
   homeEyebrow,
   homeH2,
   homePill,
@@ -63,7 +64,7 @@ export function OnePortfolioSection() {
             allocations, strategies, and execution rules.
           </p>
           <div className="mt-7">
-            <Button href="/creators" className="min-w-[13.5rem]">
+            <Button href="/creators" className={homeCta}>
               Reserve Early Access
             </Button>
           </div>

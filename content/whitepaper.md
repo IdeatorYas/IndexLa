@@ -2,11 +2,11 @@
 
 ## **1. Executive Summary**
 
-INDEXLA is a decentralized, non custodial portfolio management and automation platform designed for an increasingly fragmented financial system.
+INDEXLA is a decentralized, non-custodial portfolio management and automation platform designed for an increasingly fragmented financial system.
 
 Users can build portfolios across supported crypto assets, tokenized securities, commodities, RWAs, and other eligible assets while retaining control of their underlying assets.
 
-Instead of requiring users to manually manage positions across multiple chains and protocols, INDEXLA provides a unified portfolio layer where users define allocations and strategy rules. Smart contract permissions, strategy logic, market data monitoring, and cross chain execution infrastructure coordinate the actions users authorize.
+Instead of requiring users to manually manage positions across multiple chains and protocols, INDEXLA provides a unified portfolio layer where users define allocations and strategy rules. Smart contract permissions, strategy logic, market data monitoring, and cross-chain execution infrastructure coordinate the actions users authorize.
 
 The on-chain investable universe is expanding rapidly, creating a growing distribution opportunity for programmable portfolios. CoinGecko reported that tokenized RWAs excluding stablecoins reached approximately **$19.3 billion by the end of Q1 2026**, up **256.7%** from $5.42 billion at the beginning of 2025. Further market sizing is detailed in the Market Opportunity section.
 
@@ -30,7 +30,7 @@ The objective is to build infrastructure connecting these trends without taking 
 
 Automated cross-chain non-custodial execution is technically difficult. Delivering it safely requires solving hard engineering challenges across the permission and security model, market-data and oracle reliability, liquidity fragmentation, cross-chain execution reliability, and safe automated execution. These challenges are addressed in INDEXLA's technical architecture, security design, and risk framework.
 
-INDEXLA does not claim to invent every underlying primitive. Cross chain routing, tokenization, market data systems, and automated strategy engines already exist. The opportunity is to integrate these components into a unified, non custodial portfolio management layer optimized for multi chain, multi asset investing and creator distribution.
+INDEXLA does not claim to invent every underlying primitive. cross-chain routing, tokenization, market data systems, and automated strategy engines already exist. The opportunity is to integrate these components into a unified, non-custodial portfolio management layer optimized for multi-chain, multi-asset investing and creator distribution.
 
 $DEXLA is the utility token of the INDEXLA ecosystem. INDEXLA can launch and onboard users and creators before $DEXLA utility is activated. Detailed token economics belong in the dedicated $DEXLA Utility & Tokenomics section.
 
@@ -50,12 +50,12 @@ INDEXLA addresses three connected problems.
 
 Building a portfolio across crypto, tokenized assets, commodities, RWAs, and multiple networks can require users to manage separate wallets, swaps, bridges, approvals, and execution venues.
 
-A multi chain portfolio therefore becomes a collection of individual transactions rather than one coherent portfolio.
+A multi-chain portfolio therefore becomes a collection of individual transactions rather than one coherent portfolio.
 
 This creates:
 
 - Fragmented portfolio management
-- Complex cross chain execution
+- Complex cross-chain execution
 - Poor visibility across assets
 - Manual rebalancing
 - Higher execution friction
@@ -91,7 +91,7 @@ This creates a gap between **financial influence and financial infrastructure**.
 
 # **3. The INDEXLA Solution**
 
-INDEXLA is a **decentralized, non custodial portfolio management and automation layer** that turns portfolio strategies into programmable, executable portfolios across supported assets and networks.
+INDEXLA is a **decentralized, non-custodial portfolio management and automation layer** that turns portfolio strategies into programmable, executable portfolios across supported assets and networks.
 
 Instead of users manually coordinating assets, chains, and transactions, INDEXLA connects:
 
@@ -129,7 +129,7 @@ The objective is simple:
 
 **Define the rule once. Let the infrastructure execute it when the conditions are met.**
 
-### **Non Custodial Execution**
+### **non-custodial Execution**
 
 INDEXLA does not take custody of user assets.
 
@@ -137,7 +137,7 @@ Smart contract permissions constrain what automated execution is allowed to do.
 
 AI and automation cannot independently withdraw funds, grant themselves permissions, or override the user's configured portfolio rules.
 
-### **Cross Chain Execution**
+### **cross-chain Execution**
 
 INDEXLA coordinates execution across supported networks using dedicated routing infrastructure such as [LI.FI](http://LI.FI) where applicable.
 
@@ -189,7 +189,7 @@ INDEXLA provides infrastructure through which that influence can become a portfo
 
 Smart contracts increasingly allow financial actions to be defined as programmable rules rather than manual transactions.
 
-INDEXLA combines this capability with portfolio management and cross chain execution.
+INDEXLA combines this capability with portfolio management and cross-chain execution.
 
 ---
 
@@ -201,11 +201,11 @@ INDEXLA operates alongside established portfolio, asset management, and investme
 |                               |             |                 |                 |                 |                 |
 | ----------------------------- | ----------- | --------------- | --------------- | --------------- | --------------- |
 | **Capability**                | **INDEXLA** | **SoSoValue**   | **Velvet**      | **Reserve**     | **Autopilot**   |
-| Non custodial architecture    | ✓           | ✓               | ✓               | ✓               | ✓               |
-| Multi asset portfolios        | ✓           | ✓               | ✓               | ✓               | ✓               |
-| Cross chain execution         | ✓           | Limited         | ✓               | ✓               | Limited         |
+| non-custodial architecture    | ✓           | ✓               | ✓               | ✓               | ✓               |
+| multi-asset portfolios        | ✓           | ✓               | ✓               | ✓               | ✓               |
+| cross-chain execution         | ✓           | Limited         | ✓               | ✓               | Limited         |
 | Rule based automation         | ✓           | Limited         | ✓               | Limited         | ✓               |
-| AI assisted monitoring        | ✓           | ✓               | ✓               | Limited         | ✓               |
+| AI-assisted monitoring        | ✓           | ✓               | ✓               | Limited         | ✓               |
 | Creator portfolio model       | ✓           | Limited         | ✓               | Limited         | Limited         |
 | Creator execution fee share   | **50%**     | —               | Different model | —               | —               |
 | Public portfolio distribution | ✓           | ✓               | ✓               | ✓               | ✓               |
@@ -251,7 +251,7 @@ As more traditional assets become tokenized, the number of assets that can poten
 
 INDEXLA's initial obtainable market is deliberately focused.
 
-The first objective is not to compete for the entire global investment market, but to establish a strong position among crypto native investors, portfolio creators, and users seeking automated multi asset investing.
+The first objective is not to compete for the entire global investment market, but to establish a strong position among crypto native investors, portfolio creators, and users seeking automated multi-asset investing.
 
 The initial target is to build a network of credible creators and investors, prove recurring portfolio activity, and progressively expand AUM, supported assets, networks, and distribution.
 
@@ -263,7 +263,7 @@ INDEXLA's addressable market can expand as three conditions develop:
 
 **More assets become tokenized → more assets become available for portfolios.**
 
-**More assets move across chains → demand for cross chain portfolio infrastructure increases.**
+**More assets move across chains → demand for cross-chain portfolio infrastructure increases.**
 
 **More investors adopt programmable strategies → demand for automated portfolio management increases.**
 
@@ -318,7 +318,7 @@ Strategies can be combined according to portfolio configuration.
 
 INDEXLA uses supported execution and routing infrastructure to execute authorized transactions across supported networks.
 
-[LI.FI](http://LI.FI) provides cross chain routing infrastructure where applicable.
+[LI.FI](http://LI.FI) provides cross-chain routing infrastructure where applicable.
 
 The protocol does not attempt to recreate every bridge or DEX.
 
@@ -391,9 +391,9 @@ Circuit breakers restrict execution activity. They do not take custody of user a
 
 ---
 
-# **9. Cross Chain Architecture**
+# **9. cross-chain Architecture**
 
-Cross chain functionality is a core component of INDEXLA.
+cross-chain functionality is a core component of INDEXLA.
 
 Users should be able to manage portfolios containing assets distributed across supported networks without manually coordinating every bridge and swap.
 
@@ -403,13 +403,13 @@ INDEXLA separates portfolio policy from transaction routing.
 
 **Execution infrastructure determines how an authorized action is routed.**
 
-[LI.FI](http://LI.FI) is used as a cross chain execution and routing infrastructure component where applicable.
+[LI.FI](http://LI.FI) is used as a cross-chain execution and routing infrastructure component where applicable.
 
-### **Cross Chain Failure**
+### **cross-chain Failure**
 
 A bridge or route can fail, become delayed, or experience abnormal conditions.
 
-INDEXLA therefore treats cross chain execution as a monitored transaction lifecycle rather than a single atomic assumption.
+INDEXLA therefore treats cross-chain execution as a monitored transaction lifecycle rather than a single atomic assumption.
 
 The system can:
 
@@ -420,11 +420,11 @@ The system can:
 - Retry or reroute where permitted
 - Pause execution when recovery conditions are not satisfied
 
-Cross chain infrastructure remains an external dependency and associated bridge risk is explicitly recognized as part of the protocol risk model.
+cross-chain infrastructure remains an external dependency and associated bridge risk is explicitly recognized as part of the protocol risk model.
 
 ---
 
-# **10. Multi Asset & Tokenized Assets**
+# **10. multi-asset & Tokenized Assets**
 
 INDEXLA is designed to support multiple categories of eligible assets, including:
 
@@ -492,7 +492,7 @@ Examples include:
 - Crypto cycle portfolios
 - Macro portfolios
 - Tokenized RWA portfolios
-- Hybrid multi asset portfolios
+- Hybrid multi-asset portfolios
 
 The initial Creator acquisition target is **25 to 50 credible Creators with 10,000+ followers**, focused on finance, crypto, investing, and related content.
 
@@ -537,7 +537,7 @@ The 1% execution fee is distributed according to the type of portfolio generatin
 
 Protocol Created Portfolios are created by INDEXLA to seed the marketplace, demonstrate strategies, and provide initial investment choices.
 
-They remain non custodial portfolios. Investors retain ownership and control of their assets.
+They remain non-custodial portfolios. Investors retain ownership and control of their assets.
 
 ### **Creator Portfolios**
 
@@ -742,7 +742,7 @@ The major risk categories include:
 1. Smart contract risk
 2. Permission abuse
 3. Oracle and market data risk
-4. Cross chain and bridge risk
+4. cross-chain and bridge risk
 5. Liquidity and execution risk
 6. Asset and issuer risk
 7. Regulatory risk
@@ -776,7 +776,7 @@ The protocol will not treat an audit as proof that all risk has been eliminated.
 
 # **16. Regulatory Approach**
 
-INDEXLA's initial business model is based on providing **decentralized, non custodial portfolio management infrastructure**.
+INDEXLA's initial business model is based on providing **decentralized, non-custodial portfolio management infrastructure**.
 
 INDEXLA does not initially operate as a custodian, broker dealer, or issuer of securities.
 
@@ -786,7 +786,7 @@ Where regulated assets are introduced, the applicable issuer, custody, KYC, elig
 
 ## **United States**
 
-The initial model focuses on non custodial infrastructure.
+The initial model focuses on non-custodial infrastructure.
 
 Tokenized securities will only be supported through appropriate regulated structures and providers where applicable.
 
@@ -836,7 +836,7 @@ Build the INDEXLA brand and its own user acquisition funnel through:
 
 There is significant existing search demand around indexes, portfolios, automated investing, crypto investing, and related financial concepts.
 
-INDEXLA aims to position itself as a new generation of programmable, multi asset indexes and portfolios.
+INDEXLA aims to position itself as a new generation of programmable, multi-asset indexes and portfolios.
 
 ## **Strategy 3, Strategic Partnerships**
 
@@ -868,8 +868,8 @@ The opportunity is to create the portfolio management layer that connects these 
 
 The long term thesis depends on INDEXLA successfully building:
 
-- Reliable multi chain execution
-- Strong non custodial permissions
+- Reliable multi-chain execution
+- Strong non-custodial permissions
 - Broad asset and network coverage
 - Portfolio discovery and distribution
 - Creator economic incentives
@@ -970,7 +970,7 @@ These include:
 
 Smart contracts can contain vulnerabilities despite testing and audits.
 
-### **Cross Chain Risk**
+### **cross-chain Risk**
 
 Bridges and routing infrastructure can fail, become congested, or be compromised.
 
@@ -1028,7 +1028,7 @@ Execution infrastructure routes authorized transactions.
 
 Risk controls determine when execution should stop.
 
-The result is a programmable portfolio management layer designed for a multi chain, multi asset financial ecosystem.
+The result is a programmable portfolio management layer designed for a multi-chain, multi-asset financial ecosystem.
 
 ---
 
@@ -1044,7 +1044,7 @@ Investment research is increasingly distributed through creators.
 
 Portfolio management is moving from manual interfaces toward automated, rule based systems.
 
-INDEXLA aims to connect these trends through a single non custodial portfolio management infrastructure layer.
+INDEXLA aims to connect these trends through a single non-custodial portfolio management infrastructure layer.
 
 The opportunity is significant, but the thesis remains to be proven.
 

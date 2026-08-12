@@ -28,9 +28,9 @@ export function WhatIsIndexlaSection() {
           <h2 className={homeH2}>What is INDEXLA?</h2>
 
           <p className={`mx-auto mt-5 max-w-[42rem] ${homeBody}`}>
-            INDEXLA is a non custodial portfolio management layer for investing
+            INDEXLA is a non-custodial portfolio management layer for investing
             across crypto, tokenized stocks, commodities, and RWAs, with
-            programmable strategies and cross chain execution in one portfolio.
+            programmable strategies and cross-chain execution in one portfolio.
           </p>
 
           <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>

@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import {
   homeBody,
+  homeCta,
   homeEyebrow,
   homeGreenChip,
   homeGreenChipText,
@@ -42,7 +43,7 @@ export function FinalCtaSection() {
             tooling.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href="/creators" className="min-w-[13.5rem]">
+            <Button href="/creators" className={homeCta}>
               Reserve Early Access
             </Button>
           </div>

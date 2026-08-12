@@ -42,7 +42,7 @@ export function PortfolioExamplesSection() {
               preferences.
             </p>
             <p className="font-medium text-ink">
-              All portfolio activity remains non custodial.
+              All portfolio activity remains non-custodial.
             </p>
           </div>
         </FadeIn>

@@ -127,9 +127,9 @@ export function ProblemSolutionSection() {
 
         <FadeIn className={`mt-7 ${homeGreenRow}`}>
           {[
-            "Multi Asset",
-            "Multi Chain",
-            "Non Custodial",
+            "Multi-Asset",
+            "Multi-Chain",
+            "Non-Custodial",
             "Programmable",
             "Creator Native",
           ].map((item) => (

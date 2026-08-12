@@ -11,11 +11,11 @@ const HEADERS = [
 ] as const;
 
 const ROWS: string[][] = [
-  ["Non custodial architecture", "✓", "✓", "✓", "✓", "✓"],
-  ["Multi asset portfolios", "✓", "✓", "✓", "✓", "✓"],
-  ["Cross chain execution", "✓", "Limited", "✓", "✓", "Limited"],
+  ["Non-custodial architecture", "✓", "✓", "✓", "✓", "✓"],
+  ["Multi-asset portfolios", "✓", "✓", "✓", "✓", "✓"],
+  ["Cross-chain execution", "✓", "Limited", "✓", "✓", "Limited"],
   ["Rule based automation", "✓", "Limited", "✓", "Limited", "✓"],
-  ["AI assisted monitoring", "✓", "✓", "✓", "Limited", "✓"],
+  ["AI-assisted monitoring", "✓", "✓", "✓", "Limited", "✓"],
   ["Creator portfolio model", "✓", "Limited", "✓", "Limited", "Limited"],
   [
     "Creator execution fee share",

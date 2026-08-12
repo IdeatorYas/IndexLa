@@ -152,7 +152,7 @@ export function WhitepaperMarkdown({
             </blockquote>
           ),
           strong: ({ children }) => (
-            <strong className="font-semibold text-ink">{children}</strong>
+            <strong className="font-semibold">{children}</strong>
           ),
           em: ({ children }) => (
             <em className="text-[0.92rem] not-italic text-muted-dim">
@@ -192,6 +192,16 @@ export function WhitepaperMarkdown({
             >
               {children}
             </a>
+          ),
+          code: ({ children }) => (
+            <code className="rounded-md border border-line bg-void/70 px-1.5 py-0.5 font-mono text-[0.88em] text-electric">
+              {children}
+            </code>
+          ),
+          pre: ({ children }) => (
+            <pre className="my-5 overflow-x-auto rounded-xl border border-line bg-void/80 p-4 text-[0.85rem] leading-relaxed text-muted sm:p-5 [&_code]:border-0 [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-[0.85rem] [&_code]:text-muted">
+              {children}
+            </pre>
           ),
           table: ({ children }) => (
             <div className="my-6 -mx-1 overflow-x-auto rounded-xl border border-line bg-void/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:mx-0">

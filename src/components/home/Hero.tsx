@@ -5,6 +5,7 @@ import { FloatingAssetUniverse } from "@/components/home/FloatingAssetUniverse";
 import {
   homeBody,
   homeBodyDim,
+  homeCta,
 } from "@/components/home/homeRhythm";
 import { Button } from "@/components/ui/Button";
 
@@ -39,7 +40,7 @@ export function Hero() {
           </h1>
 
           <p className={`mx-auto mt-5 max-w-2xl sm:mt-6 ${homeBody}`}>
-            The non custodial portfolio distribution layer for crypto and
+            The non-custodial portfolio distribution layer for crypto and
             tokenized assets.
           </p>
 
@@ -67,7 +68,7 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href="/creators" className="min-w-[13.5rem]">
+            <Button href="/creators" className={homeCta}>
               Reserve Early Access
             </Button>
           </div>

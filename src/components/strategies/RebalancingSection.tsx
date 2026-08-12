@@ -22,7 +22,7 @@ export function RebalancingSection() {
               <p>Markets move. Allocations drift.</p>
               <p>
                 A portfolio targeting{" "}
-                <span className="font-semibold text-ink">60% BTC / 40% ETH</span>{" "}
+                <span className="font-semibold">60% BTC / 40% ETH</span>{" "}
                 can quickly become something very different after a major move.
               </p>
               <p>Define your target allocations and acceptable ranges.</p>

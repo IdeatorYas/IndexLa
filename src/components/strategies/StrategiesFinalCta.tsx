@@ -44,10 +44,7 @@ export function StrategiesFinalCta() {
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-4">
-            <Button
-              href="/creators"
-              className={`${stCta} min-w-[17rem] !px-10 !py-4 !text-[1.08rem] shadow-[0_20px_56px_rgba(59,130,246,0.48)]`}
-            >
+            <Button href="/creators" className={stCta}>
               Build Your First Strategy
             </Button>
             <Link

@@ -4,20 +4,20 @@
 
 ### **Decentralized Portfolio Management**
 
-**The non custodial portfolio distribution layer for crypto and tokenized assets.**
+**The non-custodial portfolio distribution layer for crypto and tokenized assets.**
 
 0% management · 0% performance · 0% exit · 1% execution
  Only 1% execution fee when trades occur
 
 [Reserve Early Access] [Join Early Access]
 
-Multi Asset · Cross Chain · Non Custodial · Automated · Creator Marketplace
+multi-asset · cross-chain · non-custodial · Automated · Creator Marketplace
 
 ---
 
 # What is INDEXLA?
 
-**INDEXLA is a non custodial portfolio management layer for investing across crypto, tokenized stocks, commodities, and RWAs, with programmable strategies and cross chain execution in one portfolio.**
+**INDEXLA is a non-custodial portfolio management layer for investing across crypto, tokenized stocks, commodities, and RWAs, with programmable strategies and cross-chain execution in one portfolio.**
 
 Build your portfolio, define your rules, and let INDEXLA coordinate authorized execution while your assets remain under your control.
 
@@ -67,7 +67,7 @@ INDEXLA lets you buy the assets, hold the full basket, and control your portfoli
 
 One permission layer connects portfolios across chains and asset classes, while execution remains non-custodial and rule-constrained.
 
-**Multi Asset · Multi Chain · Non Custodial · Programmable · Creator Native**
+**multi-asset · multi-chain · non-custodial · Programmable · Creator Native**
 
 ---
 
@@ -133,7 +133,7 @@ Your portfolio becomes the single layer through which you define allocations, st
 
 ## **Build & Automate Your Portfolio in Under 5 Minutes**
 
-The next generation of investors expects speed, simplicity, and control. INDEXLA brings multi asset portfolios, programmable strategies, and non custodial execution into a single layer.
+The next generation of investors expects speed, simplicity, and control. INDEXLA brings multi-asset portfolios, programmable strategies, and non-custodial execution into a single layer.
 
 Build your portfolio and automate execution across chains and assets.
 
@@ -200,7 +200,7 @@ Creators can publish their strategies as investable portfolios.
 
 Investors choose which portfolios match their objectives and risk preferences.
 
-All portfolio activity remains non custodial.
+All portfolio activity remains non-custodial.
 
 SIMULATED DATA — INDEXLA IS NOT YET LIVE
 
@@ -277,7 +277,7 @@ AI helps monitor your portfolio and strategy conditions.
 Smart contract permissions constrain execution.  
 Routing infrastructure handles authorized transactions across supported networks.
 
-**INDEXLA is your AI assisted portfolio management layer, helping you monitor, manage, and automate your portfolio within your defined rules and permissions.**
+**INDEXLA is your AI-assisted portfolio management layer, helping you monitor, manage, and automate your portfolio within your defined rules and permissions.**
 
 # Early Access
 

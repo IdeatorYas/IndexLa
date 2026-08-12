@@ -36,6 +36,10 @@ export const homePill =
 export const homeChip =
   "rounded-xl border border-electric/20 bg-electric/10 px-3.5 py-2 text-[0.95rem] font-semibold text-ink";
 
+/** Shared primary page CTA size — keep header chrome compact separately */
+export const homeCta =
+  "min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)] ring-1 ring-white/10";
+
 /** Subtle premium green highlight for key closing statements */
 export const homeGreenBox =
   "inline-flex max-w-full items-center justify-center rounded-xl border border-success/55 bg-success/[0.18] px-5 py-3.5 text-center shadow-[inset_0_1px_0_rgba(52,211,153,0.28),0_0_24px_rgba(52,211,153,0.1)]";

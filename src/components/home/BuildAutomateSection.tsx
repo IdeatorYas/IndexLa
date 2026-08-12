@@ -13,8 +13,8 @@ export function BuildAutomateSection() {
           </h2>
           <p className={`mx-auto mt-7 max-w-[40rem] ${homeBody}`}>
             The next generation of investors expects speed, simplicity, and
-            control. INDEXLA brings multi asset portfolios, programmable
-            strategies, and non custodial execution into a single layer.
+            control. INDEXLA brings multi-asset portfolios, programmable
+            strategies, and non-custodial execution into a single layer.
           </p>
           <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>
             Build your portfolio and automate execution across chains and

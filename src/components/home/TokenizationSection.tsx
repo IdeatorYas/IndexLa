@@ -57,8 +57,8 @@ export function TokenizationSection() {
             asset infrastructure, while Saudi Arabia and the UAE are advancing
             real world asset tokenization.
           </p>
-          <p className="font-semibold text-ink">The supply is growing fast.</p>
-          <p className="font-semibold text-ink">
+          <p className="font-semibold">The supply is growing fast.</p>
+          <p className="font-semibold">
             The next infrastructure opportunity is distribution.
           </p>
         </FadeIn>

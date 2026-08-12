@@ -28,5 +28,5 @@ export const stSurfaceSoft =
   "rounded-xl border border-white/[0.07] bg-void/40";
 
 export const stCta =
-  "min-w-[15rem] px-9 py-3.5 text-[1.05rem] shadow-[0_18px_50px_rgba(59,130,246,0.42)] ring-1 ring-white/10";
+  "min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)] ring-1 ring-white/10";
 

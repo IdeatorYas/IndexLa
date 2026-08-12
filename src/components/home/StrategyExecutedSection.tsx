@@ -33,8 +33,8 @@ export function StrategyExecutedSection() {
               </li>
             ))}
           </ul>
-          <p className={`mt-7 font-semibold text-ink ${homeBody}`}>
-            INDEXLA is your AI assisted portfolio management layer, helping you
+          <p className={`mt-7 ${homeBody}`}>
+            INDEXLA is your AI-assisted portfolio management layer, helping you
             monitor, manage, and automate your portfolio within your defined
             rules and permissions.
           </p>
