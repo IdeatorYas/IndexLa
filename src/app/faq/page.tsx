@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { FaqHero } from "@/components/faq/FaqHero";
 import { FaqSections } from "@/components/faq/FaqSections";
+import { loadFaqSections } from "@/lib/faq.server";
 
 export const metadata: Metadata = {
   title: "FAQ — INDEXLA",
@@ -9,10 +10,12 @@ export const metadata: Metadata = {
 };
 
 export default function FaqPage() {
+  const sections = loadFaqSections();
+
   return (
     <main>
-      <FaqHero />
-      <FaqSections />
+      <FaqHero sections={sections} />
+      <FaqSections sections={sections} />
     </main>
   );
 }

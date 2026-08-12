@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FaqAnswer } from "@/components/faq/FaqAnswer";
-import type { FaqItem } from "@/components/faq/faqData";
+import type { FaqItem } from "@/lib/faq";
 
 export function FaqAccordionItem({ item }: { item: FaqItem }) {
   const [open, setOpen] = useState(false);

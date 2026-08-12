@@ -2,14 +2,14 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import { FaqAccordionItem } from "@/components/faq/FaqAccordionItem";
-import { FAQ_SECTIONS } from "@/components/faq/faqData";
+import type { FaqSection } from "@/lib/faq";
 
-export function FaqSections() {
+export function FaqSections({ sections }: { sections: FaqSection[] }) {
   return (
     <div className="border-t border-line bg-deep pb-20 md:pb-28">
       <div className="section-pad container-max">
         <div className="mx-auto max-w-3xl space-y-12 md:space-y-16">
-          {FAQ_SECTIONS.map((section) => {
+          {sections.map((section) => {
             const isSafety = section.id === "safety-risk";
             return (
               <FadeIn key={section.id}>

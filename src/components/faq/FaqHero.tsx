@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { FAQ_SECTIONS } from "@/components/faq/faqData";
+import type { FaqSection } from "@/lib/faq";
 
-export function FaqHero() {
+export function FaqHero({ sections }: { sections: FaqSection[] }) {
   const reduce = useReducedMotion();
 
   return (
@@ -29,7 +29,7 @@ export function FaqHero() {
 
         <nav aria-label="FAQ categories" className="mx-auto mt-9 max-w-4xl border-t border-line/80 pt-7">
           <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1.5 sm:gap-x-2">
-            {FAQ_SECTIONS.map((section) => (
+            {sections.map((section) => (
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
