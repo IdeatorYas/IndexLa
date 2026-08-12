@@ -43,11 +43,9 @@ export function DexlaSection() {
               <h3 className={`${homeH3} text-success`}>4 Core Utilities</h3>
               <ol className={`mt-5 space-y-3 ${homeBody}`}>
                 {utilities.map((item, i) => (
-                  <li key={item} className="flex items-baseline gap-3">
-                    <span className="w-6 shrink-0 tabular-nums leading-[inherit] text-success">
-                      {i + 1}.
-                    </span>
-                    <span className="leading-[inherit] text-ink">{item}</span>
+                  <li key={item}>
+                    <span className="tabular-nums text-success">{i + 1}.</span>{" "}
+                    <span className="text-ink">{item}</span>
                   </li>
                 ))}
               </ol>
@@ -58,11 +56,9 @@ export function DexlaSection() {
               <h3 className={`${homeH3} text-danger`}>4 Burn Mechanisms</h3>
               <ol className={`mt-5 space-y-3 ${homeBody}`}>
                 {burns.map((item, i) => (
-                  <li key={item} className="flex items-baseline gap-3">
-                    <span className="w-6 shrink-0 tabular-nums leading-[inherit] text-danger">
-                      {i + 1}.
-                    </span>
-                    <span className="leading-[inherit] text-ink">{item}</span>
+                  <li key={item}>
+                    <span className="tabular-nums text-danger">{i + 1}.</span>{" "}
+                    <span className="text-ink">{item}</span>
                   </li>
                 ))}
               </ol>
