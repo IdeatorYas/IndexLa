@@ -49,13 +49,13 @@ export const tkArchGrid =
   "mt-10 grid gap-3 sm:grid-cols-2 sm:gap-4";
 
 export const tkArchCard =
-  "flex h-full min-h-[28rem] flex-col border px-5 py-5 transition-[border-color,background-color] duration-300 sm:min-h-[30rem] sm:px-6 sm:py-6";
+  "flex h-full min-h-[24rem] flex-col border px-5 py-5 transition-[border-color,background-color] duration-300 sm:min-h-[28rem] sm:px-6 sm:py-6";
 
 export const tkArchCardUtility =
-  `${tkArchCard} border-success/30 bg-success/[0.05] hover:border-success/50 hover:bg-success/[0.08]`;
+  `${tkArchCard} border-success/45 bg-success/[0.06] hover:border-success/65 hover:bg-success/[0.09]`;
 
 export const tkArchCardBurn =
-  `${tkArchCard} border-danger/30 bg-danger/[0.05] hover:border-danger/50 hover:bg-danger/[0.08]`;
+  `${tkArchCard} border-danger/45 bg-danger/[0.06] hover:border-danger/65 hover:bg-danger/[0.09]`;
 
 export const tkArchNum =
   "display text-[1.05rem] tabular-nums";
