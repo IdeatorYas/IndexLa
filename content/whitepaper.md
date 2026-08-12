@@ -653,29 +653,24 @@ $DEXLA is the native utility token of the INDEXLA ecosystem, connecting creator 
 - Execution Fee Buyback & Burn — 10% of INDEXLA execution fee revenue is used to buy and permanently burn $DEXLA.
 - Treasury Buyback & Burn — 25% of realized Treasury profits are used to buy and permanently burn $DEXLA.
 
-**Token Distribution**
+### Token Distribution
 
-**Total Supply: 100,000,000 $DEXLA**
+**Total Supply:** 100,000,000 $DEXLA  
+**Network:** Solana
 
-**Network: Solana**
-
-**Token Allocation**
-
-
-|                     |            |            |
-| ------------------- | ---------- | ---------- |
-| **Allocation**      | **Supply** | **Tokens** |
-| Pre Seed            | 1.5%       | 1.5M       |
-| Seed                | 6%         | 6M         |
-| Private             | 10%        | 10M        |
-| Public              | 20%        | 20M        |
-| DEX Liquidity       | 10%        | 10M        |
-| Treasury            | 20%        | 20M        |
-| Team                | 15%        | 15M        |
-| Community           | 10%        | 10M        |
-| Advisors            | 2.5%       | 2.5M       |
-| CEX / Market Making | 5%         | 5M         |
-| **Total**           | **100%**   | **100M**   |
+| Allocation          |   Supply |   Tokens |
+| ------------------- | -------: | -------: |
+| Pre Seed            |     1.5% |     1.5M |
+| Seed                |       6% |       6M |
+| Private             |      10% |      10M |
+| Public              |      20% |      20M |
+| DEX Liquidity       |      10% |      10M |
+| Treasury            |      20% |      20M |
+| Team                |      15% |      15M |
+| Community           |      10% |      10M |
+| Advisors            |     2.5% |     2.5M |
+| CEX / Market Making |       5% |       5M |
+| **Total**           | **100%** | **100M** |
 
 
 ## Vesting & Release Schedule

@@ -129,7 +129,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
         {
           id: "allocation",
           placement: "after",
-          afterHeadingId: "token-allocation",
+          afterHeadingId: "token-distribution",
           node: <TokenAllocationDiagram />,
         },
         {

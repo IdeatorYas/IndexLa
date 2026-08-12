@@ -195,7 +195,7 @@ export function WhitepaperMarkdown({
           ),
           table: ({ children }) => (
             <div className="my-6 -mx-1 overflow-x-auto rounded-xl border border-line bg-void/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:mx-0">
-              <table className="w-full min-w-[28rem] border-collapse text-left text-[0.88rem] sm:min-w-[36rem] sm:text-[0.9rem]">
+              <table className="w-full min-w-[20rem] border-collapse text-left text-[0.88rem] sm:min-w-0 sm:text-[0.9rem]">
                 {children}
               </table>
             </div>
@@ -209,13 +209,19 @@ export function WhitepaperMarkdown({
               {children}
             </tr>
           ),
-          th: ({ children }) => (
-            <th className="whitespace-nowrap px-3.5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-muted-dim first:sticky first:left-0 first:z-[1] first:bg-panel/95 first:backdrop-blur-sm sm:px-4">
+          th: ({ children, style }) => (
+            <th
+              style={style}
+              className="whitespace-nowrap px-3.5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-muted-dim first:sticky first:left-0 first:z-[1] first:bg-panel/95 first:text-left first:backdrop-blur-sm sm:px-4"
+            >
               {children}
             </th>
           ),
-          td: ({ children }) => (
-            <td className="px-3.5 py-3 align-top leading-snug text-ink/95 first:sticky first:left-0 first:z-[1] first:min-w-[8.5rem] first:border-r first:border-line/80 first:bg-void/95 first:font-semibold first:backdrop-blur-sm sm:px-4">
+          td: ({ children, style }) => (
+            <td
+              style={style}
+              className="whitespace-nowrap px-3.5 py-3 align-middle tabular-nums leading-snug text-ink/95 first:sticky first:left-0 first:z-[1] first:min-w-[9.5rem] first:whitespace-normal first:border-r first:border-line/80 first:bg-void/95 first:font-semibold first:backdrop-blur-sm sm:px-4"
+            >
               {children}
             </td>
           ),
