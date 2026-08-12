@@ -38,6 +38,10 @@ export function StrategyExecutedSection() {
             monitor, manage, and automate your portfolio within your defined
             rules and permissions.
           </p>
+          <p className={`mt-5 ${homeBody}`}>
+            AI monitors market signals against your rules; execution stays
+            smart-contract constrained.
+          </p>
         </FadeIn>
       </div>
     </section>

@@ -71,7 +71,7 @@ export function Hero() {
               Reserve Early Access
             </Button>
             <Button href="#early-access" variant="secondary" className="min-w-[13.5rem]">
-              Join Early Access
+              Reserve Early Access
             </Button>
           </div>
 

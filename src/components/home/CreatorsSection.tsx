@@ -49,7 +49,7 @@ export function CreatorsSection() {
             <HomeReadMore href="/creators" className="mt-5" />
             <div className="mt-8">
               <Button href="/creators" className="min-w-[13.5rem]">
-                Create Your Portfolio
+                Reserve Early Access
               </Button>
             </div>
           </FadeIn>

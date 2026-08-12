@@ -64,7 +64,7 @@ export function OnePortfolioSection() {
           </p>
           <div className="mt-7">
             <Button href="/creators" className="min-w-[13.5rem]">
-              Create Your Portfolio
+              Reserve Early Access
             </Button>
           </div>
         </FadeIn>

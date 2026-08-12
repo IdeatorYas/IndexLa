@@ -39,7 +39,7 @@ export function FinalCtaSection() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className="min-w-[13.5rem]">
-              Join Early Access
+              Reserve Early Access
             </Button>
           </div>
           <p className="mt-10 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-muted-dim">
@@ -56,6 +56,9 @@ export function FinalCtaSection() {
               </div>
             ))}
           </div>
+          <p className="mt-10 text-[0.8rem] tracking-[0.02em] text-muted-dim">
+            INDEXLA is currently in MVP development.
+          </p>
         </motion.div>
       </div>
     </section>

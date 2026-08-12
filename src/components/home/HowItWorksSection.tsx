@@ -390,6 +390,10 @@ export function HowItWorksSection() {
           <p className="mt-4 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
             Connect → Allocate → Automate → Fund &amp; Activate
           </p>
+          <p className={`mx-auto mt-6 max-w-[40rem] font-semibold text-ink ${homeBodyStrong}`}>
+            Your assets never leave your wallet. INDEXLA only receives the
+            limited permissions you approve.
+          </p>
         </FadeIn>
 
         {/* Desktop flow rail */}
