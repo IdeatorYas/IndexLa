@@ -10,16 +10,16 @@ import {
 } from "@/components/tokenomics/tokenomicsRhythm";
 
 const allocations = [
-  { label: "Pre-Seed Round", short: "Pre-Seed", pct: 1.5, color: "#7c3aed" },
-  { label: "Seed Round", short: "Seed", pct: 6, color: "#8b5cf6" },
-  { label: "Private Sale", short: "Private", pct: 10, color: "#a78bfa" },
-  { label: "Public Sale", short: "Public", pct: 20, color: "#38bdf8" },
-  { label: "DEX Liquidity", short: "DEX", pct: 10, color: "#22d3ee" },
-  { label: "Treasury", short: "Treasury", pct: 20, color: "#34d399" },
-  { label: "Team", short: "Team", pct: 15, color: "#fbbf24" },
-  { label: "Community Airdrops", short: "Community", pct: 10, color: "#fb923c" },
-  { label: "CEX Listings & Market Making", short: "CEX / MM", pct: 5, color: "#f87171" },
-  { label: "Advisors", short: "Advisors", pct: 2.5, color: "#e879f9" },
+  { label: "Pre-Seed Round", short: "Pre-Seed", pct: 1.5, tokens: "1.5M", color: "#7c3aed" },
+  { label: "Seed Round", short: "Seed", pct: 6, tokens: "6M", color: "#8b5cf6" },
+  { label: "Private Sale", short: "Private", pct: 10, tokens: "10M", color: "#a78bfa" },
+  { label: "Public Sale", short: "Public", pct: 20, tokens: "20M", color: "#38bdf8" },
+  { label: "DEX Liquidity", short: "DEX", pct: 10, tokens: "10M", color: "#22d3ee" },
+  { label: "Treasury", short: "Treasury", pct: 20, tokens: "20M", color: "#34d399" },
+  { label: "Team", short: "Team", pct: 15, tokens: "15M", color: "#fbbf24" },
+  { label: "Community Airdrops", short: "Community", pct: 10, tokens: "10M", color: "#fb923c" },
+  { label: "CEX Listings & Market Making", short: "CEX / MM", pct: 5, tokens: "5M", color: "#f87171" },
+  { label: "Advisors", short: "Advisors", pct: 2.5, tokens: "2.5M", color: "#e879f9" },
 ] as const;
 
 const conic = (() => {
@@ -49,7 +49,6 @@ export function TokenDistributionSection() {
           </p>
         </FadeIn>
 
-        {/* Protocol-style stacked allocation bar */}
         <FadeIn className="mt-10">
           <div className="overflow-hidden border border-white/[0.1] bg-void/50">
             <div className="flex h-14 w-full sm:h-16">
@@ -61,7 +60,7 @@ export function TokenDistributionSection() {
                     width: `${row.pct}%`,
                     background: row.color,
                   }}
-                  title={`${row.label}: ${row.pct}%`}
+                  title={`${row.label}: ${row.pct}% · ${row.tokens}`}
                 >
                   {row.pct >= 10 && (
                     <span className="absolute inset-x-0 bottom-1 text-center text-[0.62rem] font-semibold uppercase tracking-wide text-void/90 sm:text-[0.7rem]">
@@ -71,30 +70,13 @@ export function TokenDistributionSection() {
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-white/[0.08] px-4 py-3 sm:px-5">
-              {allocations.map((row) => (
-                <div key={`leg-${row.label}`} className="flex items-center gap-2">
-                  <span
-                    className="h-2 w-2 shrink-0"
-                    style={{ background: row.color }}
-                    aria-hidden
-                  />
-                  <span className="text-[0.78rem] text-muted">
-                    {row.short}{" "}
-                    <span className="font-semibold tabular-nums text-ink">
-                      {row.pct}%
-                    </span>
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
         </FadeIn>
 
         <FadeIn className="mt-6">
-          <div className="grid gap-0 border border-white/[0.08] lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="grid gap-0 border border-white/[0.08] lg:grid-cols-[0.9fr_1.1fr]">
             <div className="flex flex-col items-center justify-center border-b border-white/[0.07] bg-void/40 p-6 sm:p-8 lg:border-b-0 lg:border-r">
-              <div className="relative h-48 w-48 sm:h-56 sm:w-56">
+              <div className="relative h-52 w-52 sm:h-60 sm:w-60">
                 <div
                   className="absolute inset-0"
                   style={{
@@ -103,46 +85,71 @@ export function TokenDistributionSection() {
                   }}
                   aria-hidden
                 />
-                <div className="absolute inset-[24%] flex flex-col items-center justify-center border border-white/[0.1] bg-void text-center">
+                <div className="absolute inset-[26%] flex flex-col items-center justify-center border border-white/[0.1] bg-void text-center">
                   <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                     Hard Cap
                   </p>
-                  <p className="mt-1 display text-[1.45rem] text-ink">100M</p>
+                  <p className="mt-1 display text-[1.5rem] text-ink">100M</p>
                   <p className="text-[0.75rem] text-muted">$DEXLA</p>
                 </div>
               </div>
             </div>
 
             <div className="p-4 sm:p-5">
-              <div className="mb-2 hidden grid-cols-[1fr_auto] gap-3 px-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim sm:grid">
+              <div className="mb-2 hidden grid-cols-[1fr_auto_auto] gap-3 px-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim sm:grid">
                 <span>Allocation</span>
-                <span>%</span>
+                <span className="w-16 text-right">%</span>
+                <span className="w-16 text-right">Tokens</span>
               </div>
               <ul>
                 {allocations.map((row) => (
                   <li
                     key={row.label}
-                    className="grid grid-cols-[auto_1fr_auto] items-center gap-3 border-b border-white/[0.06] px-2 py-2.5 last:border-0"
+                    className="grid grid-cols-[auto_1fr_auto] items-center gap-x-3 gap-y-1 border-b border-white/[0.06] px-2 py-2.5 last:border-0 sm:grid-cols-[auto_1fr_auto_auto]"
                   >
                     <span
-                      className="h-2 w-2"
+                      className="h-2.5 w-2.5 shrink-0"
                       style={{ background: row.color }}
                       aria-hidden
                     />
                     <span className="text-[0.92rem] font-medium text-ink">
                       {row.label}
                     </span>
-                    <span className="display text-[1.05rem] tabular-nums text-electric">
+                    <span className="display text-[1.05rem] tabular-nums text-electric sm:w-16 sm:text-right">
                       {row.pct}%
+                    </span>
+                    <span className="col-start-2 display text-[0.95rem] tabular-nums text-ink sm:col-start-auto sm:w-16 sm:text-right">
+                      {row.tokens}
                     </span>
                   </li>
                 ))}
               </ul>
               <div className="mt-1 flex items-center justify-between border-t border-white/[0.1] px-2 pt-3">
                 <span className="text-[0.92rem] font-semibold text-ink">Total</span>
-                <span className="display text-[1.15rem] text-ink">100%</span>
+                <div className="flex items-center gap-6">
+                  <span className="display text-[1.15rem] text-ink">100%</span>
+                  <span className="display text-[1.15rem] text-ink">100M</span>
+                </div>
               </div>
             </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn className="mx-auto mt-8 max-w-3xl">
+          <div className="border border-electric/25 bg-electric/[0.06] px-5 py-6 sm:px-7 sm:py-7">
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
+              Treasury Funding
+            </p>
+            <p className={`mt-4 ${tkBody} text-pretty`}>
+              The Treasury receives 20% of the total $DEXLA supply, plus 15% of
+              Private Round proceeds and 10% of Public Round proceeds allocated
+              to Treasury to support long-term protocol sustainability and
+              strategic growth.
+            </p>
+            <p className={`mt-3 ${tkBodyStrong} text-pretty`}>
+              These Treasury allocations are funded from protocol fundraising
+              proceeds, not user assets.
+            </p>
           </div>
         </FadeIn>
 

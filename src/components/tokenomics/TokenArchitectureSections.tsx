@@ -314,6 +314,15 @@ export function TokenUtilitySection() {
             />
           ))}
         </div>
+
+        <FadeIn className="mx-auto mt-8 max-w-2xl text-center">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-success">
+            Also included
+          </p>
+          <p className={`mt-2 ${tkBody} text-balance`}>
+            Governance &amp; ecosystem participation
+          </p>
+        </FadeIn>
       </div>
     </section>
   );

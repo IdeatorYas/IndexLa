@@ -6,6 +6,7 @@ import {
 } from "@/components/tokenomics/TokenArchitectureSections";
 import { TokenFlywheelSection } from "@/components/tokenomics/TokenFlywheelSection";
 import { TokenDistributionSection } from "@/components/tokenomics/TokenDistributionSection";
+import { FeeFlowSection } from "@/components/tokenomics/FeeFlowSection";
 import { VestingScheduleSection } from "@/components/tokenomics/VestingScheduleSection";
 import { TgeCirculatingSection } from "@/components/tokenomics/TgeCirculatingSection";
 import { LaunchTimingSection } from "@/components/tokenomics/LaunchTimingSection";
@@ -24,6 +25,7 @@ export default function TokenomicsPage() {
       <TokenBurnMechanismSection />
       <TokenFlywheelSection />
       <TokenDistributionSection />
+      <FeeFlowSection />
       <VestingScheduleSection />
       <TgeCirculatingSection />
       <LaunchTimingSection />

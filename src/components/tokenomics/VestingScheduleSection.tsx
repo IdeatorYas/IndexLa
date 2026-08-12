@@ -7,7 +7,11 @@ import {
   tkSection,
 } from "@/components/tokenomics/tokenomicsRhythm";
 
-type Node = { label: string; detail: string; tone?: "tge" | "cliff" | "linear" | "full" | "lock" | "soft" };
+type Node = {
+  label: string;
+  detail: string;
+  tone?: "tge" | "cliff" | "linear" | "full" | "lock" | "soft";
+};
 
 type Schedule = {
   title: string;
@@ -79,6 +83,15 @@ const toneDot: Record<NonNullable<Node["tone"]>, string> = {
   soft: "bg-white/40 border-white/30",
 };
 
+const toneChip: Record<NonNullable<Node["tone"]>, string> = {
+  tge: "border-electric/35 bg-electric/[0.08]",
+  cliff: "border-white/12 bg-void/50",
+  linear: "border-purple-bright/30 bg-purple/[0.08]",
+  full: "border-success/35 bg-success/[0.08]",
+  lock: "border-electric/40 bg-electric/[0.1]",
+  soft: "border-white/12 bg-void/40",
+};
+
 export function VestingScheduleSection() {
   return (
     <section className={`${tkSection} bg-void`}>
@@ -90,43 +103,51 @@ export function VestingScheduleSection() {
           </p>
         </FadeIn>
 
-        <div className="mt-10 space-y-0 border-y border-white/[0.08]">
+        <div className="mt-10 space-y-3">
           {schedules.map((item, i) => (
             <FadeIn key={item.title} delay={i * 0.02}>
               <article
-                className={`border-b border-white/[0.07] py-6 last:border-b-0 sm:py-7 ${
-                  item.featured ? "bg-electric/[0.04]" : ""
+                className={`border px-5 py-5 sm:px-6 sm:py-6 ${
+                  item.featured
+                    ? "border-electric/30 bg-electric/[0.05]"
+                    : "border-white/[0.08] bg-deep/40"
                 }`}
               >
-                <div className="grid gap-4 lg:grid-cols-[minmax(12rem,0.9fr)_minmax(0,1.4fr)] lg:items-center lg:gap-8">
-                  <h3 className="display text-[1.1rem] tracking-[-0.02em] text-ink sm:text-[1.2rem]">
+                <div className="grid gap-5 lg:grid-cols-[minmax(12rem,0.85fr)_minmax(0,1.5fr)] lg:items-center lg:gap-8">
+                  <h3 className="display text-[1.12rem] tracking-[-0.02em] text-ink sm:text-[1.22rem]">
                     {item.title}
                   </h3>
 
                   <div className="min-w-0">
-                    <ol className="flex flex-wrap items-start gap-y-3">
+                    <ol className="flex flex-wrap items-stretch gap-2 sm:gap-2.5">
                       {item.nodes.map((node, idx) => (
                         <li
                           key={`${item.title}-${node.label}`}
-                          className="flex min-w-0 items-start"
+                          className="flex min-w-0 items-center gap-2"
                         >
-                          <div className="min-w-[4.5rem] text-center sm:min-w-[5.25rem]">
-                            <div
-                              className={`mx-auto h-2.5 w-2.5 rounded-full border ${toneDot[node.tone ?? "soft"]}`}
-                              aria-hidden
-                            />
-                            <p className="mt-2 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                              {node.label}
-                            </p>
-                            <p className="mt-0.5 display text-[0.98rem] tabular-nums text-ink">
+                          <div
+                            className={`min-w-[5.25rem] border px-3 py-2.5 text-center sm:min-w-[5.75rem] ${toneChip[node.tone ?? "soft"]}`}
+                          >
+                            <div className="flex items-center justify-center gap-1.5">
+                              <span
+                                className={`h-1.5 w-1.5 rounded-full border ${toneDot[node.tone ?? "soft"]}`}
+                                aria-hidden
+                              />
+                              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+                                {node.label}
+                              </p>
+                            </div>
+                            <p className="mt-1 display text-[1rem] tabular-nums text-ink sm:text-[1.05rem]">
                               {node.detail}
                             </p>
                           </div>
                           {idx < item.nodes.length - 1 && (
-                            <div
-                              className="mx-1 mt-1.5 h-px w-5 shrink-0 bg-white/20 sm:mx-2 sm:w-8"
+                            <span
+                              className="shrink-0 text-muted-dim/70"
                               aria-hidden
-                            />
+                            >
+                              →
+                            </span>
                           )}
                         </li>
                       ))}

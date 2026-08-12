@@ -55,7 +55,7 @@ export const tkArchCardUtility =
   `${tkArchCard} border-success/35 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.12)] hover:border-success/55 hover:bg-success/[0.06] hover:shadow-[inset_0_1px_0_0_rgba(52,211,153,0.2),0_0_0_1px_rgba(52,211,153,0.08)]`;
 
 export const tkArchCardBurn =
-  `${tkArchCard} border-danger/35 shadow-[inset_0_1px_0_0_rgba(248,113,113,0.12)] hover:border-danger/55 hover:bg-danger/[0.06] hover:shadow-[inset_0_1px_0_0_rgba(248,113,113,0.2),0_0_0_1px_rgba(248,113,113,0.08)]`;
+  `${tkArchCard} border-danger/40 bg-gradient-to-b from-danger/[0.07] to-panel/40 shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)] hover:border-danger/60 hover:from-danger/[0.1] hover:shadow-[inset_0_1px_0_0_rgba(248,113,113,0.22),0_0_0_1px_rgba(248,113,113,0.1)]`;
 
 export const tkArchNum =
   "display text-[0.95rem] tabular-nums tracking-[0.08em]";
@@ -71,7 +71,7 @@ export const tkArchMetricUtility =
   `${tkArchMetric} border-success/30 bg-success/[0.07]`;
 
 export const tkArchMetricBurn =
-  `${tkArchMetric} border-danger/30 bg-danger/[0.07]`;
+  `${tkArchMetric} border-danger/40 bg-danger/[0.1] shadow-[inset_0_0_24px_-8px_rgba(248,113,113,0.25)]`;
 
 /** Body block height so copy area stays consistent across cards */
 export const tkArchBody =
