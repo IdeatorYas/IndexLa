@@ -22,7 +22,7 @@ export {
 } from "@/components/home/homeRhythm";
 
 export const invCard =
-  "rounded-[1.25rem] border border-line bg-void/40 p-5 sm:p-6";
+  "rounded-[1.25rem] border border-line bg-void/40 p-5 text-center sm:p-6";
 
 /** Investors H1 — match homepage hero scale */
 export const invH1 =

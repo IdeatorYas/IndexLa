@@ -51,7 +51,7 @@ export function AiAutomationSection() {
         <div className="mt-8 grid gap-3 md:grid-cols-3">
           {groups.map((group, i) => (
             <FadeIn key={group.key} delay={i * 0.04}>
-              <article className="h-full rounded-[1.2rem] border border-line bg-deep/50 p-5">
+              <article className="h-full rounded-[1.2rem] border border-line bg-deep/50 p-5 text-center">
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
                   {String(i + 1).padStart(2, "0")}
                 </p>
@@ -74,18 +74,18 @@ export function AiAutomationSection() {
         </div>
 
         <FadeIn className="mt-4" delay={0.1}>
-          <div className="rounded-[1.25rem] border border-electric/35 bg-gradient-to-r from-electric/[0.1] via-void/40 to-purple/[0.08] px-5 py-5 sm:px-7 sm:py-6">
+          <div className="rounded-[1.25rem] border border-electric/35 bg-gradient-to-r from-electric/[0.1] via-void/40 to-purple/[0.08] px-5 py-5 text-center sm:px-7 sm:py-6">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
               Capability
             </p>
             <h3 className="mt-2 display text-[1.25rem] tracking-[-0.02em] text-ink uppercase sm:text-[1.35rem]">
               Combine Strategies
             </h3>
-            <p className={`mt-3 max-w-2xl ${invBody}`}>
+            <p className={`mx-auto mt-3 max-w-2xl ${invBody}`}>
               Multiple strategies can be combined into one strategy — so you can
               define a complete response from entry through profit taking.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
               {combineExamples.map((example) => (
                 <span
                   key={example}

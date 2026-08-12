@@ -85,7 +85,7 @@ function ArchCardHeader({
 }) {
   const accent = tone === "utility" ? "text-success" : "text-danger";
   return (
-    <div className="flex items-baseline gap-3">
+    <div className="flex flex-col items-center gap-2 text-center">
       <span className={`${tkArchNum} ${accent}`}>{n}</span>
       <h3 className={tkArchTitle}>{title}</h3>
     </div>
@@ -137,15 +137,17 @@ function ArchitectureCard({
 
         {item.metric.kind === "tiers" && (
           <MetricShell tone={tone}>
-            <div className="w-full space-y-2 text-left">
+            <div className="w-full space-y-2 text-center">
               {item.metric.rows.map((row) => (
                 <div
                   key={row.hold}
-                  className={`flex items-center justify-between gap-3 border-b ${tierRule} pb-1.5 last:border-0 last:pb-0`}
+                  className={`flex items-center justify-center gap-2 border-b ${tierRule} pb-1.5 last:border-0 last:pb-0`}
                 >
                   <span className="text-[0.88rem] font-medium tabular-nums text-ink">
                     {row.hold}
-                    <span className={`mx-1.5 ${tierAccent}/50`}>→</span>
+                  </span>
+                  <span className={`${tierAccent}/50`} aria-hidden>
+                    →
                   </span>
                   <span className={`display text-[1rem] ${tierAccent}`}>
                     {row.discount}

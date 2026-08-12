@@ -58,7 +58,7 @@ export function StrategyEngineSection() {
                   key={strategy.title}
                   type="button"
                   onClick={() => setActive(i)}
-                  className={`rounded-2xl border px-4 py-4 text-left transition-all ${
+                  className={`rounded-2xl border px-4 py-4 text-center transition-all ${
                     active === i
                       ? "border-electric/40 bg-white/[0.06] shadow-[0_0_30px_rgba(56,189,248,0.12)]"
                       : "border-line bg-transparent hover:border-white/20 hover:bg-white/[0.03]"
@@ -76,7 +76,7 @@ export function StrategyEngineSection() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="relative min-h-[20rem] overflow-hidden rounded-3xl glass p-7 sm:p-10">
+            <div className="relative min-h-[20rem] overflow-hidden rounded-3xl glass p-7 text-center sm:p-10">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
                 Strategy engine
               </p>
@@ -92,17 +92,17 @@ export function StrategyEngineSection() {
                   <h3 className="display text-[2.1rem]">
                     {strategies[active].title}
                   </h3>
-                  <p className="mt-4 max-w-md text-[1.1rem] leading-relaxed text-muted">
+                  <p className="mx-auto mt-4 max-w-md text-[1.1rem] leading-relaxed text-muted">
                     {strategies[active].body}
                   </p>
                   <div className="mt-8 grid grid-cols-3 gap-3">
                     {["Condition", "Signal", "Execution"].map((label, i) => (
                       <div
                         key={label}
-                        className="rounded-xl border border-line bg-void/40 px-3 py-4"
+                        className="rounded-xl border border-line bg-void/40 px-3 py-4 text-center"
                       >
                         <div
-                          className="mb-3 h-1.5 rounded-full"
+                          className="mx-auto mb-3 h-1.5 rounded-full"
                           style={{
                             width: `${45 + i * 18}%`,
                             background:

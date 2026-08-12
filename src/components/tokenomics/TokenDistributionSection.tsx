@@ -123,7 +123,7 @@ export function TokenDistributionSection() {
         </FadeIn>
 
         <FadeIn className="mx-auto mt-10 max-w-3xl">
-          <div className="rounded-xl border border-electric/25 bg-electric/[0.05] px-5 py-6 sm:px-7 sm:py-7">
+          <div className="rounded-xl border border-electric/25 bg-electric/[0.05] px-5 py-6 text-center sm:px-7 sm:py-7">
             <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
               Treasury Funding
             </p>

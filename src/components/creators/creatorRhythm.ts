@@ -28,7 +28,7 @@ export const crSurface =
   "overflow-hidden rounded-2xl border border-white/[0.08] bg-deep/55 shadow-[0_20px_60px_rgba(0,0,0,0.28)]";
 
 export const crSurfaceSoft =
-  "rounded-2xl border border-white/[0.07] bg-void/40";
+  "rounded-2xl border border-white/[0.07] bg-void/40 text-center";
 
 export const crCta =
   "min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)] ring-1 ring-white/10";

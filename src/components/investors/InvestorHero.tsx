@@ -25,7 +25,7 @@ function HeroStrategyPanel() {
   const showExec = pulse % 2 === 1;
 
   return (
-    <div className="rounded-[1.35rem] border border-line bg-deep/80 p-5 sm:p-6">
+    <div className="rounded-[1.35rem] border border-line bg-deep/80 p-5 text-center sm:p-6">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className={`${invLabel} text-electric`}>Fear & Greed</p>

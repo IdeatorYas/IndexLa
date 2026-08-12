@@ -407,7 +407,7 @@ export function HowItWorksSection() {
                     type="button"
                     onClick={() => goTo(i)}
                     aria-pressed={selected}
-                    className={`group relative w-full rounded-2xl border px-4 py-4 text-left transition-all ${
+                    className={`group relative w-full rounded-2xl border px-4 py-4 text-center transition-all ${
                       selected
                         ? "border-electric/45 bg-white/[0.07] shadow-[0_0_36px_rgba(56,189,248,0.14)]"
                         : done
@@ -454,7 +454,7 @@ export function HowItWorksSection() {
                       type="button"
                       onClick={() => goTo(i)}
                       aria-pressed={selected}
-                      className={`w-full rounded-2xl border px-4 py-3.5 text-left transition-all ${
+                      className={`w-full rounded-2xl border px-4 py-3.5 text-center transition-all ${
                         selected
                           ? "border-electric/40 bg-white/[0.06]"
                           : "border-line bg-transparent"

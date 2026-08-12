@@ -107,7 +107,7 @@ export function CreatorParticipantsSection() {
             {steps.map((step, i) => (
               <article
                 key={step.title}
-                className={`relative flex h-full flex-col ${crSurfaceSoft} p-4 sm:p-5`}
+                className={`relative flex h-full flex-col items-center ${crSurfaceSoft} p-4 sm:p-5`}
               >
                 <p className="display text-[1.2rem] gradient-text">
                   {String(i + 1).padStart(2, "0")}
@@ -118,7 +118,7 @@ export function CreatorParticipantsSection() {
                 <p className="mt-2 text-[0.92rem] leading-relaxed text-muted">
                   {step.body}
                 </p>
-                <div className="mt-4 flex-1">{step.preview}</div>
+                <div className="mt-4 w-full flex-1">{step.preview}</div>
               </article>
             ))}
           </div>

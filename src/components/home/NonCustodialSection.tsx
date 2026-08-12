@@ -28,7 +28,7 @@ export function NonCustodialSection() {
 
           <FadeIn delay={0.1}>
             <div className="grid gap-4">
-              <div className="rounded-3xl border border-danger/20 bg-danger/5 p-6">
+              <div className="rounded-3xl border border-danger/20 bg-danger/5 p-6 text-center">
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-danger">
                   Traditional
                 </p>
@@ -37,7 +37,7 @@ export function NonCustodialSection() {
                   You hold a packaged product — not the underlying assets.
                 </p>
               </div>
-              <div className="rounded-3xl glass p-6">
+              <div className="rounded-3xl glass p-6 text-center">
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
                   INDEXLA
                 </p>
@@ -46,7 +46,7 @@ export function NonCustodialSection() {
                   Non-custodial. Your assets stay in your control while strategy
                   executes.
                 </p>
-                <div className="mt-5 flex gap-2">
+                <div className="mt-5 flex justify-center gap-2">
                   {["Wallet", "Permissions", "On-chain"].map((label) => (
                     <span
                       key={label}

@@ -56,12 +56,12 @@ export function CreatorsSection() {
           </FadeIn>
 
           <FadeIn delay={0.08}>
-            <div className="rounded-3xl glass p-7 sm:p-9">
+            <div className="rounded-3xl glass p-7 text-center sm:p-9">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 Example economics
               </p>
               <div className="mt-6 space-y-3.5">
-                <div className="rounded-2xl border border-line bg-void/45 px-5 py-4">
+                <div className="rounded-2xl border border-line bg-void/45 px-5 py-4 text-center">
                   <p className="text-[0.7rem] uppercase tracking-[0.12em] text-muted-dim">
                     Weekly execution volume
                   </p>
@@ -69,7 +69,7 @@ export function CreatorsSection() {
                     $100,000
                   </p>
                 </div>
-                <div className="rounded-2xl border border-line bg-void/45 px-5 py-4">
+                <div className="rounded-2xl border border-line bg-void/45 px-5 py-4 text-center">
                   <p className="text-[0.7rem] uppercase tracking-[0.12em] text-muted-dim">
                     1% execution fee
                   </p>
@@ -77,7 +77,7 @@ export function CreatorsSection() {
                     $1,000
                   </p>
                 </div>
-                <div className="rounded-2xl border border-electric/30 bg-electric/10 px-5 py-4">
+                <div className="rounded-2xl border border-electric/30 bg-electric/10 px-5 py-4 text-center">
                   <p className="text-[0.7rem] uppercase tracking-[0.12em] text-electric">
                     Creator share (50%)
                   </p>

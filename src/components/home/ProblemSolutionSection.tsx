@@ -71,8 +71,8 @@ export function ProblemSolutionSection() {
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {problems.map((item, i) => (
             <FadeIn key={item.n} delay={i * 0.05}>
-              <article className="flex h-full flex-col rounded-2xl border border-line bg-deep/50 p-6 sm:p-7">
-                <div className="flex items-baseline gap-3">
+              <article className="flex h-full flex-col items-center rounded-2xl border border-line bg-deep/50 p-6 text-center sm:p-7">
+                <div className="flex flex-col items-center gap-2">
                   <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
                     {item.n}
                   </span>
@@ -89,7 +89,7 @@ export function ProblemSolutionSection() {
         </div>
 
         <FadeIn className="mt-10">
-          <div className="rounded-3xl glass p-7 sm:p-10">
+          <div className="rounded-3xl glass p-7 text-center sm:p-10">
             <h3 className={homeH3}>
               One Layer. One Portfolio. Full Asset Ownership.
             </h3>
@@ -98,7 +98,7 @@ export function ProblemSolutionSection() {
               {shifts.map((shift) => (
                 <div
                   key={shift.from}
-                  className="flex items-center gap-3 rounded-2xl border border-line bg-void/45 px-4 py-3.5"
+                  className="flex items-center justify-center gap-3 rounded-2xl border border-line bg-void/45 px-4 py-3.5 text-center"
                 >
                   <span className="min-w-0 flex-1 text-[1.05rem] leading-snug text-muted sm:text-[1.1rem]">
                     {shift.from}
@@ -113,11 +113,11 @@ export function ProblemSolutionSection() {
               ))}
             </div>
 
-            <p className={`mt-7 max-w-3xl ${homeBody}`}>
+            <p className={`mx-auto mt-7 max-w-3xl ${homeBody}`}>
               INDEXLA lets you buy the assets, hold the full basket, and control
               your portfolio directly.
             </p>
-            <p className={`mt-4 max-w-3xl ${homeBodyStrong}`}>
+            <p className={`mx-auto mt-4 max-w-3xl ${homeBodyStrong}`}>
               One permission layer connects portfolios across chains and asset
               classes, while execution remains non-custodial and
               rule-constrained.

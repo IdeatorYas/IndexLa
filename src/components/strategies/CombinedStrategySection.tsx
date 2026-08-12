@@ -64,7 +64,7 @@ export function CombinedStrategySection() {
               </ul>
             </div>
 
-            <div className={`${stSurface} border-electric/25 p-5 sm:p-6`}>
+            <div className={`${stSurface} border-electric/25 p-5 text-center sm:p-6`}>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 Combined Strategy
               </p>
@@ -72,7 +72,7 @@ export function CombinedStrategySection() {
                 {combined.map((flow) => (
                   <li
                     key={flow}
-                    className="rounded-xl border border-electric/25 bg-electric/[0.07] px-4 py-3.5"
+                    className="rounded-xl border border-electric/25 bg-electric/[0.07] px-4 py-3.5 text-center"
                   >
                     <p className="display text-[1.02rem] tracking-[-0.02em] text-ink sm:text-[1.08rem]">
                       {flow}

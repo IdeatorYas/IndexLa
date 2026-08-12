@@ -36,6 +36,11 @@ export const homePill =
 export const homeChip =
   "rounded-xl border border-electric/20 bg-electric/10 px-3.5 py-2 text-[0.95rem] font-semibold text-ink";
 
+export const homeCard =
+  "rounded-3xl border border-line bg-deep/55 p-6 sm:p-7 text-center";
+
+export const cardContent = "text-center";
+
 /** Shared primary page CTA size — keep header chrome compact separately */
 export const homeCta =
   "min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)] ring-1 ring-white/10";

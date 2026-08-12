@@ -36,7 +36,7 @@ export function DistributionSection() {
             {layers.map((layer) => (
               <div
                 key={layer.title}
-                className="rounded-2xl border border-line bg-deep/55 px-5 py-5"
+                className="rounded-2xl border border-line bg-deep/55 px-5 py-5 text-center"
               >
                 <p className="text-[1.1rem] font-semibold text-ink sm:text-[1.15rem]">
                   {layer.title}
@@ -48,14 +48,14 @@ export function DistributionSection() {
         </FadeIn>
 
         <FadeIn className="mt-7">
-          <div className="rounded-3xl glass p-7 sm:p-10">
+          <div className="rounded-3xl glass p-7 text-center sm:p-10">
             <p className="text-[1.15rem] font-semibold leading-snug text-ink text-pretty sm:text-[1.25rem]">
               INDEXLA provides the portfolio distribution layer.
             </p>
             <p className={`mt-5 ${homeBody}`}>
               As more assets move on chain, investors need one layer to:
             </p>
-            <div className="mt-4 flex flex-wrap items-center gap-2">
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
               {investorFlow.map((item, i) => (
                 <div key={item} className="flex items-center gap-2">
                   <span className={homePill}>{item}</span>
@@ -68,7 +68,7 @@ export function DistributionSection() {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-2">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
               {distributionFlow.map((item, i) => (
                 <div key={item} className="flex items-center gap-2">
                   <span className={homeChip}>{item}</span>

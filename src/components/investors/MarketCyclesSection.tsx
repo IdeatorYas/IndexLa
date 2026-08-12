@@ -86,7 +86,7 @@ export function MarketCyclesSection() {
               {phases.map((phase, i) => (
                 <motion.div
                   key={phase.market}
-                  className={`relative rounded-2xl border p-5 ${phase.tone}`}
+                  className={`relative rounded-2xl border p-5 text-center ${phase.tone}`}
                   initial={reduce ? false : { opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -120,7 +120,7 @@ export function MarketCyclesSection() {
 
             <ul className="divide-y divide-line md:hidden">
               {phases.map((phase, i) => (
-                <li key={phase.market} className="flex items-center gap-4 px-5 py-5">
+                <li key={phase.market} className="flex items-center justify-center gap-4 px-5 py-5 text-center">
                   <span className="display shrink-0 text-[1.1rem] gradient-text">
                     {String(i + 1).padStart(2, "0")}
                   </span>

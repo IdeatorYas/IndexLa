@@ -39,7 +39,7 @@ export function DexlaSection() {
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <FadeIn>
-            <div className="h-full rounded-3xl border border-success/35 bg-success/[0.06] px-6 py-6 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14)] sm:px-7">
+            <div className="h-full rounded-3xl border border-success/35 bg-success/[0.06] px-6 py-6 text-center shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14)] sm:px-7">
               <h3 className={`${homeH3} text-success`}>4 Core Utilities</h3>
               <ol className={`mt-5 space-y-3 ${homeBody}`}>
                 {utilities.map((item, i) => (
@@ -52,7 +52,7 @@ export function DexlaSection() {
             </div>
           </FadeIn>
           <FadeIn delay={0.05}>
-            <div className="h-full rounded-3xl border border-danger/35 bg-danger/[0.06] px-6 py-6 shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)] sm:px-7">
+            <div className="h-full rounded-3xl border border-danger/35 bg-danger/[0.06] px-6 py-6 text-center shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)] sm:px-7">
               <h3 className={`${homeH3} text-danger`}>4 Burn Mechanisms</h3>
               <ol className={`mt-5 space-y-3 ${homeBody}`}>
                 {burns.map((item, i) => (

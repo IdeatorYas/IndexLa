@@ -23,7 +23,7 @@ export const tkSurface =
   "overflow-hidden border border-white/[0.08] bg-deep/55";
 
 export const tkSurfaceSoft =
-  "border border-white/[0.07] bg-void/40";
+  "border border-white/[0.07] bg-void/40 text-center";
 
 export const tkStat =
   "display text-[clamp(1.55rem,3.5vw,2.35rem)] leading-none tracking-[-0.03em] tabular-nums";
@@ -49,7 +49,7 @@ export const tkArchGrid =
   "mt-9 grid auto-rows-fr gap-3 sm:grid-cols-2 sm:gap-3.5";
 
 export const tkArchCard =
-  "group relative flex h-full flex-col overflow-hidden border bg-panel/35 px-5 py-5 backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-5 sm:py-5";
+  "group relative flex h-full flex-col overflow-hidden border bg-panel/35 px-5 py-5 text-center backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-5 sm:py-5";
 
 export const tkArchCardUtility =
   `${tkArchCard} border-success/30 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.1)] hover:border-success/50 hover:bg-success/[0.05]`;
@@ -75,4 +75,4 @@ export const tkArchMetricBurn =
 
 /** Body block height so copy area stays consistent across cards */
 export const tkArchBody =
-  "mt-3.5 flex min-h-[6.5rem] flex-1 flex-col sm:min-h-[7rem]";
+  "mt-3.5 flex min-h-[6.5rem] flex-1 flex-col items-center text-center sm:min-h-[7rem]";

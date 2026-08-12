@@ -34,13 +34,13 @@ export function RebalancingSection() {
           </FadeIn>
 
           <FadeIn delay={0.04} className="min-w-0">
-            <div className={`${stSurface} p-5 sm:p-6`}>
+            <div className={`${stSurface} p-5 text-center sm:p-6`}>
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                 Allocation drift
               </p>
 
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-xl border border-electric/30 bg-electric/[0.08] p-4">
+                <div className="rounded-xl border border-electric/30 bg-electric/[0.08] p-4 text-center">
                   <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-electric">
                     Target
                   </p>
@@ -68,7 +68,7 @@ export function RebalancingSection() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-white/[0.08] bg-void/45 p-4">
+                <div className="rounded-xl border border-white/[0.08] bg-void/45 p-4 text-center">
                   <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
                     After a major move
                   </p>

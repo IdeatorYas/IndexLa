@@ -141,7 +141,7 @@ export function StrategyWorksSection() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {buildSteps.map((step, i) => (
             <FadeIn key={step.n} delay={i * 0.04}>
-              <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-6">
+              <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-6 text-center">
                 <p className="display text-[1.4rem] gradient-text">{step.n}</p>
                 <h3 className="mt-1 display text-[1.2rem] tracking-[-0.02em] text-ink">
                   {step.title}
@@ -213,14 +213,14 @@ export function StrategyWorksSection() {
                         <button
                           type="button"
                           onClick={() => setActiveId(step.id)}
-                          className={`w-full rounded-xl border px-4 py-4 text-left transition-colors ${
+                          className={`w-full rounded-xl border px-4 py-4 text-center transition-colors ${
                             isActive
                               ? "border-electric/45 bg-electric/10"
                               : "border-line bg-deep/40 hover:border-electric/25"
                           }`}
                         >
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="min-w-0">
+                          <div className="flex flex-col items-center justify-center gap-3">
+                            <div className="min-w-0 text-center">
                               <p className="display text-[1rem] tracking-[-0.02em] text-ink sm:text-[1.05rem]">
                                 {step.stage}
                               </p>

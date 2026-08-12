@@ -16,12 +16,12 @@ export function MomentumStrategySection() {
       <div className="section-pad container-max">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-10">
           <FadeIn className="order-2 lg:order-1">
-            <div className={`${stSurface} p-5 sm:p-6`}>
+            <div className={`${stSurface} p-5 text-center sm:p-6`}>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
                 Trend direction
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-success/30 bg-success/10 p-4">
+                <div className="rounded-2xl border border-success/30 bg-success/10 p-4 text-center">
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-success">
                     Bullish
                   </p>
@@ -36,7 +36,7 @@ export function MomentumStrategySection() {
                   </svg>
                   <p className="display mt-2 text-[1.05rem]">Increase exposure</p>
                 </div>
-                <div className="rounded-2xl border border-danger/30 bg-danger/10 p-4">
+                <div className="rounded-2xl border border-danger/30 bg-danger/10 p-4 text-center">
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-danger">
                     Bearish
                   </p>

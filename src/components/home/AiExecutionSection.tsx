@@ -38,7 +38,7 @@ export function AiExecutionSection() {
         </FadeIn>
 
         <FadeIn className="mt-14">
-          <div className="overflow-hidden rounded-3xl glass p-5 sm:p-8">
+          <div className="overflow-hidden rounded-3xl glass p-5 text-center sm:p-8">
             <p className="mb-6 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
               Execution pipeline · financial infrastructure
             </p>
@@ -50,7 +50,7 @@ export function AiExecutionSection() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08 }}
-                    className="flex h-full flex-col rounded-2xl border border-line bg-void/50 p-4"
+                    className="flex h-full flex-col items-center justify-center rounded-2xl border border-line bg-void/50 p-4 text-center"
                   >
                     <span className="text-[0.7rem] font-semibold text-electric">
                       {String(i + 1).padStart(2, "0")}
