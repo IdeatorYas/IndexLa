@@ -7,7 +7,6 @@ import {
   stH2,
   stSection,
   stSurface,
-  stSurfaceSoft,
 } from "@/components/strategies/strategyRhythm";
 
 const pipeline = [
@@ -31,7 +30,6 @@ export function YouDefineAiWatchesSection() {
           <p className={`mt-5 ${stBody}`}>
             AI monitors the market conditions your strategy depends on.
           </p>
-          <p className={`mt-3 ${stBody}`}>The execution process is rule-driven:</p>
         </FadeIn>
 
         <FadeIn className="mt-8">
@@ -41,7 +39,7 @@ export function YouDefineAiWatchesSection() {
                 key={step}
                 className="flex flex-1 flex-col items-center md:flex-row"
               >
-                <div className="flex w-full flex-1 items-center justify-center rounded-2xl border border-electric/25 bg-electric/[0.07] px-3 py-4 text-center md:min-h-[5rem]">
+                <div className="flex w-full flex-1 items-center justify-center rounded-xl border border-electric/25 bg-electric/[0.07] px-3 py-4 text-center md:min-h-[4.75rem]">
                   <span className="display text-[0.92rem] tracking-[-0.02em] text-ink sm:text-[1rem]">
                     {step}
                   </span>
@@ -60,41 +58,23 @@ export function YouDefineAiWatchesSection() {
           </ol>
         </FadeIn>
 
-        <div className="mx-auto mt-9 grid max-w-4xl gap-3 lg:grid-cols-2">
-          <FadeIn>
-            <div className={`h-full ${stSurfaceSoft} p-5 sm:p-6`}>
-              <p className={stBody}>
-                AI coordinates monitoring and execution.
-              </p>
-              <p className={`mt-3 ${stBody}`}>
-                It does not take custody of your assets or decide what you should
-                invest in.
-              </p>
-              <div className="mt-5 space-y-2">
-                <p className={stBodyStrong}>You define the strategy.</p>
-                <p className={stBodyStrong}>Your wallet holds the assets.</p>
-                <p className={stBodyStrong}>
-                  Your rules determine the response.
-                </p>
-              </div>
+        <FadeIn className="mx-auto mt-9 max-w-3xl">
+          <div className={`${stSurface} px-5 py-6 text-center sm:px-8 sm:py-7`}>
+            <div className="space-y-2">
+              <p className={stBodyStrong}>You define the strategy.</p>
+              <p className={stBodyStrong}>Your wallet holds the assets.</p>
+              <p className={stBodyStrong}>Your rules determine the response.</p>
             </div>
-          </FadeIn>
-
-          <FadeIn delay={0.04}>
-            <div className={`h-full ${stSurface} p-5 sm:p-6`}>
-              <p className={stBody}>
-                Supported strategies can run across supported networks and
-                assets.
-              </p>
-              <p className={`mt-5 ${stBody}`}>
-                Markets don&apos;t stop when you sleep.
-              </p>
-              <p className="mt-3 display text-[1.25rem] tracking-[-0.02em] text-ink">
-                Your strategy doesn&apos;t have to either.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
+            <p className={`mx-auto mt-5 max-w-xl ${stBody} text-balance`}>
+              AI coordinates monitoring and execution. It does not take custody
+              of your assets or decide what you should invest in.
+            </p>
+            <p className={`mt-4 ${stBody}`}>
+              Markets don&apos;t stop when you sleep. Your strategy doesn&apos;t
+              have to either.
+            </p>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

@@ -81,6 +81,9 @@ export function MomentumStrategySection() {
                 INDEXLA monitors the defined signals continuously and coordinates
                 execution when your rules are triggered.
               </p>
+              <p className="text-[0.92rem] text-muted">
+                Momentum is calculated from validated price series.
+              </p>
             </div>
           </FadeIn>
         </div>

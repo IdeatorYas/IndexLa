@@ -22,6 +22,9 @@ export function RsiStrategySection() {
             <div className={`mt-5 space-y-2.5 ${stBody}`}>
               <p>RSI identifies when price momentum becomes stretched.</p>
               <p>You define the threshold.</p>
+              <p className="text-[0.92rem] text-muted">
+                RSI is calculated from validated price series.
+              </p>
             </div>
             <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
               <TriggerAction trigger="Oversold" action="DCA In" tone="buy" />

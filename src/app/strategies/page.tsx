@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { StrategiesHero } from "@/components/strategies/StrategiesHero";
 import { WhyTheseStrategiesSection } from "@/components/strategies/WhyTheseStrategiesSection";
+import { CombinedStrategySection } from "@/components/strategies/CombinedStrategySection";
 import { BuyFearSellGreedSection } from "@/components/strategies/BuyFearSellGreedSection";
 import { RsiStrategySection } from "@/components/strategies/RsiStrategySection";
 import { MomentumStrategySection } from "@/components/strategies/MomentumStrategySection";
@@ -23,6 +24,7 @@ export default function StrategiesPage() {
     <main>
       <StrategiesHero />
       <WhyTheseStrategiesSection />
+      <CombinedStrategySection />
       <BuyFearSellGreedSection />
       <RsiStrategySection />
       <MomentumStrategySection />

@@ -96,6 +96,10 @@ export function BuyFearSellGreedSection() {
                     </li>
                   ))}
                 </ol>
+                <p className="mt-3 text-[0.78rem] leading-relaxed text-muted-dim text-pretty">
+                  Fear &amp; Greed uses an external sentiment-data adapter with
+                  source validation and freshness checks.
+                </p>
               </div>
             </div>
           </FadeIn>
