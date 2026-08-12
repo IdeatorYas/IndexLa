@@ -135,6 +135,10 @@ Your portfolio becomes the single layer through which you define allocations, st
 
 The next generation of investors expects speed, simplicity, and control. INDEXLA brings multi asset portfolios, programmable strategies, and non custodial execution into a single layer.
 
+Build your portfolio and automate execution across chains and assets.
+
+[Read More →](/investors)
+
 
 
 # How It Works
@@ -219,6 +223,10 @@ For example, $100,000 of weekly execution volume in a creator portfolio generate
 Top performing portfolios can also qualify for additional monthly rewards from the Rewards Pool, based on defined marketplace metrics.
 
 Creator retention and recurring portfolio activity are core metrics for marketplace sustainability.
+
+Creators can build, publish, monetize, and grow portfolios and indexes.
+
+[Read More →](/creators)
 
 [Create Your Portfolio]
 

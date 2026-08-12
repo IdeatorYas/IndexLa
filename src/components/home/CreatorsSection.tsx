@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
@@ -40,7 +41,17 @@ export function CreatorsSection() {
                 Creator retention and recurring portfolio activity are core
                 metrics for marketplace sustainability.
               </p>
+              <p>
+                Creators can build, publish, monetize, and grow portfolios and
+                indexes.
+              </p>
             </div>
+            <Link
+              href="/creators"
+              className="mt-5 inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink"
+            >
+              Read More →
+            </Link>
             <div className="mt-8">
               <Button href="/creators" className="min-w-[13.5rem]">
                 Create Your Portfolio

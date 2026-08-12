@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { homeBody, homeH2, homeSection } from "@/components/home/homeRhythm";
 
@@ -15,6 +16,16 @@ export function BuildAutomateSection() {
             control. INDEXLA brings multi asset portfolios, programmable
             strategies, and non custodial execution into a single layer.
           </p>
+          <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>
+            Build your portfolio and automate execution across chains and
+            assets.
+          </p>
+          <Link
+            href="/investors"
+            className="mt-5 inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink"
+          >
+            Read More →
+          </Link>
         </FadeIn>
       </div>
     </section>
