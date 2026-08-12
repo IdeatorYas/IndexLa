@@ -10,7 +10,7 @@ import {
 export function LaunchTimingSection() {
   return (
     <section className={`${tkSection} bg-deep`}>
-      <div className="section-pad container-max">
+      <div className="section-pad container-max mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-2xl text-center">
           <h2 className={`${tkH2} uppercase`}>
             Launch{" "}

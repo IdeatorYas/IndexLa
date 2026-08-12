@@ -82,7 +82,7 @@ const toneDot: Record<NonNullable<Node["tone"]>, string> = {
 export function VestingScheduleSection() {
   return (
     <section className={`${tkSection} bg-void`}>
-      <div className="section-pad container-max">
+      <div className="section-pad container-max mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>Vesting</h2>
           <p className="mt-3 display text-[clamp(1.15rem,2.4vw,1.45rem)] tracking-[-0.02em] text-ink text-balance">

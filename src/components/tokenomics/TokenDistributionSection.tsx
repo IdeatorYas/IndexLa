@@ -37,7 +37,7 @@ const conic = (() => {
 export function TokenDistributionSection() {
   return (
     <section className={`${tkSection} bg-deep`}>
-      <div className="section-pad container-max">
+      <div className="section-pad container-max mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>
             Token{" "}

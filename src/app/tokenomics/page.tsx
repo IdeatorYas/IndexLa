@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { TokenomicsHero } from "@/components/tokenomics/TokenomicsHero";
-import { TokenUtilitySection } from "@/components/tokenomics/TokenUtilitySection";
-import { TokenBurnMechanismSection } from "@/components/tokenomics/TokenBurnMechanismSection";
-import { WhyDexlaExistsSection } from "@/components/tokenomics/WhyDexlaExistsSection";
+import {
+  TokenUtilitySection,
+  TokenBurnMechanismSection,
+} from "@/components/tokenomics/TokenArchitectureSections";
 import { TokenFlywheelSection } from "@/components/tokenomics/TokenFlywheelSection";
 import { TokenDistributionSection } from "@/components/tokenomics/TokenDistributionSection";
 import { VestingScheduleSection } from "@/components/tokenomics/VestingScheduleSection";
@@ -17,11 +18,10 @@ export const metadata: Metadata = {
 
 export default function TokenomicsPage() {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <TokenomicsHero />
       <TokenUtilitySection />
       <TokenBurnMechanismSection />
-      <WhyDexlaExistsSection />
       <TokenFlywheelSection />
       <TokenDistributionSection />
       <VestingScheduleSection />
