@@ -46,33 +46,33 @@ export const tkBurnGlow =
 
 /** Shared 4×4 architecture — identical shells for utility & burn */
 export const tkArchGrid =
-  "mt-10 grid auto-rows-fr gap-3 sm:grid-cols-2 sm:gap-4";
+  "mt-9 grid auto-rows-fr gap-3 sm:grid-cols-2 sm:gap-3.5";
 
 export const tkArchCard =
-  "group relative flex h-full flex-col overflow-hidden border bg-panel/40 px-5 py-5 backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-6 sm:py-6";
+  "group relative flex h-full flex-col overflow-hidden border bg-panel/35 px-5 py-5 backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-5 sm:py-5";
 
 export const tkArchCardUtility =
-  `${tkArchCard} border-success/35 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.12)] hover:border-success/55 hover:bg-success/[0.06] hover:shadow-[inset_0_1px_0_0_rgba(52,211,153,0.2),0_0_0_1px_rgba(52,211,153,0.08)]`;
+  `${tkArchCard} border-success/30 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.1)] hover:border-success/50 hover:bg-success/[0.05]`;
 
 export const tkArchCardBurn =
-  `${tkArchCard} border-danger/40 bg-gradient-to-b from-danger/[0.07] to-panel/40 shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)] hover:border-danger/60 hover:from-danger/[0.1] hover:shadow-[inset_0_1px_0_0_rgba(248,113,113,0.22),0_0_0_1px_rgba(248,113,113,0.1)]`;
+  `${tkArchCard} border-danger/35 bg-gradient-to-b from-danger/[0.06] to-transparent shadow-[inset_0_1px_0_0_rgba(248,113,113,0.12)] hover:border-danger/55 hover:from-danger/[0.09]`;
 
 export const tkArchNum =
-  "display text-[0.95rem] tabular-nums tracking-[0.08em]";
+  "display text-[0.9rem] tabular-nums tracking-[0.08em]";
 
 export const tkArchTitle =
-  "display text-[clamp(1.15rem,2vw,1.35rem)] tracking-[-0.02em] text-ink uppercase text-balance";
+  "display text-[clamp(1.1rem,1.9vw,1.28rem)] tracking-[-0.02em] text-ink uppercase text-balance";
 
 /** Fixed metric footing so all 8 cards share the same visual weight */
 export const tkArchMetric =
-  "mt-auto flex min-h-[10.25rem] flex-col items-center justify-center border px-4 py-4 text-center";
+  "mt-auto flex min-h-[8.75rem] flex-col items-center justify-center border px-4 py-3.5 text-center";
 
 export const tkArchMetricUtility =
-  `${tkArchMetric} border-success/30 bg-success/[0.07]`;
+  `${tkArchMetric} border-success/25 bg-success/[0.06]`;
 
 export const tkArchMetricBurn =
-  `${tkArchMetric} border-danger/40 bg-danger/[0.1] shadow-[inset_0_0_24px_-8px_rgba(248,113,113,0.25)]`;
+  `${tkArchMetric} border-danger/35 bg-danger/[0.09]`;
 
 /** Body block height so copy area stays consistent across cards */
 export const tkArchBody =
-  "mt-4 flex min-h-[7.5rem] flex-1 flex-col sm:min-h-[8.25rem]";
+  "mt-3.5 flex min-h-[6.5rem] flex-1 flex-col sm:min-h-[7rem]";

@@ -74,76 +74,63 @@ const schedules: Schedule[] = [
   },
 ];
 
-const toneDot: Record<NonNullable<Node["tone"]>, string> = {
-  tge: "bg-electric border-electric/60",
-  cliff: "bg-muted-dim border-muted-dim/60",
-  linear: "bg-purple-bright border-purple-bright/50",
-  full: "bg-success border-success/50",
-  lock: "bg-electric/70 border-electric/50",
-  soft: "bg-white/40 border-white/30",
-};
-
-const toneChip: Record<NonNullable<Node["tone"]>, string> = {
-  tge: "border-electric/35 bg-electric/[0.08]",
-  cliff: "border-white/12 bg-void/50",
-  linear: "border-purple-bright/30 bg-purple/[0.08]",
-  full: "border-success/35 bg-success/[0.08]",
-  lock: "border-electric/40 bg-electric/[0.1]",
-  soft: "border-white/12 bg-void/40",
+const toneAccent: Record<NonNullable<Node["tone"]>, string> = {
+  tge: "text-electric",
+  cliff: "text-muted",
+  linear: "text-purple-bright",
+  full: "text-success",
+  lock: "text-electric",
+  soft: "text-muted",
 };
 
 export function VestingScheduleSection() {
   return (
     <section className={`${tkSection} bg-void`}>
-      <div className="section-pad container-max mx-auto max-w-6xl">
+      <div className="section-pad container-max mx-auto max-w-5xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>Vesting</h2>
-          <p className="mt-3 display text-[clamp(1.15rem,2.4vw,1.45rem)] tracking-[-0.02em] text-ink text-balance">
+          <p className="mt-3 display text-[clamp(1.1rem,2.2vw,1.35rem)] tracking-[-0.02em] text-ink text-balance">
             Built For Long-Term Alignment
           </p>
         </FadeIn>
 
-        <div className="mt-10 space-y-3">
+        <div className="mt-10 divide-y divide-white/[0.07] border-y border-white/[0.08]">
           {schedules.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 0.02}>
+            <FadeIn key={item.title} delay={i * 0.015}>
               <article
-                className={`border px-5 py-5 sm:px-6 sm:py-6 ${
-                  item.featured
-                    ? "border-electric/30 bg-electric/[0.05]"
-                    : "border-white/[0.08] bg-deep/40"
+                className={`py-5 sm:py-6 ${
+                  item.featured ? "bg-electric/[0.03]" : ""
                 }`}
               >
-                <div className="grid gap-5 lg:grid-cols-[minmax(12rem,0.85fr)_minmax(0,1.5fr)] lg:items-center lg:gap-8">
-                  <h3 className="display text-[1.12rem] tracking-[-0.02em] text-ink sm:text-[1.22rem]">
+                <div className="grid gap-4 px-1 sm:px-2 lg:grid-cols-[minmax(11rem,0.9fr)_minmax(0,1.5fr)] lg:items-center lg:gap-10">
+                  <h3
+                    className={`display text-[1.05rem] tracking-[-0.02em] sm:text-[1.15rem] ${
+                      item.featured ? "text-electric" : "text-ink"
+                    }`}
+                  >
                     {item.title}
                   </h3>
 
                   <div className="min-w-0">
-                    <ol className="flex flex-wrap items-stretch gap-2 sm:gap-2.5">
+                    <ol className="flex flex-wrap items-center gap-x-1 gap-y-2">
                       {item.nodes.map((node, idx) => (
                         <li
                           key={`${item.title}-${node.label}`}
-                          className="flex min-w-0 items-center gap-2"
+                          className="flex items-center gap-1.5"
                         >
-                          <div
-                            className={`min-w-[5.25rem] border px-3 py-2.5 text-center sm:min-w-[5.75rem] ${toneChip[node.tone ?? "soft"]}`}
-                          >
-                            <div className="flex items-center justify-center gap-1.5">
-                              <span
-                                className={`h-1.5 w-1.5 rounded-full border ${toneDot[node.tone ?? "soft"]}`}
-                                aria-hidden
-                              />
-                              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                                {node.label}
-                              </p>
-                            </div>
-                            <p className="mt-1 display text-[1rem] tabular-nums text-ink sm:text-[1.05rem]">
+                          <div className="px-1 py-0.5 text-left sm:px-1.5">
+                            <p className="text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+                              {node.label}
+                            </p>
+                            <p
+                              className={`display mt-0.5 text-[1.05rem] tabular-nums sm:text-[1.12rem] ${toneAccent[node.tone ?? "soft"]}`}
+                            >
                               {node.detail}
                             </p>
                           </div>
                           {idx < item.nodes.length - 1 && (
                             <span
-                              className="shrink-0 text-muted-dim/70"
+                              className="px-0.5 text-muted-dim/50"
                               aria-hidden
                             >
                               →
@@ -153,7 +140,7 @@ export function VestingScheduleSection() {
                       ))}
                     </ol>
                     {item.note && (
-                      <p className="mt-3 text-[0.9rem] leading-relaxed text-muted text-pretty">
+                      <p className="mt-2.5 max-w-xl text-[0.88rem] leading-relaxed text-muted text-pretty">
                         {item.note}
                       </p>
                     )}
@@ -164,7 +151,7 @@ export function VestingScheduleSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-8 text-center">
+        <FadeIn className="mt-7 text-center">
           <p className={`${tkBody} text-balance`}>
             All applicable unlocks are designed to be transparent and verifiable
             through smart contracts.

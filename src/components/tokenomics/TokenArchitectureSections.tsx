@@ -275,7 +275,7 @@ const burns: ArchCard[] = [
     n: "04",
     title: "Treasury Buyback & Burn",
     body: "25% of realized Treasury profits are used to buy and permanently burn $DEXLA.",
-    note: "Treasury gains are generated from protocol-owned capital, not investor funds.",
+    note: "Realized Treasury profits come from protocol-owned Treasury activity and do not involve user assets.",
     metric: {
       kind: "arrow",
       amount: "25%",
