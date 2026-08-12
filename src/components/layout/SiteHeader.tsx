@@ -68,12 +68,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link
-            href="/strategies"
-            className="hidden whitespace-nowrap text-[0.9375rem] font-semibold text-muted transition-colors hover:text-electric 2xl:inline"
-          >
-            Explore Strategies
-          </Link>
           <Button href="/creators" className="!px-4 !py-2.5 text-[0.9rem] xl:!px-5 xl:text-[0.9375rem]">
             Build Your First Portfolio
           </Button>
@@ -115,9 +109,6 @@ export function SiteHeader() {
             <div className="mt-3 flex flex-col gap-2 px-3 pb-2">
               <Button href="/creators" className="w-full">
                 Build Your First Portfolio
-              </Button>
-              <Button href="/strategies" variant="secondary" className="w-full">
-                Explore Strategies
               </Button>
             </div>
           </nav>
