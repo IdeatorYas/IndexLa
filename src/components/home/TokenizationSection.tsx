@@ -1,7 +1,7 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
-  homeBodyStrong,
+  homeH2,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -21,53 +21,50 @@ export function TokenizationSection() {
 
       <div className="section-pad container-max relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto mb-10 h-px w-14 bg-gradient-to-r from-transparent via-electric/70 to-transparent" />
-          <h2 className="display text-[clamp(2.75rem,8vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.045em] text-balance">
-            <span className="gradient-text">WHY NOW</span>
-          </h2>
-          <p className={`mx-auto mt-10 max-w-[40rem] ${homeBody}`}>
+          <h2 className={homeH2}>WHY NOW</h2>
+          <p className={`mx-auto mt-6 max-w-[40rem] ${homeBody}`}>
             Crypto adoption is growing while traditional assets are moving
             on-chain.
           </p>
         </FadeIn>
 
-        <FadeIn className="mt-12">
-          <div className="grid gap-4 sm:grid-cols-3">
+        <FadeIn className="mt-8">
+          <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-3">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-line bg-void/45 px-5 py-8 text-center sm:px-6 sm:py-10"
+                className="rounded-2xl border border-line bg-void/45 px-5 py-7 text-center sm:px-6"
               >
-                <p className="display text-[clamp(1.85rem,3.8vw,2.6rem)] leading-none gradient-text">
+                <p className="display text-[clamp(1.75rem,3.5vw,2.4rem)] leading-none gradient-text">
                   {stat.value}
                 </p>
-                <p className="mt-4 text-[0.95rem] font-semibold tracking-[0.02em] text-muted">
+                <p className="mt-3 text-[0.95rem] font-semibold tracking-[0.02em] text-muted">
                   {stat.label}
                 </p>
               </div>
             ))}
           </div>
-          <p className="mt-6 text-center text-[0.85rem] font-semibold uppercase tracking-[0.16em] text-electric/90 sm:text-[0.9rem]">
+          <p className="mt-5 text-center text-[0.85rem] font-semibold uppercase tracking-[0.16em] text-electric/90 sm:text-[0.9rem]">
             Source: RWA.xyz
           </p>
         </FadeIn>
 
-        <FadeIn
-          className={`mx-auto mt-12 max-w-3xl space-y-6 text-center ${homeBody}`}
-        >
-          <p>
-            For the first time, crypto + tokenized assets can be combined into
-            hybrid portfolios.
-          </p>
-          <p>
-            But assets remain fragmented across chains, making cross-chain
-            investing difficult for users.
-          </p>
-          <p className={homeBodyStrong}>
-            Tokenization creates the assets. Cross-chain infrastructure connects
-            them. INDEXLA makes them investable together through one programmable
-            portfolio.
-          </p>
+        <FadeIn className="mx-auto mt-8 max-w-3xl">
+          <div className={`mx-auto max-w-[40rem] space-y-5 text-center ${homeBody}`}>
+            <p>
+              For the first time, crypto + tokenized assets can be combined into
+              hybrid portfolios.
+            </p>
+            <p>
+              But assets remain fragmented across chains, making cross-chain
+              investing difficult for users.
+            </p>
+            <p>
+              Tokenization creates the assets. Cross-chain infrastructure
+              connects them. INDEXLA makes them investable together through one
+              programmable portfolio.
+            </p>
+          </div>
         </FadeIn>
       </div>
     </section>
