@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { AssetLogo } from "@/components/ui/AssetLogo";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
@@ -12,9 +11,16 @@ import {
   homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
-import type { AssetKey } from "@/lib/site";
+import {
+  AUTOMATE_STRATEGIES,
+  DEMO_COMMODITIES,
+  DEMO_CRYPTO,
+  DEMO_STOCKS,
+  DEMO_TARGET_ALLOCATION,
+  type DemoAsset,
+} from "@/lib/howItWorksDemoAssets";
 
-const STEP_MS = 7000;
+const STEP_MS = 9000;
 
 const STEPS = [
   {
@@ -22,79 +28,28 @@ const STEPS = [
     n: "01",
     title: "Connect",
     summary: "Connect your wallet.",
-    detail: "",
   },
   {
     id: "allocate",
     n: "02",
     title: "Allocate",
     summary: "Choose assets and target allocations.",
-    detail: "BTC · ETH · Tokenized Stocks · Gold · RWAs · and more",
   },
   {
     id: "automate",
     n: "03",
     title: "Automate",
     summary: "Set your rules and approve permissions.",
-    detail: "",
   },
   {
     id: "activate",
     n: "04",
     title: "Fund & Activate",
     summary: "Fund your portfolio and activate your strategy.",
-    detail: "",
   },
 ] as const;
 
-const STRATEGIES = [
-  {
-    name: "DCA",
-    body: "Automatically invest according to a defined schedule.",
-  },
-  {
-    name: "Rebalancing",
-    body: "Restore target allocations when portfolio weights drift.",
-  },
-  {
-    name: "Take Profit",
-    body: "Automatically reduce a position when your predefined target is reached.",
-  },
-  {
-    name: "Stop Loss",
-    body: "Reduce exposure when a predefined downside condition is triggered.",
-  },
-  {
-    name: "Fear & Greed",
-    body: "Execute predefined actions based on market sentiment conditions.",
-  },
-  {
-    name: "RSI",
-    body: "Trigger portfolio actions when predefined RSI conditions are reached.",
-  },
-  {
-    name: "Momentum",
-    body: "Follow defined market trends by increasing exposure when momentum strengthens and reducing exposure when momentum weakens.",
-  },
-] as const;
-
-const INVEST_CHIPS: { label: string; assets: AssetKey[] }[] = [
-  { label: "BTC", assets: ["btc"] },
-  { label: "ETH", assets: ["eth"] },
-  { label: "Tokenized Stocks", assets: ["apple", "nvidia"] },
-  { label: "Gold", assets: ["gold"] },
-  { label: "RWAs", assets: ["ondo"] },
-  { label: "and more", assets: [] },
-];
-
-const ALLOCATION_ASSETS: { label: string; pct: number; assets: AssetKey[] }[] =
-  [
-    { label: "BTC", pct: 30, assets: ["btc"] },
-    { label: "ETH", pct: 20, assets: ["eth"] },
-    { label: "Tokenized Stocks", pct: 25, assets: ["apple", "nvidia"] },
-    { label: "Gold", pct: 15, assets: ["gold"] },
-    { label: "RWAs", pct: 10, assets: ["ondo"] },
-  ];
+type BasketId = "crypto" | "stocks" | "commodities" | "realestate";
 
 function DemoChrome({
   title,
@@ -115,40 +70,93 @@ function DemoChrome({
           </p>
         </div>
         <p className="hidden text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-electric/80 sm:block">
-          INDEXLA Demo
+          Product Preview
         </p>
       </div>
-      <div className="p-4 sm:p-6 md:p-7">{children}</div>
+      <div className="p-4 sm:p-5 md:p-6">{children}</div>
     </div>
+  );
+}
+
+function DemoLogo({
+  asset,
+  size = 22,
+}: {
+  asset: Pick<DemoAsset, "ticker" | "name" | "src">;
+  size?: number;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <span
+        className="inline-flex shrink-0 items-center justify-center rounded-full bg-panel text-[0.55rem] font-bold tracking-tight text-ink"
+        style={{ width: size, height: size }}
+        title={asset.name}
+      >
+        {asset.ticker.slice(0, 2)}
+      </span>
+    );
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={asset.src}
+      alt={asset.name}
+      width={size}
+      height={size}
+      className="shrink-0 rounded-full object-contain bg-white/5"
+      draggable={false}
+      title={asset.name}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
+function AssetChip({ asset, selected }: { asset: DemoAsset; selected?: boolean }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-1 text-[0.72rem] font-semibold tracking-[-0.01em] ${
+        selected
+          ? "border-electric/40 bg-electric/15 text-ink"
+          : "border-line bg-void/50 text-ink/90"
+      }`}
+    >
+      <DemoLogo asset={asset} size={16} />
+      {asset.ticker}
+    </span>
   );
 }
 
 function ConnectDemo() {
   return (
-    <DemoChrome title="Connect">
-      <div className="mx-auto grid max-w-xl gap-4">
+    <DemoChrome title="01 — Connect">
+      <div className="mx-auto grid max-w-lg gap-4">
+        <p className="text-center text-[0.95rem] leading-relaxed text-muted text-balance">
+          Connect your wallet.
+        </p>
         <div className="space-y-2.5">
           {["Browser Wallet", "Hardware Wallet", "Smart Account"].map(
             (label, i) => (
-              <div
+              <button
                 key={label}
-                className={`flex items-center justify-between rounded-xl border px-4 py-3.5 ${
+                type="button"
+                className={`flex w-full items-center justify-between rounded-xl border px-4 py-3.5 text-left transition-colors ${
                   i === 0
-                    ? "border-electric/35 bg-electric/10"
-                    : "border-line bg-deep/70"
+                    ? "border-electric/40 bg-electric/10"
+                    : "border-line bg-deep/70 hover:border-white/20"
                 }`}
               >
                 <span className="text-sm font-semibold text-ink">{label}</span>
                 <span
                   className={`rounded-full px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] ${
-                    i === 0
-                      ? "bg-electric/20 text-electric"
-                      : "text-muted-dim"
+                    i === 0 ? "bg-electric/20 text-electric" : "text-muted-dim"
                   }`}
                 >
-                  {i === 0 ? "Selected" : "Connect"}
+                  {i === 0 ? "Connected" : "Connect"}
                 </span>
-              </div>
+              </button>
             ),
           )}
         </div>
@@ -158,43 +166,104 @@ function ConnectDemo() {
 }
 
 function AllocateDemo() {
+  const [basket, setBasket] = useState<BasketId>("crypto");
+  const selectedTickers = new Set(
+    DEMO_TARGET_ALLOCATION.map((row) => row.ticker),
+  );
+
+  const baskets: { id: BasketId; label: string }[] = [
+    { id: "crypto", label: "Crypto" },
+    { id: "stocks", label: "Tokenized Stocks" },
+    { id: "commodities", label: "Tokenized Commodities" },
+    { id: "realestate", label: "Tokenized Real Estate" },
+  ];
+
   return (
-    <DemoChrome title="Allocate">
-      <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="rounded-2xl border border-line bg-deep/60 p-4 sm:p-5">
-          <div className="flex flex-wrap gap-2">
-            {INVEST_CHIPS.map((item) => (
-              <span
-                key={item.label}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-electric/25 bg-electric/10 px-2.5 py-1.5 text-xs font-semibold text-ink"
-              >
-                {item.assets.length > 0 ? (
-                  <span className="inline-flex items-center gap-0.5">
-                    {item.assets.map((key) => (
-                      <AssetLogo key={key} asset={key} size={14} />
-                    ))}
-                  </span>
-                ) : null}
-                {item.label}
-              </span>
-            ))}
-          </div>
+    <DemoChrome title="02 — Allocate">
+      <div className="space-y-5">
+        <div className="flex flex-wrap gap-2">
+          {baskets.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setBasket(item.id)}
+              className={`rounded-full border px-3.5 py-2 text-[0.8rem] font-semibold transition-colors ${
+                basket === item.id
+                  ? "border-electric/45 bg-electric/15 text-ink"
+                  : "border-line bg-deep/60 text-muted hover:border-white/20 hover:text-ink"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
-        <div className="rounded-2xl border border-line bg-deep/70 p-4 sm:p-5">
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-            Target allocation
+
+        <div className="min-h-[9.5rem] rounded-2xl border border-line bg-deep/55 p-3.5 sm:p-4">
+          {basket === "crypto" ? (
+            <div className="flex flex-wrap gap-1.5">
+              {DEMO_CRYPTO.map((asset) => (
+                <AssetChip
+                  key={asset.ticker}
+                  asset={asset}
+                  selected={selectedTickers.has(asset.ticker)}
+                />
+              ))}
+            </div>
+          ) : null}
+
+          {basket === "stocks" ? (
+            <div className="flex flex-wrap gap-1.5">
+              {DEMO_STOCKS.map((asset) => (
+                <AssetChip
+                  key={asset.ticker}
+                  asset={asset}
+                  selected={selectedTickers.has(asset.ticker)}
+                />
+              ))}
+            </div>
+          ) : null}
+
+          {basket === "commodities" ? (
+            <div className="flex flex-wrap items-center gap-2">
+              {DEMO_COMMODITIES.map((asset, i) => (
+                <div key={asset.ticker} className="flex items-center gap-2">
+                  <AssetChip
+                    asset={asset}
+                    selected={selectedTickers.has(asset.ticker)}
+                  />
+                  {i < DEMO_COMMODITIES.length - 1 ? (
+                    <span className="text-muted-dim" aria-hidden>
+                      ·
+                    </span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          {basket === "realestate" ? (
+            <div className="flex min-h-[7rem] items-center justify-center">
+              <p className="rounded-full border border-line bg-void/50 px-5 py-2.5 text-[0.95rem] font-semibold text-muted">
+                Coming Soon
+              </p>
+            </div>
+          ) : null}
+        </div>
+
+        <div className="rounded-2xl border border-electric/25 bg-electric/[0.05] p-4 sm:p-5">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-electric">
+            Example target allocation
           </p>
-          <ul className="mt-4 space-y-3.5">
-            {ALLOCATION_ASSETS.map((row) => (
-              <li key={row.label}>
+          <p className="mt-2 text-[0.85rem] text-muted text-balance">
+            BTC · ETH · SOL · NVDA · AMZN · MSFT · GOLD · SILVER
+          </p>
+          <ul className="mt-4 space-y-3">
+            {DEMO_TARGET_ALLOCATION.map((row) => (
+              <li key={row.ticker}>
                 <div className="mb-1.5 flex items-center justify-between gap-3 text-sm">
                   <span className="inline-flex items-center gap-2 font-semibold text-ink">
-                    <span className="inline-flex items-center gap-0.5">
-                      {row.assets.map((key) => (
-                        <AssetLogo key={key} asset={key} size={16} />
-                      ))}
-                    </span>
-                    {row.label}
+                    <DemoLogo asset={row} size={18} />
+                    {row.ticker}
                   </span>
                   <span className="tabular-nums text-muted">{row.pct}%</span>
                 </div>
@@ -210,6 +279,10 @@ function AllocateDemo() {
             ))}
           </ul>
         </div>
+
+        <p className="text-center text-[0.78rem] leading-snug text-muted-dim text-balance">
+          Product visualization — example assets shown for demonstration.
+        </p>
       </div>
     </DemoChrome>
   );
@@ -222,56 +295,38 @@ function AutomateDemo({
   activeStrategy: number;
   setActiveStrategy: (index: number) => void;
 }) {
-  const strategy = STRATEGIES[activeStrategy];
-
   return (
-    <DemoChrome title="Automate">
-      <div className="grid gap-5 lg:grid-cols-[1fr_1.05fr]">
-        <div>
-          <div className="flex flex-wrap gap-2">
-            {STRATEGIES.map((item, i) => (
-              <button
-                key={item.name}
-                type="button"
-                onClick={() => setActiveStrategy(i)}
-                className={`rounded-lg border px-3 py-2 text-xs font-semibold transition-colors ${
-                  i === activeStrategy
-                    ? "border-electric/40 bg-electric/15 text-ink"
-                    : "border-line bg-deep/60 text-muted hover:border-white/20 hover:text-ink"
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="rounded-2xl border border-line bg-deep/70 p-5">
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
-            {strategy.name}
-          </p>
-          <p className={`mt-3 ${homeBodyStrong}`}>{strategy.body}</p>
-          <div className="mt-5 grid grid-cols-3 gap-2">
-            {["Condition", "Rule", "Action"].map((label, i) => (
-              <div
-                key={label}
-                className="rounded-xl border border-line bg-void/50 px-3 py-3 text-center"
-              >
-                <div
-                  className="mx-auto mb-2 h-1 w-10 rounded-full"
-                  style={{
-                    background:
-                      i === 2
-                        ? "linear-gradient(90deg,#7c3aed,#38bdf8)"
-                        : "rgba(255,255,255,0.18)",
-                  }}
-                />
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+    <DemoChrome title="03 — Automate">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {AUTOMATE_STRATEGIES.map((item, i) => {
+          const selected = i === activeStrategy;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setActiveStrategy(i)}
+              className={`flex h-full flex-col rounded-2xl border px-4 py-4 text-left transition-colors ${
+                selected
+                  ? "border-electric/45 bg-electric/[0.12] shadow-[inset_0_1px_0_rgba(56,189,248,0.16)]"
+                  : "border-line bg-deep/55 hover:border-white/20"
+              } ${item.id === "rebalance" ? "sm:col-span-2 lg:col-span-1" : ""}`}
+            >
+              <p className="text-[0.98rem] font-semibold tracking-[-0.015em] text-ink">
+                {item.title}
+              </p>
+              <ul className="mt-2.5 space-y-1.5">
+                {item.lines.map((line) => (
+                  <li
+                    key={line}
+                    className="text-[0.88rem] leading-snug text-muted text-pretty"
+                  >
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </button>
+          );
+        })}
       </div>
     </DemoChrome>
   );
@@ -279,23 +334,36 @@ function AutomateDemo({
 
 function ActivateDemo() {
   return (
-    <DemoChrome title="Fund & Activate">
-      <div className="mx-auto grid max-w-lg gap-4">
-        <div className="rounded-2xl border border-line bg-deep/70 px-5 py-5">
-          <div className="grid grid-cols-2 gap-2.5 text-sm">
-            <div className="rounded-xl border border-line bg-void/40 px-3 py-3">
-              <p className="text-[0.65rem] uppercase tracking-[0.1em] text-muted-dim">
-                Custody
-              </p>
-              <p className="mt-1 font-semibold text-ink">Your wallet</p>
-            </div>
-            <div className="rounded-xl border border-line bg-void/40 px-3 py-3">
-              <p className="text-[0.65rem] uppercase tracking-[0.1em] text-muted-dim">
-                Permissions
-              </p>
-              <p className="mt-1 font-semibold text-ink">Authorize execution</p>
-            </div>
+    <DemoChrome title="04 — Fund & Activate">
+      <div className="mx-auto grid max-w-xl gap-4">
+        <p className="text-center text-[1.05rem] font-semibold tracking-[-0.015em] text-ink text-balance">
+          Fund your portfolio and activate your strategy.
+        </p>
+
+        <div className="grid grid-cols-2 gap-2.5 text-sm">
+          <div className="rounded-xl border border-line bg-deep/70 px-3 py-3.5 text-center sm:px-4">
+            <p className="text-[0.65rem] uppercase tracking-[0.1em] text-muted-dim">
+              Custody
+            </p>
+            <p className="mt-1.5 font-semibold text-ink">Your wallet</p>
           </div>
+          <div className="rounded-xl border border-line bg-deep/70 px-3 py-3.5 text-center sm:px-4">
+            <p className="text-[0.65rem] uppercase tracking-[0.1em] text-muted-dim">
+              Permissions
+            </p>
+            <p className="mt-1.5 font-semibold text-ink">Authorize execution</p>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-electric/35 bg-electric/[0.08] px-5 py-4 text-center">
+          <p className={`${homeBodyStrong} text-[1rem] sm:text-[1.05rem]`}>
+            Your assets remain in your wallet. Execution follows only the
+            permissions you approve.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-line bg-gradient-to-r from-purple/30 to-blue/25 px-5 py-4 text-center">
+          <p className="display text-[1.25rem] text-ink">Fund &amp; Activate</p>
         </div>
       </div>
     </DemoChrome>
@@ -305,7 +373,7 @@ function ActivateDemo() {
 export function HowItWorksSection() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
-  const [activeStrategy, setActiveStrategy] = useState(5);
+  const [activeStrategy, setActiveStrategy] = useState(0);
   const [paused, setPaused] = useState(false);
   const [progressKey, setProgressKey] = useState(0);
 
@@ -349,7 +417,6 @@ export function HowItWorksSection() {
           </p>
         </FadeIn>
 
-        {/* Desktop flow rail */}
         <FadeIn className="mt-10 hidden lg:block">
           <ol className="grid grid-cols-4 gap-3 xl:gap-4">
             {STEPS.map((item, i) => {
@@ -400,7 +467,6 @@ export function HowItWorksSection() {
         </FadeIn>
 
         <div className="mt-8 lg:mt-10">
-          {/* Mobile step navigation — desktop uses the 01–04 flow rail above */}
           <FadeIn className="lg:hidden">
             <ol className="flex gap-2 overflow-x-auto pb-1">
               {STEPS.map((item, i) => {
