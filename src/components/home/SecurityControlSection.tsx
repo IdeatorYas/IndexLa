@@ -2,6 +2,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
+  homeEyebrow,
   homeH2,
   homeMeasure,
   homeSection,
@@ -19,7 +20,8 @@ export function SecurityControlSection() {
     <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <h2 className={`${homeH2} ${homeMeasure}`}>
+          <p className={homeEyebrow}>SECURITY AND CONTROL</p>
+          <h2 className={`mt-3 ${homeH2} ${homeMeasure}`}>
             Your Keys. Your Assets. Your Permissions.
           </h2>
         </FadeIn>

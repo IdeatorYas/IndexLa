@@ -22,7 +22,7 @@ export function BuildAutomateSection() {
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <h2 className={homeH2}>Your Assets. Your Allocation. Your Rules.</h2>
+          <h2 className={homeH2}>BUILD AND AUTOMATE</h2>
           <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
             Build and automate portfolios with strategies designed for different
             market conditions.

@@ -13,7 +13,8 @@ export function FeesSection() {
     <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <h2 className={homeH2}>Simple. Multiple Revenue Streams.</h2>
+          <h2 className={homeH2}>11. BUSINESS MODEL</h2>
+          <p className={`mt-3 ${homeH3}`}>Simple. Multiple Revenue Streams.</p>
         </FadeIn>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
