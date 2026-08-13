@@ -63,9 +63,9 @@ export const tkArchNum =
 export const tkArchTitle =
   "display text-[clamp(1.1rem,1.9vw,1.28rem)] tracking-[-0.02em] text-ink uppercase text-balance";
 
-/** Fixed metric footing so all 8 cards share the same visual weight */
+/** Fixed metric footing so all cards share the same bottom alignment */
 export const tkArchMetric =
-  "mt-auto flex min-h-[8.75rem] flex-col items-center justify-center border px-4 py-3.5 text-center";
+  "mt-auto flex min-h-[5.5rem] flex-col items-center justify-center border px-4 py-4 text-center sm:min-h-[6rem]";
 
 export const tkArchMetricUtility =
   `${tkArchMetric} border-success/25 bg-success/[0.06]`;
@@ -73,6 +73,6 @@ export const tkArchMetricUtility =
 export const tkArchMetricBurn =
   `${tkArchMetric} border-danger/35 bg-danger/[0.09]`;
 
-/** Body block height so copy area stays consistent across cards */
+/** Fixed 3-line body area so copy stays aligned across all four cards */
 export const tkArchBody =
-  "mt-3.5 flex min-h-[6.5rem] flex-1 flex-col items-center text-center sm:min-h-[7rem]";
+  "mt-4 flex min-h-[11.5rem] flex-1 flex-col items-center justify-start gap-2.5 text-center sm:min-h-[12.5rem]";
