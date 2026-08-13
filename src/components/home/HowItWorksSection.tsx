@@ -392,17 +392,17 @@ export function HowItWorksSection() {
 
         {/* Desktop flow rail */}
         <FadeIn className="mt-10 hidden lg:block">
-          <ol className="grid grid-cols-4 gap-3">
+          <ol className="grid grid-cols-4 gap-3 xl:gap-4">
             {STEPS.map((item, i) => {
               const selected = i === active;
               const done = i < active;
               return (
-                <li key={item.id}>
+                <li key={item.id} className="min-h-full">
                   <button
                     type="button"
                     onClick={() => goTo(i)}
                     aria-pressed={selected}
-                    className={`group relative w-full rounded-2xl border px-4 py-4 text-center transition-all ${
+                    className={`group relative flex h-full min-h-[8.75rem] w-full flex-col items-center justify-start rounded-2xl border px-4 pb-5 pt-4 text-center transition-all ${
                       selected
                         ? "border-electric/45 bg-white/[0.07] shadow-[0_0_36px_rgba(56,189,248,0.14)]"
                         : done
@@ -413,8 +413,11 @@ export function HowItWorksSection() {
                     <span className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-electric">
                       {item.n}
                     </span>
-                    <span className="mt-1 block display text-[1.15rem] leading-snug text-ink">
+                    <span className="mt-1.5 block display text-[1.15rem] leading-snug text-ink">
                       {item.title}
+                    </span>
+                    <span className="mt-2 block max-w-[12rem] text-[0.88rem] leading-snug text-muted text-pretty text-balance">
+                      {item.summary}
                     </span>
                     {selected && !reduce && !paused ? (
                       <span className="absolute inset-x-3 bottom-2 h-0.5 overflow-hidden rounded-full bg-white/10">

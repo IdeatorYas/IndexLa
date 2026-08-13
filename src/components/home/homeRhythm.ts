@@ -15,10 +15,10 @@ export const homeEyebrow =
  * Controlled measure for multi-line homepage copy.
  * Keeps line lengths intentional so wraps stay balanced (no long line + tiny orphan).
  */
-export const homeMeasure = "mx-auto w-full max-w-[26rem] sm:max-w-[28.5rem]";
+export const homeMeasure = "mx-auto w-full max-w-[24.5rem] sm:max-w-[27.5rem]";
 
 /** Narrower measure for denser card / short body blocks */
-export const homeMeasureTight = "mx-auto w-full max-w-[20rem] sm:max-w-[22rem]";
+export const homeMeasureTight = "mx-auto w-full max-w-[19rem] sm:max-w-[21rem]";
 
 /** Primary supporting body — use on every section paragraph for consistency */
 export const homeBody =

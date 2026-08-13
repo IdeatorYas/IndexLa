@@ -9,6 +9,13 @@ import {
   homeSection,
 } from "@/components/home/homeRhythm";
 
+const feeHighlights = [
+  "0% Management",
+  "0% Performance",
+  "0% Exit",
+  "1% Execution Fees",
+] as const;
+
 export function FeesSection() {
   return (
     <section className={`${homeSection} bg-deep`}>
@@ -16,6 +23,21 @@ export function FeesSection() {
         <FadeIn className="text-center">
           <h2 className={homeH2}>11. BUSINESS MODEL</h2>
           <p className={`mt-3 ${homeH3}`}>Simple. Multiple Revenue Streams.</p>
+        </FadeIn>
+
+        <FadeIn className="mx-auto mt-8 max-w-3xl">
+          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+            {feeHighlights.map((label) => (
+              <div
+                key={label}
+                className="flex min-h-[4.25rem] items-center justify-center rounded-xl border border-electric/25 bg-void/50 px-3 py-3 text-center"
+              >
+                <p className="text-[0.88rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[0.95rem]">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
         </FadeIn>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">

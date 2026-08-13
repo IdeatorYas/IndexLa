@@ -4,7 +4,6 @@ import {
   homeBody,
   homeH2,
   homeMeasure,
-  homePill,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -27,18 +26,25 @@ export function BuildAutomateSection() {
             Build and automate portfolios with strategies designed for different
             market conditions.
           </p>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-2">
+        </FadeIn>
+
+        <FadeIn className="mx-auto mt-8 max-w-3xl">
+          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
             {strategies.map((item) => (
-              <span key={item} className={homePill}>
-                {item}
-              </span>
+              <div
+                key={item}
+                className="flex min-h-[3.75rem] items-center justify-center rounded-xl border border-line bg-deep/55 px-3 py-3 text-center"
+              >
+                <p className="text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[1.02rem]">
+                  {item}
+                </p>
+              </div>
             ))}
           </div>
-          <HomeReadMore
-            href="/strategies"
-            label="Explore Strategies →"
-            className="mt-7"
-          />
+        </FadeIn>
+
+        <FadeIn className="mt-8 text-center">
+          <HomeReadMore href="/strategies" label="Explore Strategies →" />
         </FadeIn>
       </div>
     </section>
