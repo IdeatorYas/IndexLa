@@ -1,6 +1,7 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
+  homeEyebrow,
   homeH2,
   homeMeasure,
   homeSection,
@@ -30,6 +31,7 @@ export function TokenizationSection() {
         </FadeIn>
 
         <FadeIn className="mt-8">
+          <p className={`mb-4 text-center ${homeEyebrow}`}>Market Backdrop</p>
           <div className="mx-auto grid max-w-3xl auto-rows-fr gap-3 sm:grid-cols-3 sm:gap-4">
             {stats.map((stat) => (
               <div

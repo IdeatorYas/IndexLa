@@ -84,19 +84,12 @@ export function Hero() {
             </p>
           </div>
 
-          <div className="mt-8 flex w-full max-w-[28rem] flex-col items-stretch justify-center gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
+          <div className="mt-8 flex w-full flex-col items-center justify-center sm:mt-10">
             <Button
               href="/#early-access"
-              className={`${homeCta} w-full sm:w-auto`}
+              className={`${homeCta} w-full max-w-[20rem] sm:w-auto`}
             >
               Reserve Early Access
-            </Button>
-            <Button
-              href="/creators"
-              variant="secondary"
-              className="min-w-[16.5rem] w-full px-10 py-4 text-[1.05rem] ring-1 ring-white/10 sm:w-auto sm:text-[1.08rem]"
-            >
-              Become a Creator
             </Button>
           </div>
 

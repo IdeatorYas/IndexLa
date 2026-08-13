@@ -1,7 +1,9 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
+import { Button } from "@/components/ui/Button";
 import {
   homeBody,
+  homeCta,
   homeH2,
   homeH3,
   homeLede,
@@ -73,11 +75,12 @@ export function CreatorsSection() {
           <p className="text-[1.15rem] font-semibold tracking-[-0.015em] text-ink">
             Create. Share. Earn.
           </p>
-          <HomeReadMore
-            href="/creators"
-            label="Creator Guide →"
-            className="mt-4"
-          />
+          <div className="mt-6 flex flex-col items-center justify-center gap-4">
+            <Button href="/creators" className={homeCta}>
+              Join as a Creator
+            </Button>
+            <HomeReadMore href="/creators" label="Creator Guide →" />
+          </div>
         </FadeIn>
       </div>
     </section>
