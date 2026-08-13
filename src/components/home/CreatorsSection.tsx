@@ -7,6 +7,7 @@ import {
   homeH3,
   homeLede,
   homeMeasure,
+  homeMeasureTight,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -46,7 +47,7 @@ export function CreatorsSection() {
                 <h3 className={`${homeH3} text-[clamp(1.15rem,2vw,1.4rem)]`}>
                   {item.title}
                 </h3>
-                <p className={`mx-auto mt-3 max-w-[18rem] ${homeBody}`}>
+                <p className={`mt-3 ${homeMeasureTight} ${homeBody}`}>
                   {item.body}
                 </p>
               </article>

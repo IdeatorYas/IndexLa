@@ -90,7 +90,7 @@ export type Portfolio = {
 export const PORTFOLIOS: Portfolio[] = [
   {
     id: "ai-power-mix",
-    name: "AI POWER MIX",
+    name: "AI Infrastructure Index",
     type: "Hybrid Index",
     assets: ["tao", "near", "icp", "google", "nvidia"],
     strategy: "Buy Fear / Sell Greed",
@@ -105,7 +105,7 @@ export const PORTFOLIOS: Portfolio[] = [
   },
   {
     id: "mix-dream-team",
-    name: "MIX DREAM TEAM",
+    name: "Diversified Macro Portfolio",
     type: "Hybrid Portfolio",
     assets: ["btc", "sol", "eth", "sp500", "nvidia", "tao", "gold"],
     strategy: "RSI Weekly Signal",
@@ -121,7 +121,7 @@ export const PORTFOLIOS: Portfolio[] = [
   },
   {
     id: "stocks-power-house",
-    name: "STOCKS POWER HOUSE",
+    name: "Big Tech Momentum",
     type: "Stocks Portfolio",
     assets: ["nvidia", "google", "sp500", "microsoft", "apple"],
     strategy: "Momentum Shifts",

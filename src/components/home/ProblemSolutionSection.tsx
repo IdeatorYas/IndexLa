@@ -5,6 +5,7 @@ import {
   homeH2,
   homeH3,
   homeMeasure,
+  homeMeasureTight,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -54,11 +55,11 @@ export function ProblemSolutionSection() {
             <FadeIn key={item.title} delay={i * 0.05}>
               <article className="flex h-full flex-col items-center rounded-2xl border border-line bg-deep/50 p-6 text-center sm:p-7">
                 <h3 className={homeH3}>{item.title}</h3>
-                <p className={`mx-auto mt-4 max-w-[22rem] flex-1 ${homeBody}`}>
+                <p className={`mt-4 flex-1 ${homeMeasureTight} ${homeBody}`}>
                   {item.problem}
                 </p>
                 <p
-                  className={`mx-auto mt-5 max-w-[22rem] border-t border-line pt-4 ${homeBodyStrong}`}
+                  className={`mt-5 border-t border-line pt-4 ${homeMeasureTight} ${homeBodyStrong}`}
                 >
                   <span className="text-electric" aria-hidden>
                     →{" "}

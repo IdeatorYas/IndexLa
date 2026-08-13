@@ -32,7 +32,7 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
           >
             {typeStyle.label}
           </span>
-          <h3 className="display mt-3 text-[1.35rem] tracking-[-0.02em] text-ink">
+          <h3 className="display mt-3 text-[clamp(1.15rem,2.4vw,1.35rem)] tracking-[-0.02em] text-ink text-balance text-pretty">
             {portfolio.name}
           </h3>
         </div>

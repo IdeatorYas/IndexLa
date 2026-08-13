@@ -5,6 +5,7 @@ import {
   homeEyebrow,
   homeH2,
   homeMeasure,
+  homeMeasureTight,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -30,7 +31,7 @@ export function SecurityControlSection() {
           {points.map((point, i) => (
             <FadeIn key={point} delay={i * 0.04}>
               <article className="flex h-full items-center justify-center rounded-2xl border border-line bg-void/45 px-5 py-6 text-center">
-                <p className={`mx-auto max-w-[20rem] ${homeBody} text-ink`}>
+                <p className={`${homeMeasureTight} ${homeBody} text-ink`}>
                   {point}
                 </p>
               </article>
