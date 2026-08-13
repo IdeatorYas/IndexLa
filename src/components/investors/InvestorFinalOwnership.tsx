@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/Button";
 import {
   invBody,
   invH1,
-  invSection,
 } from "@/components/investors/investorRhythm";
 import { homeCta } from "@/components/home/homeRhythm";
 
