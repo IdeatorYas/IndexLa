@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Silver">
+  <defs>
+    <radialGradient id="sFace" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#D0D4D8"/>
+      <stop offset="100%" stop-color="#7A8088"/>
+    </radialGradient>
+    <linearGradient id="sRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7F8FA"/>
+      <stop offset="50%" stop-color="#A8ADB5"/>
+      <stop offset="100%" stop-color="#4E545C"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#sRim)"/>
+  <circle cx="32" cy="32" r="25.5" fill="url(#sFace)"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#FFFFFF" stroke-width="1.1" opacity="0.65"/>
+  <circle cx="32" cy="32" r="19.5" fill="none" stroke="#5A6068" stroke-width="0.6" opacity="0.3"/>
+  <!-- Ag path letterforms -->
+  <path fill="#2E3338" d="M18.2 42 L24.8 22 h3.6 L35 42 h-3.3 l-1.4-4.6 H22.9 L21.5 42 H18.2z M24 34.2 h6.2 l-3.1-10.1z"/>
+  <path fill="#2E3338" d="M37.5 38.8c0 2.1 1.5 3.4 3.9 3.4 1.6 0 2.8-.5 3.7-1.4l1.7 2c-1.3 1.3-3.1 2-5.5 2-4.2 0-7-2.5-7-6.5 0-4.1 2.9-6.7 6.8-6.7 3.8 0 6.3 2.4 6.3 6.1 0 .5 0 1-.1 1.4H37.5zm7.1-2.2c-.1-1.8-1.3-3-3.2-3-2 0-3.3 1.2-3.5 3h6.7z"/>
+</svg>
