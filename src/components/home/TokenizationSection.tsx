@@ -21,8 +21,8 @@ export function TokenizationSection() {
 
       <div className="section-pad container-max relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={homeH2}>WHY NOW</h2>
-          <p className={`mx-auto mt-6 max-w-[40rem] ${homeBody}`}>
+          <h2 className={homeH2}>Why Now</h2>
+          <p className={`mx-auto mt-6 max-w-[34rem] ${homeBody}`}>
             Crypto adoption is growing while traditional assets are moving
             on-chain.
           </p>
@@ -49,8 +49,8 @@ export function TokenizationSection() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mx-auto mt-8 max-w-3xl">
-          <div className={`mx-auto max-w-[40rem] space-y-5 text-center ${homeBody}`}>
+        <FadeIn className="mx-auto mt-10 max-w-3xl">
+          <div className={`mx-auto max-w-[34rem] space-y-6 text-center ${homeBody}`}>
             <p>
               For the first time, crypto + tokenized assets can be combined into
               hybrid portfolios.
