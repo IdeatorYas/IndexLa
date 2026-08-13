@@ -18,7 +18,7 @@ const problems = [
   {
     title: "Opaque Products",
     problem: "Many index products package exposure into a wrapper.",
-    solution: "Own the underlying assets directly.",
+    solution: "Own the underlying assets directly. Not a wrapper. Not a vault.",
   },
   {
     title: "Manual Investing",
