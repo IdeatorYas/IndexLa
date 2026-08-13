@@ -11,13 +11,6 @@ import {
 import { Button } from "@/components/ui/Button";
 import { LOGO_TRANSPARENT } from "@/lib/site";
 
-const feeBoxes = [
-  "0% Management",
-  "0% Performance",
-  "0% Exit",
-  "1% Execution Fees",
-] as const;
-
 export function Hero() {
   const reduce = useReducedMotion();
 
@@ -33,7 +26,6 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* Subtle INDEXLA brand mark — premium, non-decorative clutter */}
       <div
         className="pointer-events-none absolute left-1/2 top-[18%] z-[1] hidden -translate-x-1/2 opacity-[0.07] sm:block"
         aria-hidden
@@ -59,17 +51,17 @@ export function Hero() {
         >
           <div className="mx-auto mb-8 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent sm:mb-9" />
 
-          <h1 className="display mx-auto w-full max-w-[min(100%,42rem)] px-1 text-[clamp(1.95rem,6.8vw,4.5rem)] font-semibold tracking-[-0.04em]">
+          <h1 className="display mx-auto w-full max-w-[min(100%,42rem)] px-1 text-[clamp(2rem,6.8vw,4.55rem)] font-semibold tracking-[-0.04em]">
             <span className="block leading-[1.05] text-ink sm:whitespace-nowrap">
               One Portfolio
             </span>
-            <span className="mt-3 block leading-[1.15] text-electric text-balance sm:mt-3.5 sm:whitespace-nowrap sm:text-pretty">
+            <span className="mt-3 block leading-[1.15] text-electric text-balance sm:mt-4 sm:whitespace-nowrap">
               Every Asset. Every Chain
             </span>
           </h1>
 
           <div
-            className={`mx-auto mt-7 max-w-[22.5rem] space-y-3 sm:mt-8 sm:max-w-[26rem] ${homeBody}`}
+            className={`mx-auto mt-7 max-w-[22.5rem] space-y-3.5 sm:mt-8 sm:max-w-[26rem] ${homeBody}`}
           >
             <p>
               Hold the real assets in your wallet. Set the rules once. Automate
@@ -81,36 +73,34 @@ export function Hero() {
           </div>
 
           <div
-            className="mx-auto mt-8 w-full max-w-[36rem] sm:mt-9"
+            className="mx-auto mt-8 w-full max-w-[34rem] rounded-2xl border border-electric/40 bg-white/[0.04] px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:mt-9 sm:px-7 sm:py-6"
             aria-label="Fee structure highlights"
           >
-            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
-              {feeBoxes.map((label) => (
-                <div
-                  key={label}
-                  className="flex min-h-[4.25rem] items-center justify-center rounded-xl border border-electric/25 bg-white/[0.04] px-2.5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm sm:min-h-[4.5rem]"
-                >
-                  <p className="text-center text-[0.78rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[0.88rem]">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 text-center text-[0.92rem] font-semibold tracking-[-0.01em] text-muted sm:text-[1rem]">
-              Only 1% When Trades Execute
+            <p className="text-[0.98rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
+              0% Management · 0% Performance · 0% Exit
+            </p>
+            <p className="mt-3 text-[1.05rem] font-semibold tracking-[-0.01em] text-electric sm:text-[1.15rem]">
+              Only 1% when trades execute
             </p>
           </div>
 
-          <div className="mt-8 flex w-full flex-col items-center justify-center sm:mt-10">
+          <div className="mt-8 flex w-full max-w-[28rem] flex-col items-stretch justify-center gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
             <Button
-              href="/creators"
-              className={`${homeCta} w-full max-w-[20rem] sm:w-auto`}
+              href="/#early-access"
+              className={`${homeCta} w-full sm:w-auto`}
             >
               Reserve Early Access
             </Button>
+            <Button
+              href="/creators"
+              variant="secondary"
+              className="min-w-[16.5rem] w-full px-10 py-4 text-[1.05rem] ring-1 ring-white/10 sm:w-auto sm:text-[1.08rem]"
+            >
+              Become a Creator
+            </Button>
           </div>
 
-          <p className="mt-6 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-ink/80 text-balance sm:mt-7 sm:text-[0.88rem]">
+          <p className="mt-6 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-ink/85 text-balance sm:mt-7 sm:text-[0.9rem]">
             Non-Custodial · Revocable Permissions · No Admin Keys
           </p>
 

@@ -12,12 +12,14 @@ import { ProblemSolutionSection } from "@/components/home/ProblemSolutionSection
 import { SecurityControlSection } from "@/components/home/SecurityControlSection";
 import { TokenizationSection } from "@/components/home/TokenizationSection";
 import { WhatIsIndexlaSection } from "@/components/home/WhatIsIndexlaSection";
+import { WhyIndexlaDifferentSection } from "@/components/home/WhyIndexlaDifferentSection";
 
 export default function Home() {
   return (
     <main>
       <Hero />
       <WhatIsIndexlaSection />
+      <WhyIndexlaDifferentSection />
       <ProblemSolutionSection />
       <DistributionSection />
       <TokenizationSection />
