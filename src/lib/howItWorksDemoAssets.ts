@@ -69,7 +69,7 @@ export const DEMO_COMMODITIES: DemoAsset[] = [
 ];
 
 /** Illustrative How It Works target allocation (sums to 100). */
-export const DEMO_TARGET_ALLOCATION: DemoAsset & { pct: number }[] = [
+export const DEMO_TARGET_ALLOCATION: (DemoAsset & { pct: number })[] = [
   { ticker: "BTC", name: "Bitcoin", src: "/images/assets/demo/crypto/btc.svg", pct: 22 },
   { ticker: "ETH", name: "Ethereum", src: "/images/assets/demo/crypto/eth.svg", pct: 18 },
   { ticker: "SOL", name: "Solana", src: "/images/assets/demo/crypto/sol.svg", pct: 10 },
