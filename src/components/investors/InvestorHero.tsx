@@ -127,12 +127,12 @@ export function InvestorHero() {
 
       <div className="section-pad container-max relative z-10">
         <div className="mb-6">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center text-[0.92rem] font-semibold text-electric transition-colors hover:text-ink"
           >
             ← Back to INDEXLA
-          </a>
+          </Link>
         </div>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
           <motion.div
