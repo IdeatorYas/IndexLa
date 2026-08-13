@@ -35,8 +35,11 @@ export function Hero() {
         >
           <div className="mx-auto mb-8 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
 
-          <h1 className="display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold tracking-[-0.035em] text-balance text-pretty">
-            <span className="gradient-text">One Portfolio. Every Asset. Every Chain.</span>
+          <h1 className="display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-balance text-pretty">
+            <span className="gradient-text block">One Portfolio.</span>
+            <span className="gradient-text mt-[0.12em] block">
+              Every Asset. Every Chain.
+            </span>
           </h1>
 
           <p className={`mx-auto mt-5 max-w-2xl sm:mt-6 ${homeBody}`}>
