@@ -176,9 +176,14 @@ export function InvestorHero() {
               </div>
             </div>
 
+            <p className={`mt-6 max-w-xl ${invBody} text-pretty`}>
+              Your assets stay in your wallet. The protocol cannot withdraw your
+              funds.
+            </p>
+
             <div className="mt-10">
               <Button
-                href="/creators"
+                href="/investors#early-access"
                 className="min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
               >
                 Build Your Automated Portfolio

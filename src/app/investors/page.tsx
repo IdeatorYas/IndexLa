@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AiAutomationSection } from "@/components/investors/AiAutomationSection";
 import { InvestorDisclaimer } from "@/components/investors/InvestorDisclaimer";
 import { InvestorFeesSection } from "@/components/investors/InvestorFeesSection";
 import { InvestorFinalCta } from "@/components/investors/InvestorFinalCta";
@@ -24,7 +23,6 @@ export default function InvestorsPage() {
       <InvestorFeesSection />
       <MarketCyclesSection />
       <StrategyWorksSection />
-      <AiAutomationSection />
       <OnePortfolioLayerSection />
       <OwnershipSection />
       <MarketplaceSection />
