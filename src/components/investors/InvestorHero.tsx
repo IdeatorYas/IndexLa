@@ -35,6 +35,9 @@ function HeroStrategyPanel() {
           <p className="mt-2 text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-danger">
             Extreme Fear
           </p>
+          <p className="mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+            Example market condition
+          </p>
         </div>
         <div className="flex items-center gap-2 rounded-full border border-success/40 bg-success/10 px-3 py-1.5">
           <span className="relative flex h-2 w-2">
@@ -122,6 +125,14 @@ export function InvestorHero() {
       />
 
       <div className="section-pad container-max relative z-10">
+        <div className="mb-6">
+          <a
+            href="/"
+            className="inline-flex items-center text-[0.92rem] font-semibold text-electric transition-colors hover:text-ink"
+          >
+            ← Back to INDEXLA
+          </a>
+        </div>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 22 }}

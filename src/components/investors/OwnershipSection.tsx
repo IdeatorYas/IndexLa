@@ -25,10 +25,11 @@ export function OwnershipSection() {
           </h2>
           <div className={`mx-auto mt-6 max-w-2xl space-y-3 ${invBody}`}>
             <p className="font-semibold text-ink">
-              Your assets never leave your wallet.
+              Your assets stay in your wallet.
             </p>
-            <p className="font-semibold text-ink">
-              INDEXLA only receives the limited permissions you approve.
+            <p>
+              No index token. No wrapper. No custody. You own the underlying
+              assets.
             </p>
           </div>
         </FadeIn>

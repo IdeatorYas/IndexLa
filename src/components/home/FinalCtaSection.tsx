@@ -37,7 +37,7 @@ export function FinalCtaSection() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center">
             <Button
-              href="/investors"
+              href="/investors#early-access"
               className={`${homeCta} w-full max-w-[22rem] sm:w-auto`}
             >
               Reserve Early Access

@@ -39,7 +39,7 @@ export function AiAutomationSection() {
       <div className="section-pad container-max">
         <FadeIn className="max-w-3xl">
           <h2 className={`${invH2} uppercase`}>
-            AI-Powered Automation Built Around{" "}
+            AI-Assisted Condition Monitoring Built Around{" "}
             <span className="gradient-text">Your Thesis.</span>
           </h2>
           <p className={`mt-5 ${invBody}`}>
@@ -103,7 +103,8 @@ export function AiAutomationSection() {
             <div className="inline-flex justify-center">
               <div className={invGreenBox}>
                 <p className={invGreenText}>
-                  AI monitors the market. Your rules control the strategy.
+                  AI monitors market conditions. Your rules control the
+                  strategy.
                 </p>
               </div>
             </div>
