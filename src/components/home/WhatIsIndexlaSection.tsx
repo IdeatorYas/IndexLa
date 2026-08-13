@@ -1,18 +1,11 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
-  homeGreenChip,
-  homeGreenChipText,
-  homeGreenRow,
+  homeBodyStrong,
   homeH2,
   homeSection,
 } from "@/components/home/homeRhythm";
-
-const controlHighlights = [
-  "One Portfolio",
-  "Every Asset",
-  "Full Control",
-] as const;
 
 export function WhatIsIndexlaSection() {
   return (
@@ -25,25 +18,34 @@ export function WhatIsIndexlaSection() {
         <FadeIn className="mx-auto max-w-[46rem] text-center">
           <div className="mx-auto mb-6 h-px w-12 bg-gradient-to-r from-transparent via-electric/70 to-transparent" />
 
-          <h2 className={homeH2}>What is INDEXLA?</h2>
+          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-electric">
+            What is INDEXLA?
+          </p>
+          <h2 className={`mt-3 ${homeH2}`}>Decentralized Portfolio Management</h2>
 
           <p className={`mx-auto mt-5 max-w-[42rem] ${homeBody}`}>
-            INDEXLA is a non-custodial portfolio management layer for investing
-            across crypto, tokenized stocks, commodities, and RWAs, with
-            programmable strategies and cross-chain execution in one portfolio.
+            INDEXLA is a decentralized portfolio management platform for crypto
+            and tokenized assets.
           </p>
 
           <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>
-            Build your portfolio, define your rules, and let INDEXLA coordinate
-            authorized execution while your assets remain under your control.
+            Build your own portfolio, discover creator strategies, or automate
+            your investment rules from one interface.
           </p>
 
-          <div className={`mt-8 ${homeGreenRow}`}>
-            {controlHighlights.map((item) => (
-              <div key={item} className={homeGreenChip}>
-                <p className={homeGreenChipText}>{item}</p>
-              </div>
-            ))}
+          <p className={`mx-auto mt-7 max-w-[40rem] ${homeBodyStrong}`}>
+            Crypto + Tokenized Assets → One Portfolio → One Interface
+          </p>
+
+          <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>
+            Your assets remain in your wallet. INDEXLA can never touch your
+            funds.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+            <HomeReadMore href="/investors" label="Investor Guide →" />
+            <HomeReadMore href="/creators" label="Creator Guide →" />
+            <HomeReadMore href="/strategies" label="Strategies →" />
           </div>
         </FadeIn>
       </div>

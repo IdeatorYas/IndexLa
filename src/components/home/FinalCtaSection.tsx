@@ -2,13 +2,10 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeCta,
-  homeEyebrow,
-  homeGreenChip,
-  homeGreenChipText,
-  homeGreenRow,
   homeH2,
   homeSection,
 } from "@/components/home/homeRhythm";
@@ -30,40 +27,39 @@ export function FinalCtaSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <p className={homeEyebrow}>Early Access</p>
-          <h2 className={`mt-4 ${homeH2}`}>
-            Build the next generation of programmable portfolios.
+          <h2 className={homeH2}>
+            Invest in Everything. Own Everything. Control Everything.
           </h2>
           <p className={`mx-auto mt-6 max-w-2xl ${homeBody}`}>
-            Join early access for founders, creators, and crypto native
-            investors.
-          </p>
-          <p className={`mx-auto mt-5 max-w-2xl ${homeBody}`}>
-            Join the waitlist. Early access includes MVP access and creator
-            tooling.
+            Build programmable portfolios across the evolving on-chain financial
+            system while keeping ownership of your assets.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className={homeCta}>
               Reserve Early Access
             </Button>
           </div>
-          <p className="mt-10 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-muted-dim">
-            INDEXLA
-          </p>
-          <div className={`mt-4 ${homeGreenRow}`}>
-            {[
-              "Invest in Everything",
-              "Own Everything",
-              "Control Everything",
-            ].map((item) => (
-              <div key={item} className={homeGreenChip}>
-                <p className={homeGreenChipText}>{item}</p>
-              </div>
-            ))}
+
+          <div className="mx-auto mt-14 max-w-2xl border-t border-line pt-10 text-left sm:text-center">
+            <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+              Disclaimer
+            </p>
+            <p className={`mt-4 text-[0.92rem] leading-relaxed text-muted sm:text-[0.98rem]`}>
+              Digital assets, tokenized assets and automated strategies involve
+              significant risk, including possible loss of capital. Nothing on
+              this website constitutes investment, financial, legal or tax
+              advice. Past performance does not guarantee future results. Asset
+              availability, functionality and eligibility may vary by
+              jurisdiction. INDEXLA does not guarantee investment returns or
+              execution outcomes.
+            </p>
+            <div className="mt-5 text-center">
+              <HomeReadMore
+                href="/whitepaper/disclaimer"
+                label="Full Disclaimer →"
+              />
+            </div>
           </div>
-          <p className="mt-10 text-[0.8rem] tracking-[0.02em] text-muted-dim">
-            INDEXLA is currently in MVP development.
-          </p>
         </motion.div>
       </div>
     </section>

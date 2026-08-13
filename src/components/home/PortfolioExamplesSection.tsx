@@ -1,5 +1,6 @@
 import { PortfolioCard } from "@/components/home/PortfolioCard";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import { PORTFOLIOS } from "@/lib/site";
 import {
   homeBody,
@@ -21,30 +22,28 @@ export function PortfolioExamplesSection() {
   return (
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="max-w-3xl">
-          <h2 className={homeH2}>Discover Portfolios</h2>
-          <p className={`mt-5 ${homeBody}`}>
-            Explore portfolios created around different investment theses.
+        <FadeIn className="mx-auto max-w-3xl text-center">
+          <h2 className={homeH2}>Discover Investment Ideas. Choose What Fits You.</h2>
+          <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>
+            Explore portfolios built around different strategies, markets and
+            investment theses.
           </p>
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {themes.map((theme) => (
               <span key={theme} className={homePill}>
                 {theme}
               </span>
             ))}
           </div>
-          <div className={`mt-6 space-y-3 ${homeBody}`}>
-            <p>
-              Creators can publish their strategies as investable portfolios.
-            </p>
-            <p>
-              Investors choose which portfolios match their objectives and risk
-              preferences.
-            </p>
-            <p className="font-medium text-ink">
-              All portfolio activity remains non-custodial.
-            </p>
-          </div>
+          <p className={`mx-auto mt-6 max-w-[40rem] ${homeBody}`}>
+            Creators publish portfolios. Investors discover strategies that fit
+            their objectives and risk preferences.
+          </p>
+          <HomeReadMore
+            href="/creators"
+            label="Explore Portfolios →"
+            className="mt-5"
+          />
         </FadeIn>
 
         <FadeIn className="mt-10">
@@ -64,7 +63,7 @@ export function PortfolioExamplesSection() {
         </div>
 
         <FadeIn className="mt-7">
-          <p className="flex max-w-full flex-col items-start gap-2 rounded-xl border border-success/45 bg-success/[0.14] px-5 py-4 sm:flex-row sm:items-center sm:gap-3">
+          <p className="mx-auto flex max-w-3xl flex-col items-center gap-2 rounded-xl border border-success/45 bg-success/[0.14] px-5 py-4 text-center sm:flex-row sm:justify-center sm:gap-3">
             <span className="rounded-md border border-success/45 bg-success/20 px-2.5 py-1 text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-success">
               Illustrative
             </span>

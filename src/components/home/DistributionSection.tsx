@@ -1,22 +1,14 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeChip,
   homeH2,
-  homePill,
   homeSection,
 } from "@/components/home/homeRhythm";
 
-const layers = [
-  { title: "Tokenization", body: "creates the assets." },
-  { title: "Blockchains", body: "provide settlement." },
-  { title: "Liquidity providers", body: "enable execution." },
-] as const;
-
-const investorFlow = ["Discover", "Allocate", "Manage", "Automate"] as const;
-
-const distributionFlow = [
-  "Tokenized Assets",
+const flow = [
+  "Assets",
   "Creators",
   "Portfolios",
   "Investors",
@@ -27,52 +19,21 @@ export function DistributionSection() {
   return (
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="max-w-3xl">
+        <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={homeH2}>The Missing Layer: Distribution</h2>
+          <p className={`mx-auto mt-6 max-w-[42rem] ${homeBody}`}>
+            Tokenization is creating the assets. Creators are creating the ideas.
+            Investors need a way to discover and access them.
+          </p>
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <div className="grid gap-3 sm:grid-cols-3">
-            {layers.map((layer) => (
-              <div
-                key={layer.title}
-                className="rounded-2xl border border-line bg-deep/55 px-5 py-5 text-center"
-              >
-                <p className="text-[1.1rem] font-semibold text-ink sm:text-[1.15rem]">
-                  {layer.title}
-                </p>
-                <p className={`mt-1.5 ${homeBody}`}>{layer.body}</p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn className="mt-7">
-          <div className="rounded-3xl glass p-7 text-center sm:p-10">
-            <p className="text-[1.15rem] font-semibold leading-snug text-ink text-pretty sm:text-[1.25rem]">
-              INDEXLA provides the portfolio distribution layer.
-            </p>
-            <p className={`mt-5 ${homeBody}`}>
-              As more assets move on chain, investors need one layer to:
-            </p>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-              {investorFlow.map((item, i) => (
-                <div key={item} className="flex items-center gap-2">
-                  <span className={homePill}>{item}</span>
-                  {i < investorFlow.length - 1 ? (
-                    <span className="text-electric/70" aria-hidden>
-                      →
-                    </span>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-              {distributionFlow.map((item, i) => (
+          <div className="rounded-3xl glass px-5 py-8 text-center sm:px-10 sm:py-10">
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {flow.map((item, i) => (
                 <div key={item} className="flex items-center gap-2">
                   <span className={homeChip}>{item}</span>
-                  {i < distributionFlow.length - 1 ? (
+                  {i < flow.length - 1 ? (
                     <span className="text-electric/70" aria-hidden>
                       →
                     </span>
@@ -80,14 +41,12 @@ export function DistributionSection() {
                 </div>
               ))}
             </div>
-
-            <div className={`mt-8 space-y-4 ${homeBody}`}>
-              <p>Creators bring investment theses.</p>
-              <p>Investors allocate to portfolios.</p>
-              <p className="font-semibold">
-                INDEXLA connects assets, portfolios, strategies, and investors.
-              </p>
-            </div>
+            <HomeReadMore
+              href="#how-it-works"
+              label="Learn How INDEXLA Works →"
+              external={false}
+              className="mt-8"
+            />
           </div>
         </FadeIn>
       </div>

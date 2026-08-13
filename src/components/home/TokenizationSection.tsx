@@ -1,15 +1,15 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
+  homeBodyStrong,
   homeH2,
-  homeLede,
   homeSection,
 } from "@/components/home/homeRhythm";
 
 const stats = [
-  { label: "Distributed Asset Value", value: "$38.14B" },
-  { label: "Represented Asset Value", value: "$373.37B" },
-  { label: "Total Asset Holders", value: "1.72M" },
+  { label: "Distributed Asset Value", value: "$38B+" },
+  { label: "Represented Asset Value", value: "$373B+" },
+  { label: "Asset Holders", value: "1.7M+" },
 ] as const;
 
 export function TokenizationSection() {
@@ -21,9 +21,17 @@ export function TokenizationSection() {
       />
 
       <div className="section-pad container-max relative">
-        <FadeIn className="max-w-3xl">
-          <h2 className={homeH2}>The Financial System Is Being Tokenized</h2>
-          <p className={homeLede}>Everything is moving on chain.</p>
+        <FadeIn className="mx-auto max-w-3xl text-center">
+          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-electric">
+            Why Now?
+          </p>
+          <h2 className={`mt-3 ${homeH2}`}>
+            The Financial System Is Being Tokenized
+          </h2>
+          <p className={`mx-auto mt-6 max-w-[40rem] ${homeBody}`}>
+            Crypto adoption is growing while traditional assets are moving
+            on-chain.
+          </p>
         </FadeIn>
 
         <FadeIn className="mt-8">
@@ -47,19 +55,19 @@ export function TokenizationSection() {
           </p>
         </FadeIn>
 
-        <FadeIn className={`mt-8 max-w-3xl space-y-5 ${homeBody}`}>
+        <FadeIn className={`mx-auto mt-8 max-w-3xl space-y-5 text-center ${homeBody}`}>
           <p>
-            Treasuries, bonds, equities, commodities, funds, credit, and other
-            RWAs are moving onto programmable blockchains.
+            For the first time, crypto + tokenized assets can be combined into
+            hybrid portfolios.
           </p>
           <p>
-            BlackRock and major financial institutions are building tokenized
-            asset infrastructure, while Saudi Arabia and the UAE are advancing
-            real world asset tokenization.
+            But assets remain fragmented across chains, making cross-chain
+            investing difficult for users.
           </p>
-          <p className="font-semibold">The supply is growing fast.</p>
-          <p className="font-semibold">
-            The next infrastructure opportunity is distribution.
+          <p className={homeBodyStrong}>
+            Tokenization creates the assets. Cross-chain infrastructure connects
+            them. INDEXLA makes them investable together through one programmable
+            portfolio.
           </p>
         </FadeIn>
       </div>

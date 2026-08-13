@@ -1,23 +1,28 @@
 import Link from "next/link";
 
-const readMoreClass =
+const linkClass =
   "inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink";
 
 export function HomeReadMore({
   href,
+  label = "Read More →",
   className = "",
+  external = true,
 }: {
   href: string;
+  label?: string;
   className?: string;
+  external?: boolean;
 }) {
   return (
     <Link
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`${readMoreClass} ${className}`.trim()}
+      {...(external
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+      className={`${linkClass} ${className}`.trim()}
     >
-      Read More →
+      {label}
     </Link>
   );
 }

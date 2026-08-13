@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { AssetLogo } from "@/components/ui/AssetLogo";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeBodyStrong,
@@ -19,30 +20,29 @@ const STEPS = [
     id: "connect",
     n: "01",
     title: "Connect",
-    summary: "Connect your wallet and create your portfolio.",
-    detail: "Your assets remain under your control.",
+    summary: "Connect your wallet.",
+    detail: "",
   },
   {
     id: "allocate",
     n: "02",
     title: "Allocate",
-    summary: "Choose what you want to invest in and define the allocation.",
+    summary: "Choose assets and target allocations.",
     detail: "BTC · ETH · Tokenized Stocks · Gold · RWAs · and more",
   },
   {
     id: "automate",
     n: "03",
     title: "Automate",
-    summary: "Choose a strategy and configure its rules.",
+    summary: "Set your rules and approve permissions.",
     detail: "",
   },
   {
     id: "activate",
     n: "04",
     title: "Fund & Activate",
-    summary: "Confirm your portfolio and activate your strategy.",
-    detail:
-      "Assets stay in your wallet. Permissions authorize execution. INDEXLA monitors the configured conditions and coordinates authorized execution across supported networks.",
+    summary: "Fund your portfolio and activate your strategy.",
+    detail: "",
   },
 ] as const;
 
@@ -133,12 +133,7 @@ function ConnectDemo() {
           <p className="display mt-3 text-[1.5rem] text-ink sm:text-[1.7rem]">
             Connect your wallet
           </p>
-          <p className={`mt-2 ${homeBody}`}>
-            Connect your wallet and create your portfolio.
-          </p>
-          <p className="mt-4 text-[1.05rem] font-semibold leading-snug text-ink sm:text-[1.125rem]">
-            Your assets remain under your control.
-          </p>
+          <p className={`mt-2 ${homeBody}`}>Connect your wallet.</p>
         </div>
         <div className="space-y-2.5">
           {["Browser Wallet", "Hardware Wallet", "Smart Account"].map(
@@ -179,7 +174,7 @@ function AllocateDemo() {
             02 — Allocate
           </p>
           <p className={`mt-2 ${homeBody}`}>
-            Choose what you want to invest in and define the allocation.
+            Choose assets and target allocations.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {INVEST_CHIPS.map((item) => (
@@ -251,7 +246,7 @@ function AutomateDemo({
             03 — Automate
           </p>
           <p className={`mt-2 ${homeBody}`}>
-            Choose a strategy and configure its rules.
+            Set your rules and approve permissions.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {STRATEGIES.map((item, i) => (
@@ -313,7 +308,7 @@ function ActivateDemo() {
                 04 — Fund & Activate
               </p>
               <p className="mt-2 font-semibold text-ink">
-                Confirm your portfolio and activate your strategy.
+                Fund your portfolio and activate your strategy.
               </p>
             </div>
             <span className="rounded-full border border-electric/30 bg-electric/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
@@ -336,12 +331,9 @@ function ActivateDemo() {
           </div>
         </div>
         <div className="rounded-2xl border border-electric/30 bg-electric/10 px-5 py-4">
-          <p className={homeBody}>
-            Assets stay in your wallet. Permissions authorize execution.
-          </p>
-          <p className={`mt-3 ${homeBodyStrong}`}>
-            INDEXLA monitors the configured conditions and coordinates authorized
-            execution across supported networks.
+          <p className={homeBodyStrong}>
+            Your assets remain in your wallet. Execution follows only the
+            permissions you approve.
           </p>
         </div>
         <div className="rounded-2xl border border-line bg-gradient-to-r from-purple/35 to-blue/30 px-5 py-5 text-center">
@@ -377,7 +369,7 @@ export function HowItWorksSection() {
   const step = STEPS[active];
 
   return (
-    <section className={`${homeSection} bg-deep`}>
+    <section id="how-it-works" className={`relative ${homeSection} bg-deep`}>
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(56,189,248,0.08),transparent_45%),radial-gradient(ellipse_at_20%_80%,rgba(124,58,237,0.08),transparent_40%)]"
         aria-hidden
@@ -389,7 +381,9 @@ export function HowItWorksSection() {
           <p className="mt-4 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
             Connect → Allocate → Automate → Fund &amp; Activate
           </p>
-          <p className={`mx-auto mt-6 max-w-[40rem] font-semibold text-ink ${homeBodyStrong}`}>
+          <p
+            className={`mx-auto mt-6 max-w-[40rem] font-semibold text-ink ${homeBodyStrong}`}
+          >
             Your assets never leave your wallet. INDEXLA only receives the
             limited permissions you approve.
           </p>
@@ -502,7 +496,7 @@ export function HowItWorksSection() {
               <div className="mt-5 flex items-center justify-between gap-3">
                 <p className={`${homeBody} lg:hidden`}>
                   <span className="font-semibold text-ink">
-                    {step.n} {step.title}.
+                    {step.n} — {step.title}:
                   </span>{" "}
                   {step.summary}
                 </p>
@@ -523,6 +517,18 @@ export function HowItWorksSection() {
             </div>
           </FadeIn>
         </div>
+
+        <FadeIn className="mx-auto mt-10 max-w-3xl text-center">
+          <p className={homeBodyStrong}>
+            Your assets remain in your wallet. Execution follows only the
+            permissions you approve.
+          </p>
+          <HomeReadMore
+            href="/whitepaper/technical"
+            label="Read the Technical Architecture →"
+            className="mt-5"
+          />
+        </FadeIn>
       </div>
     </section>
   );

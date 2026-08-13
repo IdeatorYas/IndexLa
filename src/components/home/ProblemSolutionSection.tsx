@@ -2,10 +2,6 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
   homeBodyStrong,
-  homeEyebrow,
-  homeGreenChip,
-  homeGreenChipText,
-  homeGreenRow,
   homeH2,
   homeH3,
   homeSection,
@@ -13,42 +9,28 @@ import {
 
 const problems = [
   {
-    n: "01",
-    title: "Fragmented Investing",
-    problem:
-      "Assets and execution are scattered across chains, wallets, bridges, and platforms.",
-    solution: "One portfolio layer connecting supported assets and networks.",
+    title: "Fragmented Markets",
+    problem: "Assets are spread across chains, wallets and platforms.",
+    solution: "One portfolio across supported assets and networks.",
   },
   {
-    n: "02",
-    title: "Single Token Products",
+    title: "Opaque Products",
+    problem: "Many index products package exposure into a wrapper.",
+    solution: "Own the underlying assets directly.",
+  },
+  {
+    title: "Manual Investing",
     problem:
-      "A single token can represent a basket while hiding the underlying assets and allocations.",
+      "Managing allocations requires constant monitoring and execution.",
+    solution: "Define rules and automate authorized execution.",
+  },
+  {
+    title: "Creators Have No Distribution Layer",
+    problem:
+      "Creators share investment ideas, but their theses get lost in posts and content.",
     solution:
-      "Buy the underlying assets, hold the basket in your wallet, and see what you own.",
+      "Turn your thesis into a public portfolio your audience can discover and invest in.",
   },
-  {
-    n: "03",
-    title: "Manual Strategy Execution",
-    problem:
-      "Investors still manually execute strategies when market conditions change.",
-    solution: "Define the rules once and automate authorized execution.",
-  },
-  {
-    n: "04",
-    title: "Creators Lack Portfolio Infrastructure",
-    problem:
-      "Creators can influence investors but lack infrastructure to turn investment theses into persistent portfolios.",
-    solution:
-      "Publish investable portfolios and earn 50% of applicable execution fees.",
-  },
-] as const;
-
-const shifts = [
-  { from: "Fragmented assets", to: "Unified portfolio" },
-  { from: "Opaque basket", to: "Transparent underlying assets" },
-  { from: "Manual strategies", to: "Programmable execution" },
-  { from: "Creator influence", to: "Investable portfolios" },
 ] as const;
 
 export function ProblemSolutionSection() {
@@ -60,88 +42,26 @@ export function ProblemSolutionSection() {
       />
 
       <div className="section-pad container-max relative">
-        <FadeIn className="max-w-3xl">
-          <p className={homeEyebrow}>The Problem vs Solution</p>
-          <h2 className={`mt-4 ${homeH2}`}>
-            Modern investing is fragmented, opaque, and increasingly difficult to
-            manage across assets&nbsp;and&nbsp;chains.
-          </h2>
+        <FadeIn className="mx-auto max-w-3xl text-center">
+          <h2 className={homeH2}>Investing Is Fragmented. INDEXLA Connects It.</h2>
         </FadeIn>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {problems.map((item, i) => (
-            <FadeIn key={item.n} delay={i * 0.05}>
+            <FadeIn key={item.title} delay={i * 0.05}>
               <article className="flex h-full flex-col items-center rounded-2xl border border-line bg-deep/50 p-6 text-center sm:p-7">
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
-                    {item.n}
-                  </span>
-                  <h3 className={homeH3}>{item.title}</h3>
-                </div>
+                <h3 className={homeH3}>{item.title}</h3>
                 <p className={`mt-4 flex-1 ${homeBody}`}>{item.problem}</p>
                 <p className={`mt-5 border-t border-line pt-4 ${homeBodyStrong}`}>
-                  <span className="font-semibold text-electric">INDEXLA: </span>
+                  <span className="text-electric" aria-hidden>
+                    →{" "}
+                  </span>
                   {item.solution}
                 </p>
               </article>
             </FadeIn>
           ))}
         </div>
-
-        <FadeIn className="mt-10">
-          <div className="rounded-3xl glass p-7 text-center sm:p-10">
-            <h3 className={homeH3}>
-              One Layer. One Portfolio. Full Asset Ownership.
-            </h3>
-
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {shifts.map((shift) => (
-                <div
-                  key={shift.from}
-                  className="flex items-center justify-center gap-3 rounded-2xl border border-line bg-void/45 px-4 py-3.5 text-center"
-                >
-                  <span className="min-w-0 flex-1 text-[1.05rem] leading-snug text-muted sm:text-[1.1rem]">
-                    {shift.from}
-                  </span>
-                  <span className="shrink-0 text-electric" aria-hidden>
-                    →
-                  </span>
-                  <span className="min-w-0 flex-1 text-[1.05rem] font-semibold leading-snug text-ink sm:text-[1.1rem]">
-                    {shift.to}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <p className={`mx-auto mt-7 max-w-3xl ${homeBody}`}>
-              INDEXLA lets you buy the assets, hold the full basket, and control
-              your portfolio directly.
-            </p>
-            <p className={`mx-auto mt-4 max-w-3xl ${homeBodyStrong}`}>
-              One permission layer connects portfolios across chains and asset
-              classes, while execution remains non-custodial and
-              rule-constrained.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn className={`mt-7 ${homeGreenRow}`}>
-          {[
-            "Multi-Asset",
-            "Multi-Chain",
-            "Non-Custodial",
-            "Programmable",
-            "Creator Native",
-          ].map((item) => (
-            <div key={item} className={homeGreenChip}>
-              <p
-                className={`${homeGreenChipText} uppercase tracking-[0.1em]`}
-              >
-                {item}
-              </p>
-            </div>
-          ))}
-        </FadeIn>
       </div>
     </section>
   );

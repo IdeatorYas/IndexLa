@@ -1,15 +1,15 @@
+import { BuildAutomateSection } from "@/components/home/BuildAutomateSection";
 import { CreatorsSection } from "@/components/home/CreatorsSection";
 import { DexlaSection } from "@/components/home/DexlaSection";
 import { DistributionSection } from "@/components/home/DistributionSection";
-import { BuildAutomateSection } from "@/components/home/BuildAutomateSection";
-import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { FeesSection } from "@/components/home/FeesSection";
+import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { Hero } from "@/components/home/Hero";
+import { HomeFaqSection } from "@/components/home/HomeFaqSection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
-import { OnePortfolioSection } from "@/components/home/OnePortfolioSection";
 import { PortfolioExamplesSection } from "@/components/home/PortfolioExamplesSection";
 import { ProblemSolutionSection } from "@/components/home/ProblemSolutionSection";
-import { StrategyExecutedSection } from "@/components/home/StrategyExecutedSection";
+import { SecurityControlSection } from "@/components/home/SecurityControlSection";
 import { TokenizationSection } from "@/components/home/TokenizationSection";
 import { WhatIsIndexlaSection } from "@/components/home/WhatIsIndexlaSection";
 
@@ -19,17 +19,17 @@ export default function Home() {
       <Hero />
       <WhatIsIndexlaSection />
       <ProblemSolutionSection />
-      <TokenizationSection />
       <DistributionSection />
-      <OnePortfolioSection />
+      <TokenizationSection />
       <BuildAutomateSection />
       <HowItWorksSection />
       <PortfolioExamplesSection />
+      <SecurityControlSection />
       <CreatorsSection />
-      <DexlaSection />
       <FeesSection />
-      <StrategyExecutedSection />
+      <DexlaSection />
       <FinalCtaSection />
+      <HomeFaqSection />
     </main>
   );
 }

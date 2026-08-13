@@ -36,36 +36,29 @@ export function Hero() {
           <div className="mx-auto mb-8 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
 
           <h1 className="display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold tracking-[-0.035em] text-balance text-pretty">
-            <span className="gradient-text">Decentralized Portfolio Management</span>
+            <span className="gradient-text">One Portfolio. Every Asset. Every Chain.</span>
           </h1>
 
           <p className={`mx-auto mt-5 max-w-2xl sm:mt-6 ${homeBody}`}>
-            The non-custodial portfolio distribution layer for crypto and
-            tokenized assets.
+            Hold the real assets in your wallet. Set the rules once. Automate
+            execution without giving up control.
           </p>
 
           <p
-            className={`mx-auto mt-4 max-w-[34rem] text-center text-pretty sm:max-w-[38rem] ${homeBodyDim}`}
+            className={`mx-auto mt-4 max-w-[38rem] text-center text-pretty ${homeBodyDim}`}
           >
-            Own the underlying assets across&nbsp;chains. Define the
-            rules&nbsp;once.{" "}
-            <span className="whitespace-nowrap">
-              Automate execution. Keep the&nbsp;keys.
-            </span>
+            Build diversified portfolios across crypto and tokenized markets.
           </p>
 
           <div
-            className="mx-auto mt-7 max-w-lg rounded-2xl border border-electric/20 bg-white/[0.035] px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm sm:px-6 sm:py-5"
+            className="mx-auto mt-7 max-w-xl rounded-2xl border border-electric/20 bg-white/[0.035] px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm sm:px-6 sm:py-5"
             aria-label="Fee structure highlights"
           >
             <p className="text-center text-[0.92rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1.05rem]">
-              0% management · 0% performance · 0% exit · 1% execution
+              0% Management · 0% Performance · 0% Exit · Only 1% When Trades
+              Execute
             </p>
           </div>
-
-          <p className={`mx-auto mt-4 max-w-xl ${homeBodyDim}`}>
-            Only 1% execution fee when trades occur
-          </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/creators" className={homeCta}>
@@ -74,8 +67,7 @@ export function Hero() {
           </div>
 
           <p className="mt-7 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted text-balance">
-            Multi&nbsp;Asset · Cross&nbsp;Chain · Non&nbsp;Custodial · Automated ·
-            Creator&nbsp;Marketplace
+            Non-Custodial · Revocable Permissions · No Admin Keys
           </p>
         </motion.div>
       </div>
