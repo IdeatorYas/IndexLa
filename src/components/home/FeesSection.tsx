@@ -5,7 +5,6 @@ import {
   homeBodyStrong,
   homeH2,
   homeH3,
-  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 
