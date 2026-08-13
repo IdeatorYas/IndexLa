@@ -50,11 +50,11 @@ export function ProblemSolutionSection() {
           </h2>
         </FadeIn>
 
-        <div className="mt-9 grid auto-rows-fr gap-3 md:grid-cols-2 md:gap-4">
+        <div className="mt-9 grid auto-rows-fr gap-3 sm:gap-3.5 md:grid-cols-2 md:gap-4">
           {problems.map((item, i) => (
             <FadeIn key={item.title} delay={i * 0.04}>
-              <article className="flex h-full flex-col items-center rounded-2xl border border-line bg-deep/55 px-5 py-6 text-center sm:px-6 sm:py-7">
-                <h3 className={`${homeH3} text-[clamp(1.15rem,2vw,1.45rem)]`}>
+              <article className="flex h-full flex-col items-center rounded-2xl border border-line bg-deep/55 px-4 py-6 text-center sm:px-6 sm:py-7">
+                <h3 className={`${homeH3} text-[clamp(1.12rem,2vw,1.45rem)]`}>
                   {item.title}
                 </h3>
                 <p className={`mt-4 flex-1 ${homeMeasureTight} ${homeBody}`}>

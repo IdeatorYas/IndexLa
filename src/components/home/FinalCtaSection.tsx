@@ -36,7 +36,10 @@ export function FinalCtaSection() {
             system while keeping ownership of your assets.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center">
-            <Button href="/creators" className={homeCta}>
+            <Button
+              href="/creators"
+              className={`${homeCta} w-full max-w-[22rem] sm:w-auto`}
+            >
               Reserve Early Access
             </Button>
           </div>

@@ -19,6 +19,9 @@ const themes = [
   "Hybrid Assets",
 ] as const;
 
+const ILLUSTRATIVE_LABEL =
+  "Illustrative only — not live portfolios or investment performance.";
+
 export function PortfolioExamplesSection() {
   return (
     <section className={`${homeSection} bg-void`}>
@@ -50,14 +53,14 @@ export function PortfolioExamplesSection() {
         </FadeIn>
 
         <FadeIn className="mt-10">
-          <div className="rounded-2xl border border-electric/35 bg-electric/[0.08] px-5 py-4 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)]">
-            <p className="text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-electric text-balance sm:text-[0.9rem]">
-              Simulated data — INDEXLA is not yet live
+          <div className="mx-auto max-w-3xl rounded-2xl border border-electric/40 bg-electric/[0.09] px-4 py-4 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:px-6">
+            <p className="text-[0.92rem] font-semibold leading-snug tracking-[-0.01em] text-electric text-balance sm:text-[1.02rem]">
+              {ILLUSTRATIVE_LABEL}
             </p>
           </div>
         </FadeIn>
 
-        <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-6 grid auto-rows-fr gap-5 md:grid-cols-2 xl:grid-cols-3">
           {PORTFOLIOS.slice(0, 3).map((portfolio, i) => (
             <FadeIn key={portfolio.id} delay={i * 0.05}>
               <PortfolioCard portfolio={portfolio} />
@@ -66,13 +69,8 @@ export function PortfolioExamplesSection() {
         </div>
 
         <FadeIn className="mt-7">
-          <p className="mx-auto flex max-w-3xl flex-col items-center gap-2 rounded-xl border border-success/45 bg-success/[0.14] px-5 py-4 text-center sm:flex-row sm:justify-center sm:gap-3">
-            <span className="rounded-md border border-success/45 bg-success/20 px-2.5 py-1 text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-success">
-              Illustrative
-            </span>
-            <span className={`${homeBody} font-medium text-ink`}>
-              portfolios shown for demonstration purposes.
-            </span>
+          <p className="mx-auto max-w-3xl text-center text-[0.95rem] font-medium leading-snug text-muted text-balance sm:text-[1.02rem]">
+            {ILLUSTRATIVE_LABEL}
           </p>
         </FadeIn>
       </div>

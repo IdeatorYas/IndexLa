@@ -4,16 +4,36 @@ import {
   homeBody,
   homeH2,
   homeMeasure,
+  homeMeasureTight,
   homeSection,
 } from "@/components/home/homeRhythm";
 
+/** Short explanations from existing approved strategy copy (How It Works / Strategy Engine). */
 const strategies = [
-  "DCA",
-  "Rebalancing",
-  "Buy Fear",
-  "Sell Greed",
-  "Momentum",
-  "Take Profit / Stop Loss",
+  {
+    title: "DCA",
+    body: "Automatically invest according to a defined schedule.",
+  },
+  {
+    title: "Rebalancing",
+    body: "Restore target allocations when portfolio weights drift.",
+  },
+  {
+    title: "Buy Fear",
+    body: "Accumulate when defined fear conditions are reached.",
+  },
+  {
+    title: "Sell Greed",
+    body: "Reduce exposure when defined greed conditions are reached.",
+  },
+  {
+    title: "Momentum",
+    body: "Adjust exposure as defined market trends change.",
+  },
+  {
+    title: "Take Profit / Stop Loss",
+    body: "Automatically reduce a position when your predefined target is reached. Reduce exposure when a predefined downside condition is triggered.",
+  },
 ] as const;
 
 export function BuildAutomateSection() {
@@ -28,17 +48,20 @@ export function BuildAutomateSection() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mx-auto mt-8 max-w-3xl">
-          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
+        <FadeIn className="mx-auto mt-8 max-w-4xl">
+          <div className="grid auto-rows-fr grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5 lg:grid-cols-3">
             {strategies.map((item) => (
-              <div
-                key={item}
-                className="flex min-h-[3.75rem] items-center justify-center rounded-xl border border-line bg-deep/55 px-3 py-3 text-center"
+              <article
+                key={item.title}
+                className="flex h-full flex-col items-center justify-center rounded-2xl border border-line bg-deep/55 px-4 py-5 text-center sm:px-5 sm:py-6"
               >
-                <p className="text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[1.02rem]">
-                  {item}
+                <p className="text-[1.02rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[1.08rem]">
+                  {item.title}
                 </p>
-              </div>
+                <p className={`mt-2.5 ${homeMeasureTight} ${homeBody} text-[1rem] sm:text-[1.05rem]`}>
+                  {item.body}
+                </p>
+              </article>
             ))}
           </div>
         </FadeIn>

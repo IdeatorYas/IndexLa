@@ -15,10 +15,10 @@ export const homeEyebrow =
  * Controlled measure for multi-line homepage copy.
  * Keeps line lengths intentional so wraps stay balanced (no long line + tiny orphan).
  */
-export const homeMeasure = "mx-auto w-full max-w-[24.5rem] sm:max-w-[27.5rem]";
+export const homeMeasure = "mx-auto w-full max-w-[23.5rem] sm:max-w-[27rem]";
 
 /** Narrower measure for denser card / short body blocks */
-export const homeMeasureTight = "mx-auto w-full max-w-[19rem] sm:max-w-[21rem]";
+export const homeMeasureTight = "mx-auto w-full max-w-[18.5rem] sm:max-w-[20.5rem]";
 
 /** Primary supporting body — use on every section paragraph for consistency */
 export const homeBody =
@@ -52,7 +52,7 @@ export const cardContent = "text-center";
 
 /** Shared primary page CTA size — keep header chrome compact separately */
 export const homeCta =
-  "min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)] ring-1 ring-white/10";
+  "min-w-[16.5rem] px-10 py-4 text-[1.08rem] shadow-[0_20px_56px_rgba(59,130,246,0.48)] ring-2 ring-electric/30 sm:min-w-[18rem] sm:text-[1.12rem]";
 
 /** Subtle premium green highlight for key closing statements */
 export const homeGreenBox =
