@@ -170,11 +170,16 @@ export function StrategyWorksSection() {
         <FadeIn className="mt-12" delay={0.04}>
           <div className="overflow-hidden rounded-[1.35rem] border border-line bg-void/50">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-4 sm:px-7">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
-                INDEXLA Strategy Demo
-              </p>
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                Progression ↔ Rule Builder
+              <div>
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
+                  INDEXLA Strategy Demo
+                </p>
+                <p className="mt-1 text-[0.78rem] font-medium text-muted">
+                  Interactive product preview — example only, not live trading.
+                </p>
+              </div>
+              <p className="rounded-full border border-line bg-deep/60 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+                Preview
               </p>
             </div>
 
@@ -200,12 +205,18 @@ export function StrategyWorksSection() {
                   </div>
                 ))}
               </div>
+              <p className="mt-3 text-center text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+                Example market condition
+              </p>
             </div>
 
             <div className="grid lg:grid-cols-2 lg:items-stretch">
-              <div className="border-b border-line p-6 sm:p-7 lg:border-b-0 lg:border-r">
+              <div className="border-b border-line p-5 sm:p-6 lg:border-b-0 lg:border-r lg:p-7">
                 <p className={invEyebrow}>Strategy progression</p>
-                <ol className="mt-5 flex flex-col gap-3">
+                <p className="mt-1 text-[0.85rem] text-muted">
+                  Select a market phase to preview the matching rule.
+                </p>
+                <ol className="mt-5 flex flex-col gap-2.5">
                   {phases.map((step) => {
                     const isActive = step.id === activeId;
                     return (
@@ -213,18 +224,19 @@ export function StrategyWorksSection() {
                         <button
                           type="button"
                           onClick={() => setActiveId(step.id)}
-                          className={`w-full rounded-xl border px-4 py-4 text-center transition-colors ${
+                          aria-pressed={isActive}
+                          className={`w-full rounded-xl border px-4 py-3.5 text-center transition-all ${
                             isActive
-                              ? "border-electric/45 bg-electric/10"
-                              : "border-line bg-deep/40 hover:border-electric/25"
+                              ? "border-electric/45 bg-electric/10 shadow-[inset_0_1px_0_rgba(56,189,248,0.14)]"
+                              : "border-line bg-deep/40 hover:border-electric/25 hover:bg-deep/55"
                           }`}
                         >
-                          <div className="flex flex-col items-center justify-center gap-3">
-                            <div className="min-w-0 text-center">
+                          <div className="flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:justify-between sm:gap-3 sm:text-left">
+                            <div className="min-w-0 text-center sm:text-left">
                               <p className="display text-[1rem] tracking-[-0.02em] text-ink sm:text-[1.05rem]">
                                 {step.stage}
                               </p>
-                              <p className="mt-1 text-[0.85rem] text-muted">
+                              <p className="mt-1 text-[0.85rem] leading-snug text-muted text-pretty">
                                 {step.meta}
                               </p>
                             </div>
@@ -243,15 +255,20 @@ export function StrategyWorksSection() {
                     );
                   })}
                 </ol>
-                <div className="mt-2 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-center">
+                <div className="mt-3 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-center">
                   <p className="text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-success">
                     Then The Cycle Repeats
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col p-6 sm:p-7">
-                <p className={invEyebrow}>INDEXLA Rule Builder</p>
+              <div className="flex flex-col p-5 sm:p-6 lg:p-7">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className={invEyebrow}>INDEXLA Rule Builder</p>
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+                    Example preview
+                  </p>
+                </div>
                 <motion.div
                   key={active.id}
                   className="mt-5 flex flex-1 flex-col"
@@ -264,7 +281,7 @@ export function StrategyWorksSection() {
                   </p>
                   <p className={`mt-3 ${invBody}`}>{active.detail}</p>
 
-                  <div className="mt-5 flex flex-1 flex-col justify-center gap-3">
+                  <div className="mt-5 flex flex-1 flex-col justify-center gap-2.5">
                     {active.rules.map((row) => (
                       <div
                         key={row.label}

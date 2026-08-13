@@ -27,6 +27,14 @@ function HeroStrategyPanel() {
 
   return (
     <div className="rounded-[1.35rem] border border-line bg-deep/80 p-5 text-center sm:p-6">
+      <div className="mb-4 flex items-center justify-between gap-2">
+        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+          Strategy preview
+        </p>
+        <p className="rounded-full border border-line bg-void/50 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+          Example
+        </p>
+      </div>
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className={`${invLabel} text-electric`}>Fear & Greed</p>

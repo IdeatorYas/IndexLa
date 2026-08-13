@@ -86,7 +86,7 @@ export function Hero() {
 
           <div className="mt-8 flex w-full flex-col items-center justify-center sm:mt-10">
             <Button
-              href="/#early-access"
+              href="/investors#early-access"
               className={`${homeCta} w-full max-w-[20rem] sm:w-auto`}
             >
               Reserve Early Access
