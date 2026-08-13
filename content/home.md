@@ -1,294 +1,295 @@
 # INDEXLA
 
-# Hero
+## 1. HERO
 
-### **Decentralized Portfolio Management**
+### **One Portfolio. Every Asset. Every Chain.**
 
-**The non-custodial portfolio distribution layer for crypto and tokenized assets.**
+Hold the real assets in your wallet. Set the rules once. Automate execution 
 
-0% management · 0% performance · 0% exit · 1% execution
- Only 1% execution fee when trades occur
+keys never leave your control.
 
-[Reserve Early Access] [Join Early Access]
+Build diversified portfolios across crypto and tokenized assets.
 
-multi-asset · cross-chain · non-custodial · Automated · Creator Marketplace
+0% Management · 0% Performance · 0% Exit · Only 1% When Trades Execute
 
----
+Reserve Early Access
 
-# What is INDEXLA?
+Non-Custodial · Revocable Permissions · No Admin Keys
 
-**INDEXLA is a non-custodial portfolio management layer for investing across crypto, tokenized stocks, commodities, and RWAs, with programmable strategies and cross-chain execution in one portfolio.**
 
-Build your portfolio, define your rules, and let INDEXLA coordinate authorized execution while your assets remain under your control.
-
-### One Portfolio. Every Asset. Full Control.
 
 ---
 
-# The Problem vs Solution
+## 2. WHAT IS INDEXLA?
 
-Modern investing is fragmented, opaque, and increasingly difficult to manage across assets and chains.
+INDEXLA is a decentralized portfolio management platform for crypto and tokenized assets.
 
-### 01 — Fragmented Investing
+Build your own portfolio, discover creator strategies, or automate your investment rules from one interface.
 
-Assets and execution are scattered across chains, wallets, bridges, and platforms.
+Crypto + Tokenized Assets → One Portfolio → One Interface
 
-INDEXLA: One portfolio layer connecting supported assets and networks.
+Your assets remain in your wallet. INDEXLA can never touch your funds.
 
-### 02 —Single Token Products
+Investor Guide → · Creator Guide → · Strategies →
 
-A single token can represent a basket while hiding the underlying assets and allocations. 
 
-INDEXLA: Buy the underlying assets, hold the basket in your wallet, and see what you own.
-
-### 03 — Manual Strategy Execution
-
-Investors still manually execute strategies when market conditions change.
-
-INDEXLA: Define the rules once and automate authorized execution.
-
-### 04 — Creators Lack Portfolio Infrastructure
-
-Creators can influence investors but lack infrastructure to turn investment theses into persistent portfolios.
-
-INDEXLA: Publish investable portfolios and earn 50% of applicable execution fees.
-
-### One Layer. One Portfolio. Full Asset Ownership.
-
-Fragmented assets → Unified portfolio
-
-Opaque basket → Transparent underlying assets
-
-Manual strategies → Programmable execution
-
-Creator influence → Investable portfolios
-
-INDEXLA lets you buy the assets, hold the full basket, and control your portfolio directly.
-
-One permission layer connects portfolios across chains and asset classes, while execution remains non-custodial and rule-constrained.
-
-**multi-asset · multi-chain · non-custodial · Programmable · Creator Native**
 
 ---
 
-# The Financial System Is Being Tokenized
+## 3. PROBLEM → SOLUTION
 
-### Everything is moving on chain.
+### Investing Is Fragmented. INDEXLA Connects It.
 
-Distributed Asset Value: $38.14B
+Fragmented Markets  
+Assets are spread across chains, wallets and platforms.  
+→ One portfolio across supported assets and networks.
 
-Represented Asset Value: $373.37B
+Opaque Products  
+Many index products package exposure into a wrapper.  
+→ Own the underlying assets directly.
 
-Total Asset Holders: 1.72M
+Manual Investing  
+Managing allocations requires constant monitoring and execution.  
+→ Define rules and automate authorized execution.
 
-Source: RWA.xyz
+### Creators Have No Distribution Layer
 
-Treasuries, bonds, equities, commodities, funds, credit, and other RWAs are moving onto programmable blockchains.
+Creators share investment ideas, but their theses get lost in posts and content.
 
-BlackRock and major financial institutions are building tokenized asset infrastructure, while Saudi Arabia and the UAE are advancing real world asset tokenization.
+→ Turn your thesis into a public portfolio your audience can discover and invest in.
 
-The supply is growing fast.
 
-The next infrastructure opportunity is distribution.
-
----
-
-# The Missing Layer: Distribution
-
-Tokenization creates the assets.
-
-Blockchains provide settlement.
-
-Liquidity providers enable execution.
-
-INDEXLA provides the portfolio distribution layer.
-
-As more assets move on chain, investors need one layer to:
-
-Discover → Allocate → Manage → Automate
-
-Tokenized Assets → Creators → Portfolios → Investors → Execution
-
-Creators bring investment theses.
-
-Investors allocate to portfolios.
-
-INDEXLA connects assets, portfolios, strategies, and investors.
-
-# One Portfolio. Every Market.
-
-Build portfolios across:
-
-Crypto · Tokenized Stocks · Commodities · RWAs · Hybrid Portfolios
-
-### Supported Networks
-
-Ethereum · Base · Arbitrum · BNB Chain · Solana · Sui · Robinhood · and more
-
-Your portfolio becomes the single layer through which you define allocations, strategies, and execution rules.
-
-[Create Your Portfolio]
 
 ---
 
-## **Build & Automate Your Portfolio in Under 5 Minutes**
+## 4. THE MISSING LAYER
 
-The next generation of investors expects speed, simplicity, and control. INDEXLA brings multi-asset portfolios, programmable strategies, and non-custodial execution into a single layer.
+### The Missing Layer: Distribution
 
-Build your portfolio and automate execution across chains and assets.
+Tokenization is creating the assets. Creators are creating the ideas. Investors need a way to discover and access them.
 
-[Read More →](/investors)
+Assets → Creators → Portfolios → Investors → Execution
 
-# How It Works
+Learn How INDEXLA Works →
 
-### 01 — Connect
 
-Connect your wallet and create your portfolio.
-
-Your assets remain under your control.
-
-### 02 — Allocate
-
-Choose what you want to invest in and define the allocation.
-
-BTC · ETH · Tokenized Stocks · Gold · RWAs · and more
-
-### 03 — Automate
-
-Choose a strategy and configure its rules.
-
-DCA  
-Automatically invest according to a defined schedule.
-
-Rebalancing  
-Restore target allocations when portfolio weights drift.
-
-Take Profit  
-Automatically reduce a position when your predefined target is reached.
-
-Stop Loss  
-Reduce exposure when a predefined downside condition is triggered.
-
-Fear & Greed  
-Execute predefined actions based on market sentiment conditions.
-
-RSI  
-Trigger portfolio actions when predefined RSI conditions are reached.
-
-Momentum  
-Follow defined market trends by increasing exposure when momentum strengthens and reducing exposure when momentum weakens. 
-
-### 04 — Fund & Activate
-
-Confirm your portfolio and activate your strategy.
-
-Assets stay in your wallet. Permissions authorize execution.
-
-INDEXLA monitors the configured conditions and coordinates authorized execution across supported networks.
 
 ---
 
+## 5. WHY NOW?
+
+### WHY NOW
+
+Crypto adoption is growing while traditional assets are moving on-chain.
+
+$38B+ · $373B+ · 1.7M+  
+*Distributed Asset Value · Represented Asset Value · Asset Holders*  
+*Source: [RWA.xyz](http://RWA.xyz)*
+
+For the first time, crypto + tokenized assets can be combined into hybrid portfolios.
+
+But assets remain fragmented across chains, making cross-chain investing difficult for users.
+
+Tokenization creates the assets. Cross-chain infrastructure connects them. INDEXLA makes them investable together through one programmable portfolio.
+
+
+
 ---
 
-# Discover Portfolios
 
-Explore portfolios created around different investment theses.
+
+## 6. BUILD & AUTOMATE
+
+### Your Assets. Your Allocation. Your Rules.
+
+Build and automate portfolios with strategies designed for different market conditions.
+
+DCA · Rebalancing · Buy Fear · Sell Greed · Momentum · Take Profit / Stop Loss
+
+Explore Strategies →
+
+
+
+---
+
+## 7. HOW IT WORKS
+
+### Connect → Allocate → Automate → Fund & Activate
+
+Your assets never leave your wallet. INDEXLA only receives the limited permissions you approve.
+
+01 — Connect  
+Connect your wallet.
+
+02 — Allocate  
+Choose assets and target allocations.
+
+03 — Automate  
+Set your rules and approve permissions.
+
+04 — Fund & Activate  
+Fund your portfolio and activate your strategy.
+
+Your assets remain in your wallet. Execution follows only the permissions you approve.
+
+Read the Technical Architecture →
+
+
+
+---
+
+## 8. DISCOVER PORTFOLIOS
+
+### Discover Investment Ideas. Choose What Fits You.
+
+Explore portfolios built around different strategies, markets and investment theses.
 
 DeFi · AI · Crypto Cycles · Macro · RWAs · Hybrid Assets
 
-Creators can publish their strategies as investable portfolios.
+Creators publish portfolios. Investors discover strategies that fit their objectives and risk preferences.
 
-Investors choose which portfolios match their objectives and risk preferences.
+Explore Portfolios →
 
-All portfolio activity remains non-custodial.
 
-SIMULATED DATA — INDEXLA IS NOT YET LIVE
-
-Illustrative portfolios shown for demonstration purposes.
 
 ---
 
-# Built for Creators
+## 9. SECURITY & CONTROL
 
-### Turn your investment thesis into a portfolio.
+### Your Keys. Your Assets. Your Permissions.
 
-Instead of telling your audience what to buy, create a portfolio they can choose to follow.
+The protocol cannot withdraw your funds.
 
-Creators keep 50% of applicable execution fees generated by their portfolios.
+The protocol cannot expand its own permissions.
 
-For example, $100,000 of weekly execution volume in a creator portfolio generates a $1,000 execution fee. The creator receives $500.
+You can revoke access at any time.
 
-Top performing portfolios can also qualify for additional monthly rewards from the Rewards Pool, based on defined marketplace metrics.
+Execution only happens inside the rules you set.
 
-Creator retention and recurring portfolio activity are core metrics for marketplace sustainability.
+Security & Permissions →
 
-Creators can build, publish, monetize, and grow portfolios and indexes.
 
-[Read More →](/creators)
-
-[Create Your Portfolio]
 
 ---
 
-# $DEXLA — The Utility & Deflation Engine
+## 10. CREATOR MARKETPLACE
 
-$DEXLA powers the INDEXLA ecosystem through 4 core utilities and 4 deflationary burn mechanisms designed to align token demand with platform growth.
+### Turn Your Thesis Into a Portfolio
 
-**4 Core Utilities**
+Publish your strategy, build an audience and earn from your portfolio.
 
-1. Publish portfolios & indexes
-2. Creator ecosystem access
-3. Fee discounts
-4. Governance & ecosystem participation
+### 3 Ways to Earn
 
-**4 Burn Mechanisms**
+50% Execution Fees  
+Earn 50% of applicable execution fees generated by your portfolios.
 
-1. Creator publishing burns
-2. Protocol revenue buyback & burn
-3. Ecosystem activity burns
-4. Treasury-driven strategic burns
+Monthly Rewards  
+Earn marketplace rewards based on applicable activity and performance criteria.
 
-[Read More → Tokenomics](/tokenomics)
+Creator Tips  
+Receive tips directly from your audience.
 
----
+Create. Share. Earn.
 
-# Simple Economics
+Creator Guide →
 
-### Pay for execution, not management.
 
-0% management · 0% performance · 0% exit · 1% execution
-
-No subscription required.
-
-Creator portfolios share 50% of applicable execution fees with the creator.
-
-4 $DEXLA utilities + 4 burn mechanisms
-
-[Read More →](/tokenomics)
 
 ---
 
+## 11. BUSINESS MODEL
+
+### Simple. Multiple Revenue Streams.
+
+Platform Execution Fees  
+1% execution fee when portfolio trades execute.
+
+0% Management · 0% Performance · 0% Exit
+
+50% → Creator · 50% → INDEXLA
+
+### INDEXLA Treasury Portfolio
+
+INDEXLA manages one dedicated treasury portfolio. Profits from this portfolio provide an additional source of protocol revenue.
+
+Revenue comes from real platform execution + INDEXLA treasury growth.
+
+Read the Business Model →
+
+
+
 ---
 
-# **Your Strategy. Executed.**
 
-You define the rules.  
-AI helps monitor your portfolio and strategy conditions.  
-Smart contract permissions constrain execution.  
-Routing infrastructure handles authorized transactions across supported networks.
 
-**INDEXLA is your AI-assisted portfolio management layer, helping you monitor, manage, and automate your portfolio within your defined rules and permissions.**
+## 12. $DEXLA
 
-# Early Access
+### The Utility & Deflation Engine
 
-### Build the next generation of programmable portfolios.
+$DEXLA powers core platform and creator mechanics.
 
-Join early access for founders, creators, and crypto native investors.
+4 Core Utilities  
+Publish · Feature · Fee Discounts · Tips & Ranking
 
-[Join Early Access]
+4 Burn Mechanisms  
+Creator Publishing (100%) · Protocol Fees (10%) · Promotion (100%) · Treasury Profits (25%)
+
+Fixed Supply · Real Utility · Usage-Linked Value Accrual
+
+Read Tokenomics →
+
+
 
 ---
 
-# INDEXLA
 
-Invest in Everything. Own Everything. Control Everything.
+
+## 13. FINAL CTA
+
+### Invest in Everything. Own Everything. Control Everything.
+
+Build programmable portfolios across the evolving on-chain financial system while keeping ownership of your assets.
+
+Reserve Early Access
+
+
+
+---
+
+# DISCLAIMER
+
+Digital assets, tokenized assets and automated strategies involve significant risk, including possible loss of capital. Nothing on this website constitutes investment, financial, legal or tax advice. Past performance does not guarantee future results. Asset availability, functionality and eligibility may vary by jurisdiction. INDEXLA does not guarantee investment returns or execution outcomes.
+
+Full Disclaimer →
+
+
+
+---
+
+## 14. FAQ
+
+### Frequently Asked Questions
+
+Is INDEXLA custodial?  
+No. Your assets remain under your control in your wallet.
+
+Can INDEXLA or AI take my money?  
+No. Execution is limited to the permissions and rules you authorize. The protocol cannot withdraw your funds or expand its own permissions.
+
+What are the real fees?  
+0% management · 0% performance · 0% exit · 1% when trades execute.
+
+Do I hold the actual assets or a wrapper?  
+You hold the underlying assets directly. INDEXLA is designed around direct asset ownership rather than a single portfolio wrapper.
+
+Can I turn automation off?  
+Yes. You can revoke authorized permissions at any time.
+
+How do creators get paid?  
+Eligible creators receive 50% of applicable execution fees generated by their portfolios.
+
+View All FAQs →
+
+  
+
+
