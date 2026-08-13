@@ -5,6 +5,7 @@ import {
   homeBodyStrong,
   homeH2,
   homeH3,
+  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -12,7 +13,7 @@ export function FeesSection() {
   return (
     <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
+        <FadeIn className="text-center">
           <h2 className={homeH2}>Simple. Multiple Revenue Streams.</h2>
         </FadeIn>
 
@@ -20,13 +21,13 @@ export function FeesSection() {
           <FadeIn>
             <article className="flex h-full flex-col items-center rounded-3xl border border-line bg-void/45 px-6 py-8 text-center sm:px-8">
               <h3 className={homeH3}>Platform Execution Fees</h3>
-              <p className={`mt-4 ${homeBody}`}>
+              <p className={`mx-auto mt-4 max-w-[22rem] ${homeBody}`}>
                 1% execution fee when portfolio trades execute.
               </p>
-              <p className={`mt-5 ${homeBodyStrong}`}>
+              <p className={`mx-auto mt-5 max-w-[22rem] ${homeBodyStrong}`}>
                 0% Management · 0% Performance · 0% Exit
               </p>
-              <p className={`mt-5 ${homeBodyStrong}`}>
+              <p className={`mx-auto mt-5 max-w-[22rem] ${homeBodyStrong}`}>
                 50% → Creator · 50% → INDEXLA
               </p>
             </article>
@@ -35,11 +36,11 @@ export function FeesSection() {
           <FadeIn delay={0.05}>
             <article className="flex h-full flex-col items-center rounded-3xl border border-line bg-void/45 px-6 py-8 text-center sm:px-8">
               <h3 className={homeH3}>INDEXLA Treasury Portfolio</h3>
-              <p className={`mt-4 ${homeBody}`}>
+              <p className={`mx-auto mt-4 max-w-[22rem] ${homeBody}`}>
                 INDEXLA manages one dedicated treasury portfolio. Profits from
                 this portfolio provide an additional source of protocol revenue.
               </p>
-              <p className={`mt-5 ${homeBodyStrong}`}>
+              <p className={`mx-auto mt-5 max-w-[22rem] ${homeBodyStrong}`}>
                 Revenue comes from real platform execution + INDEXLA treasury
                 growth.
               </p>

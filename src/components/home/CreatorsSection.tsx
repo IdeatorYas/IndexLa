@@ -5,6 +5,7 @@ import {
   homeH2,
   homeH3,
   homeLede,
+  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -27,9 +28,9 @@ export function CreatorsSection() {
   return (
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
+        <FadeIn className="text-center">
           <h2 className={homeH2}>Turn Your Thesis Into a Portfolio</h2>
-          <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>
+          <p className={`mt-5 ${homeMeasure} ${homeBody}`}>
             Publish your strategy, build an audience and earn from your
             portfolio.
           </p>
@@ -43,7 +44,9 @@ export function CreatorsSection() {
                 <h3 className={`${homeH3} text-[clamp(1.15rem,2vw,1.4rem)]`}>
                   {item.title}
                 </h3>
-                <p className={`mt-3 ${homeBody}`}>{item.body}</p>
+                <p className={`mx-auto mt-3 max-w-[18rem] ${homeBody}`}>
+                  {item.body}
+                </p>
               </article>
             </FadeIn>
           ))}

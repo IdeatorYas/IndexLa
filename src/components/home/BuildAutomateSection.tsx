@@ -3,6 +3,7 @@ import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeH2,
+  homeMeasure,
   homePill,
   homeSection,
 } from "@/components/home/homeRhythm";
@@ -20,9 +21,9 @@ export function BuildAutomateSection() {
   return (
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
+        <FadeIn className="text-center">
           <h2 className={homeH2}>Your Assets. Your Allocation. Your Rules.</h2>
-          <p className={`mx-auto mt-6 max-w-[40rem] ${homeBody}`}>
+          <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
             Build and automate portfolios with strategies designed for different
             market conditions.
           </p>

@@ -9,6 +9,7 @@ import {
   homeBody,
   homeBodyStrong,
   homeH2,
+  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 import type { AssetKey } from "@/lib/site";
@@ -382,7 +383,7 @@ export function HowItWorksSection() {
             Connect → Allocate → Automate → Fund &amp; Activate
           </p>
           <p
-            className={`mx-auto mt-6 max-w-[40rem] font-semibold text-ink ${homeBodyStrong}`}
+            className={`mt-6 font-semibold text-ink ${homeMeasure} ${homeBodyStrong}`}
           >
             Your assets never leave your wallet. INDEXLA only receives the
             limited permissions you approve.
@@ -518,8 +519,8 @@ export function HowItWorksSection() {
           </FadeIn>
         </div>
 
-        <FadeIn className="mx-auto mt-10 max-w-3xl text-center">
-          <p className={homeBodyStrong}>
+        <FadeIn className="mt-10 text-center">
+          <p className={`${homeMeasure} ${homeBodyStrong}`}>
             Your assets remain in your wallet. Execution follows only the
             permissions you approve.
           </p>

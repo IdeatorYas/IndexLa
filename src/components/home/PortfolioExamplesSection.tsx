@@ -5,6 +5,7 @@ import { PORTFOLIOS } from "@/lib/site";
 import {
   homeBody,
   homeH2,
+  homeMeasure,
   homePill,
   homeSection,
 } from "@/components/home/homeRhythm";
@@ -22,9 +23,11 @@ export function PortfolioExamplesSection() {
   return (
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={homeH2}>Discover Investment Ideas. Choose What Fits You.</h2>
-          <p className={`mx-auto mt-5 max-w-[40rem] ${homeBody}`}>
+        <FadeIn className="text-center">
+          <h2 className={`${homeH2} ${homeMeasure}`}>
+            Discover Investment Ideas. Choose What Fits You.
+          </h2>
+          <p className={`mt-5 ${homeMeasure} ${homeBody}`}>
             Explore portfolios built around different strategies, markets and
             investment theses.
           </p>
@@ -35,7 +38,7 @@ export function PortfolioExamplesSection() {
               </span>
             ))}
           </div>
-          <p className={`mx-auto mt-6 max-w-[40rem] ${homeBody}`}>
+          <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
             Creators publish portfolios. Investors discover strategies that fit
             their objectives and risk preferences.
           </p>

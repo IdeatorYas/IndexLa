@@ -4,6 +4,7 @@ import {
   homeBody,
   homeChip,
   homeH2,
+  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -19,9 +20,9 @@ export function DistributionSection() {
   return (
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
+        <FadeIn className="text-center">
           <h2 className={homeH2}>The Missing Layer: Distribution</h2>
-          <p className={`mx-auto mt-6 max-w-[42rem] ${homeBody}`}>
+          <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
             Tokenization is creating the assets. Creators are creating the ideas.
             Investors need a way to discover and access them.
           </p>

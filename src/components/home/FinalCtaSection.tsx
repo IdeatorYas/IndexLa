@@ -7,6 +7,7 @@ import {
   homeBody,
   homeCta,
   homeH2,
+  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -27,10 +28,10 @@ export function FinalCtaSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className={homeH2}>
+          <h2 className={`${homeH2} ${homeMeasure}`}>
             Invest in Everything. Own Everything. Control Everything.
           </h2>
-          <p className={`mx-auto mt-6 max-w-2xl ${homeBody}`}>
+          <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
             Build programmable portfolios across the evolving on-chain financial
             system while keeping ownership of your assets.
           </p>
@@ -40,11 +41,11 @@ export function FinalCtaSection() {
             </Button>
           </div>
 
-          <div className="mx-auto mt-14 max-w-2xl border-t border-line pt-10 text-left sm:text-center">
+          <div className={`mt-14 border-t border-line pt-10 text-left sm:text-center ${homeMeasure}`}>
             <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
               Disclaimer
             </p>
-            <p className={`mt-4 text-[0.92rem] leading-relaxed text-muted sm:text-[0.98rem]`}>
+            <p className="mt-4 text-[0.92rem] leading-relaxed text-muted text-pretty text-balance sm:text-[0.98rem]">
               Digital assets, tokenized assets and automated strategies involve
               significant risk, including possible loss of capital. Nothing on
               this website constitutes investment, financial, legal or tax

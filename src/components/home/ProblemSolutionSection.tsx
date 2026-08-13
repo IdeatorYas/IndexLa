@@ -4,6 +4,7 @@ import {
   homeBodyStrong,
   homeH2,
   homeH3,
+  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -42,8 +43,10 @@ export function ProblemSolutionSection() {
       />
 
       <div className="section-pad container-max relative">
-        <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={homeH2}>Investing Is Fragmented. INDEXLA Connects It.</h2>
+        <FadeIn className="text-center">
+          <h2 className={`${homeH2} ${homeMeasure}`}>
+            Investing Is Fragmented. INDEXLA Connects It.
+          </h2>
         </FadeIn>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -51,8 +54,12 @@ export function ProblemSolutionSection() {
             <FadeIn key={item.title} delay={i * 0.05}>
               <article className="flex h-full flex-col items-center rounded-2xl border border-line bg-deep/50 p-6 text-center sm:p-7">
                 <h3 className={homeH3}>{item.title}</h3>
-                <p className={`mt-4 flex-1 ${homeBody}`}>{item.problem}</p>
-                <p className={`mt-5 border-t border-line pt-4 ${homeBodyStrong}`}>
+                <p className={`mx-auto mt-4 max-w-[22rem] flex-1 ${homeBody}`}>
+                  {item.problem}
+                </p>
+                <p
+                  className={`mx-auto mt-5 max-w-[22rem] border-t border-line pt-4 ${homeBodyStrong}`}
+                >
                   <span className="text-electric" aria-hidden>
                     →{" "}
                   </span>

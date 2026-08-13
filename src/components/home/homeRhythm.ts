@@ -11,20 +11,26 @@ export const homeH3 =
 export const homeEyebrow =
   "text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-electric";
 
+/**
+ * Controlled measure for multi-line homepage copy.
+ * Keeps line lengths intentional so wraps stay balanced (no long line + tiny orphan).
+ */
+export const homeMeasure = "mx-auto w-full max-w-[28rem] sm:max-w-[30.5rem]";
+
 /** Primary supporting body — use on every section paragraph for consistency */
 export const homeBody =
-  "text-[1.125rem] leading-[1.75] text-muted text-pretty sm:text-[1.2rem]";
+  "text-[1.125rem] leading-[1.75] text-muted text-pretty text-balance sm:text-[1.2rem]";
 
 /** Same size/weight/leading as homeBody; slightly softer color for secondary lines */
 export const homeBodyDim =
-  "text-[1.125rem] leading-[1.75] text-muted/90 text-pretty sm:text-[1.2rem]";
+  "text-[1.125rem] leading-[1.75] text-muted/90 text-pretty text-balance sm:text-[1.2rem]";
 
 export const homeLede =
   "mt-5 text-[1.15rem] font-semibold leading-snug text-ink text-pretty sm:text-[1.25rem]";
 
 /** Solution / emphasis line that sits under body copy in cards */
 export const homeBodyStrong =
-  "text-[1.125rem] leading-[1.75] text-ink text-pretty sm:text-[1.2rem]";
+  "text-[1.125rem] leading-[1.75] text-ink text-pretty text-balance sm:text-[1.2rem]";
 
 /** Compact UI labels inside cards/demos — not page body copy */
 export const homeLabel =

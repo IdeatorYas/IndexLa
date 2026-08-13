@@ -6,6 +6,7 @@ import {
   homeBody,
   homeBodyDim,
   homeCta,
+  homeMeasure,
 } from "@/components/home/homeRhythm";
 import { Button } from "@/components/ui/Button";
 
@@ -35,21 +36,21 @@ export function Hero() {
 
       <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-14 pt-28">
         <motion.div
-          className="mx-auto w-full max-w-[44rem] text-center"
+          className="mx-auto w-full max-w-[38rem] text-center"
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="mx-auto mb-8 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
 
-          <h1 className="display text-[clamp(2.35rem,6.2vw,4.35rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
+          <h1 className="mx-auto max-w-[20rem] display text-[clamp(2.1rem,5.8vw,4rem)] font-semibold leading-[1.08] tracking-[-0.035em] sm:max-w-[34rem]">
             <span className="block text-ink">One Portfolio</span>
-            <span className="gradient-text mt-[0.18em] block">
+            <span className="gradient-text mt-[0.18em] block whitespace-nowrap">
               Every Asset. Every Chain
             </span>
           </h1>
 
-          <div className={`mx-auto mt-7 max-w-[34rem] space-y-4 ${homeBody}`}>
+          <div className={`mt-7 space-y-4 ${homeMeasure} ${homeBody}`}>
             <p>
               Hold the real assets in your wallet. Set the rules once. Automate
               execution without giving up control.
@@ -60,7 +61,7 @@ export function Hero() {
           </div>
 
           <div
-            className="mx-auto mt-8 max-w-[40rem]"
+            className={`mt-8 ${homeMeasure}`}
             aria-label="Fee structure highlights"
           >
             <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
@@ -69,7 +70,7 @@ export function Hero() {
                   key={label}
                   className="flex min-h-[4.25rem] items-center justify-center rounded-xl border border-electric/20 bg-white/[0.035] px-3 py-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm"
                 >
-                  <p className="text-center text-[0.82rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[0.9rem]">
+                  <p className="text-center text-[0.78rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[0.86rem]">
                     {label}
                   </p>
                 </div>

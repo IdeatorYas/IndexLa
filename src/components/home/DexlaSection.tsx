@@ -4,6 +4,7 @@ import {
   homeBody,
   homeH2,
   homeH3,
+  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -31,12 +32,12 @@ export function DexlaSection() {
   return (
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
+        <FadeIn className="text-center">
           <h2 className={homeH2}>
             $DEXLA — The Utility &{" "}
             <span className="gradient-text">Deflation Engine</span>
           </h2>
-          <p className={`mx-auto mt-6 max-w-[40rem] ${homeBody}`}>
+          <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
             $DEXLA powers core platform and creator mechanics.
           </p>
         </FadeIn>
