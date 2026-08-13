@@ -1,6 +1,6 @@
 /** Shared visual rhythm for the main homepage only — presentation classes, not copy. */
 export const homeSection =
-  "relative border-t border-line py-11 md:py-14 lg:py-16";
+  "relative border-t border-line py-12 md:py-16 lg:py-[4.25rem]";
 
 export const homeH2 =
   "display text-[clamp(1.85rem,4vw,2.85rem)] font-semibold tracking-[-0.03em] text-ink text-balance text-pretty";

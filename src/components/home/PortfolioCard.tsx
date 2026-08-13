@@ -14,71 +14,63 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
 
   return (
     <motion.article
-      whileHover={{ y: -6, scale: 1.01 }}
-      transition={{ type: "spring", stiffness: 320, damping: 24 }}
-      className={`group relative flex h-full flex-col overflow-hidden rounded-3xl glass p-5 sm:p-6 ${
+      whileHover={{ y: -3 }}
+      transition={{ type: "spring", stiffness: 320, damping: 28 }}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-deep/45 p-4 sm:p-5 ${
         featured ? "md:col-span-2 lg:col-span-1" : ""
       }`}
     >
-      <div
-        className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-electric/10 blur-3xl transition-opacity group-hover:opacity-100"
-        aria-hidden
-      />
-
       <div className="flex items-start justify-between gap-3">
         <div>
           <span
-            className={`inline-flex rounded-full border px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] ${typeStyle.className}`}
+            className={`inline-flex rounded-full border px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.12em] ${typeStyle.className}`}
           >
             {typeStyle.label}
           </span>
-          <h3 className="display mt-3 text-[clamp(1.15rem,2.4vw,1.35rem)] tracking-[-0.02em] text-ink text-balance text-pretty">
+          <h3 className="display mt-2.5 text-[clamp(1.05rem,2.2vw,1.25rem)] tracking-[-0.02em] text-ink text-balance text-pretty">
             {portfolio.name}
           </h3>
         </div>
         <div className="text-right">
           <p
-            className={`text-lg font-semibold tabular-nums ${
-              portfolio.performancePositive ? "text-success" : "text-danger"
+            className={`text-[1.05rem] font-semibold tabular-nums ${
+              portfolio.performancePositive ? "text-success/90" : "text-danger"
             }`}
           >
             {portfolio.performance}
           </p>
-          <p className="mt-1 inline-flex items-center rounded-md border border-success/35 bg-success/10 px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-success">
-            Illustrative
-          </p>
-          <p className="mt-1.5 text-[0.7rem] font-medium leading-snug text-muted">
+          <p className="mt-1 text-[0.68rem] font-medium leading-snug text-muted-dim">
             Demo performance
           </p>
         </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-1.5">
         {portfolio.assets.map((key) => (
           <div
             key={key}
-            className="flex items-center gap-1.5 rounded-full border border-line bg-void/55 py-1 pl-1 pr-2.5"
+            className="flex items-center gap-1.5 rounded-full border border-line bg-void/50 py-0.5 pl-1 pr-2"
             title={ASSETS[key].name}
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-panel/80">
-              <AssetLogo asset={key} size={16} />
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-panel/80">
+              <AssetLogo asset={key} size={14} />
             </span>
-            <span className="text-[0.68rem] font-semibold tracking-[-0.01em] text-ink/90">
+            <span className="text-[0.65rem] font-semibold tracking-[-0.01em] text-ink/85">
               {ASSETS[key].ticker}
             </span>
           </div>
         ))}
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
-        <div className="rounded-2xl bg-void/40 px-3 py-3">
-          <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-dim">
+      <div className="mt-4 grid grid-cols-2 gap-2.5 text-sm">
+        <div className="rounded-xl bg-void/35 px-3 py-2.5">
+          <p className="text-[0.62rem] uppercase tracking-[0.12em] text-muted-dim">
             Demo AUM
           </p>
           <p className="mt-1 font-semibold text-ink">{portfolio.aum}</p>
         </div>
-        <div className="rounded-2xl bg-void/40 px-3 py-3">
-          <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-dim">
+        <div className="rounded-xl bg-void/35 px-3 py-2.5">
+          <p className="text-[0.62rem] uppercase tracking-[0.12em] text-muted-dim">
             Strategy
           </p>
           <p className="mt-1 font-semibold leading-snug text-ink">
@@ -87,8 +79,8 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
         </div>
       </div>
 
-      <div className="mt-4 space-y-2">
-        <p className="text-[0.65rem] uppercase tracking-[0.12em] text-muted-dim">
+      <div className="mt-3.5 space-y-2">
+        <p className="text-[0.62rem] uppercase tracking-[0.12em] text-muted-dim">
           Demo allocation
         </p>
         {portfolio.allocation.map((row) => (
@@ -97,9 +89,9 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
               <span>{row.label}</span>
               <span>{row.pct}%</span>
             </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-white/5">
+            <div className="h-1 overflow-hidden rounded-full bg-white/5">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-purple to-electric"
+                className="h-full rounded-full bg-gradient-to-r from-purple/80 to-electric/80"
                 initial={{ width: 0 }}
                 whileInView={{ width: `${row.pct}%` }}
                 viewport={{ once: true }}
@@ -110,12 +102,9 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
         ))}
       </div>
 
-      <p className="mt-5 border-t border-line pt-4 text-[1.05rem] leading-snug text-muted">
-        <span className="text-electric">Activity · </span>
+      <p className="mt-4 border-t border-line pt-3 text-[0.95rem] leading-snug text-muted">
+        <span className="text-electric/90">Activity · </span>
         {portfolio.activity}
-        <span className="ml-2 inline-flex items-center rounded-md border border-success/30 bg-success/10 px-1.5 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-success">
-          Illustrative
-        </span>
       </p>
     </motion.article>
   );

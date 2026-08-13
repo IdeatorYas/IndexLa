@@ -126,16 +126,7 @@ function DemoChrome({
 function ConnectDemo() {
   return (
     <DemoChrome title="Connect">
-      <div className="mx-auto grid max-w-xl gap-5">
-        <div className="rounded-2xl border border-electric/30 bg-gradient-to-br from-electric/15 to-purple/10 px-5 py-6 text-center">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
-            01 — Connect
-          </p>
-          <p className="display mt-3 text-[1.5rem] text-ink sm:text-[1.7rem]">
-            Connect your wallet
-          </p>
-          <p className={`mt-2 ${homeBody}`}>Connect your wallet.</p>
-        </div>
+      <div className="mx-auto grid max-w-xl gap-4">
         <div className="space-y-2.5">
           {["Browser Wallet", "Hardware Wallet", "Smart Account"].map(
             (label, i) => (
@@ -171,13 +162,7 @@ function AllocateDemo() {
     <DemoChrome title="Allocate">
       <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
         <div className="rounded-2xl border border-line bg-deep/60 p-4 sm:p-5">
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
-            02 — Allocate
-          </p>
-          <p className={`mt-2 ${homeBody}`}>
-            Choose assets and target allocations.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
             {INVEST_CHIPS.map((item) => (
               <span
                 key={item.label}
@@ -243,13 +228,7 @@ function AutomateDemo({
     <DemoChrome title="Automate">
       <div className="grid gap-5 lg:grid-cols-[1fr_1.05fr]">
         <div>
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
-            03 — Automate
-          </p>
-          <p className={`mt-2 ${homeBody}`}>
-            Set your rules and approve permissions.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
             {STRATEGIES.map((item, i) => (
               <button
                 key={item.name}
@@ -303,20 +282,7 @@ function ActivateDemo() {
     <DemoChrome title="Fund & Activate">
       <div className="mx-auto grid max-w-lg gap-4">
         <div className="rounded-2xl border border-line bg-deep/70 px-5 py-5">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-                04 — Fund & Activate
-              </p>
-              <p className="mt-2 font-semibold text-ink">
-                Fund your portfolio and activate your strategy.
-              </p>
-            </div>
-            <span className="rounded-full border border-electric/30 bg-electric/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
-              Ready
-            </span>
-          </div>
-          <div className="mt-5 grid grid-cols-2 gap-2.5 text-sm">
+          <div className="grid grid-cols-2 gap-2.5 text-sm">
             <div className="rounded-xl border border-line bg-void/40 px-3 py-3">
               <p className="text-[0.65rem] uppercase tracking-[0.1em] text-muted-dim">
                 Custody
@@ -330,15 +296,6 @@ function ActivateDemo() {
               <p className="mt-1 font-semibold text-ink">Authorize execution</p>
             </div>
           </div>
-        </div>
-        <div className="rounded-2xl border border-electric/30 bg-electric/10 px-5 py-4">
-          <p className={homeBodyStrong}>
-            Your assets remain in your wallet. Execution follows only the
-            permissions you approve.
-          </p>
-        </div>
-        <div className="rounded-2xl border border-line bg-gradient-to-r from-purple/35 to-blue/30 px-5 py-5 text-center">
-          <p className="display text-[1.35rem] text-ink">Fund & Activate</p>
         </div>
       </div>
     </DemoChrome>
@@ -378,8 +335,10 @@ export function HowItWorksSection() {
 
       <div className="section-pad container-max relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={homeH2}>How It Works</h2>
-          <p className="mt-4 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
+          <div className="indexla-orbit mx-auto mb-8 inline-block">
+            <h2 className={homeH2}>How It Works</h2>
+          </div>
+          <p className="mt-1 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted sm:text-[0.82rem]">
             Connect → Allocate → Automate → Fund &amp; Activate
           </p>
           <p
@@ -402,9 +361,9 @@ export function HowItWorksSection() {
                     type="button"
                     onClick={() => goTo(i)}
                     aria-pressed={selected}
-                    className={`group relative flex h-full min-h-[8.75rem] w-full flex-col items-center justify-start rounded-2xl border px-4 pb-5 pt-4 text-center transition-all ${
+                    className={`group relative flex h-full min-h-[7.75rem] w-full flex-col items-center justify-start rounded-2xl border px-3.5 pb-4 pt-3.5 text-center transition-all xl:px-4 ${
                       selected
-                        ? "border-electric/45 bg-white/[0.07] shadow-[0_0_36px_rgba(56,189,248,0.14)]"
+                        ? "border-electric/45 bg-white/[0.07] shadow-[0_0_28px_rgba(56,189,248,0.12)]"
                         : done
                           ? "border-electric/20 bg-electric/[0.04]"
                           : "border-line bg-void/30 hover:border-white/20 hover:bg-white/[0.03]"

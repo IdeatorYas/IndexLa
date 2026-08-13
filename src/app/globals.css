@@ -96,4 +96,38 @@
     border: 1px solid rgba(167, 139, 250, 0.14);
     backdrop-filter: blur(12px);
   }
+
+  /* Subtle INDEXLA brand accent — single thin orbit using brand colors */
+  .indexla-orbit {
+    position: relative;
+  }
+
+  .indexla-orbit::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.35rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    translate: -50% -100%;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--color-electric) 35%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-purple) 18%, transparent);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .indexla-orbit::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.35rem;
+    width: 0.35rem;
+    height: 0.35rem;
+    translate: -50% calc(-100% - 1.05rem);
+    border-radius: 9999px;
+    background: var(--color-electric);
+    opacity: 0.7;
+    pointer-events: none;
+  }
 }
