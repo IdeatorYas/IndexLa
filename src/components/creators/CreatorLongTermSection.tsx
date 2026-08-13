@@ -29,19 +29,11 @@ export function CreatorLongTermSection() {
           </h2>
           <p className={`mx-auto mt-5 max-w-[36rem] ${crBody} text-balance`}>
             INDEXLA is built around investment strategies designed for long-term
-            portfolio management,
-            <br className="hidden sm:block" />
-            not day-trading noise.
-          </p>
-          <p className={`mx-auto mt-3 max-w-[36rem] ${crBody} text-balance`}>
-            Build around market cycles, accumulation, profit taking,
-            rebalancing, momentum,
-            <br className="hidden md:block" />
-            and other predefined conditions.
+            portfolio management, not day-trading noise.
           </p>
         </FadeIn>
 
-        <FadeIn className="mt-9">
+        <FadeIn className="mt-8">
           <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-2">
             {levers.map((label) => (
               <span
@@ -52,9 +44,13 @@ export function CreatorLongTermSection() {
               </span>
             ))}
           </div>
+          <p className={`mx-auto mt-5 max-w-[36rem] text-center text-[0.95rem] leading-relaxed text-muted text-balance`}>
+            Build around market cycles, accumulation, profit taking,
+            rebalancing, momentum, and other predefined conditions.
+          </p>
         </FadeIn>
 
-        <FadeIn className="mt-9 text-center">
+        <FadeIn className="mt-8 text-center">
           <div className="inline-flex justify-center">
             <div className={crGreenBox}>
               <p className={crGreenText}>

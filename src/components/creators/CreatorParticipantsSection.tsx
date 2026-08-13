@@ -16,7 +16,7 @@ const steps = [
     preview: (
       <div className="rounded-xl border border-white/[0.06] bg-void/50 p-3 text-left">
         <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-electric">
-          Marketplace
+          Creator Marketplace
         </p>
         <p className="mt-1.5 text-[0.9rem] font-semibold text-ink">
           Hybrid Wealth Strategy
@@ -88,7 +88,7 @@ export function CreatorParticipantsSection() {
   return (
     <section className={`${crSection} bg-void`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-[40rem] text-center">
+        <FadeIn className="mx-auto max-w-[42rem] text-center">
           <h2 className={`${crH2} uppercase`}>
             From Followers To{" "}
             <span className="gradient-text">Portfolio Participants.</span>
@@ -99,6 +99,11 @@ export function CreatorParticipantsSection() {
           <p className={`mt-3 ${crBody} text-balance`}>
             Give them something they can evaluate, customize, and choose to
             follow.
+          </p>
+          <p className={`mx-auto mt-5 max-w-[38rem] ${crBody} text-balance`}>
+            The Creator Marketplace provides a dedicated discovery and
+            distribution layer — so you can reach investors beyond your existing
+            X and Telegram audience.
           </p>
         </FadeIn>
 

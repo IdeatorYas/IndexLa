@@ -120,10 +120,19 @@ Performance 35% + AUM 30% + Volume 20% + Tips 15%
 
 Build, perform, grow your AUM, and earn your place among the top creators.
 
-  
 
 
-# TRANSPARENCY BUILDS CREDIBILITY.
+### **GET TIPPED. CLIMB THE RANKINGS**
+
+
+
+Your audience can tip you directly with any token.
+
+**$DEXLA Tips** → Tip you + boost your marketplace ranking
+
+Higher ranking increases visibility in **monthly creator competitions and rewards**.
+
+# TRANSPARENCY BUILDS CREDIBILITY
 
 Your strategy and track record can be evaluated by the people who choose to follow it.
 

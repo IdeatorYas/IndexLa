@@ -24,6 +24,21 @@ const trust = [
   },
 ] as const;
 
+const controls = [
+  {
+    title: "You control the portfolio",
+    body: "Creators manage their own portfolio strategy end to end.",
+  },
+  {
+    title: "Pause or remove anytime",
+    body: "You can pause or remove your portfolio when you choose.",
+  },
+  {
+    title: "Your brand stays yours",
+    body: "Creator disclosures and branding are respected.",
+  },
+] as const;
+
 export function CreatorBecomeSection() {
   return (
     <section
@@ -73,8 +88,23 @@ export function CreatorBecomeSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mx-auto mt-10 max-w-2xl text-center">
-          <p className={`${crBody} text-balance`}>
+        <FadeIn className="mx-auto mt-10 max-w-4xl">
+          <div className="grid gap-3 sm:grid-cols-3">
+            {controls.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-white/[0.07] bg-void/35 px-5 py-6 text-center"
+              >
+                <p className="text-[0.95rem] font-semibold tracking-[-0.01em] text-ink">
+                  {item.title}
+                </p>
+                <p className="mt-2 text-[0.9rem] leading-relaxed text-muted text-pretty">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className={`mx-auto mt-7 max-w-2xl text-center ${crBody} text-balance`}>
             Built with eligibility, disclosure, and jurisdiction controls
             designed into the creator experience.
           </p>

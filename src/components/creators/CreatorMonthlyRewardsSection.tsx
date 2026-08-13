@@ -29,10 +29,7 @@ export function CreatorMonthlyRewardsSection() {
             Creator Rewards Pool, distributed to Top 25 creators based on
             performance points.
           </p>
-          <p className={`mx-auto mt-5 max-w-2xl ${crBody} text-balance`}>
-            Top 25 creators ranked by performance points:
-          </p>
-          <p className="mx-auto mt-4 display text-[clamp(1rem,2.5vw,1.25rem)] font-semibold tracking-[-0.01em] text-ink">
+          <p className="mx-auto mt-5 display text-[clamp(1rem,2.5vw,1.25rem)] font-semibold tracking-[-0.01em] text-ink">
             Performance 35% + AUM 30% + Volume 20% + Tips 15%
           </p>
         </FadeIn>
@@ -52,6 +49,28 @@ export function CreatorMonthlyRewardsSection() {
                 </p>
               </div>
             ))}
+          </div>
+        </FadeIn>
+
+        <FadeIn className="mt-10">
+          <div
+            className={`mx-auto max-w-3xl ${crSurface} px-6 py-9 text-center sm:px-10 sm:py-11`}
+          >
+            <h3 className="display text-[clamp(1.35rem,3.2vw,1.85rem)] font-semibold tracking-[-0.02em] text-ink uppercase">
+              Get Tipped. Climb The Rankings.
+            </h3>
+            <p className={`mx-auto mt-5 max-w-xl ${crBody} text-balance`}>
+              Your audience can tip you directly with any token.
+            </p>
+            <p className="mx-auto mt-5 max-w-xl text-[1.05rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1.12rem]">
+              <span className="gradient-text">$DEXLA Tips</span>
+              {" → "}
+              Tip you + boost your marketplace ranking
+            </p>
+            <p className={`mx-auto mt-5 max-w-xl ${crBody} text-balance`}>
+              Higher ranking increases visibility in monthly creator competitions
+              and rewards.
+            </p>
           </div>
         </FadeIn>
       </div>

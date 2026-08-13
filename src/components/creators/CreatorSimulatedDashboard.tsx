@@ -1,6 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
+import { XLogo } from "@/components/creators/SocialBrandLogos";
 import {
   crBodyStrong,
   crH2,
@@ -25,6 +26,18 @@ const metrics = [
   { label: "Performance", value: "+30%", accent: true },
   { label: "Creator Fees Earned", value: "$100K", accent: true },
 ] as const;
+
+function XVerifiedCheck({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 22 22" className={className} aria-hidden>
+      <circle cx="11" cy="11" r="11" fill="#1D9BF0" />
+      <path
+        fill="#fff"
+        d="M9.66 14.74 6.4 11.48l1.13-1.13 2.13 2.12 4.8-4.8 1.13 1.13z"
+      />
+    </svg>
+  );
+}
 
 export function CreatorSimulatedDashboard() {
   return (
@@ -52,16 +65,31 @@ export function CreatorSimulatedDashboard() {
             <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
               <div className="space-y-0 border-b border-white/[0.07] lg:border-b-0 lg:border-r">
                 <div className="border-b border-white/[0.07] p-6 sm:p-7">
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-electric">
-                    X Verification
-                  </p>
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
-                    <span className="rounded-full border border-success/45 bg-success/12 px-3.5 py-1.5 text-[0.78rem] font-semibold text-success">
-                      Verified
-                    </span>
-                    <span className="rounded-full border border-line bg-void/55 px-3.5 py-1.5 text-[0.78rem] font-semibold text-muted-dim">
-                      Unverified
-                    </span>
+                  <div className="flex items-start gap-3.5">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/[0.1] bg-void/70 text-ink">
+                      <XLogo className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <p className="text-[1.05rem] font-semibold tracking-[-0.02em] text-ink">
+                          INDEXLA Creator
+                        </p>
+                        <XVerifiedCheck className="h-[1.05rem] w-[1.05rem]" />
+                      </div>
+                      <p className="mt-0.5 text-[0.88rem] text-muted-dim">
+                        @creator
+                      </p>
+                      <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#1D9BF0]/35 bg-[#1D9BF0]/10 px-3 py-1.5">
+                        <XVerifiedCheck className="h-3.5 w-3.5" />
+                        <span className="text-[0.76rem] font-semibold tracking-[0.02em] text-ink">
+                          Verified Creator
+                        </span>
+                      </div>
+                      <p className="mt-2.5 text-[0.8rem] leading-snug text-muted">
+                        Verified through X. Same verification system creators
+                        already use.
+                      </p>
+                    </div>
                   </div>
                 </div>
 

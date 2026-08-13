@@ -130,10 +130,20 @@ export function CreatorEconomicsSection() {
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-9 text-center">
-          <Button href="#early-access" className={crCta}>
-            Reserve Early Access
-          </Button>
+        <FadeIn className="mx-auto mt-9 max-w-2xl text-center">
+          <p className={`${crBody} text-balance`}>
+            Creators earn when followers trade, rebalance, take profits, or
+            adjust allocations.
+          </p>
+          <p className="mt-4 text-[1.08rem] font-semibold tracking-[-0.015em] text-ink text-balance sm:text-[1.15rem]">
+            Your audience gets a portfolio. Your thesis becomes an ongoing
+            revenue stream.
+          </p>
+          <div className="mt-8">
+            <Button href="#early-access" className={crCta}>
+              Reserve Early Access
+            </Button>
+          </div>
         </FadeIn>
       </div>
     </section>

@@ -95,6 +95,16 @@ export function CreatorHybridPortfolioSection() {
                 </p>
                 <span className="text-muted-dim">·</span>
                 <p className="text-[0.78rem] text-muted">Hybrid Wealth Strategy</p>
+                <span className="ml-0.5 inline-flex items-center gap-1 rounded-full border border-[#1D9BF0]/30 bg-[#1D9BF0]/10 px-2 py-0.5 text-[0.65rem] font-semibold text-ink">
+                  <svg viewBox="0 0 22 22" className="h-3 w-3" aria-hidden>
+                    <circle cx="11" cy="11" r="11" fill="#1D9BF0" />
+                    <path
+                      fill="#fff"
+                      d="M9.66 14.74 6.4 11.48l1.13-1.13 2.13 2.12 4.8-4.8 1.13 1.13z"
+                    />
+                  </svg>
+                  Verified Creator
+                </span>
               </div>
               <p className="rounded-full border border-electric/30 bg-electric/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
                 Portfolio + Strategy
