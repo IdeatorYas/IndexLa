@@ -30,16 +30,16 @@ export function TokenizationSection() {
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-3">
+          <div className="mx-auto grid max-w-3xl auto-rows-fr gap-3 sm:grid-cols-3 sm:gap-4">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-line bg-void/45 px-5 py-7 text-center sm:px-6"
+                className="flex h-full flex-col items-center justify-center rounded-2xl border border-line bg-void/45 px-5 py-8 text-center sm:px-6"
               >
                 <p className="display text-[clamp(1.75rem,3.5vw,2.4rem)] leading-none gradient-text">
                   {stat.value}
                 </p>
-                <p className="mt-3 text-[0.95rem] font-semibold tracking-[0.02em] text-muted">
+                <p className="mt-3 text-[0.95rem] font-semibold tracking-[0.02em] text-muted text-balance">
                   {stat.label}
                 </p>
               </div>

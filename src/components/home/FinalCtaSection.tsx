@@ -35,13 +35,15 @@ export function FinalCtaSection() {
             Build programmable portfolios across the evolving on-chain financial
             system while keeping ownership of your assets.
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-center">
             <Button href="/creators" className={homeCta}>
               Reserve Early Access
             </Button>
           </div>
 
-          <div className={`mt-14 border-t border-line pt-10 text-left sm:text-center ${homeMeasure}`}>
+          <div
+            className={`mt-14 border-t border-line pt-10 text-left sm:text-center ${homeMeasure}`}
+          >
             <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
               Disclaimer
             </p>

@@ -21,7 +21,7 @@ export function SecurityControlSection() {
     <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <p className={homeEyebrow}>Security &amp; Control</p>
+          <p className={homeEyebrow}>SECURITY &amp; CONTROL</p>
           <h2 className={`mt-3 ${homeH2} ${homeMeasure}`}>
             Your Keys. Your Assets. Your Permissions.
           </h2>
@@ -30,7 +30,7 @@ export function SecurityControlSection() {
         <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:gap-4">
           {points.map((point, i) => (
             <FadeIn key={point} delay={i * 0.04}>
-              <article className="flex h-full min-h-[6.5rem] items-center justify-center rounded-2xl border border-line bg-void/50 px-5 py-7 text-center sm:px-6">
+              <article className="flex h-full min-h-[6.75rem] items-center justify-center rounded-2xl border border-line bg-void/50 px-5 py-7 text-center sm:px-6">
                 <p className={`${homeMeasureTight} ${homeBody} text-ink`}>
                   {point}
                 </p>

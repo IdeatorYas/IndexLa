@@ -83,6 +83,9 @@ export function DexlaSection() {
 
         <FadeIn className="mt-8 text-center">
           <p className={`${homeBody} font-semibold text-ink`}>
+            Total Supply: 100,000,000 $DEXLA
+          </p>
+          <p className={`mt-3 ${homeBody} font-semibold text-ink`}>
             Fixed Supply · Real Utility · Usage-Linked Value Accrual
           </p>
           <Link

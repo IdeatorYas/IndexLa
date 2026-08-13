@@ -3,6 +3,7 @@ import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeBodyStrong,
+  homeEyebrow,
   homeH2,
   homeMeasure,
   homeSection,
@@ -19,9 +20,7 @@ export function WhatIsIndexlaSection() {
         <FadeIn className={`${homeMeasure} text-center`}>
           <div className="mx-auto mb-6 h-px w-12 bg-gradient-to-r from-transparent via-electric/70 to-transparent" />
 
-          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-electric">
-            What is INDEXLA?
-          </p>
+          <p className={homeEyebrow}>What is INDEXLA?</p>
           <h2 className={`mt-3 ${homeH2}`}>
             Decentralized Portfolio Management
           </h2>

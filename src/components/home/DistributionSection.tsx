@@ -28,14 +28,14 @@ export function DistributionSection() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mt-8">
-          <div className="rounded-3xl glass px-5 py-8 text-center sm:px-10 sm:py-10">
-            <div className="flex flex-wrap items-center justify-center gap-2">
+        <FadeIn className="mx-auto mt-9 max-w-4xl">
+          <div className="rounded-3xl border border-electric/25 bg-gradient-to-b from-electric/[0.08] to-transparent px-5 py-9 text-center sm:px-10 sm:py-11">
+            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
               {flow.map((item, i) => (
                 <div key={item} className="flex items-center gap-2">
                   <span className={homeChip}>{item}</span>
                   {i < flow.length - 1 ? (
-                    <span className="text-electric/70" aria-hidden>
+                    <span className="text-electric/80" aria-hidden>
                       →
                     </span>
                   ) : null}

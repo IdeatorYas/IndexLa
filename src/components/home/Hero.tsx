@@ -33,25 +33,23 @@ export function Hero() {
 
       <FloatingAssetUniverse />
 
-      <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-14 pt-28">
+      <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-16 pt-28">
         <motion.div
-          className="mx-auto w-full max-w-[46rem] text-center"
+          className="mx-auto w-full max-w-[48rem] text-center"
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="mx-auto mb-9 h-px w-14 bg-gradient-to-r from-transparent via-electric to-transparent" />
 
-          <h1 className="display mx-auto flex w-full max-w-[min(100%,38rem)] flex-col items-center justify-center gap-3 px-2 text-[clamp(2rem,5.6vw,4.25rem)] font-semibold tracking-[-0.04em]">
+          <h1 className="display mx-auto flex w-full max-w-[min(100%,40rem)] flex-col items-center justify-center gap-3.5 px-2 text-[clamp(2.05rem,5.8vw,4.35rem)] font-semibold tracking-[-0.04em]">
             <span className="block leading-none text-ink">One Portfolio</span>
-            <span className="gradient-text block leading-[1.12] text-center">
+            <span className="block leading-[1.12] text-center text-electric">
               Every Asset. Every Chain
             </span>
           </h1>
 
-          <div
-            className={`mx-auto mt-8 max-w-[24.5rem] space-y-3.5 sm:max-w-[27rem] ${homeBody}`}
-          >
+          <div className={`mx-auto mt-8 max-w-[24rem] space-y-3.5 sm:max-w-[26.5rem] ${homeBody}`}>
             <p>
               Hold the real assets in your wallet. Set the rules once. Automate
               execution without giving up control.
@@ -91,6 +89,16 @@ export function Hero() {
           <p className="mt-7 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted text-balance">
             Non-Custodial · Revocable Permissions · No Admin Keys
           </p>
+
+          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-electric/30 bg-electric/[0.07] px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:px-8 sm:py-7">
+            <p className="text-[1.05rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.2rem]">
+              Your Keys · Your Assets · Your Permissions
+            </p>
+            <div className="mx-auto mt-4 max-w-xl space-y-2 text-[0.98rem] leading-relaxed text-muted sm:text-[1.05rem]">
+              <p>The protocol cannot withdraw your funds.</p>
+              <p>You can revoke access at any time.</p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

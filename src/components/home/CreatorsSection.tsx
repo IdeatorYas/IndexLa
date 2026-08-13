@@ -2,7 +2,6 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
-  homeEyebrow,
   homeH2,
   homeH3,
   homeLede,
@@ -34,8 +33,10 @@ export function CreatorsSection() {
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <p className={homeEyebrow}>10. CREATOR MARKETPLACE</p>
-          <h2 className={`mt-3 ${homeH2}`}>Turn Your Thesis Into a Portfolio</h2>
+          <h2 className={homeH2}>CREATOR MARKETPLACE</h2>
+          <p className={`mt-3 ${homeLede}`}>
+            Turn Your Thesis Into a Portfolio
+          </p>
           <p className={`mt-5 ${homeMeasure} ${homeBody}`}>
             Publish your strategy, build an audience and earn from your
             portfolio.
