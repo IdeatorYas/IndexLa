@@ -8,7 +8,7 @@ import {
   homeSection,
 } from "@/components/home/homeRhythm";
 
-/** Short explanations from existing approved strategy copy (How It Works / Strategy Engine). */
+/** Short explanations from approved strategy copy. */
 const strategies = [
   {
     title: "DCA",
@@ -27,12 +27,20 @@ const strategies = [
     body: "Reduce exposure when defined greed conditions are reached.",
   },
   {
+    title: "Buy RSI Oversold",
+    body: "Accumulate when RSI reaches oversold conditions.",
+  },
+  {
+    title: "Sell RSI Overbought",
+    body: "Reduce exposure when RSI reaches overbought conditions.",
+  },
+  {
     title: "Momentum",
     body: "Adjust exposure as defined market trends change.",
   },
   {
     title: "Take Profit / Stop Loss",
-    body: "Automatically reduce a position when your predefined target is reached. Reduce exposure when a predefined downside condition is triggered.",
+    body: "Lock gains or limit losses at predefined levels.",
   },
 ] as const;
 
