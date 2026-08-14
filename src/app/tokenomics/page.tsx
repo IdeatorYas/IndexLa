@@ -5,6 +5,7 @@ import {
   TokenBurnMechanismSection,
 } from "@/components/tokenomics/TokenArchitectureSections";
 import { TokenFlywheelSection } from "@/components/tokenomics/TokenFlywheelSection";
+import { TokenWhyDexlaSection } from "@/components/tokenomics/TokenWhyDexlaSection";
 import { TokenDistributionSection } from "@/components/tokenomics/TokenDistributionSection";
 import { FeeFlowSection } from "@/components/tokenomics/FeeFlowSection";
 import { VestingScheduleSection } from "@/components/tokenomics/VestingScheduleSection";
@@ -14,7 +15,7 @@ import { LaunchTimingSection } from "@/components/tokenomics/LaunchTimingSection
 export const metadata: Metadata = {
   title: "Tokenomics — INDEXLA",
   description:
-    "$DEXLA is the economic engine of INDEXLA — four utilities, four burn mechanisms, and a hard-capped 100,000,000 supply.",
+    "$DEXLA is the economic engine of INDEXLA — five utilities, five burn mechanisms, and a hard-capped 100,000,000 supply.",
 };
 
 export default function TokenomicsPage() {
@@ -23,6 +24,7 @@ export default function TokenomicsPage() {
       <TokenomicsHero />
       <TokenUtilitySection />
       <TokenBurnMechanismSection />
+      <TokenWhyDexlaSection />
       <TokenFlywheelSection />
       <TokenDistributionSection />
       <FeeFlowSection />

@@ -44,9 +44,9 @@ export const tkBurnPanel =
 export const tkBurnGlow =
   "radial-gradient(ellipse 50% 40% at 50% 0%, rgba(248,113,113,0.1), transparent 65%)";
 
-/** Shared 4×4 architecture — identical shells for utility & burn */
+/** Shared architecture grid — identical shells for utility & burn */
 export const tkArchGrid =
-  "mt-9 grid auto-rows-fr gap-3 sm:grid-cols-2 sm:gap-3.5";
+  "mt-9 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5 sm:gap-3.5";
 
 export const tkArchCard =
   "group relative flex h-full flex-col overflow-hidden border bg-panel/35 px-5 py-5 text-center backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-5 sm:py-5";

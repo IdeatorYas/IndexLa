@@ -20,28 +20,30 @@ export function TokenomicsHero() {
           <div className="mx-auto mb-4 h-px w-10 bg-gradient-to-r from-transparent via-electric/80 to-transparent" />
 
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-electric">
-            $DEXLA
+            Tokenomics
           </p>
 
           <h1 className={`mt-3 ${tkH1}`}>
-            The Economic Engine{" "}
-            <span className="gradient-text">Of INDEXLA</span>
+            <span className="gradient-text">$DEXLA</span>
           </h1>
 
-          <div className={`mx-auto mt-4 max-w-xl space-y-1.5 ${tkBody}`}>
+          <p className="mt-4 display text-[clamp(1.15rem,2.8vw,1.55rem)] font-semibold tracking-[-0.025em] text-ink uppercase">
+            The Economic Engine Of INDEXLA
+          </p>
+
+          <div className={`mx-auto mt-5 max-w-xl space-y-1.5 ${tkBody}`}>
             <p>Most tokens are built around speculation.</p>
             <p className="font-semibold text-ink">
               $DEXLA is built around INDEXLA usage.
             </p>
             <p className="text-balance">
               The token connects creators, investors, and platform activity
-              through four practical utilities and four permanent
+              through five practical utilities and five permanent
               supply-reduction mechanisms.
             </p>
           </div>
         </motion.div>
 
-        {/* Compact 4×4 centerpiece — single surface, fully inside hero */}
         <motion.div
           className="mx-auto mt-7 max-w-lg"
           initial={reduce ? false : { opacity: 0, y: 10 }}
@@ -58,10 +60,14 @@ export function TokenomicsHero() {
               aria-hidden
             />
 
-            <div className="relative flex items-stretch justify-center gap-0">
+            <p className="relative text-center text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-ink sm:text-[0.78rem]">
+              5 Utilities · 5 Burn Mechanisms
+            </p>
+
+            <div className="relative mt-3 flex items-stretch justify-center gap-0 border-t border-white/[0.07] pt-3">
               <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-2 py-1 text-center sm:px-3">
                 <p className="display text-[clamp(1.75rem,5vw,2.25rem)] leading-none tracking-[-0.04em] text-success">
-                  4
+                  5
                 </p>
                 <p className="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-success sm:text-[0.7rem]">
                   Core Utilities
@@ -79,7 +85,7 @@ export function TokenomicsHero() {
 
               <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-2 py-1 text-center sm:px-3">
                 <p className="display text-[clamp(1.75rem,5vw,2.25rem)] leading-none tracking-[-0.04em] text-danger">
-                  4
+                  5
                 </p>
                 <p className="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-danger sm:text-[0.7rem]">
                   Burn Mechanisms

@@ -90,15 +90,14 @@ function ArchitectureCard({
   );
 }
 
-/** Exact FOUR CORE UTILITIES copy from content/tokenomics.md */
 const utilities: ArchCard[] = [
   {
     n: "01",
     title: "Publish",
     lines: [
-      "Portfolios are private by default and free to build, test, and refine.",
-      "Creators pay $DEXLA to publish and make portfolios visible to the community.",
-      "Public portfolios can attract investors and earn creator fees.",
+      "Creators use $DEXLA to publish portfolios on the Marketplace.",
+      "Public portfolios become discoverable and can attract investors and followers.",
+      "Publishing requires a fixed $DEXLA amount to access the Marketplace.",
     ],
     metric: "1,000 $DEXLA → Public Portfolio",
   },
@@ -106,43 +105,52 @@ const utilities: ArchCard[] = [
     n: "02",
     title: "Feature",
     lines: [
-      "More portfolios compete for investor attention as the Marketplace grows.",
-      "Creators use $DEXLA to secure Featured placement for 7 days.",
-      "Greater visibility can attract investors, followers, AUM, and creator fees.",
+      "Creators use $DEXLA to increase portfolio visibility on the Marketplace.",
+      "Featured placement puts strategies in front of more potential investors.",
+      "Greater visibility can drive followers, AUM, and creator earnings.",
     ],
     metric: "2,500 $DEXLA → 7 Days Featured",
   },
   {
     n: "03",
+    title: "Monetize",
+    lines: [
+      "Creators can make their strategies available to other creators.",
+      "They set their own price for others to access and use them.",
+      "This creates another direct revenue opportunity for strategy creators.",
+    ],
+    metric: "Creator Sets Price → Other Creators Pay",
+  },
+  {
+    n: "04",
     title: "Save",
     lines: [
       "Investors holding $DEXLA receive lower execution fees on platform activity.",
       "Higher balances unlock greater discounts while maintaining the required balance.",
-      "Larger holdings directly reduce the cost of automated portfolio activity.",
+      "Larger holdings can directly reduce automated portfolio execution costs.",
     ],
     metric: "2,500 → 10% · 5,000 → 25% · 10,000 → 40%",
   },
   {
-    n: "04",
+    n: "05",
     title: "Tip",
     lines: [
-      "Investors tip creators in $DEXLA to appreciate valuable research and insights.",
-      "INDEXLA charges no performance fees, making tips an additional creator reward.",
-      "Other tokens are supported, but $DEXLA tips help creators rank higher.",
+      "Investors can tip creators directly in $DEXLA for valuable strategies.",
+      "Tips reward creators without introducing management or performance fees.",
+      "$DEXLA tips also strengthen creator engagement and Marketplace participation.",
     ],
     metric: "Discover → Follow → Invest → Tip",
   },
 ];
 
-/** Exact FOUR BURN MECHANISMS copy from content/tokenomics.md */
 const burns: ArchCard[] = [
   {
     n: "01",
     title: "Publishing Burn",
     lines: [
-      "$DEXLA is the only accepted token for publishing portfolios and indexes to earn on the Marketplace.",
-      "Each public launch requires 1,000 $DEXLA, permanently removed from the token supply.",
-      "This creates a direct supply-reduction mechanism tied to Marketplace growth.",
+      "Every public portfolio requires 1,000 $DEXLA to enter the Marketplace.",
+      "The entire amount is permanently removed from the token supply.",
+      "Supply reduction scales directly with creator and Marketplace growth.",
     ],
     metric: "Published Portfolio → 100% Burned",
   },
@@ -150,9 +158,9 @@ const burns: ArchCard[] = [
     n: "02",
     title: "Featured Burn",
     lines: [
-      "Featured placement creates a paid marketing channel for creators competing for attention.",
-      "Creators use 2,500 $DEXLA to secure top Marketplace placement for 7 days.",
-      "The mechanism converts creator promotion activity directly into permanent supply reduction.",
+      "Creators use 2,500 $DEXLA to secure Featured placement for seven days.",
+      "The entire amount is permanently removed from the token supply.",
+      "Creator promotion therefore creates direct and measurable supply reduction.",
     ],
     metric: "Featured Portfolio → 100% Burned",
   },
@@ -161,20 +169,30 @@ const burns: ArchCard[] = [
     title: "Execution Fee Burn",
     lines: [
       "INDEXLA directs 10% of execution fee revenue toward $DEXLA buybacks.",
-      "Purchased tokens are permanently removed from the token supply.",
-      "The mechanism scales with platform usage and execution activity.",
+      "Purchased tokens are permanently removed from the circulating supply.",
+      "The mechanism scales naturally with platform execution and user activity.",
     ],
-    metric: "Execution Fees → 10% Burned",
+    metric: "Execution Fees → 10% Buyback & Burn",
   },
   {
     n: "04",
     title: "Treasury Burn",
     lines: [
       "INDEXLA directs 25% of realized Treasury profits toward $DEXLA buybacks.",
-      "Purchased tokens are permanently removed from the token supply.",
-      "The mechanism links Treasury profitability with long-term token supply reduction.",
+      "Purchased tokens are permanently removed from the circulating supply.",
+      "The mechanism connects Treasury profitability with long-term supply reduction.",
     ],
-    metric: "Treasury Profits → 25% Burned",
+    metric: "Treasury Profits → 25% Buyback & Burn",
+  },
+  {
+    n: "05",
+    title: "Strategy Monetization Burn",
+    lines: [
+      "Creators set a price for others to use and copy their strategies.",
+      "Other creators pay the required $DEXLA to access the strategy.",
+      "Half of each payment is distributed to the creator and burned.",
+    ],
+    metric: "Strategy Access → 50% Creator · 50% Burned",
   },
 ];
 
@@ -189,11 +207,8 @@ export function TokenUtilitySection() {
 
       <div className="section-pad container-max relative mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-success">
-            Value layer
-          </p>
-          <h2 className={`mt-3 ${tkH2} uppercase`}>
-            Four Core <span className="text-success">Utilities</span>
+          <h2 className={`${tkH2} uppercase`}>
+            Five Core <span className="text-success">Utilities</span>
           </h2>
         </FadeIn>
 
@@ -223,11 +238,8 @@ export function TokenBurnMechanismSection() {
 
       <div className="section-pad container-max relative mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-danger">
-            Supply reduction layer
-          </p>
-          <h2 className={`mt-3 ${tkH2} uppercase`}>
-            Four Burn <span className="text-danger">Mechanisms</span>
+          <h2 className={`${tkH2} uppercase`}>
+            Five Burn <span className="text-danger">Mechanisms</span>
           </h2>
         </FadeIn>
 
