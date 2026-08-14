@@ -65,15 +65,15 @@ export function WhatIsIndexlaSection() {
             </div>
           </div>
 
-          <div className="mx-auto mt-8 max-w-3xl">
+          <div className="mx-auto mt-8 w-full max-w-6xl">
             <p className={homeEyebrow}>Supported Networks</p>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:flex-nowrap lg:gap-1.5 xl:gap-2">
               {supportedNetworks.map((network) => (
                 <span
                   key={network.name}
-                  className="inline-flex items-center gap-2 rounded-full border border-electric/20 bg-electric/10 py-1.5 pl-1.5 pr-3.5"
+                  className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-electric/20 bg-electric/10 py-1.5 pl-1.5 pr-2.5 sm:gap-2 sm:pr-3"
                 >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-panel/90 sm:h-8 sm:w-8">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-panel/90">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={network.src}
@@ -84,7 +84,7 @@ export function WhatIsIndexlaSection() {
                       draggable={false}
                     />
                   </span>
-                  <span className="text-[0.88rem] font-semibold tracking-[-0.01em] text-ink sm:text-[0.95rem]">
+                  <span className="whitespace-nowrap text-[0.82rem] font-semibold tracking-[-0.01em] text-ink sm:text-[0.9rem]">
                     {network.name}
                   </span>
                 </span>
