@@ -157,9 +157,9 @@ export function InvestorHero() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className={`${invH1} text-[clamp(2rem,5.2vw,3.65rem)] leading-[1.06]`}>
-              <span className="block">You Know What You Should Do.</span>
+              <span className="block">You Know What You Should Do</span>
               <span className="mt-[0.14em] block gradient-text">
-                You Just Don&apos;t.
+                You Just Don&apos;t
               </span>
             </h1>
 

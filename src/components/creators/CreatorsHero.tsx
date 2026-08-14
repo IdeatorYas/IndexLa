@@ -82,9 +82,9 @@ export function CreatorsHero() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className={`${crH1} text-[clamp(2rem,5vw,3.55rem)]`}>
-              <span className="block">Your Thesis Deserves</span>
-              <span className="mt-[0.08em] block gradient-text">
-                More Than An X Post.
+              <span className="block">
+                Your Thesis Deserves{" "}
+                <span className="gradient-text">More Than An X Post</span>
               </span>
             </h1>
 
