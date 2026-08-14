@@ -157,14 +157,6 @@ export function InvestorHero() {
               </span>
             </h1>
 
-            <p className={`mt-7 max-w-xl text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-pretty sm:text-[1.125rem]`}>
-              You want one action to buy crypto and tokenized assets across
-              different chains. You want to hold the actual assets in your own
-              wallet — not a wrapper. You want to automate Buy Fear / Sell Greed
-              rules without giving up control. That&apos;s what INDEXLA is built
-              for.
-            </p>
-
             <div className="mt-7 space-y-2">
               <p className={invBody}>Buy when fear is high.</p>
               <p className={invBody}>Take profits at euphoria.</p>
@@ -196,6 +188,18 @@ export function InvestorHero() {
               >
                 Build Your Automated Portfolio
               </Button>
+            </div>
+
+            <div className="mt-8 max-w-xl space-y-3">
+              <p className={`${invBody} text-pretty`}>
+                You want one action to buy crypto and tokenized assets across
+                different chains. You want to hold the actual assets in your own
+                wallet — not a wrapper. You want to automate Buy Fear / Sell
+                Greed rules without giving up control.
+              </p>
+              <p className="text-[1.2rem] font-bold leading-snug tracking-[-0.02em] text-ink text-pretty sm:text-[1.35rem]">
+                One action. Real assets. Your wallet. Your rules.
+              </p>
             </div>
           </motion.div>
 
