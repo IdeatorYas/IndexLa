@@ -6,7 +6,6 @@ import { FeesSection } from "@/components/home/FeesSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { Hero } from "@/components/home/Hero";
 import { HomeFaqSection } from "@/components/home/HomeFaqSection";
-import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { PortfolioExamplesSection } from "@/components/home/PortfolioExamplesSection";
 import { SecurityControlSection } from "@/components/home/SecurityControlSection";
 import { TokenizationSection } from "@/components/home/TokenizationSection";
@@ -22,7 +21,6 @@ export default function Home() {
       <DistributionSection />
       <TokenizationSection />
       <BuildAutomateSection />
-      <HowItWorksSection />
       <PortfolioExamplesSection />
       <SecurityControlSection />
       <CreatorsSection />

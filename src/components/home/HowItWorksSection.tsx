@@ -370,7 +370,11 @@ function ActivateDemo() {
   );
 }
 
-export function HowItWorksSection() {
+export function HowItWorksSection({
+  showHeading = true,
+}: {
+  showHeading?: boolean;
+}) {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
   const [activeStrategy, setActiveStrategy] = useState(0);
@@ -403,10 +407,16 @@ export function HowItWorksSection() {
 
       <div className="section-pad container-max relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <div className="indexla-orbit mx-auto mb-8 inline-block">
-            <h2 className={homeH2}>How It Works</h2>
-          </div>
-          <p className="mt-1 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted sm:text-[0.82rem]">
+          {showHeading ? (
+            <div className="indexla-orbit mx-auto mb-8 inline-block">
+              <h2 className={homeH2}>How It Works</h2>
+            </div>
+          ) : null}
+          <p
+            className={`text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted sm:text-[0.82rem] ${
+              showHeading ? "mt-1" : ""
+            }`}
+          >
             Connect → Allocate → Automate → Fund &amp; Activate
           </p>
           <p

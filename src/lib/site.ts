@@ -6,6 +6,7 @@ export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/investors", label: "Investors" },
   { href: "/creators", label: "Creators" },
+  { href: "/how-it-works", label: "How It Works" },
   { href: "/tokenomics", label: "Tokenomics" },
   { href: "/faq", label: "FAQ" },
   { href: "/whitepaper", label: "Whitepaper" },
