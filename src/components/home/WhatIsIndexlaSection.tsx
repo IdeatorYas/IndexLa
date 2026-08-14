@@ -3,7 +3,6 @@ import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeBodyStrong,
-  homeChip,
   homeEyebrow,
   homeH2,
   homeMeasure,
@@ -19,13 +18,13 @@ const supportedAssets = [
 ] as const;
 
 const supportedNetworks = [
-  "Ethereum",
-  "Base",
-  "Arbitrum",
-  "BNB Chain",
-  "Solana",
-  "Sui",
-  "Robinhood",
+  { name: "Ethereum", src: "/images/networks/ethereum.svg" },
+  { name: "Base", src: "/images/networks/base.svg" },
+  { name: "Arbitrum", src: "/images/networks/arbitrum.svg" },
+  { name: "BNB Chain", src: "/images/networks/bnb.svg" },
+  { name: "Solana", src: "/images/networks/solana.svg" },
+  { name: "Sui", src: "/images/networks/sui.svg" },
+  { name: "Robinhood", src: "/images/networks/robinhood.svg" },
 ] as const;
 
 export function WhatIsIndexlaSection() {
@@ -68,10 +67,26 @@ export function WhatIsIndexlaSection() {
 
           <div className="mx-auto mt-8 max-w-3xl">
             <p className={homeEyebrow}>Supported Networks</p>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
               {supportedNetworks.map((network) => (
-                <span key={network} className={homeChip}>
-                  {network}
+                <span
+                  key={network.name}
+                  className="inline-flex items-center gap-2 rounded-full border border-electric/20 bg-electric/10 py-1.5 pl-1.5 pr-3.5"
+                >
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-panel/90 sm:h-8 sm:w-8">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={network.src}
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="h-4 w-4 object-contain"
+                      draggable={false}
+                    />
+                  </span>
+                  <span className="text-[0.88rem] font-semibold tracking-[-0.01em] text-ink sm:text-[0.95rem]">
+                    {network.name}
+                  </span>
                 </span>
               ))}
             </div>
