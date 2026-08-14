@@ -198,6 +198,13 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
             >
               {heading}
             </h2>
+            {mode === "creator" &&
+            activeStep === "form" &&
+            activeRole === "creator" ? (
+              <p className="mt-2 max-w-sm text-[0.92rem] leading-snug text-muted text-pretty text-balance sm:text-[0.95rem]">
+                Build portfolios and strategies. Earn from your alpha.
+              </p>
+            ) : null}
           </div>
           <button
             type="button"
