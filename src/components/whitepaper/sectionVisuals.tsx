@@ -1,20 +1,20 @@
 import type { ReactNode } from "react";
 import { CompetitorComparisonTable } from "@/components/whitepaper/CompetitorComparisonTable";
 import {
+  ArchitectureGapDiagram,
   BurnBuybackFlowDiagram,
   CreatorMarketplaceFlowDiagram,
-  CrossChainExecutionDiagram,
   EconomicFlywheelDiagram,
   FeeDiscountTiersDiagram,
   FeeDistributionDiagram,
   GtmGrowthFlywheelDiagram,
-  HowIndexlaWorksDiagram,
   InvestorExecutionStackDiagram,
-  LiquidityRiskControlsDiagram,
-  MultiAssetEcosystemDiagram,
+  MarketOpportunityDiagram,
+  NonCustodialFlowDiagram,
   RoadmapPhasesDiagram,
   SecurityRiskDiagram,
   SolutionFlowDiagram,
+  StrategyEngineDiagram,
   TokenAllocationDiagram,
   VestingTimelineDiagram,
 } from "@/components/whitepaper/diagrams/WhitepaperDiagrams";
@@ -40,56 +40,22 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           placement: "before",
           node: <SolutionFlowDiagram />,
         },
-      ];
-    case "5-competitive-landscape":
-      return [
         {
-          id: "competitor-table",
+          id: "non-custodial",
           placement: "after",
-          node: <CompetitorComparisonTable />,
+          afterHeadingId: "non-custodial-by-design",
+          node: <NonCustodialFlowDiagram />,
         },
       ];
-    case "7-how-indexla-works":
+    case "4-investor-overview":
       return [
         {
-          id: "how-works",
-          placement: "before",
-          node: <HowIndexlaWorksDiagram />,
-        },
-      ];
-    case "8-execution-liquidity-risk-controls":
-      return [
-        {
-          id: "liquidity-risk",
-          placement: "before",
-          node: <LiquidityRiskControlsDiagram />,
-        },
-      ];
-    case "9-cross-chain-architecture":
-      return [
-        {
-          id: "cross-chain",
-          placement: "before",
-          node: <CrossChainExecutionDiagram />,
-        },
-      ];
-    case "10-multi-asset-tokenized-assets":
-      return [
-        {
-          id: "multi-asset",
-          placement: "before",
-          node: <MultiAssetEcosystemDiagram />,
-        },
-      ];
-    case "11-ai-automation":
-      return [
-        {
-          id: "ai-stack",
+          id: "investor-stack",
           placement: "before",
           node: <InvestorExecutionStackDiagram />,
         },
       ];
-    case "12-creator-economy":
+    case "5-creator-economy":
       return [
         {
           id: "creator-flow",
@@ -97,39 +63,72 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <CreatorMarketplaceFlowDiagram />,
         },
       ];
-    case "13-business-model":
+    case "6-strategies":
+      return [
+        {
+          id: "strategy-engine",
+          placement: "before",
+          node: <StrategyEngineDiagram />,
+        },
+      ];
+    case "8-market-opportunity":
+      return [
+        {
+          id: "tam-sam-som",
+          placement: "before",
+          node: <MarketOpportunityDiagram />,
+        },
+      ];
+    case "9-why-indexla-differs":
+      return [
+        {
+          id: "competitor-table",
+          placement: "after",
+          afterHeadingId: "why-existing-models-are-different",
+          node: <CompetitorComparisonTable />,
+        },
+      ];
+    case "10-why-the-architecture-gap-is-structural":
+      return [
+        {
+          id: "architecture-gap",
+          placement: "before",
+          node: <ArchitectureGapDiagram />,
+        },
+      ];
+    case "11-business-model":
       return [
         {
           id: "fee-dist",
           placement: "after",
-          afterHeadingId: "execution-fee-distribution",
+          afterHeadingId: "creator-portfolios",
           node: <FeeDistributionDiagram />,
         },
         {
           id: "flywheel",
           placement: "after",
-          afterHeadingId: "economic-flywheel",
+          afterHeadingId: "treasury",
           node: <EconomicFlywheelDiagram />,
         },
       ];
-    case "14-dexla-utility-tokenomics":
+    case "12-dexla-utility-tokenomics":
       return [
         {
           id: "fee-discounts",
           placement: "after",
-          afterHeadingId: "fee-discounts",
+          afterHeadingId: "04-save",
           node: <FeeDiscountTiersDiagram />,
         },
         {
           id: "burn",
           placement: "after",
-          afterHeadingId: "burn-mechanisms",
+          afterHeadingId: "05-strategy-monetization-burn",
           node: <BurnBuybackFlowDiagram />,
         },
         {
           id: "allocation",
           placement: "after",
-          afterHeadingId: "token-distribution",
+          afterHeadingId: "network",
           node: <TokenAllocationDiagram />,
         },
         {
@@ -139,15 +138,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <VestingTimelineDiagram />,
         },
       ];
-    case "15-security-architecture":
-      return [
-        {
-          id: "security-risk",
-          placement: "before",
-          node: <SecurityRiskDiagram />,
-        },
-      ];
-    case "17-go-to-market":
+    case "13-go-to-market":
       return [
         {
           id: "gtm-flywheel",
@@ -155,7 +146,15 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <GtmGrowthFlywheelDiagram />,
         },
       ];
-    case "20-progressive-deployment-roadmap":
+    case "14-security-architecture":
+      return [
+        {
+          id: "security-risk",
+          placement: "before",
+          node: <SecurityRiskDiagram />,
+        },
+      ];
+    case "16-progressive-deployment-roadmap":
       return [
         {
           id: "roadmap",

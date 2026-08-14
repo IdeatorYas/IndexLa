@@ -1,6 +1,6 @@
 "use client";
 
-/** Exact competitor comparison from content/whitepaper.md Section 5 */
+/** Exact competitor comparison from the INDEXLA whitepaper */
 const HEADERS = [
   "Capability",
   "INDEXLA",

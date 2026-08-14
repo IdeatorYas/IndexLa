@@ -131,7 +131,7 @@ export function CreatorMarketplaceFlowDiagram() {
         steps={["Creator", "Portfolio", "Investor", "AUM", "Execution", "Creator Revenue"]}
       />
       <p className="mt-4 text-center text-[0.85rem] text-muted">
-        Initial target: 25–50 credible Creators with 10,000+ followers.
+        Creators receive 50% of applicable execution fees from their portfolios.
       </p>
     </DiagramFrame>
   );
@@ -142,9 +142,9 @@ export function FeeDistributionDiagram() {
     {
       type: "Protocol-Created Portfolio",
       parts: [
-        { label: "Platform", pct: 20, color: "#38bdf8" },
+        { label: "Platform", pct: 30, color: "#38bdf8" },
         { label: "Treasury", pct: 30, color: "#7c3aed" },
-        { label: "Rewards Pool", pct: 40, color: "#22d3ee" },
+        { label: "Rewards Pool", pct: 30, color: "#22d3ee" },
         { label: "Buyback & Burn", pct: 10, color: "#f472b6" },
       ],
     },
@@ -362,20 +362,28 @@ export function VestingTimelineDiagram() {
 
 export function BurnBuybackFlowDiagram() {
   return (
-    <DiagramFrame title="$DEXLA burn & buyback mechanisms">
-      <div className="grid gap-3 md:grid-cols-3">
+    <DiagramFrame title="Five $DEXLA burn mechanisms">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {[
           {
-            title: "Creator publishing burn",
-            body: "1,000 $DEXLA burned per published portfolio",
+            title: "Publishing burn",
+            body: "1,000 $DEXLA → 100% burned per public portfolio",
           },
           {
-            title: "Protocol revenue buyback",
+            title: "Featured burn",
+            body: "2,500 $DEXLA → 100% burned per Featured placement",
+          },
+          {
+            title: "Execution fee burn",
             body: "10% of execution-fee revenue → buyback & burn",
           },
           {
-            title: "Treasury profit buyback",
+            title: "Treasury burn",
             body: "25% of realized Treasury profits → buyback & burn",
+          },
+          {
+            title: "Strategy monetization burn",
+            body: "50% of strategy-access payment permanently burned",
           },
         ].map((item) => (
           <div
@@ -436,16 +444,12 @@ export function StrategyEngineDiagram() {
   const strategies = [
     { name: "DCA", rule: "Accumulates on defined schedules and parameters" },
     {
-      name: "Fear & Greed",
-      rule: "Accumulate or reduce when sentiment conditions are reached",
+      name: "Buy Fear",
+      rule: "Accumulate when Fear & Greed conditions are met",
     },
     {
-      name: "RSI",
-      rule: "Executes on configured overbought and oversold conditions",
-    },
-    {
-      name: "Momentum",
-      rule: "Adjusts exposure using configured momentum signals",
+      name: "Sell Greed",
+      rule: "Reduce exposure when Greed conditions are met",
     },
     {
       name: "Take Profit",
@@ -456,13 +460,21 @@ export function StrategyEngineDiagram() {
       rule: "Restricts downside according to configured conditions",
     },
     {
+      name: "RSI",
+      rule: "Executes on configured overbought and oversold conditions",
+    },
+    {
+      name: "Momentum",
+      rule: "Adjusts exposure using configured momentum signals",
+    },
+    {
       name: "Rebalancing",
       rule: "Maintains target allocations as portfolio weights change",
     },
   ];
 
   return (
-    <DiagramFrame title="Strategy engine">
+    <DiagramFrame title="Strategy automation">
       <div className="grid gap-2 sm:grid-cols-2">
         {strategies.map((item) => (
           <div
@@ -479,7 +491,7 @@ export function StrategyEngineDiagram() {
         ))}
       </div>
       <p className="mt-4 text-center text-[0.85rem] text-muted">
-        Below threshold = pause, never force.
+        Users define the rules. INDEXLA coordinates authorized execution.
       </p>
     </DiagramFrame>
   );
@@ -488,11 +500,11 @@ export function StrategyEngineDiagram() {
 export function SecurityRiskDiagram() {
   const risks = [
     "Smart contract risk",
-    "Cross-chain risk",
-    "Oracle risk",
-    "Liquidity risk",
-    "Market risk",
-    "Asset risk",
+    "Permission risk",
+    "Market data risk",
+    "Cross-chain & bridge risk",
+    "Liquidity & execution risk",
+    "Asset & issuer risk",
     "Regulatory risk",
     "Operational risk",
   ];
@@ -524,7 +536,7 @@ export function GtmGrowthFlywheelDiagram() {
         {[
           {
             title: "Creator Distribution",
-            detail: "25–50 creators with 10K+ followers",
+            detail: "50–100 credible creators and KOLs",
           },
           {
             title: "Direct User Acquisition",
@@ -558,8 +570,8 @@ export function GtmGrowthFlywheelDiagram() {
 export function FeeDiscountTiersDiagram() {
   const tiers = [
     { hold: "2,500 $DEXLA", discount: "10%" },
-    { hold: "5,000 $DEXLA", discount: "20%" },
-    { hold: "10,000 $DEXLA", discount: "35%" },
+    { hold: "5,000 $DEXLA", discount: "25%" },
+    { hold: "10,000 $DEXLA", discount: "40%" },
   ];
 
   return (
@@ -725,6 +737,99 @@ export function LiquidityRiskControlsDiagram() {
           </p>
         </div>
       </div>
+    </DiagramFrame>
+  );
+}
+
+export function MarketOpportunityDiagram() {
+  const layers = [
+    {
+      label: "TAM",
+      title: "Global Investable Assets",
+      detail: "Hundreds of trillions across equities, fixed income, commodities, real estate, alternatives, and crypto",
+      tone: "border-electric/40 bg-electric/10",
+    },
+    {
+      label: "SAM",
+      title: "Programmable On-Chain Assets",
+      detail: "Crypto, stablecoins, tokenized securities, commodities, real estate, RWAs, and hybrid portfolios",
+      tone: "border-purple-bright/35 bg-purple-bright/10",
+    },
+    {
+      label: "SOM",
+      title: "Initial Market",
+      detail: "Crypto-native investors, financial creators, and early multi-asset portfolio users",
+      tone: "border-line bg-deep/70",
+    },
+  ];
+
+  return (
+    <DiagramFrame title="Market opportunity — TAM / SAM / SOM">
+      <div className="space-y-3">
+        {layers.map((layer, i) => (
+          <div
+            key={layer.label}
+            className={`rounded-xl border px-4 py-4 sm:px-5 ${layer.tone}`}
+            style={{ marginInline: `${i * 0.75}rem` }}
+          >
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
+                {layer.label}
+              </span>
+              <p className="text-[1rem] font-semibold text-ink">{layer.title}</p>
+            </div>
+            <p className="mt-2 text-[0.88rem] leading-snug text-muted">
+              {layer.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    </DiagramFrame>
+  );
+}
+
+export function ArchitectureGapDiagram() {
+  const pillars = [
+    {
+      num: "01",
+      title: "Individual Asset Ownership",
+      body: "Users retain ownership of underlying assets instead of depositing into pooled vaults.",
+    },
+    {
+      num: "02",
+      title: "Scoped Non-Custodial Permissions",
+      body: "Authorize specific execution actions without transferring custody of user assets.",
+    },
+    {
+      num: "03",
+      title: "Execution-Level Creator Economics",
+      body: "Route creator economics directly from applicable portfolio execution activity.",
+    },
+  ];
+
+  return (
+    <DiagramFrame title="Why the architecture gap is structural">
+      <div className="grid gap-3 md:grid-cols-3">
+        {pillars.map((pillar) => (
+          <div
+            key={pillar.num}
+            className="rounded-lg border border-line bg-deep/70 px-3.5 py-4"
+          >
+            <p className="text-[0.72rem] font-semibold tabular-nums tracking-[0.12em] text-electric">
+              {pillar.num}
+            </p>
+            <p className="mt-2 text-[0.95rem] font-semibold text-ink">
+              {pillar.title}
+            </p>
+            <p className="mt-2 text-[0.85rem] leading-snug text-muted">
+              {pillar.body}
+            </p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-4 text-center text-[0.85rem] text-muted">
+        Not a feature checklist — a different custody, permission, and fee-routing model.
+      </p>
     </DiagramFrame>
   );
 }

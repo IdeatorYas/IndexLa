@@ -54,7 +54,8 @@ function prepareBodyMarkdown(
   );
   if (
     edition === "whitepaper" &&
-    section.slug === "5-competitive-landscape"
+    (section.slug === "9-why-indexla-differs" ||
+      section.slug === "5-competitive-landscape")
   ) {
     body = stripCompetitorMarkdownTable(body);
   }
