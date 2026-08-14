@@ -2,6 +2,7 @@ import { creators, getDb, investors } from "@/db";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PLATFORMS = new Set(["x", "linkedin"] as const);
+const LINKEDIN_PROFILE_PATH_RE = /^\/in\/[A-Za-z0-9\-_%]+\/?$/i;
 
 export type SocialPlatform = "x" | "linkedin";
 
@@ -9,6 +10,7 @@ export type EarlyAccessErrorCode =
   | "invalid_email"
   | "missing_fields"
   | "invalid_platform"
+  | "invalid_social"
   | "duplicate_email"
   | "server_error";
 
@@ -21,9 +23,28 @@ export function isValidEmail(email: string): boolean {
   return email.length > 3 && email.length <= 254 && EMAIL_RE.test(email);
 }
 
-export function normalizeSocialHandle(handle: unknown): string {
+export function normalizeXHandle(handle: unknown): string {
   if (typeof handle !== "string") return "";
   return handle.trim().replace(/^@+/, "");
+}
+
+export function normalizeLinkedInProfileUrl(url: unknown): string {
+  if (typeof url !== "string") return "";
+  return url.trim();
+}
+
+export function isValidLinkedInProfileUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      return false;
+    }
+    const host = parsed.hostname.replace(/^www\./i, "").toLowerCase();
+    if (host !== "linkedin.com") return false;
+    return LINKEDIN_PROFILE_PATH_RE.test(parsed.pathname);
+  } catch {
+    return false;
+  }
 }
 
 export function isSocialPlatform(value: unknown): value is SocialPlatform {
@@ -82,18 +103,33 @@ export async function createCreatorSignup(input: {
   socialHandle: unknown;
 }): Promise<{ ok: true } | { ok: false; error: EarlyAccessErrorCode }> {
   const email = normalizeEmail(input.email);
-  const socialHandle = normalizeSocialHandle(input.socialHandle);
   const socialPlatform = input.socialPlatform;
 
-  if (!email || !socialHandle || socialPlatform == null) {
+  if (!email || socialPlatform == null) {
     return { ok: false, error: "missing_fields" };
   }
   if (!isValidEmail(email)) return { ok: false, error: "invalid_email" };
   if (!isSocialPlatform(socialPlatform)) {
     return { ok: false, error: "invalid_platform" };
   }
-  if (socialHandle.length < 1 || socialHandle.length > 100) {
-    return { ok: false, error: "missing_fields" };
+
+  let socialHandle = "";
+  if (socialPlatform === "x") {
+    socialHandle = normalizeXHandle(input.socialHandle);
+    if (!socialHandle || socialHandle.length > 100) {
+      return { ok: false, error: "missing_fields" };
+    }
+  } else {
+    socialHandle = normalizeLinkedInProfileUrl(input.socialHandle);
+    if (!socialHandle) {
+      return { ok: false, error: "missing_fields" };
+    }
+    if (!isValidLinkedInProfileUrl(socialHandle)) {
+      return { ok: false, error: "invalid_social" };
+    }
+    if (socialHandle.length > 500) {
+      return { ok: false, error: "invalid_social" };
+    }
   }
 
   try {

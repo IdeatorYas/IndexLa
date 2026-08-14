@@ -23,6 +23,7 @@ type ApiError =
   | "invalid_email"
   | "missing_fields"
   | "invalid_platform"
+  | "invalid_social"
   | "duplicate_email"
   | "server_error";
 
@@ -30,6 +31,7 @@ const ERROR_MESSAGES: Record<ApiError, string> = {
   invalid_email: "Please enter a valid email address.",
   missing_fields: "Please complete all required fields.",
   invalid_platform: "Please choose X or LinkedIn.",
+  invalid_social: "Please enter a valid LinkedIn profile URL.",
   duplicate_email: "This email is already registered for early access.",
   server_error: "Something went wrong. Please try again.",
 };
@@ -225,7 +227,7 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
               >
                 <p className="text-[1.05rem] font-semibold text-ink">Investor</p>
                 <p className="mt-1 text-[0.92rem] text-muted">
-                  Build and automate portfolios on INDEXLA.
+                  Build and automate your portfolio.
                 </p>
               </button>
               <button
@@ -235,7 +237,7 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
               >
                 <p className="text-[1.05rem] font-semibold text-ink">Creator</p>
                 <p className="mt-1 text-[0.92rem] text-muted">
-                  Publish portfolios and grow with the Creator Marketplace.
+                  Build portfolios and strategies. Earn from your alpha.
                 </p>
               </button>
             </div>
@@ -277,7 +279,11 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
                     <div className="mt-2 grid grid-cols-2 gap-3">
                       <button
                         type="button"
-                        onClick={() => setPlatform("x")}
+                        onClick={() => {
+                          setPlatform("x");
+                          setHandle("");
+                          setError(null);
+                        }}
                         aria-pressed={platform === "x"}
                         className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors ${
                           platform === "x"
@@ -290,7 +296,11 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
                       </button>
                       <button
                         type="button"
-                        onClick={() => setPlatform("linkedin")}
+                        onClick={() => {
+                          setPlatform("linkedin");
+                          setHandle("");
+                          setError(null);
+                        }}
                         aria-pressed={platform === "linkedin"}
                         className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors ${
                           platform === "linkedin"
@@ -304,24 +314,32 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
                     </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="ea-handle" className={labelClass}>
-                      Social handle
-                    </label>
-                    <input
-                      id="ea-handle"
-                      name="socialHandle"
-                      type="text"
-                      autoComplete="username"
-                      required
-                      value={handle}
-                      onChange={(e) => setHandle(e.target.value)}
-                      placeholder={
-                        platform === "linkedin" ? "your-profile" : "@yourhandle"
-                      }
-                      className={fieldClass}
-                    />
-                  </div>
+                  {platform ? (
+                    <div>
+                      <label htmlFor="ea-handle" className={labelClass}>
+                        {platform === "linkedin"
+                          ? "LinkedIn Profile URL"
+                          : "X Handle"}
+                      </label>
+                      <input
+                        id="ea-handle"
+                        name="socialHandle"
+                        type={platform === "linkedin" ? "url" : "text"}
+                        autoComplete={
+                          platform === "linkedin" ? "url" : "username"
+                        }
+                        required
+                        value={handle}
+                        onChange={(e) => setHandle(e.target.value)}
+                        placeholder={
+                          platform === "linkedin"
+                            ? "https://linkedin.com/in/username"
+                            : "@username"
+                        }
+                        className={fieldClass}
+                      />
+                    </div>
+                  ) : null}
                 </>
               ) : null}
 
