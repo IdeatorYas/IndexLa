@@ -81,9 +81,14 @@ export function CreatorsSection() {
             Create. Share. Earn.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-4">
-            <EarlyAccessCta mode="creator" className={homeCta}>
-              Join as a Creator
-            </EarlyAccessCta>
+            <div className="flex flex-col items-center">
+              <EarlyAccessCta mode="creator" className={homeCta}>
+                Join as a Creator
+              </EarlyAccessCta>
+              <p className="mt-3 max-w-sm text-center text-[0.92rem] leading-snug text-muted text-pretty text-balance sm:text-[0.95rem]">
+                Build portfolios and strategies. Earn from your alpha.
+              </p>
+            </div>
             <HomeReadMore href="/creators" label="Creator Guide →" />
           </div>
         </FadeIn>
