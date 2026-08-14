@@ -117,6 +117,7 @@ export function WhitepaperSectionBody({
   const before = visuals.filter(
     (v) => v.placement === "before" && !v.afterHeadingId,
   );
+  const end = visuals.filter((v) => v.placement === "end");
   const blocks = splitIntoHeadingBlocks(markdown);
   const prologueVisuals = visualsAfter(visuals, null);
   const cardifyLevel = CARDIFY_SECTIONS[slug] ?? null;
@@ -163,6 +164,10 @@ export function WhitepaperSectionBody({
           );
         })
       )}
+
+      {end.map((v) => (
+        <div key={v.id}>{v.node}</div>
+      ))}
     </div>
   );
 }

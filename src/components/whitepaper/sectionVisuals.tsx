@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { WhitepaperExploreCta } from "@/components/whitepaper/WhitepaperExploreCta";
 import {
   ArchitectureGapDiagram,
   BurnBuybackFlowDiagram,
@@ -19,7 +20,7 @@ import {
   VestingTimelineDiagram,
 } from "@/components/whitepaper/diagrams/WhitepaperDiagrams";
 
-export type VisualPlacement = "before" | "after";
+export type VisualPlacement = "before" | "after" | "end";
 
 export type SectionVisual = {
   id: string;
@@ -71,6 +72,16 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           placement: "before",
           node: <HowIndexlaWorksDiagram />,
         },
+        {
+          id: "explore-how-it-works",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/how-it-works"
+              label="See How It Works →"
+            />
+          ),
+        },
       ];
     case "9-business-model":
       return [
@@ -94,6 +105,16 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           placement: "before",
           node: <InvestorExecutionStackDiagram />,
         },
+        {
+          id: "explore-investors",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/investors"
+              label="Explore Investor Experience →"
+            />
+          ),
+        },
       ];
     case "11-strategies":
       return [
@@ -102,6 +123,16 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           placement: "before",
           node: <StrategyEngineDiagram />,
         },
+        {
+          id: "explore-strategies",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/strategies"
+              label="Explore Strategies →"
+            />
+          ),
+        },
       ];
     case "12-creator-economy":
       return [
@@ -109,6 +140,16 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           id: "creator-flow",
           placement: "before",
           node: <CreatorMarketplaceFlowDiagram />,
+        },
+        {
+          id: "explore-creators",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/creators"
+              label="Explore Creator Program →"
+            />
+          ),
         },
       ];
     case "13-dexla-utility-tokenomics":
@@ -136,6 +177,13 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           placement: "after",
           afterHeadingId: "vesting-release-schedule",
           node: <VestingTimelineDiagram />,
+        },
+        {
+          id: "explore-dexla",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta href="/tokenomics" label="Explore $DEXLA →" />
+          ),
         },
       ];
     case "14-security-architecture":
