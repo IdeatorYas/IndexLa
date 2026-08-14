@@ -12,7 +12,7 @@ import { OwnershipSection } from "@/components/investors/OwnershipSection";
 import { StrategyWorksSection } from "@/components/investors/StrategyWorksSection";
 
 export const metadata: Metadata = {
-  title: "Investors — INDEXLA",
+  title: "Investors | INDEXLA",
   description:
     "Define your rules when you're calm. Let INDEXLA coordinate execution when the market moves. Build rule-based portfolios across crypto, tokenized stocks, commodities, and RWAs.",
 };

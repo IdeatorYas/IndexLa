@@ -14,7 +14,7 @@ import { CreatorsFinalCta } from "@/components/creators/CreatorsFinalCta";
 import { CreatorsHero } from "@/components/creators/CreatorsHero";
 
 export const metadata: Metadata = {
-  title: "Creators — INDEXLA",
+  title: "Creators | INDEXLA",
   description:
     "Turn your investment thesis into a portfolio your community can follow, invest in, and grow with.",
 };

@@ -14,7 +14,7 @@ import { StrategySuitability } from "@/components/strategies/StrategySuitability
 import { StrategyDisclaimer } from "@/components/strategies/StrategyDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Strategies — INDEXLA",
+  title: "Strategies | INDEXLA",
   description:
     "Stop reacting. Start following rules. AI-automated strategies that monitor conditions and coordinate on-chain execution while you define the thesis.",
 };

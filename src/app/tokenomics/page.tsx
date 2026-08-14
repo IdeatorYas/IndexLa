@@ -13,9 +13,9 @@ import { TgeCirculatingSection } from "@/components/tokenomics/TgeCirculatingSec
 import { LaunchTimingSection } from "@/components/tokenomics/LaunchTimingSection";
 
 export const metadata: Metadata = {
-  title: "Tokenomics — INDEXLA",
+  title: "Tokenomics | INDEXLA",
   description:
-    "$DEXLA is the economic engine of INDEXLA — five utilities, five burn mechanisms, and a hard-capped 100,000,000 supply.",
+    "$DEXLA is the economic engine of INDEXLA. Five utilities, five burn mechanisms, and a hard-capped 100,000,000 supply.",
 };
 
 export default function TokenomicsPage() {

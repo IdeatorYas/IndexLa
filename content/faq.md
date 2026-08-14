@@ -436,7 +436,7 @@ Creator publishing burns
 
 The planned TGE circulating supply is:
 
-14.75% — 14.75M $DEXLA
+14.75% · 14.75M $DEXLA
 
 ---
 

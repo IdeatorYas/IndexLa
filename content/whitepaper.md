@@ -213,7 +213,7 @@ Existing portfolio platforms can be built around vault or pool-based models wher
 
 INDEXLA is built around individual asset ownership with scoped execution permissions.
 
-### 01 — Individual Asset Ownership
+### 01 Individual Asset Ownership
 
 Vault models rely on users depositing assets into a shared contract.
 
@@ -221,13 +221,13 @@ INDEXLA is designed so users retain ownership of their underlying assets.
 
 Adding this model to a vault architecture is not simply a front-end feature change. It changes the underlying custody and execution assumptions of the platform.
 
-### 02 — Scoped Non-Custodial Permissions
+### 02 Scoped Non-Custodial Permissions
 
 INDEXLA can authorize specific execution actions without taking ownership of user assets.
 
 Vault models hold the assets; they cannot grant "execute but never withdraw" permissions because custody is the entire premise.
 
-### 03 — Execution-Level Creator Economics
+### 03 Execution-Level Creator Economics
 
 INDEXLA routes creator economics directly from applicable portfolio execution activity.
 
@@ -253,7 +253,7 @@ Invest in Everything. Own Everything. Control Everything.
 
 As financial assets become increasingly digital and programmable, portfolio management can shift from fragmented platforms toward unified infrastructure.
 
-### TAM — Global Investable Assets
+### TAM Global Investable Assets
 
 The global pool of investable assets spans hundreds of trillions of dollars across equities, fixed income, commodities, real estate, alternatives, crypto, and other financial assets.
 
@@ -263,7 +263,7 @@ The opportunity is not limited to crypto.
 
 It is the broader market for programmable portfolio management across investable assets.
 
-### SAM — Programmable On-Chain Assets
+### SAM Programmable On-Chain Assets
 
 The near-term serviceable market includes:
 
@@ -279,7 +279,7 @@ The near-term serviceable market includes:
 
 As traditional assets move on-chain, the potential universe of programmable portfolios expands.
 
-### SOM — Initial Market
+### SOM Initial Market
 
 INDEXLA's initial focus is deliberately narrower:
 
@@ -558,25 +558,25 @@ More creators. More portfolios. More activity. More reasons to use $DEXLA.
 
 ### Five Core Utilities
 
-### 01 — Publish
+### 01 Publish
 
 Creators use $DEXLA to publish portfolios on the Marketplace.
 
 1,000 $DEXLA → Public Portfolio
 
-### 02 — Feature
+### 02 Feature
 
 Creators use $DEXLA to increase portfolio visibility.
 
 2,500 $DEXLA → 7 Days Featured
 
-### 03 — Monetize
+### 03 Monetize
 
 Creators can make strategies available to other creators and set their own price.
 
 Creator Sets Price → Other Creators Pay in $DEXLA
 
-### 04 — Save
+### 04 Save
 
 Investors holding $DEXLA receive lower execution fees.
 
@@ -586,7 +586,7 @@ Investors holding $DEXLA receive lower execution fees.
 | 5,000 | 25% |
 | 10,000 | 40% |
 
-### 05 — Tip
+### 05 Tip
 
 Investors can tip creators directly in $DEXLA.
 
@@ -594,31 +594,31 @@ Discover → Follow → Invest → Tip
 
 ### Five Burn Mechanisms
 
-### 01 — Publishing Burn
+### 01 Publishing Burn
 
 Every public portfolio requires 1,000 $DEXLA.
 
 Published Portfolio → 100% Burned
 
-### 02 — Featured Burn
+### 02 Featured Burn
 
 Every Featured placement requires 2,500 $DEXLA.
 
 Featured Portfolio → 100% Burned
 
-### 03 — Execution Fee Burn
+### 03 Execution Fee Burn
 
 10% of execution-fee revenue is used to buy and permanently burn $DEXLA.
 
 Execution Fees → 10% Buyback & Burn
 
-### 04 — Treasury Burn
+### 04 Treasury Burn
 
 25% of realized Treasury profits are used to buy and permanently burn $DEXLA.
 
 Treasury Profits → 25% Buyback & Burn
 
-### 05 — Strategy Monetization Burn
+### 05 Strategy Monetization Burn
 
 When creators sell access to their strategies, 50% of the payment goes to the creator and 50% is permanently burned.
 
@@ -813,13 +813,13 @@ The objective is to establish INDEXLA as a portfolio layer connecting users, cre
 
 INDEXLA follows a progressive five-phase development path.
 
-### Phase 1 — Foundation
+### Phase 1 Foundation
 
 Q3 2026
 
 R&D, product validation, competitive research, core team development, and protocol architecture.
 
-### Phase 2 — Architecture & MVP
+### Phase 2 Architecture & MVP
 
 Q4 2026
 
@@ -827,19 +827,19 @@ Build the working MVP with portfolio and index creation, user investment functio
 
 Begin early creator and user testing.
 
-### Phase 3 — Testing & Full Platform Launch
+### Phase 3 Testing & Full Platform Launch
 
 Q1 2027
 
 Expand functionality, incorporate user feedback, complete security audits, launch the full platform, and begin major creator, KOL, and brand campaigns.
 
-### Phase 4 — Partnerships, Token & Scale
+### Phase 4 Partnerships, Token & Scale
 
 Q2 2027
 
 Expand supported assets and networks, establish strategic partnerships, activate $DEXLA utility, and scale distribution.
 
-### Phase 5 — Mobile & Global Expansion
+### Phase 5 Mobile & Global Expansion
 
 Q3 2027
 

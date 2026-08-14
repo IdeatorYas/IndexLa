@@ -4,7 +4,7 @@ import { WhitepaperShell } from "@/components/whitepaper/WhitepaperShell";
 import { loadDocsEdition } from "@/lib/whitepaper.server";
 
 export const metadata: Metadata = {
-  title: "Technical Paper — INDEXLA",
+  title: "Technical Paper | INDEXLA",
   description:
     "INDEXLA technical paper: non-custodial multi-asset cross-chain portfolio infrastructure architecture.",
 };

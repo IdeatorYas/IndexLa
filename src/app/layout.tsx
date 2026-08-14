@@ -18,7 +18,7 @@ const body = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "INDEXLA — Decentralized Portfolio Management",
+  title: "INDEXLA | Decentralized Portfolio Management",
   description:
     "Invest across crypto, tokenized stocks, commodities, and RWAs. Define your strategy. Keep control of your assets.",
   icons: {
