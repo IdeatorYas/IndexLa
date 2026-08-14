@@ -1,11 +1,24 @@
 import Link from "next/link";
 
-type ButtonProps = {
-  href: string;
+type CommonButtonProps = {
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "ghost";
   className?: string;
 };
+
+type LinkButtonProps = CommonButtonProps & {
+  href: string;
+  onClick?: never;
+  type?: never;
+};
+
+type ActionButtonProps = CommonButtonProps & {
+  href?: undefined;
+  onClick?: () => void;
+  type?: "button" | "submit";
+};
+
+type ButtonProps = LinkButtonProps | ActionButtonProps;
 
 const variants = {
   primary:
@@ -16,18 +29,28 @@ const variants = {
     "border border-white/12 bg-transparent text-ink hover:border-purple-bright/40 hover:bg-white/[0.04]",
 };
 
-export function Button({
-  href,
-  children,
-  variant = "primary",
-  className = "",
-}: ButtonProps) {
+const baseClass =
+  "inline-flex items-center justify-center rounded-full px-6 py-3 text-[0.95rem] font-semibold tracking-[-0.01em] transition-all duration-300";
+
+export function Button(props: ButtonProps) {
+  const { children, variant = "primary", className = "" } = props;
+  const classes = `${baseClass} ${variants[variant]} ${className}`;
+
+  if ("href" in props && props.href) {
+    return (
+      <Link href={props.href} className={classes}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-[0.95rem] font-semibold tracking-[-0.01em] transition-all duration-300 ${variants[variant]} ${className}`}
+    <button
+      type={props.type ?? "button"}
+      onClick={props.onClick}
+      className={classes}
     >
       {children}
-    </Link>
+    </button>
   );
 }

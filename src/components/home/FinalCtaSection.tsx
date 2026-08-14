@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
@@ -36,12 +36,11 @@ export function FinalCtaSection() {
             system while keeping ownership of your assets.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center">
-            <Button
-              href="/investors#early-access"
+            <EarlyAccessCta
               className={`${homeCta} w-full max-w-[22rem] sm:w-auto`}
             >
               Reserve Early Access
-            </Button>
+            </EarlyAccessCta>
           </div>
 
           <div

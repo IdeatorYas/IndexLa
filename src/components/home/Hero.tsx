@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { FloatingAssetUniverse } from "@/components/home/FloatingAssetUniverse";
 import {
   homeBody,
   homeCta,
 } from "@/components/home/homeRhythm";
-import { Button } from "@/components/ui/Button";
 import { LOGO_TRANSPARENT } from "@/lib/site";
 
 export function Hero() {
@@ -90,12 +90,11 @@ export function Hero() {
           </div>
 
           <div className="mt-8 flex w-full flex-col items-center justify-center sm:mt-10">
-            <Button
-              href="/investors#early-access"
+            <EarlyAccessCta
               className={`${homeCta} w-full max-w-[20rem] sm:w-auto`}
             >
               Reserve Early Access
-            </Button>
+            </EarlyAccessCta>
           </div>
 
           <p className="mt-6 text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-ink/85 text-balance sm:mt-7 sm:text-[0.9rem]">

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/Button";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   invBody,
   invGreenBox,
@@ -182,12 +182,9 @@ export function InvestorHero() {
             </p>
 
             <div className="mt-10">
-              <Button
-                href="/investors#early-access"
-                className="min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]"
-              >
+              <EarlyAccessCta className="min-w-[15rem] px-8 py-3.5 text-[1.02rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]">
                 Build Your Automated Portfolio
-              </Button>
+              </EarlyAccessCta>
             </div>
 
             <div className="mt-8 max-w-xl space-y-3">

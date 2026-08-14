@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   crBody,
   crCta,
@@ -23,7 +24,7 @@ export function CreatorsFinalCta() {
       />
       <div className="section-pad container-max relative">
         <motion.div
-          className={`mx-auto max-w-3xl ${crSurface} px-6 py-12 sm:px-10 sm:py-14`}
+          className={`mx-auto max-w-3xl ${crSurface} px-6 py-12 text-center sm:px-10 sm:py-14`}
           initial={reduce ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -43,51 +44,11 @@ export function CreatorsFinalCta() {
             experience.
           </p>
 
-          <form
-            className="mx-auto mt-9 max-w-md space-y-4 text-left"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div>
-              <label
-                htmlFor="creator-x-account"
-                className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-dim"
-              >
-                X Account
-              </label>
-              <input
-                id="creator-x-account"
-                name="xAccount"
-                type="text"
-                placeholder="@yourhandle"
-                autoComplete="username"
-                className="mt-2 w-full rounded-xl border border-line bg-void/60 px-4 py-3 text-[0.98rem] text-ink outline-none transition-colors placeholder:text-muted-dim focus:border-electric/45 focus:ring-1 focus:ring-electric/25"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="creator-email"
-                className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-dim"
-              >
-                Email
-              </label>
-              <input
-                id="creator-email"
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-                autoComplete="email"
-                className="mt-2 w-full rounded-xl border border-line bg-void/60 px-4 py-3 text-[0.98rem] text-ink outline-none transition-colors placeholder:text-muted-dim focus:border-electric/45 focus:ring-1 focus:ring-electric/25"
-              />
-            </div>
-            <div className="pt-2 text-center">
-              <button
-                type="submit"
-                className={`inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple to-blue font-semibold tracking-[-0.01em] text-white transition-all duration-300 hover:brightness-110 ${crCta}`}
-              >
-                Reserve Early Access
-              </button>
-            </div>
-          </form>
+          <div className="mt-9 flex justify-center">
+            <EarlyAccessCta mode="creator" className={crCta}>
+              Join as a Creator
+            </EarlyAccessCta>
+          </div>
         </motion.div>
       </div>
     </section>

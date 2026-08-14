@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Button } from "@/components/ui/Button";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { AssetLogo } from "@/components/ui/AssetLogo";
 import { FearGreedIndexVisual } from "@/components/strategies/FearGreedIndexVisual";
 import { TriggerAction } from "@/components/strategies/TriggerAction";
@@ -330,9 +330,9 @@ export function CreatorHybridPortfolioSection() {
         </FadeIn>
 
         <FadeIn className="mt-9 text-center">
-          <Button href="#early-access" className={crCta}>
+          <EarlyAccessCta className={crCta}>
             Reserve Early Access
-          </Button>
+          </EarlyAccessCta>
         </FadeIn>
       </div>
     </section>

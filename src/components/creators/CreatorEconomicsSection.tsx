@@ -1,7 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Button } from "@/components/ui/Button";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   crBody,
   crCta,
@@ -140,9 +140,9 @@ export function CreatorEconomicsSection() {
             revenue stream.
           </p>
           <div className="mt-8">
-            <Button href="#early-access" className={crCta}>
+            <EarlyAccessCta className={crCta}>
               Reserve Early Access
-            </Button>
+            </EarlyAccessCta>
           </div>
         </FadeIn>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   crBody,
   crCta,
@@ -102,9 +102,9 @@ export function CreatorsHero() {
             </div>
 
             <div className="mt-9">
-              <Button href="#early-access" className={crCta}>
+              <EarlyAccessCta className={crCta}>
                 Reserve Early Access
-              </Button>
+              </EarlyAccessCta>
             </div>
           </motion.div>
 

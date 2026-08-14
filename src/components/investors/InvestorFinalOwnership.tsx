@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   invBody,
   invH1,
@@ -49,12 +49,9 @@ export function InvestorFinalOwnership() {
           </p>
 
           <div className="mt-12 flex justify-center">
-            <Button
-              href="/investors#early-access"
-              className={`${homeCta} w-full max-w-[22rem]`}
-            >
+            <EarlyAccessCta className={`${homeCta} w-full max-w-[22rem]`}>
               Build Your Automated Portfolio
-            </Button>
+            </EarlyAccessCta>
           </div>
         </motion.div>
       </div>

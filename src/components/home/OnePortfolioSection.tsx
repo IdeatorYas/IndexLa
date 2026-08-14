@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
@@ -64,9 +64,9 @@ export function OnePortfolioSection() {
             allocations, strategies, and execution rules.
           </p>
           <div className="mt-7">
-            <Button href="/creators" className={homeCta}>
+            <EarlyAccessCta className={homeCta}>
               Reserve Early Access
-            </Button>
+            </EarlyAccessCta>
           </div>
         </FadeIn>
       </div>

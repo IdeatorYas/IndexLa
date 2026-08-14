@@ -1,6 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
-import { Button } from "@/components/ui/Button";
 import {
   homeBody,
   homeCta,
@@ -81,9 +81,9 @@ export function CreatorsSection() {
             Create. Share. Earn.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-4">
-            <Button href="/creators" className={homeCta}>
+            <EarlyAccessCta mode="creator" className={homeCta}>
               Join as a Creator
-            </Button>
+            </EarlyAccessCta>
             <HomeReadMore href="/creators" label="Creator Guide →" />
           </div>
         </FadeIn>
