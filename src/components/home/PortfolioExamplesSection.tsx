@@ -1,6 +1,5 @@
 import { PortfolioCard } from "@/components/home/PortfolioCard";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { HomeReadMore } from "@/components/home/HomeReadMore";
 import { PORTFOLIOS } from "@/lib/site";
 import {
   homeBody,
@@ -45,11 +44,6 @@ export function PortfolioExamplesSection() {
             Creators publish portfolios. Investors discover strategies that fit
             their objectives and risk preferences.
           </p>
-          <HomeReadMore
-            href="/creators"
-            label="Explore Portfolios →"
-            className="mt-4"
-          />
         </FadeIn>
 
         <FadeIn className="mt-8">

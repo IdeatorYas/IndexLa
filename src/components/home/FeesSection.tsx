@@ -48,9 +48,6 @@ export function FeesSection() {
                 1% execution fee when portfolio trades execute.
               </p>
               <p className={`mt-5 ${homeMeasureTight} ${homeBodyStrong}`}>
-                0% Management · 0% Performance · 0% Exit
-              </p>
-              <p className={`mt-5 ${homeMeasureTight} ${homeBodyStrong}`}>
                 50% → Creator · 50% → INDEXLA
               </p>
             </article>
@@ -64,12 +61,17 @@ export function FeesSection() {
                 this portfolio provide an additional source of protocol revenue.
               </p>
               <p className={`mt-5 ${homeMeasureTight} ${homeBodyStrong}`}>
-                Revenue comes from real platform execution + INDEXLA treasury
-                growth.
+                25% of Treasury profits allocated to $DEXLA buyback &amp; burn
               </p>
             </article>
           </FadeIn>
         </div>
+
+        <FadeIn className="mt-7 text-center">
+          <p className="mx-auto whitespace-normal text-[1.05rem] font-semibold tracking-[-0.015em] text-ink sm:whitespace-nowrap sm:text-[1.125rem]">
+            0% Management · 0% Performance · 0% Exit
+          </p>
+        </FadeIn>
 
         <FadeIn className="mt-8 text-center">
           <HomeReadMore

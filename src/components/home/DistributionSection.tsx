@@ -4,7 +4,6 @@ import {
   homeBody,
   homeChip,
   homeH2,
-  homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
 
@@ -22,10 +21,13 @@ export function DistributionSection() {
       <div className="section-pad container-max">
         <FadeIn className="text-center">
           <h2 className={homeH2}>The Missing Layer: Distribution</h2>
-          <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
-            Tokenization creates the assets. Creators create the ideas. Investors
-            need a way to discover and access them.
-          </p>
+          <div
+            className={`mx-auto mt-6 max-w-xl space-y-2.5 ${homeBody} font-medium text-ink`}
+          >
+            <p>Tokenization brings assets on-chain</p>
+            <p>Creators turn ideas into strategies</p>
+            <p>Investors discover and access them</p>
+          </div>
         </FadeIn>
 
         <FadeIn className="mx-auto mt-9 max-w-4xl">

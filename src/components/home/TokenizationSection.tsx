@@ -48,7 +48,15 @@ export function TokenizationSection() {
             ))}
           </div>
           <p className="mt-5 text-center text-[0.85rem] font-semibold uppercase tracking-[0.16em] text-electric/90 sm:text-[0.9rem]">
-            Source: RWA.xyz
+            Source:{" "}
+            <a
+              href="https://www.rwa.xyz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-electric/35 underline-offset-4 transition-colors hover:text-electric hover:decoration-electric/70"
+            >
+              RWA.xyz
+            </a>
           </p>
         </FadeIn>
 

@@ -2,7 +2,6 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
-  homeBodyStrong,
   homeEyebrow,
   homeH2,
   homeMeasure,
@@ -17,15 +16,15 @@ export function WhatIsIndexlaSection() {
         aria-hidden
       />
       <div className="section-pad container-max relative">
-        <FadeIn className={`${homeMeasure} text-center`}>
+        <FadeIn className="text-center">
           <div className="mx-auto mb-6 h-px w-12 bg-gradient-to-r from-transparent via-electric/70 to-transparent" />
 
           <p className={homeEyebrow}>What is INDEXLA?</p>
-          <h2 className={`mt-3 ${homeH2}`}>
+          <h2 className={`mx-auto mt-3 ${homeMeasure} ${homeH2}`}>
             Decentralized Portfolio Management
           </h2>
 
-          <div className={`mt-7 space-y-5 ${homeBody}`}>
+          <div className={`mx-auto mt-7 space-y-5 ${homeMeasure} ${homeBody}`}>
             <p>
               INDEXLA is a decentralized portfolio management platform for crypto
               and tokenized assets.
@@ -36,11 +35,13 @@ export function WhatIsIndexlaSection() {
             </p>
           </div>
 
-          <p className={`mt-8 ${homeBodyStrong}`}>
+          <p
+            className={`mx-auto mt-8 max-w-full px-1 text-[clamp(0.95rem,1.65vw,1.175rem)] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:whitespace-nowrap sm:px-0 sm:text-[1.175rem]`}
+          >
             Crypto + Tokenized Assets → One Portfolio → One Interface
           </p>
 
-          <p className={`mt-5 ${homeBody}`}>
+          <p className={`mx-auto mt-5 ${homeMeasure} ${homeBody}`}>
             Your assets remain in your wallet. INDEXLA can never touch your
             funds.
           </p>
