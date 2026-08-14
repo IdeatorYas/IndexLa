@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { FloatingAssetUniverse } from "@/components/home/FloatingAssetUniverse";
 import {
   homeBody,
-  homeBodyDim,
   homeCta,
 } from "@/components/home/homeRhythm";
 import { Button } from "@/components/ui/Button";
@@ -61,14 +60,13 @@ export function Hero() {
           </h1>
 
           <div
-            className={`mx-auto mt-7 max-w-[22.5rem] space-y-3.5 sm:mt-8 sm:max-w-[26rem] ${homeBody}`}
+            className={`mx-auto mt-7 max-w-[22.5rem] space-y-2 sm:mt-8 sm:max-w-[28rem] ${homeBody}`}
           >
-            <p>
-              Hold the real assets in your wallet. Set the rules once. Automate
-              execution without giving up control.
+            <p className="text-balance sm:whitespace-nowrap">
+              Hold real assets in your wallet. Set your rules once
             </p>
-            <p className={homeBodyDim}>
-              Build diversified portfolios across crypto and tokenized markets.
+            <p className="text-balance sm:whitespace-nowrap">
+              Automate every execution. Keep full control
             </p>
           </div>
 
