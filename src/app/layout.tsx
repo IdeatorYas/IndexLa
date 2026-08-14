@@ -20,6 +20,17 @@ export const metadata: Metadata = {
   title: "INDEXLA — Decentralized Portfolio Management",
   description:
     "Invest across crypto, tokenized stocks, commodities, and RWAs. Define your strategy. Keep control of your assets.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
+  },
+  appleWebApp: {
+    title: "INDEXLA",
+  },
 };
 
 export default function RootLayout({
