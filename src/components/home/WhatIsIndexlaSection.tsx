@@ -2,11 +2,31 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
+  homeBodyStrong,
+  homeChip,
   homeEyebrow,
   homeH2,
   homeMeasure,
+  homePill,
   homeSection,
 } from "@/components/home/homeRhythm";
+
+const supportedAssets = [
+  "Crypto",
+  "Tokenized Stocks",
+  "Tokenized Commodities",
+  "Tokenized Real Estate",
+] as const;
+
+const supportedNetworks = [
+  "Ethereum",
+  "Base",
+  "Arbitrum",
+  "BNB Chain",
+  "Solana",
+  "Sui",
+  "Robinhood",
+] as const;
 
 export function WhatIsIndexlaSection() {
   return (
@@ -24,26 +44,43 @@ export function WhatIsIndexlaSection() {
             Decentralized Portfolio Management
           </h2>
 
-          <div className={`mx-auto mt-7 space-y-5 ${homeMeasure} ${homeBody}`}>
-            <p>
-              INDEXLA is a decentralized portfolio management platform for crypto
-              and tokenized assets.
+          <div className={`mx-auto mt-7 max-w-2xl space-y-4 ${homeBody}`}>
+            <p className={homeBodyStrong}>
+              INDEXLA is a non-custodial portfolio layer for crypto and tokenized
+              assets.
             </p>
-            <p>
-              Build your own portfolio, discover creator strategies, or automate
-              your investment rules from one interface.
+            <p className="text-balance">
+              Build your own portfolio, follow creator strategies, or automate
+              rules — while always holding the underlying assets in your wallet.
             </p>
           </div>
 
-          <p
-            className={`mx-auto mt-8 max-w-full px-1 text-[clamp(0.95rem,1.65vw,1.175rem)] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:whitespace-nowrap sm:px-0 sm:text-[1.175rem]`}
-          >
-            Crypto + Tokenized Assets → One Portfolio → One Interface
-          </p>
+          <div className="mx-auto mt-9 max-w-3xl">
+            <p className={homeEyebrow}>Supported Assets</p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
+              {supportedAssets.map((asset) => (
+                <span key={asset} className={homePill}>
+                  {asset}
+                </span>
+              ))}
+            </div>
+          </div>
 
-          <p className={`mx-auto mt-5 ${homeMeasure} ${homeBody}`}>
-            Your assets remain in your wallet. INDEXLA can never touch your
-            funds.
+          <div className="mx-auto mt-8 max-w-3xl">
+            <p className={homeEyebrow}>Supported Networks</p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
+              {supportedNetworks.map((network) => (
+                <span key={network} className={homeChip}>
+                  {network}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <p
+            className={`mx-auto mt-9 max-w-2xl text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.125rem]`}
+          >
+            Your keys. Your assets. INDEXLA can never touch your funds.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
