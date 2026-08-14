@@ -58,8 +58,9 @@ const primaryBtnClass =
 
 export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps) {
   const titleId = useId();
-  const [step, setStep] = useState<Step>(mode === "creator" ? "form" : "role");
-  const [role, setRole] = useState<Role | null>(mode === "creator" ? "creator" : null);
+  const isCreatorMode = mode === "creator";
+  const [step, setStep] = useState<Step>(isCreatorMode ? "form" : "role");
+  const [role, setRole] = useState<Role | null>(isCreatorMode ? "creator" : null);
   const [email, setEmail] = useState("");
   const [platform, setPlatform] = useState<SocialPlatform | null>(null);
   const [handle, setHandle] = useState("");
@@ -69,6 +70,7 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
   useEffect(() => {
     if (!open) return;
 
+    // mode is the source of truth for creator-direct entry.
     setStep(mode === "creator" ? "form" : "role");
     setRole(mode === "creator" ? "creator" : null);
     setEmail("");
@@ -93,6 +95,11 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
 
   if (!open) return null;
 
+  // Never let local step/role drift override a creator-specific CTA.
+  const activeRole: Role | null = isCreatorMode ? "creator" : role;
+  const activeStep: Step =
+    step === "success" ? "success" : isCreatorMode ? "form" : step;
+
   function chooseRole(next: Role) {
     setRole(next);
     setStep("form");
@@ -100,7 +107,7 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
   }
 
   function goBackToRole() {
-    if (mode === "creator") return;
+    if (isCreatorMode) return;
     setStep("role");
     setRole(null);
     setError(null);
@@ -110,7 +117,7 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
     event.preventDefault();
     setError(null);
 
-    if (!role) {
+    if (!activeRole) {
       setError(ERROR_MESSAGES.missing_fields);
       return;
     }
@@ -119,12 +126,12 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
 
     try {
       const endpoint =
-        role === "investor"
+        activeRole === "investor"
           ? "/api/early-access/investor"
           : "/api/early-access/creator";
 
       const body =
-        role === "investor"
+        activeRole === "investor"
           ? { email }
           : {
               email,
@@ -157,11 +164,11 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
   }
 
   const heading =
-    step === "success"
+    activeStep === "success"
       ? "Thank you"
-      : step === "role"
+      : activeStep === "role"
         ? "Are you an Investor or Creator?"
-        : role === "creator" || mode === "creator"
+        : activeRole === "creator"
           ? "Join as a Creator"
           : "Join as an Investor";
 
@@ -202,7 +209,7 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
         </div>
 
         <div className="overflow-y-auto px-5 py-5 sm:px-6 sm:py-6">
-          {step === "success" ? (
+          {activeStep === "success" ? (
             <div className="space-y-6 text-center">
               <div className="mx-auto max-w-sm space-y-3">
                 <p className="text-[1.15rem] font-semibold tracking-[-0.015em] text-ink text-balance">
@@ -218,7 +225,7 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
             </div>
           ) : null}
 
-          {step === "role" ? (
+          {activeStep === "role" ? (
             <div className="grid gap-3">
               <button
                 type="button"
@@ -243,7 +250,7 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
             </div>
           ) : null}
 
-          {step === "form" && role ? (
+          {activeStep === "form" && activeRole ? (
             <form className="space-y-4" onSubmit={onSubmit} noValidate>
               {mode === "general" ? (
                 <button
@@ -272,10 +279,10 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
                 />
               </div>
 
-              {role === "creator" ? (
+              {activeRole === "creator" ? (
                 <>
                   <div>
-                    <p className={labelClass}>Social platform</p>
+                    <p className={labelClass}>Choose your platform</p>
                     <div className="mt-2 grid grid-cols-2 gap-3">
                       <button
                         type="button"

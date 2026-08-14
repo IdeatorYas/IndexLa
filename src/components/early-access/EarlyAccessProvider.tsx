@@ -17,21 +17,34 @@ type EarlyAccessContextValue = {
   closeEarlyAccess: () => void;
 };
 
+type EarlyAccessSession = {
+  open: boolean;
+  mode: EarlyAccessMode;
+  /** Increments on every open so the modal fully resets. */
+  sessionId: number;
+};
+
 const EarlyAccessContext = createContext<EarlyAccessContextValue | null>(null);
 
 export function EarlyAccessProvider({ children }: { children: ReactNode }) {
-  const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState<EarlyAccessMode>("general");
-  const [instance, setInstance] = useState(0);
+  const [session, setSession] = useState<EarlyAccessSession>({
+    open: false,
+    mode: "general",
+    sessionId: 0,
+  });
 
   const openEarlyAccess = useCallback((nextMode: EarlyAccessMode = "general") => {
-    setMode(nextMode);
-    setInstance((n) => n + 1);
-    setOpen(true);
+    // Atomic update: mode + open must change together so creator CTAs never
+    // briefly render with a stale general/role-selection session.
+    setSession((prev) => ({
+      open: true,
+      mode: nextMode,
+      sessionId: prev.sessionId + 1,
+    }));
   }, []);
 
   const closeEarlyAccess = useCallback(() => {
-    setOpen(false);
+    setSession((prev) => ({ ...prev, open: false }));
   }, []);
 
   const value = useMemo(
@@ -43,9 +56,9 @@ export function EarlyAccessProvider({ children }: { children: ReactNode }) {
     <EarlyAccessContext.Provider value={value}>
       {children}
       <EarlyAccessModal
-        key={instance}
-        open={open}
-        mode={mode}
+        key={session.sessionId}
+        open={session.open}
+        mode={session.mode}
         onClose={closeEarlyAccess}
       />
     </EarlyAccessContext.Provider>
