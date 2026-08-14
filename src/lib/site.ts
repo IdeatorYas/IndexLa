@@ -1,4 +1,3 @@
-/** Dotted spiral PNG assets exist under /public/logo but must not be used in UI chrome or watermarks. */
 export const LOGO_DARK = "/logo/indexla-logo-transparent.png";
 export const LOGO_TRANSPARENT = "/logo/indexla-logo-transparent.png";
 export const LOGO_LIGHT = "/logo/indexla tranparent logo background.jpg";
