@@ -63,17 +63,16 @@ export function TokenizationSection() {
         <FadeIn className="mt-10">
           <div className={`space-y-6 text-center ${homeMeasure} ${homeBody}`}>
             <p>
-              Traditional assets are moving on-chain, enabling hybrid portfolios
-              that combine them with crypto.
+              Traditional assets are moving on-chain, unlocking hybrid portfolios
+              with crypto.
             </p>
             <p>
-              But assets remain fragmented across chains, making cross-chain
-              investing difficult for users.
+              Yet capital remains fragmented across chains, creating siloed
+              positions and manual work.
             </p>
             <p>
-              Tokenization creates the assets. Cross-chain infrastructure
-              connects them. INDEXLA makes them investable together through one
-              programmable portfolio.
+              INDEXLA unifies everything into one programmable portfolio for
+              automated investing.
             </p>
           </div>
         </FadeIn>
