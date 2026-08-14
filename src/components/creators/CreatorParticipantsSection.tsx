@@ -102,7 +102,7 @@ export function CreatorParticipantsSection() {
           </p>
           <p className={`mx-auto mt-5 max-w-[38rem] ${crBody} text-balance`}>
             The Creator Marketplace provides a dedicated discovery and
-            distribution layer — so you can reach investors beyond your existing
+            distribution layer so you can reach investors beyond your existing
             X and Telegram audience.
           </p>
         </FadeIn>

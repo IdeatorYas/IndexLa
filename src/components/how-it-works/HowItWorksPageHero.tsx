@@ -54,7 +54,7 @@ export function HowItWorksPageHero() {
 
           <p className={`mx-auto mt-5 max-w-2xl ${homeBodyStrong}`}>
             See how INDEXLA takes you from portfolio setup to automated execution
-            — with your assets staying in your wallet.
+            with your assets staying in your wallet.
           </p>
 
           <div className="mx-auto mt-7 max-w-4xl rounded-[1.25rem] border border-electric/25 bg-gradient-to-b from-electric/[0.08] to-transparent px-4 py-5 sm:px-8 sm:py-6">
@@ -76,8 +76,8 @@ export function HowItWorksPageHero() {
           </div>
 
           <p className={`mx-auto mt-7 max-w-2xl ${homeBody} text-balance`}>
-            Walk through each step below — connect, allocate, automate, and
-            activate — using interactive product previews.
+            Walk through each step below: connect, allocate, automate, and
+            activate, using interactive product previews.
           </p>
         </motion.div>
       </div>

@@ -50,7 +50,7 @@ export function WhatIsIndexlaSection() {
             </p>
             <p className="text-balance">
               Build your own portfolio, follow creator strategies, or automate
-              rules — while always holding the underlying assets in your wallet.
+              rules while always holding the underlying assets in your wallet.
             </p>
           </div>
 

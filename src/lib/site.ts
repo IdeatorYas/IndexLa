@@ -136,42 +136,6 @@ export const PORTFOLIOS: Portfolio[] = [
   },
 ];
 
-/** Depth: 0 = far (smaller/dimmer), 1 = mid, 2 = near (larger/brighter) */
-export const HERO_ASSETS: {
-  key: AssetKey;
-  x: string;
-  y: string;
-  size: number;
-  delay: number;
-  depth: 0 | 1 | 2;
-  mx?: string;
-  my?: string;
-  mSize?: number;
-}[] = [
-  // Outer ring — left
-  { key: "btc", x: "6%", y: "14%", size: 72, delay: 0.04, depth: 2, mx: "8%", my: "8%", mSize: 40 },
-  { key: "sp500", x: "3%", y: "34%", size: 54, delay: 0.1, depth: 1, mx: "28%", my: "4%", mSize: 32 },
-  { key: "apple", x: "9%", y: "52%", size: 50, delay: 0.14, depth: 1, mx: "6%", my: "42%", mSize: 30 },
-  { key: "nvidia", x: "12%", y: "72%", size: 62, delay: 0.18, depth: 2, mx: "14%", my: "78%", mSize: 36 },
-  { key: "gold", x: "22%", y: "86%", size: 48, delay: 0.28, depth: 1, mx: "36%", my: "90%", mSize: 30 },
-  // Outer ring — top / right
-  { key: "eth", x: "22%", y: "6%", size: 58, delay: 0.08, depth: 2, mx: "72%", my: "6%", mSize: 34 },
-  { key: "sol", x: "74%", y: "7%", size: 56, delay: 0.12, depth: 2, mx: "90%", my: "18%", mSize: 34 },
-  { key: "bnb", x: "90%", y: "18%", size: 52, delay: 0.16, depth: 1, mx: "92%", my: "38%", mSize: 32 },
-  { key: "nasdaq", x: "95%", y: "38%", size: 50, delay: 0.2, depth: 1, mx: "78%", my: "72%", mSize: 30 },
-  { key: "tao", x: "88%", y: "56%", size: 58, delay: 0.22, depth: 2, mx: "90%", my: "58%", mSize: 34 },
-  { key: "google", x: "78%", y: "74%", size: 52, delay: 0.24, depth: 1, mx: "62%", my: "84%", mSize: 32 },
-  { key: "microsoft", x: "92%", y: "80%", size: 48, delay: 0.3, depth: 1, mx: "48%", my: "92%", mSize: 30 },
-  { key: "silver", x: "58%", y: "88%", size: 46, delay: 0.32, depth: 0, mx: "22%", my: "92%", mSize: 28 },
-  // Inner / mid depth extras for richer universe
-  { key: "near", x: "28%", y: "22%", size: 42, delay: 0.2, depth: 0, mx: "18%", my: "22%", mSize: 26 },
-  { key: "icp", x: "68%", y: "20%", size: 44, delay: 0.24, depth: 0, mx: "54%", my: "10%", mSize: 26 },
-  { key: "chainlink", x: "32%", y: "78%", size: 44, delay: 0.26, depth: 0, mx: "84%", my: "82%", mSize: 26 },
-  { key: "ondo", x: "64%", y: "68%", size: 42, delay: 0.28, depth: 0, mx: "40%", my: "76%", mSize: 26 },
-  { key: "hype", x: "18%", y: "40%", size: 46, delay: 0.18, depth: 1, mx: "4%", my: "62%", mSize: 28 },
-  { key: "peaq", x: "82%", y: "42%", size: 44, delay: 0.22, depth: 0, mx: "96%", my: "50%", mSize: 28 },
-];
-
 export const TYPE_STYLES: Record<
   PortfolioType,
   { label: string; className: string }

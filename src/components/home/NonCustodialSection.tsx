@@ -34,7 +34,7 @@ export function NonCustodialSection() {
                 </p>
                 <p className="display mt-3 text-[1.4rem]">Basket representation</p>
                 <p className="mt-2 text-sm text-muted">
-                  You hold a packaged product — not the underlying assets.
+                  You hold a packaged product, not the underlying assets.
                 </p>
               </div>
               <div className="rounded-3xl glass p-6 text-center">

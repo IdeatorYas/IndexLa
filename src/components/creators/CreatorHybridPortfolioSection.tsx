@@ -142,7 +142,7 @@ export function CreatorHybridPortfolioSection() {
               <div className="border-b border-white/[0.07] xl:border-b-0 xl:border-r">
                 <div className="border-b border-white/[0.07] px-5 py-3 sm:px-6">
                   <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                    01 — Portfolio
+                    01 Portfolio
                   </p>
                 </div>
                 <div className="grid gap-0 lg:grid-cols-[0.85fr_1.15fr]">
@@ -227,7 +227,7 @@ export function CreatorHybridPortfolioSection() {
               <div>
                 <div className="border-b border-white/[0.07] px-5 py-3 sm:px-6">
                   <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                    02 — Investment strategy
+                    02 Investment strategy
                   </p>
                 </div>
                 <div className="p-5 sm:p-6">

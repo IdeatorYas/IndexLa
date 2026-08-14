@@ -126,7 +126,7 @@ function AssetChip({ asset, selected }: { asset: DemoAsset; selected?: boolean }
 
 function ConnectDemo() {
   return (
-    <DemoChrome title="01 — Connect">
+    <DemoChrome title="01 Connect">
       <div className="mx-auto grid max-w-lg gap-4">
         <p className="text-center text-[0.95rem] leading-relaxed text-muted text-balance">
           Connect your wallet.
@@ -174,7 +174,7 @@ function AllocateDemo() {
   ];
 
   return (
-    <DemoChrome title="02 — Allocate">
+    <DemoChrome title="02 Allocate">
       <div className="space-y-5">
         <div className="flex flex-wrap gap-2">
           {baskets.map((item) => (
@@ -276,7 +276,7 @@ function AllocateDemo() {
         </div>
 
         <p className="text-center text-[0.78rem] leading-snug text-muted-dim text-balance">
-          Product visualization — example assets shown for demonstration.
+          Product visualization: example assets shown for demonstration.
         </p>
       </div>
     </DemoChrome>
@@ -291,7 +291,7 @@ function AutomateDemo({
   setActiveStrategy: (index: number) => void;
 }) {
   return (
-    <DemoChrome title="03 — Automate">
+    <DemoChrome title="03 Automate">
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {AUTOMATE_STRATEGIES.map((item, i) => {
           const selected = i === activeStrategy;
@@ -329,7 +329,7 @@ function AutomateDemo({
 
 function ActivateDemo() {
   return (
-    <DemoChrome title="04 — Fund & Activate">
+    <DemoChrome title="04 Fund & Activate">
       <div className="mx-auto grid max-w-xl gap-4">
         <p className="text-center text-[1.05rem] font-semibold tracking-[-0.015em] text-ink text-balance">
           Fund your portfolio and activate your strategy.
@@ -528,7 +528,7 @@ export function HowItWorksSection({
               <div className="mt-5 flex items-center justify-between gap-3">
                 <p className={`${homeBody} lg:hidden`}>
                   <span className="font-semibold text-ink">
-                    {step.n} — {step.title}:
+                    {step.n} {step.title}:
                   </span>{" "}
                   {step.summary}
                 </p>

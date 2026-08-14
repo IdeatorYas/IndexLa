@@ -36,7 +36,7 @@ export function DexlaSection() {
       <div className="section-pad container-max">
         <FadeIn className="text-center">
           <h2 className={homeH2}>
-            $DEXLA — The Utility &{" "}
+            $DEXLA The Utility &{" "}
             <span className="gradient-text">Deflation Engine</span>
           </h2>
           <p className={`mt-6 ${homeMeasure} ${homeBody}`}>

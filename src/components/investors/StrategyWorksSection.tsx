@@ -37,12 +37,12 @@ const strategyGroups = [
   {
     key: "accumulate",
     title: "Accumulate",
-    items: ["Buy Fear — DCA In", "Buy RSI Weekly Oversold — DCA In"],
+    items: ["Buy Fear DCA In", "Buy RSI Weekly Oversold DCA In"],
   },
   {
     key: "distribute",
     title: "Distribute & Lock Profits",
-    items: ["Sell Greed — DCA Out", "Sell RSI Weekly Overbought — DCA Out"],
+    items: ["Sell Greed DCA Out", "Sell RSI Weekly Overbought DCA Out"],
   },
   {
     key: "adapt",
@@ -76,7 +76,7 @@ const phases: Phase[] = [
     action: "DCA IN",
     detail:
       "Your strategy begins accumulating. For example, you could configure INDEXLA to deploy 10% of your allocated capital per DCA action while extreme fear conditions remain.",
-    ruleTitle: "Buy Fear — DCA In",
+    ruleTitle: "Buy Fear DCA In",
     rules: [
       { label: "Condition", value: "Fear & Greed < 20" },
       { label: "Action", value: "DCA Buy" },
@@ -92,7 +92,7 @@ const phases: Phase[] = [
     meta: "Sentiment recovers into the 45–55 range.",
     action: "HOLD",
     detail: "Your strategy pauses. No buying. No selling.",
-    ruleTitle: "Neutral — Hold",
+    ruleTitle: "Neutral Hold",
     rules: [
       { label: "Condition", value: "Fear & Greed 45–55" },
       { label: "Action", value: "Hold" },
@@ -109,7 +109,7 @@ const phases: Phase[] = [
     action: "DCA OUT",
     detail:
       "The strategy begins taking profits. INDEXLA gradually reduces exposure through DCA out according to your defined percentages.",
-    ruleTitle: "Sell Greed — DCA Out",
+    ruleTitle: "Sell Greed DCA Out",
     rules: [
       { label: "Condition", value: "Fear & Greed > 70" },
       { label: "Action", value: "DCA Sell" },
@@ -126,7 +126,7 @@ const phases: Phase[] = [
     action: "TAKE MORE PROFIT",
     detail:
       "Your strategy increases the pace of profit taking according to your predefined rules.",
-    ruleTitle: "Extreme Greed — Take More Profit",
+    ruleTitle: "Extreme Greed Take More Profit",
     rules: [
       { label: "Condition", value: "Extreme Greed" },
       { label: "Action", value: "Increase DCA Out" },
@@ -202,7 +202,7 @@ export function StrategyWorksSection() {
                   INDEXLA Strategy Demo
                 </p>
                 <p className="mt-1 text-[0.78rem] font-medium text-muted">
-                  Interactive product preview — example only, not live trading.
+                  Interactive product preview: example only, not live trading.
                 </p>
               </div>
               <p className="rounded-full border border-line bg-deep/60 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
@@ -396,7 +396,7 @@ export function StrategyWorksSection() {
               Combine Strategies
             </h3>
             <p className={`mx-auto mt-3 max-w-2xl ${invBody}`}>
-              Multiple strategies can be combined into one strategy — so you can
+              Multiple strategies can be combined into one strategy so you can
               define a complete response from entry through profit taking.
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-2">

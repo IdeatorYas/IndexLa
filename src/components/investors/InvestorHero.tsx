@@ -170,7 +170,7 @@ export function InvestorHero() {
             </div>
 
             <p className={`mt-4 ${invBody}`}>
-              Then the market moves — and you hesitate, chase, panic, and miss
+              Then the market moves, and you hesitate, chase, panic, and miss
               it.
             </p>
 
@@ -213,7 +213,7 @@ export function InvestorHero() {
           <p className={`${invBody} text-pretty`}>
             You want one action to buy crypto and tokenized assets across
             different chains. You want to hold the actual assets in your own
-            wallet — not a wrapper. You want to automate Buy Fear / Sell Greed
+            wallet, not a wrapper. You want to automate Buy Fear / Sell Greed
             rules without giving up control.
           </p>
           <p className="text-[1.15rem] font-bold leading-snug tracking-[-0.02em] text-ink text-pretty sm:text-[1.28rem]">

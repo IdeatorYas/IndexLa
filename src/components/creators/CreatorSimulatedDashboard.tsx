@@ -54,10 +54,10 @@ export function CreatorSimulatedDashboard() {
           <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-electric/25 bg-gradient-to-b from-electric/[0.06] via-deep/80 to-void shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
             <div className="border-b border-electric/40 bg-electric/[0.14] px-5 py-4 text-center sm:px-8 sm:py-5">
               <p className="text-[0.8rem] font-bold uppercase tracking-[0.18em] text-electric sm:text-[0.88rem]">
-                Simulated Creator Profile — Demo Data
+                Simulated Creator Profile: Demo Data
               </p>
               <p className="mx-auto mt-2.5 max-w-xl text-[0.9rem] font-medium leading-relaxed text-ink sm:text-[0.98rem]">
-                MVP in development — this is a simulated creator experience
+                MVP in development: this is a simulated creator experience
                 using demo data.
               </p>
             </div>

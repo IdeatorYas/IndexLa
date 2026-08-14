@@ -27,9 +27,8 @@ export function StrategyExecutedSection() {
           </h2>
           <ul className="mt-7 space-y-4">
             {points.map((point) => (
-              <li key={point} className={`flex gap-3 ${homeBody}`}>
-                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-electric" />
-                <span>{point}</span>
+              <li key={point} className={`${homeBody}`}>
+                {point}
               </li>
             ))}
           </ul>

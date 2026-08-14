@@ -29,7 +29,7 @@ export function FearGreedIndexVisual() {
 
       <p className="mt-2.5 text-center display text-[1.2rem] tracking-[-0.02em] sm:text-[1.3rem]">
         <span className="tabular-nums text-danger">10</span>
-        <span className="mx-1.5 text-muted-dim">—</span>
+        <span className="mx-1.5 text-muted-dim">·</span>
         <span className="text-danger">Extreme Fear</span>
       </p>
 

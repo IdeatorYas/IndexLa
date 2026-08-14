@@ -246,7 +246,7 @@ export function TokenAllocationDiagram() {
   let offset = 0;
 
   return (
-    <DiagramFrame title="Token allocation — 100,000,000 $DEXLA">
+    <DiagramFrame title="Token allocation 100,000,000 $DEXLA">
       <div className="grid items-center gap-6 lg:grid-cols-[14rem_1fr]">
         <svg viewBox="0 0 180 180" className="mx-auto h-auto w-full max-w-[14rem]">
           <circle
@@ -619,7 +619,7 @@ export function CreatorAlignmentDiagram() {
         ))}
       </div>
       <p className="mt-4 text-center text-[0.85rem] text-muted">
-        Creators receive 50% of execution-fee revenue — long-term participants,
+        Creators receive 50% of execution-fee revenue: long-term participants,
         not acquisition channels.
       </p>
     </DiagramFrame>
@@ -741,7 +741,7 @@ export function MarketOpportunityDiagram() {
   ];
 
   return (
-    <DiagramFrame title="Market opportunity — TAM / SAM / SOM">
+    <DiagramFrame title="Market opportunity TAM / SAM / SOM">
       <div className="space-y-3">
         {layers.map((layer, i) => (
           <div
@@ -805,7 +805,7 @@ export function ArchitectureGapDiagram() {
         ))}
       </div>
       <p className="mt-4 text-center text-[0.85rem] text-muted">
-        Not a feature checklist — a different custody, permission, and fee-routing model.
+        Not a feature checklist: a different custody, permission, and fee-routing model.
       </p>
     </DiagramFrame>
   );

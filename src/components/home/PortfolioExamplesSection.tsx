@@ -19,7 +19,7 @@ const themes = [
 ] as const;
 
 const ILLUSTRATIVE_LABEL =
-  "Illustrative only — not live portfolios or investment performance.";
+  "Illustrative only: not live portfolios or investment performance.";
 
 export function PortfolioExamplesSection() {
   return (
