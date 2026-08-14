@@ -18,8 +18,10 @@ function stripMajorHeading(
   sectionNumber: number,
   headline: string,
 ): string {
-  if (headline === "Disclaimer") {
-    return markdown.replace(/^#\s+\*?\*?Disclaimer\*?\*?\s*\n+/im, "").trim();
+  if (/disclaimer/i.test(headline)) {
+    return markdown
+      .replace(/^#\s+\*?\*?(?:Comprehensive\s+)?Disclaimer\*?\*?\s*\n+/im, "")
+      .trim();
   }
   const escaped = headline.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const pattern = new RegExp(
@@ -54,8 +56,7 @@ function prepareBodyMarkdown(
   );
   if (
     edition === "whitepaper" &&
-    (section.slug === "9-why-indexla-differs" ||
-      section.slug === "5-competitive-landscape")
+    section.slug === "5-competitive-landscape"
   ) {
     body = stripCompetitorMarkdownTable(body);
   }

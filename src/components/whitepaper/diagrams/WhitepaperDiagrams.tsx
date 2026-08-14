@@ -657,44 +657,21 @@ export function MultiAssetEcosystemDiagram() {
 }
 
 export function HowIndexlaWorksDiagram() {
-  const layers = [
-    {
-      label: "Portfolio Layer",
-      detail: "Allocations · Target weights · Portfolio state · Strategy config",
-    },
-    {
-      label: "Permission Layer",
-      detail: "Scoped by portfolio, asset, strategy, action, and conditions",
-    },
-    {
-      label: "Strategy Layer",
-      detail: "DCA · Fear & Greed · RSI · Momentum · Take Profit · Stop Loss · Rebalancing",
-    },
-    {
-      label: "Execution Layer",
-      detail: "Routing · Cross-chain infrastructure · Authorized transactions",
-    },
-    {
-      label: "Recovery & Reconciliation",
-      detail: "Monitor · Detect · Retry/reroute · Reconcile balances",
-    },
-  ];
-
   return (
     <DiagramFrame title="How INDEXLA works">
-      <div className="space-y-2">
-        {layers.map((layer) => (
-          <div
-            key={layer.label}
-            className="grid gap-2 rounded-lg border border-line bg-deep/70 px-3.5 py-3 sm:grid-cols-[11rem_1fr] sm:items-center sm:gap-4"
-          >
-            <p className="text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-electric">
-              {layer.label}
-            </p>
-            <p className="text-[0.92rem] leading-snug text-muted">{layer.detail}</p>
-          </div>
-        ))}
-      </div>
+      <FlowSteps
+        steps={[
+          "Build",
+          "Configure",
+          "Authorize",
+          "Monitor",
+          "Execute",
+          "Manage",
+        ]}
+      />
+      <p className="mt-4 text-center text-[0.85rem] text-muted">
+        INDEXLA separates portfolio management from asset custody.
+      </p>
     </DiagramFrame>
   );
 }

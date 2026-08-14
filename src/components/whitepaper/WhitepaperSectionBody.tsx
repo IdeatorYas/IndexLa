@@ -18,20 +18,22 @@ type Block = {
 const CARDIFY_SECTIONS: Record<string, number> = {
   "2-the-problem": 3,
   "3-the-indexla-solution": 3,
-  "6-strategies": 3,
-  "7-why-now": 3,
-  "8-market-opportunity": 3,
-  "10-why-the-architecture-gap-is-structural": 3,
-  "17-risk-factors": 3,
+  "4-why-now": 3,
+  "6-why-the-architecture-gap-is-structural": 3,
+  "7-market-opportunity": 3,
+  "8-how-indexla-works": 3,
+  "11-strategies": 3,
+  "18-risk-factors": 3,
 };
 
 /** Sections where bullet lists become accent concept tiles */
 const ACCENT_LIST_SECTIONS = new Set([
   "2-the-problem",
-  "4-investor-overview",
-  "5-creator-economy",
-  "11-business-model",
-  "12-dexla-utility-tokenomics",
+  "5-why-indexla-differs",
+  "9-business-model",
+  "10-investor-overview",
+  "12-creator-economy",
+  "13-dexla-utility-tokenomics",
 ]);
 
 function plainHeading(raw: string): string {

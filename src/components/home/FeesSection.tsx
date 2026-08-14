@@ -75,7 +75,7 @@ export function FeesSection() {
 
         <FadeIn className="mt-8 text-center">
           <HomeReadMore
-            href="/whitepaper/11-business-model"
+            href="/whitepaper/9-business-model"
             label="Read the Business Model →"
           />
         </FadeIn>

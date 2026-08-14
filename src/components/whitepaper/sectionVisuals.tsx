@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CompetitorComparisonTable } from "@/components/whitepaper/CompetitorComparisonTable";
 import {
   ArchitectureGapDiagram,
   BurnBuybackFlowDiagram,
@@ -8,6 +7,7 @@ import {
   FeeDiscountTiersDiagram,
   FeeDistributionDiagram,
   GtmGrowthFlywheelDiagram,
+  HowIndexlaWorksDiagram,
   InvestorExecutionStackDiagram,
   MarketOpportunityDiagram,
   NonCustodialFlowDiagram,
@@ -30,6 +30,7 @@ export type SectionVisual = {
 
 /**
  * Visuals keyed by section slug. Labels/numbers match whitepaper content only.
+ * Source: docs/INDEXLA WHITEPAPER FINAL.docx (20 numbered sections + disclaimer).
  */
 export function getSectionVisuals(slug: string): SectionVisual[] {
   switch (slug) {
@@ -47,48 +48,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <NonCustodialFlowDiagram />,
         },
       ];
-    case "4-investor-overview":
-      return [
-        {
-          id: "investor-stack",
-          placement: "before",
-          node: <InvestorExecutionStackDiagram />,
-        },
-      ];
-    case "5-creator-economy":
-      return [
-        {
-          id: "creator-flow",
-          placement: "before",
-          node: <CreatorMarketplaceFlowDiagram />,
-        },
-      ];
-    case "6-strategies":
-      return [
-        {
-          id: "strategy-engine",
-          placement: "before",
-          node: <StrategyEngineDiagram />,
-        },
-      ];
-    case "8-market-opportunity":
-      return [
-        {
-          id: "tam-sam-som",
-          placement: "before",
-          node: <MarketOpportunityDiagram />,
-        },
-      ];
-    case "9-why-indexla-differs":
-      return [
-        {
-          id: "competitor-table",
-          placement: "after",
-          afterHeadingId: "why-existing-models-are-different",
-          node: <CompetitorComparisonTable />,
-        },
-      ];
-    case "10-why-the-architecture-gap-is-structural":
+    case "6-why-the-architecture-gap-is-structural":
       return [
         {
           id: "architecture-gap",
@@ -96,7 +56,23 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <ArchitectureGapDiagram />,
         },
       ];
-    case "11-business-model":
+    case "7-market-opportunity":
+      return [
+        {
+          id: "tam-sam-som",
+          placement: "before",
+          node: <MarketOpportunityDiagram />,
+        },
+      ];
+    case "8-how-indexla-works":
+      return [
+        {
+          id: "how-works",
+          placement: "before",
+          node: <HowIndexlaWorksDiagram />,
+        },
+      ];
+    case "9-business-model":
       return [
         {
           id: "fee-dist",
@@ -111,7 +87,31 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <EconomicFlywheelDiagram />,
         },
       ];
-    case "12-dexla-utility-tokenomics":
+    case "10-investor-overview":
+      return [
+        {
+          id: "investor-stack",
+          placement: "before",
+          node: <InvestorExecutionStackDiagram />,
+        },
+      ];
+    case "11-strategies":
+      return [
+        {
+          id: "strategy-engine",
+          placement: "before",
+          node: <StrategyEngineDiagram />,
+        },
+      ];
+    case "12-creator-economy":
+      return [
+        {
+          id: "creator-flow",
+          placement: "before",
+          node: <CreatorMarketplaceFlowDiagram />,
+        },
+      ];
+    case "13-dexla-utility-tokenomics":
       return [
         {
           id: "fee-discounts",
@@ -138,14 +138,6 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <VestingTimelineDiagram />,
         },
       ];
-    case "13-go-to-market":
-      return [
-        {
-          id: "gtm-flywheel",
-          placement: "before",
-          node: <GtmGrowthFlywheelDiagram />,
-        },
-      ];
     case "14-security-architecture":
       return [
         {
@@ -154,7 +146,15 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <SecurityRiskDiagram />,
         },
       ];
-    case "16-progressive-deployment-roadmap":
+    case "16-go-to-market":
+      return [
+        {
+          id: "gtm-flywheel",
+          placement: "before",
+          node: <GtmGrowthFlywheelDiagram />,
+        },
+      ];
+    case "17-progressive-deployment-roadmap":
       return [
         {
           id: "roadmap",

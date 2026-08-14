@@ -106,7 +106,9 @@ function isMajorSectionHeading(line: string): RegExpMatchArray | null {
 }
 
 function isDisclaimerHeading(line: string): boolean {
-  return /^#\s+\*?\*?Disclaimer\*?\*?\s*$/i.test(line.trim());
+  return /^#\s+\*?\*?(?:Comprehensive\s+)?Disclaimer\*?\*?\s*$/i.test(
+    line.trim(),
+  );
 }
 
 export function buildHeadingTree(markdown: string): TocItem[] {
@@ -165,10 +167,13 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
       return;
     }
     if (isDisclaimerHeading(line)) {
+      const title = plainTextFromHeading(
+        line.trim().replace(/^#+\s*/, ""),
+      );
       starts.push({
         lineIndex,
         number: starts.length > 0 ? starts[starts.length - 1].number + 1 : 1,
-        title: "Disclaimer",
+        title,
       });
     }
   });
@@ -184,20 +189,17 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
 
     const markdown = chunkLines.join("\n").replace(/^---\s*$/gm, "").trim();
     const subsections = buildHeadingTree(markdown);
-    const slug =
-      start.title === "Disclaimer"
-        ? "disclaimer"
-        : slugifyHeading(`${start.number}-${start.title}`);
+    const isDisclaimer = /disclaimer/i.test(start.title);
+    const slug = isDisclaimer
+      ? "disclaimer"
+      : slugifyHeading(`${start.number}-${start.title}`);
 
     return {
       slug,
       index,
       number: start.number,
       headline: start.title,
-      title:
-        start.title === "Disclaimer"
-          ? "Disclaimer"
-          : `${start.number}. ${start.title}`,
+      title: isDisclaimer ? start.title : `${start.number}. ${start.title}`,
       markdown,
       subsections,
     };
