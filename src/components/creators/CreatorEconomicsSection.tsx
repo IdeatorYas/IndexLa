@@ -143,9 +143,6 @@ export function CreatorEconomicsSection() {
             <EarlyAccessCta mode="creator" className={crCta}>
               Creator Early Access
             </EarlyAccessCta>
-            <p className="mt-3 text-center text-[0.92rem] leading-snug text-muted text-pretty text-balance sm:text-[0.95rem]">
-              Build portfolios and strategies. Earn from your alpha.
-            </p>
           </div>
         </FadeIn>
       </div>

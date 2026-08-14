@@ -61,14 +61,9 @@ function DemoChrome({
   return (
     <div className="overflow-hidden rounded-[1.35rem] border border-line bg-void/90 shadow-[0_28px_90px_rgba(0,0,0,0.42)]">
       <div className="flex items-center justify-between gap-3 border-b border-line bg-panel/70 px-4 py-3 sm:px-5">
-        <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <p className="ml-2 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-            {title}
-          </p>
-        </div>
+        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+          {title}
+        </p>
         <p className="hidden text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-electric/80 sm:block">
           Product Preview
         </p>
@@ -408,9 +403,7 @@ export function HowItWorksSection({
       <div className="section-pad container-max relative">
         <FadeIn className="mx-auto max-w-3xl text-center">
           {showHeading ? (
-            <div className="indexla-orbit mx-auto mb-8 inline-block">
-              <h2 className={homeH2}>How It Works</h2>
-            </div>
+            <h2 className={`mx-auto mb-8 ${homeH2}`}>How It Works</h2>
           ) : null}
           <p
             className={`text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted sm:text-[0.82rem] ${

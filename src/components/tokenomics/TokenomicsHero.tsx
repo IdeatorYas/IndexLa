@@ -7,18 +7,16 @@ export function TokenomicsHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-void pt-24 pb-10 md:pb-12 md:pt-28">
+    <section className="relative isolate overflow-hidden bg-void">
       <div className="pointer-events-none absolute inset-0 hero-glow opacity-35" aria-hidden />
 
-      <div className="section-pad container-max relative z-10 mx-auto max-w-6xl">
+      <div className="section-pad container-max relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center pb-10 pt-[5.75rem] lg:pb-12 lg:pt-24">
         <motion.div
           className="mx-auto max-w-3xl text-center"
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="mx-auto mb-4 h-px w-10 bg-gradient-to-r from-transparent via-electric/80 to-transparent" />
-
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-electric">
             Tokenomics
           </p>

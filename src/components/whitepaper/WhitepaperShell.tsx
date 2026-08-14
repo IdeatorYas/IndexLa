@@ -136,7 +136,7 @@ export function WhitepaperShell({
         aria-hidden
       />
 
-      <div className="section-pad relative z-10 mx-auto max-w-[84rem] pt-24 pb-4 md:pt-28">
+      <div className="section-pad relative z-10 mx-auto max-w-[84rem] pt-[5.75rem] pb-4 lg:pt-24">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
           <DocsEditionSwitcher
             edition={edition}

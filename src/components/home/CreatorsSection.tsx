@@ -85,9 +85,6 @@ export function CreatorsSection() {
               <EarlyAccessCta mode="creator" className={homeCta}>
                 Become a Creator
               </EarlyAccessCta>
-              <p className="mt-3 max-w-sm text-center text-[0.92rem] leading-snug text-muted text-pretty text-balance sm:text-[0.95rem]">
-                Build portfolios and strategies. Earn from your alpha.
-              </p>
             </div>
             <HomeReadMore href="/creators" label="Creator Guide →" />
           </div>

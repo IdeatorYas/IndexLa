@@ -17,44 +17,42 @@ export function StrategiesHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-void pt-28 pb-14 md:pb-16 md:pt-32">
+    <section className="relative isolate overflow-hidden bg-void">
       <div className="pointer-events-none absolute inset-0 hero-glow opacity-35" aria-hidden />
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-void to-transparent"
         aria-hidden
       />
 
-      <div className="section-pad container-max relative z-10">
+      <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col justify-center pb-10 pt-[5.75rem] lg:pb-12 lg:pt-24">
         <motion.div
           className="mx-auto max-w-3xl text-center"
-          initial={reduce ? false : { opacity: 0, y: 18 }}
+          initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="mx-auto mb-7 h-px w-12 bg-gradient-to-r from-transparent via-electric/80 to-transparent" />
-
-          <h1 className={stH1}>
+          <h1 className={`${stH1} text-[clamp(2rem,5vw,3.55rem)]`}>
             <span className="block">Stop Reacting.</span>
-            <span className="mt-[0.18em] block gradient-text">
+            <span className="mt-[0.14em] block gradient-text">
               Start Following Rules.
             </span>
           </h1>
 
-          <p className="mt-6 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-electric sm:text-[0.82rem]">
+          <p className="mt-5 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-electric sm:text-[0.82rem]">
             AI-Automated Strategies.
           </p>
 
-          <p className={`mx-auto mt-6 max-w-xl ${stBody} text-balance`}>
+          <p className={`mx-auto mt-5 max-w-xl ${stBody} text-balance`}>
             Markets move through fear, greed, and euphoria.
           </p>
 
-          <p className="mx-auto mt-5 max-w-2xl display text-[clamp(1.1rem,2.2vw,1.35rem)] leading-snug tracking-[-0.02em] text-ink text-balance">
+          <p className="mx-auto mt-4 max-w-2xl display text-[clamp(1.05rem,2vw,1.28rem)] leading-snug tracking-[-0.02em] text-ink text-balance">
             Define your strategy. INDEXLA monitors conditions and coordinates
             execution.
           </p>
 
-          <div className={`mx-auto mt-10 max-w-lg ${stSurface}`}>
-            <div className="px-5 py-6 sm:px-7 sm:py-7">
+          <div className={`mx-auto mt-8 max-w-lg ${stSurface}`}>
+            <div className="px-5 py-5 sm:px-7 sm:py-6">
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
                 Your Thesis
               </p>

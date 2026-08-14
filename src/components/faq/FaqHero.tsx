@@ -7,27 +7,26 @@ export function FaqHero({ sections }: { sections: FaqSection[] }) {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-void pt-28 pb-10 md:pb-12 md:pt-32">
+    <section className="relative isolate overflow-hidden bg-void">
       <div className="pointer-events-none absolute inset-0 hero-glow opacity-70" aria-hidden />
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-void to-transparent"
         aria-hidden
       />
 
-      <div className="section-pad container-max relative z-10">
+      <div className="section-pad container-max relative z-10 pb-10 pt-[5.75rem] lg:pb-12 lg:pt-24">
         <motion.div
           className="mx-auto max-w-3xl text-center"
-          initial={reduce ? false : { opacity: 0, y: 18 }}
+          initial={reduce ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="mx-auto mb-7 h-px w-16 bg-gradient-to-r from-transparent via-electric to-transparent" />
-          <h1 className="display text-[clamp(2.3rem,5vw,3.6rem)] uppercase tracking-[-0.03em]">
+          <h1 className="display text-[clamp(2.2rem,5vw,3.4rem)] uppercase tracking-[-0.03em]">
             FAQ
           </h1>
         </motion.div>
 
-        <nav aria-label="FAQ categories" className="mx-auto mt-9 max-w-4xl border-t border-line/80 pt-7">
+        <nav aria-label="FAQ categories" className="mx-auto mt-7 max-w-4xl border-t border-line/80 pt-6">
           <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1.5 sm:gap-x-2">
             {sections.map((section) => (
               <li key={section.id}>
