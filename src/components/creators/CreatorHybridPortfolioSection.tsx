@@ -330,8 +330,8 @@ export function CreatorHybridPortfolioSection() {
         </FadeIn>
 
         <FadeIn className="mt-9 text-center">
-          <EarlyAccessCta className={crCta}>
-            Reserve Early Access
+          <EarlyAccessCta mode="creator" className={crCta}>
+            Creator Early Access
           </EarlyAccessCta>
         </FadeIn>
       </div>

@@ -140,8 +140,8 @@ export function CreatorEconomicsSection() {
             revenue stream.
           </p>
           <div className="mt-8">
-            <EarlyAccessCta className={crCta}>
-              Reserve Early Access
+            <EarlyAccessCta mode="creator" className={crCta}>
+              Creator Early Access
             </EarlyAccessCta>
           </div>
         </FadeIn>

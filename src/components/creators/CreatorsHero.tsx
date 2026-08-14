@@ -102,8 +102,8 @@ export function CreatorsHero() {
             </div>
 
             <div className="mt-9">
-              <EarlyAccessCta className={crCta}>
-                Reserve Early Access
+              <EarlyAccessCta mode="creator" className={crCta}>
+                Creator Early Access
               </EarlyAccessCta>
             </div>
           </motion.div>
