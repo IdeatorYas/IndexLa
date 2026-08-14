@@ -16,14 +16,21 @@ export function EarlyAccessCta({
   variant = "primary",
   className = "",
 }: EarlyAccessCtaProps) {
-  const { openEarlyAccess } = useEarlyAccess();
+  const { openEarlyAccess, openCreatorEarlyAccess } = useEarlyAccess();
 
   return (
     <Button
       type="button"
       variant={variant}
       className={className}
-      onClick={() => openEarlyAccess(mode)}
+      onClick={() => {
+        // Creator-specific CTAs must never fall through to the general role picker.
+        if (mode === "creator") {
+          openCreatorEarlyAccess();
+          return;
+        }
+        openEarlyAccess("general");
+      }}
     >
       {children}
     </Button>

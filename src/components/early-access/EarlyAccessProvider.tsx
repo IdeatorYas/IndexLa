@@ -14,6 +14,7 @@ export type EarlyAccessMode = "general" | "creator";
 
 type EarlyAccessContextValue = {
   openEarlyAccess: (mode?: EarlyAccessMode) => void;
+  openCreatorEarlyAccess: () => void;
   closeEarlyAccess: () => void;
 };
 
@@ -43,13 +44,17 @@ export function EarlyAccessProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
 
+  const openCreatorEarlyAccess = useCallback(() => {
+    openEarlyAccess("creator");
+  }, [openEarlyAccess]);
+
   const closeEarlyAccess = useCallback(() => {
     setSession((prev) => ({ ...prev, open: false }));
   }, []);
 
   const value = useMemo(
-    () => ({ openEarlyAccess, closeEarlyAccess }),
-    [openEarlyAccess, closeEarlyAccess],
+    () => ({ openEarlyAccess, openCreatorEarlyAccess, closeEarlyAccess }),
+    [openEarlyAccess, openCreatorEarlyAccess, closeEarlyAccess],
   );
 
   return (

@@ -83,7 +83,7 @@ export function CreatorsSection() {
           <div className="mt-6 flex flex-col items-center justify-center gap-4">
             <div className="flex flex-col items-center">
               <EarlyAccessCta mode="creator" className={homeCta}>
-                Join as a Creator
+                Become a Creator
               </EarlyAccessCta>
               <p className="mt-3 max-w-sm text-center text-[0.92rem] leading-snug text-muted text-pretty text-balance sm:text-[0.95rem]">
                 Build portfolios and strategies. Earn from your alpha.
