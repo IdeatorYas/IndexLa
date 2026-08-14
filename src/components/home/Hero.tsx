@@ -72,6 +72,13 @@ export function Hero() {
             </p>
           </div>
 
+          <div className="mx-auto mt-7 w-full max-w-[36rem] rounded-2xl border border-electric/45 bg-electric/[0.1] px-4 py-5 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.16),0_0_36px_rgba(56,189,248,0.08)] sm:mt-8 sm:px-7 sm:py-6">
+            <p className="text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.2rem]">
+              Buy a multi-chain basket of crypto and tokenized assets in one
+              action. Hold them in your wallet. Automate when to buy and sell.
+            </p>
+          </div>
+
           <div
             className="mx-auto mt-8 w-full max-w-[34rem] rounded-2xl border border-electric/40 bg-white/[0.04] px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:mt-9 sm:px-7 sm:py-6"
             aria-label="Fee structure highlights"
