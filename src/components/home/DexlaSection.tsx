@@ -13,6 +13,7 @@ const utilities = [
   "Feature",
   "Fee Discounts",
   "Tips & Ranking",
+  "Creator Strategy Access",
 ] as const;
 
 const burns = [
@@ -20,6 +21,7 @@ const burns = [
   { title: "Protocol Fees", rate: "10%" },
   { title: "Promotion", rate: "100%" },
   { title: "Treasury Profits", rate: "25%" },
+  { title: "Creator Strategy Access", rate: "50%" },
 ] as const;
 
 const utilityCard =
@@ -45,9 +47,9 @@ export function DexlaSection() {
         <div className="mt-10 space-y-8">
           <div>
             <FadeIn className="text-center">
-              <h3 className={`${homeH3} text-success`}>4 Core Utilities</h3>
+              <h3 className={`${homeH3} text-success`}>5 Core Utilities</h3>
             </FadeIn>
-            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {utilities.map((item) => (
                 <FadeIn key={item}>
                   <article className={utilityCard}>
@@ -62,9 +64,9 @@ export function DexlaSection() {
 
           <div>
             <FadeIn className="text-center">
-              <h3 className={`${homeH3} text-danger`}>4 Burn Mechanisms</h3>
+              <h3 className={`${homeH3} text-danger`}>5 Burn Mechanisms</h3>
             </FadeIn>
-            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {burns.map((item) => (
                 <FadeIn key={item.title}>
                   <article className={burnCard}>
