@@ -63,8 +63,8 @@ export function TokenizationSection() {
         <FadeIn className="mt-10">
           <div className={`space-y-6 text-center ${homeMeasure} ${homeBody}`}>
             <p>
-              For the first time, crypto + tokenized assets can be combined into
-              hybrid portfolios.
+              Traditional assets are moving on-chain, enabling hybrid portfolios
+              that combine them with crypto.
             </p>
             <p>
               But assets remain fragmented across chains, making cross-chain
