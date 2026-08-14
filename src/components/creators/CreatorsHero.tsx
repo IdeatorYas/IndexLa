@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   crBody,
+  crBodyDim,
   crCta,
   crGreenBox,
   crGreenText,
@@ -105,6 +106,9 @@ export function CreatorsHero() {
               <EarlyAccessCta mode="creator" className={crCta}>
                 Creator Early Access
               </EarlyAccessCta>
+              <p className={`mt-3 max-w-md ${crBodyDim}`}>
+                Build portfolios and strategies. Earn from your alpha.
+              </p>
             </div>
           </motion.div>
 
