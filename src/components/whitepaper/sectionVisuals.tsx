@@ -88,7 +88,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
         {
           id: "fee-dist",
           placement: "after",
-          afterHeadingId: "creator-portfolios",
+          afterHeadingId: "1-execution-fee",
           node: <FeeDistributionDiagram />,
         },
         {

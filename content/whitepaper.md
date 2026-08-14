@@ -333,81 +333,40 @@ The detailed technical architecture, execution safeguards, routing logic, permis
 
 # 9. Business Model
 
-INDEXLA generates revenue through a transparent:
+INDEXLA has two complementary revenue engines: platform execution fees and Treasury activity.
 
-### 1% Execution Fee
+## 1% Execution Fee
 
-The fee applies to eligible buy and sell transactions executed through the platform.
+INDEXLA charges a 1% execution fee on eligible buy and sell transactions executed through the platform.
 
-INDEXLA charges:
+**0% Management · 0% Subscription · 0% Performance · 0% Exit**
 
-0% Management Fees
+The fee is distributed according to portfolio type:
 
-0% Subscription Fees
+| Portfolio         | Creator | Platform | Treasury | Rewards | Buyback & Burn |
+| ----------------- | ------: | -------: | -------: | ------: | -------------: |
+| INDEXLA Portfolio |       — |      30% |      30% |     30% |            10% |
+| Creator Portfolio |     50% |      20% |      10% |     10% |            10% |
 
-0% Performance Fees
+Creator portfolios give creators 50% of applicable execution fees, creating a direct incentive to attract investors and grow recurring portfolio activity.
 
-0% Exit Fees
+## Treasury
 
-Revenue therefore scales with actual portfolio activity.
+The INDEXLA Treasury provides financial resources beyond platform fees.
 
-### Fee Economics
+After successfully completing the planned fundraising rounds, INDEXLA plans to capitalize the Treasury with approximately $500,000, subject to final capital raised and applicable market conditions.
 
-The detailed portfolio-level fee distribution is documented in the Tokenomics section.
-
-For the planned portfolio mix of 70% Creator Portfolios and 30% Protocol Created Portfolios, the blended allocation of the 1% execution fee is:
-
-| Allocation | Blended Share |
-| --- | --- |
-| Creator | 35% |
-| Platform | 23% |
-| Treasury | 16% |
-| Rewards Pool | 16% |
-| $DEXLA Buyback & Burn | 10% |
-| Total | 100% |
-
-### Protocol Created Portfolios
-
-INDEXLA-created portfolios can seed the Marketplace, demonstrate strategies, and provide initial portfolio choices.
-
-Their fee distribution is:
-
-30% Platform · 30% Treasury · 30% Rewards · 10% Buyback & Burn
-
-### Creator Portfolios
-
-Creator portfolios distribute applicable execution fees as:
-
-50% Creator · 20% Platform · 10% Treasury · 10% Rewards · 10% Buyback & Burn
-
-### Treasury
-
-The Treasury is designed to provide INDEXLA with financial resources beyond platform execution fees.
-
-It can be funded through:
-
-- Fundraising allocations
-- Initial $DEXLA Treasury allocation
-- Applicable execution-fee revenue
-- Other permitted protocol assets
-
-Treasury assets may be managed according to the applicable Treasury policy, including permitted investment or trading activities.
+Treasury capital may be deployed across diversified assets and INDEXLA portfolio strategies, subject to the applicable Treasury policy.
 
 Realized Treasury profits can support:
 
-- Operations
-- Development
-- Security
-- Infrastructure
-- Marketing
-- Strategic partnerships
-- Ecosystem growth
+**Operations · Development · Security · Infrastructure · Marketing · Partnerships · Ecosystem Growth**
 
-25% of realized Treasury profits are allocated toward $DEXLA buybacks and burns.
+**25% of realized Treasury profits → $DEXLA Buyback & Burn**
 
-This creates an additional source of financial support for the protocol beyond execution-fee revenue alone.
+Together, platform execution fees and Treasury activity provide two potential sources of financial support for INDEXLA.
 
-All revenue scenarios, where presented, are illustrative and are not forecasts, guarantees, or commitments.
+Detailed Treasury and $DEXLA mechanics are covered in Tokenomics.
 
 ---
 

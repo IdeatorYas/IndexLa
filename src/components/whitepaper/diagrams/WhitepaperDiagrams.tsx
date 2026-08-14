@@ -140,11 +140,11 @@ export function CreatorMarketplaceFlowDiagram() {
 export function FeeDistributionDiagram() {
   const rows = [
     {
-      type: "Protocol-Created Portfolio",
+      type: "INDEXLA Portfolio",
       parts: [
         { label: "Platform", pct: 30, color: "#38bdf8" },
         { label: "Treasury", pct: 30, color: "#7c3aed" },
-        { label: "Rewards Pool", pct: 30, color: "#22d3ee" },
+        { label: "Rewards", pct: 30, color: "#22d3ee" },
         { label: "Buyback & Burn", pct: 10, color: "#f472b6" },
       ],
     },
@@ -154,7 +154,7 @@ export function FeeDistributionDiagram() {
         { label: "Creator", pct: 50, color: "#a78bfa" },
         { label: "Platform", pct: 20, color: "#38bdf8" },
         { label: "Treasury", pct: 10, color: "#7c3aed" },
-        { label: "Rewards Pool", pct: 10, color: "#22d3ee" },
+        { label: "Rewards", pct: 10, color: "#22d3ee" },
         { label: "Buyback & Burn", pct: 10, color: "#f472b6" },
       ],
     },
