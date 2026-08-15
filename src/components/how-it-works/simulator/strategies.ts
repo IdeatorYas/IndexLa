@@ -109,10 +109,14 @@ export function summarizeStrategy(
     case "buy-now": {
       const parts = ["Buy Now"];
       if (config.enableTakeProfit) {
-        parts.push(`TP +${config.takeProfitPct ?? 20}%`);
+        parts.push(
+          `TP +${config.takeProfitPct ?? 20}% sell ${config.takeProfitSellPct ?? 100}%`,
+        );
       }
       if (config.enableStopLoss) {
-        parts.push(`SL -${config.stopLossPct ?? 10}%`);
+        parts.push(
+          `SL -${config.stopLossPct ?? 10}% sell ${config.stopLossSellPct ?? 100}%`,
+        );
       }
       if (parts.length === 1) return "Buy Now · Immediate execution when authorized";
       return parts.join(" · ");
@@ -145,7 +149,9 @@ export function defaultsForStrategy(id: StrategyId): Partial<StrategyConfig> {
         enableTakeProfit: false,
         enableStopLoss: false,
         takeProfitPct: 20,
+        takeProfitSellPct: 100,
         stopLossPct: 10,
+        stopLossSellPct: 100,
       };
     case "fear-greed":
       return {

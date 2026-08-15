@@ -370,81 +370,137 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
 
       <div className={embedded ? "space-y-4" : "mt-4 space-y-4"}>
         {id === "buy-now" ? (
-          <div className="space-y-4">
-            <p className="rounded-2xl border border-electric/25 bg-electric/[0.08] px-4 py-4 text-[0.98rem] text-ink">
-              Buy Now executes immediately when authorized. Optionally enable
-              Take Profit and/or Stop Loss.
+          <div className="space-y-3">
+            <p className="rounded-xl border border-electric/25 bg-electric/[0.08] px-3 py-2.5 text-[0.88rem] text-ink">
+              Buy Now executes immediately when authorized. Configure optional
+              Take Profit and Stop Loss below.
             </p>
 
-            <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-white/[0.08] bg-void/50 p-4">
-              <input
-                type="checkbox"
-                className="mt-1 h-5 w-5 rounded accent-electric"
-                checked={!!c.enableTakeProfit}
-                onChange={(e) =>
-                  patchConfig({ enableTakeProfit: e.target.checked })
-                }
-              />
-              <span className="min-w-0 flex-1">
-                <span className="block font-semibold text-ink">Take Profit</span>
-                <span className="mt-1 block text-[0.85rem] text-muted">
-                  Optional — lock gains at a profit threshold.
+            <div className="rounded-xl border border-white/[0.08] bg-void/50 p-3">
+              <label className="flex cursor-pointer items-center gap-2.5">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 rounded accent-electric"
+                  checked={!!c.enableTakeProfit}
+                  onChange={(e) =>
+                    patchConfig({ enableTakeProfit: e.target.checked })
+                  }
+                />
+                <span className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink">
+                  Take Profit
                 </span>
-                {c.enableTakeProfit ? (
-                  <div className="mt-3">
+              </label>
+              <div
+                className={`mt-3 grid gap-3 sm:grid-cols-2 ${
+                  c.enableTakeProfit ? "" : "opacity-55"
+                }`}
+              >
+                <div>
+                  <p className={labelClass}>Take profit at</p>
+                  <div className="mt-1.5">
                     <NumInput
                       value={c.takeProfitPct ?? 20}
-                      onChange={(n) => patchConfig({ takeProfitPct: n })}
+                      onChange={(n) =>
+                        patchConfig({
+                          takeProfitPct: n,
+                          enableTakeProfit: true,
+                        })
+                      }
                       suffix="%"
                       min={1}
                       max={500}
                     />
                   </div>
-                ) : null}
-              </span>
-            </label>
+                </div>
+                <div>
+                  <p className={labelClass}>How much to sell</p>
+                  <div className="mt-1.5">
+                    <NumInput
+                      value={c.takeProfitSellPct ?? 100}
+                      onChange={(n) =>
+                        patchConfig({
+                          takeProfitSellPct: Math.max(1, Math.min(100, n || 0)),
+                          enableTakeProfit: true,
+                        })
+                      }
+                      suffix="%"
+                      min={1}
+                      max={100}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-white/[0.08] bg-void/50 p-4">
-              <input
-                type="checkbox"
-                className="mt-1 h-5 w-5 rounded accent-electric"
-                checked={!!c.enableStopLoss}
-                onChange={(e) =>
-                  patchConfig({ enableStopLoss: e.target.checked })
-                }
-              />
-              <span className="min-w-0 flex-1">
-                <span className="block font-semibold text-ink">Stop Loss</span>
-                <span className="mt-1 block text-[0.85rem] text-muted">
-                  Optional — limit downside at a loss threshold.
+            <div className="rounded-xl border border-white/[0.08] bg-void/50 p-3">
+              <label className="flex cursor-pointer items-center gap-2.5">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 rounded accent-electric"
+                  checked={!!c.enableStopLoss}
+                  onChange={(e) =>
+                    patchConfig({ enableStopLoss: e.target.checked })
+                  }
+                />
+                <span className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink">
+                  Stop Loss
                 </span>
-                {c.enableStopLoss ? (
-                  <div className="mt-3">
+              </label>
+              <div
+                className={`mt-3 grid gap-3 sm:grid-cols-2 ${
+                  c.enableStopLoss ? "" : "opacity-55"
+                }`}
+              >
+                <div>
+                  <p className={labelClass}>Stop loss at</p>
+                  <div className="mt-1.5">
                     <NumInput
                       value={c.stopLossPct ?? 10}
-                      onChange={(n) => patchConfig({ stopLossPct: n })}
+                      onChange={(n) =>
+                        patchConfig({
+                          stopLossPct: n,
+                          enableStopLoss: true,
+                        })
+                      }
                       suffix="%"
                       min={1}
                       max={99}
                     />
                   </div>
-                ) : null}
-              </span>
-            </label>
+                </div>
+                <div>
+                  <p className={labelClass}>How much to sell</p>
+                  <div className="mt-1.5">
+                    <NumInput
+                      value={c.stopLossSellPct ?? 100}
+                      onChange={(n) =>
+                        patchConfig({
+                          stopLossSellPct: Math.max(1, Math.min(100, n || 0)),
+                          enableStopLoss: true,
+                        })
+                      }
+                      suffix="%"
+                      min={1}
+                      max={100}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <div className="rounded-2xl border border-white/[0.08] bg-void/50 px-4 py-3 text-[0.92rem] text-muted">
+            <p className="rounded-xl border border-white/[0.08] bg-void/45 px-3 py-2 text-[0.82rem] text-muted">
               {[
                 "Buy Now",
                 c.enableTakeProfit
-                  ? `Take Profit +${c.takeProfitPct ?? 20}%`
+                  ? `TP +${c.takeProfitPct ?? 20}% · sell ${c.takeProfitSellPct ?? 100}%`
                   : null,
                 c.enableStopLoss
-                  ? `Stop Loss -${c.stopLossPct ?? 10}%`
+                  ? `SL -${c.stopLossPct ?? 10}% · sell ${c.stopLossSellPct ?? 100}%`
                   : null,
               ]
                 .filter(Boolean)
                 .join(" · ")}
-            </div>
+            </p>
           </div>
         ) : null}
 

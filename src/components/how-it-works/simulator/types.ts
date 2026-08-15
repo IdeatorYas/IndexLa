@@ -67,7 +67,11 @@ export type StrategyConfig = {
   enableTakeProfit?: boolean;
   enableStopLoss?: boolean;
   takeProfitPct?: number;
+  /** % of position sold when take-profit triggers */
+  takeProfitSellPct?: number;
   stopLossPct?: number;
+  /** % of position sold when stop-loss triggers */
+  stopLossSellPct?: number;
   fearThreshold?: number;
   greedThreshold?: number;
   dcaFrequency?: DcaFrequency;
@@ -177,7 +181,9 @@ export function emptyDraft(): DraftPortfolio {
       enableTakeProfit: false,
       enableStopLoss: false,
       takeProfitPct: 20,
+      takeProfitSellPct: 100,
       stopLossPct: 10,
+      stopLossSellPct: 100,
       fearThreshold: 20,
       greedThreshold: 70,
       dcaFrequency: "Weekly",

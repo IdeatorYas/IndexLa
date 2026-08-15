@@ -232,10 +232,10 @@ export function StrategyRuleVisual({
             action={
               [
                 config.enableTakeProfit
-                  ? `TP +${config.takeProfitPct ?? 20}%`
+                  ? `TP +${config.takeProfitPct ?? 20}% · sell ${config.takeProfitSellPct ?? 100}%`
                   : null,
                 config.enableStopLoss
-                  ? `SL -${config.stopLossPct ?? 10}%`
+                  ? `SL -${config.stopLossPct ?? 10}% · sell ${config.stopLossSellPct ?? 100}%`
                   : null,
               ]
                 .filter(Boolean)

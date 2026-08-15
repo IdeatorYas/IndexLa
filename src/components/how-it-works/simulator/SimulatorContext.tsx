@@ -122,11 +122,19 @@ function validateConfigure(draft: DraftPortfolio): boolean {
   const c = draft.strategyConfig;
   switch (id) {
     case "buy-now": {
-      if (c.enableTakeProfit && !(typeof c.takeProfitPct === "number" && c.takeProfitPct > 0)) {
-        return false;
+      if (c.enableTakeProfit) {
+        if (!(typeof c.takeProfitPct === "number" && c.takeProfitPct > 0)) {
+          return false;
+        }
+        const sell = c.takeProfitSellPct ?? 100;
+        if (!(sell > 0 && sell <= 100)) return false;
       }
-      if (c.enableStopLoss && !(typeof c.stopLossPct === "number" && c.stopLossPct > 0)) {
-        return false;
+      if (c.enableStopLoss) {
+        if (!(typeof c.stopLossPct === "number" && c.stopLossPct > 0)) {
+          return false;
+        }
+        const sell = c.stopLossSellPct ?? 100;
+        if (!(sell > 0 && sell <= 100)) return false;
       }
       return true;
     }
@@ -235,12 +243,16 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setStrategy = useCallback((id: StrategyId) => {
-    setDraft((d) => ({
-      ...d,
-      strategyId: id,
-      strategyConfig: { ...d.strategyConfig, ...defaultsForStrategy(id) },
-      hybrid: id === "hybrid" ? d.hybrid : defaultHybridConfig(),
-    }));
+    setDraft((d) => {
+      // Re-clicking the active strategy must not reset configuration.
+      if (d.strategyId === id) return d;
+      return {
+        ...d,
+        strategyId: id,
+        strategyConfig: { ...d.strategyConfig, ...defaultsForStrategy(id) },
+        hybrid: id === "hybrid" ? d.hybrid : defaultHybridConfig(),
+      };
+    });
   }, []);
 
   const setHybrid = useCallback((patch: Partial<HybridConfig>) => {
