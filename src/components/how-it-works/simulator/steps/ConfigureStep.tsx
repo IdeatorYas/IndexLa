@@ -1,17 +1,31 @@
 "use client";
 
-import { strategyTitle } from "../strategies";
+import {
+  formatHybridSummary,
+  HYBRID_BUY_OPTIONS,
+  HYBRID_SELL_OPTIONS,
+  strategyTitle,
+} from "../strategies";
 import { useSimulator } from "../SimulatorContext";
 import type {
   DcaFrequency,
-  HybridAction,
-  HybridCondition,
-  HybridRule,
+  HybridBuyCondition,
+  HybridSellCondition,
   MomentumTimeframe,
   RebalanceFrequency,
   RsiTimeframe,
+  SellAmountMode,
+  SellExecutionMode,
 } from "../types";
-import { fieldClass, labelClass } from "../ui";
+import { resolveSellPct } from "../types";
+import {
+  chipActive,
+  chipIdle,
+  fieldClass,
+  labelClass,
+  optionCardActive,
+  optionCardIdle,
+} from "../ui";
 
 function Field({
   label,
@@ -56,133 +70,244 @@ function NumInput({
   );
 }
 
-const HYBRID_CONDITIONS: { id: HybridCondition; label: string }[] = [
-  { id: "RSI_LT", label: "RSI < threshold" },
-  { id: "RSI_GT", label: "RSI > threshold" },
-  { id: "FEAR_EXTREME", label: "Fear & Greed = Extreme Fear" },
-  { id: "GREED_EXTREME", label: "Fear & Greed = Extreme Greed" },
-  { id: "FEAR_BELOW", label: "Fear & Greed below threshold" },
-  { id: "GREED_ABOVE", label: "Fear & Greed above threshold" },
-];
+function BuilderStep({
+  eyebrow,
+  children,
+}: {
+  eyebrow: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="relative rounded-2xl border border-white/[0.08] bg-void/50 p-4 sm:p-5">
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+        {eyebrow}
+      </p>
+      <div className="mt-3">{children}</div>
+    </div>
+  );
+}
 
-const HYBRID_ACTIONS: { id: HybridAction; label: string }[] = [
-  { id: "BUY", label: "BUY" },
-  { id: "SELL", label: "SELL" },
-  { id: "DCA_IN", label: "DCA IN" },
-  { id: "DCA_OUT", label: "DCA OUT" },
-];
+function BuilderArrow() {
+  return (
+    <div className="flex justify-center py-1 text-electric/70" aria-hidden>
+      ↓
+    </div>
+  );
+}
 
 function HybridBuilder() {
-  const { draft, setHybridRules } = useSimulator();
-
-  function addRule() {
-    const rule: HybridRule = {
-      id: `rule_${Date.now().toString(36)}`,
-      condition: "RSI_LT",
-      threshold: 30,
-      action: "BUY",
-    };
-    setHybridRules([...draft.hybridRules, rule]);
-  }
-
-  function update(id: string, patch: Partial<HybridRule>) {
-    setHybridRules(
-      draft.hybridRules.map((r) => (r.id === id ? { ...r, ...patch } : r)),
-    );
-  }
-
-  function remove(id: string) {
-    setHybridRules(draft.hybridRules.filter((r) => r.id !== id));
-  }
+  const { draft, setHybrid } = useSimulator();
+  const h = draft.hybrid;
+  const sellPct = resolveSellPct(h);
 
   return (
-    <div className="space-y-4">
-      <p className="text-[0.95rem] text-muted">
-        Visual rule builder: <strong className="text-ink">WHEN → CONDITION → ACTION</strong>
+    <div className="space-y-1">
+      <p className="mb-4 text-[0.95rem] text-muted">
+        Visual rule builder — configure Buy, Sell condition, Action, and Amount.
       </p>
-      {draft.hybridRules.map((rule) => (
-        <div
-          key={rule.id}
-          className="rounded-xl border border-white/[0.07] bg-void/45 p-4"
-        >
-          <div className="grid gap-3 sm:grid-cols-3">
-            <Field label="When / Condition">
-              <select
-                className={`${fieldClass} !mt-0`}
-                value={rule.condition}
-                onChange={(e) =>
-                  update(rule.id, {
-                    condition: e.target.value as HybridCondition,
-                  })
+
+      <BuilderStep eyebrow="Buy">
+        <div className="grid gap-2 sm:grid-cols-2">
+          {HYBRID_BUY_OPTIONS.map((opt) => {
+            const active = h.buyCondition === opt.id;
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() =>
+                  setHybrid({ buyCondition: opt.id as HybridBuyCondition })
                 }
+                className={`rounded-xl border px-4 py-3 text-left transition-all ${
+                  active ? optionCardActive : optionCardIdle
+                }`}
               >
-                {HYBRID_CONDITIONS.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
-            </Field>
-            {rule.condition === "RSI_LT" ||
-            rule.condition === "RSI_GT" ||
-            rule.condition === "FEAR_BELOW" ||
-            rule.condition === "GREED_ABOVE" ? (
-              <Field label="Threshold">
-                <NumInput
-                  value={rule.threshold ?? 30}
-                  onChange={(n) => update(rule.id, { threshold: n })}
-                />
-              </Field>
-            ) : (
-              <div />
-            )}
-            <Field label="Action">
-              <select
-                className={`${fieldClass} !mt-0`}
-                value={rule.action}
-                onChange={(e) =>
-                  update(rule.id, { action: e.target.value as HybridAction })
+                <p className="font-semibold text-ink">{opt.label}</p>
+                <p className="mt-1 text-[0.82rem] text-muted">{opt.summary}</p>
+              </button>
+            );
+          })}
+        </div>
+      </BuilderStep>
+
+      <BuilderArrow />
+
+      <BuilderStep eyebrow="Condition">
+        <div className="grid gap-2">
+          {HYBRID_SELL_OPTIONS.map((opt) => {
+            const active = h.sellCondition === opt.id;
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() =>
+                  setHybrid({ sellCondition: opt.id as HybridSellCondition })
                 }
+                className={`rounded-xl border px-4 py-3 text-left transition-all ${
+                  active ? optionCardActive : optionCardIdle
+                }`}
               >
-                {HYBRID_ACTIONS.map((a) => (
-                  <option key={a.id} value={a.id}>
-                    {a.label}
-                  </option>
-                ))}
-              </select>
+                <p className="font-semibold text-ink">{opt.label}</p>
+                <p className="mt-1 text-[0.82rem] text-muted">{opt.summary}</p>
+              </button>
+            );
+          })}
+        </div>
+
+        {h.sellCondition === "sell-greed" ? (
+          <div className="mt-4">
+            <Field label="Greed threshold">
+              <NumInput
+                value={h.greedThreshold ?? 70}
+                onChange={(n) => setHybrid({ greedThreshold: n })}
+                min={0}
+                max={100}
+              />
             </Field>
           </div>
-          <p className="mt-3 text-[0.85rem] text-electric">
-            WHEN{" "}
-            {rule.condition === "RSI_LT"
-              ? `RSI < ${rule.threshold ?? 30}`
-              : rule.condition === "RSI_GT"
-                ? `RSI > ${rule.threshold ?? 70}`
-                : rule.condition === "FEAR_EXTREME"
-                  ? "Fear & Greed = Extreme Fear"
-                  : rule.condition === "GREED_EXTREME"
-                    ? "Fear & Greed = Extreme Greed"
-                    : rule.condition === "FEAR_BELOW"
-                      ? `Fear & Greed < ${rule.threshold ?? 20}`
-                      : `Fear & Greed > ${rule.threshold ?? 70}`}{" "}
-            → {rule.action.replace("_", " ")}
-          </p>
-          <button
-            type="button"
-            onClick={() => remove(rule.id)}
-            className="mt-2 text-[0.75rem] font-semibold text-muted hover:text-ink"
-          >
-            Remove rule
-          </button>
+        ) : null}
+
+        {h.sellCondition === "sell-rsi-overbought" ? (
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <Field label="RSI timeframe">
+              <div className="flex flex-wrap gap-2">
+                {(["Daily", "Weekly"] as RsiTimeframe[]).map((tf) => (
+                  <button
+                    key={tf}
+                    type="button"
+                    onClick={() => setHybrid({ rsiTimeframe: tf })}
+                    className={`rounded-full border px-3 py-1.5 text-[0.78rem] font-semibold ${
+                      (h.rsiTimeframe ?? "Weekly") === tf
+                        ? chipActive
+                        : chipIdle
+                    }`}
+                  >
+                    {tf} RSI
+                  </button>
+                ))}
+              </div>
+            </Field>
+            <Field label="RSI overbought threshold">
+              <NumInput
+                value={h.rsiSellThreshold ?? 70}
+                onChange={(n) => setHybrid({ rsiSellThreshold: n })}
+                min={1}
+                max={99}
+              />
+            </Field>
+          </div>
+        ) : null}
+
+        {h.sellCondition === "sell-momentum-bearish" ? (
+          <div className="mt-4">
+            <Field label="Momentum timeframe">
+              <div className="flex flex-wrap gap-2">
+                {(["Daily", "Weekly"] as MomentumTimeframe[]).map((tf) => (
+                  <button
+                    key={tf}
+                    type="button"
+                    onClick={() => setHybrid({ momentumTimeframe: tf })}
+                    className={`rounded-full border px-3 py-1.5 text-[0.78rem] font-semibold ${
+                      (h.momentumTimeframe ?? "Weekly") === tf
+                        ? chipActive
+                        : chipIdle
+                    }`}
+                  >
+                    {tf === "Daily"
+                      ? "Daily (shorter / mid-term)"
+                      : "Weekly (longer-term)"}
+                  </button>
+                ))}
+              </div>
+            </Field>
+          </div>
+        ) : null}
+      </BuilderStep>
+
+      <BuilderArrow />
+
+      <BuilderStep eyebrow="Action">
+        <div className="grid gap-2 sm:grid-cols-2">
+          {(
+            [
+              { id: "direct" as SellExecutionMode, label: "Sell Directly" },
+              { id: "dca-out" as SellExecutionMode, label: "DCA OUT" },
+            ] as const
+          ).map((opt) => {
+            const active = h.sellExecution === opt.id;
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setHybrid({ sellExecution: opt.id })}
+                className={`rounded-xl border px-4 py-3 text-left font-semibold transition-all ${
+                  active ? optionCardActive : optionCardIdle
+                }`}
+              >
+                <span className="text-ink">{opt.label}</span>
+              </button>
+            );
+          })}
         </div>
-      ))}
-      <button
-        type="button"
-        onClick={addRule}
-        className="rounded-full border border-electric/35 bg-electric/10 px-4 py-2 text-[0.85rem] font-semibold text-electric"
-      >
-        + Add rule
-      </button>
+      </BuilderStep>
+
+      <BuilderArrow />
+
+      <BuilderStep eyebrow="Amount">
+        <div className="flex flex-wrap gap-2">
+          {(
+            [
+              { id: "50" as SellAmountMode, label: "50%" },
+              { id: "100" as SellAmountMode, label: "100%" },
+              { id: "custom" as SellAmountMode, label: "Custom %" },
+            ] as const
+          ).map((opt) => {
+            const active = h.sellAmountMode === opt.id;
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setHybrid({ sellAmountMode: opt.id })}
+                className={`rounded-full border px-4 py-2 text-[0.85rem] font-semibold transition-all ${
+                  active ? chipActive : chipIdle
+                }`}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
+        {h.sellAmountMode === "custom" ? (
+          <div className="mt-3">
+            <NumInput
+              value={h.sellCustomPct}
+              onChange={(n) =>
+                setHybrid({
+                  sellCustomPct: Math.max(1, Math.min(100, n || 0)),
+                })
+              }
+              suffix="%"
+              min={1}
+              max={100}
+            />
+          </div>
+        ) : null}
+        <p className="mt-3 text-[0.85rem] text-muted">
+          When triggered, sell <strong className="text-ink">{sellPct}%</strong>{" "}
+          of the position.
+        </p>
+      </BuilderStep>
+
+      <div className="mt-5 rounded-2xl border border-electric/30 bg-electric/[0.08] px-4 py-4">
+        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
+          Strategy summary
+        </p>
+        <p className="mt-2 text-[1.05rem] font-semibold leading-snug text-ink">
+          {formatHybridSummary(h)}
+        </p>
+        <p className="mt-2 text-[0.88rem] text-muted">
+          What triggers → what action → how much is affected.
+        </p>
+      </div>
     </div>
   );
 }
@@ -197,9 +322,7 @@ export function ConfigureStep() {
   }
 
   if (!id) {
-    return (
-      <p className="text-muted">Select a strategy first.</p>
-    );
+    return <p className="text-muted">Select a strategy first.</p>;
   }
 
   return (
@@ -208,12 +331,13 @@ export function ConfigureStep() {
         Strategy Configuration
       </h3>
       <p className="mt-2 text-[0.98rem] text-muted">
-        Configuring: <span className="font-semibold text-ink">{strategyTitle(id)}</span>
+        Configuring:{" "}
+        <span className="font-semibold text-ink">{strategyTitle(id)}</span>
       </p>
 
       <div className="mt-6 space-y-5">
         {id === "buy-now" ? (
-          <p className="rounded-xl border border-electric/25 bg-electric/[0.08] px-4 py-4 text-[0.98rem] text-ink">
+          <p className="rounded-2xl border border-electric/25 bg-electric/[0.08] px-4 py-4 text-[0.98rem] text-ink">
             Immediate execution when authorized. No additional parameters.
           </p>
         ) : null}
@@ -248,109 +372,145 @@ export function ConfigureStep() {
           </Field>
         ) : null}
 
-        {id === "buy-fear" ? (
-          <>
-            <div className="inline-flex rounded-full border border-success/40 bg-success/15 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-success">
-              DCA IN
+        {id === "fear-greed" ? (
+          <div className="space-y-5">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-success/30 bg-success/10 p-4">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-success">
+                  Buy Fear → DCA IN
+                </p>
+                <div className="mt-3">
+                  <Field label="Fear threshold">
+                    <NumInput
+                      value={c.fearThreshold ?? 20}
+                      onChange={(n) => patchConfig({ fearThreshold: n })}
+                      min={0}
+                      max={100}
+                    />
+                  </Field>
+                </div>
+              </div>
+              <div className="rounded-2xl border border-electric/30 bg-electric/10 p-4">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                  Sell Greed → DCA OUT
+                </p>
+                <div className="mt-3">
+                  <Field label="Greed threshold">
+                    <NumInput
+                      value={c.greedThreshold ?? 70}
+                      onChange={(n) => patchConfig({ greedThreshold: n })}
+                      min={0}
+                      max={100}
+                    />
+                  </Field>
+                </div>
+              </div>
             </div>
-            <Field label="Fear threshold">
-              <NumInput
-                value={c.fearThreshold ?? 20}
-                onChange={(n) => patchConfig({ fearThreshold: n })}
-                min={0}
-                max={100}
-              />
+            <Field label="DCA frequency">
+              <div className="flex flex-wrap gap-2">
+                {(["Daily", "Weekly"] as DcaFrequency[]).map((f) => (
+                  <button
+                    key={f}
+                    type="button"
+                    onClick={() => patchConfig({ dcaFrequency: f })}
+                    className={`rounded-full border px-4 py-2 text-[0.85rem] font-semibold ${
+                      (c.dcaFrequency ?? "Weekly") === f ? chipActive : chipIdle
+                    }`}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
             </Field>
-            <Field label="Frequency">
-              <select
-                className={`${fieldClass} !mt-0 max-w-xs`}
-                value={c.dcaFrequency ?? "Weekly"}
-                onChange={(e) =>
-                  patchConfig({ dcaFrequency: e.target.value as DcaFrequency })
-                }
-              >
-                <option value="Daily">Daily</option>
-                <option value="Weekly">Weekly</option>
-              </select>
-            </Field>
-          </>
+            <div className="rounded-2xl border border-white/[0.08] bg-void/50 px-4 py-3 text-[0.92rem] text-muted">
+              When Fear &lt; {c.fearThreshold ?? 20} →{" "}
+              <strong className="text-ink">DCA IN</strong>. When Greed &gt;{" "}
+              {c.greedThreshold ?? 70} →{" "}
+              <strong className="text-ink">DCA OUT</strong>. Frequency:{" "}
+              <strong className="text-ink">{c.dcaFrequency ?? "Weekly"}</strong>.
+            </div>
+          </div>
         ) : null}
 
-        {id === "sell-greed" ? (
-          <>
-            <div className="inline-flex rounded-full border border-electric/40 bg-electric/15 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-electric">
-              DCA OUT
-            </div>
-            <Field label="Greed threshold">
-              <NumInput
-                value={c.greedThreshold ?? 70}
-                onChange={(n) => patchConfig({ greedThreshold: n })}
-                min={0}
-                max={100}
-              />
-            </Field>
-            <Field label="Frequency">
-              <select
-                className={`${fieldClass} !mt-0 max-w-xs`}
-                value={c.dcaFrequency ?? "Weekly"}
-                onChange={(e) =>
-                  patchConfig({ dcaFrequency: e.target.value as DcaFrequency })
-                }
-              >
-                <option value="Daily">Daily</option>
-                <option value="Weekly">Weekly</option>
-              </select>
-            </Field>
-          </>
-        ) : null}
-
-        {id === "buy-rsi" || id === "sell-rsi" ? (
-          <>
+        {id === "rsi" ? (
+          <div className="space-y-5">
             <Field label="RSI timeframe">
-              <select
-                className={`${fieldClass} !mt-0 max-w-xs`}
-                value={c.rsiTimeframe ?? "Weekly"}
-                onChange={(e) =>
-                  patchConfig({ rsiTimeframe: e.target.value as RsiTimeframe })
-                }
-              >
-                <option value="Daily">Daily RSI</option>
-                <option value="Weekly">Weekly RSI</option>
-              </select>
+              <div className="flex flex-wrap gap-2">
+                {(["Daily", "Weekly"] as RsiTimeframe[]).map((tf) => (
+                  <button
+                    key={tf}
+                    type="button"
+                    onClick={() => patchConfig({ rsiTimeframe: tf })}
+                    className={`rounded-full border px-4 py-2 text-[0.85rem] font-semibold ${
+                      (c.rsiTimeframe ?? "Weekly") === tf ? chipActive : chipIdle
+                    }`}
+                  >
+                    {tf} RSI
+                  </button>
+                ))}
+              </div>
             </Field>
-            <Field label="RSI threshold">
-              <NumInput
-                value={
-                  c.rsiThreshold ?? (id === "buy-rsi" ? 30 : 70)
-                }
-                onChange={(n) => patchConfig({ rsiThreshold: n })}
-                min={1}
-                max={99}
-              />
-            </Field>
-            <p className="text-[0.85rem] text-muted">
-              {id === "buy-rsi"
-                ? `RSI < ${c.rsiThreshold ?? 30} → Buy`
-                : `RSI > ${c.rsiThreshold ?? 70} → Sell`}
-            </p>
-          </>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-success/30 bg-success/10 p-4">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-success">
+                  Buy RSI Oversold → Buy
+                </p>
+                <div className="mt-3">
+                  <Field label="Buy when RSI &lt;">
+                    <NumInput
+                      value={c.rsiBuyThreshold ?? 30}
+                      onChange={(n) => patchConfig({ rsiBuyThreshold: n })}
+                      min={1}
+                      max={99}
+                    />
+                  </Field>
+                </div>
+              </div>
+              <div className="rounded-2xl border border-electric/30 bg-electric/10 p-4">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                  Sell RSI Overbought → Sell
+                </p>
+                <div className="mt-3">
+                  <Field label="Sell when RSI &gt;">
+                    <NumInput
+                      value={c.rsiSellThreshold ?? 70}
+                      onChange={(n) => patchConfig({ rsiSellThreshold: n })}
+                      min={1}
+                      max={99}
+                    />
+                  </Field>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-white/[0.08] bg-void/50 px-4 py-3 text-[0.92rem] text-muted">
+              {c.rsiTimeframe ?? "Weekly"} RSI: Buy when RSI &lt;{" "}
+              {c.rsiBuyThreshold ?? 30}. Sell when RSI &gt;{" "}
+              {c.rsiSellThreshold ?? 70}.
+            </div>
+          </div>
         ) : null}
 
         {id === "momentum" ? (
           <Field label="Trend timeframe">
-            <select
-              className={`${fieldClass} !mt-0 max-w-xs`}
-              value={c.momentumTimeframe ?? "Weekly"}
-              onChange={(e) =>
-                patchConfig({
-                  momentumTimeframe: e.target.value as MomentumTimeframe,
-                })
-              }
-            >
-              <option value="Daily">Daily Trend Change</option>
-              <option value="Weekly">Weekly Trend Change</option>
-            </select>
-            <p className="mt-2 text-[0.85rem] text-muted">
+            <div className="flex flex-wrap gap-2">
+              {(["Daily", "Weekly"] as MomentumTimeframe[]).map((tf) => (
+                <button
+                  key={tf}
+                  type="button"
+                  onClick={() => patchConfig({ momentumTimeframe: tf })}
+                  className={`rounded-full border px-4 py-2 text-[0.85rem] font-semibold ${
+                    (c.momentumTimeframe ?? "Weekly") === tf
+                      ? chipActive
+                      : chipIdle
+                  }`}
+                >
+                  {tf === "Daily"
+                    ? "Daily Trend Change"
+                    : "Weekly Trend Change"}
+                </button>
+              ))}
+            </div>
+            <p className="mt-3 text-[0.85rem] text-muted">
               Daily = shorter / mid-term. Weekly = longer-term.
             </p>
           </Field>

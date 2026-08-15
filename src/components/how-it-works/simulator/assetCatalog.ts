@@ -3,6 +3,7 @@ import {
   DEMO_CRYPTO,
   DEMO_STOCKS,
 } from "@/lib/howItWorksDemoAssets";
+import { EXTRA_CRYPTO_LOGOS } from "./extraCryptoLogos";
 import type { CatalogAsset } from "./types";
 
 const CRYPTO_NETWORKS: Record<string, string[]> = {
@@ -25,7 +26,6 @@ const CRYPTO_NETWORKS: Record<string, string[]> = {
   UNI: ["Ethereum"],
 };
 
-/** Additional crypto tickers to reach ~100 (logos optional). */
 const EXTRA_CRYPTO: { ticker: string; name: string; networks?: string[] }[] = [
   { ticker: "TON", name: "Toncoin" },
   { ticker: "SHIB", name: "Shiba Inu", networks: ["Ethereum"] },
@@ -132,6 +132,7 @@ function cryptoExtras(): CatalogAsset[] {
     ticker: a.ticker,
     name: a.name,
     type: "crypto" as const,
+    src: EXTRA_CRYPTO_LOGOS[a.ticker],
     networks: a.networks ?? ["Multi-chain"],
   }));
 }
@@ -182,9 +183,16 @@ export function filterCatalog(
   return ASSET_CATALOG.filter((a) => {
     if (typeFilter && typeFilter !== "all" && a.type !== typeFilter) return false;
     if (!q) return true;
+    const goldAlias =
+      a.ticker === "XAU" && (q === "gold" || q.includes("gold") || q === "xau");
+    const silverAlias =
+      a.ticker === "XAG" &&
+      (q === "silver" || q.includes("silver") || q === "xag");
     return (
       a.ticker.toLowerCase().includes(q) ||
-      a.name.toLowerCase().includes(q)
+      a.name.toLowerCase().includes(q) ||
+      goldAlias ||
+      silverAlias
     );
   });
 }

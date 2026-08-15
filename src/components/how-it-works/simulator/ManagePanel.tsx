@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { AssetLogo } from "./AssetLogo";
 import { summarizeStrategy, strategyTitle } from "./strategies";
 import { useSimulator } from "./SimulatorContext";
 import { surfaceClass } from "./ui";
@@ -37,6 +38,18 @@ export function ManagePanel() {
           >
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
+                <div className="mr-1 flex -space-x-1.5">
+                  {p.assets.slice(0, 3).map((a) => (
+                    <AssetLogo
+                      key={a.key}
+                      ticker={a.ticker}
+                      name={a.name}
+                      src={a.src}
+                      size={24}
+                      className="ring-2 ring-deep"
+                    />
+                  ))}
+                </div>
                 <p className="display text-[1.05rem] font-semibold text-ink">
                   {p.name}
                 </p>
@@ -52,11 +65,7 @@ export function ManagePanel() {
               </div>
               <p className="mt-1 text-[0.88rem] text-muted">
                 {strategyTitle(p.strategyId)} ·{" "}
-                {summarizeStrategy(
-                  p.strategyId,
-                  p.strategyConfig,
-                  p.hybridRules.length,
-                )}
+                {summarizeStrategy(p.strategyId, p.strategyConfig, p.hybrid)}
               </p>
               {rebalanceFlashId === p.id ? (
                 <p className="mt-2 text-[0.85rem] font-semibold text-electric">

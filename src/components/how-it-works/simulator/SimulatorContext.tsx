@@ -8,12 +8,13 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { defaultsForStrategy } from "./strategies";
+import { defaultHybridConfig, defaultsForStrategy } from "./strategies";
 import {
   allocationTotal,
   emptyDraft,
+  resolveSellPct,
   type DraftPortfolio,
-  type HybridRule,
+  type HybridConfig,
   type SelectedAsset,
   type SimulatorPortfolio,
   type StrategyId,
@@ -27,7 +28,7 @@ type SimulatorContextValue = {
   updateDraft: (patch: Partial<DraftPortfolio>) => void;
   setAssets: (assets: SelectedAsset[]) => void;
   setStrategy: (id: StrategyId) => void;
-  setHybridRules: (rules: HybridRule[]) => void;
+  setHybrid: (patch: Partial<HybridConfig>) => void;
   published: SimulatorPortfolio[];
   justCreatedId: string | null;
   clearJustCreated: () => void;
@@ -63,6 +64,25 @@ function newId(): string {
   return `pf_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
+function validateHybrid(hybrid: HybridConfig): boolean {
+  if (!hybrid.buyCondition || !hybrid.sellCondition) return false;
+  if (!hybrid.sellExecution) return false;
+  const pct = resolveSellPct(hybrid);
+  if (!(pct > 0 && pct <= 100)) return false;
+  if (hybrid.sellCondition === "sell-greed") {
+    return typeof hybrid.greedThreshold === "number";
+  }
+  if (hybrid.sellCondition === "sell-rsi-overbought") {
+    return (
+      typeof hybrid.rsiSellThreshold === "number" && !!hybrid.rsiTimeframe
+    );
+  }
+  if (hybrid.sellCondition === "sell-momentum-bearish") {
+    return !!hybrid.momentumTimeframe;
+  }
+  return true;
+}
+
 function validateConfigure(draft: DraftPortfolio): boolean {
   const id = draft.strategyId;
   if (!id) return false;
@@ -74,25 +94,24 @@ function validateConfigure(draft: DraftPortfolio): boolean {
       return typeof c.takeProfitPct === "number" && c.takeProfitPct > 0;
     case "stop-loss":
       return typeof c.stopLossPct === "number" && c.stopLossPct > 0;
-    case "buy-fear":
+    case "fear-greed":
       return (
         typeof c.fearThreshold === "number" &&
-        !!c.dcaFrequency
-      );
-    case "sell-greed":
-      return (
         typeof c.greedThreshold === "number" &&
         !!c.dcaFrequency
       );
-    case "buy-rsi":
-    case "sell-rsi":
-      return typeof c.rsiThreshold === "number" && !!c.rsiTimeframe;
+    case "rsi":
+      return (
+        !!c.rsiTimeframe &&
+        typeof c.rsiBuyThreshold === "number" &&
+        typeof c.rsiSellThreshold === "number"
+      );
     case "momentum":
       return !!c.momentumTimeframe;
     case "rebalancing":
       return !!c.rebalanceFrequency;
     case "hybrid":
-      return draft.hybridRules.length >= 1;
+      return validateHybrid(draft.hybrid);
     default:
       return false;
   }
@@ -151,12 +170,12 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       ...d,
       strategyId: id,
       strategyConfig: { ...d.strategyConfig, ...defaultsForStrategy(id) },
-      hybridRules: id === "hybrid" ? d.hybridRules : [],
+      hybrid: id === "hybrid" ? d.hybrid : defaultHybridConfig(),
     }));
   }, []);
 
-  const setHybridRules = useCallback((rules: HybridRule[]) => {
-    setDraft((d) => ({ ...d, hybridRules: rules }));
+  const setHybrid = useCallback((patch: Partial<HybridConfig>) => {
+    setDraft((d) => ({ ...d, hybrid: { ...d.hybrid, ...patch } }));
   }, []);
 
   const resetDraft = useCallback(() => {
@@ -177,7 +196,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       assets: draft.assets,
       strategyId: draft.strategyId,
       strategyConfig: draft.strategyConfig,
-      hybridRules: draft.hybridRules,
+      hybrid: draft.hybrid,
       authorized: draft.authorized,
       amountUsd: draft.amountUsd,
       status: "active",
@@ -210,7 +229,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
         assets: p.assets,
         strategyId: p.strategyId,
         strategyConfig: p.strategyConfig,
-        hybridRules: p.hybridRules,
+        hybrid: p.hybrid,
         authorized: p.authorized,
         amountUsd: p.amountUsd,
         editingId: p.id,
@@ -277,7 +296,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       updateDraft,
       setAssets,
       setStrategy,
-      setHybridRules,
+      setHybrid,
       published,
       justCreatedId,
       clearJustCreated,
@@ -301,7 +320,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       updateDraft,
       setAssets,
       setStrategy,
-      setHybridRules,
+      setHybrid,
       published,
       justCreatedId,
       clearJustCreated,

@@ -30,12 +30,12 @@ function Progress() {
           return (
             <li key={s.id} className="flex items-center gap-1.5 sm:gap-2">
               <span
-                className={`inline-flex h-7 items-center rounded-full border px-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.08em] sm:px-3 sm:text-[0.72rem] ${
+                className={`inline-flex h-7 items-center rounded-full border px-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.08em] transition-all sm:px-3 sm:text-[0.72rem] ${
                   current
-                    ? "border-electric/50 bg-electric/15 text-electric"
+                    ? "border-electric/50 bg-electric/15 text-electric shadow-[0_0_20px_rgba(56,189,248,0.15)]"
                     : done
                       ? "border-success/40 bg-success/10 text-success"
-                      : "border-line bg-void/40 text-muted-dim"
+                      : "border-white/[0.08] bg-void/40 text-muted-dim"
                 }`}
               >
                 {s.label}
@@ -85,7 +85,7 @@ export function HowItWorksSimulator() {
   return (
     <section className={`${homeSection} bg-void`} id="simulator">
       <div className="section-pad container-max">
-        <div className="mb-6 text-center">
+        <div className="mb-8 text-center">
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-electric">
             Product Simulation
           </p>

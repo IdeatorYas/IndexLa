@@ -2,6 +2,7 @@
 
 import { STRATEGIES } from "../strategies";
 import { useSimulator } from "../SimulatorContext";
+import { optionCardActive, optionCardIdle } from "../ui";
 
 export function StrategyStep() {
   const { draft, setStrategy } = useSimulator();
@@ -23,10 +24,8 @@ export function StrategyStep() {
               key={s.id}
               type="button"
               onClick={() => setStrategy(s.id)}
-              className={`rounded-2xl border px-4 py-4 text-left transition-colors ${
-                active
-                  ? "border-electric/45 bg-electric/[0.12]"
-                  : "border-white/[0.07] bg-void/40 hover:border-white/15"
+              className={`rounded-2xl border px-4 py-4 text-left transition-all duration-300 ${
+                active ? optionCardActive : optionCardIdle
               }`}
             >
               <div className="flex items-start justify-between gap-2">

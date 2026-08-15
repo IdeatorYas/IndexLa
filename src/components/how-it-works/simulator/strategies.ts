@@ -1,4 +1,12 @@
-import type { StrategyConfig, StrategyId } from "./types";
+import type {
+  HybridBuyCondition,
+  HybridConfig,
+  HybridSellCondition,
+  SellAmountMode,
+  SellExecutionMode,
+  StrategyConfig,
+  StrategyId,
+} from "./types";
 
 export type StrategyDef = {
   id: StrategyId;
@@ -24,28 +32,17 @@ export const STRATEGIES: StrategyDef[] = [
     explanation: "Define a loss threshold to limit downside.",
   },
   {
-    id: "buy-fear",
-    title: "Buy Fear",
+    id: "fear-greed",
+    title: "Fear & Greed",
     explanation:
-      "Increase allocations when markets enter fear conditions through DCA.",
-    label: "DCA IN",
+      "Buy Fear → DCA IN when markets enter fear. Sell Greed → DCA OUT when markets enter greed.",
+    label: "DCA",
   },
   {
-    id: "sell-greed",
-    title: "Sell Greed",
+    id: "rsi",
+    title: "RSI",
     explanation:
-      "Reduce allocations when markets enter extreme greed through DCA.",
-    label: "DCA OUT",
-  },
-  {
-    id: "buy-rsi",
-    title: "Buy RSI Oversold",
-    explanation: "Accumulate when RSI reaches oversold conditions.",
-  },
-  {
-    id: "sell-rsi",
-    title: "Sell RSI Overbought",
-    explanation: "Reduce exposure when RSI reaches overbought conditions.",
+      "Buy RSI Oversold → Buy. Sell RSI Overbought → Sell. Choose Daily or Weekly RSI.",
   },
   {
     id: "momentum",
@@ -63,7 +60,33 @@ export const STRATEGIES: StrategyDef[] = [
     id: "hybrid",
     title: "Hybrid Strategy",
     explanation:
-      "Combine multiple rules in a WHEN → CONDITION → ACTION builder.",
+      "Pair a Buy condition with a Sell condition, then choose how much to sell.",
+  },
+];
+
+export const HYBRID_BUY_OPTIONS: {
+  id: HybridBuyCondition;
+  label: string;
+  summary: string;
+}[] = [
+  { id: "buy-now", label: "Buy Now", summary: "Buy immediately when authorized" },
+];
+
+export const HYBRID_SELL_OPTIONS: {
+  id: HybridSellCondition;
+  label: string;
+  summary: string;
+}[] = [
+  { id: "sell-greed", label: "Sell on Greed", summary: "Sell when Fear & Greed enters greed" },
+  {
+    id: "sell-rsi-overbought",
+    label: "Sell RSI Overbought",
+    summary: "Sell when RSI reaches overbought",
+  },
+  {
+    id: "sell-momentum-bearish",
+    label: "Sell when Momentum shifts Bearish",
+    summary: "Sell when momentum turns bearish",
   },
 ];
 
@@ -72,10 +95,35 @@ export function strategyTitle(id: StrategyId | null): string {
   return STRATEGIES.find((s) => s.id === id)?.title ?? id;
 }
 
+export function sellAmountLabel(
+  mode: SellAmountMode,
+  customPct?: number,
+): string {
+  if (mode === "50") return "50%";
+  if (mode === "100") return "100%";
+  return `${customPct ?? 0}%`;
+}
+
+export function sellExecutionLabel(mode: SellExecutionMode): string {
+  return mode === "direct" ? "Sell Directly" : "DCA OUT";
+}
+
+export function formatHybridSummary(hybrid: HybridConfig): string {
+  const buy =
+    HYBRID_BUY_OPTIONS.find((b) => b.id === hybrid.buyCondition)?.label ??
+    hybrid.buyCondition;
+  const sell =
+    HYBRID_SELL_OPTIONS.find((s) => s.id === hybrid.sellCondition)?.label ??
+    hybrid.sellCondition;
+  const action = sellExecutionLabel(hybrid.sellExecution);
+  const amount = sellAmountLabel(hybrid.sellAmountMode, hybrid.sellCustomPct);
+  return `${buy} → ${sell} → ${action} → ${amount}`;
+}
+
 export function summarizeStrategy(
   id: StrategyId | null,
   config: StrategyConfig,
-  hybridCount: number,
+  hybrid: HybridConfig,
 ): string {
   if (!id) return "—";
   switch (id) {
@@ -85,20 +133,20 @@ export function summarizeStrategy(
       return `Take Profit: +${config.takeProfitPct ?? 20}%`;
     case "stop-loss":
       return `Stop Loss: -${config.stopLossPct ?? 10}%`;
-    case "buy-fear":
-      return `Fear < ${config.fearThreshold ?? 20} · ${config.dcaFrequency ?? "Weekly"} · DCA IN`;
-    case "sell-greed":
-      return `Greed > ${config.greedThreshold ?? 70} · ${config.dcaFrequency ?? "Weekly"} · DCA OUT`;
-    case "buy-rsi":
-      return `RSI < ${config.rsiThreshold ?? 30} · ${config.rsiTimeframe ?? "Weekly"} RSI · Buy`;
-    case "sell-rsi":
-      return `RSI > ${config.rsiThreshold ?? 70} · ${config.rsiTimeframe ?? "Weekly"} RSI · Sell`;
-    case "momentum":
-      return `${config.momentumTimeframe ?? "Weekly"} Trend Change`;
+    case "fear-greed":
+      return `Buy Fear < ${config.fearThreshold ?? 20} → DCA IN · Sell Greed > ${config.greedThreshold ?? 70} → DCA OUT · ${config.dcaFrequency ?? "Weekly"}`;
+    case "rsi":
+      return `${config.rsiTimeframe ?? "Weekly"} RSI · Buy < ${config.rsiBuyThreshold ?? 30} · Sell > ${config.rsiSellThreshold ?? 70}`;
+    case "momentum": {
+      const tf = config.momentumTimeframe ?? "Weekly";
+      return tf === "Daily"
+        ? "Daily Trend Change (shorter / mid-term)"
+        : "Weekly Trend Change (longer-term)";
+    }
     case "rebalancing":
       return `Rebalance: ${config.rebalanceFrequency ?? "Monthly"}`;
     case "hybrid":
-      return `Hybrid · ${hybridCount} rule${hybridCount === 1 ? "" : "s"}`;
+      return formatHybridSummary(hybrid);
     default:
       return strategyTitle(id);
   }
@@ -110,14 +158,18 @@ export function defaultsForStrategy(id: StrategyId): Partial<StrategyConfig> {
       return { takeProfitPct: 20 };
     case "stop-loss":
       return { stopLossPct: 10 };
-    case "buy-fear":
-      return { fearThreshold: 20, dcaFrequency: "Weekly" };
-    case "sell-greed":
-      return { greedThreshold: 70, dcaFrequency: "Weekly" };
-    case "buy-rsi":
-      return { rsiThreshold: 30, rsiTimeframe: "Weekly" };
-    case "sell-rsi":
-      return { rsiThreshold: 70, rsiTimeframe: "Weekly" };
+    case "fear-greed":
+      return {
+        fearThreshold: 20,
+        greedThreshold: 70,
+        dcaFrequency: "Weekly",
+      };
+    case "rsi":
+      return {
+        rsiTimeframe: "Weekly",
+        rsiBuyThreshold: 30,
+        rsiSellThreshold: 70,
+      };
     case "momentum":
       return { momentumTimeframe: "Weekly" };
     case "rebalancing":
@@ -125,4 +177,18 @@ export function defaultsForStrategy(id: StrategyId): Partial<StrategyConfig> {
     default:
       return {};
   }
+}
+
+export function defaultHybridConfig(): HybridConfig {
+  return {
+    buyCondition: "buy-now",
+    sellCondition: "sell-greed",
+    sellExecution: "dca-out",
+    sellAmountMode: "50",
+    sellCustomPct: 50,
+    greedThreshold: 70,
+    rsiSellThreshold: 70,
+    rsiTimeframe: "Weekly",
+    momentumTimeframe: "Weekly",
+  };
 }

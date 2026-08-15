@@ -3,16 +3,37 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { homeSection } from "@/components/home/homeRhythm";
+import { AssetLogo } from "./AssetLogo";
 import { summarizeStrategy, strategyTitle } from "./strategies";
 import { useSimulator } from "./SimulatorContext";
 import { PortfolioDetailModal } from "./PortfolioDetailModal";
 import { surfaceClass } from "./ui";
 import type { SimulatorPortfolio } from "./types";
 
-function assetsSummary(p: SimulatorPortfolio): string {
-  const top = p.assets.slice(0, 4).map((a) => `${a.ticker} ${a.pct}%`);
-  const extra = p.assets.length > 4 ? ` +${p.assets.length - 4}` : "";
-  return `${top.join(" · ")}${extra}`;
+function AssetStack({ portfolio }: { portfolio: SimulatorPortfolio }) {
+  const shown = portfolio.assets.slice(0, 5);
+  const extra = portfolio.assets.length - shown.length;
+  return (
+    <div className="mt-3 flex items-center">
+      <div className="flex -space-x-2">
+        {shown.map((a) => (
+          <AssetLogo
+            key={a.key}
+            ticker={a.ticker}
+            name={a.name}
+            src={a.src}
+            size={28}
+            className="ring-2 ring-deep"
+          />
+        ))}
+      </div>
+      {extra > 0 ? (
+        <span className="ml-2 text-[0.78rem] font-semibold text-muted">
+          +{extra}
+        </span>
+      ) : null}
+    </div>
+  );
 }
 
 function Card({
@@ -24,12 +45,19 @@ function Card({
   highlight: boolean;
   onOpen: () => void;
 }) {
+  const summary = portfolio.assets
+    .slice(0, 4)
+    .map((a) => `${a.ticker} ${a.pct}%`)
+    .join(" · ");
+  const extra =
+    portfolio.assets.length > 4 ? ` +${portfolio.assets.length - 4}` : "";
+
   return (
     <button
       type="button"
       onClick={onOpen}
-      className={`${surfaceClass} w-full p-5 text-left transition-colors hover:border-electric/35 ${
-        highlight ? "ring-2 ring-electric/50" : ""
+      className={`${surfaceClass} w-full p-5 text-left transition-all duration-300 hover:border-electric/40 hover:shadow-[0_0_40px_rgba(56,189,248,0.08)] ${
+        highlight ? "ring-2 ring-electric/55" : ""
       }`}
     >
       {highlight ? (
@@ -46,25 +74,27 @@ function Card({
       <p className="mt-3 text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-muted">
         {portfolio.portfolioType}
       </p>
-      <p className="mt-2 text-[0.9rem] text-muted">{assetsSummary(portfolio)}</p>
+      <AssetStack portfolio={portfolio} />
+      <p className="mt-2 text-[0.88rem] text-muted">
+        {summary}
+        {extra}
+      </p>
       <p className="mt-3 text-[0.95rem] font-semibold text-ink">
         {strategyTitle(portfolio.strategyId)}
       </p>
-      <p className="mt-1 text-[0.85rem] text-muted">
+      <p className="mt-1 text-[0.85rem] leading-snug text-muted">
         {summarizeStrategy(
           portfolio.strategyId,
           portfolio.strategyConfig,
-          portfolio.hybridRules.length,
+          portfolio.hybrid,
         )}
       </p>
       <div className="mt-4 flex flex-wrap gap-3 text-[0.8rem] text-muted">
         <span>
-          Execution Fee{" "}
-          <strong className="text-ink">1%</strong>
+          Execution Fee <strong className="text-ink">1%</strong>
         </span>
         <span>
-          Creator Share{" "}
-          <strong className="text-ink">50%</strong>
+          Creator Share <strong className="text-ink">50%</strong>
         </span>
       </div>
       {portfolio.status === "paused" ? (

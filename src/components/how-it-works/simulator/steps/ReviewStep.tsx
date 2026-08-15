@@ -1,5 +1,6 @@
 "use client";
 
+import { AssetLogo } from "../AssetLogo";
 import { summarizeStrategy, strategyTitle } from "../strategies";
 import { useSimulator } from "../SimulatorContext";
 import type { WizardStep } from "../types";
@@ -41,7 +42,7 @@ function Row({
   editStep?: WizardStep;
 }) {
   return (
-    <div className="flex flex-wrap items-start justify-between gap-2 border-b border-white/[0.06] py-3 last:border-b-0">
+    <div className="flex flex-wrap items-start justify-between gap-2 border-b border-white/[0.06] py-3.5 last:border-b-0">
       <div className="min-w-0 flex-1">
         <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-muted">
           {label}
@@ -65,7 +66,7 @@ export function ReviewStep() {
         Confirm your portfolio before publishing to the marketplace simulation.
       </p>
 
-      <div className="mt-6 rounded-2xl border border-white/[0.08] bg-void/50 px-4 py-2 sm:px-5">
+      <div className="mt-6 rounded-2xl border border-white/[0.09] bg-void/55 px-4 py-2 sm:px-5">
         <Row label="Name" value={draft.name || "—"} editStep="create" />
         <Row
           label="Description"
@@ -81,10 +82,19 @@ export function ReviewStep() {
           label="Assets"
           editStep="assets"
           value={
-            <ul className="space-y-1">
+            <ul className="space-y-2">
               {draft.assets.map((a) => (
-                <li key={a.key}>
-                  {a.ticker} — {a.pct}% ({usd((draft.amountUsd * a.pct) / 100)})
+                <li key={a.key} className="flex items-center gap-2.5">
+                  <AssetLogo
+                    ticker={a.ticker}
+                    name={a.name}
+                    src={a.src}
+                    size={26}
+                  />
+                  <span>
+                    {a.ticker} — {a.pct}% (
+                    {usd((draft.amountUsd * a.pct) / 100)})
+                  </span>
                 </li>
               ))}
             </ul>
@@ -101,7 +111,7 @@ export function ReviewStep() {
           value={summarizeStrategy(
             draft.strategyId,
             draft.strategyConfig,
-            draft.hybridRules.length,
+            draft.hybrid,
           )}
         />
         <Row

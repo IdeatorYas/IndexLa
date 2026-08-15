@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hyperliquid HYPE">
+  <defs>
+    <linearGradient id="hypeGrad" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#97FCE4"/>
+      <stop offset="55%" stop-color="#50E3C2"/>
+      <stop offset="100%" stop-color="#00D1A0"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0B1A17"/>
+  <path fill="url(#hypeGrad)" d="M14 12c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v14.5c0 .8.7 1.5 1.5 1.5h13c.8 0 1.5-.7 1.5-1.5V12c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v40c0 1.1-.9 2-2 2h-6c-1.1 0-2-.9-2-2V35.5c0-.8-.7-1.5-1.5-1.5h-13c-.8 0-1.5.7-1.5 1.5V52c0 1.1-.9 2-2 2h-6c-1.1 0-2-.9-2-2V12z"/>
+  <path fill="#97FCE4" opacity="0.35" d="M18 18c6 4 10 10 12 16 2-6 6-12 12-16-5 8-8 16-9 24H27c-1-8-4-16-9-24z"/>
+</svg>

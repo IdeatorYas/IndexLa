@@ -41,10 +41,8 @@ export type StrategyId =
   | "buy-now"
   | "take-profit"
   | "stop-loss"
-  | "buy-fear"
-  | "sell-greed"
-  | "buy-rsi"
-  | "sell-rsi"
+  | "fear-greed"
+  | "rsi"
   | "momentum"
   | "rebalancing"
   | "hybrid";
@@ -64,27 +62,36 @@ export type StrategyConfig = {
   fearThreshold?: number;
   greedThreshold?: number;
   dcaFrequency?: DcaFrequency;
-  rsiThreshold?: number;
+  rsiBuyThreshold?: number;
+  rsiSellThreshold?: number;
   rsiTimeframe?: RsiTimeframe;
   momentumTimeframe?: MomentumTimeframe;
   rebalanceFrequency?: RebalanceFrequency;
 };
 
-export type HybridCondition =
-  | "RSI_LT"
-  | "RSI_GT"
-  | "FEAR_EXTREME"
-  | "GREED_EXTREME"
-  | "FEAR_BELOW"
-  | "GREED_ABOVE";
+/** Extensible hybrid buy legs */
+export type HybridBuyCondition = "buy-now";
 
-export type HybridAction = "BUY" | "SELL" | "DCA_IN" | "DCA_OUT";
+/** Extensible hybrid sell legs */
+export type HybridSellCondition =
+  | "sell-greed"
+  | "sell-rsi-overbought"
+  | "sell-momentum-bearish";
 
-export type HybridRule = {
-  id: string;
-  condition: HybridCondition;
-  threshold?: number;
-  action: HybridAction;
+export type SellExecutionMode = "direct" | "dca-out";
+export type SellAmountMode = "50" | "100" | "custom";
+
+export type HybridConfig = {
+  buyCondition: HybridBuyCondition;
+  sellCondition: HybridSellCondition;
+  sellExecution: SellExecutionMode;
+  sellAmountMode: SellAmountMode;
+  sellCustomPct: number;
+  /** Optional params for sell conditions */
+  greedThreshold?: number;
+  rsiSellThreshold?: number;
+  rsiTimeframe?: RsiTimeframe;
+  momentumTimeframe?: MomentumTimeframe;
 };
 
 export type CatalogAsset = {
@@ -110,7 +117,7 @@ export type SimulatorPortfolio = {
   assets: SelectedAsset[];
   strategyId: StrategyId;
   strategyConfig: StrategyConfig;
-  hybridRules: HybridRule[];
+  hybrid: HybridConfig;
   authorized: boolean;
   amountUsd: number;
   status: PortfolioStatus;
@@ -124,11 +131,25 @@ export type DraftPortfolio = {
   assets: SelectedAsset[];
   strategyId: StrategyId | null;
   strategyConfig: StrategyConfig;
-  hybridRules: HybridRule[];
+  hybrid: HybridConfig;
   authorized: boolean;
   amountUsd: number;
   editingId: string | null;
 };
+
+export function emptyHybrid(): HybridConfig {
+  return {
+    buyCondition: "buy-now",
+    sellCondition: "sell-greed",
+    sellExecution: "dca-out",
+    sellAmountMode: "50",
+    sellCustomPct: 50,
+    greedThreshold: 70,
+    rsiSellThreshold: 70,
+    rsiTimeframe: "Weekly",
+    momentumTimeframe: "Weekly",
+  };
+}
 
 export function emptyDraft(): DraftPortfolio {
   return {
@@ -143,12 +164,13 @@ export function emptyDraft(): DraftPortfolio {
       fearThreshold: 20,
       greedThreshold: 70,
       dcaFrequency: "Weekly",
-      rsiThreshold: 30,
+      rsiBuyThreshold: 30,
+      rsiSellThreshold: 70,
       rsiTimeframe: "Weekly",
       momentumTimeframe: "Weekly",
       rebalanceFrequency: "Monthly",
     },
-    hybridRules: [],
+    hybrid: emptyHybrid(),
     authorized: false,
     amountUsd: 10000,
     editingId: null,
@@ -157,4 +179,10 @@ export function emptyDraft(): DraftPortfolio {
 
 export function allocationTotal(assets: SelectedAsset[]): number {
   return Math.round(assets.reduce((sum, a) => sum + a.pct, 0) * 100) / 100;
+}
+
+export function resolveSellPct(hybrid: HybridConfig): number {
+  if (hybrid.sellAmountMode === "50") return 50;
+  if (hybrid.sellAmountMode === "100") return 100;
+  return hybrid.sellCustomPct;
 }

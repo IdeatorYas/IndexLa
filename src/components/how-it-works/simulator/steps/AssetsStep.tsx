@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AssetLogo } from "../AssetLogo";
 import { filterCatalog } from "../assetCatalog";
 import { useSimulator } from "../SimulatorContext";
 import { allocationTotal, type CatalogAsset, type SelectedAsset } from "../types";
-import { fieldClass, labelClass } from "../ui";
+import { chipActive, chipIdle, fieldClass, labelClass } from "../ui";
 
 function AssetRow({
   asset,
@@ -19,20 +20,18 @@ function AssetRow({
     <button
       type="button"
       onClick={onToggle}
-      className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-colors ${
+      className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-all duration-200 ${
         selected
-          ? "border-electric/40 bg-electric/[0.1]"
+          ? "border-electric/40 bg-electric/[0.12] shadow-[0_0_20px_rgba(56,189,248,0.08)]"
           : "border-white/[0.06] bg-void/40 hover:border-white/15"
       }`}
     >
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-panel text-[0.65rem] font-semibold text-ink">
-        {asset.src ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={asset.src} alt="" width={18} height={18} className="object-contain" />
-        ) : (
-          asset.ticker.slice(0, 2)
-        )}
-      </span>
+      <AssetLogo
+        ticker={asset.ticker}
+        name={asset.name}
+        src={asset.src}
+        size={32}
+      />
       <span className="min-w-0 flex-1">
         <span className="block text-[0.9rem] font-semibold text-ink">
           {asset.ticker}
@@ -58,7 +57,7 @@ export function AssetsStep() {
   >("all");
 
   const results = useMemo(
-    () => filterCatalog(query, typeFilter).slice(0, 60),
+    () => filterCatalog(query, typeFilter).slice(0, 80),
     [query, typeFilter],
   );
 
@@ -121,10 +120,8 @@ export function AssetsStep() {
                 key={t}
                 type="button"
                 onClick={() => setTypeFilter(t)}
-                className={`rounded-full border px-3 py-1.5 text-[0.75rem] font-semibold capitalize ${
-                  typeFilter === t
-                    ? "border-electric/40 bg-electric/15 text-electric"
-                    : "border-line bg-void/40 text-muted"
+                className={`rounded-full border px-3 py-1.5 text-[0.75rem] font-semibold capitalize transition-all ${
+                  typeFilter === t ? chipActive : chipIdle
                 }`}
               >
                 {t}
@@ -149,7 +146,7 @@ export function AssetsStep() {
             <button
               type="button"
               onClick={equalSplit}
-              className="text-[0.78rem] font-semibold text-electric hover:text-ink"
+              className="text-[0.78rem] font-semibold text-electric hover:text-ink disabled:opacity-40"
               disabled={draft.assets.length === 0}
             >
               Equal split
@@ -157,7 +154,7 @@ export function AssetsStep() {
           </div>
 
           {draft.assets.length === 0 ? (
-            <p className="mt-4 rounded-xl border border-dashed border-line px-4 py-8 text-center text-[0.95rem] text-muted">
+            <p className="mt-4 rounded-xl border border-dashed border-white/15 px-4 py-10 text-center text-[0.95rem] text-muted">
               No assets selected yet.
             </p>
           ) : (
@@ -165,20 +162,30 @@ export function AssetsStep() {
               {draft.assets.map((a) => (
                 <div
                   key={a.key}
-                  className="rounded-xl border border-white/[0.06] bg-void/45 px-3 py-3"
+                  className="rounded-xl border border-white/[0.07] bg-void/50 px-3 py-3"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-[0.92rem] font-semibold text-ink">
-                        {a.ticker}{" "}
-                        <span className="text-muted-dim">— {a.name}</span>
-                      </p>
-                      <p className="mt-0.5 text-[0.7rem] text-muted-dim">
-                        {a.type}
-                        {a.networks?.length
-                          ? ` · ${a.networks.join(", ")}`
-                          : ""}
-                      </p>
+                    <div className="flex min-w-0 items-center gap-3">
+                      <AssetLogo
+                        ticker={a.ticker}
+                        name={a.name}
+                        src={a.src}
+                        size={34}
+                      />
+                      <div className="min-w-0">
+                        <p className="text-[0.92rem] font-semibold text-ink">
+                          {a.ticker}{" "}
+                          <span className="font-normal text-muted-dim">
+                            — {a.name}
+                          </span>
+                        </p>
+                        <p className="mt-0.5 text-[0.7rem] text-muted-dim">
+                          {a.type}
+                          {a.networks?.length
+                            ? ` · ${a.networks.join(", ")}`
+                            : ""}
+                        </p>
+                      </div>
                     </div>
                     <button
                       type="button"
@@ -188,17 +195,25 @@ export function AssetsStep() {
                       Remove
                     </button>
                   </div>
-                  <div className="mt-2 flex items-center gap-2">
-                    <input
-                      type="number"
-                      min={0}
-                      max={100}
-                      step={1}
-                      value={a.pct}
-                      onChange={(e) => setPct(a.key, Number(e.target.value))}
-                      className="w-24 rounded-lg border border-line bg-void/70 px-3 py-2 text-[0.95rem] text-ink outline-none focus:border-electric/45"
-                    />
-                    <span className="text-[0.85rem] text-muted">%</span>
+                  <div className="mt-3">
+                    <div className="mb-2 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-purple to-electric transition-all duration-300"
+                        style={{ width: `${Math.min(100, a.pct)}%` }}
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="number"
+                        min={0}
+                        max={100}
+                        step={1}
+                        value={a.pct}
+                        onChange={(e) => setPct(a.key, Number(e.target.value))}
+                        className="w-24 rounded-lg border border-white/10 bg-void/70 px-3 py-2 text-[0.95rem] text-ink outline-none focus:border-electric/45"
+                      />
+                      <span className="text-[0.85rem] text-muted">%</span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -206,10 +221,10 @@ export function AssetsStep() {
           )}
 
           <div
-            className={`mt-4 rounded-xl border px-4 py-3 text-center ${
+            className={`mt-4 rounded-xl border px-4 py-3 text-center transition-colors ${
               total === 100
                 ? "border-success/40 bg-success/10"
-                : "border-line bg-void/40"
+                : "border-white/[0.08] bg-void/40"
             }`}
           >
             <p className="text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">

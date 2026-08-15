@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { AssetLogo } from "./AssetLogo";
 import { summarizeStrategy, strategyTitle } from "./strategies";
 import { useSimulator } from "./SimulatorContext";
 import { surfaceClass } from "./ui";
@@ -45,7 +46,7 @@ export function PortfolioDetailModal({
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-end justify-center bg-black/70 p-4 sm:items-center"
+      className="fixed inset-0 z-[80] flex items-end justify-center bg-black/75 p-4 backdrop-blur-sm sm:items-center"
       role="dialog"
       aria-modal="true"
       aria-labelledby="portfolio-detail-title"
@@ -97,11 +98,11 @@ export function PortfolioDetailModal({
           </div>
           <div className="flex justify-between gap-3">
             <dt className="text-muted">Config</dt>
-            <dd className="max-w-[60%] text-right text-ink">
+            <dd className="max-w-[62%] text-right text-ink">
               {summarizeStrategy(
                 portfolio.strategyId,
                 portfolio.strategyConfig,
-                portfolio.hybridRules.length,
+                portfolio.hybrid,
               )}
             </dd>
           </div>
@@ -129,13 +130,21 @@ export function PortfolioDetailModal({
             {portfolio.assets.map((a) => (
               <li
                 key={a.key}
-                className="flex justify-between rounded-lg border border-white/[0.06] bg-void/40 px-3 py-2 text-[0.9rem]"
+                className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-void/45 px-3 py-2.5 text-[0.9rem]"
               >
-                <span className="font-semibold text-ink">
-                  {a.ticker}{" "}
-                  <span className="font-normal text-muted">{a.name}</span>
+                <span className="flex min-w-0 items-center gap-2.5">
+                  <AssetLogo
+                    ticker={a.ticker}
+                    name={a.name}
+                    src={a.src}
+                    size={28}
+                  />
+                  <span className="font-semibold text-ink">
+                    {a.ticker}{" "}
+                    <span className="font-normal text-muted">{a.name}</span>
+                  </span>
                 </span>
-                <span className="text-electric">{a.pct}%</span>
+                <span className="font-semibold text-electric">{a.pct}%</span>
               </li>
             ))}
           </ul>
@@ -174,7 +183,7 @@ export function PortfolioDetailModal({
               <input
                 type="number"
                 min={1}
-                className="mt-2 w-full rounded-xl border border-line bg-void/60 px-4 py-3 text-ink outline-none focus:border-electric/45"
+                className="mt-2 w-full rounded-xl border border-white/10 bg-void/60 px-4 py-3 text-ink outline-none focus:border-electric/45"
                 value={allocAmount}
                 onChange={(e) =>
                   setAllocAmount(Math.max(0, Number(e.target.value) || 0))

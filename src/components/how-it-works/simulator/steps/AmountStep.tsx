@@ -1,5 +1,6 @@
 "use client";
 
+import { AssetLogo } from "../AssetLogo";
 import { useSimulator } from "../SimulatorContext";
 import { fieldClass, labelClass } from "../ui";
 
@@ -54,12 +55,20 @@ export function AmountStep() {
           return (
             <div
               key={a.key}
-              className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-void/45 px-4 py-3"
+              className="flex items-center justify-between gap-3 rounded-xl border border-white/[0.07] bg-void/50 px-4 py-3"
             >
-              <p className="text-[0.92rem] font-semibold text-ink">
-                {a.ticker}{" "}
-                <span className="font-normal text-muted">— {a.pct}%</span>
-              </p>
+              <div className="flex min-w-0 items-center gap-3">
+                <AssetLogo
+                  ticker={a.ticker}
+                  name={a.name}
+                  src={a.src}
+                  size={30}
+                />
+                <p className="text-[0.92rem] font-semibold text-ink">
+                  {a.ticker}{" "}
+                  <span className="font-normal text-muted">— {a.pct}%</span>
+                </p>
+              </div>
               <p className="text-[0.95rem] font-semibold text-electric">
                 {usd(dollars)}
               </p>
