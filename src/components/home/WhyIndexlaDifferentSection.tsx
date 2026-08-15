@@ -110,11 +110,6 @@ export function WhyIndexlaDifferentSection() {
             <h3 className={`${homeH3} text-[clamp(1.35rem,3vw,1.85rem)]`}>
               Creators Have No Distribution Layer
             </h3>
-            <p className={`mx-auto mt-5 max-w-2xl ${homeBody}`}>
-              Creators can share investment ideas through posts, groups, and
-              subscriptions, but have limited ways to turn their investment
-              theses into investable products.
-            </p>
             <p className={`mx-auto mt-6 max-w-2xl ${homeBody}`}>
               <span className="text-electric" aria-hidden>
                 →{" "}
