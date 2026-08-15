@@ -162,6 +162,13 @@ export function StrategyWorksSection() {
             AI-Assisted Condition Monitoring Built Around{" "}
             <span className="gradient-text">Your Thesis.</span>
           </p>
+          <p className={`mt-5 ${invBody}`}>
+            AI monitors market conditions and detects when your strategy rules
+            are met. Smart contracts enforce your permissions and limits, while
+            event-driven automation triggers execution only when the required
+            conditions are satisfied. Your thesis stays in control. AI assists
+            the process, but it never overrides your rules or custody.
+          </p>
           <p className={`mt-4 ${invEyebrow}`}>Build → Define → Automate</p>
         </FadeIn>
 

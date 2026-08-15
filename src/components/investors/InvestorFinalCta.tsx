@@ -34,8 +34,8 @@ export function InvestorFinalCta() {
           </p>
           <h2 className={`mt-3 ${invH2} uppercase`}>Reserve Early Access</h2>
           <p className={`mx-auto mt-5 max-w-md ${invBody} text-balance`}>
-            For investors interested in early access to build and automate
-            portfolios on INDEXLA.
+            Early users who secure access will be eligible for exclusive launch
+            rewards and early-user benefits.
           </p>
 
           <div className="mt-9 flex justify-center">
