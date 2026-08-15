@@ -165,7 +165,7 @@ export function HowItWorksSimulator() {
     <>
       <section
         id="simulator"
-        className="relative z-20 flex h-[calc(100svh-5rem)] max-h-[calc(100svh-5rem)] flex-col overflow-hidden border-t border-white/[0.06] bg-void"
+        className="relative z-20 flex h-[calc(100svh-5rem)] max-h-[calc(100svh-5rem)] flex-col overflow-hidden bg-void"
         aria-label="Portfolio simulator"
       >
         <div className="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-col px-3 py-2.5 sm:px-5 lg:px-6">

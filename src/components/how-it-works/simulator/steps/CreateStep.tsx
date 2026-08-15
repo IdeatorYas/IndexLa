@@ -5,8 +5,6 @@ import { useSimulator } from "../SimulatorContext";
 import { STARTER_TEMPLATES } from "../templates";
 import { PORTFOLIO_TYPES, emptyDraft, type DraftPortfolio } from "../types";
 import {
-  chipActive,
-  chipIdle,
   fieldClass,
   labelClass,
   optionCardActive,
@@ -137,22 +135,30 @@ export function CreateStep() {
         </div>
 
         <div>
-          <label htmlFor="pf-type" className={labelClass}>
+          <p id="pf-type-label" className={`${labelClass} !text-[0.78rem]`}>
             Portfolio Type
-          </label>
-          <div className="mt-1.5 flex flex-wrap gap-1.5">
-            {PORTFOLIO_TYPES.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => updateDraft({ portfolioType: t })}
-                className={`rounded-full border px-3 py-1.5 text-[0.75rem] font-semibold transition-all ${
-                  draft.portfolioType === t ? chipActive : chipIdle
-                }`}
-              >
-                {t}
-              </button>
-            ))}
+          </p>
+          <div
+            role="group"
+            aria-labelledby="pf-type-label"
+            className="mt-2.5 grid grid-cols-1 gap-2 sm:grid-cols-2"
+          >
+            {PORTFOLIO_TYPES.map((t) => {
+              const active = draft.portfolioType === t;
+              return (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={() => updateDraft({ portfolioType: t })}
+                  aria-pressed={active}
+                  className={`rounded-xl border px-3.5 py-2.5 text-left text-[0.88rem] font-semibold transition-all ${
+                    active ? optionCardActive : optionCardIdle
+                  }`}
+                >
+                  {t}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
