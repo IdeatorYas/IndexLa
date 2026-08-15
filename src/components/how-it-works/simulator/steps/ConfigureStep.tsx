@@ -14,10 +14,8 @@ import type {
   MomentumTimeframe,
   RebalanceFrequency,
   RsiTimeframe,
-  SellAmountMode,
   SellExecutionMode,
 } from "../types";
-import { resolveSellPct } from "../types";
 import {
   chipActive,
   chipIdle,
@@ -98,12 +96,11 @@ function BuilderArrow() {
 function HybridBuilder() {
   const { draft, setHybrid } = useSimulator();
   const h = draft.hybrid;
-  const sellPct = resolveSellPct(h);
 
   return (
     <div className="space-y-1">
       <p className="mb-4 text-[0.95rem] text-muted">
-        Visual rule builder — configure Buy, Sell condition, Action, and Amount.
+        Visual rule builder — configure Buy, Sell condition, and Sell action.
       </p>
 
       <BuilderStep eyebrow="Buy">
@@ -226,75 +223,78 @@ function HybridBuilder() {
       <BuilderArrow />
 
       <BuilderStep eyebrow="Action">
-        <div className="grid gap-2 sm:grid-cols-2">
-          {(
-            [
-              { id: "direct" as SellExecutionMode, label: "Sell Directly" },
-              { id: "dca-out" as SellExecutionMode, label: "DCA OUT" },
-            ] as const
-          ).map((opt) => {
-            const active = h.sellExecution === opt.id;
-            return (
-              <button
-                key={opt.id}
-                type="button"
-                onClick={() => setHybrid({ sellExecution: opt.id })}
-                className={`rounded-xl border px-4 py-3 text-left font-semibold transition-all ${
-                  active ? optionCardActive : optionCardIdle
-                }`}
-              >
-                <span className="text-ink">{opt.label}</span>
-              </button>
-            );
-          })}
-        </div>
-      </BuilderStep>
+        <div className="grid gap-3">
+          <button
+            type="button"
+            onClick={() => setHybrid({ sellExecution: "direct" as SellExecutionMode })}
+            className={`rounded-xl border px-4 py-4 text-left transition-all ${
+              h.sellExecution === "direct" ? optionCardActive : optionCardIdle
+            }`}
+          >
+            <p className="font-semibold text-ink">Sell Directly</p>
+            <p className="mt-1 text-[0.9rem] text-electric">Sell 100%</p>
+            <p className="mt-1 text-[0.82rem] text-muted">
+              Sells 100% of the selected asset/allocation when the condition
+              triggers.
+            </p>
+          </button>
 
-      <BuilderArrow />
-
-      <BuilderStep eyebrow="Amount">
-        <div className="flex flex-wrap gap-2">
-          {(
-            [
-              { id: "50" as SellAmountMode, label: "50%" },
-              { id: "100" as SellAmountMode, label: "100%" },
-              { id: "custom" as SellAmountMode, label: "Custom %" },
-            ] as const
-          ).map((opt) => {
-            const active = h.sellAmountMode === opt.id;
-            return (
-              <button
-                key={opt.id}
-                type="button"
-                onClick={() => setHybrid({ sellAmountMode: opt.id })}
-                className={`rounded-full border px-4 py-2 text-[0.85rem] font-semibold transition-all ${
-                  active ? chipActive : chipIdle
-                }`}
-              >
-                {opt.label}
-              </button>
-            );
-          })}
+          <button
+            type="button"
+            onClick={() => setHybrid({ sellExecution: "dca-out" as SellExecutionMode })}
+            className={`rounded-xl border px-4 py-4 text-left transition-all ${
+              h.sellExecution === "dca-out" ? optionCardActive : optionCardIdle
+            }`}
+          >
+            <p className="font-semibold text-ink">DCA OUT</p>
+            <p className="mt-1 text-[0.82rem] text-muted">
+              Sells a chosen % of the selected asset/allocation on a Daily or
+              Weekly schedule.
+            </p>
+          </button>
         </div>
-        {h.sellAmountMode === "custom" ? (
-          <div className="mt-3">
-            <NumInput
-              value={h.sellCustomPct}
-              onChange={(n) =>
-                setHybrid({
-                  sellCustomPct: Math.max(1, Math.min(100, n || 0)),
-                })
-              }
-              suffix="%"
-              min={1}
-              max={100}
-            />
+
+        {h.sellExecution === "dca-out" ? (
+          <div className="mt-4 space-y-4 rounded-xl border border-white/[0.07] bg-void/40 p-4">
+            <Field label="Frequency">
+              <div className="flex flex-wrap gap-2">
+                {(["Daily", "Weekly"] as DcaFrequency[]).map((f) => (
+                  <button
+                    key={f}
+                    type="button"
+                    onClick={() => setHybrid({ dcaFrequency: f })}
+                    className={`rounded-full border px-4 py-2 text-[0.85rem] font-semibold ${
+                      h.dcaFrequency === f ? chipActive : chipIdle
+                    }`}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+            </Field>
+            <Field label="% sold per execution (of selected asset/allocation)">
+              <NumInput
+                value={h.dcaOutPct}
+                onChange={(n) =>
+                  setHybrid({
+                    dcaOutPct: Math.max(1, Math.min(100, n || 0)),
+                  })
+                }
+                suffix="%"
+                min={1}
+                max={100}
+              />
+            </Field>
+            <p className="text-[0.85rem] text-muted">
+              Example: DCA OUT → {h.dcaFrequency} → {h.dcaOutPct}%
+            </p>
           </div>
-        ) : null}
-        <p className="mt-3 text-[0.85rem] text-muted">
-          When triggered, sell <strong className="text-ink">{sellPct}%</strong>{" "}
-          of the position.
-        </p>
+        ) : (
+          <p className="mt-4 text-[0.88rem] text-muted">
+            Sell Directly = 100% sold when triggered (selected asset/allocation
+            only — not the entire portfolio unless that asset is 100%).
+          </p>
+        )}
       </BuilderStep>
 
       <div className="mt-5 rounded-2xl border border-electric/30 bg-electric/[0.08] px-4 py-4">
@@ -305,7 +305,8 @@ function HybridBuilder() {
           {formatHybridSummary(h)}
         </p>
         <p className="mt-2 text-[0.88rem] text-muted">
-          What triggers → what action → how much is affected.
+          Sell Directly = 100% sold when triggered. DCA OUT = chosen % sold
+          Daily or Weekly of the selected asset/allocation.
         </p>
       </div>
     </div>
@@ -337,39 +338,82 @@ export function ConfigureStep() {
 
       <div className="mt-6 space-y-5">
         {id === "buy-now" ? (
-          <p className="rounded-2xl border border-electric/25 bg-electric/[0.08] px-4 py-4 text-[0.98rem] text-ink">
-            Immediate execution when authorized. No additional parameters.
-          </p>
-        ) : null}
-
-        {id === "take-profit" ? (
-          <Field label="Take Profit">
-            <NumInput
-              value={c.takeProfitPct ?? 20}
-              onChange={(n) => patchConfig({ takeProfitPct: n })}
-              suffix="%"
-              min={1}
-              max={500}
-            />
-            <p className="mt-2 text-[0.85rem] text-muted">
-              Example: Take Profit: +{c.takeProfitPct ?? 20}%
+          <div className="space-y-4">
+            <p className="rounded-2xl border border-electric/25 bg-electric/[0.08] px-4 py-4 text-[0.98rem] text-ink">
+              Buy Now executes immediately when authorized. Optionally enable
+              Take Profit and/or Stop Loss.
             </p>
-          </Field>
-        ) : null}
 
-        {id === "stop-loss" ? (
-          <Field label="Stop Loss">
-            <NumInput
-              value={c.stopLossPct ?? 10}
-              onChange={(n) => patchConfig({ stopLossPct: n })}
-              suffix="%"
-              min={1}
-              max={99}
-            />
-            <p className="mt-2 text-[0.85rem] text-muted">
-              Example: Stop Loss: -{c.stopLossPct ?? 10}%
-            </p>
-          </Field>
+            <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-white/[0.08] bg-void/50 p-4">
+              <input
+                type="checkbox"
+                className="mt-1 h-5 w-5 rounded accent-electric"
+                checked={!!c.enableTakeProfit}
+                onChange={(e) =>
+                  patchConfig({ enableTakeProfit: e.target.checked })
+                }
+              />
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold text-ink">Take Profit</span>
+                <span className="mt-1 block text-[0.85rem] text-muted">
+                  Optional — lock gains at a profit threshold.
+                </span>
+                {c.enableTakeProfit ? (
+                  <div className="mt-3">
+                    <NumInput
+                      value={c.takeProfitPct ?? 20}
+                      onChange={(n) => patchConfig({ takeProfitPct: n })}
+                      suffix="%"
+                      min={1}
+                      max={500}
+                    />
+                  </div>
+                ) : null}
+              </span>
+            </label>
+
+            <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-white/[0.08] bg-void/50 p-4">
+              <input
+                type="checkbox"
+                className="mt-1 h-5 w-5 rounded accent-electric"
+                checked={!!c.enableStopLoss}
+                onChange={(e) =>
+                  patchConfig({ enableStopLoss: e.target.checked })
+                }
+              />
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold text-ink">Stop Loss</span>
+                <span className="mt-1 block text-[0.85rem] text-muted">
+                  Optional — limit downside at a loss threshold.
+                </span>
+                {c.enableStopLoss ? (
+                  <div className="mt-3">
+                    <NumInput
+                      value={c.stopLossPct ?? 10}
+                      onChange={(n) => patchConfig({ stopLossPct: n })}
+                      suffix="%"
+                      min={1}
+                      max={99}
+                    />
+                  </div>
+                ) : null}
+              </span>
+            </label>
+
+            <div className="rounded-2xl border border-white/[0.08] bg-void/50 px-4 py-3 text-[0.92rem] text-muted">
+              {[
+                "Buy Now",
+                c.enableTakeProfit
+                  ? `Take Profit +${c.takeProfitPct ?? 20}%`
+                  : null,
+                c.enableStopLoss
+                  ? `Stop Loss -${c.stopLossPct ?? 10}%`
+                  : null,
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+            </div>
+          </div>
         ) : null}
 
         {id === "fear-greed" ? (
@@ -422,13 +466,6 @@ export function ConfigureStep() {
                 ))}
               </div>
             </Field>
-            <div className="rounded-2xl border border-white/[0.08] bg-void/50 px-4 py-3 text-[0.92rem] text-muted">
-              When Fear &lt; {c.fearThreshold ?? 20} →{" "}
-              <strong className="text-ink">DCA IN</strong>. When Greed &gt;{" "}
-              {c.greedThreshold ?? 70} →{" "}
-              <strong className="text-ink">DCA OUT</strong>. Frequency:{" "}
-              <strong className="text-ink">{c.dcaFrequency ?? "Weekly"}</strong>.
-            </div>
           </div>
         ) : null}
 
@@ -481,11 +518,6 @@ export function ConfigureStep() {
                   </Field>
                 </div>
               </div>
-            </div>
-            <div className="rounded-2xl border border-white/[0.08] bg-void/50 px-4 py-3 text-[0.92rem] text-muted">
-              {c.rsiTimeframe ?? "Weekly"} RSI: Buy when RSI &lt;{" "}
-              {c.rsiBuyThreshold ?? 30}. Sell when RSI &gt;{" "}
-              {c.rsiSellThreshold ?? 70}.
             </div>
           </div>
         ) : null}

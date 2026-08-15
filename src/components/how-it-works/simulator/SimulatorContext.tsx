@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -12,7 +13,6 @@ import { defaultHybridConfig, defaultsForStrategy } from "./strategies";
 import {
   allocationTotal,
   emptyDraft,
-  resolveSellPct,
   type DraftPortfolio,
   type HybridConfig,
   type SelectedAsset,
@@ -20,6 +20,29 @@ import {
   type StrategyId,
   type WizardStep,
 } from "./types";
+
+const PUBLISHED_STORAGE_KEY = "indexla-hiw-published-v1";
+
+function readPublished(): SimulatorPortfolio[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = sessionStorage.getItem(PUBLISHED_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as SimulatorPortfolio[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function writePublished(list: SimulatorPortfolio[]) {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.setItem(PUBLISHED_STORAGE_KEY, JSON.stringify(list));
+  } catch {
+    /* ignore quota */
+  }
+}
 
 type SimulatorContextValue = {
   step: WizardStep;
@@ -67,8 +90,10 @@ function newId(): string {
 function validateHybrid(hybrid: HybridConfig): boolean {
   if (!hybrid.buyCondition || !hybrid.sellCondition) return false;
   if (!hybrid.sellExecution) return false;
-  const pct = resolveSellPct(hybrid);
-  if (!(pct > 0 && pct <= 100)) return false;
+  if (hybrid.sellExecution === "dca-out") {
+    if (!(hybrid.dcaOutPct > 0 && hybrid.dcaOutPct <= 100)) return false;
+    if (!hybrid.dcaFrequency) return false;
+  }
   if (hybrid.sellCondition === "sell-greed") {
     return typeof hybrid.greedThreshold === "number";
   }
@@ -88,12 +113,15 @@ function validateConfigure(draft: DraftPortfolio): boolean {
   if (!id) return false;
   const c = draft.strategyConfig;
   switch (id) {
-    case "buy-now":
+    case "buy-now": {
+      if (c.enableTakeProfit && !(typeof c.takeProfitPct === "number" && c.takeProfitPct > 0)) {
+        return false;
+      }
+      if (c.enableStopLoss && !(typeof c.stopLossPct === "number" && c.stopLossPct > 0)) {
+        return false;
+      }
       return true;
-    case "take-profit":
-      return typeof c.takeProfitPct === "number" && c.takeProfitPct > 0;
-    case "stop-loss":
-      return typeof c.stopLossPct === "number" && c.stopLossPct > 0;
+    }
     case "fear-greed":
       return (
         typeof c.fearThreshold === "number" &&
@@ -157,6 +185,10 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [rebalanceFlashId, setRebalanceFlashId] = useState<string | null>(null);
 
+  useEffect(() => {
+    setPublished(readPublished());
+  }, []);
+
   const updateDraft = useCallback((patch: Partial<DraftPortfolio>) => {
     setDraft((d) => ({ ...d, ...patch }));
   }, []);
@@ -205,12 +237,12 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
 
     setPublished((list) => {
       const idx = list.findIndex((p) => p.id === id);
-      if (idx >= 0) {
-        const next = [...list];
-        next[idx] = portfolio;
-        return next;
-      }
-      return [portfolio, ...list];
+      const next =
+        idx >= 0
+          ? list.map((p, i) => (i === idx ? portfolio : p))
+          : [portfolio, ...list];
+      writePublished(next);
+      return next;
     });
     setJustCreatedId(id);
     setStep("success");
@@ -241,15 +273,23 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   );
 
   const pausePortfolio = useCallback((id: string) => {
-    setPublished((list) =>
-      list.map((p) => (p.id === id ? { ...p, status: "paused" as const } : p)),
-    );
+    setPublished((list) => {
+      const next = list.map((p) =>
+        p.id === id ? { ...p, status: "paused" as const } : p,
+      );
+      writePublished(next);
+      return next;
+    });
   }, []);
 
   const resumePortfolio = useCallback((id: string) => {
-    setPublished((list) =>
-      list.map((p) => (p.id === id ? { ...p, status: "active" as const } : p)),
-    );
+    setPublished((list) => {
+      const next = list.map((p) =>
+        p.id === id ? { ...p, status: "active" as const } : p,
+      );
+      writePublished(next);
+      return next;
+    });
   }, []);
 
   const rebalancePortfolio = useCallback((id: string) => {
@@ -258,9 +298,13 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const removePortfolio = useCallback((id: string) => {
-    setPublished((list) =>
-      list.map((p) => (p.id === id ? { ...p, status: "removed" as const } : p)),
-    );
+    setPublished((list) => {
+      const next = list.map((p) =>
+        p.id === id ? { ...p, status: "removed" as const } : p,
+      );
+      writePublished(next);
+      return next;
+    });
     setSelectedId((cur) => (cur === id ? null : cur));
   }, []);
 

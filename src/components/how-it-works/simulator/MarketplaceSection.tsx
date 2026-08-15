@@ -36,6 +36,14 @@ function AssetStack({ portfolio }: { portfolio: SimulatorPortfolio }) {
   );
 }
 
+function usd(n: number) {
+  return n.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  });
+}
+
 function Card({
   portfolio,
   highlight,
@@ -71,6 +79,11 @@ function Card({
       <p className="mt-1 text-[0.88rem] text-muted">
         Creator: <span className="font-semibold text-ink">You</span>
       </p>
+      {portfolio.description ? (
+        <p className="mt-2 line-clamp-2 text-[0.88rem] leading-relaxed text-muted">
+          {portfolio.description}
+        </p>
+      ) : null}
       <p className="mt-3 text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-muted">
         {portfolio.portfolioType}
       </p>
@@ -89,7 +102,10 @@ function Card({
           portfolio.hybrid,
         )}
       </p>
-      <div className="mt-4 flex flex-wrap gap-3 text-[0.8rem] text-muted">
+      <p className="mt-3 text-[0.95rem] font-semibold text-electric">
+        {usd(portfolio.amountUsd)}
+      </p>
+      <div className="mt-3 flex flex-wrap gap-3 text-[0.8rem] text-muted">
         <span>
           Execution Fee <strong className="text-ink">1%</strong>
         </span>

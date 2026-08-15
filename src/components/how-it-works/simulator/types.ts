@@ -39,8 +39,6 @@ export const WIZARD_STEPS: { id: WizardStep; label: string }[] = [
 
 export type StrategyId =
   | "buy-now"
-  | "take-profit"
-  | "stop-loss"
   | "fear-greed"
   | "rsi"
   | "momentum"
@@ -57,6 +55,8 @@ export type RebalanceFrequency =
   | "On Drift";
 
 export type StrategyConfig = {
+  enableTakeProfit?: boolean;
+  enableStopLoss?: boolean;
   takeProfitPct?: number;
   stopLossPct?: number;
   fearThreshold?: number;
@@ -79,15 +79,14 @@ export type HybridSellCondition =
   | "sell-momentum-bearish";
 
 export type SellExecutionMode = "direct" | "dca-out";
-export type SellAmountMode = "50" | "100" | "custom";
 
 export type HybridConfig = {
   buyCondition: HybridBuyCondition;
   sellCondition: HybridSellCondition;
   sellExecution: SellExecutionMode;
-  sellAmountMode: SellAmountMode;
-  sellCustomPct: number;
-  /** Optional params for sell conditions */
+  /** DCA OUT only — % of the selected asset/allocation sold per execution */
+  dcaOutPct: number;
+  dcaFrequency: DcaFrequency;
   greedThreshold?: number;
   rsiSellThreshold?: number;
   rsiTimeframe?: RsiTimeframe;
@@ -142,8 +141,8 @@ export function emptyHybrid(): HybridConfig {
     buyCondition: "buy-now",
     sellCondition: "sell-greed",
     sellExecution: "dca-out",
-    sellAmountMode: "50",
-    sellCustomPct: 50,
+    dcaOutPct: 25,
+    dcaFrequency: "Weekly",
     greedThreshold: 70,
     rsiSellThreshold: 70,
     rsiTimeframe: "Weekly",
@@ -159,6 +158,8 @@ export function emptyDraft(): DraftPortfolio {
     assets: [],
     strategyId: null,
     strategyConfig: {
+      enableTakeProfit: false,
+      enableStopLoss: false,
       takeProfitPct: 20,
       stopLossPct: 10,
       fearThreshold: 20,
@@ -181,8 +182,8 @@ export function allocationTotal(assets: SelectedAsset[]): number {
   return Math.round(assets.reduce((sum, a) => sum + a.pct, 0) * 100) / 100;
 }
 
+/** Sell Directly always 100%; DCA OUT uses configured % of the asset/allocation */
 export function resolveSellPct(hybrid: HybridConfig): number {
-  if (hybrid.sellAmountMode === "50") return 50;
-  if (hybrid.sellAmountMode === "100") return 100;
-  return hybrid.sellCustomPct;
+  if (hybrid.sellExecution === "direct") return 100;
+  return hybrid.dcaOutPct;
 }

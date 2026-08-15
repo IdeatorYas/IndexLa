@@ -102,10 +102,10 @@ export function AssetsStep() {
         Search and select assets, then set allocations to exactly 100%.
       </p>
 
-      <div className="mt-5 grid gap-6 lg:grid-cols-2">
-        <div>
+      <div className="mt-5 grid items-stretch gap-4 lg:grid-cols-2 lg:gap-5">
+        <div className="flex min-h-0 flex-col rounded-2xl border border-white/[0.08] bg-void/40 p-4 sm:p-5">
           <label htmlFor="asset-search" className={labelClass}>
-            Search
+            Search / Select Assets
           </label>
           <input
             id="asset-search"
@@ -128,7 +128,7 @@ export function AssetsStep() {
               </button>
             ))}
           </div>
-          <div className="mt-4 max-h-[22rem] space-y-2 overflow-y-auto pr-1">
+          <div className="mt-4 max-h-[20rem] flex-1 space-y-2 overflow-y-auto pr-1 lg:max-h-[24rem]">
             {results.map((a) => (
               <AssetRow
                 key={a.key}
@@ -140,9 +140,9 @@ export function AssetsStep() {
           </div>
         </div>
 
-        <div>
+        <div className="flex min-h-0 flex-col rounded-2xl border border-white/[0.08] bg-void/40 p-4 sm:p-5">
           <div className="flex items-center justify-between gap-3">
-            <p className={labelClass}>Selected · Allocation %</p>
+            <p className={labelClass}>Allocation</p>
             <button
               type="button"
               onClick={equalSplit}
@@ -154,11 +154,11 @@ export function AssetsStep() {
           </div>
 
           {draft.assets.length === 0 ? (
-            <p className="mt-4 rounded-xl border border-dashed border-white/15 px-4 py-10 text-center text-[0.95rem] text-muted">
+            <p className="mt-4 flex flex-1 items-center justify-center rounded-xl border border-dashed border-white/15 px-4 py-10 text-center text-[0.95rem] text-muted lg:min-h-[16rem]">
               No assets selected yet.
             </p>
           ) : (
-            <div className="mt-3 space-y-2">
+            <div className="mt-3 max-h-[16rem] flex-1 space-y-2 overflow-y-auto pr-1 lg:max-h-[18rem]">
               {draft.assets.map((a) => (
                 <div
                   key={a.key}
@@ -221,27 +221,33 @@ export function AssetsStep() {
           )}
 
           <div
-            className={`mt-4 rounded-xl border px-4 py-3 text-center transition-colors ${
-              total === 100
-                ? "border-success/40 bg-success/10"
-                : "border-white/[0.08] bg-void/40"
+            className={`mt-auto pt-4 ${
+              draft.assets.length === 0 ? "" : ""
             }`}
           >
-            <p className="text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-              Total Allocation
-            </p>
-            <p
-              className={`mt-1 display text-[1.35rem] font-semibold ${
-                total === 100 ? "text-success" : "text-ink"
+            <div
+              className={`rounded-xl border px-4 py-3 text-center transition-colors ${
+                total === 100
+                  ? "border-success/40 bg-success/10"
+                  : "border-white/[0.08] bg-void/40"
               }`}
             >
-              {total}%
-            </p>
-            {total !== 100 ? (
-              <p className="mt-1 text-[0.82rem] text-muted">
-                Must equal exactly 100% to continue
+              <p className="text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+                Total Allocation
               </p>
-            ) : null}
+              <p
+                className={`mt-1 display text-[1.35rem] font-semibold ${
+                  total === 100 ? "text-success" : "text-ink"
+                }`}
+              >
+                {total}%
+              </p>
+              {total !== 100 ? (
+                <p className="mt-1 text-[0.82rem] text-muted">
+                  Must equal exactly 100% to continue
+                </p>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

@@ -2,8 +2,6 @@ import type {
   HybridBuyCondition,
   HybridConfig,
   HybridSellCondition,
-  SellAmountMode,
-  SellExecutionMode,
   StrategyConfig,
   StrategyId,
 } from "./types";
@@ -19,17 +17,8 @@ export const STRATEGIES: StrategyDef[] = [
   {
     id: "buy-now",
     title: "Buy Now",
-    explanation: "Immediate execution when authorized.",
-  },
-  {
-    id: "take-profit",
-    title: "Take Profit",
-    explanation: "Define a profit threshold to lock gains automatically.",
-  },
-  {
-    id: "stop-loss",
-    title: "Stop Loss",
-    explanation: "Define a loss threshold to limit downside.",
+    explanation:
+      "Immediate execution when authorized. Optionally add Take Profit and/or Stop Loss.",
   },
   {
     id: "fear-greed",
@@ -60,7 +49,7 @@ export const STRATEGIES: StrategyDef[] = [
     id: "hybrid",
     title: "Hybrid Strategy",
     explanation:
-      "Pair a Buy condition with a Sell condition, then choose how much to sell.",
+      "Pair a Buy condition with a Sell condition, then Sell Directly (100%) or DCA OUT.",
   },
 ];
 
@@ -95,19 +84,6 @@ export function strategyTitle(id: StrategyId | null): string {
   return STRATEGIES.find((s) => s.id === id)?.title ?? id;
 }
 
-export function sellAmountLabel(
-  mode: SellAmountMode,
-  customPct?: number,
-): string {
-  if (mode === "50") return "50%";
-  if (mode === "100") return "100%";
-  return `${customPct ?? 0}%`;
-}
-
-export function sellExecutionLabel(mode: SellExecutionMode): string {
-  return mode === "direct" ? "Sell Directly" : "DCA OUT";
-}
-
 export function formatHybridSummary(hybrid: HybridConfig): string {
   const buy =
     HYBRID_BUY_OPTIONS.find((b) => b.id === hybrid.buyCondition)?.label ??
@@ -115,9 +91,10 @@ export function formatHybridSummary(hybrid: HybridConfig): string {
   const sell =
     HYBRID_SELL_OPTIONS.find((s) => s.id === hybrid.sellCondition)?.label ??
     hybrid.sellCondition;
-  const action = sellExecutionLabel(hybrid.sellExecution);
-  const amount = sellAmountLabel(hybrid.sellAmountMode, hybrid.sellCustomPct);
-  return `${buy} → ${sell} → ${action} → ${amount}`;
+  if (hybrid.sellExecution === "direct") {
+    return `${buy} → ${sell} → Sell Directly → 100% of selected asset/allocation`;
+  }
+  return `${buy} → ${sell} → DCA OUT → ${hybrid.dcaFrequency} → ${hybrid.dcaOutPct}% of selected asset/allocation`;
 }
 
 export function summarizeStrategy(
@@ -127,12 +104,17 @@ export function summarizeStrategy(
 ): string {
   if (!id) return "—";
   switch (id) {
-    case "buy-now":
-      return "Immediate execution when authorized";
-    case "take-profit":
-      return `Take Profit: +${config.takeProfitPct ?? 20}%`;
-    case "stop-loss":
-      return `Stop Loss: -${config.stopLossPct ?? 10}%`;
+    case "buy-now": {
+      const parts = ["Buy Now"];
+      if (config.enableTakeProfit) {
+        parts.push(`TP +${config.takeProfitPct ?? 20}%`);
+      }
+      if (config.enableStopLoss) {
+        parts.push(`SL -${config.stopLossPct ?? 10}%`);
+      }
+      if (parts.length === 1) return "Buy Now · Immediate execution when authorized";
+      return parts.join(" · ");
+    }
     case "fear-greed":
       return `Buy Fear < ${config.fearThreshold ?? 20} → DCA IN · Sell Greed > ${config.greedThreshold ?? 70} → DCA OUT · ${config.dcaFrequency ?? "Weekly"}`;
     case "rsi":
@@ -154,10 +136,13 @@ export function summarizeStrategy(
 
 export function defaultsForStrategy(id: StrategyId): Partial<StrategyConfig> {
   switch (id) {
-    case "take-profit":
-      return { takeProfitPct: 20 };
-    case "stop-loss":
-      return { stopLossPct: 10 };
+    case "buy-now":
+      return {
+        enableTakeProfit: false,
+        enableStopLoss: false,
+        takeProfitPct: 20,
+        stopLossPct: 10,
+      };
     case "fear-greed":
       return {
         fearThreshold: 20,
@@ -184,8 +169,8 @@ export function defaultHybridConfig(): HybridConfig {
     buyCondition: "buy-now",
     sellCondition: "sell-greed",
     sellExecution: "dca-out",
-    sellAmountMode: "50",
-    sellCustomPct: 50,
+    dcaOutPct: 25,
+    dcaFrequency: "Weekly",
     greedThreshold: 70,
     rsiSellThreshold: 70,
     rsiTimeframe: "Weekly",
