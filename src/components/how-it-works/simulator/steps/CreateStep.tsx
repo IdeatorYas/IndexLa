@@ -9,7 +9,6 @@ import {
   chipIdle,
   fieldClass,
   labelClass,
-  optionCardActive,
   optionCardIdle,
 } from "../ui";
 
@@ -98,11 +97,7 @@ export function CreateStep() {
           <button
             type="button"
             onClick={() => applyTemplate(() => emptyDraft())}
-            className={`rounded-xl border px-3 py-2.5 text-left transition-all sm:col-span-2 ${
-              !draft.name && !draft.portfolioType && draft.assets.length === 0
-                ? optionCardActive
-                : optionCardIdle
-            }`}
+            className={`rounded-xl border px-3 py-2.5 text-left transition-all sm:col-span-2 ${optionCardIdle}`}
           >
             <p className="text-[0.88rem] font-semibold text-ink">
               Start From Scratch

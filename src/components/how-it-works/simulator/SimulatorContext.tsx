@@ -45,38 +45,6 @@ function writePublished(list: SimulatorPortfolio[]) {
   }
 }
 
-function readDraftSession(): { draft: DraftPortfolio; step: WizardStep } | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const raw = sessionStorage.getItem(DRAFT_STORAGE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as {
-      draft?: DraftPortfolio;
-      step?: WizardStep;
-    };
-    if (!parsed?.draft) return null;
-    const draft = { ...emptyDraft(), ...parsed.draft };
-    const step =
-      parsed.step && parsed.step !== "success" ? parsed.step : "create";
-    return { draft, step };
-  } catch {
-    return null;
-  }
-}
-
-function writeDraftSession(draft: DraftPortfolio, step: WizardStep) {
-  if (typeof window === "undefined") return;
-  if (step === "success") return;
-  try {
-    sessionStorage.setItem(
-      DRAFT_STORAGE_KEY,
-      JSON.stringify({ draft, step }),
-    );
-  } catch {
-    /* ignore */
-  }
-}
-
 function clearDraftSession() {
   if (typeof window === "undefined") return;
   try {
@@ -262,23 +230,17 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   const [justCreatedId, setJustCreatedId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [rebalanceFlashId, setRebalanceFlashId] = useState<string | null>(null);
-  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     setPublished(readPublished());
-    const saved = readDraftSession();
-    if (saved) {
-      setDraft(saved.draft);
-      setStep(saved.step);
-    }
-    setHydrated(true);
+    // Always start the builder empty — never restore a prior draft/template.
+    clearDraftSession();
+    setDraft(emptyDraft());
+    setStep("create");
   }, []);
 
-  useEffect(() => {
-    if (!hydrated) return;
-    writeDraftSession(draft, step);
-  }, [draft, step, hydrated]);
-
+  // Draft is intentionally not persisted. Fresh land = blank builder.
+  // Published marketplace portfolios remain in sessionStorage separately.
   const updateDraft = useCallback((patch: Partial<DraftPortfolio>) => {
     setDraft((d) => ({ ...d, ...patch }));
   }, []);
