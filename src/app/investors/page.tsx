@@ -4,7 +4,6 @@ import { InvestorFeesSection } from "@/components/investors/InvestorFeesSection"
 import { InvestorFinalCta } from "@/components/investors/InvestorFinalCta";
 import { InvestorFinalOwnership } from "@/components/investors/InvestorFinalOwnership";
 import { InvestorHero } from "@/components/investors/InvestorHero";
-import { InvestorStrategiesCta } from "@/components/investors/InvestorStrategiesCta";
 import { MarketCyclesSection } from "@/components/investors/MarketCyclesSection";
 import { MarketplaceSection } from "@/components/investors/MarketplaceSection";
 import { OnePortfolioLayerSection } from "@/components/investors/OnePortfolioLayerSection";
@@ -25,7 +24,6 @@ export default function InvestorsPage() {
       <InvestorFeesSection />
       <MarketCyclesSection />
       <StrategyWorksSection />
-      <InvestorStrategiesCta />
       <OnePortfolioLayerSection />
       <OwnershipSection />
       <InvestorPrivacySection />

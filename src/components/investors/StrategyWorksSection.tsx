@@ -1,17 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   invBody,
   invBodyStrong,
   invEyebrow,
-  invGreenBox,
-  invGreenText,
   invH2,
   invH3,
-  invLede,
   invSection,
 } from "@/components/investors/investorRhythm";
 
@@ -24,25 +20,69 @@ const buildSteps = [
   {
     n: "02",
     title: "DEFINE",
-    body: "Set your DCA percentage, frequency, conditions, and thresholds.",
+    body: "Decide exactly when and how your portfolio should act.",
   },
   {
     n: "03",
     title: "AUTOMATE",
-    body: "Approve the rules and let INDEXLA monitor conditions and coordinate execution.",
+    body: "Approve your rules. AI monitors for your conditions and coordinates execution when they are met.",
   },
-];
+] as const;
+
+const aiBoundaries = [
+  "AI does NOT decide what to buy or sell.",
+  "AI does NOT create or change your strategy.",
+  "AI only monitors your conditions and coordinates execution of the rules you approved.",
+] as const;
+
+const executionFlow = [
+  "AI MONITORS",
+  "YOUR RULES DECIDE",
+  "SMART CONTRACTS ENFORCE",
+  "YOU CONTROL CUSTODY",
+] as const;
+
+const exampleFlow = [
+  "IF Fear & Greed < 20",
+  "AI detects your condition",
+  "Your approved rule is validated",
+  "Smart contracts enforce your permissions",
+  "DCA executes",
+] as const;
+
+const progression = [
+  {
+    stage: "EXTREME FEAR",
+    meta: "Fear & Greed < 20",
+    action: "DCA IN",
+  },
+  {
+    stage: "NEUTRAL",
+    meta: "45–55",
+    action: "HOLD",
+  },
+  {
+    stage: "GREED",
+    meta: "> 70",
+    action: "DCA OUT",
+  },
+  {
+    stage: "EXTREME GREED",
+    meta: "",
+    action: "TAKE PROFIT",
+  },
+] as const;
 
 const strategyGroups = [
   {
     key: "accumulate",
     title: "Accumulate",
-    items: ["Buy Fear DCA In", "Buy RSI Weekly Oversold DCA In"],
+    items: ["Buy Fear DCA In", "RSI Weekly Oversold DCA In"],
   },
   {
     key: "distribute",
     title: "Distribute & Lock Profits",
-    items: ["Sell Greed DCA Out", "Sell RSI Weekly Overbought DCA Out"],
+    items: ["Sell Greed DCA Out", "RSI Weekly Overbought DCA Out"],
   },
   {
     key: "adapt",
@@ -51,135 +91,81 @@ const strategyGroups = [
   },
 ] as const;
 
-const combineExamples = [
-  "Buy now → Sell on Greed",
-  "Buy now → Sell when RSI Weekly is Overbought",
+const params = [
+  { label: "Condition", value: "Fear & Greed < 20", emphasize: false },
+  { label: "Action", value: "DCA Buy", emphasize: false },
+  { label: "Allocation", value: "10%", emphasize: true },
+  { label: "Frequency", value: "Weekly", emphasize: false },
 ] as const;
 
-type Phase = {
-  id: string;
-  stage: string;
-  meta: string;
-  action: string;
-  detail: string;
-  ruleTitle: string;
-  rules: { label: string; value: string }[];
-  status: "Active" | "Hold" | "Active · Profit";
-  statusTone: "success" | "muted" | "electric";
-};
-
-const phases: Phase[] = [
-  {
-    id: "extreme-fear",
-    stage: "EXTREME FEAR",
-    meta: "Fear & Greed Index falls below 20.",
-    action: "DCA IN",
-    detail:
-      "Your strategy begins accumulating. For example, you could configure INDEXLA to deploy 10% of your allocated capital per DCA action while extreme fear conditions remain.",
-    ruleTitle: "Buy Fear DCA In",
-    rules: [
-      { label: "Condition", value: "Fear & Greed < 20" },
-      { label: "Action", value: "DCA Buy" },
-      { label: "Allocation", value: "10%" },
-      { label: "Frequency", value: "Weekly" },
-    ],
-    status: "Active",
-    statusTone: "success",
-  },
-  {
-    id: "neutral",
-    stage: "NEUTRAL",
-    meta: "Sentiment recovers into the 45–55 range.",
-    action: "HOLD",
-    detail: "Your strategy pauses. No buying. No selling.",
-    ruleTitle: "Neutral Hold",
-    rules: [
-      { label: "Condition", value: "Fear & Greed 45–55" },
-      { label: "Action", value: "Hold" },
-      { label: "Allocation", value: "—" },
-      { label: "Frequency", value: "—" },
-    ],
-    status: "Hold",
-    statusTone: "muted",
-  },
-  {
-    id: "greed",
-    stage: "GREED",
-    meta: "Sentiment rises above 70.",
-    action: "DCA OUT",
-    detail:
-      "The strategy begins taking profits. INDEXLA gradually reduces exposure through DCA out according to your defined percentages.",
-    ruleTitle: "Sell Greed DCA Out",
-    rules: [
-      { label: "Condition", value: "Fear & Greed > 70" },
-      { label: "Action", value: "DCA Sell" },
-      { label: "Allocation", value: "10%" },
-      { label: "Frequency", value: "Weekly" },
-    ],
-    status: "Active",
-    statusTone: "success",
-  },
-  {
-    id: "extreme-greed",
-    stage: "EXTREME GREED",
-    meta: "Sentiment reaches extreme greed.",
-    action: "TAKE MORE PROFIT",
-    detail:
-      "Your strategy increases the pace of profit taking according to your predefined rules.",
-    ruleTitle: "Extreme Greed Take More Profit",
-    rules: [
-      { label: "Condition", value: "Extreme Greed" },
-      { label: "Action", value: "Increase DCA Out" },
-      { label: "Allocation", value: "Larger %" },
-      { label: "Frequency", value: "Weekly" },
-    ],
-    status: "Active · Profit",
-    statusTone: "electric",
-  },
-];
-
 export function StrategyWorksSection() {
-  const reduce = useReducedMotion();
-  const [activeId, setActiveId] = useState(phases[0].id);
-  const active = phases.find((p) => p.id === activeId) ?? phases[0];
-
-  const statusClass =
-    active.statusTone === "success"
-      ? "border-success/40 bg-success/10 text-success"
-      : active.statusTone === "electric"
-        ? "border-electric/40 bg-electric/10 text-electric"
-        : "border-line bg-void/55 text-muted";
-
   return (
     <section className={`${invSection} bg-deep`}>
       <div className="section-pad container-max">
+        {/* 1 — Title + AI-Assisted Strategy Automation */}
         <FadeIn className="max-w-3xl">
           <h2 className={`${invH2} uppercase`}>
             See How Your{" "}
             <span className="gradient-text">Strategy Works</span>
           </h2>
-          <p className={`mt-4 ${invH3} uppercase`}>
-            AI-Assisted Condition Monitoring Built Around{" "}
-            <span className="gradient-text">Your Thesis.</span>
+          <p className={`mt-5 ${invH3} uppercase`}>
+            AI-Assisted Strategy Automation
           </p>
-          <p className={`mt-5 ${invBody}`}>
-            AI monitors market conditions and helps evaluate when your strategy
-            rules are met. Your rules define what can happen. Smart contracts
-            enforce your permissions and limits. AI cannot override your
-            strategy, permissions, or custody.
+          <p className={`mt-4 ${invBodyStrong}`}>
+            AI monitors the market. You define the decision. INDEXLA executes
+            your rules.
           </p>
-          <p className={`mt-3 ${invBodyStrong}`}>
-            If data is stale, limits are exceeded, or execution conditions are
-            unsafe, INDEXLA does not execute.
+          <p className={`mt-4 ${invBody}`}>
+            INDEXLA&apos;s AI continuously monitors the market conditions you
+            choose and checks them against your pre-approved strategy rules.
+            When your conditions are met, it coordinates execution within the
+            permissions and limits you defined.
           </p>
-          <p className={`mt-4 ${invEyebrow}`}>
-            AI monitors → Your rules define → Smart contracts enforce → You
-            control custody
-          </p>
-          <p className={`mt-4 ${invEyebrow}`}>Build → Define → Automate</p>
         </FadeIn>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <FadeIn className="mt-6" delay={0.03}>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {aiBoundaries.map((line) => (
+              <div
+                key={line}
+                className="rounded-[1.1rem] border border-line bg-void/45 px-4 py-4 text-center sm:px-5"
+              >
+                <p className="text-[0.95rem] font-semibold leading-snug text-ink text-pretty">
+                  {line}
+                </p>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
+        <FadeIn className="mt-6" delay={0.05}>
+          <div className="rounded-[1.2rem] border border-electric/30 bg-electric/[0.06] px-4 py-4 sm:px-6 sm:py-5">
+            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
+              {executionFlow.map((step, i) => (
+                <div key={step} className="flex items-center gap-2">
+                  <span className="rounded-lg border border-electric/35 bg-deep/50 px-3 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-electric sm:text-[0.78rem]">
+                    {step}
+                  </span>
+                  {i < executionFlow.length - 1 ? (
+                    <span className="text-electric/55" aria-hidden>
+                      →
+                    </span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+            <p className={`mt-4 text-center ${invBody}`}>
+              If data is stale, conditions are invalid, limits are exceeded, or
+              execution is unsafe, the strategy does not execute.
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* 2 — Build → Define → Automate */}
+        <FadeIn className="mt-12 max-w-3xl">
+          <p className={`${invH3} uppercase`}>Build → Define → Automate</p>
+        </FadeIn>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
           {buildSteps.map((step, i) => (
             <FadeIn key={step.n} delay={i * 0.04}>
               <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-6 text-center">
@@ -193,137 +179,63 @@ export function StrategyWorksSection() {
           ))}
         </div>
 
+        {/* 3 — Interactive example */}
         <FadeIn className="mt-12 max-w-3xl">
-          <p className={invLede}>
-            Example: When Fear & Greed drops below 20, your approved rule can
-            trigger the defined portfolio allocation.
-          </p>
-          <p className={`mt-4 ${invBody}`}>
-            Built for long-term investors, not day traders.
-          </p>
-          <p className={`mt-4 ${invBody}`}>
-            Instead of reacting to short-term price movements, define your
-            response to the broader market cycle in advance.
+          <p className={`${invH3} uppercase`}>
+            Your Decision → AI Monitors → Your Rule Executes
           </p>
         </FadeIn>
 
-        {/* Unified product demo */}
-        <FadeIn className="mt-12" delay={0.04}>
+        <FadeIn className="mt-6" delay={0.04}>
           <div className="overflow-hidden rounded-[1.35rem] border border-line bg-void/50">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-4 sm:px-7">
-              <div>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
-                  INDEXLA Strategy Demo
-                </p>
-                <p className="mt-1 text-[0.78rem] font-medium text-muted">
-                  Interactive product preview: example only, not live trading.
-                </p>
-              </div>
-              <p className="rounded-full border border-line bg-deep/60 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                Preview
-              </p>
-            </div>
-
-            <div className="border-b border-line bg-deep/45 px-5 py-4 sm:px-7">
-              <p className="text-center text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-                Illustrative flow
-              </p>
-              <div className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
-                {[
-                  "Fear & Greed: 20",
-                  "Rule Triggered",
-                  "Approved Portfolio Allocation Executes",
-                ].map((step, i, steps) => (
-                  <div key={step} className="flex items-center gap-2">
-                    <span className="rounded-lg border border-electric/30 bg-electric/10 px-3 py-2 text-[0.82rem] font-semibold leading-snug text-ink sm:text-[0.88rem]">
-                      {step}
-                    </span>
-                    {i < steps.length - 1 ? (
-                      <span className="text-electric/60" aria-hidden>
-                        →
-                      </span>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
-              <p className="mt-3 text-center text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-                Example market condition
-              </p>
-            </div>
-
             <div className="grid lg:grid-cols-2 lg:items-stretch">
               <div className="border-b border-line p-5 sm:p-6 lg:border-b-0 lg:border-r lg:p-7">
-                <p className={invEyebrow}>Strategy progression</p>
-                <p className="mt-1 text-[0.85rem] text-muted">
-                  Select a market phase to preview the matching rule.
-                </p>
-                <ol className="mt-5 flex flex-col gap-2.5">
-                  {phases.map((step) => {
-                    const isActive = step.id === activeId;
-                    return (
-                      <li key={step.id}>
-                        <button
-                          type="button"
-                          onClick={() => setActiveId(step.id)}
-                          aria-pressed={isActive}
-                          className={`w-full rounded-xl border px-4 py-3.5 text-center transition-all ${
-                            isActive
-                              ? "border-electric/45 bg-electric/10 shadow-[inset_0_1px_0_rgba(56,189,248,0.14)]"
-                              : "border-line bg-deep/40 hover:border-electric/25 hover:bg-deep/55"
-                          }`}
+                <p className={invEyebrow}>Interactive example</p>
+                <ol className="mt-5 flex flex-col items-center gap-2">
+                  {exampleFlow.map((step, i) => (
+                    <li
+                      key={step}
+                      className="flex w-full max-w-md flex-col items-center"
+                    >
+                      <div
+                        className={`w-full rounded-xl border px-4 py-3.5 text-center text-[0.95rem] font-semibold leading-snug text-pretty ${
+                          i === 0 || i === exampleFlow.length - 1
+                            ? "border-electric/40 bg-electric/10 text-ink"
+                            : "border-line bg-deep/45 text-ink"
+                        }`}
+                      >
+                        {step}
+                      </div>
+                      {i < exampleFlow.length - 1 ? (
+                        <span
+                          className="py-1 text-[1.1rem] text-electric/60"
+                          aria-hidden
                         >
-                          <div className="flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:justify-between sm:gap-3 sm:text-left">
-                            <div className="min-w-0 text-center sm:text-left">
-                              <p className="display text-[1rem] tracking-[-0.02em] text-ink sm:text-[1.05rem]">
-                                {step.stage}
-                              </p>
-                              <p className="mt-1 text-[0.85rem] leading-snug text-muted text-pretty">
-                                {step.meta}
-                              </p>
-                            </div>
-                            <span
-                              className={`shrink-0 rounded-lg border px-2.5 py-1 text-[0.72rem] font-semibold ${
-                                isActive
-                                  ? "border-electric/40 bg-electric/15 text-electric"
-                                  : "border-line bg-void/50 text-muted"
-                              }`}
-                            >
-                              {step.action}
-                            </span>
-                          </div>
-                        </button>
-                      </li>
-                    );
-                  })}
+                          ↓
+                        </span>
+                      ) : null}
+                    </li>
+                  ))}
                 </ol>
-                <div className="mt-3 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-center">
-                  <p className="text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-success">
-                    Then The Cycle Repeats
-                  </p>
-                </div>
               </div>
 
               <div className="flex flex-col p-5 sm:p-6 lg:p-7">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className={invEyebrow}>INDEXLA Rule Builder</p>
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                    Example preview
-                  </p>
-                </div>
-                <motion.div
-                  key={active.id}
-                  className="mt-5 flex flex-1 flex-col"
-                  initial={reduce ? false : { opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.28 }}
-                >
-                  <p className="display text-[1.15rem] tracking-[-0.02em] text-ink sm:text-[1.25rem]">
-                    {active.ruleTitle}
-                  </p>
-                  <p className={`mt-3 ${invBody}`}>{active.detail}</p>
-
-                  <div className="mt-5 flex flex-1 flex-col justify-center gap-2.5">
-                    {active.rules.map((row) => (
+                <p className={invEyebrow}>Strategy parameters</p>
+                <div className="mt-5 flex flex-1 flex-col justify-center gap-2.5">
+                  {params.map((row) =>
+                    row.emphasize ? (
+                      <div
+                        key={row.label}
+                        className="rounded-xl border border-electric/40 bg-electric/[0.1] px-4 py-5 text-center"
+                      >
+                        <p className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                          {row.label}
+                        </p>
+                        <p className="mt-2 display text-[clamp(2rem,5vw,2.75rem)] leading-none tracking-[-0.03em] text-ink">
+                          {row.value}
+                        </p>
+                      </div>
+                    ) : (
                       <div
                         key={row.label}
                         className="flex items-center justify-between gap-3 rounded-xl border border-line bg-deep/55 px-4 py-3.5"
@@ -335,55 +247,68 @@ export function StrategyWorksSection() {
                           {row.value}
                         </span>
                       </div>
-                    ))}
-                    <div
-                      className={`flex items-center justify-between rounded-xl border px-4 py-3 ${statusClass}`}
-                    >
-                      <span className="text-[0.85rem] text-muted">Status</span>
-                      <span className="flex items-center gap-2 text-[0.95rem] font-semibold">
-                        {active.statusTone !== "muted" && (
-                          <span className="relative flex h-2 w-2">
-                            {!reduce && (
-                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-45" />
-                            )}
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-current" />
-                          </span>
-                        )}
-                        {active.status}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="mt-4 text-[0.9rem] font-semibold text-electric">
-                    {active.stage.split(" ")[0] === "EXTREME"
-                      ? active.action === "DCA IN"
-                        ? "Fear → DCA IN"
-                        : "Extreme Greed → TAKE MORE PROFIT"
-                      : active.action === "HOLD"
-                        ? "Neutral → HOLD"
-                        : "Greed → DCA OUT"}
-                  </p>
-                </motion.div>
+                    ),
+                  )}
+                </div>
+                <p className={`mt-5 ${invBody}`}>
+                  You decide the 20 threshold and 10% allocation. AI only
+                  monitors for the condition and coordinates your approved rule.
+                </p>
               </div>
             </div>
           </div>
         </FadeIn>
 
+        {/* 4 — Strategy Progression */}
         <FadeIn className="mt-12 max-w-3xl">
-          <p className={`mt-0 ${invBody}`}>
-            Choose proven rule-based strategies or combine conditions to build
-            your own.
-          </p>
+          <p className={`${invH3} uppercase`}>Strategy Progression</p>
+        </FadeIn>
+        <FadeIn className="mt-6" delay={0.03}>
+          <div className="rounded-[1.25rem] border border-line bg-void/45 px-4 py-5 sm:px-6 sm:py-6">
+            <div className="flex flex-col items-stretch gap-2 md:flex-row md:items-center md:justify-between md:gap-2">
+              {progression.map((phase, i) => (
+                <div
+                  key={phase.stage}
+                  className="flex flex-col items-center gap-2 md:flex-1 md:flex-row"
+                >
+                  <article className="w-full rounded-xl border border-line bg-deep/50 px-3.5 py-4 text-center">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                      {phase.stage}
+                    </p>
+                    {phase.meta ? (
+                      <p className="mt-2 text-[0.85rem] text-muted">{phase.meta}</p>
+                    ) : null}
+                    <p className="mt-2 display text-[1.05rem] tracking-[-0.02em] text-ink">
+                      {phase.action}
+                    </p>
+                  </article>
+                  {i < progression.length - 1 ? (
+                    <span
+                      className="shrink-0 text-electric/55 md:px-0.5"
+                      aria-hidden
+                    >
+                      <span className="md:hidden">↓</span>
+                      <span className="hidden md:inline">→</span>
+                    </span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+            <p className={`mt-5 text-center ${invBodyStrong}`}>
+              Your rules define the response. AI monitors the cycle.
+            </p>
+          </div>
         </FadeIn>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-3">
+        {/* 5 — Combine Strategies */}
+        <FadeIn className="mt-12 max-w-3xl">
+          <p className={`${invH3} uppercase`}>Combine Strategies</p>
+        </FadeIn>
+        <div className="mt-6 grid gap-3 md:grid-cols-3">
           {strategyGroups.map((group, i) => (
             <FadeIn key={group.key} delay={i * 0.04}>
               <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-5 text-center">
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-2 display text-[1.2rem] tracking-[-0.02em] text-ink uppercase">
+                <h3 className="display text-[1.15rem] tracking-[-0.02em] text-ink uppercase">
                   {group.title}
                 </h3>
                 <ul className="mt-4 space-y-2.5 border-t border-line pt-4">
@@ -401,69 +326,24 @@ export function StrategyWorksSection() {
           ))}
         </div>
 
-        <FadeIn className="mt-4" delay={0.1}>
-          <div className="rounded-[1.25rem] border border-electric/35 bg-gradient-to-r from-electric/[0.1] via-void/40 to-purple/[0.08] px-5 py-5 text-center sm:px-7 sm:py-6">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
-              Capability
-            </p>
-            <h3 className="mt-2 display text-[1.25rem] tracking-[-0.02em] text-ink uppercase sm:text-[1.35rem]">
-              Combine Strategies
-            </h3>
-            <p className={`mx-auto mt-3 max-w-2xl ${invBody}`}>
-              Multiple strategies can be combined into one strategy so you can
-              define a complete response from entry through profit taking.
-            </p>
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {combineExamples.map((example) => (
-                <span
-                  key={example}
-                  className="rounded-lg border border-line bg-deep/55 px-3.5 py-2 text-[0.9rem] font-semibold text-ink"
-                >
-                  {example}
-                </span>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn className="mt-8">
-          <div className="mx-auto max-w-2xl rounded-[1.35rem] border border-electric/30 bg-gradient-to-br from-electric/[0.1] via-void/40 to-purple/[0.08] px-6 py-7 text-center sm:px-8">
-            <div className="inline-flex justify-center">
-              <div className={invGreenBox}>
-                <p className={invGreenText}>
-                  AI monitors market conditions. Your rules control the
-                  strategy.
-                </p>
-              </div>
-            </div>
-            <p className={`mt-5 ${invBody}`}>
-              INDEXLA&apos;s AI-assisted automation continuously monitors the
-              conditions defined in your strategy and coordinates authorized
-              execution when those conditions are met.
+        <FadeIn className="mt-5" delay={0.08}>
+          <div className="rounded-[1.1rem] border border-line bg-void/40 px-5 py-4 text-center">
+            <p className="text-[1rem] font-semibold text-ink">
+              Buy on Fear → Hold → Sell on Greed
             </p>
             <p className={`mt-3 ${invBodyStrong}`}>
-              Your thesis becomes a programmable strategy.
+              Your investment thesis becomes a programmable strategy.
             </p>
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-12 max-w-3xl space-y-5">
-          <p className={`${invH3} uppercase`}>Then the cycle repeats.</p>
-          <p className={invBody}>
-            When fear returns, accumulation begins again.
-          </p>
-          <div className={invGreenBox}>
-            <p className={invGreenText}>
-              You don&apos;t need to predict the top or bottom.
-            </p>
-          </div>
-          <p className={invBody}>
-            You define how your portfolio should respond to the cycle.
-          </p>
-          <p className={invBodyStrong}>
-            INDEXLA monitors the conditions and coordinates execution according
-            to the rules and permissions you approved.
-          </p>
+        {/* 6 — Small CTA */}
+        <FadeIn className="mt-10">
+          <HomeReadMore
+            href="/strategies"
+            label="Explore Strategies →"
+            external={false}
+          />
         </FadeIn>
       </div>
     </section>
