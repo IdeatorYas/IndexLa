@@ -343,12 +343,10 @@ INDEXLA charges a 1% execution fee on eligible buy and sell transactions execute
 
 The fee is distributed according to portfolio type:
 
-
 | Portfolio         | Creator | Platform | Treasury | Rewards | Buyback & Burn |
-| ----------------- | ------- | -------- | -------- | ------- | -------------- |
-| INDEXLA Portfolio | —       | 30%      | 30%      | 30%     | 10%            |
-| Creator Portfolio | 50%     | 20%      | 10%      | 10%     | 10%            |
-
+| ----------------- | ------: | -------: | -------: | ------: | -------------: |
+| INDEXLA Portfolio |       — |      30% |      30% |     30% |            10% |
+| Creator Portfolio |     50% |      20% |      10% |     10% |            10% |
 
 Creator portfolios give creators 50% of applicable execution fees, creating a direct incentive to attract investors and grow recurring portfolio activity.
 
@@ -582,13 +580,11 @@ Creator Sets Price → Other Creators Pay in $DEXLA
 
 Investors holding $DEXLA receive lower execution fees.
 
-
 | $DEXLA Held | Execution Fee Discount |
-| ----------- | ---------------------- |
-| 2,500       | 10%                    |
-| 5,000       | 25%                    |
-| 10,000      | 40%                    |
-
+| --- | --- |
+| 2,500 | 10% |
+| 5,000 | 25% |
+| 10,000 | 40% |
 
 ### 05 Tip
 
@@ -660,51 +656,45 @@ That is the INDEXLA token economy.
 
 Solana
 
-
-| Allocation          | Supply | Tokens |
-| ------------------- | ------ | ------ |
-| Pre Seed            | 1.5%   | 1.5M   |
-| Seed                | 6%     | 6M     |
-| Private             | 10%    | 10M    |
-| Public              | 20%    | 20M    |
-| DEX Liquidity       | 10%    | 10M    |
-| Treasury            | 20%    | 20M    |
-| Team                | 15%    | 15M    |
-| Community           | 10%    | 10M    |
-| Advisors            | 2.5%   | 2.5M   |
-| CEX / Market Making | 5%     | 5M     |
-| Total               | 100%   | 100M   |
-
+| Allocation | Supply | Tokens |
+| --- | --- | --- |
+| Pre Seed | 1.5% | 1.5M |
+| Seed | 6% | 6M |
+| Private | 10% | 10M |
+| Public | 20% | 20M |
+| DEX Liquidity | 10% | 10M |
+| Treasury | 20% | 20M |
+| Team | 15% | 15M |
+| Community | 10% | 10M |
+| Advisors | 2.5% | 2.5M |
+| CEX / Market Making | 5% | 5M |
+| Total | 100% | 100M |
 
 ### Vesting & Release Schedule
 
-
-| Allocation          | TGE  | Vesting / Release                                                      |
-| ------------------- | ---- | ---------------------------------------------------------------------- |
-| Pre Seed            | 10%  | 3-month cliff, 18-month linear                                         |
-| Seed                | 10%  | 3-month cliff, 18-month linear                                         |
-| Private             | 10%  | 3-month cliff, 18-month linear                                         |
-| Public              | 15%  | Remaining allocation released linearly over 6 months                   |
-| DEX Liquidity       | 100% | Available at TGE                                                       |
-| Treasury            | —    | 24-month lock                                                          |
-| Team                | —    | 12-month cliff, then 24-month linear                                   |
-| Community           | —    | Progressive release                                                    |
-| Advisors            | —    | 6-month cliff, then 12-month linear                                    |
-| CEX / Market Making | —    | Released progressively according to listing and liquidity requirements |
-
+| Allocation | TGE | Vesting / Release |
+| --- | --- | --- |
+| Pre Seed | 10% | 3-month cliff, 18-month linear |
+| Seed | 10% | 3-month cliff, 18-month linear |
+| Private | 10% | 3-month cliff, 18-month linear |
+| Public | 15% | Remaining allocation released linearly over 6 months |
+| DEX Liquidity | 100% | Available at TGE |
+| Treasury | — | 24-month lock |
+| Team | — | 12-month cliff, then 24-month linear |
+| Community | — | Progressive release |
+| Advisors | — | 6-month cliff, then 12-month linear |
+| CEX / Market Making | — | Released progressively according to listing and liquidity requirements |
 
 ### Initial Circulating Supply
 
-
-| Allocation                 | TGE Tokens |
-| -------------------------- | ---------- |
-| DEX Liquidity, 100%        | 10.00M     |
-| Public, 15%                | 3.00M      |
-| Private, 10%               | 1.00M      |
-| Seed, 10%                  | 0.60M      |
-| Pre Seed, 10%              | 0.15M      |
-| Initial Circulating Supply | 14.75M     |
-
+| Allocation | TGE Tokens |
+| --- | --- |
+| DEX Liquidity, 100% | 10.00M |
+| Public, 15% | 3.00M |
+| Private, 10% | 1.00M |
+| Seed, 10% | 0.60M |
+| Pre Seed, 10% | 0.15M |
+| Initial Circulating Supply | 14.75M |
 
 Initial circulating supply: 14.75M $DEXLA, representing 14.75% of total supply.
 
