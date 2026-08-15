@@ -105,19 +105,25 @@ export function HowItWorksSimulator() {
       draft.strategyId !== null ||
       draft.amountUsd > 0);
 
+  const fillViewport = !isSuccess;
+
   return (
     <section className="border-t border-white/[0.06] bg-void" id="simulator">
-      <div className="container-max px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+      <div className="container-max px-4 pb-6 pt-3 sm:px-6 sm:pb-8 sm:pt-4 lg:px-8 lg:pb-10 lg:pt-5">
         <div
-          className={`grid items-stretch gap-5 lg:gap-6 ${
+          className={`grid items-stretch gap-4 lg:gap-5 ${
             showPreviewRail
-              ? "lg:grid-cols-[minmax(0,1fr)_minmax(20rem,26rem)] lg:min-h-[calc(100svh-5.5rem)]"
+              ? "lg:grid-cols-[minmax(0,1fr)_minmax(22rem,28rem)]"
+              : ""
+          } ${
+            fillViewport
+              ? "lg:min-h-[calc(100svh-4.25rem)] lg:h-[calc(100svh-4.25rem)]"
               : ""
           }`}
         >
           <div
             className={`${surfaceClass} flex min-h-0 flex-col p-4 sm:p-6 lg:p-7 ${
-              showPreviewRail ? "lg:max-h-[calc(100svh-5.5rem)]" : ""
+              fillViewport ? "lg:h-full lg:max-h-full" : ""
             }`}
           >
             <Progress />

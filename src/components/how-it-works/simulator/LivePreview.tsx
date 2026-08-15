@@ -42,7 +42,7 @@ export function LivePreview() {
 
   return (
     <aside
-      className={`${surfaceClass} sticky top-20 hidden h-fit max-h-[calc(100svh-5.5rem)] overflow-y-auto p-5 lg:block lg:self-start`}
+      className={`${surfaceClass} sticky top-[4.25rem] hidden h-full max-h-[calc(100svh-4.25rem)] overflow-y-auto p-5 lg:block lg:self-stretch`}
       aria-label="Live product preview"
     >
       <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">

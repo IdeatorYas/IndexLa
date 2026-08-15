@@ -20,11 +20,11 @@ export function HowItWorksPageHero() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-void to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-void to-transparent"
         aria-hidden
       />
 
-      <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col justify-center pb-10 pt-[5.75rem] lg:pb-12 lg:pt-24">
+      <div className="section-pad container-max relative z-10 flex flex-col justify-center pb-5 pt-[5.75rem] sm:pb-6 lg:pb-7 lg:pt-24">
         <motion.div
           className="mx-auto max-w-3xl text-center"
           initial={reduce ? false : { opacity: 0, y: 16 }}
