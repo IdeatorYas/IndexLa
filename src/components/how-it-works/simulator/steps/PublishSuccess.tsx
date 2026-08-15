@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { useSimulator } from "../SimulatorContext";
+import type { SimulatorPortfolio } from "../types";
 import { surfaceClass } from "../ui";
 
 function usd(n: number) {
@@ -15,13 +16,22 @@ function usd(n: number) {
 
 export function PublishSuccess() {
   const { justCreatedId, resetDraft, published } = useSimulator();
-  const newest = published.find((p) => p.id === justCreatedId);
+  const [portfolio, setPortfolio] = useState<SimulatorPortfolio | null>(() =>
+    published.find((p) => p.id === justCreatedId) ?? published[0] ?? null,
+  );
   const [copied, setCopied] = useState(false);
-  const shareLink = newest
-    ? `https://indexla.tech/marketplace/${newest.id}`
+
+  useEffect(() => {
+    if (!justCreatedId) return;
+    const found = published.find((p) => p.id === justCreatedId);
+    if (found) setPortfolio(found);
+  }, [justCreatedId, published]);
+
+  const shareLink = portfolio
+    ? `https://indexla.tech/marketplace/${portfolio.id}`
     : "https://indexla.tech/marketplace";
 
-  const fee = newest ? newest.amountUsd * 0.01 : 0;
+  const fee = portfolio ? portfolio.amountUsd * 0.01 : 0;
   const creatorShare = fee * 0.5;
 
   useEffect(() => {
@@ -60,8 +70,8 @@ export function PublishSuccess() {
           Your portfolio is now available in the INDEXLA Marketplace.
         </h3>
         <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
-          {newest
-            ? `"${newest.name}" is discoverable below. This is a product simulation — no wallet, no real funds.`
+          {portfolio
+            ? `"${portfolio.name}" is discoverable below. This is a product simulation — no wallet, no real funds.`
             : "Your portfolio is discoverable below."}
         </p>
       </div>
@@ -107,7 +117,7 @@ export function PublishSuccess() {
         </div>
       </div>
 
-      {newest ? (
+      {portfolio ? (
         <div className="mt-4 rounded-2xl border border-white/[0.08] bg-void/45 p-4">
           <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">
             Creator Revenue
@@ -116,7 +126,7 @@ export function PublishSuccess() {
             50% of applicable execution fees
           </p>
           <p className="mt-2 text-[0.88rem] text-muted">
-            Illustrative on simulated {usd(newest.amountUsd)} · 1% execution fee{" "}
+            Illustrative on simulated {usd(portfolio.amountUsd)} · 1% execution fee{" "}
             {usd(fee)} → creator share{" "}
             <strong className="text-success">{usd(creatorShare)}</strong>
           </p>
