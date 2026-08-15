@@ -54,13 +54,29 @@ export function Hero() {
           </div>
 
           <div
-            className="mx-auto mt-2.5 w-full max-w-[32rem] rounded-xl border border-electric/30 bg-white/[0.035] px-3 py-2 text-center sm:mt-3 sm:px-4 sm:py-2.5"
+            className="mx-auto mt-2.5 w-full max-w-[34rem] sm:mt-3"
             aria-label="Fee structure highlights"
           >
-            <p className="text-[0.82rem] font-semibold leading-none tracking-[-0.015em] text-ink whitespace-nowrap sm:text-[0.95rem]">
-              0% Management · 0% Performance · 0% Exit
-            </p>
-            <p className="mt-1 text-[0.88rem] font-semibold leading-none tracking-[-0.01em] text-electric sm:mt-1.5 sm:text-[0.95rem]">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5">
+              {[
+                { pct: "0%", label: "Management" },
+                { pct: "0%", label: "Performance" },
+                { pct: "0%", label: "Exit" },
+              ].map((fee) => (
+                <div
+                  key={fee.label}
+                  className="rounded-xl border border-electric/30 bg-white/[0.035] px-1.5 py-2.5 text-center sm:px-3 sm:py-3"
+                >
+                  <p className="display text-[1.05rem] font-semibold leading-none tracking-[-0.02em] text-ink sm:text-[1.2rem]">
+                    {fee.pct}
+                  </p>
+                  <p className="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-muted sm:mt-1.5 sm:text-[0.72rem]">
+                    {fee.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-2 text-center text-[0.88rem] font-semibold leading-none tracking-[-0.01em] text-electric sm:mt-2.5 sm:text-[0.95rem]">
               Only 1% when trades execute
             </p>
           </div>
