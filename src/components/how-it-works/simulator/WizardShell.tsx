@@ -172,14 +172,28 @@ export function HowItWorksSimulator() {
     if (isSuccess) return;
     const html = document.documentElement;
     const body = document.body;
-    const prevHtml = html.style.overflow;
-    const prevBody = body.style.overflow;
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+    const prevBodyPosition = body.style.position;
+    const prevBodyWidth = body.style.width;
+    const prevBodyTop = body.style.top;
+    const scrollY = window.scrollY;
+
     html.style.overflow = "hidden";
     body.style.overflow = "hidden";
-    window.scrollTo(0, 0);
+    body.style.position = "fixed";
+    body.style.width = "100%";
+    body.style.top = `-${scrollY}px`;
+    html.classList.add("simulator-lock");
+
     return () => {
-      html.style.overflow = prevHtml;
-      body.style.overflow = prevBody;
+      html.style.overflow = prevHtmlOverflow;
+      body.style.overflow = prevBodyOverflow;
+      body.style.position = prevBodyPosition;
+      body.style.width = prevBodyWidth;
+      body.style.top = prevBodyTop;
+      html.classList.remove("simulator-lock");
+      window.scrollTo(0, scrollY);
     };
   }, [isSuccess]);
 
@@ -215,12 +229,12 @@ export function HowItWorksSimulator() {
             <Progress />
           </div>
 
-          <div className="mt-2 grid min-h-0 flex-1 gap-2.5 md:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] md:items-stretch">
+          <div className="mt-2 grid min-h-0 flex-1 gap-2.5 sm:grid-cols-[minmax(0,1.15fr)_minmax(17rem,0.85fr)] sm:items-stretch">
             <div
               className={`${surfaceClass} flex min-h-0 flex-col overflow-hidden`}
             >
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-                <div className="shrink-0 px-3 pt-2.5 md:hidden">
+                <div className="shrink-0 px-3 pt-2.5 sm:hidden">
                   <LivePreviewCompact />
                 </div>
                 <div className="min-h-0 flex-1 overflow-hidden px-3 sm:px-5">
