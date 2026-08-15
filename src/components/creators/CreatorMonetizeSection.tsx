@@ -15,21 +15,25 @@ const ways = [
     n: "01",
     title: "Portfolio Fees",
     detail: "50% of applicable execution fees",
+    availability: "Available at Launch",
   },
   {
     n: "02",
     title: "Private Strategy Access",
     detail: "Set your strategy access price",
+    availability: "Available after $DEXLA Launch",
   },
   {
     n: "03",
     title: "$DEXLA Tips",
     detail: "Direct audience support",
+    availability: "Available after $DEXLA Launch",
   },
   {
     n: "04",
     title: "Creator Rewards",
     detail: "Compete for monthly rewards",
+    availability: "Available at Launch",
   },
 ] as const;
 
@@ -64,6 +68,9 @@ export function CreatorMonetizeSection() {
               </p>
               <p className="mt-3 display text-[1.15rem] tracking-[-0.02em] text-ink">
                 {way.title}
+              </p>
+              <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                {way.availability}
               </p>
               <p className={`mt-2 text-[0.95rem] leading-relaxed text-muted`}>
                 {way.detail}

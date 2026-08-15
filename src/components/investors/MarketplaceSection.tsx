@@ -49,6 +49,10 @@ export function MarketplaceSection() {
             Explore portfolios built around different investment theses and
             strategies.
           </p>
+          <p className={`mt-5 ${invBody}`}>
+            New here? Start with Discover. Ready to build? Go to Build → Define
+            → Automate.
+          </p>
         </FadeIn>
 
         <FadeIn className="mt-10">
@@ -76,6 +80,13 @@ export function MarketplaceSection() {
                     <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">
                       {step.body}
                     </p>
+                    {step.title === "Customize" ? (
+                      <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">
+                        Followers can customize assets and allocations while
+                        keeping full custody. They cannot change the
+                        creator&apos;s core strategy rules.
+                      </p>
+                    ) : null}
                   </div>
                 </li>
               ))}

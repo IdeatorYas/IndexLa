@@ -27,6 +27,11 @@ export function CreatorAudiencePortfolioSection() {
           </p>
 
           <p className={`mt-4 ${crBody} text-balance`}>
+            Followers can customize assets and allocations while keeping full
+            custody. They cannot change the creator&apos;s core strategy rules.
+          </p>
+
+          <p className={`mt-4 ${crBody} text-balance`}>
             Combine supported crypto, tokenized stocks, commodities, RWAs, and
             other assets across multiple networks.
           </p>
