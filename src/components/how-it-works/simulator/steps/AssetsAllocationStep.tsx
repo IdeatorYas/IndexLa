@@ -96,32 +96,30 @@ export function AssetsAllocationStep() {
   }
 
   return (
-    <div className="flex h-full min-h-0 flex-col pt-3">
+    <div className="flex h-full min-h-0 flex-col pt-2.5">
       <div className="shrink-0">
-        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
-          Step · Assets & Allocation
-        </p>
-        <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
-          Select Assets & Set Allocations
-        </h3>
-        <p className="mt-1 text-[0.85rem] text-muted">
-          Choose assets and decide how much of each. Total must equal 100%.
-        </p>
-
-        <div
-          className={`mt-3 rounded-xl border px-3 py-2 transition-colors ${
-            total === 100
-              ? "border-success/40 bg-success/10"
-              : total > 100
-                ? "border-amber-400/40 bg-amber-400/10"
-                : "border-white/[0.08] bg-void/50"
-          }`}
-        >
-          <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div className="min-w-0">
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
+              Step · Assets & Allocation
+            </p>
+            <h3 className="display mt-0.5 text-[clamp(1.1rem,1.8vw,1.35rem)] font-semibold tracking-[-0.02em] text-ink">
+              Select Assets & Set Allocations
+            </h3>
+          </div>
+          <div
+            className={`rounded-xl border px-3 py-1.5 transition-colors ${
+              total === 100
+                ? "border-success/40 bg-success/10"
+                : total > 100
+                  ? "border-amber-400/40 bg-amber-400/10"
+                  : "border-white/[0.08] bg-void/50"
+            }`}
+          >
             <div className="flex items-baseline gap-2">
-              <p className={labelClass}>Total</p>
+              <p className={`${labelClass} !mb-0`}>Total Allocation</p>
               <p
-                className={`display text-[1.25rem] font-semibold leading-none ${
+                className={`display text-[1.15rem] font-semibold leading-none tabular-nums ${
                   total === 100
                     ? "text-success"
                     : total > 100
@@ -131,43 +129,37 @@ export function AssetsAllocationStep() {
               >
                 {total}%
               </p>
-            </div>
-            <div className="text-right text-[0.82rem]">
-              {total === 100 ? (
-                <span className="font-semibold text-success">Ready</span>
-              ) : total > 100 ? (
-                <span className="font-semibold text-amber-200">
-                  Over allocated
-                </span>
-              ) : (
-                <span className="text-muted">
-                  <strong className="text-ink">{remaining}%</strong> remaining
-                </span>
-              )}
+              <span className="text-[0.75rem] text-muted">
+                {total === 100
+                  ? "Ready"
+                  : total > 100
+                    ? "Over"
+                    : `${remaining}% left`}
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-3 grid min-h-0 flex-1 gap-3 lg:grid-cols-2">
-        <div className="flex min-h-0 flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-void/40 p-2.5">
+      <div className="mt-2.5 grid min-h-0 flex-1 gap-2.5 lg:grid-cols-2">
+        <div className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-void/40 p-2">
           <label htmlFor="asset-search" className={labelClass}>
             Search / Select Assets
           </label>
           <input
             id="asset-search"
-            className={`${fieldClass} !mt-1.5 !py-2`}
+            className={`${fieldClass} !mt-1 !py-1.5`}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="BTC, NVIDIA, Gold…"
           />
-          <div className="mt-2 flex flex-wrap gap-1.5">
+          <div className="mt-1.5 flex flex-wrap gap-1">
             {(["all", "crypto", "stock", "commodity"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
                 onClick={() => setTypeFilter(t)}
-                className={`rounded-full border px-2.5 py-1 text-[0.7rem] font-semibold capitalize transition-all ${
+                className={`rounded-full border px-2 py-0.5 text-[0.68rem] font-semibold capitalize transition-all ${
                   typeFilter === t ? chipActive : chipIdle
                 }`}
               >
@@ -175,7 +167,7 @@ export function AssetsAllocationStep() {
               </button>
             ))}
           </div>
-          <div className="mt-2 min-h-0 flex-1 space-y-1 overflow-y-auto overscroll-contain pr-0.5">
+          <div className="mt-1.5 min-h-0 flex-1 space-y-1 overflow-y-auto overscroll-contain pr-0.5">
             {results.map((a) => (
               <AssetRow
                 key={a.key}
@@ -187,30 +179,35 @@ export function AssetsAllocationStep() {
           </div>
         </div>
 
-        <div className="flex min-h-0 flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-void/40 p-2.5">
+        <div className="flex min-h-0 flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-void/40 p-2">
           <div className="flex shrink-0 items-center justify-between gap-2">
-            <p className={labelClass}>Allocation</p>
-            {draft.assets.length > 0 ? (
-              <button
-                type="button"
-                onClick={equalSplit}
-                className="text-[0.75rem] font-semibold text-electric hover:text-ink"
-              >
-                Equal split
-              </button>
-            ) : null}
+            <div className="flex w-full items-center justify-between gap-2 pr-1">
+              <p className={labelClass}>Asset</p>
+              <div className="flex items-center gap-3">
+                <p className={labelClass}>Allocation</p>
+                {draft.assets.length > 0 ? (
+                  <button
+                    type="button"
+                    onClick={equalSplit}
+                    className="text-[0.72rem] font-semibold text-electric hover:text-ink"
+                  >
+                    Equal split
+                  </button>
+                ) : null}
+              </div>
+            </div>
           </div>
 
           {draft.assets.length === 0 ? (
-            <p className="mt-4 text-center text-[0.85rem] text-muted-dim">
+            <p className="mt-4 text-center text-[0.8rem] text-muted-dim">
               Select assets to set allocations.
             </p>
           ) : (
-            <div className="mt-2 min-h-0 flex-1 space-y-1.5 overflow-y-auto overscroll-contain pr-0.5">
+            <div className="mt-1.5 min-h-0 flex-1 space-y-1 overflow-y-auto overscroll-contain pr-0.5">
               {draft.assets.map((a) => (
                 <div
                   key={a.key}
-                  className="grid grid-cols-[minmax(0,1fr)_5.5rem] items-center gap-2 rounded-xl border border-white/[0.07] bg-void/55 px-2.5 py-1.5"
+                  className="grid grid-cols-[minmax(0,1fr)_5.25rem] items-center gap-2 rounded-lg border border-white/[0.07] bg-void/55 px-2 py-1"
                 >
                   <div className="flex min-w-0 items-center gap-2">
                     <button
@@ -225,10 +222,10 @@ export function AssetsAllocationStep() {
                       ticker={a.ticker}
                       name={a.name}
                       src={a.src}
-                      size={24}
+                      size={22}
                     />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-[0.82rem] font-semibold text-ink">
+                      <p className="truncate text-[0.8rem] font-semibold text-ink">
                         {a.ticker}
                       </p>
                       <input
@@ -251,9 +248,9 @@ export function AssetsAllocationStep() {
                       step={1}
                       value={a.pct}
                       onChange={(e) => setPct(a.key, Number(e.target.value))}
-                      className="w-[3.25rem] rounded-lg border border-white/10 bg-void/70 px-1 py-1 text-center text-[0.88rem] font-semibold text-ink outline-none focus:border-electric/45"
+                      className="w-[3.1rem] rounded-lg border border-white/10 bg-void/70 px-1 py-1 text-center text-[0.85rem] font-semibold tabular-nums text-ink outline-none focus:border-electric/45"
                     />
-                    <span className="text-[0.72rem] text-muted">%</span>
+                    <span className="text-[0.7rem] text-muted">%</span>
                   </div>
                 </div>
               ))}

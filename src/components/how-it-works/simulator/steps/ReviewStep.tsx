@@ -62,20 +62,20 @@ export function ReviewStep() {
   }
 
   return (
-    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-3 pr-0.5">
+    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-2.5 pr-0.5">
       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
         Step · Final Review
       </p>
-      <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
+      <h3 className="display mt-0.5 text-[clamp(1.1rem,1.8vw,1.35rem)] font-semibold tracking-[-0.02em] text-ink">
         Final Review
       </h3>
-      <p className="mt-1 text-[0.85rem] text-muted">
+      <p className="mt-0.5 text-[0.8rem] text-muted">
         Confirm everything, set investment, then authorize & publish.
       </p>
 
-      <div className="mt-3 space-y-2.5">
+      <div className="mt-2.5 space-y-2">
         <Section title="Portfolio" editStep="create">
-          <dl className="space-y-1.5 text-[0.9rem]">
+          <dl className="space-y-1 text-[0.85rem]">
             <div className="flex justify-between gap-3">
               <dt className="text-muted">Name</dt>
               <dd className="text-right font-semibold text-ink">

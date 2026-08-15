@@ -29,25 +29,25 @@ export function CreateStep() {
   }
 
   return (
-    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-3 pr-0.5">
+    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-2.5 pr-0.5">
       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
         Step · Create
       </p>
-      <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
+      <h3 className="display mt-0.5 text-[clamp(1.1rem,1.8vw,1.35rem)] font-semibold tracking-[-0.02em] text-ink">
         Build Your Portfolio
       </h3>
-      <p className="mt-1 text-[0.85rem] text-muted">
+      <p className="mt-0.5 text-[0.8rem] text-muted">
         Build your own, or use an optional starter template.
       </p>
 
-      <div className="mt-4">
+      <div className="mt-3">
         <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-electric">
           Build Your Own
         </p>
         <button
           type="button"
           onClick={chooseScratch}
-          className={`mt-2 w-full rounded-2xl border px-4 py-4 text-left transition-all ${
+          className={`mt-1.5 w-full rounded-xl border px-3.5 py-3 text-left transition-all ${
             startChoice === "scratch"
               ? `${optionCardActive} shadow-[0_0_32px_rgba(56,189,248,0.12)]`
               : optionCardIdle
@@ -55,10 +55,10 @@ export function CreateStep() {
         >
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="display text-[1.1rem] font-semibold tracking-[-0.02em] text-ink">
+              <p className="display text-[1rem] font-semibold tracking-[-0.02em] text-ink">
                 Build from Scratch
               </p>
-              <p className="mt-1.5 text-[0.88rem] leading-snug text-muted">
+              <p className="mt-1 text-[0.8rem] leading-snug text-muted">
                 Create your own portfolio from zero.
               </p>
             </div>
@@ -71,15 +71,14 @@ export function CreateStep() {
         </button>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-3.5">
         <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted">
           Starter Templates · Optional
         </p>
-        <p className="mt-1 text-[0.78rem] text-muted-dim">
-          Starting points only — not fixed portfolios. Change strategy, rules,
-          frequency, DCA %, and allocations anytime.
+        <p className="mt-0.5 text-[0.72rem] text-muted-dim">
+          Starting points only — change anything anytime.
         </p>
-        <div className="mt-2.5 grid gap-1.5 sm:grid-cols-2">
+        <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
           {STARTER_TEMPLATES.map((t) => {
             const active = startChoice === t.id;
             return (
@@ -87,15 +86,15 @@ export function CreateStep() {
                 key={t.id}
                 type="button"
                 onClick={() => chooseTemplate(t.id, t.build)}
-                className={`rounded-xl border px-3 py-2.5 text-left transition-all ${
+                className={`rounded-xl border px-3 py-2 text-left transition-all ${
                   active ? optionCardActive : optionCardIdle
                 }`}
               >
-                <p className="text-[0.88rem] font-semibold text-ink">{t.title}</p>
-                <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-electric">
+                <p className="text-[0.85rem] font-semibold text-ink">{t.title}</p>
+                <p className="mt-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-electric">
                   {t.strategyLabel}
                 </p>
-                <p className="mt-0.5 line-clamp-2 text-[0.75rem] leading-snug text-muted">
+                <p className="mt-0.5 line-clamp-2 text-[0.72rem] leading-snug text-muted">
                   {t.blurb}
                 </p>
               </button>
@@ -104,7 +103,7 @@ export function CreateStep() {
         </div>
       </div>
 
-      <div className="mt-5 space-y-3.5 border-t border-white/[0.07] pt-4">
+      <div className="mt-3.5 space-y-3 border-t border-white/[0.07] pt-3">
         <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted">
           Portfolio details
         </p>
@@ -114,7 +113,7 @@ export function CreateStep() {
           </label>
           <input
             id="pf-name"
-            className={`${fieldClass} !mt-1.5 !py-2.5`}
+            className={`${fieldClass} !mt-1 !py-2`}
             value={draft.name}
             onChange={(e) => updateDraft({ name: e.target.value })}
             placeholder="e.g. Hybrid Wealth Portfolio"
@@ -128,7 +127,7 @@ export function CreateStep() {
           </label>
           <textarea
             id="pf-desc"
-            className={`${fieldClass} !mt-1.5 min-h-[3.5rem] resize-none !py-2.5`}
+            className={`${fieldClass} !mt-1 min-h-[2.75rem] resize-none !py-2`}
             value={draft.description}
             onChange={(e) => updateDraft({ description: e.target.value })}
             placeholder="Describe the thesis behind this portfolio"
@@ -141,7 +140,7 @@ export function CreateStep() {
           <label htmlFor="pf-type" className={labelClass}>
             Portfolio Type
           </label>
-          <div className="mt-2 flex flex-wrap gap-1.5">
+          <div className="mt-1.5 flex flex-wrap gap-1.5">
             {PORTFOLIO_TYPES.map((t) => (
               <button
                 key={t}
