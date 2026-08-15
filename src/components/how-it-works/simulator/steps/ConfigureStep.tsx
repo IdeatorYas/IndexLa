@@ -345,7 +345,7 @@ export function ConfigureStep() {
 
       <div className="mt-5">
         <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">
-          Trigger → Action → Amount → Frequency
+          Trigger → Action → % → Frequency
         </p>
         <StrategyRuleVisual
           id={id}

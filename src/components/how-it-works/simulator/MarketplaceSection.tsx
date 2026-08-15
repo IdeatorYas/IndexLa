@@ -110,7 +110,7 @@ function Card({
           Execution Fee <strong className="text-ink">1%</strong>
         </span>
         <span>
-          Est. Gas <strong className="text-ink">~$2–$3</strong>
+          Est. Gas <strong className="text-ink">~$2</strong>
         </span>
       </div>
       {portfolio.status === "paused" ? (

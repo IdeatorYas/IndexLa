@@ -19,7 +19,7 @@ export function AmountStep() {
   const { draft, updateDraft } = useSimulator();
   const amount = draft.amountUsd;
   const fee = amount > 0 ? amount * 0.01 : 0;
-  const [simActivity, setSimActivity] = useState(1_000_000);
+  const [simActivity, setSimActivity] = useState(10_000_000);
 
   function setAmount(n: number) {
     updateDraft({ amountUsd: Math.max(0, Math.min(1_000_000, n || 0)) });
@@ -141,7 +141,7 @@ export function AmountStep() {
             {ESTIMATED_GAS_LABEL}
           </p>
           <p className="mt-1 text-[0.82rem] text-muted">
-            Illustrative estimate — separate from execution fee
+            Separate from execution fee
           </p>
         </div>
       </div>
@@ -155,7 +155,7 @@ export function AmountStep() {
         </p>
         <div className="mt-4 rounded-xl border border-dashed border-white/15 bg-void/50 p-3">
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-            Simulated activity
+            Simulated Activity
           </p>
           <label className="mt-2 block text-[0.75rem] text-muted">
             Simulated portfolio activity (USD)
@@ -163,7 +163,7 @@ export function AmountStep() {
           <input
             type="number"
             min={1000}
-            step={1000}
+            step={100000}
             className={`${fieldClass} !mt-1`}
             value={simActivity}
             onChange={(e) =>
@@ -176,7 +176,7 @@ export function AmountStep() {
               <dd className="font-semibold text-ink">{usd(simFees)}</dd>
             </div>
             <div className="flex justify-between gap-2">
-              <dt className="text-muted">Creator Share (50%)</dt>
+              <dt className="text-muted">Creator Share</dt>
               <dd className="font-semibold text-success">{usd(simCreator)}</dd>
             </div>
           </dl>

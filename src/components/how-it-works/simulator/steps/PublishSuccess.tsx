@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { AllocationChart } from "../AllocationChart";
 import { useSimulator } from "../SimulatorContext";
 import type { SimulatorPortfolio } from "../types";
 import { surfaceClass } from "../ui";
@@ -13,6 +14,7 @@ export function PublishSuccess() {
     published.find((p) => p.id === justCreatedId) ?? published[0] ?? null,
   );
   const [copied, setCopied] = useState(false);
+  const [flyOut, setFlyOut] = useState(false);
 
   useEffect(() => {
     if (!justCreatedId) return;
@@ -25,13 +27,16 @@ export function PublishSuccess() {
     : "https://indexla.tech/marketplace";
 
   useEffect(() => {
-    const el = document.getElementById("simulator-marketplace");
-    if (el) {
-      window.setTimeout(
-        () => el.scrollIntoView({ behavior: "smooth", block: "start" }),
-        450,
-      );
-    }
+    const t1 = window.setTimeout(() => setFlyOut(true), 280);
+    const t2 = window.setTimeout(() => {
+      document
+        .getElementById("simulator-marketplace")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 900);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
   }, []);
 
   async function copyShare() {
@@ -51,6 +56,13 @@ export function PublishSuccess() {
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function simulateAllocate() {
+    if (portfolio) setSelectedId(portfolio.id);
+    document
+      .getElementById("simulator-marketplace")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <div className="mx-auto max-w-lg py-4">
       <div className="text-center">
@@ -61,7 +73,7 @@ export function PublishSuccess() {
           </div>
         </div>
         <p className="mt-5 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-success">
-          Portfolio Published
+          Portfolio Live
         </p>
         <h3 className="display mt-2 text-[clamp(1.4rem,2.8vw,1.85rem)] font-semibold tracking-[-0.02em] text-ink">
           {portfolio
@@ -76,6 +88,31 @@ export function PublishSuccess() {
         </p>
       </div>
 
+      {portfolio ? (
+        <div
+          className={`${surfaceClass} mx-auto mt-6 max-w-sm p-4 transition-all duration-700 ease-out ${
+            flyOut
+              ? "translate-y-3 scale-[0.97] opacity-70"
+              : "translate-y-0 scale-100 opacity-100"
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <AllocationChart assets={portfolio.assets} size={56} />
+            <div className="min-w-0 text-left">
+              <p className="truncate text-[0.95rem] font-semibold text-ink">
+                {portfolio.name}
+              </p>
+              <p className="truncate text-[0.78rem] text-muted">
+                {portfolio.portfolioType}
+              </p>
+              <p className="mt-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-electric">
+                Moving to Marketplace
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
         <Button
           type="button"
@@ -88,6 +125,14 @@ export function PublishSuccess() {
         <Button
           type="button"
           variant="secondary"
+          className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
+          onClick={simulateAllocate}
+        >
+          Simulate Allocate
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
           className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
           onClick={() => void copyShare()}
         >
@@ -116,21 +161,6 @@ export function PublishSuccess() {
           >
             {copied ? "Copied" : "Copy link"}
           </Button>
-        </div>
-
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-[0.78rem] font-semibold text-muted">
-          {["Share", "Follow", "Customize", "Allocate"].map((label, i, arr) => (
-            <span key={label} className="flex items-center gap-2">
-              <span className="rounded-full border border-white/12 bg-void/50 px-3 py-1 text-ink">
-                {label}
-              </span>
-              {i < arr.length - 1 ? (
-                <span className="text-electric/70" aria-hidden>
-                  →
-                </span>
-              ) : null}
-            </span>
-          ))}
         </div>
       </div>
 

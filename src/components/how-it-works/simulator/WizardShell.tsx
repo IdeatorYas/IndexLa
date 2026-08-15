@@ -23,7 +23,7 @@ const NEXT_HINT: Partial<Record<WizardStep, string>> = {
   assets: "Select what you own.",
   allocation: "Decide how much of each.",
   strategy: "Your rules. Their keys.",
-  configure: "Trigger → Action → Amount → Frequency.",
+  configure: "Trigger → Action → % → Frequency.",
   permissions: "Authorize execution — never withdrawals.",
   amount: "Simulate capital. Fees calculate instantly.",
   review: "Confirm everything, then publish to Marketplace.",
@@ -34,35 +34,53 @@ function Progress() {
   const { step } = useSimulator();
   if (step === "success") return null;
   const activeIdx = STEP_LABELS.findIndex((s) => s.id === step);
+  const completed = Math.max(0, activeIdx);
+  const pct = Math.round(((activeIdx + 1) / STEP_LABELS.length) * 100);
 
   return (
-    <div className="mb-4 shrink-0 overflow-x-auto pb-1">
-      <ol className="flex min-w-max items-center gap-1 sm:gap-1.5">
-        {STEP_LABELS.map((s, i) => {
-          const done = activeIdx > i;
-          const current = s.id === step;
-          return (
-            <li key={s.id} className="flex items-center gap-1 sm:gap-1.5">
-              <span
-                className={`inline-flex h-6 items-center rounded-full border px-2 text-[0.62rem] font-semibold uppercase tracking-[0.06em] transition-all sm:h-7 sm:px-2.5 sm:text-[0.68rem] ${
-                  current
-                    ? "border-electric/50 bg-electric/15 text-electric"
-                    : done
-                      ? "border-success/40 bg-success/10 text-success"
-                      : "border-white/[0.08] bg-void/40 text-muted-dim"
-                }`}
-              >
-                {s.label}
-              </span>
-              {i < STEP_LABELS.length - 1 ? (
-                <span className="text-muted-dim" aria-hidden>
-                  →
+    <div className="mb-4 shrink-0">
+      <div className="mb-2.5 flex items-center justify-between gap-3">
+        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted">
+          Step {activeIdx + 1} of {STEP_LABELS.length}
+        </p>
+        <p className="text-[0.65rem] font-semibold tabular-nums text-electric">
+          {pct}%
+        </p>
+      </div>
+      <div className="mb-3 h-1 overflow-hidden rounded-full bg-white/[0.06]">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-electric/80 to-electric transition-all duration-500 ease-out"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+      <div className="overflow-x-auto pb-1">
+        <ol className="flex min-w-max items-center gap-1 sm:gap-1.5">
+          {STEP_LABELS.map((s, i) => {
+            const done = completed > i;
+            const current = s.id === step;
+            return (
+              <li key={s.id} className="flex items-center gap-1 sm:gap-1.5">
+                <span
+                  className={`inline-flex h-6 items-center rounded-full border px-2 text-[0.58rem] font-semibold uppercase tracking-[0.08em] transition-all sm:h-7 sm:px-2.5 sm:text-[0.65rem] ${
+                    current
+                      ? "border-electric/50 bg-electric/15 text-electric"
+                      : done
+                        ? "border-success/40 bg-success/10 text-success"
+                        : "border-white/[0.08] bg-void/40 text-muted-dim"
+                  }`}
+                >
+                  {s.label}
                 </span>
-              ) : null}
-            </li>
-          );
-        })}
-      </ol>
+                {i < STEP_LABELS.length - 1 ? (
+                  <span className="text-muted-dim" aria-hidden>
+                    →
+                  </span>
+                ) : null}
+              </li>
+            );
+          })}
+        </ol>
+      </div>
     </div>
   );
 }
@@ -97,15 +115,8 @@ export function HowItWorksSimulator() {
   const { step, goBack, goNext, canProceed, publish, draft } = useSimulator();
   const isReview = step === "review";
   const isSuccess = step === "success";
-  const showPreviewRail =
-    !isSuccess &&
-    (draft.name.trim().length > 0 ||
-      draft.portfolioType !== "" ||
-      draft.assets.length > 0 ||
-      draft.strategyId !== null ||
-      draft.amountUsd > 0);
-
   const fillViewport = !isSuccess;
+  const showPreviewRail = !isSuccess;
 
   return (
     <section className="border-t border-white/[0.06] bg-void" id="simulator">
@@ -113,7 +124,7 @@ export function HowItWorksSimulator() {
         <div
           className={`grid items-stretch gap-4 lg:gap-5 ${
             showPreviewRail
-              ? "lg:grid-cols-[minmax(0,1fr)_minmax(22rem,28rem)]"
+              ? "lg:grid-cols-[minmax(0,1fr)_minmax(26rem,1.1fr)]"
               : ""
           } ${
             fillViewport

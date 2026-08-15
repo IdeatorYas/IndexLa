@@ -1,6 +1,7 @@
 "use client";
 
 import { STRATEGIES } from "../strategies";
+import { StrategyRuleVisual } from "../StrategyRuleVisual";
 import { useSimulator } from "../SimulatorContext";
 import { optionCardActive, optionCardIdle } from "../ui";
 
@@ -15,11 +16,9 @@ export function StrategyStep() {
       <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Choose Strategy
       </h3>
-      <p className="mt-2 text-[0.95rem] text-muted">
-        Automate buys and sells. Configure next.
-      </p>
+      <p className="mt-2 text-[0.95rem] text-muted">Your rules. Their keys.</p>
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
         {STRATEGIES.map((s) => {
           const active = draft.strategyId === s.id;
           return (
@@ -44,10 +43,33 @@ export function StrategyStep() {
               <p className="mt-2 text-[0.88rem] leading-relaxed text-muted">
                 {s.explanation}
               </p>
+              {active ? (
+                <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-electric">
+                  Selected · Configure next
+                </p>
+              ) : null}
             </button>
           );
         })}
       </div>
+
+      {draft.strategyId ? (
+        <div className="mt-6 rounded-2xl border border-electric/25 bg-electric/[0.06] p-4 transition-all duration-300">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-electric">
+            Strategy rules
+          </p>
+          <p className="mt-1 text-[0.8rem] text-muted">
+            Trigger → Action → % → Frequency
+          </p>
+          <div className="mt-4">
+            <StrategyRuleVisual
+              id={draft.strategyId}
+              config={draft.strategyConfig}
+              hybrid={draft.hybrid}
+            />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

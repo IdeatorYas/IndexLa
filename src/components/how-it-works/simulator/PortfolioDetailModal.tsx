@@ -224,10 +224,10 @@ export function PortfolioDetailModal({
           ) : (
             <div>
               <p className="text-[0.95rem] font-semibold text-ink">
-                Allocate to Portfolio
+                Simulate Allocate
               </p>
               <p className="mt-1 text-[0.85rem] text-muted">
-                Simulated confirmation only.
+                Simulated confirmation only — no wallet, no real transaction.
               </p>
               <label className="mt-3 block text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-muted">
                 Amount (USD)
@@ -248,7 +248,7 @@ export function PortfolioDetailModal({
                   if (allocAmount > 0) setAllocated(true);
                 }}
               >
-                Confirm Allocation
+                Confirm Simulated Allocation
               </Button>
             </div>
           )}
