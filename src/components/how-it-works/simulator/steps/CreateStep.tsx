@@ -76,7 +76,8 @@ export function CreateStep() {
           Starter Templates · Optional
         </p>
         <p className="mt-1 text-[0.78rem] text-muted-dim">
-          Not selected automatically. Choose only if you want a starting point.
+          Starting points only — not fixed portfolios. Change strategy, rules,
+          frequency, DCA %, and allocations anytime.
         </p>
         <div className="mt-2.5 grid gap-1.5 sm:grid-cols-2">
           {STARTER_TEMPLATES.map((t) => {
@@ -91,6 +92,9 @@ export function CreateStep() {
                 }`}
               >
                 <p className="text-[0.88rem] font-semibold text-ink">{t.title}</p>
+                <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-electric">
+                  {t.strategyLabel}
+                </p>
                 <p className="mt-0.5 line-clamp-2 text-[0.75rem] leading-snug text-muted">
                   {t.blurb}
                 </p>
