@@ -186,6 +186,54 @@ export function MarketplaceSection() {
             ))}
           </div>
         )}
+
+        <details className="mt-10 rounded-2xl border border-dashed border-white/15 bg-void/30 p-5">
+          <summary className="cursor-pointer text-[0.95rem] font-semibold text-ink">
+            View Example Marketplace{" "}
+            <span className="ml-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted">
+              Illustrative Example
+            </span>
+          </summary>
+          <p className="mt-3 text-[0.88rem] text-muted">
+            These cards are illustrative layout examples only — not real users,
+            AUM, volume, earnings, or traction.
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                name: "Example Crypto Core",
+                type: "Crypto Index",
+                line: "BTC 40% · ETH 35% · SOL 25%",
+                strategy: "RSI · Weekly DCA",
+              },
+              {
+                name: "Example Tech Growth",
+                type: "Stocks Index",
+                line: "NVDA 30% · AAPL 25% · MSFT 25% · GOOGL 20%",
+                strategy: "Momentum · Weekly",
+              },
+              {
+                name: "Example Hybrid Wealth",
+                type: "Hybrid Portfolio",
+                line: "BTC 25% · ETH 20% · NVDA 20% · XAU 20%",
+                strategy: "Fear & Greed · Weekly DCA",
+              },
+            ].map((ex) => (
+              <div
+                key={ex.name}
+                className={`${surfaceClass} p-4 opacity-80`}
+              >
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+                  Illustrative Example
+                </p>
+                <p className="mt-2 font-semibold text-ink">{ex.name}</p>
+                <p className="mt-1 text-[0.78rem] text-muted">{ex.type}</p>
+                <p className="mt-2 text-[0.85rem] text-muted">{ex.line}</p>
+                <p className="mt-2 text-[0.85rem] text-ink">{ex.strategy}</p>
+              </div>
+            ))}
+          </div>
+        </details>
       </div>
 
       {selectedId ? (

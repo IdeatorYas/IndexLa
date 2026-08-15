@@ -6,6 +6,7 @@ import {
   HYBRID_SELL_OPTIONS,
   strategyTitle,
 } from "../strategies";
+import { StrategyRuleVisual } from "../StrategyRuleVisual";
 import { useSimulator } from "../SimulatorContext";
 import type {
   DcaFrequency,
@@ -341,6 +342,17 @@ export function ConfigureStep() {
           ? " — combine a buy condition with a sell condition."
           : ". Only parameters for this strategy are shown."}
       </p>
+
+      <div className="mt-5">
+        <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">
+          Trigger → Action → Amount → Frequency
+        </p>
+        <StrategyRuleVisual
+          id={id}
+          config={c}
+          hybrid={draft.hybrid}
+        />
+      </div>
 
       <div className="mt-6 space-y-5">
         {id === "buy-now" ? (

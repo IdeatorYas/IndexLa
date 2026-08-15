@@ -5,12 +5,14 @@ import { useSimulator } from "./SimulatorContext";
 import { WIZARD_STEPS, type WizardStep } from "./types";
 import { CreateStep } from "./steps/CreateStep";
 import { AssetsStep } from "./steps/AssetsStep";
+import { AllocationStep } from "./steps/AllocationStep";
 import { StrategyStep } from "./steps/StrategyStep";
 import { ConfigureStep } from "./steps/ConfigureStep";
 import { PermissionsStep } from "./steps/PermissionsStep";
 import { AmountStep } from "./steps/AmountStep";
 import { ReviewStep } from "./steps/ReviewStep";
 import { PublishSuccess } from "./steps/PublishSuccess";
+import { MonitorStep } from "./steps/MonitorStep";
 import { ManagePanel } from "./ManagePanel";
 import { LivePreview, LivePreviewCompact } from "./LivePreview";
 import { homeSection } from "@/components/home/homeRhythm";
@@ -19,29 +21,32 @@ import { surfaceClass } from "./ui";
 const STEP_LABELS = WIZARD_STEPS;
 
 const NEXT_HINT: Partial<Record<WizardStep, string>> = {
-  create: "Next: select assets and set allocations to 100%.",
-  assets: "Next: choose how your portfolio automates buys and sells.",
+  create: "Next: select assets for your portfolio.",
+  assets: "Next: set allocations to exactly 100%.",
+  allocation: "Next: choose how your portfolio automates buys and sells.",
   strategy: "Next: configure the parameters for your selected strategy.",
   configure: "Next: authorize simulated execution permissions.",
   permissions: "Next: set your investment amount.",
-  amount: "Next: review & confirm, then publish to Marketplace.",
+  amount: "Next: review & publish to Marketplace.",
   review: "Publishing adds this portfolio to Marketplace instantly.",
+  success: "Open Monitor to see your simulated portfolio status.",
 };
 
 function Progress() {
   const { step } = useSimulator();
+  if (step === "success" || step === "monitor") return null;
   const activeIdx = STEP_LABELS.findIndex((s) => s.id === step);
 
   return (
     <div className="mb-6 overflow-x-auto pb-1">
       <ol className="flex min-w-max items-center gap-1.5 sm:gap-2">
         {STEP_LABELS.map((s, i) => {
-          const done = activeIdx > i || step === "success";
+          const done = activeIdx > i;
           const current = s.id === step;
           return (
             <li key={s.id} className="flex items-center gap-1.5 sm:gap-2">
               <span
-                className={`inline-flex h-7 items-center rounded-full border px-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.08em] transition-all sm:px-3 sm:text-[0.72rem] ${
+                className={`inline-flex h-7 items-center rounded-full border px-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.06em] transition-all sm:px-3 sm:text-[0.7rem] ${
                   current
                     ? "border-electric/50 bg-electric/15 text-electric shadow-[0_0_20px_rgba(56,189,248,0.15)]"
                     : done
@@ -71,6 +76,8 @@ function StepBody() {
       return <CreateStep />;
     case "assets":
       return <AssetsStep />;
+    case "allocation":
+      return <AllocationStep />;
     case "strategy":
       return <StrategyStep />;
     case "configure":
@@ -83,21 +90,28 @@ function StepBody() {
       return <ReviewStep />;
     case "success":
       return <PublishSuccess />;
+    case "monitor":
+      return <MonitorStep />;
     default:
       return <CreateStep />;
   }
 }
 
 export function HowItWorksSimulator() {
-  const { step, goBack, goNext, canProceed, publish, draft } = useSimulator();
-  const showNav = step !== "success";
+  const { step, goBack, goNext, canProceed, publish, draft, setStep } =
+    useSimulator();
   const isReview = step === "review";
+  const isSuccess = step === "success";
+  const isMonitor = step === "monitor";
+  const showNav = !isMonitor;
   const showPreviewRail =
-    draft.name.trim().length > 0 ||
-    draft.portfolioType !== "" ||
-    draft.assets.length > 0 ||
-    draft.strategyId !== null ||
-    draft.amountUsd > 0;
+    !isSuccess &&
+    !isMonitor &&
+    (draft.name.trim().length > 0 ||
+      draft.portfolioType !== "" ||
+      draft.assets.length > 0 ||
+      draft.strategyId !== null ||
+      draft.amountUsd > 0);
 
   return (
     <section className={`${homeSection} bg-void`} id="simulator">
@@ -107,24 +121,22 @@ export function HowItWorksSimulator() {
             Product Simulation
           </p>
           <h2 className="mt-2 display text-[clamp(1.6rem,3.5vw,2.4rem)] font-semibold tracking-[-0.03em] text-ink">
-            Build A Portfolio End To End
+            Build Your Portfolio
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[1.05rem] leading-relaxed text-muted">
-            Create → Assets → Strategy → Investment → Review → Publish →
-            Marketplace. No wallet. No real transactions.
+            Create → Assets → Allocation → Strategy → Permissions → Investment →
+            Review & Publish → Monitor. No wallet. No real transactions.
           </p>
         </div>
 
         <div
           className={`grid items-start gap-6 ${
-            showPreviewRail && step !== "success"
-              ? "xl:grid-cols-[minmax(0,1fr)_20rem]"
-              : ""
+            showPreviewRail ? "xl:grid-cols-[minmax(0,1fr)_20rem]" : ""
           }`}
         >
           <div className={`${surfaceClass} p-5 sm:p-7 lg:p-8`}>
-            {step !== "success" ? <Progress /> : null}
-            {step !== "success" ? <LivePreviewCompact /> : null}
+            <Progress />
+            {!isSuccess && !isMonitor ? <LivePreviewCompact /> : null}
             <StepBody />
 
             {showNav ? (
@@ -135,14 +147,18 @@ export function HowItWorksSimulator() {
                   </p>
                 ) : null}
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <Button
-                    variant="ghost"
-                    onClick={goBack}
-                    className="!px-5 !py-2.5 text-[0.9rem]"
-                    type="button"
-                  >
-                    Back
-                  </Button>
+                  {!isSuccess ? (
+                    <Button
+                      variant="ghost"
+                      onClick={goBack}
+                      className="!px-5 !py-2.5 text-[0.9rem]"
+                      type="button"
+                    >
+                      Back
+                    </Button>
+                  ) : (
+                    <span />
+                  )}
                   {isReview ? (
                     <Button
                       onClick={() => publish()}
@@ -150,6 +166,14 @@ export function HowItWorksSimulator() {
                       type="button"
                     >
                       Publish Portfolio
+                    </Button>
+                  ) : isSuccess ? (
+                    <Button
+                      onClick={() => setStep("monitor")}
+                      className="!px-7 !py-3"
+                      type="button"
+                    >
+                      Open Monitor
                     </Button>
                   ) : (
                     <Button
@@ -174,7 +198,7 @@ export function HowItWorksSimulator() {
           <LivePreview />
         </div>
 
-        <ManagePanel />
+        {!isSuccess && !isMonitor ? <ManagePanel /> : null}
       </div>
     </section>
   );

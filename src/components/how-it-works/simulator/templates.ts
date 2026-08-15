@@ -55,6 +55,7 @@ function baseDraft(
     },
     hybrid: patch.hybrid ?? defaultHybridConfig(),
     authorized: false,
+    transactionLimitUsd: 5000,
     amountUsd: patch.amountUsd ?? 0,
     editingId: null,
   };

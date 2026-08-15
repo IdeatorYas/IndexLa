@@ -22,11 +22,11 @@ export function CreateStep() {
         Step · Create
       </p>
       <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
-        Create Your Portfolio
+        Build Your Portfolio
       </h3>
       <p className="mt-2 text-[0.98rem] text-muted">
-        Start from a template or build from scratch. You can edit everything
-        later.
+        Name + description → select portfolio type → select assets. Templates
+        are optional.
       </p>
 
       <div className="mt-6">

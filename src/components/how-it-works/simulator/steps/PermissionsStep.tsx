@@ -1,6 +1,42 @@
 "use client";
 
 import { useSimulator } from "../SimulatorContext";
+import { fieldClass, labelClass } from "../ui";
+
+function PermRow({
+  title,
+  detail,
+  status,
+  tone,
+}: {
+  title: string;
+  detail: string;
+  status: string;
+  tone: "ok" | "deny" | "neutral";
+}) {
+  const toneClass =
+    tone === "ok"
+      ? "border-success/35 bg-success/10 text-success"
+      : tone === "deny"
+        ? "border-amber-400/35 bg-amber-400/10 text-amber-200"
+        : "border-white/12 bg-void/50 text-ink";
+
+  return (
+    <div className="flex items-start justify-between gap-3 rounded-xl border border-white/[0.07] bg-void/45 px-3.5 py-3">
+      <div className="min-w-0">
+        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted">
+          {title}
+        </p>
+        <p className="mt-1 text-[0.92rem] text-ink">{detail}</p>
+      </div>
+      <span
+        className={`shrink-0 rounded-full border px-2.5 py-1 text-[0.72rem] font-semibold ${toneClass}`}
+      >
+        {status}
+      </span>
+    </div>
+  );
+}
 
 export function PermissionsStep() {
   const { draft, updateDraft } = useSimulator();
@@ -13,61 +49,83 @@ export function PermissionsStep() {
       <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Execution Permissions
       </h3>
-      <p className="mt-2 text-[0.92rem] text-muted">
-        Authorize simulated execution within your strategy rules.
+      <p className="mt-2 text-[0.95rem] text-muted">
+        Authorize only what your strategy needs. Custody never moves.
       </p>
-      <div className="mt-4 space-y-3 text-[0.98rem] leading-relaxed text-muted">
-        <p>INDEXLA is non-custodial.</p>
-        <p>The user keeps control of their assets.</p>
-        <p>
-          The protocol cannot withdraw funds outside the permissions granted.
+
+      <div className="mt-5 rounded-2xl border border-electric/30 bg-electric/[0.08] px-4 py-4 text-center">
+        <p className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-electric">
+          Your Keys · Your Assets · Your Permissions
+        </p>
+        <p className="mt-2 text-[0.9rem] text-muted">
+          The protocol cannot withdraw your funds. You can revoke access at any
+          time.
         </p>
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border border-electric/30 bg-gradient-to-br from-electric/[0.12] via-void/40 to-purple/10 p-5 sm:p-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-electric/35 bg-electric/15 text-electric">
-            ◎
-          </span>
-          <div>
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
-              Simulation only
-            </p>
-            <p className="mt-0.5 text-[0.9rem] text-muted">
-              No wallet · No signatures · No real transactions
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-5 rounded-xl border border-white/[0.08] bg-void/50 p-4">
-          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-muted">
-            How authorization works
-          </p>
-          <ol className="mt-3 space-y-2 text-[0.9rem] text-muted">
-            <li>1. You define strategy rules and limits.</li>
-            <li>2. You authorize execution within those rules.</li>
-            <li>3. INDEXLA coordinates trades only when conditions match.</li>
-            <li>4. Assets stay in your wallet — custody never moves.</li>
-          </ol>
-        </div>
-
-        <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-xl border border-white/[0.08] bg-void/40 p-4 transition-colors hover:border-electric/30">
+      <div className="mt-5 space-y-2.5">
+        <PermRow
+          title="Swap Assets"
+          detail="Coordinate swaps within your strategy rules"
+          status={draft.authorized ? "✓ Authorized" : "Not set"}
+          tone={draft.authorized ? "ok" : "neutral"}
+        />
+        <PermRow
+          title="Allowed Networks"
+          detail="Supported networks for selected assets"
+          status="✓ Supported networks"
+          tone="ok"
+        />
+        <div className="rounded-xl border border-white/[0.07] bg-void/45 px-3.5 py-3">
+          <label htmlFor="tx-limit" className={labelClass}>
+            Transaction Limit (USD)
+          </label>
           <input
-            type="checkbox"
-            className="mt-1 h-5 w-5 rounded border-line accent-electric"
-            checked={draft.authorized}
-            onChange={(e) => updateDraft({ authorized: e.target.checked })}
+            id="tx-limit"
+            type="number"
+            min={100}
+            max={1000000}
+            step={100}
+            className={`${fieldClass} !mt-2`}
+            value={draft.transactionLimitUsd || ""}
+            onChange={(e) =>
+              updateDraft({
+                transactionLimitUsd: Math.max(
+                  0,
+                  Number(e.target.value) || 0,
+                ),
+              })
+            }
           />
-          <span>
-            <span className="block text-[1.05rem] font-semibold text-ink">
-              Authorize Strategy Execution
-            </span>
-            <span className="mt-1 block text-[0.88rem] text-muted">
-              Simulated permission to coordinate execution within your rules.
-            </span>
-          </span>
-        </label>
+          <p className="mt-1.5 text-[0.78rem] text-muted">
+            Simulated max size per coordinated execution.
+          </p>
+        </div>
+        <PermRow
+          title="Withdraw Funds"
+          detail="INDEXLA never receives withdrawal authority"
+          status="✕ Not permitted"
+          tone="deny"
+        />
       </div>
+
+      <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-2xl border border-electric/30 bg-gradient-to-br from-electric/[0.1] via-void/40 to-transparent p-4 transition-colors hover:border-electric/45">
+        <input
+          type="checkbox"
+          className="mt-1 h-5 w-5 rounded border-line accent-electric"
+          checked={draft.authorized}
+          onChange={(e) => updateDraft({ authorized: e.target.checked })}
+        />
+        <span>
+          <span className="block text-[1.05rem] font-semibold text-ink">
+            Authorize Strategy Execution
+          </span>
+          <span className="mt-1 block text-[0.88rem] text-muted">
+            Simulated permission only — no wallet connection, no signatures, no
+            real transactions.
+          </span>
+        </span>
+      </label>
     </div>
   );
 }

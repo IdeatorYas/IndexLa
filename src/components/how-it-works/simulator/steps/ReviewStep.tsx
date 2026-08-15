@@ -62,13 +62,13 @@ export function ReviewStep() {
   return (
     <div className="mx-auto max-w-2xl">
       <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
-        Step · Review & Confirm
+        Step · Review & Publish
       </p>
       <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
-        Review & Confirm
+        Review & Publish
       </h3>
       <p className="mt-2 text-[0.98rem] text-muted">
-        Confirm the complete portfolio before publishing.
+        Confirm exactly what you are publishing.
       </p>
 
       <div className="mt-6 space-y-3">
@@ -151,11 +151,18 @@ export function ReviewStep() {
         </Section>
 
         <Section title="Permissions" editStep="permissions">
-          <p className="text-[0.95rem] text-ink">
-            {draft.authorized
-              ? "Authorized (simulated) · Non-custodial"
-              : "Not set"}
-          </p>
+          <ul className="space-y-1.5 text-[0.92rem] text-ink">
+            <li>Swap assets — {draft.authorized ? "Authorized" : "Not set"}</li>
+            <li>Allowed networks — Supported networks</li>
+            <li>
+              Transaction limit —{" "}
+              {draft.transactionLimitUsd > 0
+                ? usd(draft.transactionLimitUsd)
+                : "Not set"}
+            </li>
+            <li>Withdraw funds — Not permitted</li>
+            <li className="text-muted">Non-custodial · Simulated authorization</li>
+          </ul>
         </Section>
       </div>
 

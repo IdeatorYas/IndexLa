@@ -7,7 +7,7 @@ import type { SimulatorPortfolio } from "../types";
 import { surfaceClass } from "../ui";
 
 export function PublishSuccess() {
-  const { justCreatedId, resetDraft, published, setSelectedId } =
+  const { justCreatedId, resetDraft, published, setSelectedId, setStep } =
     useSimulator();
   const [portfolio, setPortfolio] = useState<SimulatorPortfolio | null>(() =>
     published.find((p) => p.id === justCreatedId) ?? published[0] ?? null,
@@ -66,7 +66,7 @@ export function PublishSuccess() {
         </p>
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+      <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
         <Button
           type="button"
           variant="primary"
@@ -135,6 +135,13 @@ export function PublishSuccess() {
       </p>
 
       <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+        <Button
+          type="button"
+          className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
+          onClick={() => setStep("monitor")}
+        >
+          Open Monitor
+        </Button>
         <Button
           href="#simulator-marketplace"
           variant="secondary"

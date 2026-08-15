@@ -20,25 +20,41 @@ export const PORTFOLIO_TYPES: PortfolioType[] = [
 export type WizardStep =
   | "create"
   | "assets"
+  | "allocation"
   | "strategy"
   | "configure"
   | "permissions"
   | "amount"
   | "review"
-  | "success";
+  | "success"
+  | "monitor";
 
 export const WIZARD_STEPS: { id: WizardStep; label: string }[] = [
   { id: "create", label: "Create" },
   { id: "assets", label: "Assets" },
+  { id: "allocation", label: "Allocation" },
   { id: "strategy", label: "Strategy" },
   { id: "configure", label: "Configure" },
   { id: "permissions", label: "Permissions" },
   { id: "amount", label: "Investment" },
-  { id: "review", label: "Review" },
+  { id: "review", label: "Review & Publish" },
 ];
 
 /** Simulated network gas estimate — separate from execution fee */
-export const ESTIMATED_GAS_LABEL = "~$2–$3";
+export const ESTIMATED_GAS_LABEL = "~$2";
+
+/** Product flow shown in hero — must match simulator terminology */
+export const PRODUCT_FLOW_LABELS = [
+  "Create",
+  "Assets",
+  "Allocation",
+  "Strategy",
+  "Configure",
+  "Permissions",
+  "Investment",
+  "Review & Publish",
+  "Monitor",
+] as const;
 
 export type StrategyId =
   | "buy-now"
@@ -142,6 +158,8 @@ export type DraftPortfolio = {
   strategyConfig: StrategyConfig;
   hybrid: HybridConfig;
   authorized: boolean;
+  /** Simulated max transaction size (USD) — display only */
+  transactionLimitUsd: number;
   amountUsd: number;
   editingId: string | null;
 };
@@ -186,6 +204,7 @@ export function emptyDraft(): DraftPortfolio {
     },
     hybrid: emptyHybrid(),
     authorized: false,
+    transactionLimitUsd: 5000,
     amountUsd: 0,
     editingId: null,
   };

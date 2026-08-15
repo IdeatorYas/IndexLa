@@ -22,6 +22,7 @@ import {
 } from "./types";
 
 const PUBLISHED_STORAGE_KEY = "indexla-hiw-published-v1";
+const DRAFT_STORAGE_KEY = "indexla-hiw-draft-v1";
 
 function readPublished(): SimulatorPortfolio[] {
   if (typeof window === "undefined") return [];
@@ -41,6 +42,51 @@ function writePublished(list: SimulatorPortfolio[]) {
     sessionStorage.setItem(PUBLISHED_STORAGE_KEY, JSON.stringify(list));
   } catch {
     /* ignore quota */
+  }
+}
+
+function readDraftSession(): { draft: DraftPortfolio; step: WizardStep } | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = sessionStorage.getItem(DRAFT_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as {
+      draft?: DraftPortfolio;
+      step?: WizardStep;
+    };
+    if (!parsed?.draft) return null;
+    const draft = { ...emptyDraft(), ...parsed.draft };
+    const step =
+      parsed.step &&
+      parsed.step !== "success" &&
+      parsed.step !== "monitor"
+        ? parsed.step
+        : "create";
+    return { draft, step };
+  } catch {
+    return null;
+  }
+}
+
+function writeDraftSession(draft: DraftPortfolio, step: WizardStep) {
+  if (typeof window === "undefined") return;
+  if (step === "success" || step === "monitor") return;
+  try {
+    sessionStorage.setItem(
+      DRAFT_STORAGE_KEY,
+      JSON.stringify({ draft, step }),
+    );
+  } catch {
+    /* ignore */
+  }
+}
+
+function clearDraftSession() {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.removeItem(DRAFT_STORAGE_KEY);
+  } catch {
+    /* ignore */
   }
 }
 
@@ -76,12 +122,14 @@ const SimulatorContext = createContext<SimulatorContextValue | null>(null);
 const STEP_ORDER: WizardStep[] = [
   "create",
   "assets",
+  "allocation",
   "strategy",
   "configure",
   "permissions",
   "amount",
   "review",
   "success",
+  "monitor",
 ];
 
 function newId(): string {
@@ -184,6 +232,8 @@ export function canProceedFrom(draft: DraftPortfolio, from: WizardStep): boolean
         draft.portfolioType !== ""
       );
     case "assets":
+      return draft.assets.length >= 1;
+    case "allocation":
       return draft.assets.length >= 1 && allocationTotal(draft.assets) === 100;
     case "strategy":
       return draft.strategyId !== null;
@@ -197,11 +247,15 @@ export function canProceedFrom(draft: DraftPortfolio, from: WizardStep): boolean
       return (
         canProceedFrom(draft, "create") &&
         canProceedFrom(draft, "assets") &&
+        canProceedFrom(draft, "allocation") &&
         canProceedFrom(draft, "strategy") &&
         canProceedFrom(draft, "configure") &&
         canProceedFrom(draft, "permissions") &&
         canProceedFrom(draft, "amount")
       );
+    case "success":
+    case "monitor":
+      return true;
     default:
       return true;
   }
@@ -214,10 +268,22 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   const [justCreatedId, setJustCreatedId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [rebalanceFlashId, setRebalanceFlashId] = useState<string | null>(null);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     setPublished(readPublished());
+    const saved = readDraftSession();
+    if (saved) {
+      setDraft(saved.draft);
+      setStep(saved.step);
+    }
+    setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    writeDraftSession(draft, step);
+  }, [draft, step, hydrated]);
 
   const updateDraft = useCallback((patch: Partial<DraftPortfolio>) => {
     setDraft((d) => ({ ...d, ...patch }));
@@ -243,6 +309,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   const resetDraft = useCallback(() => {
     setDraft(emptyDraft());
     setStep("create");
+    clearDraftSession();
   }, []);
 
   const applyTemplate = useCallback((build: () => DraftPortfolio) => {
@@ -282,6 +349,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
     setJustCreatedId(id);
     setStep("success");
     setDraft(emptyDraft());
+    clearDraftSession();
     return id;
   }, [draft]);
 
@@ -298,6 +366,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
         strategyConfig: p.strategyConfig,
         hybrid: p.hybrid,
         authorized: p.authorized,
+        transactionLimitUsd: 5000,
         amountUsd: p.amountUsd,
         editingId: p.id,
       });
@@ -353,17 +422,20 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   const goNext = useCallback(() => {
     const i = STEP_ORDER.indexOf(step);
     if (i < 0 || i >= STEP_ORDER.length - 1) return;
-    if (!canProceedFrom(draft, step)) return;
+    if (step !== "success" && step !== "monitor" && !canProceedFrom(draft, step)) {
+      return;
+    }
     setStep(STEP_ORDER[i + 1]);
   }, [draft, step]);
 
   const goBack = useCallback(() => {
-    const i = STEP_ORDER.indexOf(step);
-    if (i <= 0) return;
-    if (step === "success") {
-      setStep("create");
+    if (step === "monitor") {
+      setStep("success");
       return;
     }
+    if (step === "success") return;
+    const i = STEP_ORDER.indexOf(step);
+    if (i <= 0) return;
     setStep(STEP_ORDER[i - 1]);
   }, [step]);
 

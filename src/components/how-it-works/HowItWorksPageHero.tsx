@@ -8,14 +8,7 @@ import {
   homeChip,
   homeH2,
 } from "@/components/home/homeRhythm";
-
-const flow = [
-  "Create Portfolio",
-  "Choose Strategy",
-  "Confirm",
-  "INDEXLA Executes",
-  "Monitor",
-] as const;
+import { PRODUCT_FLOW_LABELS } from "@/components/how-it-works/simulator/types";
 
 export function HowItWorksPageHero() {
   const reduce = useReducedMotion();
@@ -53,19 +46,21 @@ export function HowItWorksPageHero() {
           </h1>
 
           <p className={`mx-auto mt-5 max-w-2xl ${homeBodyStrong}`}>
-            See how INDEXLA takes you from portfolio setup to automated execution
-            with your assets staying in your wallet.
+            Build your portfolio, define your strategy, keep custody, and see
+            how INDEXLA coordinates execution when your rules are met.
           </p>
 
           <div className="mx-auto mt-7 max-w-4xl rounded-[1.25rem] border border-electric/25 bg-gradient-to-b from-electric/[0.08] to-transparent px-4 py-5 sm:px-8 sm:py-6">
             <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
               Product Flow
             </p>
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
-              {flow.map((item, i) => (
-                <div key={item} className="flex items-center gap-2">
-                  <span className={homeChip}>{item}</span>
-                  {i < flow.length - 1 ? (
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-2.5 sm:gap-x-2 sm:gap-y-3">
+              {PRODUCT_FLOW_LABELS.map((item, i) => (
+                <div key={item} className="flex items-center gap-1.5 sm:gap-2">
+                  <span className={`${homeChip} !px-2.5 !py-1.5 !text-[0.68rem] sm:!px-3 sm:!text-[0.72rem]`}>
+                    {item}
+                  </span>
+                  {i < PRODUCT_FLOW_LABELS.length - 1 ? (
                     <span className="text-electric/80" aria-hidden>
                       →
                     </span>
@@ -76,8 +71,12 @@ export function HowItWorksPageHero() {
           </div>
 
           <p className={`mx-auto mt-7 max-w-2xl ${homeBody} text-balance`}>
-            Walk through each step below: connect, allocate, automate, and
-            activate, using interactive product previews.
+            Walk through the same steps in the simulator below — from create to
+            monitor. No wallet. No real transactions.
+          </p>
+          <p className="mx-auto mt-3 max-w-xl text-[0.92rem] text-muted">
+            Turn your thesis into a portfolio your audience can allocate capital
+            to — and earn from it.
           </p>
         </motion.div>
       </div>

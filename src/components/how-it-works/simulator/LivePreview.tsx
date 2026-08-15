@@ -33,7 +33,7 @@ function hasPreviewContent(draft: {
 
 export function LivePreview() {
   const { draft, step } = useSimulator();
-  if (step === "success") return null;
+  if (step === "success" || step === "monitor") return null;
   if (!hasPreviewContent(draft)) return null;
 
   const total = allocationTotal(draft.assets);
@@ -143,7 +143,7 @@ export function LivePreview() {
 
 export function LivePreviewCompact() {
   const { draft, step } = useSimulator();
-  if (step === "success") return null;
+  if (step === "success" || step === "monitor") return null;
   if (!hasPreviewContent(draft)) return null;
 
   const total = allocationTotal(draft.assets);
