@@ -90,7 +90,7 @@ export function Hero() {
           </div>
 
           <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-ink/80 text-balance sm:mt-3.5 sm:text-[0.78rem]">
-            Non-Custodial · Revocable Permissions · No Admin Keys
+            Non-Custodial · Revocable Permissions · No Admin Access to User Funds
           </p>
         </motion.div>
       </div>
