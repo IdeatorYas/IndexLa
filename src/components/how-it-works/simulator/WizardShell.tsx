@@ -193,6 +193,7 @@ export function HowItWorksSimulator() {
             </div>
           </div>
         </section>
+        <ManagePanel />
       </>
     );
   }
@@ -207,19 +208,19 @@ export function HowItWorksSimulator() {
         className="fixed inset-x-0 top-20 bottom-0 z-30 flex flex-col overflow-hidden border-t border-white/[0.06] bg-void"
         aria-label="Portfolio simulator"
       >
-        <div className="container-max flex h-full min-h-0 flex-col px-3 py-2 sm:px-5 lg:px-6">
+        <div className="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-col px-3 py-2 sm:px-5 lg:px-6">
           <IntroStrip />
 
           <div className="mt-2 shrink-0">
             <Progress />
           </div>
 
-          <div className="mt-2 grid min-h-0 flex-1 gap-2.5 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] lg:items-stretch">
+          <div className="mt-2 grid min-h-0 flex-1 gap-2.5 md:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] md:items-stretch">
             <div
               className={`${surfaceClass} flex min-h-0 flex-col overflow-hidden`}
             >
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-                <div className="shrink-0 px-3 pt-2.5 lg:hidden">
+                <div className="shrink-0 px-3 pt-2.5 md:hidden">
                   <LivePreviewCompact />
                 </div>
                 <div className="min-h-0 flex-1 overflow-hidden px-3 sm:px-5">
@@ -241,7 +242,7 @@ export function HowItWorksSimulator() {
         </div>
       </section>
 
-      <ManagePanel />
+      {/* Manage panel stays in document flow below the spacer; visible after scroll unlock on success. */}
     </>
   );
 }

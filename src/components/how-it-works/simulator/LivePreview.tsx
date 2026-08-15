@@ -178,7 +178,7 @@ export function LivePreview() {
 
   return (
     <aside
-      className={`${surfaceClass} hidden min-h-0 flex-col overflow-hidden border-electric/20 shadow-[0_0_60px_rgba(56,189,248,0.06)] lg:flex`}
+      className={`${surfaceClass} hidden min-h-0 flex-col overflow-hidden border-electric/20 shadow-[0_0_60px_rgba(56,189,248,0.06)] md:flex`}
       aria-label="Live product preview"
     >
       <div className="flex shrink-0 items-center justify-between gap-2 border-b border-white/[0.06] px-4 py-2.5">
