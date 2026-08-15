@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HowItWorksPageCta } from "@/components/how-it-works/HowItWorksPageCta";
+import { HowItWorksPageHero } from "@/components/how-it-works/HowItWorksPageHero";
 import { MarketplaceSection } from "@/components/how-it-works/simulator/MarketplaceSection";
 import { SimulatorProvider } from "@/components/how-it-works/simulator/SimulatorContext";
 import { HowItWorksSimulator } from "@/components/how-it-works/simulator/WizardShell";
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function HowItWorksPage() {
   return (
     <main>
+      <HowItWorksPageHero />
       <SimulatorProvider>
         <HowItWorksSimulator />
         <MarketplaceSection />

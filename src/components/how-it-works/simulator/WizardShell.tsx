@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { useSimulator } from "./SimulatorContext";
 import { WIZARD_STEPS, type WizardStep } from "./types";
@@ -23,30 +21,6 @@ const NEXT_HINT: Partial<Record<WizardStep, string>> = {
   review: "Confirm, set investment, then authorize & publish.",
   success: "Your audience can now allocate.",
 };
-
-function IntroStrip() {
-  return (
-    <div className="flex shrink-0 flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-white/[0.06] px-0.5 pb-2">
-      <div className="min-w-0">
-        <Link
-          href="/"
-          className="text-[0.75rem] font-semibold text-electric transition-colors hover:text-ink"
-        >
-          ← Back to INDEXLA
-        </Link>
-        <p className="display text-[clamp(0.95rem,1.6vw,1.1rem)] font-semibold tracking-[-0.02em] text-ink">
-          How It <span className="gradient-text">Works</span>
-          <span className="ml-2 text-[0.72rem] font-normal tracking-normal text-muted">
-            Build · Strategy · Custody · Simulation
-          </span>
-        </p>
-      </div>
-      <p className="text-[0.72rem] text-muted">
-        No wallet · No real transactions
-      </p>
-    </div>
-  );
-}
 
 function Progress() {
   const { step } = useSimulator();
@@ -167,42 +141,17 @@ export function HowItWorksSimulator() {
   const { step, draft } = useSimulator();
   const isSuccess = step === "success";
 
-  /** Lock page scroll while the full-screen wizard is active. */
-  useEffect(() => {
-    if (isSuccess) return;
-    const html = document.documentElement;
-    const body = document.body;
-    const prevHtmlOverflow = html.style.overflow;
-    const prevBodyOverflow = body.style.overflow;
-    const prevBodyPosition = body.style.position;
-    const prevBodyWidth = body.style.width;
-    const prevBodyTop = body.style.top;
-    const scrollY = window.scrollY;
-
-    html.style.overflow = "hidden";
-    body.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.width = "100%";
-    body.style.top = `-${scrollY}px`;
-    html.classList.add("simulator-lock");
-
-    return () => {
-      html.style.overflow = prevHtmlOverflow;
-      body.style.overflow = prevBodyOverflow;
-      body.style.position = prevBodyPosition;
-      body.style.width = prevBodyWidth;
-      body.style.top = prevBodyTop;
-      html.classList.remove("simulator-lock");
-      window.scrollTo(0, scrollY);
-    };
-  }, [isSuccess]);
-
   if (isSuccess) {
     return (
       <>
-        <section id="simulator" className="scroll-mt-20 border-t border-white/[0.06] bg-void py-8">
+        <section
+          id="simulator"
+          className="scroll-mt-20 border-t border-white/[0.06] bg-void py-8"
+        >
           <div className="container-max px-3 sm:px-5 lg:px-6">
-            <div className={`${surfaceClass} mx-auto w-full max-w-2xl p-5 sm:p-7`}>
+            <div
+              className={`${surfaceClass} mx-auto w-full max-w-2xl p-5 sm:p-7`}
+            >
               <StepBody />
             </div>
           </div>
@@ -214,22 +163,17 @@ export function HowItWorksSimulator() {
 
   return (
     <>
-      {/* Document-flow spacer so marketplace/footer sit below the fixed app. */}
-      <div className="h-[calc(100svh-5rem)]" aria-hidden />
-
       <section
         id="simulator"
-        className="fixed inset-x-0 top-20 bottom-0 z-30 flex flex-col overflow-hidden border-t border-white/[0.06] bg-void"
+        className="relative z-20 flex h-[calc(100svh-5rem)] max-h-[calc(100svh-5rem)] flex-col overflow-hidden border-t border-white/[0.06] bg-void"
         aria-label="Portfolio simulator"
       >
-        <div className="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-col px-3 py-2 sm:px-5 lg:px-6">
-          <IntroStrip />
-
-          <div className="mt-2 shrink-0">
+        <div className="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-col px-3 py-2.5 sm:px-5 lg:px-6">
+          <div className="mb-2 shrink-0">
             <Progress />
           </div>
 
-          <div className="mt-2 grid min-h-0 flex-1 gap-2.5 sm:grid-cols-[minmax(0,1.15fr)_minmax(17rem,0.85fr)] sm:items-stretch">
+          <div className="grid min-h-0 flex-1 gap-2.5 sm:grid-cols-[minmax(0,1.15fr)_minmax(17rem,0.85fr)] sm:items-stretch">
             <div
               className={`${surfaceClass} flex min-h-0 flex-col overflow-hidden`}
             >
@@ -255,8 +199,7 @@ export function HowItWorksSimulator() {
           </div>
         </div>
       </section>
-
-      {/* Manage panel stays in document flow below the spacer; visible after scroll unlock on success. */}
+      <ManagePanel />
     </>
   );
 }
