@@ -44,6 +44,17 @@ export function DistributionSection() {
                 </div>
               ))}
             </div>
+
+            <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-electric/35 bg-electric/[0.08] px-4 py-3.5 text-center sm:px-6 sm:py-4">
+              <p className="text-[0.98rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.05rem]">
+                Your Keys · Your Assets · Your Permissions
+              </p>
+              <div className="mx-auto mt-1.5 max-w-lg space-y-0.5 text-[0.88rem] leading-snug text-ink/80 sm:text-[0.95rem]">
+                <p>The protocol cannot withdraw your funds.</p>
+                <p>You can revoke access at any time.</p>
+              </div>
+            </div>
+
             <HomeReadMore
               href="/how-it-works"
               label="Learn How INDEXLA Works →"

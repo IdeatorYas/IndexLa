@@ -76,16 +76,6 @@ export function Hero() {
           <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-ink/80 text-balance sm:mt-3.5 sm:text-[0.78rem]">
             Non-Custodial · Revocable Permissions · No Admin Keys
           </p>
-
-          <div className="mx-auto mt-3 w-full max-w-2xl rounded-2xl border border-electric/35 bg-electric/[0.08] px-4 py-3 text-center sm:mt-3.5 sm:px-5 sm:py-3.5">
-            <p className="text-[0.92rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.02rem]">
-              Your Keys · Your Assets · Your Permissions
-            </p>
-            <div className="mx-auto mt-1 max-w-xl space-y-0.5 text-[0.84rem] leading-snug text-ink/80 sm:text-[0.9rem]">
-              <p>The protocol cannot withdraw your funds.</p>
-              <p>You can revoke access at any time.</p>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
