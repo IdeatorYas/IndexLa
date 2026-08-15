@@ -82,22 +82,30 @@ export function CreatorsHero() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className={`${crH1} text-[clamp(2rem,5vw,3.55rem)]`}>
-              <span className="block">
-                Your Thesis Deserves{" "}
-                <span className="gradient-text">More Than An X Post</span>
-              </span>
+              Your Best Ideas{" "}
+              <span className="gradient-text">Die In The Feed</span>
             </h1>
 
-            <p className={`mt-5 max-w-xl ${crBody} text-balance lg:mt-6`}>
-              Turn your investment thesis into a portfolio your community can
-              follow, invest in, and grow with. Earn creator fees as your
-              community participates.
+            <div className={`mt-5 max-w-xl space-y-1.5 ${crBody} lg:mt-6`}>
+              <p>Your alpha becomes a post.</p>
+              <p>Your post gets scrolled.</p>
+              <p>Your conviction disappears.</p>
+            </div>
+
+            <p className={`mt-5 max-w-xl ${crBody} text-balance`}>
+              INDEXLA turns your market knowledge into an investable product
+              your audience can actually use.
+            </p>
+
+            <p className={`mt-3 max-w-xl font-semibold text-ink text-balance`}>
+              Create your portfolio. Bring your strategy. Turn your influence
+              into infrastructure.
             </p>
 
             <div className="mt-5">
               <div className={crGreenBox}>
                 <p className={`${crGreenText} text-balance`}>
-                  Build your strategy. Grow your audience. Earn from its use.
+                  No Publishing Fees At Launch
                 </p>
               </div>
             </div>
@@ -107,6 +115,10 @@ export function CreatorsHero() {
                 Creator Early Access
               </EarlyAccessCta>
             </div>
+
+            <p className="mt-4 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-muted-dim text-balance">
+              Create Your Portfolio And Strategy In Under 5 Minutes
+            </p>
           </motion.div>
 
           <motion.div

@@ -4,7 +4,10 @@ import { motion, useReducedMotion } from "framer-motion";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   crBody,
+  crBodyStrong,
   crCta,
+  crGreenBox,
+  crGreenText,
   crH2,
   crSection,
   crSurface,
@@ -16,7 +19,7 @@ export function CreatorsFinalCta() {
   return (
     <section
       id="early-access"
-      className={`${crSection} relative scroll-mt-24 overflow-hidden bg-void`}
+      className={`${crSection} relative scroll-mt-24 overflow-hidden bg-deep`}
     >
       <div
         className="pointer-events-none absolute inset-0 hero-glow opacity-35"
@@ -30,25 +33,33 @@ export function CreatorsFinalCta() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-muted-dim">
-            Early Access
-          </p>
-          <h2 className={`mt-3 ${crH2} uppercase`}>
-            Reserve Your Place For{" "}
-            <span className="gradient-text">Creator MVP Access</span>
+          <h2 className={`${crH2} uppercase`}>
+            Turn Your Edge Into An{" "}
+            <span className="gradient-text">Investable Product</span>
           </h2>
 
           <p className={`mx-auto mt-6 max-w-xl ${crBody} text-balance`}>
-            For creators interested in early access to publish portfolios,
-            grow community participation, and preview the INDEXLA creator
-            experience.
+            Build your portfolio. Bring your strategy. Monetize your market
+            knowledge.
           </p>
 
-          <div className="mt-9 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <EarlyAccessCta mode="creator" className={crCta}>
-              Join as a Creator
+              Creator Early Access
             </EarlyAccessCta>
           </div>
+
+          <div className="mt-6 flex justify-center">
+            <div className={crGreenBox}>
+              <p className={`${crGreenText} text-balance`}>
+                No Publishing Fees At Launch
+              </p>
+            </div>
+          </div>
+
+          <p className={`mx-auto mt-6 max-w-xl ${crBodyStrong} text-balance`}>
+            Build Once. Earn From Its Ongoing Use.
+          </p>
         </motion.div>
       </div>
     </section>

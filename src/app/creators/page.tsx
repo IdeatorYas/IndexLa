@@ -1,37 +1,33 @@
 import type { Metadata } from "next";
-import { CreatorBecomeSection } from "@/components/creators/CreatorBecomeSection";
+import { CreatorAudiencePortfolioSection } from "@/components/creators/CreatorAudiencePortfolioSection";
+import { CreatorCustodySection } from "@/components/creators/CreatorCustodySection";
 import { CreatorDisclaimer } from "@/components/creators/CreatorDisclaimer";
-import { CreatorEconomicsSection } from "@/components/creators/CreatorEconomicsSection";
+import { CreatorDistributionSection } from "@/components/creators/CreatorDistributionSection";
+import { CreatorEarlyAdvantageSection } from "@/components/creators/CreatorEarlyAdvantageSection";
 import { CreatorHybridPortfolioSection } from "@/components/creators/CreatorHybridPortfolioSection";
-import { CreatorMonthlyRewardsSection } from "@/components/creators/CreatorMonthlyRewardsSection";
-import { CreatorLongTermSection } from "@/components/creators/CreatorLongTermSection";
-import { CreatorParticipantsSection } from "@/components/creators/CreatorParticipantsSection";
-import { CreatorSimulatedDashboard } from "@/components/creators/CreatorSimulatedDashboard";
-import { CreatorTransparencySection } from "@/components/creators/CreatorTransparencySection";
+import { CreatorMonetizeSection } from "@/components/creators/CreatorMonetizeSection";
+import { CreatorStrategyRulesSection } from "@/components/creators/CreatorStrategyRulesSection";
 import { CreatorTypesSection } from "@/components/creators/CreatorTypesSection";
-import { CreatorWhySection } from "@/components/creators/CreatorWhySection";
 import { CreatorsFinalCta } from "@/components/creators/CreatorsFinalCta";
 import { CreatorsHero } from "@/components/creators/CreatorsHero";
 
 export const metadata: Metadata = {
   title: "Creators | INDEXLA",
   description:
-    "Turn your investment thesis into a portfolio your community can follow, invest in, and grow with.",
+    "Turn your market knowledge into an investable product your audience can follow, customize, and allocate to while keeping full custody.",
 };
 
 export default function CreatorsPage() {
   return (
     <main>
       <CreatorsHero />
-      <CreatorSimulatedDashboard />
-      <CreatorWhySection />
-      <CreatorBecomeSection />
+      <CreatorAudiencePortfolioSection />
       <CreatorHybridPortfolioSection />
-      <CreatorLongTermSection />
-      <CreatorParticipantsSection />
-      <CreatorEconomicsSection />
-      <CreatorMonthlyRewardsSection />
-      <CreatorTransparencySection />
+      <CreatorStrategyRulesSection />
+      <CreatorMonetizeSection />
+      <CreatorCustodySection />
+      <CreatorDistributionSection />
+      <CreatorEarlyAdvantageSection />
       <CreatorTypesSection />
       <CreatorsFinalCta />
       <CreatorDisclaimer />
