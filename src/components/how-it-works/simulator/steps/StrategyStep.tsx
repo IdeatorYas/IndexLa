@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { STRATEGIES } from "../strategies";
-import { StrategyRuleVisual } from "../StrategyRuleVisual";
+import { STRATEGIES, summarizeStrategy } from "../strategies";
 import { useSimulator } from "../SimulatorContext";
 import { ConfigureStep } from "./ConfigureStep";
 
-/** Strategy selection + configuration in one place — config expands under the selected strategy. */
+/** Strategy cards + immediate product configuration (no generic Trigger/Action UI). */
 export function StrategyStep() {
   const { draft, setStrategy } = useSimulator();
   const configRef = useRef<HTMLDivElement | null>(null);
+  const active = STRATEGIES.find((s) => s.id === draft.strategyId);
 
   useEffect(() => {
     if (!draft.strategyId || !configRef.current) return;
@@ -26,29 +26,25 @@ export function StrategyStep() {
           Choose & Configure Strategy
         </h3>
         <p className="mt-1 text-[0.85rem] text-muted">
-          Select a strategy — configuration opens immediately underneath.
+          Select one strategy — its real controls open immediately below.
         </p>
       </div>
 
-      <div className="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain pr-0.5">
-        {STRATEGIES.map((s) => {
-          const active = draft.strategyId === s.id;
-          return (
-            <div
-              key={s.id}
-              className={`overflow-hidden rounded-xl border transition-all duration-300 ${
-                active
-                  ? "border-electric/45 bg-electric/[0.08] shadow-[0_0_0_1px_rgba(56,189,248,0.12)]"
-                  : "border-white/[0.08] bg-void/40"
-              }`}
-            >
+      <div className="mt-3 min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pr-0.5">
+        <div className="grid gap-2 sm:grid-cols-2">
+          {STRATEGIES.map((s) => {
+            const selected = draft.strategyId === s.id;
+            return (
               <button
+                key={s.id}
                 type="button"
                 onClick={() => setStrategy(s.id)}
-                className={`w-full px-3 py-3 text-left transition-colors ${
-                  active ? "" : "hover:bg-white/[0.03]"
+                aria-pressed={selected}
+                className={`rounded-xl border px-3 py-3 text-left transition-all duration-300 ${
+                  selected
+                    ? "border-electric/50 bg-electric/[0.12] shadow-[0_0_0_1px_rgba(56,189,248,0.18)]"
+                    : "border-white/[0.08] bg-void/40 hover:border-white/15 hover:bg-white/[0.03]"
                 }`}
-                aria-expanded={active}
               >
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-[0.95rem] font-semibold tracking-[-0.02em] text-ink">
@@ -56,16 +52,16 @@ export function StrategyStep() {
                   </p>
                   <div className="flex shrink-0 items-center gap-1.5">
                     {s.label ? (
-                      <span className="rounded-full border border-success/40 bg-success/15 px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.08em] text-success">
+                      <span className="rounded-full border border-success/40 bg-success/15 px-1.5 py-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-success">
                         {s.label}
                       </span>
                     ) : null}
                     <span
-                      className={`text-[0.7rem] font-semibold ${
-                        active ? "text-electric" : "text-muted-dim"
+                      className={`text-[0.65rem] font-semibold uppercase tracking-[0.08em] ${
+                        selected ? "text-electric" : "text-muted-dim"
                       }`}
                     >
-                      {active ? "Configuring" : "Select"}
+                      {selected ? "Active" : "Select"}
                     </span>
                   </div>
                 </div>
@@ -73,35 +69,42 @@ export function StrategyStep() {
                   {s.explanation}
                 </p>
               </button>
+            );
+          })}
+        </div>
 
-              {active ? (
-                <div
-                  ref={configRef}
-                  className="space-y-3 border-t border-electric/20 bg-void/55 px-3 py-3"
-                >
-                  <div>
-                    <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-electric">
-                      Trigger → Action → % → Frequency
-                    </p>
-                    <StrategyRuleVisual
-                      id={s.id}
-                      config={draft.strategyConfig}
-                      hybrid={draft.hybrid}
-                      compact
-                    />
-                  </div>
-                  <ConfigureStep embedded />
-                </div>
-              ) : null}
+        {active ? (
+          <div
+            ref={configRef}
+            className="animate-in fade-in slide-in-from-top-1 rounded-2xl border border-electric/35 bg-void/60 p-3.5 shadow-[0_0_40px_rgba(56,189,248,0.06)] duration-300"
+          >
+            <div className="mb-3 flex flex-wrap items-end justify-between gap-2 border-b border-white/[0.07] pb-3">
+              <div>
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-electric">
+                  Configure · {active.title}
+                </p>
+                <p className="mt-1 text-[0.82rem] text-muted">
+                  {active.explanation}
+                </p>
+              </div>
             </div>
-          );
-        })}
-
-        {!draft.strategyId ? (
-          <p className="py-3 text-center text-[0.88rem] text-muted-dim">
-            Select a strategy to configure its parameters.
+            <ConfigureStep embedded />
+            <p className="mt-3 text-[0.78rem] leading-relaxed text-muted-dim">
+              Live rule:{" "}
+              <span className="text-muted">
+                {summarizeStrategy(
+                  draft.strategyId,
+                  draft.strategyConfig,
+                  draft.hybrid,
+                )}
+              </span>
+            </p>
+          </div>
+        ) : (
+          <p className="rounded-xl border border-dashed border-white/10 px-4 py-6 text-center text-[0.88rem] text-muted-dim">
+            Select a strategy card above to configure it.
           </p>
-        ) : null}
+        )}
       </div>
     </div>
   );

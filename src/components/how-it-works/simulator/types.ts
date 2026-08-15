@@ -49,6 +49,7 @@ export type StrategyId =
   | "fear-greed"
   | "rsi"
   | "momentum"
+  | "manual-dca"
   | "rebalancing"
   | "hybrid";
 
@@ -62,6 +63,21 @@ export type RebalanceFrequency =
   | "On Drift";
 
 export type MomentumMode = "trend-dca" | "buy-now-dca-out";
+export type MomentumBearishAction = "dca-out" | "sell-all";
+
+export type ManualDcaSide = "buy" | "sell";
+export type ManualDcaSizing = "pct" | "amount";
+
+/** Scheduled Manual DCA execution (simulation) */
+export type ManualDcaLeg = {
+  id: string;
+  side: ManualDcaSide;
+  /** YYYY-MM-DD */
+  date: string;
+  sizing: ManualDcaSizing;
+  /** % of available funds, or USD amount */
+  value: number;
+};
 
 export type StrategyConfig = {
   enableTakeProfit?: boolean;
@@ -72,6 +88,9 @@ export type StrategyConfig = {
   stopLossPct?: number;
   /** % of position sold when stop-loss triggers */
   stopLossSellPct?: number;
+  /** Optional Manual DCA schedules attached to Buy Now */
+  enableManualDca?: boolean;
+  manualDcaLegs?: ManualDcaLeg[];
   fearThreshold?: number;
   greedThreshold?: number;
   dcaFrequency?: DcaFrequency;
@@ -84,6 +103,8 @@ export type StrategyConfig = {
   rsiTimeframe?: RsiTimeframe;
   momentumTimeframe?: MomentumTimeframe;
   momentumMode?: MomentumMode;
+  /** On bearish momentum: DCA OUT % or sell entire allocation */
+  momentumBearishAction?: MomentumBearishAction;
   rebalanceFrequency?: RebalanceFrequency;
 };
 
@@ -102,8 +123,10 @@ export type HybridConfig = {
   buyCondition: HybridBuyCondition;
   sellCondition: HybridSellCondition;
   sellExecution: SellExecutionMode;
-  /** DCA OUT only — % of the selected asset/allocation sold per execution */
+  /** DCA OUT % of the selected asset/allocation sold per execution */
   dcaOutPct: number;
+  /** Sell Direct % of the selected asset/allocation */
+  sellDirectPct: number;
   dcaFrequency: DcaFrequency;
   greedThreshold?: number;
   rsiSellThreshold?: number;
@@ -162,11 +185,26 @@ export function emptyHybrid(): HybridConfig {
     sellCondition: "sell-greed",
     sellExecution: "dca-out",
     dcaOutPct: 25,
+    sellDirectPct: 100,
     dcaFrequency: "Weekly",
     greedThreshold: 70,
     rsiSellThreshold: 70,
     rsiTimeframe: "Weekly",
     momentumTimeframe: "Weekly",
+  };
+}
+
+export function createManualDcaLeg(
+  patch: Partial<ManualDcaLeg> = {},
+): ManualDcaLeg {
+  const today = new Date().toISOString().slice(0, 10);
+  return {
+    id: `dca_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`,
+    side: "buy",
+    date: today,
+    sizing: "pct",
+    value: 10,
+    ...patch,
   };
 }
 
@@ -184,6 +222,8 @@ export function emptyDraft(): DraftPortfolio {
       takeProfitSellPct: 100,
       stopLossPct: 10,
       stopLossSellPct: 100,
+      enableManualDca: false,
+      manualDcaLegs: [],
       fearThreshold: 20,
       greedThreshold: 70,
       dcaFrequency: "Weekly",
@@ -194,6 +234,7 @@ export function emptyDraft(): DraftPortfolio {
       rsiTimeframe: "Weekly",
       momentumTimeframe: "Weekly",
       momentumMode: "trend-dca",
+      momentumBearishAction: "dca-out",
       rebalanceFrequency: "Monthly",
     },
     hybrid: emptyHybrid(),
@@ -208,8 +249,10 @@ export function allocationTotal(assets: SelectedAsset[]): number {
   return Math.round(assets.reduce((sum, a) => sum + a.pct, 0) * 100) / 100;
 }
 
-/** Sell Directly always 100%; DCA OUT uses configured % of the asset/allocation */
+/** Sell Direct uses sellDirectPct; DCA OUT uses dcaOutPct */
 export function resolveSellPct(hybrid: HybridConfig): number {
-  if (hybrid.sellExecution === "direct") return 100;
+  if (hybrid.sellExecution === "direct") {
+    return hybrid.sellDirectPct ?? 100;
+  }
   return hybrid.dcaOutPct;
 }

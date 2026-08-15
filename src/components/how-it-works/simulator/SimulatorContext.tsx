@@ -9,7 +9,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { defaultHybridConfig, defaultsForStrategy } from "./strategies";
+import { defaultHybridConfig, defaultsForStrategy, validateManualLegs } from "./strategies";
 import {
   allocationTotal,
   emptyDraft,
@@ -102,6 +102,10 @@ function validateHybrid(hybrid: HybridConfig): boolean {
     if (!(hybrid.dcaOutPct > 0 && hybrid.dcaOutPct <= 100)) return false;
     if (!hybrid.dcaFrequency) return false;
   }
+  if (hybrid.sellExecution === "direct") {
+    const pct = hybrid.sellDirectPct ?? 100;
+    if (!(pct > 0 && pct <= 100)) return false;
+  }
   if (hybrid.sellCondition === "sell-greed") {
     return typeof hybrid.greedThreshold === "number";
   }
@@ -136,6 +140,9 @@ function validateConfigure(draft: DraftPortfolio): boolean {
         const sell = c.stopLossSellPct ?? 100;
         if (!(sell > 0 && sell <= 100)) return false;
       }
+      if (c.enableManualDca) {
+        return validateManualLegs(c.manualDcaLegs);
+      }
       return true;
     }
     case "fear-greed":
@@ -164,23 +171,28 @@ function validateConfigure(draft: DraftPortfolio): boolean {
       );
     case "momentum": {
       const mode = c.momentumMode ?? "trend-dca";
+      const bearish = c.momentumBearishAction ?? "dca-out";
       if (!c.momentumTimeframe) return false;
       if (mode === "buy-now-dca-out") {
+        if (bearish === "sell-all") return true;
         return (
           typeof c.dcaOutPct === "number" &&
           c.dcaOutPct > 0 &&
           c.dcaOutPct <= 100
         );
       }
+      if (!(typeof c.dcaInPct === "number" && c.dcaInPct > 0 && c.dcaInPct <= 100)) {
+        return false;
+      }
+      if (bearish === "sell-all") return true;
       return (
-        typeof c.dcaInPct === "number" &&
-        c.dcaInPct > 0 &&
-        c.dcaInPct <= 100 &&
         typeof c.dcaOutPct === "number" &&
         c.dcaOutPct > 0 &&
         c.dcaOutPct <= 100
       );
     }
+    case "manual-dca":
+      return validateManualLegs(c.manualDcaLegs);
     case "rebalancing":
       return !!c.rebalanceFrequency;
     case "hybrid":
@@ -317,7 +329,11 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
         assets: p.assets,
         strategyId: p.strategyId,
         strategyConfig: p.strategyConfig,
-        hybrid: p.hybrid,
+        hybrid: {
+          ...defaultHybridConfig(),
+          ...p.hybrid,
+          sellDirectPct: p.hybrid.sellDirectPct ?? 100,
+        },
         authorized: p.authorized,
         transactionLimitUsd: 5000,
         amountUsd: p.amountUsd,

@@ -8,7 +8,6 @@ import {
 } from "./AllocationChart";
 import { AssetLogo } from "./AssetLogo";
 import { strategyTitle, summarizeStrategy, STRATEGIES } from "./strategies";
-import { StrategyRuleVisual } from "./StrategyRuleVisual";
 import { useSimulator } from "./SimulatorContext";
 import { allocationTotal, ESTIMATED_GAS_LABEL } from "./types";
 import { fieldClass, surfaceClass } from "./ui";
@@ -207,19 +206,13 @@ export function LivePreview() {
                   {strategyBlurb}
                 </p>
               ) : null}
-              <p className="mb-3 text-[0.78rem] leading-snug text-muted-dim">
+              <p className="mb-1 text-[0.78rem] leading-snug text-muted">
                 {summarizeStrategy(
                   draft.strategyId,
                   draft.strategyConfig,
                   draft.hybrid,
                 )}
               </p>
-              <StrategyRuleVisual
-                id={draft.strategyId}
-                config={draft.strategyConfig}
-                hybrid={draft.hybrid}
-                compact
-              />
             </div>
           ) : null}
 

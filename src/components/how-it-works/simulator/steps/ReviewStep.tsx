@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 import { AllocationChart } from "../AllocationChart";
 import { AssetLogo } from "../AssetLogo";
-import { StrategyRuleVisual } from "../StrategyRuleVisual";
 import { summarizeStrategy, strategyTitle } from "../strategies";
 import { useSimulator } from "../SimulatorContext";
 import { ESTIMATED_GAS_LABEL, type WizardStep } from "../types";
@@ -136,16 +135,6 @@ export function ReviewStep() {
               draft.hybrid,
             )}
           </p>
-          {draft.strategyId ? (
-            <div className="mt-2.5">
-              <StrategyRuleVisual
-                id={draft.strategyId}
-                config={draft.strategyConfig}
-                hybrid={draft.hybrid}
-                compact
-              />
-            </div>
-          ) : null}
         </Section>
 
         <Section title="Investment">
