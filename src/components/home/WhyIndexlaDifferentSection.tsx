@@ -72,9 +72,11 @@ export function WhyIndexlaDifferentSection() {
         </div>
 
         <FadeIn className="mx-auto mt-8 max-w-3xl text-center" delay={0.12}>
-          <p className={`${homeBodyStrong} text-balance`}>
-            INDEXLA turns investment strategies into programmable products.
-          </p>
+          <div className="rounded-2xl border border-electric/35 bg-electric/[0.08] px-5 py-4 sm:px-6 sm:py-5">
+            <p className={`${homeBodyStrong} text-balance`}>
+              INDEXLA turns investment strategies into programmable products.
+            </p>
+          </div>
         </FadeIn>
 
         <FadeIn className="mx-auto mt-14 max-w-3xl text-center" delay={0.04}>
