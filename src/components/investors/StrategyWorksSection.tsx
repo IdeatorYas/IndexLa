@@ -163,11 +163,18 @@ export function StrategyWorksSection() {
             <span className="gradient-text">Your Thesis.</span>
           </p>
           <p className={`mt-5 ${invBody}`}>
-            AI monitors market conditions and detects when your strategy rules
-            are met. Smart contracts enforce your permissions and limits, while
-            event-driven automation triggers execution only when the required
-            conditions are satisfied. Your thesis stays in control. AI assists
-            the process, but it never overrides your rules or custody.
+            AI monitors market conditions and helps evaluate when your strategy
+            rules are met. Your rules define what can happen. Smart contracts
+            enforce your permissions and limits. AI cannot override your
+            strategy, permissions, or custody.
+          </p>
+          <p className={`mt-3 ${invBodyStrong}`}>
+            If data is stale, limits are exceeded, or execution conditions are
+            unsafe, INDEXLA does not execute.
+          </p>
+          <p className={`mt-4 ${invEyebrow}`}>
+            AI monitors → Your rules define → Smart contracts enforce → You
+            control custody
           </p>
           <p className={`mt-4 ${invEyebrow}`}>Build → Define → Automate</p>
         </FadeIn>
