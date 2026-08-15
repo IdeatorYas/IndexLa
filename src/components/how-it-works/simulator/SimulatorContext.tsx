@@ -1,0 +1,332 @@
+"use client";
+
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
+import { defaultsForStrategy } from "./strategies";
+import {
+  allocationTotal,
+  emptyDraft,
+  type DraftPortfolio,
+  type HybridRule,
+  type SelectedAsset,
+  type SimulatorPortfolio,
+  type StrategyId,
+  type WizardStep,
+} from "./types";
+
+type SimulatorContextValue = {
+  step: WizardStep;
+  setStep: (s: WizardStep) => void;
+  draft: DraftPortfolio;
+  updateDraft: (patch: Partial<DraftPortfolio>) => void;
+  setAssets: (assets: SelectedAsset[]) => void;
+  setStrategy: (id: StrategyId) => void;
+  setHybridRules: (rules: HybridRule[]) => void;
+  published: SimulatorPortfolio[];
+  justCreatedId: string | null;
+  clearJustCreated: () => void;
+  selectedId: string | null;
+  setSelectedId: (id: string | null) => void;
+  publish: () => string | null;
+  loadForEdit: (id: string) => void;
+  pausePortfolio: (id: string) => void;
+  resumePortfolio: (id: string) => void;
+  rebalancePortfolio: (id: string) => void;
+  removePortfolio: (id: string) => void;
+  resetDraft: () => void;
+  canProceed: (from: WizardStep) => boolean;
+  goNext: () => void;
+  goBack: () => void;
+  rebalanceFlashId: string | null;
+};
+
+const SimulatorContext = createContext<SimulatorContextValue | null>(null);
+
+const STEP_ORDER: WizardStep[] = [
+  "create",
+  "assets",
+  "strategy",
+  "configure",
+  "permissions",
+  "amount",
+  "review",
+  "success",
+];
+
+function newId(): string {
+  return `pf_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function validateConfigure(draft: DraftPortfolio): boolean {
+  const id = draft.strategyId;
+  if (!id) return false;
+  const c = draft.strategyConfig;
+  switch (id) {
+    case "buy-now":
+      return true;
+    case "take-profit":
+      return typeof c.takeProfitPct === "number" && c.takeProfitPct > 0;
+    case "stop-loss":
+      return typeof c.stopLossPct === "number" && c.stopLossPct > 0;
+    case "buy-fear":
+      return (
+        typeof c.fearThreshold === "number" &&
+        !!c.dcaFrequency
+      );
+    case "sell-greed":
+      return (
+        typeof c.greedThreshold === "number" &&
+        !!c.dcaFrequency
+      );
+    case "buy-rsi":
+    case "sell-rsi":
+      return typeof c.rsiThreshold === "number" && !!c.rsiTimeframe;
+    case "momentum":
+      return !!c.momentumTimeframe;
+    case "rebalancing":
+      return !!c.rebalanceFrequency;
+    case "hybrid":
+      return draft.hybridRules.length >= 1;
+    default:
+      return false;
+  }
+}
+
+export function canProceedFrom(draft: DraftPortfolio, from: WizardStep): boolean {
+  switch (from) {
+    case "create":
+      return (
+        draft.name.trim().length > 0 &&
+        draft.description.trim().length > 0 &&
+        draft.portfolioType !== ""
+      );
+    case "assets":
+      return draft.assets.length >= 1 && allocationTotal(draft.assets) === 100;
+    case "strategy":
+      return draft.strategyId !== null;
+    case "configure":
+      return validateConfigure(draft);
+    case "permissions":
+      return draft.authorized;
+    case "amount":
+      return draft.amountUsd > 0;
+    case "review":
+      return (
+        canProceedFrom(draft, "create") &&
+        canProceedFrom(draft, "assets") &&
+        canProceedFrom(draft, "strategy") &&
+        canProceedFrom(draft, "configure") &&
+        canProceedFrom(draft, "permissions") &&
+        canProceedFrom(draft, "amount")
+      );
+    default:
+      return true;
+  }
+}
+
+export function SimulatorProvider({ children }: { children: ReactNode }) {
+  const [step, setStep] = useState<WizardStep>("create");
+  const [draft, setDraft] = useState<DraftPortfolio>(emptyDraft);
+  const [published, setPublished] = useState<SimulatorPortfolio[]>([]);
+  const [justCreatedId, setJustCreatedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [rebalanceFlashId, setRebalanceFlashId] = useState<string | null>(null);
+
+  const updateDraft = useCallback((patch: Partial<DraftPortfolio>) => {
+    setDraft((d) => ({ ...d, ...patch }));
+  }, []);
+
+  const setAssets = useCallback((assets: SelectedAsset[]) => {
+    setDraft((d) => ({ ...d, assets }));
+  }, []);
+
+  const setStrategy = useCallback((id: StrategyId) => {
+    setDraft((d) => ({
+      ...d,
+      strategyId: id,
+      strategyConfig: { ...d.strategyConfig, ...defaultsForStrategy(id) },
+      hybridRules: id === "hybrid" ? d.hybridRules : [],
+    }));
+  }, []);
+
+  const setHybridRules = useCallback((rules: HybridRule[]) => {
+    setDraft((d) => ({ ...d, hybridRules: rules }));
+  }, []);
+
+  const resetDraft = useCallback(() => {
+    setDraft(emptyDraft());
+    setStep("create");
+  }, []);
+
+  const publish = useCallback((): string | null => {
+    if (!canProceedFrom(draft, "review") || !draft.strategyId || !draft.portfolioType) {
+      return null;
+    }
+    const id = draft.editingId ?? newId();
+    const portfolio: SimulatorPortfolio = {
+      id,
+      name: draft.name.trim(),
+      description: draft.description.trim(),
+      portfolioType: draft.portfolioType,
+      assets: draft.assets,
+      strategyId: draft.strategyId,
+      strategyConfig: draft.strategyConfig,
+      hybridRules: draft.hybridRules,
+      authorized: draft.authorized,
+      amountUsd: draft.amountUsd,
+      status: "active",
+      createdAt: Date.now(),
+    };
+
+    setPublished((list) => {
+      const idx = list.findIndex((p) => p.id === id);
+      if (idx >= 0) {
+        const next = [...list];
+        next[idx] = portfolio;
+        return next;
+      }
+      return [portfolio, ...list];
+    });
+    setJustCreatedId(id);
+    setStep("success");
+    setDraft(emptyDraft());
+    return id;
+  }, [draft]);
+
+  const loadForEdit = useCallback(
+    (id: string) => {
+      const p = published.find((x) => x.id === id && x.status !== "removed");
+      if (!p) return;
+      setDraft({
+        name: p.name,
+        description: p.description,
+        portfolioType: p.portfolioType,
+        assets: p.assets,
+        strategyId: p.strategyId,
+        strategyConfig: p.strategyConfig,
+        hybridRules: p.hybridRules,
+        authorized: p.authorized,
+        amountUsd: p.amountUsd,
+        editingId: p.id,
+      });
+      setStep("create");
+      setSelectedId(null);
+    },
+    [published],
+  );
+
+  const pausePortfolio = useCallback((id: string) => {
+    setPublished((list) =>
+      list.map((p) => (p.id === id ? { ...p, status: "paused" as const } : p)),
+    );
+  }, []);
+
+  const resumePortfolio = useCallback((id: string) => {
+    setPublished((list) =>
+      list.map((p) => (p.id === id ? { ...p, status: "active" as const } : p)),
+    );
+  }, []);
+
+  const rebalancePortfolio = useCallback((id: string) => {
+    setRebalanceFlashId(id);
+    window.setTimeout(() => setRebalanceFlashId(null), 2500);
+  }, []);
+
+  const removePortfolio = useCallback((id: string) => {
+    setPublished((list) =>
+      list.map((p) => (p.id === id ? { ...p, status: "removed" as const } : p)),
+    );
+    setSelectedId((cur) => (cur === id ? null : cur));
+  }, []);
+
+  const clearJustCreated = useCallback(() => setJustCreatedId(null), []);
+
+  const canProceed = useCallback(
+    (from: WizardStep) => canProceedFrom(draft, from),
+    [draft],
+  );
+
+  const goNext = useCallback(() => {
+    const i = STEP_ORDER.indexOf(step);
+    if (i < 0 || i >= STEP_ORDER.length - 1) return;
+    if (!canProceedFrom(draft, step)) return;
+    setStep(STEP_ORDER[i + 1]);
+  }, [draft, step]);
+
+  const goBack = useCallback(() => {
+    const i = STEP_ORDER.indexOf(step);
+    if (i <= 0) return;
+    if (step === "success") {
+      setStep("create");
+      return;
+    }
+    setStep(STEP_ORDER[i - 1]);
+  }, [step]);
+
+  const value = useMemo(
+    () => ({
+      step,
+      setStep,
+      draft,
+      updateDraft,
+      setAssets,
+      setStrategy,
+      setHybridRules,
+      published,
+      justCreatedId,
+      clearJustCreated,
+      selectedId,
+      setSelectedId,
+      publish,
+      loadForEdit,
+      pausePortfolio,
+      resumePortfolio,
+      rebalancePortfolio,
+      removePortfolio,
+      resetDraft,
+      canProceed,
+      goNext,
+      goBack,
+      rebalanceFlashId,
+    }),
+    [
+      step,
+      draft,
+      updateDraft,
+      setAssets,
+      setStrategy,
+      setHybridRules,
+      published,
+      justCreatedId,
+      clearJustCreated,
+      selectedId,
+      publish,
+      loadForEdit,
+      pausePortfolio,
+      resumePortfolio,
+      rebalancePortfolio,
+      removePortfolio,
+      resetDraft,
+      canProceed,
+      goNext,
+      goBack,
+      rebalanceFlashId,
+    ],
+  );
+
+  return (
+    <SimulatorContext.Provider value={value}>{children}</SimulatorContext.Provider>
+  );
+}
+
+export function useSimulator() {
+  const ctx = useContext(SimulatorContext);
+  if (!ctx) throw new Error("useSimulator must be used within SimulatorProvider");
+  return ctx;
+}

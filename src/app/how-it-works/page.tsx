@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { HowItWorksPageCta } from "@/components/how-it-works/HowItWorksPageCta";
 import { HowItWorksPageHero } from "@/components/how-it-works/HowItWorksPageHero";
+import { MarketplaceSection } from "@/components/how-it-works/simulator/MarketplaceSection";
+import { SimulatorProvider } from "@/components/how-it-works/simulator/SimulatorContext";
+import { HowItWorksSimulator } from "@/components/how-it-works/simulator/WizardShell";
 
 export const metadata: Metadata = {
   title: "How It Works | INDEXLA",
@@ -13,7 +15,10 @@ export default function HowItWorksPage() {
   return (
     <main>
       <HowItWorksPageHero />
-      <HowItWorksSection showHeading={false} />
+      <SimulatorProvider>
+        <HowItWorksSimulator />
+        <MarketplaceSection />
+      </SimulatorProvider>
       <HowItWorksPageCta />
     </main>
   );
