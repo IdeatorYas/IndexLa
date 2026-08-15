@@ -110,6 +110,10 @@ const EXTRA_CRYPTO: { ticker: string; name: string; networks?: string[] }[] = [
   { ticker: "HYPE", name: "Hyperliquid" },
   { ticker: "PEAQ", name: "peaq" },
   { ticker: "ONDO", name: "Ondo", networks: ["Ethereum"] },
+  { ticker: "VELO", name: "Velodrome", networks: ["Optimism"] },
+  { ticker: "CFG", name: "Centrifuge", networks: ["Ethereum", "Polkadot"] },
+  { ticker: "MPL", name: "Maple Finance", networks: ["Ethereum"] },
+  { ticker: "PLUME", name: "Plume", networks: ["Ethereum"] },
 ];
 
 const STOCK_NETWORKS = ["Tokenized · Multi-chain"];

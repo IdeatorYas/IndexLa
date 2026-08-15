@@ -28,7 +28,6 @@ export type StarterTemplate = {
   id: string;
   title: string;
   blurb: string;
-  /** Short strategy label shown on the template card */
   strategyLabel: string;
   build: () => DraftPortfolio;
 };
@@ -64,28 +63,28 @@ function baseDraft(
 
 /**
  * Optional starter templates — each demonstrates a different existing INDEXLA strategy.
- * Strategy remains fully editable after selection (not locked).
+ * Not auto-selected. Strategy and all fields remain fully editable after selection.
  */
 export const STARTER_TEMPLATES: StarterTemplate[] = [
   {
     id: "ai-global-allocation",
     title: "AI Global Allocation Index",
-    blurb: "Global tech + AI leaders. Starting point — edit anytime.",
+    blurb: "AI infrastructure, technology, and decentralized networks.",
     strategyLabel: "Momentum · Weekly DCA",
     build: () =>
       baseDraft({
         name: "AI Global Allocation Index",
         description:
-          "A global allocation across AI and technology leaders. Default strategy: Momentum — weekly trend change with DCA IN / DCA OUT. You can switch strategies anytime.",
+          "AI infrastructure, technology, and decentralized networks.",
         portfolioType: "Hybrid Index",
         strategyId: "momentum",
         assets: assets([
-          { ticker: "NVDA", pct: 25 },
-          { ticker: "MSFT", pct: 20 },
-          { ticker: "GOOGL", pct: 15 },
-          { ticker: "AAPL", pct: 15 },
-          { ticker: "BTC", pct: 15 },
-          { ticker: "ETH", pct: 10 },
+          { ticker: "NVDA", pct: 17 },
+          { ticker: "TAO", pct: 17 },
+          { ticker: "GOOGL", pct: 17 },
+          { ticker: "LINK", pct: 16 },
+          { ticker: "NEAR", pct: 16 },
+          { ticker: "ICP", pct: 17 },
         ]),
         strategyConfig: {
           momentumTimeframe: "Weekly",
@@ -98,20 +97,24 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
   {
     id: "digital-tech-growth",
     title: "Digital Tech Growth Index",
-    blurb: "Growth equities with RSI rules. Starting point — edit anytime.",
+    blurb:
+      "Digital assets and leading technology companies built for long-term growth.",
     strategyLabel: "RSI · Weekly",
     build: () =>
       baseDraft({
         name: "Digital Tech Growth Index",
         description:
-          "A growth-focused technology equity index. Default strategy: RSI Weekly — Buy Oversold / Sell Overbought with DCA. You can switch strategies anytime.",
-        portfolioType: "Stocks Index",
+          "Digital assets and leading technology companies built for long-term growth.",
+        portfolioType: "Hybrid Index",
         strategyId: "rsi",
         assets: assets([
-          { ticker: "NVDA", pct: 30 },
-          { ticker: "AAPL", pct: 25 },
-          { ticker: "MSFT", pct: 25 },
-          { ticker: "GOOGL", pct: 20 },
+          { ticker: "BTC", pct: 15 },
+          { ticker: "ETH", pct: 15 },
+          { ticker: "SUI", pct: 14 },
+          { ticker: "NVDA", pct: 14 },
+          { ticker: "MSFT", pct: 14 },
+          { ticker: "GOOGL", pct: 14 },
+          { ticker: "AMD", pct: 14 },
         ]),
         strategyConfig: {
           rsiTimeframe: "Weekly",
@@ -125,21 +128,21 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
   {
     id: "global-macro",
     title: "Global Macro Index",
-    blurb: "Crypto, equities, and gold. Starting point — edit anytime.",
+    blurb: "Diversified exposure across crypto, equities, and commodities.",
     strategyLabel: "Fear & Greed · Weekly DCA",
     build: () =>
       baseDraft({
         name: "Global Macro Index",
         description:
-          "A macro hybrid across crypto, equities, and gold. Default strategy: Buy Fear → Sell Greed with Weekly DCA IN / DCA OUT. You can switch strategies anytime.",
+          "Diversified exposure across crypto, equities, and commodities.",
         portfolioType: "Hybrid Index",
         strategyId: "fear-greed",
         assets: assets([
-          { ticker: "BTC", pct: 25 },
+          { ticker: "BTC", pct: 20 },
           { ticker: "ETH", pct: 20 },
-          { ticker: "NVDA", pct: 20 },
-          { ticker: "MSFT", pct: 15 },
+          { ticker: "SPX", pct: 20 },
           { ticker: "XAU", pct: 20 },
+          { ticker: "XAG", pct: 20 },
         ]),
         strategyConfig: {
           fearThreshold: 20,
@@ -153,21 +156,22 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
   {
     id: "defi-leaders",
     title: "DeFi Leaders Index",
-    blurb: "Leading DeFi protocols. Starting point — edit anytime.",
-    strategyLabel: "Buy Now · TP/SL",
+    blurb:
+      "Leading DeFi protocols across trading, lending, liquidity, and decentralized finance.",
+    strategyLabel: "Buy Now · Take Profit",
     build: () =>
       baseDraft({
         name: "DeFi Leaders Index",
         description:
-          "A concentrated DeFi leaders index. Default strategy: Buy Now with Take Profit and Stop Loss configured. You can switch strategies anytime.",
+          "Leading DeFi protocols across trading, lending, liquidity, and decentralized finance.",
         portfolioType: "Crypto Index",
         strategyId: "buy-now",
         assets: assets([
-          { ticker: "ETH", pct: 35 },
+          { ticker: "UNI", pct: 20 },
           { ticker: "AAVE", pct: 20 },
-          { ticker: "MKR", pct: 15 },
-          { ticker: "LDO", pct: 15 },
-          { ticker: "LINK", pct: 15 },
+          { ticker: "JUP", pct: 20 },
+          { ticker: "VELO", pct: 20 },
+          { ticker: "MKR", pct: 20 },
         ]),
         strategyConfig: {
           enableTakeProfit: true,
@@ -180,20 +184,23 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
   {
     id: "blockchain-leaders",
     title: "Blockchain Leaders Portfolio",
-    blurb: "Major L1s with exit rules. Starting point — edit anytime.",
+    blurb:
+      "A focused portfolio of major blockchain networks and infrastructure assets.",
     strategyLabel: "Buy Now → Momentum DCA OUT",
     build: () =>
       baseDraft({
         name: "Blockchain Leaders Portfolio",
         description:
-          "A portfolio of leading blockchain assets. Default strategy: Buy Now → DCA OUT when Momentum turns Bearish (Weekly). You can switch strategies anytime.",
+          "A focused portfolio of major blockchain networks and infrastructure assets.",
         portfolioType: "Crypto Portfolio",
         strategyId: "momentum",
         assets: assets([
-          { ticker: "BTC", pct: 40 },
-          { ticker: "ETH", pct: 30 },
-          { ticker: "SOL", pct: 20 },
-          { ticker: "AVAX", pct: 10 },
+          { ticker: "BTC", pct: 20 },
+          { ticker: "ETH", pct: 20 },
+          { ticker: "SOL", pct: 15 },
+          { ticker: "SUI", pct: 15 },
+          { ticker: "LINK", pct: 15 },
+          { ticker: "AVAX", pct: 15 },
         ]),
         strategyConfig: {
           momentumTimeframe: "Weekly",
@@ -206,21 +213,21 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
   {
     id: "rwa-crypto",
     title: "RWA Crypto Index",
-    blurb: "RWA + majors hybrid. Starting point — edit anytime.",
-    strategyLabel: "Hybrid · Sell on Greed",
+    blurb:
+      "Crypto assets focused on tokenized real-world assets and on-chain financial infrastructure.",
+    strategyLabel: "Hybrid · Buy Now → Sell on Greed",
     build: () =>
       baseDraft({
         name: "RWA Crypto Index",
         description:
-          "A real-world assets and crypto hybrid. Default strategy: Buy Now → Sell on Greed with DCA OUT. You can switch strategies anytime.",
-        portfolioType: "Hybrid Portfolio",
+          "Crypto assets focused on tokenized real-world assets and on-chain financial infrastructure.",
+        portfolioType: "Crypto Index",
         strategyId: "hybrid",
         assets: assets([
-          { ticker: "BTC", pct: 30 },
-          { ticker: "ETH", pct: 25 },
-          { ticker: "ONDO", pct: 20 },
-          { ticker: "XAU", pct: 15 },
-          { ticker: "LINK", pct: 10 },
+          { ticker: "ONDO", pct: 25 },
+          { ticker: "CFG", pct: 25 },
+          { ticker: "MPL", pct: 25 },
+          { ticker: "PLUME", pct: 25 },
         ]),
         hybrid: {
           ...defaultHybridConfig(),

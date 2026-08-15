@@ -82,5 +82,9 @@
   "HYPE": "/images/assets/demo/crypto/hype.svg",
   "PEAQ": "/images/assets/demo/crypto/peaq.svg",
   "ONDO": "/images/assets/demo/crypto/ondo.svg",
+  "VELO": "/images/assets/demo/crypto/velo.png",
+  "CFG": "/images/assets/demo/crypto/cfg.png",
+  "MPL": "/images/assets/demo/crypto/mpl.png",
+  "PLUME": "/images/assets/demo/crypto/plume.png",
 };
 
