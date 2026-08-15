@@ -115,7 +115,7 @@ export function WhyIndexlaDifferentSection() {
               subscriptions, but have limited ways to turn their investment
               theses into investable products.
             </p>
-            <p className={`mx-auto mt-6 max-w-2xl ${homeBodyStrong}`}>
+            <p className={`mx-auto mt-6 max-w-2xl ${homeBody}`}>
               <span className="text-electric" aria-hidden>
                 →{" "}
               </span>
