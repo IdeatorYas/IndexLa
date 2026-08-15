@@ -90,8 +90,8 @@ export function LivePreview() {
   const populated = hasPreviewContent(draft);
   const fee = draft.amountUsd > 0 ? draft.amountUsd * 0.01 : 0;
   const showFees = draft.amountUsd > 0;
-  const showGas = showFees && (step === "amount" || step === "review");
-  const showCreator = step === "amount" || step === "review";
+  const showGas = showFees && step === "review";
+  const showCreator = step === "review";
   const strategyBlurb = draft.strategyId
     ? STRATEGIES.find((s) => s.id === draft.strategyId)?.explanation
     : null;

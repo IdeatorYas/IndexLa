@@ -20,38 +20,27 @@ export const PORTFOLIO_TYPES: PortfolioType[] = [
 export type WizardStep =
   | "create"
   | "assets"
-  | "allocation"
   | "strategy"
-  | "configure"
-  | "permissions"
-  | "amount"
   | "review"
   | "success";
 
 export const WIZARD_STEPS: { id: WizardStep; label: string }[] = [
   { id: "create", label: "Create" },
-  { id: "assets", label: "Assets" },
-  { id: "allocation", label: "Allocation" },
+  { id: "assets", label: "Assets & Allocation" },
   { id: "strategy", label: "Strategy" },
-  { id: "configure", label: "Configure" },
-  { id: "permissions", label: "Permissions" },
-  { id: "amount", label: "Investment" },
-  { id: "review", label: "Review & Publish" },
+  { id: "review", label: "Final Review" },
 ];
 
 /** Simulated network gas estimate — separate from execution fee */
-export const ESTIMATED_GAS_LABEL = "~$2";
+export const ESTIMATED_GAS_LABEL = "~$2–$3";
 
 /** Product flow shown in hero — must match simulator terminology */
 export const PRODUCT_FLOW_LABELS = [
   "Create",
-  "Assets",
-  "Allocation",
+  "Assets & Allocation",
   "Strategy",
-  "Configure",
-  "Permissions",
-  "Investment",
-  "Review & Publish",
+  "Final Review",
+  "Authorize & Publish",
   "Marketplace",
 ] as const;
 

@@ -314,7 +314,7 @@ function HybridBuilder() {
   );
 }
 
-export function ConfigureStep() {
+export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
   const { draft, updateDraft } = useSimulator();
   const id = draft.strategyId;
   const c = draft.strategyConfig;
@@ -324,37 +324,51 @@ export function ConfigureStep() {
   }
 
   if (!id) {
-    return (
+    return embedded ? null : (
       <p className="pt-6 text-muted">Select a strategy first.</p>
     );
   }
 
   return (
-    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-3 pr-0.5">
-      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
-        Step · Configure
-      </p>
-      <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
-        Strategy Configuration
-      </h3>
-      <p className="mt-1 text-[0.85rem] text-muted">
-        Configuring:{" "}
-        <span className="font-semibold text-ink">{strategyTitle(id)}</span>
-      </p>
+    <div
+      className={
+        embedded
+          ? "space-y-4"
+          : "h-full min-h-0 overflow-y-auto overscroll-contain pt-3 pr-0.5"
+      }
+    >
+      {!embedded ? (
+        <>
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
+            Step · Configure
+          </p>
+          <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
+            Strategy Configuration
+          </h3>
+          <p className="mt-1 text-[0.85rem] text-muted">
+            Configuring:{" "}
+            <span className="font-semibold text-ink">{strategyTitle(id)}</span>
+          </p>
 
-      <div className="mt-3">
-        <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted">
-          Trigger → Action → % → Frequency
+          <div className="mt-3">
+            <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted">
+              Trigger → Action → % → Frequency
+            </p>
+            <StrategyRuleVisual
+              id={id}
+              config={c}
+              hybrid={draft.hybrid}
+              compact
+            />
+          </div>
+        </>
+      ) : (
+        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted">
+          Configure parameters
         </p>
-        <StrategyRuleVisual
-          id={id}
-          config={c}
-          hybrid={draft.hybrid}
-          compact
-        />
-      </div>
+      )}
 
-      <div className="mt-4 space-y-4">
+      <div className={embedded ? "space-y-4" : "mt-4 space-y-4"}>
         {id === "buy-now" ? (
           <div className="space-y-4">
             <p className="rounded-2xl border border-electric/25 bg-electric/[0.08] px-4 py-4 text-[0.98rem] text-ink">

@@ -86,11 +86,7 @@ const SimulatorContext = createContext<SimulatorContextValue | null>(null);
 const STEP_ORDER: WizardStep[] = [
   "create",
   "assets",
-  "allocation",
   "strategy",
-  "configure",
-  "permissions",
-  "amount",
   "review",
   "success",
 ];
@@ -195,26 +191,15 @@ export function canProceedFrom(draft: DraftPortfolio, from: WizardStep): boolean
         draft.portfolioType !== ""
       );
     case "assets":
-      return draft.assets.length >= 1;
-    case "allocation":
       return draft.assets.length >= 1 && allocationTotal(draft.assets) === 100;
     case "strategy":
-      return draft.strategyId !== null;
-    case "configure":
-      return validateConfigure(draft);
-    case "permissions":
-      return draft.authorized;
-    case "amount":
-      return draft.amountUsd > 0;
+      return draft.strategyId !== null && validateConfigure(draft);
     case "review":
       return (
         canProceedFrom(draft, "create") &&
         canProceedFrom(draft, "assets") &&
-        canProceedFrom(draft, "allocation") &&
         canProceedFrom(draft, "strategy") &&
-        canProceedFrom(draft, "configure") &&
-        canProceedFrom(draft, "permissions") &&
-        canProceedFrom(draft, "amount")
+        draft.amountUsd > 0
       );
     case "success":
       return true;
@@ -287,7 +272,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       strategyId: draft.strategyId,
       strategyConfig: draft.strategyConfig,
       hybrid: draft.hybrid,
-      authorized: draft.authorized,
+      authorized: true,
       amountUsd: draft.amountUsd,
       status: "active",
       createdAt: Date.now(),

@@ -4,12 +4,8 @@ import { Button } from "@/components/ui/Button";
 import { useSimulator } from "./SimulatorContext";
 import { WIZARD_STEPS, type WizardStep } from "./types";
 import { CreateStep } from "./steps/CreateStep";
-import { AssetsStep } from "./steps/AssetsStep";
-import { AllocationStep } from "./steps/AllocationStep";
+import { AssetsAllocationStep } from "./steps/AssetsAllocationStep";
 import { StrategyStep } from "./steps/StrategyStep";
-import { ConfigureStep } from "./steps/ConfigureStep";
-import { PermissionsStep } from "./steps/PermissionsStep";
-import { AmountStep } from "./steps/AmountStep";
 import { ReviewStep } from "./steps/ReviewStep";
 import { PublishSuccess } from "./steps/PublishSuccess";
 import { ManagePanel } from "./ManagePanel";
@@ -20,13 +16,9 @@ const STEP_LABELS = WIZARD_STEPS;
 
 const NEXT_HINT: Partial<Record<WizardStep, string>> = {
   create: "Your thesis. Your portfolio.",
-  assets: "Select what you own.",
-  allocation: "Decide how much of each.",
+  assets: "Select assets and set allocation to 100%.",
   strategy: "Your rules. Their keys.",
-  configure: "Trigger → Action → % → Frequency.",
-  permissions: "Authorize execution — never withdrawals.",
-  amount: "Simulate capital. Fees calculate instantly.",
-  review: "Confirm everything, then publish to Marketplace.",
+  review: "Confirm, set investment, then authorize & publish.",
   success: "Your audience can now allocate.",
 };
 
@@ -91,17 +83,9 @@ function StepBody() {
     case "create":
       return <CreateStep />;
     case "assets":
-      return <AssetsStep />;
-    case "allocation":
-      return <AllocationStep />;
+      return <AssetsAllocationStep />;
     case "strategy":
       return <StrategyStep />;
-    case "configure":
-      return <ConfigureStep />;
-    case "permissions":
-      return <PermissionsStep />;
-    case "amount":
-      return <AmountStep />;
     case "review":
       return <ReviewStep />;
     case "success":
@@ -182,7 +166,7 @@ export function HowItWorksSimulator() {
                           className={`!px-6 !py-2.5 ${!canProceed("review") ? "pointer-events-none opacity-40" : ""}`}
                           type="button"
                         >
-                          Publish to Marketplace
+                          Authorize & Publish Portfolio
                         </Button>
                       ) : (
                         <Button

@@ -73,7 +73,7 @@ export function PublishSuccess() {
           </div>
         </div>
         <p className="mt-5 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-success">
-          Portfolio Live
+          Portfolio Published
         </p>
         <h3 className="display mt-2 text-[clamp(1.4rem,2.8vw,1.85rem)] font-semibold tracking-[-0.02em] text-ink">
           {portfolio

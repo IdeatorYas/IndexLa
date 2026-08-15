@@ -4,7 +4,9 @@ import { STRATEGIES } from "../strategies";
 import { StrategyRuleVisual } from "../StrategyRuleVisual";
 import { useSimulator } from "../SimulatorContext";
 import { optionCardActive, optionCardIdle } from "../ui";
+import { ConfigureStep } from "./ConfigureStep";
 
+/** Strategy selection + configuration on one screen. */
 export function StrategyStep() {
   const { draft, setStrategy } = useSimulator();
 
@@ -15,7 +17,7 @@ export function StrategyStep() {
           Step · Strategy
         </p>
         <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
-          Choose Strategy
+          Choose & Configure Strategy
         </h3>
         <p className="mt-1 text-[0.85rem] text-muted">Your rules. Their keys.</p>
       </div>
@@ -52,20 +54,27 @@ export function StrategyStep() {
         </div>
 
         {draft.strategyId ? (
-          <div className="rounded-xl border border-electric/25 bg-electric/[0.06] p-3">
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-electric">
-              Trigger → Action → % → Frequency
-            </p>
-            <div className="mt-2.5">
-              <StrategyRuleVisual
-                id={draft.strategyId}
-                config={draft.strategyConfig}
-                hybrid={draft.hybrid}
-                compact
-              />
+          <>
+            <div className="rounded-xl border border-electric/25 bg-electric/[0.06] p-3">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-electric">
+                Trigger → Action → % → Frequency
+              </p>
+              <div className="mt-2.5">
+                <StrategyRuleVisual
+                  id={draft.strategyId}
+                  config={draft.strategyConfig}
+                  hybrid={draft.hybrid}
+                  compact
+                />
+              </div>
             </div>
-          </div>
-        ) : null}
+            <ConfigureStep embedded />
+          </>
+        ) : (
+          <p className="py-4 text-center text-[0.88rem] text-muted-dim">
+            Select a strategy to configure its parameters.
+          </p>
+        )}
       </div>
     </div>
   );
