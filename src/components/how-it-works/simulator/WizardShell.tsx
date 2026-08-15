@@ -116,19 +116,6 @@ export function HowItWorksSimulator() {
   return (
     <section className={`${homeSection} bg-void`} id="simulator">
       <div className="section-pad container-max">
-        <div className="mb-8 text-center">
-          <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-electric">
-            Product Simulation
-          </p>
-          <h2 className="mt-2 display text-[clamp(1.6rem,3.5vw,2.4rem)] font-semibold tracking-[-0.03em] text-ink">
-            Build Your Portfolio
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-[1.05rem] leading-relaxed text-muted">
-            Create → Assets → Allocation → Strategy → Permissions → Investment →
-            Review & Publish → Monitor. No wallet. No real transactions.
-          </p>
-        </div>
-
         <div
           className={`grid items-start gap-6 ${
             showPreviewRail ? "xl:grid-cols-[minmax(0,1fr)_20rem]" : ""
