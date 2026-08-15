@@ -21,9 +21,9 @@ function AssetRow({
     <button
       type="button"
       onClick={onToggle}
-      className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-all duration-200 ${
+      className={`flex w-full items-center gap-2.5 rounded-xl border px-2.5 py-2 text-left transition-all duration-200 ${
         selected
-          ? "border-electric/40 bg-electric/[0.12] shadow-[0_0_20px_rgba(56,189,248,0.08)]"
+          ? "border-electric/40 bg-electric/[0.12]"
           : "border-white/[0.06] bg-void/40 hover:border-white/15"
       }`}
     >
@@ -31,20 +31,20 @@ function AssetRow({
         ticker={asset.ticker}
         name={asset.name}
         src={asset.src}
-        size={32}
+        size={28}
       />
       <span className="min-w-0 flex-1">
-        <span className="block text-[0.9rem] font-semibold text-ink">
+        <span className="block text-[0.85rem] font-semibold text-ink">
           {asset.ticker}
         </span>
-        <span className="block truncate text-[0.72rem] text-muted-dim">
-          {asset.name} · {asset.type}
+        <span className="block truncate text-[0.68rem] text-muted-dim">
+          {asset.name}
         </span>
       </span>
       <span
-        className={`text-[0.72rem] font-semibold ${selected ? "text-electric" : "text-muted-dim"}`}
+        className={`text-[0.68rem] font-semibold ${selected ? "text-electric" : "text-muted-dim"}`}
       >
-        {selected ? "Selected" : "Add"}
+        {selected ? "✓" : "+"}
       </span>
     </button>
   );
@@ -63,6 +63,7 @@ export function AssetsStep() {
   );
 
   const total = allocationTotal(draft.assets);
+  const remaining = Math.round((100 - total) * 100) / 100;
 
   function toggle(asset: CatalogAsset) {
     const exists = draft.assets.find((a) => a.key === asset.key);
@@ -85,14 +86,58 @@ export function AssetsStep() {
     if (draft.assets.length === 0) return;
     const n = draft.assets.length;
     const base = Math.floor((100 / n) * 100) / 100;
-    let remaining = 100;
+    let rem = 100;
     const next = draft.assets.map((a, i) => {
-      if (i === n - 1) return { ...a, pct: Math.round(remaining * 100) / 100 };
-      remaining = Math.round((remaining - base) * 100) / 100;
+      if (i === n - 1) return { ...a, pct: Math.round(rem * 100) / 100 };
+      rem = Math.round((rem - base) * 100) / 100;
       return { ...a, pct: base };
     });
     setAssets(next);
   }
+
+  const totalBanner = (
+    <div
+      className={`rounded-xl border px-3 py-2.5 transition-colors ${
+        total === 100
+          ? "border-success/40 bg-success/10"
+          : total > 100
+            ? "border-amber-400/40 bg-amber-400/10"
+            : "border-white/[0.08] bg-void/50"
+      }`}
+    >
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+            Total Allocation
+          </p>
+          <p
+            className={`display text-[1.25rem] font-semibold leading-none ${
+              total === 100
+                ? "text-success"
+                : total > 100
+                  ? "text-amber-200"
+                  : "text-ink"
+            }`}
+          >
+            {total}%
+          </p>
+        </div>
+        <div className="text-right text-[0.82rem]">
+          {total === 100 ? (
+            <span className="font-semibold text-success">Ready</span>
+          ) : total > 100 ? (
+            <span className="font-semibold text-amber-200">
+              Allocation exceeds 100%
+            </span>
+          ) : (
+            <span className="text-muted">
+              <strong className="text-ink">{remaining}%</strong> remaining
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -100,15 +145,94 @@ export function AssetsStep() {
         Step · Assets
       </p>
       <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
-        Select Assets
+        Select & Allocate
       </h3>
       <p className="mt-2 text-[0.98rem] text-muted">
         Set how much of your portfolio goes to each asset. Total must equal
         exactly 100%.
       </p>
 
-      <div className="mt-5 grid items-stretch gap-4 lg:grid-cols-2 lg:gap-5">
-        <div className="flex min-h-0 flex-col rounded-2xl border border-white/[0.08] bg-void/40 p-4 sm:p-5">
+      <div className="mt-5 flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:items-start lg:gap-5">
+        {/* Allocation first on mobile — always visible, compact */}
+        <div className="order-1 flex flex-col rounded-2xl border border-white/[0.08] bg-void/40 p-3 sm:p-4 lg:order-2">
+          <div className="flex items-center justify-between gap-2">
+            <p className={labelClass}>Allocation</p>
+            <button
+              type="button"
+              onClick={equalSplit}
+              className="text-[0.75rem] font-semibold text-electric hover:text-ink disabled:opacity-40"
+              disabled={draft.assets.length === 0}
+            >
+              Equal split
+            </button>
+          </div>
+
+          {totalBanner}
+
+          {draft.assets.length > 0 ? (
+            <div className="mt-3 flex justify-center">
+              <AllocationChart assets={draft.assets} size={88} />
+            </div>
+          ) : null}
+
+          {draft.assets.length === 0 ? (
+            <p className="mt-3 rounded-xl border border-dashed border-white/15 px-3 py-8 text-center text-[0.9rem] text-muted">
+              Select assets from the catalog to allocate.
+            </p>
+          ) : (
+            <div className="mt-3 space-y-1.5">
+              {draft.assets.map((a) => (
+                <div
+                  key={a.key}
+                  className="flex items-center gap-2 rounded-xl border border-white/[0.07] bg-void/55 px-2 py-1.5"
+                >
+                  <AssetLogo
+                    ticker={a.ticker}
+                    name={a.name}
+                    src={a.src}
+                    size={26}
+                  />
+                  <span className="w-12 shrink-0 text-[0.8rem] font-semibold text-ink">
+                    {a.ticker}
+                  </span>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={a.pct}
+                    onChange={(e) => setPct(a.key, Number(e.target.value))}
+                    className="min-w-0 flex-1 accent-electric"
+                    aria-label={`${a.ticker} allocation`}
+                  />
+                  <div className="flex shrink-0 items-center gap-0.5">
+                    <input
+                      type="number"
+                      min={0}
+                      max={100}
+                      step={1}
+                      value={a.pct}
+                      onChange={(e) => setPct(a.key, Number(e.target.value))}
+                      className="w-[3.25rem] rounded-lg border border-white/10 bg-void/70 px-1.5 py-1 text-center text-[0.85rem] font-semibold text-ink outline-none focus:border-electric/45"
+                    />
+                    <span className="text-[0.75rem] text-muted">%</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => toggle(a)}
+                    className="shrink-0 px-1 text-[0.7rem] font-semibold text-muted hover:text-ink"
+                    aria-label={`Remove ${a.ticker}`}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Catalog */}
+        <div className="order-2 flex min-h-0 flex-col rounded-2xl border border-white/[0.08] bg-void/40 p-3 sm:p-4 lg:order-1">
           <label htmlFor="asset-search" className={labelClass}>
             Search / Select Assets
           </label>
@@ -119,13 +243,13 @@ export function AssetsStep() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="BTC, NVIDIA, Gold…"
           />
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
             {(["all", "crypto", "stock", "commodity"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
                 onClick={() => setTypeFilter(t)}
-                className={`rounded-full border px-3 py-1.5 text-[0.75rem] font-semibold capitalize transition-all ${
+                className={`rounded-full border px-2.5 py-1 text-[0.72rem] font-semibold capitalize transition-all ${
                   typeFilter === t ? chipActive : chipIdle
                 }`}
               >
@@ -133,7 +257,7 @@ export function AssetsStep() {
               </button>
             ))}
           </div>
-          <div className="mt-4 max-h-[20rem] flex-1 space-y-2 overflow-y-auto pr-1 lg:max-h-[24rem]">
+          <div className="mt-3 max-h-[14rem] space-y-1.5 overflow-y-auto pr-1 sm:max-h-[18rem] lg:max-h-[22rem]">
             {results.map((a) => (
               <AssetRow
                 key={a.key}
@@ -142,123 +266,6 @@ export function AssetsStep() {
                 onToggle={() => toggle(a)}
               />
             ))}
-          </div>
-        </div>
-
-        <div className="flex min-h-0 flex-col rounded-2xl border border-white/[0.08] bg-void/40 p-4 sm:p-5">
-          <div className="flex items-center justify-between gap-3">
-            <p className={labelClass}>Allocation</p>
-            <button
-              type="button"
-              onClick={equalSplit}
-              className="text-[0.78rem] font-semibold text-electric hover:text-ink disabled:opacity-40"
-              disabled={draft.assets.length === 0}
-            >
-              Equal split
-            </button>
-          </div>
-
-          {draft.assets.length > 0 ? (
-            <div className="mt-3 flex justify-center">
-              <AllocationChart assets={draft.assets} size={100} />
-            </div>
-          ) : null}
-
-          {draft.assets.length === 0 ? (
-            <p className="mt-4 flex flex-1 items-center justify-center rounded-xl border border-dashed border-white/15 px-4 py-10 text-center text-[0.95rem] text-muted lg:min-h-[16rem]">
-              No assets selected yet.
-            </p>
-          ) : (
-            <div className="mt-3 max-h-[16rem] flex-1 space-y-2 overflow-y-auto pr-1 lg:max-h-[18rem]">
-              {draft.assets.map((a) => (
-                <div
-                  key={a.key}
-                  className="rounded-xl border border-white/[0.07] bg-void/50 px-3 py-3"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex min-w-0 items-center gap-3">
-                      <AssetLogo
-                        ticker={a.ticker}
-                        name={a.name}
-                        src={a.src}
-                        size={34}
-                      />
-                      <div className="min-w-0">
-                        <p className="text-[0.92rem] font-semibold text-ink">
-                          {a.ticker}{" "}
-                          <span className="font-normal text-muted-dim">
-                            — {a.name}
-                          </span>
-                        </p>
-                        <p className="mt-0.5 text-[0.7rem] text-muted-dim">
-                          {a.type}
-                          {a.networks?.length
-                            ? ` · ${a.networks.join(", ")}`
-                            : ""}
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => toggle(a)}
-                      className="text-[0.72rem] font-semibold text-muted hover:text-ink"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                  <div className="mt-3">
-                    <div className="mb-2 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-purple to-electric transition-all duration-300"
-                        style={{ width: `${Math.min(100, a.pct)}%` }}
-                      />
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="number"
-                        min={0}
-                        max={100}
-                        step={1}
-                        value={a.pct}
-                        onChange={(e) => setPct(a.key, Number(e.target.value))}
-                        className="w-24 rounded-lg border border-white/10 bg-void/70 px-3 py-2 text-[0.95rem] text-ink outline-none focus:border-electric/45"
-                      />
-                      <span className="text-[0.85rem] text-muted">%</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div
-            className={`mt-auto pt-4 ${
-              draft.assets.length === 0 ? "" : ""
-            }`}
-          >
-            <div
-              className={`rounded-xl border px-4 py-3 text-center transition-colors ${
-                total === 100
-                  ? "border-success/40 bg-success/10"
-                  : "border-white/[0.08] bg-void/40"
-              }`}
-            >
-              <p className="text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-                Total Allocation
-              </p>
-              <p
-                className={`mt-1 display text-[1.35rem] font-semibold ${
-                  total === 100 ? "text-success" : "text-ink"
-                }`}
-              >
-                {total}%
-              </p>
-              {total !== 100 ? (
-                <p className="mt-1 text-[0.82rem] text-muted">
-                  Must equal exactly 100% to continue
-                </p>
-              ) : null}
-            </div>
           </div>
         </div>
       </div>

@@ -31,13 +31,15 @@ export const STRATEGIES: StrategyDef[] = [
     id: "rsi",
     title: "RSI",
     explanation:
-      "Buy RSI Oversold → Buy. Sell RSI Overbought → Sell. Choose Daily or Weekly RSI.",
+      "Buy RSI Oversold → DCA IN. Sell RSI Overbought → DCA OUT. Choose Daily or Weekly and the % to execute.",
+    label: "DCA",
   },
   {
     id: "momentum",
     title: "Momentum",
     explanation:
-      "Adjust exposure as defined market trends change. Daily = shorter / mid-term. Weekly = longer-term.",
+      "DCA IN / DCA OUT on trend change, or Buy Now → DCA OUT when momentum turns bearish. Daily or Weekly + %.",
+    label: "DCA",
   },
   {
     id: "rebalancing",
@@ -80,7 +82,7 @@ export const HYBRID_SELL_OPTIONS: {
 ];
 
 export function strategyTitle(id: StrategyId | null): string {
-  if (!id) return "—";
+  if (!id) return "Not set";
   return STRATEGIES.find((s) => s.id === id)?.title ?? id;
 }
 
@@ -102,7 +104,7 @@ export function summarizeStrategy(
   config: StrategyConfig,
   hybrid: HybridConfig,
 ): string {
-  if (!id) return "—";
+  if (!id) return "Not set";
   switch (id) {
     case "buy-now": {
       const parts = ["Buy Now"];
@@ -116,14 +118,16 @@ export function summarizeStrategy(
       return parts.join(" · ");
     }
     case "fear-greed":
-      return `Buy Fear < ${config.fearThreshold ?? 20} → DCA IN · Sell Greed > ${config.greedThreshold ?? 70} → DCA OUT · ${config.dcaFrequency ?? "Weekly"}`;
+      return `Buy Fear < ${config.fearThreshold ?? 20} → DCA IN ${config.dcaInPct ?? 10}% · Sell Greed > ${config.greedThreshold ?? 70} → DCA OUT ${config.dcaOutPct ?? 10}% · ${config.dcaFrequency ?? "Weekly"}`;
     case "rsi":
-      return `${config.rsiTimeframe ?? "Weekly"} RSI · Buy < ${config.rsiBuyThreshold ?? 30} · Sell > ${config.rsiSellThreshold ?? 70}`;
+      return `RSI ${config.rsiTimeframe ?? "Weekly"} · Buy Oversold < ${config.rsiBuyThreshold ?? 30} → DCA IN ${config.dcaInPct ?? 10}% · Sell Overbought > ${config.rsiSellThreshold ?? 70} → DCA OUT ${config.dcaOutPct ?? 10}%`;
     case "momentum": {
       const tf = config.momentumTimeframe ?? "Weekly";
-      return tf === "Daily"
-        ? "Daily Trend Change (shorter / mid-term)"
-        : "Weekly Trend Change (longer-term)";
+      const mode = config.momentumMode ?? "trend-dca";
+      if (mode === "buy-now-dca-out") {
+        return `Buy Now → Momentum turns Bearish → DCA OUT → ${tf} → ${config.dcaOutPct ?? 10}%`;
+      }
+      return `Momentum ${tf} · DCA IN ${config.dcaInPct ?? 10}% / DCA OUT ${config.dcaOutPct ?? 10}% on trend change`;
     }
     case "rebalancing":
       return `Rebalance: ${config.rebalanceFrequency ?? "Monthly"}`;
@@ -148,15 +152,24 @@ export function defaultsForStrategy(id: StrategyId): Partial<StrategyConfig> {
         fearThreshold: 20,
         greedThreshold: 70,
         dcaFrequency: "Weekly",
+        dcaInPct: 10,
+        dcaOutPct: 10,
       };
     case "rsi":
       return {
         rsiTimeframe: "Weekly",
         rsiBuyThreshold: 30,
         rsiSellThreshold: 70,
+        dcaInPct: 10,
+        dcaOutPct: 10,
       };
     case "momentum":
-      return { momentumTimeframe: "Weekly" };
+      return {
+        momentumTimeframe: "Weekly",
+        momentumMode: "trend-dca",
+        dcaInPct: 10,
+        dcaOutPct: 10,
+      };
     case "rebalancing":
       return { rebalanceFrequency: "Monthly" };
     default:

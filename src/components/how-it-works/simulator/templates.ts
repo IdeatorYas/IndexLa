@@ -55,7 +55,7 @@ function baseDraft(
     },
     hybrid: patch.hybrid ?? defaultHybridConfig(),
     authorized: false,
-    amountUsd: patch.amountUsd ?? 10000,
+    amountUsd: patch.amountUsd ?? 0,
     editingId: null,
   };
 }
@@ -83,6 +83,8 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
           fearThreshold: 20,
           greedThreshold: 70,
           dcaFrequency: "Weekly",
+          dcaInPct: 10,
+          dcaOutPct: 10,
         },
       }),
   },
@@ -107,6 +109,8 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
           rsiTimeframe: "Weekly",
           rsiBuyThreshold: 30,
           rsiSellThreshold: 70,
+          dcaInPct: 10,
+          dcaOutPct: 10,
         },
       }),
   },
@@ -129,6 +133,9 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
         ]),
         strategyConfig: {
           momentumTimeframe: "Weekly",
+          momentumMode: "trend-dca",
+          dcaInPct: 10,
+          dcaOutPct: 10,
         },
       }),
   },

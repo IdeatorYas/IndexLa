@@ -103,14 +103,14 @@ function Card({
         )}
       </p>
       <p className="mt-3 text-[0.95rem] font-semibold text-electric">
-        {usd(portfolio.amountUsd)}
+        {portfolio.amountUsd > 0 ? usd(portfolio.amountUsd) : "Amount not set"}
       </p>
       <div className="mt-3 flex flex-wrap gap-3 text-[0.8rem] text-muted">
         <span>
           Execution Fee <strong className="text-ink">1%</strong>
         </span>
         <span>
-          Creator Share <strong className="text-ink">50%</strong>
+          Est. Gas <strong className="text-ink">~$2–$3</strong>
         </span>
       </div>
       {portfolio.status === "paused" ? (

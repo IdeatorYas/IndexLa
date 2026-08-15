@@ -6,16 +6,9 @@ import { useSimulator } from "../SimulatorContext";
 import type { SimulatorPortfolio } from "../types";
 import { surfaceClass } from "../ui";
 
-function usd(n: number) {
-  return n.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  });
-}
-
 export function PublishSuccess() {
-  const { justCreatedId, resetDraft, published } = useSimulator();
+  const { justCreatedId, resetDraft, published, setSelectedId } =
+    useSimulator();
   const [portfolio, setPortfolio] = useState<SimulatorPortfolio | null>(() =>
     published.find((p) => p.id === justCreatedId) ?? published[0] ?? null,
   );
@@ -30,9 +23,6 @@ export function PublishSuccess() {
   const shareLink = portfolio
     ? `https://indexla.tech/marketplace/${portfolio.id}`
     : "https://indexla.tech/marketplace";
-
-  const fee = portfolio ? portfolio.amountUsd * 0.01 : 0;
-  const creatorShare = fee * 0.5;
 
   useEffect(() => {
     const el = document.getElementById("simulator-marketplace");
@@ -67,13 +57,37 @@ export function PublishSuccess() {
           Portfolio Published
         </p>
         <h3 className="display mt-2 text-[clamp(1.4rem,2.8vw,1.85rem)] font-semibold tracking-[-0.02em] text-ink">
-          Your portfolio is now available in the INDEXLA Marketplace.
+          {portfolio
+            ? `"${portfolio.name}" is live in Marketplace.`
+            : "Your portfolio is now available in the INDEXLA Marketplace."}
         </h3>
         <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
-          {portfolio
-            ? `"${portfolio.name}" is discoverable below. This is a product simulation — no wallet, no real funds.`
-            : "Your portfolio is discoverable below."}
+          Product simulation — no wallet, no real funds.
         </p>
+      </div>
+
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <Button
+          type="button"
+          variant="primary"
+          className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
+          onClick={() => {
+            if (portfolio) setSelectedId(portfolio.id);
+            document
+              .getElementById("simulator-marketplace")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+        >
+          View Portfolio
+        </Button>
+        <Button
+          type="button"
+          variant="secondary"
+          className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
+          onClick={() => void copyShare()}
+        >
+          {copied ? "Link Copied" : "Share Portfolio"}
+        </Button>
       </div>
 
       <div className={`${surfaceClass} mt-6 p-5`}>
@@ -100,52 +114,36 @@ export function PublishSuccess() {
         </div>
 
         <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-[0.78rem] font-semibold text-muted">
-          {["Share", "Audience Follows", "Customize", "Allocate"].map(
-            (label, i, arr) => (
-              <span key={label} className="flex items-center gap-2">
-                <span className="rounded-full border border-white/12 bg-void/50 px-3 py-1 text-ink">
-                  {label}
-                </span>
-                {i < arr.length - 1 ? (
-                  <span className="text-electric/70" aria-hidden>
-                    →
-                  </span>
-                ) : null}
+          {["Share", "Follow", "Customize", "Allocate"].map((label, i, arr) => (
+            <span key={label} className="flex items-center gap-2">
+              <span className="rounded-full border border-white/12 bg-void/50 px-3 py-1 text-ink">
+                {label}
               </span>
-            ),
-          )}
+              {i < arr.length - 1 ? (
+                <span className="text-electric/70" aria-hidden>
+                  →
+                </span>
+              ) : null}
+            </span>
+          ))}
         </div>
       </div>
 
-      {portfolio ? (
-        <div className="mt-4 rounded-2xl border border-white/[0.08] bg-void/45 p-4">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">
-            Creator Revenue
-          </p>
-          <p className="mt-2 text-[0.95rem] text-ink">
-            50% of applicable execution fees
-          </p>
-          <p className="mt-2 text-[0.88rem] text-muted">
-            Illustrative on simulated {usd(portfolio.amountUsd)} · 1% execution fee{" "}
-            {usd(fee)} → creator share{" "}
-            <strong className="text-success">{usd(creatorShare)}</strong>
-          </p>
-          <p className="mt-2 text-[0.75rem] text-muted-dim">
-            Simulated / illustrative only — not earnings, AUM, or performance.
-          </p>
-        </div>
-      ) : null}
+      <p className="mt-4 rounded-2xl border border-white/[0.08] bg-void/45 px-4 py-3 text-[0.9rem] leading-relaxed text-muted">
+        Share with your friends or community to earn 50% of applicable execution
+        fees.
+      </p>
 
       <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
         <Button
           href="#simulator-marketplace"
-          variant="primary"
+          variant="secondary"
           className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
         >
           View Marketplace
         </Button>
         <Button
-          variant="secondary"
+          variant="ghost"
           onClick={() => resetDraft()}
           className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
         >

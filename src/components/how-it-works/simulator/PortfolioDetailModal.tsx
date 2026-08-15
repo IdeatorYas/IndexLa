@@ -6,6 +6,7 @@ import { AllocationChart, allocationColor } from "./AllocationChart";
 import { AssetLogo } from "./AssetLogo";
 import { summarizeStrategy, strategyTitle } from "./strategies";
 import { useSimulator } from "./SimulatorContext";
+import { ESTIMATED_GAS_LABEL } from "./types";
 import { surfaceClass } from "./ui";
 
 function usd(n: number) {
@@ -141,27 +142,32 @@ export function PortfolioDetailModal({
           <div className="flex justify-between gap-3">
             <dt className="text-muted">Execution Fee</dt>
             <dd className="font-semibold text-ink">
-              1% · {usd(portfolio.amountUsd * 0.01)}
+              1%
+              {portfolio.amountUsd > 0
+                ? ` · ${usd(portfolio.amountUsd * 0.01)}`
+                : ""}
             </dd>
           </div>
           <div className="flex justify-between gap-3">
-            <dt className="text-muted">Creator Share</dt>
-            <dd className="text-right font-semibold text-ink">
-              50% · {usd(portfolio.amountUsd * 0.005)}{" "}
-              <span className="font-normal text-muted-dim">illustrative</span>
-            </dd>
+            <dt className="text-muted">Estimated Gas</dt>
+            <dd className="font-semibold text-ink">{ESTIMATED_GAS_LABEL}</dd>
           </div>
           <div className="flex justify-between gap-3">
             <dt className="text-muted">Custody</dt>
             <dd className="font-semibold text-ink">Non-custodial</dd>
           </div>
           <div className="flex justify-between gap-3">
-            <dt className="text-muted">Simulated amount</dt>
+            <dt className="text-muted">Investment simulation</dt>
             <dd className="font-semibold text-electric">
-              {usd(portfolio.amountUsd)}
+              {portfolio.amountUsd > 0 ? usd(portfolio.amountUsd) : "Not set"}
             </dd>
           </div>
         </dl>
+
+        <p className="mt-4 text-[0.82rem] leading-relaxed text-muted">
+          Share with your friends or community to earn 50% of applicable
+          execution fees.
+        </p>
 
         <div className="mt-5">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-muted">

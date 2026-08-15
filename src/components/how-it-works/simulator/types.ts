@@ -33,9 +33,12 @@ export const WIZARD_STEPS: { id: WizardStep; label: string }[] = [
   { id: "strategy", label: "Strategy" },
   { id: "configure", label: "Configure" },
   { id: "permissions", label: "Permissions" },
-  { id: "amount", label: "Impact" },
+  { id: "amount", label: "Investment" },
   { id: "review", label: "Review" },
 ];
+
+/** Simulated network gas estimate — separate from execution fee */
+export const ESTIMATED_GAS_LABEL = "~$2–$3";
 
 export type StrategyId =
   | "buy-now"
@@ -54,6 +57,8 @@ export type RebalanceFrequency =
   | "Quarterly"
   | "On Drift";
 
+export type MomentumMode = "trend-dca" | "buy-now-dca-out";
+
 export type StrategyConfig = {
   enableTakeProfit?: boolean;
   enableStopLoss?: boolean;
@@ -62,10 +67,15 @@ export type StrategyConfig = {
   fearThreshold?: number;
   greedThreshold?: number;
   dcaFrequency?: DcaFrequency;
+  /** DCA IN % of funds/allocation per execution */
+  dcaInPct?: number;
+  /** DCA OUT % of funds/allocation per execution */
+  dcaOutPct?: number;
   rsiBuyThreshold?: number;
   rsiSellThreshold?: number;
   rsiTimeframe?: RsiTimeframe;
   momentumTimeframe?: MomentumTimeframe;
+  momentumMode?: MomentumMode;
   rebalanceFrequency?: RebalanceFrequency;
 };
 
@@ -165,15 +175,18 @@ export function emptyDraft(): DraftPortfolio {
       fearThreshold: 20,
       greedThreshold: 70,
       dcaFrequency: "Weekly",
+      dcaInPct: 10,
+      dcaOutPct: 10,
       rsiBuyThreshold: 30,
       rsiSellThreshold: 70,
       rsiTimeframe: "Weekly",
       momentumTimeframe: "Weekly",
+      momentumMode: "trend-dca",
       rebalanceFrequency: "Monthly",
     },
     hybrid: emptyHybrid(),
     authorized: false,
-    amountUsd: 10000,
+    amountUsd: 0,
     editingId: null,
   };
 }

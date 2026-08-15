@@ -127,16 +127,45 @@ function validateConfigure(draft: DraftPortfolio): boolean {
       return (
         typeof c.fearThreshold === "number" &&
         typeof c.greedThreshold === "number" &&
-        !!c.dcaFrequency
+        !!c.dcaFrequency &&
+        typeof c.dcaInPct === "number" &&
+        c.dcaInPct > 0 &&
+        c.dcaInPct <= 100 &&
+        typeof c.dcaOutPct === "number" &&
+        c.dcaOutPct > 0 &&
+        c.dcaOutPct <= 100
       );
     case "rsi":
       return (
         !!c.rsiTimeframe &&
         typeof c.rsiBuyThreshold === "number" &&
-        typeof c.rsiSellThreshold === "number"
+        typeof c.rsiSellThreshold === "number" &&
+        typeof c.dcaInPct === "number" &&
+        c.dcaInPct > 0 &&
+        c.dcaInPct <= 100 &&
+        typeof c.dcaOutPct === "number" &&
+        c.dcaOutPct > 0 &&
+        c.dcaOutPct <= 100
       );
-    case "momentum":
-      return !!c.momentumTimeframe;
+    case "momentum": {
+      const mode = c.momentumMode ?? "trend-dca";
+      if (!c.momentumTimeframe) return false;
+      if (mode === "buy-now-dca-out") {
+        return (
+          typeof c.dcaOutPct === "number" &&
+          c.dcaOutPct > 0 &&
+          c.dcaOutPct <= 100
+        );
+      }
+      return (
+        typeof c.dcaInPct === "number" &&
+        c.dcaInPct > 0 &&
+        c.dcaInPct <= 100 &&
+        typeof c.dcaOutPct === "number" &&
+        c.dcaOutPct > 0 &&
+        c.dcaOutPct <= 100
+      );
+    }
     case "rebalancing":
       return !!c.rebalanceFrequency;
     case "hybrid":

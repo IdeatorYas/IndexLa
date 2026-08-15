@@ -429,12 +429,21 @@ export function ConfigureStep() {
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-success">
                   Buy Fear → DCA IN
                 </p>
-                <div className="mt-3">
+                <div className="mt-3 space-y-3">
                   <Field label="Fear threshold">
                     <NumInput
                       value={c.fearThreshold ?? 20}
                       onChange={(n) => patchConfig({ fearThreshold: n })}
                       min={0}
+                      max={100}
+                    />
+                  </Field>
+                  <Field label="DCA IN %">
+                    <NumInput
+                      value={c.dcaInPct ?? 10}
+                      onChange={(n) => patchConfig({ dcaInPct: n })}
+                      suffix="%"
+                      min={1}
                       max={100}
                     />
                   </Field>
@@ -444,12 +453,21 @@ export function ConfigureStep() {
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-electric">
                   Sell Greed → DCA OUT
                 </p>
-                <div className="mt-3">
+                <div className="mt-3 space-y-3">
                   <Field label="Greed threshold">
                     <NumInput
                       value={c.greedThreshold ?? 70}
                       onChange={(n) => patchConfig({ greedThreshold: n })}
                       min={0}
+                      max={100}
+                    />
+                  </Field>
+                  <Field label="DCA OUT %">
+                    <NumInput
+                      value={c.dcaOutPct ?? 10}
+                      onChange={(n) => patchConfig({ dcaOutPct: n })}
+                      suffix="%"
+                      min={1}
                       max={100}
                     />
                   </Field>
@@ -472,12 +490,15 @@ export function ConfigureStep() {
                 ))}
               </div>
             </Field>
+            <p className="rounded-xl border border-white/[0.07] bg-void/45 px-3 py-2.5 text-[0.88rem] text-muted">
+              {`Buy Fear < ${c.fearThreshold ?? 20} → DCA IN ${c.dcaInPct ?? 10}% · Sell Greed > ${c.greedThreshold ?? 70} → DCA OUT ${c.dcaOutPct ?? 10}% · ${c.dcaFrequency ?? "Weekly"}`}
+            </p>
           </div>
         ) : null}
 
         {id === "rsi" ? (
           <div className="space-y-5">
-            <Field label="RSI timeframe">
+            <Field label="Frequency (Daily or Weekly)">
               <div className="flex flex-wrap gap-2">
                 {(["Daily", "Weekly"] as RsiTimeframe[]).map((tf) => (
                   <button
@@ -488,7 +509,7 @@ export function ConfigureStep() {
                       (c.rsiTimeframe ?? "Weekly") === tf ? chipActive : chipIdle
                     }`}
                   >
-                    {tf} RSI
+                    {tf}
                   </button>
                 ))}
               </div>
@@ -496,9 +517,9 @@ export function ConfigureStep() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-success/30 bg-success/10 p-4">
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-success">
-                  Buy RSI Oversold → Buy
+                  Buy RSI Oversold → DCA IN
                 </p>
-                <div className="mt-3">
+                <div className="mt-3 space-y-3">
                   <Field label="Buy when RSI &lt;">
                     <NumInput
                       value={c.rsiBuyThreshold ?? 30}
@@ -507,13 +528,22 @@ export function ConfigureStep() {
                       max={99}
                     />
                   </Field>
+                  <Field label="DCA IN %">
+                    <NumInput
+                      value={c.dcaInPct ?? 10}
+                      onChange={(n) => patchConfig({ dcaInPct: n })}
+                      suffix="%"
+                      min={1}
+                      max={100}
+                    />
+                  </Field>
                 </div>
               </div>
               <div className="rounded-2xl border border-electric/30 bg-electric/10 p-4">
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-electric">
-                  Sell RSI Overbought → Sell
+                  Sell RSI Overbought → DCA OUT
                 </p>
-                <div className="mt-3">
+                <div className="mt-3 space-y-3">
                   <Field label="Sell when RSI &gt;">
                     <NumInput
                       value={c.rsiSellThreshold ?? 70}
@@ -522,36 +552,119 @@ export function ConfigureStep() {
                       max={99}
                     />
                   </Field>
+                  <Field label="DCA OUT %">
+                    <NumInput
+                      value={c.dcaOutPct ?? 10}
+                      onChange={(n) => patchConfig({ dcaOutPct: n })}
+                      suffix="%"
+                      min={1}
+                      max={100}
+                    />
+                  </Field>
                 </div>
               </div>
             </div>
+            <p className="rounded-xl border border-white/[0.07] bg-void/45 px-3 py-2.5 text-[0.88rem] text-muted">
+              {`RSI ${c.rsiTimeframe ?? "Weekly"} · DCA IN ${c.dcaInPct ?? 10}% · DCA OUT ${c.dcaOutPct ?? 10}%`}
+            </p>
           </div>
         ) : null}
 
         {id === "momentum" ? (
-          <Field label="Trend timeframe">
-            <div className="flex flex-wrap gap-2">
-              {(["Daily", "Weekly"] as MomentumTimeframe[]).map((tf) => (
+          <div className="space-y-5">
+            <Field label="Momentum mode">
+              <div className="grid gap-2 sm:grid-cols-2">
                 <button
-                  key={tf}
                   type="button"
-                  onClick={() => patchConfig({ momentumTimeframe: tf })}
-                  className={`rounded-full border px-4 py-2 text-[0.85rem] font-semibold ${
-                    (c.momentumTimeframe ?? "Weekly") === tf
-                      ? chipActive
-                      : chipIdle
+                  onClick={() => patchConfig({ momentumMode: "trend-dca" })}
+                  className={`rounded-2xl border px-4 py-3 text-left transition-all ${
+                    (c.momentumMode ?? "trend-dca") === "trend-dca"
+                      ? optionCardActive
+                      : optionCardIdle
                   }`}
                 >
-                  {tf === "Daily"
-                    ? "Daily Trend Change"
-                    : "Weekly Trend Change"}
+                  <p className="font-semibold text-ink">DCA IN / DCA OUT</p>
+                  <p className="mt-1 text-[0.8rem] text-muted">
+                    On trend change
+                  </p>
                 </button>
-              ))}
-            </div>
-            <p className="mt-3 text-[0.85rem] text-muted">
-              Daily = shorter / mid-term. Weekly = longer-term.
+                <button
+                  type="button"
+                  onClick={() =>
+                    patchConfig({ momentumMode: "buy-now-dca-out" })
+                  }
+                  className={`rounded-2xl border px-4 py-3 text-left transition-all ${
+                    c.momentumMode === "buy-now-dca-out"
+                      ? optionCardActive
+                      : optionCardIdle
+                  }`}
+                >
+                  <p className="font-semibold text-ink">Buy Now → DCA OUT</p>
+                  <p className="mt-1 text-[0.8rem] text-muted">
+                    When momentum turns bearish
+                  </p>
+                </button>
+              </div>
+            </Field>
+
+            <Field label="Frequency">
+              <div className="flex flex-wrap gap-2">
+                {(["Daily", "Weekly"] as MomentumTimeframe[]).map((tf) => (
+                  <button
+                    key={tf}
+                    type="button"
+                    onClick={() => patchConfig({ momentumTimeframe: tf })}
+                    className={`rounded-full border px-4 py-2 text-[0.85rem] font-semibold ${
+                      (c.momentumTimeframe ?? "Weekly") === tf
+                        ? chipActive
+                        : chipIdle
+                    }`}
+                  >
+                    {tf}
+                  </button>
+                ))}
+              </div>
+            </Field>
+
+            {(c.momentumMode ?? "trend-dca") === "trend-dca" ? (
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Field label="DCA IN %">
+                  <NumInput
+                    value={c.dcaInPct ?? 10}
+                    onChange={(n) => patchConfig({ dcaInPct: n })}
+                    suffix="%"
+                    min={1}
+                    max={100}
+                  />
+                </Field>
+                <Field label="DCA OUT %">
+                  <NumInput
+                    value={c.dcaOutPct ?? 10}
+                    onChange={(n) => patchConfig({ dcaOutPct: n })}
+                    suffix="%"
+                    min={1}
+                    max={100}
+                  />
+                </Field>
+              </div>
+            ) : (
+              <Field label="DCA OUT %">
+                <NumInput
+                  value={c.dcaOutPct ?? 10}
+                  onChange={(n) => patchConfig({ dcaOutPct: n })}
+                  suffix="%"
+                  min={1}
+                  max={100}
+                />
+              </Field>
+            )}
+
+            <p className="rounded-xl border border-electric/25 bg-electric/[0.08] px-3 py-2.5 text-[0.92rem] font-semibold text-ink">
+              {(c.momentumMode ?? "trend-dca") === "buy-now-dca-out"
+                ? `Buy Now → Momentum turns Bearish → DCA OUT → ${c.momentumTimeframe ?? "Weekly"} → ${c.dcaOutPct ?? 10}%`
+                : `Momentum ${c.momentumTimeframe ?? "Weekly"} · DCA IN ${c.dcaInPct ?? 10}% / DCA OUT ${c.dcaOutPct ?? 10}%`}
             </p>
-          </Field>
+          </div>
         ) : null}
 
         {id === "rebalancing" ? (

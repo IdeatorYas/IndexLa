@@ -23,8 +23,8 @@ const NEXT_HINT: Partial<Record<WizardStep, string>> = {
   assets: "Next: choose how your portfolio automates buys and sells.",
   strategy: "Next: configure the parameters for your selected strategy.",
   configure: "Next: authorize simulated execution permissions.",
-  permissions: "Next: simulate USD impact across your allocations.",
-  amount: "Next: review everything, then publish to Marketplace.",
+  permissions: "Next: set your investment amount.",
+  amount: "Next: review & confirm, then publish to Marketplace.",
   review: "Publishing adds this portfolio to Marketplace instantly.",
 };
 
@@ -92,6 +92,12 @@ export function HowItWorksSimulator() {
   const { step, goBack, goNext, canProceed, publish, draft } = useSimulator();
   const showNav = step !== "success";
   const isReview = step === "review";
+  const showPreviewRail =
+    draft.name.trim().length > 0 ||
+    draft.portfolioType !== "" ||
+    draft.assets.length > 0 ||
+    draft.strategyId !== null ||
+    draft.amountUsd > 0;
 
   return (
     <section className={`${homeSection} bg-void`} id="simulator">
@@ -104,12 +110,18 @@ export function HowItWorksSimulator() {
             Build A Portfolio End To End
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[1.05rem] leading-relaxed text-muted">
-            Create → Select → Allocate → Automate → Review → Publish → Marketplace.
-            No wallet. No real transactions.
+            Create → Assets → Strategy → Investment → Review → Publish →
+            Marketplace. No wallet. No real transactions.
           </p>
         </div>
 
-        <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
+        <div
+          className={`grid items-start gap-6 ${
+            showPreviewRail && step !== "success"
+              ? "xl:grid-cols-[minmax(0,1fr)_20rem]"
+              : ""
+          }`}
+        >
           <div className={`${surfaceClass} p-5 sm:p-7 lg:p-8`}>
             {step !== "success" ? <Progress /> : null}
             {step !== "success" ? <LivePreviewCompact /> : null}
