@@ -13,7 +13,7 @@ export function HowItWorksPageHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-void">
+    <section className="relative isolate overflow-hidden bg-void pt-20">
       <div
         className="pointer-events-none absolute inset-0 hero-glow opacity-45"
         aria-hidden
@@ -23,7 +23,7 @@ export function HowItWorksPageHero() {
         aria-hidden
       />
 
-      <div className="section-pad container-max relative z-10 flex flex-col justify-center pb-14 pt-[6.5rem] sm:pb-16 sm:pt-28 lg:pb-20 lg:pt-32">
+      <div className="section-pad container-max relative z-10 flex min-h-[calc(100svh-5rem)] flex-col justify-center py-14 sm:py-16 lg:py-20">
         <motion.div
           className="mx-auto w-full max-w-3xl text-center"
           initial={reduce ? false : { opacity: 0, y: 16 }}
@@ -34,12 +34,12 @@ export function HowItWorksPageHero() {
             How It <span className="gradient-text">Works</span>
           </h1>
 
-          <p className={`mx-auto mt-6 max-w-2xl ${homeBodyStrong}`}>
+          <p className={`mx-auto mt-7 max-w-2xl ${homeBodyStrong}`}>
             Create your own portfolio or follow one. Set the rules once. Keep
             full custody. INDEXLA only executes when your conditions are met.
           </p>
 
-          <div className="mx-auto mt-10 max-w-4xl rounded-[1.25rem] border border-electric/25 bg-gradient-to-b from-electric/[0.08] to-transparent px-4 py-6 sm:px-8 sm:py-7">
+          <div className="mx-auto mt-12 max-w-4xl rounded-[1.25rem] border border-electric/25 bg-gradient-to-b from-electric/[0.08] to-transparent px-4 py-7 sm:px-8 sm:py-8">
             <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
               Product Flow
             </p>
@@ -61,7 +61,7 @@ export function HowItWorksPageHero() {
             </div>
           </div>
 
-          <p className={`mx-auto mt-10 max-w-2xl ${homeBody} text-balance`}>
+          <p className={`mx-auto mt-12 max-w-2xl ${homeBody} text-balance`}>
             Explore the full experience below. No wallet. No real transactions.
           </p>
         </motion.div>
