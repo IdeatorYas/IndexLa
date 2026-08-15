@@ -4,7 +4,6 @@ import {
   homeBodyStrong,
   homeH2,
   homeH3,
-  homeLede,
   homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
@@ -53,7 +52,7 @@ export function WhyIndexlaDifferentSection() {
       <div className="section-pad container-max">
         <FadeIn className="text-center">
           <h2 className={`${homeH2} ${homeMeasure}`}>Why INDEXLA</h2>
-          <p className={`mx-auto mt-5 max-w-2xl ${homeLede}`}>
+          <p className="mx-auto mt-5 max-w-2xl text-[1.15rem] font-semibold leading-snug text-electric text-pretty text-balance sm:text-[1.25rem]">
             No platform today brings this combination together.
           </p>
         </FadeIn>
