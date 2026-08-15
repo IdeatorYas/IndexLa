@@ -64,6 +64,7 @@ type SimulatorContextValue = {
   rebalancePortfolio: (id: string) => void;
   removePortfolio: (id: string) => void;
   resetDraft: () => void;
+  applyTemplate: (build: () => DraftPortfolio) => void;
   canProceed: (from: WizardStep) => boolean;
   goNext: () => void;
   goBack: () => void;
@@ -215,6 +216,11 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
     setStep("create");
   }, []);
 
+  const applyTemplate = useCallback((build: () => DraftPortfolio) => {
+    setDraft(build());
+    setStep("create");
+  }, []);
+
   const publish = useCallback((): string | null => {
     if (!canProceedFrom(draft, "review") || !draft.strategyId || !draft.portfolioType) {
       return null;
@@ -353,6 +359,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       rebalancePortfolio,
       removePortfolio,
       resetDraft,
+      applyTemplate,
       canProceed,
       goNext,
       goBack,
@@ -376,6 +383,7 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       rebalancePortfolio,
       removePortfolio,
       resetDraft,
+      applyTemplate,
       canProceed,
       goNext,
       goBack,

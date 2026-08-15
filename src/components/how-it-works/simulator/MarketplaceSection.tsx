@@ -157,12 +157,18 @@ export function MarketplaceSection() {
         </div>
 
         {visible.length === 0 ? (
-          <div className={`${surfaceClass} px-6 py-12 text-center`}>
-            <p className="text-[1.05rem] text-muted">
-              No published portfolios yet. Complete the wizard above to add
-              one.
+          <div className={`${surfaceClass} px-6 py-14 text-center`}>
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
+              Empty marketplace
             </p>
-            <div className="mt-5">
+            <p className="mt-3 text-[1.15rem] font-semibold text-ink">
+              No published portfolios yet
+            </p>
+            <p className="mx-auto mt-2 max-w-md text-[0.98rem] text-muted">
+              Complete the builder above and publish. Each portfolio you create
+              in this session appears here instantly — no fake listings.
+            </p>
+            <div className="mt-6">
               <Button href="#simulator" variant="secondary">
                 Start building
               </Button>

@@ -33,7 +33,7 @@ export const WIZARD_STEPS: { id: WizardStep; label: string }[] = [
   { id: "strategy", label: "Strategy" },
   { id: "configure", label: "Configure" },
   { id: "permissions", label: "Permissions" },
-  { id: "amount", label: "Amount" },
+  { id: "amount", label: "Impact" },
   { id: "review", label: "Review" },
 ];
 

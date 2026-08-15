@@ -328,12 +328,18 @@ export function ConfigureStep() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <h3 className="display text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+        Step · Configure
+      </p>
+      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Strategy Configuration
       </h3>
       <p className="mt-2 text-[0.98rem] text-muted">
         Configuring:{" "}
         <span className="font-semibold text-ink">{strategyTitle(id)}</span>
+        {id === "hybrid"
+          ? " — combine a buy condition with a sell condition."
+          : ". Only parameters for this strategy are shown."}
       </p>
 
       <div className="mt-6 space-y-5">

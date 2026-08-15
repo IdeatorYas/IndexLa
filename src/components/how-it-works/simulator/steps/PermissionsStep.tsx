@@ -7,9 +7,15 @@ export function PermissionsStep() {
 
   return (
     <div className="mx-auto max-w-xl">
-      <h3 className="display text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+        Step · Permissions
+      </p>
+      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Execution Permissions
       </h3>
+      <p className="mt-2 text-[0.92rem] text-muted">
+        Authorize simulated execution within your strategy rules.
+      </p>
       <div className="mt-4 space-y-3 text-[0.98rem] leading-relaxed text-muted">
         <p>INDEXLA is non-custodial.</p>
         <p>The user keeps control of their assets.</p>

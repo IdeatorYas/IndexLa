@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { AllocationChart, allocationColor } from "./AllocationChart";
 import { AssetLogo } from "./AssetLogo";
 import { summarizeStrategy, strategyTitle } from "./strategies";
 import { useSimulator } from "./SimulatorContext";
@@ -81,6 +82,31 @@ export function PortfolioDetailModal({
           {portfolio.description}
         </p>
 
+        <div className="mt-5 flex items-center gap-4 rounded-2xl border border-white/[0.07] bg-void/45 p-4">
+          <AllocationChart assets={portfolio.assets} size={88} />
+          <ul className="min-w-0 flex-1 space-y-1.5">
+            {portfolio.assets.map((a, i) => (
+              <li
+                key={a.key}
+                className="flex items-center justify-between gap-2 text-[0.82rem]"
+              >
+                <span className="flex min-w-0 items-center gap-2">
+                  <span
+                    className="h-2 w-2 shrink-0 rounded-full"
+                    style={{ background: allocationColor(i) }}
+                  />
+                  <span className="truncate font-semibold text-ink">
+                    {a.ticker}
+                  </span>
+                </span>
+                <span className="shrink-0 text-muted">
+                  {a.pct}% · {usd((portfolio.amountUsd * a.pct) / 100)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <dl className="mt-5 space-y-3 text-[0.92rem]">
           <div className="flex justify-between gap-3">
             <dt className="text-muted">Creator</dt>
@@ -97,7 +123,7 @@ export function PortfolioDetailModal({
             </dd>
           </div>
           <div className="flex justify-between gap-3">
-            <dt className="text-muted">Config</dt>
+            <dt className="text-muted">Rules</dt>
             <dd className="max-w-[62%] text-right text-ink">
               {summarizeStrategy(
                 portfolio.strategyId,
@@ -114,17 +140,32 @@ export function PortfolioDetailModal({
           </div>
           <div className="flex justify-between gap-3">
             <dt className="text-muted">Execution Fee</dt>
-            <dd className="font-semibold text-ink">1%</dd>
+            <dd className="font-semibold text-ink">
+              1% · {usd(portfolio.amountUsd * 0.01)}
+            </dd>
           </div>
           <div className="flex justify-between gap-3">
             <dt className="text-muted">Creator Share</dt>
-            <dd className="font-semibold text-ink">50%</dd>
+            <dd className="text-right font-semibold text-ink">
+              50% · {usd(portfolio.amountUsd * 0.005)}{" "}
+              <span className="font-normal text-muted-dim">illustrative</span>
+            </dd>
+          </div>
+          <div className="flex justify-between gap-3">
+            <dt className="text-muted">Custody</dt>
+            <dd className="font-semibold text-ink">Non-custodial</dd>
+          </div>
+          <div className="flex justify-between gap-3">
+            <dt className="text-muted">Simulated amount</dt>
+            <dd className="font-semibold text-electric">
+              {usd(portfolio.amountUsd)}
+            </dd>
           </div>
         </dl>
 
         <div className="mt-5">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-muted">
-            Assets
+            Assets & Allocations
           </p>
           <ul className="mt-2 space-y-1.5">
             {portfolio.assets.map((a) => (
@@ -144,7 +185,12 @@ export function PortfolioDetailModal({
                     <span className="font-normal text-muted">{a.name}</span>
                   </span>
                 </span>
-                <span className="font-semibold text-electric">{a.pct}%</span>
+                <span className="shrink-0 text-right font-semibold text-electric">
+                  {a.pct}%
+                  <span className="mt-0.5 block text-[0.75rem] font-normal text-muted">
+                    {usd((portfolio.amountUsd * a.pct) / 100)}
+                  </span>
+                </span>
               </li>
             ))}
           </ul>

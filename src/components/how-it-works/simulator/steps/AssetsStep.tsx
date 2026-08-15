@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AllocationChart } from "../AllocationChart";
 import { AssetLogo } from "../AssetLogo";
 import { filterCatalog } from "../assetCatalog";
 import { useSimulator } from "../SimulatorContext";
@@ -95,11 +96,15 @@ export function AssetsStep() {
 
   return (
     <div>
-      <h3 className="display text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+        Step · Assets
+      </p>
+      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Select Assets
       </h3>
       <p className="mt-2 text-[0.98rem] text-muted">
-        Search and select assets, then set allocations to exactly 100%.
+        Set how much of your portfolio goes to each asset. Total must equal
+        exactly 100%.
       </p>
 
       <div className="mt-5 grid items-stretch gap-4 lg:grid-cols-2 lg:gap-5">
@@ -152,6 +157,12 @@ export function AssetsStep() {
               Equal split
             </button>
           </div>
+
+          {draft.assets.length > 0 ? (
+            <div className="mt-3 flex justify-center">
+              <AllocationChart assets={draft.assets} size={100} />
+            </div>
+          ) : null}
 
           {draft.assets.length === 0 ? (
             <p className="mt-4 flex flex-1 items-center justify-center rounded-xl border border-dashed border-white/15 px-4 py-10 text-center text-[0.95rem] text-muted lg:min-h-[16rem]">

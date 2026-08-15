@@ -9,11 +9,15 @@ export function StrategyStep() {
 
   return (
     <div>
-      <h3 className="display text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+        Step · Strategy
+      </p>
+      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Choose Strategy
       </h3>
       <p className="mt-2 text-[0.98rem] text-muted">
-        INDEXLA Strategies — select one to configure next.
+        Automate when your portfolio buys or sells. Select one strategy —
+        parameters appear in the next step.
       </p>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

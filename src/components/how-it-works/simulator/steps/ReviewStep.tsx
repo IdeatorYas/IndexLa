@@ -59,7 +59,10 @@ export function ReviewStep() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <h3 className="display text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+        Step · Review
+      </p>
+      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Final Review
       </h3>
       <p className="mt-2 text-[0.98rem] text-muted">
@@ -124,8 +127,23 @@ export function ReviewStep() {
           editStep="amount"
           value={usd(draft.amountUsd)}
         />
-        <Row label="Execution Fee" value="1%" />
-        <Row label="Creator Share" value="50%" />
+        <Row label="Execution Fee" value={`1% · ${usd(draft.amountUsd * 0.01)}`} />
+        <Row
+          label="Creator Share"
+          value={`50% of execution fees · ${usd(draft.amountUsd * 0.005)} illustrative`}
+        />
+      </div>
+
+      <div className="mt-4 rounded-2xl border border-white/[0.08] bg-void/40 px-4 py-3">
+        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">
+          Creator Revenue
+        </p>
+        <p className="mt-1 text-[0.92rem] text-ink">
+          50% of applicable execution fees
+        </p>
+        <p className="mt-1 text-[0.8rem] text-muted-dim">
+          Simulated / illustrative only — not earnings or performance.
+        </p>
       </div>
     </div>
   );
