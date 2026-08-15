@@ -7,7 +7,7 @@ import type { SimulatorPortfolio } from "../types";
 import { surfaceClass } from "../ui";
 
 export function PublishSuccess() {
-  const { justCreatedId, resetDraft, published, setSelectedId, setStep } =
+  const { justCreatedId, resetDraft, published, setSelectedId } =
     useSimulator();
   const [portfolio, setPortfolio] = useState<SimulatorPortfolio | null>(() =>
     published.find((p) => p.id === justCreatedId) ?? published[0] ?? null,
@@ -29,7 +29,7 @@ export function PublishSuccess() {
     if (el) {
       window.setTimeout(
         () => el.scrollIntoView({ behavior: "smooth", block: "start" }),
-        400,
+        450,
       );
     }
   }, []);
@@ -44,8 +44,15 @@ export function PublishSuccess() {
     }
   }
 
+  function viewAsInvestor() {
+    if (portfolio) setSelectedId(portfolio.id);
+    document
+      .getElementById("simulator-marketplace")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
-    <div className="mx-auto max-w-lg">
+    <div className="mx-auto max-w-lg py-4">
       <div className="text-center">
         <div className="relative mx-auto flex h-16 w-16 items-center justify-center">
           <span className="absolute inset-0 animate-ping rounded-full bg-success/20 opacity-40" />
@@ -61,8 +68,11 @@ export function PublishSuccess() {
             ? `"${portfolio.name}" is live in Marketplace.`
             : "Your portfolio is now available in the INDEXLA Marketplace."}
         </h3>
-        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
-          Product simulation — no wallet, no real funds.
+        <p className="mt-3 text-[1.05rem] font-medium text-ink">
+          Your audience can now allocate.
+        </p>
+        <p className="mt-2 text-[0.88rem] text-muted">
+          Simulated — no wallet, no real funds.
         </p>
       </div>
 
@@ -71,14 +81,9 @@ export function PublishSuccess() {
           type="button"
           variant="primary"
           className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
-          onClick={() => {
-            if (portfolio) setSelectedId(portfolio.id);
-            document
-              .getElementById("simulator-marketplace")
-              ?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }}
+          onClick={viewAsInvestor}
         >
-          View Portfolio
+          View as Investor
         </Button>
         <Button
           type="button"
@@ -95,7 +100,7 @@ export function PublishSuccess() {
           Share Portfolio
         </p>
         <p className="mt-2 text-[0.88rem] text-muted">
-          Simulated shareable link for this product preview.
+          Simulated shareable link.
         </p>
         <div className="mt-3 flex flex-col gap-2 sm:flex-row">
           <input
@@ -135,13 +140,6 @@ export function PublishSuccess() {
       </p>
 
       <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-        <Button
-          type="button"
-          className="!min-h-0 !px-5 !py-2.5 !text-[0.9rem]"
-          onClick={() => setStep("monitor")}
-        >
-          Open Monitor
-        </Button>
         <Button
           href="#simulator-marketplace"
           variant="secondary"

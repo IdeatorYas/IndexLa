@@ -71,8 +71,8 @@ export function HowItWorksPageHero() {
           </div>
 
           <p className={`mx-auto mt-7 max-w-2xl ${homeBody} text-balance`}>
-            Walk through the same steps in the simulator below — from create to
-            monitor. No wallet. No real transactions.
+            Walk through the simulator below — from create to marketplace. No
+            wallet. No real transactions.
           </p>
           <p className="mx-auto mt-3 max-w-xl text-[0.92rem] text-muted">
             Turn your thesis into a portfolio your audience can allocate capital

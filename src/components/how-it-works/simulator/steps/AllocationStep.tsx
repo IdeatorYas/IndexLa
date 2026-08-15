@@ -55,9 +55,8 @@ export function AllocationStep() {
       <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Set Allocations
       </h3>
-      <p className="mt-2 text-[0.98rem] text-muted">
-        Set how much of your portfolio goes to each asset. Total must equal
-        exactly 100%.
+      <p className="mt-2 text-[0.95rem] text-muted">
+        Decide how much of each. Total must equal 100%.
       </p>
 
       <div className="mt-5 flex items-center justify-between gap-3">

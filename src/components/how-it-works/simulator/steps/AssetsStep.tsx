@@ -79,10 +79,7 @@ export function AssetsStep() {
       <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Select Assets
       </h3>
-      <p className="mt-2 text-[0.98rem] text-muted">
-        Choose the assets for your portfolio. You&apos;ll set allocations in the
-        next step.
-      </p>
+      <p className="mt-2 text-[0.95rem] text-muted">Select what you own.</p>
 
       {draft.assets.length > 0 ? (
         <div className="mt-4 flex flex-wrap gap-2">
@@ -128,7 +125,7 @@ export function AssetsStep() {
             </button>
           ))}
         </div>
-        <div className="mt-3 max-h-[18rem] space-y-1.5 overflow-y-auto pr-1 sm:max-h-[22rem]">
+        <div className="mt-3 max-h-[min(14rem,38svh)] space-y-1.5 overflow-y-auto pr-1 sm:max-h-[min(18rem,42svh)]">
           {results.map((a) => (
             <AssetRow
               key={a.key}

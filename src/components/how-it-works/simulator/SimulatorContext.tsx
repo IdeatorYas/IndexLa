@@ -57,11 +57,7 @@ function readDraftSession(): { draft: DraftPortfolio; step: WizardStep } | null 
     if (!parsed?.draft) return null;
     const draft = { ...emptyDraft(), ...parsed.draft };
     const step =
-      parsed.step &&
-      parsed.step !== "success" &&
-      parsed.step !== "monitor"
-        ? parsed.step
-        : "create";
+      parsed.step && parsed.step !== "success" ? parsed.step : "create";
     return { draft, step };
   } catch {
     return null;
@@ -70,7 +66,7 @@ function readDraftSession(): { draft: DraftPortfolio; step: WizardStep } | null 
 
 function writeDraftSession(draft: DraftPortfolio, step: WizardStep) {
   if (typeof window === "undefined") return;
-  if (step === "success" || step === "monitor") return;
+  if (step === "success") return;
   try {
     sessionStorage.setItem(
       DRAFT_STORAGE_KEY,
@@ -129,7 +125,6 @@ const STEP_ORDER: WizardStep[] = [
   "amount",
   "review",
   "success",
-  "monitor",
 ];
 
 function newId(): string {
@@ -254,7 +249,6 @@ export function canProceedFrom(draft: DraftPortfolio, from: WizardStep): boolean
         canProceedFrom(draft, "amount")
       );
     case "success":
-    case "monitor":
       return true;
     default:
       return true;
@@ -422,17 +416,13 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
   const goNext = useCallback(() => {
     const i = STEP_ORDER.indexOf(step);
     if (i < 0 || i >= STEP_ORDER.length - 1) return;
-    if (step !== "success" && step !== "monitor" && !canProceedFrom(draft, step)) {
+    if (step !== "success" && !canProceedFrom(draft, step)) {
       return;
     }
     setStep(STEP_ORDER[i + 1]);
   }, [draft, step]);
 
   const goBack = useCallback(() => {
-    if (step === "monitor") {
-      setStep("success");
-      return;
-    }
     if (step === "success") return;
     const i = STEP_ORDER.indexOf(step);
     if (i <= 0) return;

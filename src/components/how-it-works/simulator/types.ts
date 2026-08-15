@@ -26,8 +26,7 @@ export type WizardStep =
   | "permissions"
   | "amount"
   | "review"
-  | "success"
-  | "monitor";
+  | "success";
 
 export const WIZARD_STEPS: { id: WizardStep; label: string }[] = [
   { id: "create", label: "Create" },
@@ -53,7 +52,7 @@ export const PRODUCT_FLOW_LABELS = [
   "Permissions",
   "Investment",
   "Review & Publish",
-  "Monitor",
+  "Marketplace",
 ] as const;
 
 export type StrategyId =

@@ -24,9 +24,8 @@ export function CreateStep() {
       <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
         Build Your Portfolio
       </h3>
-      <p className="mt-2 text-[0.98rem] text-muted">
-        Name + description → select portfolio type → select assets. Templates
-        are optional.
+      <p className="mt-2 text-[0.95rem] text-muted">
+        Name it. Choose a type. Templates are optional.
       </p>
 
       <div className="mt-6">

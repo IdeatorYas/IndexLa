@@ -162,11 +162,11 @@ export function MarketplaceSection() {
               Empty marketplace
             </p>
             <p className="mt-3 text-[1.15rem] font-semibold text-ink">
-              No published portfolios yet
+              Your published portfolios will appear here.
             </p>
-            <p className="mx-auto mt-2 max-w-md text-[0.98rem] text-muted">
-              Complete the builder above and publish. Each portfolio you create
-              in this session appears here instantly — no fake listings.
+            <p className="mx-auto mt-2 max-w-md text-[0.95rem] text-muted">
+              Publish from the simulator above. Session portfolios stay listed
+              here — no fake traction.
             </p>
             <div className="mt-6">
               <Button href="#simulator" variant="secondary">
