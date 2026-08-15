@@ -22,7 +22,8 @@ export function ManagePanel() {
   if (manageable.length === 0) return null;
 
   return (
-    <div className="mt-10">
+    <div className="border-t border-white/[0.04] bg-void">
+      <div className="container-max px-4 py-8 sm:px-6 lg:px-8">
       <h3 className="display text-[clamp(1.25rem,2.2vw,1.55rem)] font-semibold tracking-[-0.02em] text-ink">
         Manage Your Portfolios
       </h3>
@@ -127,6 +128,7 @@ export function ManagePanel() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

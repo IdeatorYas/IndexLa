@@ -17,61 +17,25 @@ export function CreateStep() {
   const { draft, updateDraft, applyTemplate } = useSimulator();
 
   return (
-    <div className="mx-auto max-w-2xl">
-      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-3 pr-0.5">
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
         Step · Create
       </p>
-      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
         Build Your Portfolio
       </h3>
-      <p className="mt-2 text-[0.95rem] text-muted">
+      <p className="mt-1 text-[0.85rem] text-muted">
         Name it. Choose a type. Templates are optional.
       </p>
 
-      <div className="mt-6">
-        <p className={labelClass}>Starter templates</p>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
-          {STARTER_TEMPLATES.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => applyTemplate(t.build)}
-              className={`rounded-2xl border px-4 py-3.5 text-left transition-all ${optionCardIdle}`}
-            >
-              <p className="font-semibold text-ink">{t.title}</p>
-              <p className="mt-1 text-[0.82rem] leading-snug text-muted">
-                {t.blurb}
-              </p>
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => applyTemplate(() => emptyDraft())}
-            className={`rounded-2xl border px-4 py-3.5 text-left transition-all sm:col-span-2 ${
-              !draft.name && !draft.portfolioType && draft.assets.length === 0
-                ? optionCardActive
-                : optionCardIdle
-            }`}
-          >
-            <p className="font-semibold text-ink">Start From Scratch</p>
-            <p className="mt-1 text-[0.82rem] text-muted">
-              Blank builder — define name, type, assets, and strategy yourself.
-            </p>
-          </button>
-        </div>
-      </div>
-
-      <div className="mt-8 space-y-5 border-t border-white/[0.07] pt-6">
-        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted">
-          Portfolio details
-        </p>
+      <div className="mt-4 space-y-3.5">
         <div>
           <label htmlFor="pf-name" className={labelClass}>
             Portfolio Name
           </label>
           <input
             id="pf-name"
-            className={fieldClass}
+            className={`${fieldClass} !mt-1.5 !py-2.5`}
             value={draft.name}
             onChange={(e) => updateDraft({ name: e.target.value })}
             placeholder="e.g. Hybrid Wealth Portfolio"
@@ -85,11 +49,12 @@ export function CreateStep() {
           </label>
           <textarea
             id="pf-desc"
-            className={`${fieldClass} min-h-[5.5rem] resize-y`}
+            className={`${fieldClass} !mt-1.5 min-h-[3.5rem] resize-none !py-2.5`}
             value={draft.description}
             onChange={(e) => updateDraft({ description: e.target.value })}
             placeholder="Describe the thesis behind this portfolio"
             maxLength={400}
+            rows={2}
           />
         </div>
 
@@ -97,13 +62,13 @@ export function CreateStep() {
           <label htmlFor="pf-type" className={labelClass}>
             Portfolio Type
           </label>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-2 flex flex-wrap gap-1.5">
             {PORTFOLIO_TYPES.map((t) => (
               <button
                 key={t}
                 type="button"
                 onClick={() => updateDraft({ portfolioType: t })}
-                className={`rounded-full border px-3.5 py-2 text-[0.8rem] font-semibold transition-all ${
+                className={`rounded-full border px-3 py-1.5 text-[0.75rem] font-semibold transition-all ${
                   draft.portfolioType === t ? chipActive : chipIdle
                 }`}
               >
@@ -111,6 +76,41 @@ export function CreateStep() {
               </button>
             ))}
           </div>
+        </div>
+      </div>
+
+      <div className="mt-5 border-t border-white/[0.07] pt-4">
+        <p className={labelClass}>Starter templates · optional</p>
+        <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
+          {STARTER_TEMPLATES.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => applyTemplate(t.build)}
+              className={`rounded-xl border px-3 py-2.5 text-left transition-all ${optionCardIdle}`}
+            >
+              <p className="text-[0.88rem] font-semibold text-ink">{t.title}</p>
+              <p className="mt-0.5 line-clamp-2 text-[0.75rem] leading-snug text-muted">
+                {t.blurb}
+              </p>
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={() => applyTemplate(() => emptyDraft())}
+            className={`rounded-xl border px-3 py-2.5 text-left transition-all sm:col-span-2 ${
+              !draft.name && !draft.portfolioType && draft.assets.length === 0
+                ? optionCardActive
+                : optionCardIdle
+            }`}
+          >
+            <p className="text-[0.88rem] font-semibold text-ink">
+              Start From Scratch
+            </p>
+            <p className="mt-0.5 text-[0.75rem] text-muted">
+              Blank builder — no preloaded portfolio.
+            </p>
+          </button>
         </div>
       </div>
     </div>

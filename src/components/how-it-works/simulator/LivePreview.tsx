@@ -98,7 +98,7 @@ export function LivePreview() {
 
   return (
     <aside
-      className={`${surfaceClass} sticky top-[4.25rem] hidden h-full max-h-[calc(100svh-4.25rem)] overflow-y-auto border-electric/20 p-5 shadow-[0_0_60px_rgba(56,189,248,0.06)] lg:block lg:self-stretch`}
+      className={`${surfaceClass} hidden h-full min-h-0 overflow-y-auto overscroll-contain border-electric/20 p-4 shadow-[0_0_60px_rgba(56,189,248,0.06)] lg:block`}
       aria-label="Live product preview"
     >
       <div className="flex items-center justify-between gap-2">
@@ -113,34 +113,34 @@ export function LivePreview() {
       </div>
 
       {!populated ? (
-        <div className="mt-8 flex flex-col items-center justify-center px-4 py-10 text-center">
-          <div className="flex h-28 w-28 items-center justify-center rounded-full border border-dashed border-white/15">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+        <div className="mt-6 flex flex-col items-center justify-center px-3 py-8 text-center">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full border border-dashed border-white/15">
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
               Empty
             </p>
           </div>
-          <p className="mt-5 display text-[1.15rem] font-semibold tracking-[-0.02em] text-ink">
+          <p className="mt-4 display text-[1.05rem] font-semibold tracking-[-0.02em] text-ink">
             Your portfolio builds here
           </p>
-          <p className="mt-2 max-w-[16rem] text-[0.85rem] leading-relaxed text-muted">
+          <p className="mt-1.5 max-w-[15rem] text-[0.8rem] leading-relaxed text-muted">
             Name, assets, allocation, and strategy appear as you configure them.
           </p>
         </div>
       ) : (
-        <div className="mt-3 space-y-5">
+        <div className="mt-3 space-y-4">
           {(draft.name.trim() || draft.portfolioType) && (
             <div className="transition-all duration-300">
               {draft.name.trim() ? (
-                <p className="display text-[1.35rem] font-semibold tracking-[-0.02em] text-ink">
+                <p className="display text-[1.2rem] font-semibold tracking-[-0.02em] text-ink">
                   {draft.name.trim()}
                 </p>
               ) : (
-                <p className="display text-[1.15rem] font-semibold tracking-[-0.02em] text-muted-dim">
+                <p className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-muted-dim">
                   Untitled
                 </p>
               )}
               {draft.portfolioType ? (
-                <p className="mt-1 text-[0.88rem] text-muted">
+                <p className="mt-0.5 text-[0.82rem] text-muted">
                   {draft.portfolioType}
                 </p>
               ) : null}
@@ -149,32 +149,32 @@ export function LivePreview() {
 
           {draft.assets.length > 0 ? (
             <div className="transition-all duration-300">
-              <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted">
+              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted">
                 Allocation
               </p>
-              <div className="flex flex-col items-center gap-4 xl:flex-row xl:items-start">
-                <AllocationChart assets={draft.assets} size={128} />
-                <div className="w-full flex-1">
+              <div className="flex flex-col items-center gap-3">
+                <AllocationChart assets={draft.assets} size={108} />
+                <div className="w-full">
                   <AllocationBars assets={draft.assets} />
                 </div>
               </div>
               {draft.amountUsd > 0 ? (
-                <ul className="mt-3 space-y-1.5">
+                <ul className="mt-2.5 space-y-1">
                   {draft.assets.map((a, i) => (
                     <li
                       key={a.key}
-                      className="flex items-center justify-between gap-2 text-[0.82rem]"
+                      className="flex items-center justify-between gap-2 text-[0.78rem]"
                     >
                       <span className="flex min-w-0 items-center gap-2">
                         <span
-                          className="h-2 w-2 shrink-0 rounded-full"
+                          className="h-1.5 w-1.5 shrink-0 rounded-full"
                           style={{ background: allocationColor(i) }}
                         />
                         <AssetLogo
                           ticker={a.ticker}
                           name={a.name}
                           src={a.src}
-                          size={20}
+                          size={18}
                         />
                         <span className="truncate font-semibold text-ink">
                           {a.ticker}
@@ -265,16 +265,16 @@ export function LivePreviewCompact() {
   const total = allocationTotal(draft.assets);
 
   return (
-    <div className="mb-4 shrink-0 rounded-2xl border border-electric/20 bg-void/50 p-3 lg:hidden">
-      <div className="flex items-center gap-3">
+    <div className="rounded-xl border border-electric/20 bg-void/50 p-2.5">
+      <div className="flex items-center gap-2.5">
         {draft.assets.length > 0 ? (
-          <AllocationChart assets={draft.assets} size={56} />
+          <AllocationChart assets={draft.assets} size={48} />
         ) : null}
         <div className="min-w-0 flex-1">
-          <p className="truncate text-[0.95rem] font-semibold text-ink">
+          <p className="truncate text-[0.88rem] font-semibold text-ink">
             {draft.name.trim() || "Building…"}
           </p>
-          <p className="truncate text-[0.78rem] text-muted">
+          <p className="truncate text-[0.72rem] text-muted">
             {[
               draft.portfolioType || null,
               draft.strategyId ? strategyTitle(draft.strategyId) : null,
@@ -282,28 +282,17 @@ export function LivePreviewCompact() {
               .filter(Boolean)
               .join(" · ") || "Not set"}
           </p>
-          {draft.assets.length > 0 || draft.amountUsd > 0 ? (
-            <p className="mt-1 text-[0.78rem] text-muted">
-              {draft.assets.length > 0 ? (
-                <span className={total === 100 ? "text-success" : "text-ink"}>
-                  {total}%
-                </span>
-              ) : null}
-              {draft.assets.length > 0 && draft.amountUsd > 0 ? " · " : null}
-              {draft.amountUsd > 0 ? (
-                <span>
-                  {usd(draft.amountUsd)} · Fee 1%
-                </span>
-              ) : null}
+          {draft.assets.length > 0 ? (
+            <p
+              className={`mt-0.5 text-[0.72rem] font-semibold ${
+                total === 100 ? "text-success" : "text-muted"
+              }`}
+            >
+              {total}% allocated
             </p>
           ) : null}
         </div>
       </div>
-      {draft.assets.length > 0 ? (
-        <div className="mt-3">
-          <AllocationBars assets={draft.assets} />
-        </div>
-      ) : null}
     </div>
   );
 }

@@ -43,9 +43,9 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-void/50 p-4 sm:p-5">
-      <div className="mb-3 flex items-center justify-between gap-2">
-        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted">
+    <div className="rounded-xl border border-white/[0.08] bg-void/50 p-3 sm:p-3.5">
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted">
           {title}
         </p>
         {editStep ? <EditLink step={editStep} label="Edit" /> : null}
@@ -60,18 +60,18 @@ export function ReviewStep() {
   const fee = draft.amountUsd * 0.01;
 
   return (
-    <div className="mx-auto max-w-2xl">
-      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-3 pr-0.5">
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
         Step · Review & Publish
       </p>
-      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
         Review & Publish
       </h3>
-      <p className="mt-2 text-[0.98rem] text-muted">
+      <p className="mt-1 text-[0.85rem] text-muted">
         Confirm exactly what you are publishing.
       </p>
 
-      <div className="mt-6 space-y-3">
+      <div className="mt-3 space-y-2.5">
         <Section title="Portfolio" editStep="create">
           <dl className="space-y-2 text-[0.95rem]">
             <div className="flex justify-between gap-3">

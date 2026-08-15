@@ -324,37 +324,37 @@ export function ConfigureStep() {
   }
 
   if (!id) {
-    return <p className="text-muted">Select a strategy first.</p>;
+    return (
+      <p className="pt-6 text-muted">Select a strategy first.</p>
+    );
   }
 
   return (
-    <div className="mx-auto max-w-2xl">
-      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-3 pr-0.5">
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
         Step · Configure
       </p>
-      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
         Strategy Configuration
       </h3>
-      <p className="mt-2 text-[0.98rem] text-muted">
+      <p className="mt-1 text-[0.85rem] text-muted">
         Configuring:{" "}
         <span className="font-semibold text-ink">{strategyTitle(id)}</span>
-        {id === "hybrid"
-          ? " — combine a buy condition with a sell condition."
-          : ". Only parameters for this strategy are shown."}
       </p>
 
-      <div className="mt-5">
-        <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">
+      <div className="mt-3">
+        <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted">
           Trigger → Action → % → Frequency
         </p>
         <StrategyRuleVisual
           id={id}
           config={c}
           hybrid={draft.hybrid}
+          compact
         />
       </div>
 
-      <div className="mt-6 space-y-5">
+      <div className="mt-4 space-y-4">
         {id === "buy-now" ? (
           <div className="space-y-4">
             <p className="rounded-2xl border border-electric/25 bg-electric/[0.08] px-4 py-4 text-[0.98rem] text-ink">

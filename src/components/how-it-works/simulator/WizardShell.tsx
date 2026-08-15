@@ -38,30 +38,30 @@ function Progress() {
   const pct = Math.round(((activeIdx + 1) / STEP_LABELS.length) * 100);
 
   return (
-    <div className="mb-4 shrink-0">
-      <div className="mb-2.5 flex items-center justify-between gap-3">
-        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted">
+    <div className="shrink-0">
+      <div className="mb-1.5 flex items-center justify-between gap-3">
+        <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-muted">
           Step {activeIdx + 1} of {STEP_LABELS.length}
         </p>
-        <p className="text-[0.65rem] font-semibold tabular-nums text-electric">
+        <p className="text-[0.62rem] font-semibold tabular-nums text-electric">
           {pct}%
         </p>
       </div>
-      <div className="mb-3 h-1 overflow-hidden rounded-full bg-white/[0.06]">
+      <div className="mb-2 h-0.5 overflow-hidden rounded-full bg-white/[0.06]">
         <div
           className="h-full rounded-full bg-gradient-to-r from-electric/80 to-electric transition-all duration-500 ease-out"
           style={{ width: `${pct}%` }}
         />
       </div>
-      <div className="overflow-x-auto pb-1">
-        <ol className="flex min-w-max items-center gap-1 sm:gap-1.5">
+      <div className="overflow-x-auto pb-0.5">
+        <ol className="flex min-w-max items-center gap-1">
           {STEP_LABELS.map((s, i) => {
             const done = completed > i;
             const current = s.id === step;
             return (
-              <li key={s.id} className="flex items-center gap-1 sm:gap-1.5">
+              <li key={s.id} className="flex items-center gap-1">
                 <span
-                  className={`inline-flex h-6 items-center rounded-full border px-2 text-[0.58rem] font-semibold uppercase tracking-[0.08em] transition-all sm:h-7 sm:px-2.5 sm:text-[0.65rem] ${
+                  className={`inline-flex h-6 items-center rounded-full border px-2 text-[0.58rem] font-semibold uppercase tracking-[0.07em] transition-all ${
                     current
                       ? "border-electric/50 bg-electric/15 text-electric"
                       : done
@@ -72,7 +72,7 @@ function Progress() {
                   {s.label}
                 </span>
                 {i < STEP_LABELS.length - 1 ? (
-                  <span className="text-muted-dim" aria-hidden>
+                  <span className="text-[0.65rem] text-muted-dim" aria-hidden>
                     →
                   </span>
                 ) : null}
@@ -115,87 +115,96 @@ export function HowItWorksSimulator() {
   const { step, goBack, goNext, canProceed, publish, draft } = useSimulator();
   const isReview = step === "review";
   const isSuccess = step === "success";
-  const fillViewport = !isSuccess;
-  const showPreviewRail = !isSuccess;
 
   return (
-    <section className="border-t border-white/[0.06] bg-void" id="simulator">
-      <div className="container-max px-4 pb-6 pt-3 sm:px-6 sm:pb-8 sm:pt-4 lg:px-8 lg:pb-10 lg:pt-5">
+    <>
+      <section
+        id="simulator"
+        className={`scroll-mt-20 border-t border-white/[0.06] bg-void ${
+          isSuccess
+            ? "py-8"
+            : "h-[calc(100svh-5rem)] max-h-[calc(100svh-5rem)] overflow-hidden"
+        }`}
+      >
         <div
-          className={`grid items-stretch gap-4 lg:gap-5 ${
-            showPreviewRail
-              ? "lg:grid-cols-[minmax(0,1fr)_minmax(26rem,1.1fr)]"
-              : ""
-          } ${
-            fillViewport
-              ? "lg:min-h-[calc(100svh-4.25rem)] lg:h-[calc(100svh-4.25rem)]"
-              : ""
+          className={`container-max flex h-full flex-col px-3 sm:px-5 lg:px-6 ${
+            isSuccess ? "" : "py-2.5 sm:py-3"
           }`}
         >
-          <div
-            className={`${surfaceClass} flex min-h-0 flex-col p-4 sm:p-6 lg:p-7 ${
-              fillViewport ? "lg:h-full lg:max-h-full" : ""
-            }`}
-          >
-            <Progress />
-            {!isSuccess ? <LivePreviewCompact /> : null}
-
-            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-0.5">
+          {isSuccess ? (
+            <div className={`${surfaceClass} mx-auto w-full max-w-2xl p-5 sm:p-7`}>
               <StepBody />
-              {draft.editingId ? (
-                <p className="mt-4 text-center text-[0.8rem] text-electric">
-                  Editing an existing Marketplace portfolio
-                </p>
-              ) : null}
             </div>
+          ) : (
+            <>
+              <div className="mb-2.5 shrink-0">
+                <Progress />
+              </div>
 
-            <div className="mt-5 shrink-0 border-t border-white/[0.07] pt-4">
-              {NEXT_HINT[step] ? (
-                <p className="mb-3 text-center text-[0.8rem] text-muted">
-                  {NEXT_HINT[step]}
-                </p>
-              ) : null}
-              {!isSuccess ? (
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <Button
-                    variant="ghost"
-                    onClick={goBack}
-                    className="!px-5 !py-2.5 text-[0.9rem]"
-                    type="button"
-                  >
-                    Back
-                  </Button>
-                  {isReview ? (
-                    <Button
-                      onClick={() => publish()}
-                      className={`!px-7 !py-3 ${!canProceed("review") ? "pointer-events-none opacity-40" : ""}`}
-                      type="button"
-                    >
-                      Publish to Marketplace
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={goNext}
-                      className={`!px-7 !py-3 ${!canProceed(step) ? "pointer-events-none opacity-40" : ""}`}
-                      type="button"
-                    >
-                      Continue
-                    </Button>
-                  )}
+              <div className="grid min-h-0 flex-1 gap-3 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)]">
+                <div
+                  className={`${surfaceClass} flex min-h-0 flex-col overflow-hidden`}
+                >
+                  <div className="min-h-0 flex-1 overflow-hidden">
+                    <div className="flex h-full min-h-0 flex-col">
+                      <div className="shrink-0 px-3 pt-3 lg:hidden">
+                        <LivePreviewCompact />
+                      </div>
+                      <div className="min-h-0 flex-1 overflow-hidden px-3 pb-1 sm:px-5">
+                        <StepBody />
+                      </div>
+                      {draft.editingId ? (
+                        <p className="shrink-0 px-4 pb-1 text-center text-[0.75rem] text-electric">
+                          Editing an existing Marketplace portfolio
+                        </p>
+                      ) : null}
+                    </div>
+                  </div>
+
+                  <div className="shrink-0 border-t border-white/[0.08] bg-void/80 px-3 py-3 backdrop-blur-sm sm:px-5">
+                    {NEXT_HINT[step] ? (
+                      <p className="mb-2 text-center text-[0.75rem] text-muted">
+                        {NEXT_HINT[step]}
+                      </p>
+                    ) : null}
+                    <div className="flex items-center justify-between gap-3">
+                      <Button
+                        variant="ghost"
+                        onClick={goBack}
+                        className="!px-4 !py-2.5 text-[0.9rem]"
+                        type="button"
+                      >
+                        Back
+                      </Button>
+                      {isReview ? (
+                        <Button
+                          onClick={() => publish()}
+                          className={`!px-6 !py-2.5 ${!canProceed("review") ? "pointer-events-none opacity-40" : ""}`}
+                          type="button"
+                        >
+                          Publish to Marketplace
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={goNext}
+                          className={`!px-6 !py-2.5 ${!canProceed(step) ? "pointer-events-none opacity-40" : ""}`}
+                          type="button"
+                        >
+                          Continue
+                        </Button>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              ) : null}
-            </div>
-          </div>
 
-          <LivePreview />
+                <LivePreview />
+              </div>
+            </>
+          )}
         </div>
+      </section>
 
-        {!isSuccess ? (
-          <div className="mt-6">
-            <ManagePanel />
-          </div>
-        ) : null}
-      </div>
-    </section>
+      {!isSuccess ? <ManagePanel /> : null}
+    </>
   );
 }

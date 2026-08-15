@@ -42,28 +42,28 @@ export function PermissionsStep() {
   const { draft, updateDraft } = useSimulator();
 
   return (
-    <div className="mx-auto max-w-xl">
-      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-electric">
+    <div className="h-full min-h-0 overflow-y-auto overscroll-contain pt-3 pr-0.5">
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-electric">
         Step · Permissions
       </p>
-      <h3 className="display mt-1 text-[clamp(1.35rem,2.5vw,1.75rem)] font-semibold tracking-[-0.02em] text-ink">
+      <h3 className="display mt-0.5 text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.02em] text-ink">
         Execution Permissions
       </h3>
-      <p className="mt-2 text-[0.95rem] text-muted">
-        Authorize only what your strategy needs. Custody never moves.
+      <p className="mt-1 text-[0.85rem] text-muted">
+        Authorize execution — never withdrawals.
       </p>
 
-      <div className="mt-5 rounded-2xl border border-electric/30 bg-electric/[0.08] px-4 py-4 text-center">
-        <p className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-electric">
+      <div className="mt-3 rounded-xl border border-electric/30 bg-electric/[0.08] px-3 py-3 text-center">
+        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
           Your Keys · Your Assets · Your Permissions
         </p>
-        <p className="mt-2 text-[0.9rem] text-muted">
+        <p className="mt-1.5 text-[0.8rem] text-muted">
           The protocol cannot withdraw your funds. You can revoke access at any
           time.
         </p>
       </div>
 
-      <div className="mt-5 space-y-2.5">
+      <div className="mt-3 space-y-2">
         <PermRow
           title="Swap Assets"
           detail="Coordinate swaps within your strategy rules"
@@ -76,7 +76,7 @@ export function PermissionsStep() {
           status="✓ Supported networks"
           tone="ok"
         />
-        <div className="rounded-xl border border-white/[0.07] bg-void/45 px-3.5 py-3">
+        <div className="rounded-xl border border-white/[0.07] bg-void/45 px-3 py-2.5">
           <label htmlFor="tx-limit" className={labelClass}>
             Transaction Limit (USD)
           </label>
@@ -86,7 +86,7 @@ export function PermissionsStep() {
             min={100}
             max={1000000}
             step={100}
-            className={`${fieldClass} !mt-2`}
+            className={`${fieldClass} !mt-1.5 !py-2`}
             value={draft.transactionLimitUsd || ""}
             onChange={(e) =>
               updateDraft({
@@ -97,7 +97,7 @@ export function PermissionsStep() {
               })
             }
           />
-          <p className="mt-1.5 text-[0.78rem] text-muted">
+          <p className="mt-1 text-[0.72rem] text-muted">
             Simulated max size per coordinated execution.
           </p>
         </div>
@@ -109,7 +109,7 @@ export function PermissionsStep() {
         />
       </div>
 
-      <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-2xl border border-electric/30 bg-gradient-to-br from-electric/[0.1] via-void/40 to-transparent p-4 transition-colors hover:border-electric/45">
+      <label className="mt-3 flex cursor-pointer items-start gap-3 rounded-xl border border-electric/30 bg-gradient-to-br from-electric/[0.1] via-void/40 to-transparent p-3.5 transition-colors hover:border-electric/45">
         <input
           type="checkbox"
           className="mt-1 h-5 w-5 rounded border-line accent-electric"
@@ -117,12 +117,11 @@ export function PermissionsStep() {
           onChange={(e) => updateDraft({ authorized: e.target.checked })}
         />
         <span>
-          <span className="block text-[1.05rem] font-semibold text-ink">
+          <span className="block text-[0.98rem] font-semibold text-ink">
             Authorize Strategy Execution
           </span>
-          <span className="mt-1 block text-[0.88rem] text-muted">
-            Simulated permission only — no wallet connection, no signatures, no
-            real transactions.
+          <span className="mt-1 block text-[0.8rem] text-muted">
+            Simulated permission only — no wallet, no real transactions.
           </span>
         </span>
       </label>
