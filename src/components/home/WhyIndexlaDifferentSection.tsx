@@ -61,9 +61,9 @@ export function WhyIndexlaDifferentSection() {
           {capabilities.map((item, i) => (
             <FadeIn key={item.emphasis} delay={0.03 * i}>
               <article className="h-full rounded-2xl border border-electric/25 bg-electric/[0.06] px-5 py-5 text-center sm:px-6 sm:py-6">
-                <p className={`${homeBody} text-ink`}>
+                <p className={homeBody}>
                   {item.lead}
-                  <span className="font-semibold text-ink">{item.emphasis}</span>
+                  <span className="font-semibold">{item.emphasis}</span>
                 </p>
               </article>
             </FadeIn>
