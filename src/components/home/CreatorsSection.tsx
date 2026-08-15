@@ -48,7 +48,7 @@ export function CreatorsSection() {
             Publish your strategy, build an audience and earn from your
             portfolio.
           </p>
-          <p className={`mt-8 ${homeLede}`}>4 Ways to Earn</p>
+          <h3 className={`mt-8 ${homeH2}`}>4 Ways to Earn</h3>
         </FadeIn>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -77,9 +77,18 @@ export function CreatorsSection() {
         </div>
 
         <FadeIn className="mt-8 text-center">
-          <p className="text-[1.15rem] font-semibold tracking-[-0.015em] text-ink">
-            Create. Share. Earn.
-          </p>
+          <div className="mx-auto grid max-w-2xl grid-cols-3 gap-2.5 sm:gap-3">
+            {["Create.", "Share.", "Earn."].map((word) => (
+              <div
+                key={word}
+                className="rounded-xl border border-electric/30 bg-electric/[0.08] px-2 py-3.5 text-center sm:px-4 sm:py-4"
+              >
+                <p className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.25rem]">
+                  {word}
+                </p>
+              </div>
+            ))}
+          </div>
           <div className="mt-6 flex flex-col items-center justify-center gap-4">
             <div className="flex flex-col items-center">
               <EarlyAccessCta mode="creator" className={homeCta}>

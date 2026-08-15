@@ -22,7 +22,9 @@ export function FeesSection() {
       <div className="section-pad container-max">
         <FadeIn className="text-center">
           <h2 className={homeH2}>BUSINESS MODEL</h2>
-          <p className={`mt-3 ${homeH3}`}>Simple. Multiple Revenue Streams.</p>
+          <p className="mt-3 display text-[clamp(1.25rem,2.4vw,1.65rem)] tracking-[-0.025em] text-electric text-balance text-pretty">
+            Simple. Multiple Revenue Streams.
+          </p>
         </FadeIn>
 
         <FadeIn className="mx-auto mt-8 max-w-3xl">
