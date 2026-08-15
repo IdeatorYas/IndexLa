@@ -1,4 +1,5 @@
 import { BuildAutomateSection } from "@/components/home/BuildAutomateSection";
+import { ContactUsSection } from "@/components/home/ContactUsSection";
 import { CreatorsSection } from "@/components/home/CreatorsSection";
 import { DexlaSection } from "@/components/home/DexlaSection";
 import { DistributionSection } from "@/components/home/DistributionSection";
@@ -28,6 +29,7 @@ export default function Home() {
       <DexlaSection />
       <FinalCtaSection />
       <HomeFaqSection />
+      <ContactUsSection />
     </main>
   );
 }
