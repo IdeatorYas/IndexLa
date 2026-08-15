@@ -12,8 +12,8 @@ import {
 const points = [
   "The protocol cannot withdraw your funds.",
   "The protocol cannot expand its own permissions.",
-  "You can revoke access at any time.",
-  "Execution only happens inside the rules you set.",
+  "You can revoke automation at any time.",
+  "Execution only happens within the rules and limits you authorize.",
 ] as const;
 
 export function SecurityControlSection() {

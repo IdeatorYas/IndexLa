@@ -9,6 +9,7 @@ import { MarketCyclesSection } from "@/components/investors/MarketCyclesSection"
 import { MarketplaceSection } from "@/components/investors/MarketplaceSection";
 import { OnePortfolioLayerSection } from "@/components/investors/OnePortfolioLayerSection";
 import { OwnershipSection } from "@/components/investors/OwnershipSection";
+import { InvestorPrivacySection } from "@/components/investors/InvestorPrivacySection";
 import { StrategyWorksSection } from "@/components/investors/StrategyWorksSection";
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function InvestorsPage() {
       <InvestorStrategiesCta />
       <OnePortfolioLayerSection />
       <OwnershipSection />
+      <InvestorPrivacySection />
       <MarketplaceSection />
       <InvestorFinalOwnership />
       <InvestorFinalCta />
