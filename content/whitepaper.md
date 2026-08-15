@@ -343,10 +343,12 @@ INDEXLA charges a 1% execution fee on eligible buy and sell transactions execute
 
 The fee is distributed according to portfolio type:
 
+
 | Portfolio         | Creator | Platform | Treasury | Rewards | Buyback & Burn |
-| ----------------- | ------: | -------: | -------: | ------: | -------------: |
-| INDEXLA Portfolio |       — |      30% |      30% |     30% |            10% |
-| Creator Portfolio |     50% |      20% |      10% |     10% |            10% |
+| ----------------- | ------- | -------- | -------- | ------- | -------------- |
+| INDEXLA Portfolio | —       | 30%      | 30%      | 30%     | 10%            |
+| Creator Portfolio | 50%     | 20%      | 10%      | 10%     | 10%            |
+
 
 Creator portfolios give creators 50% of applicable execution fees, creating a direct incentive to attract investors and grow recurring portfolio activity.
 
@@ -580,11 +582,13 @@ Creator Sets Price → Other Creators Pay in $DEXLA
 
 Investors holding $DEXLA receive lower execution fees.
 
+
 | $DEXLA Held | Execution Fee Discount |
-| --- | --- |
-| 2,500 | 10% |
-| 5,000 | 25% |
-| 10,000 | 40% |
+| ----------- | ---------------------- |
+| 2,500       | 10%                    |
+| 5,000       | 25%                    |
+| 10,000      | 40%                    |
+
 
 ### 05 Tip
 
@@ -656,45 +660,51 @@ That is the INDEXLA token economy.
 
 Solana
 
-| Allocation | Supply | Tokens |
-| --- | --- | --- |
-| Pre Seed | 1.5% | 1.5M |
-| Seed | 6% | 6M |
-| Private | 10% | 10M |
-| Public | 20% | 20M |
-| DEX Liquidity | 10% | 10M |
-| Treasury | 20% | 20M |
-| Team | 15% | 15M |
-| Community | 10% | 10M |
-| Advisors | 2.5% | 2.5M |
-| CEX / Market Making | 5% | 5M |
-| Total | 100% | 100M |
+
+| Allocation          | Supply | Tokens |
+| ------------------- | ------ | ------ |
+| Pre Seed            | 1.5%   | 1.5M   |
+| Seed                | 6%     | 6M     |
+| Private             | 10%    | 10M    |
+| Public              | 20%    | 20M    |
+| DEX Liquidity       | 10%    | 10M    |
+| Treasury            | 20%    | 20M    |
+| Team                | 15%    | 15M    |
+| Community           | 10%    | 10M    |
+| Advisors            | 2.5%   | 2.5M   |
+| CEX / Market Making | 5%     | 5M     |
+| Total               | 100%   | 100M   |
+
 
 ### Vesting & Release Schedule
 
-| Allocation | TGE | Vesting / Release |
-| --- | --- | --- |
-| Pre Seed | 10% | 3-month cliff, 18-month linear |
-| Seed | 10% | 3-month cliff, 18-month linear |
-| Private | 10% | 3-month cliff, 18-month linear |
-| Public | 15% | Remaining allocation released linearly over 6 months |
-| DEX Liquidity | 100% | Available at TGE |
-| Treasury | — | 24-month lock |
-| Team | — | 12-month cliff, then 24-month linear |
-| Community | — | Progressive release |
-| Advisors | — | 6-month cliff, then 12-month linear |
-| CEX / Market Making | — | Released progressively according to listing and liquidity requirements |
+
+| Allocation          | TGE  | Vesting / Release                                                      |
+| ------------------- | ---- | ---------------------------------------------------------------------- |
+| Pre Seed            | 10%  | 3-month cliff, 18-month linear                                         |
+| Seed                | 10%  | 3-month cliff, 18-month linear                                         |
+| Private             | 10%  | 3-month cliff, 18-month linear                                         |
+| Public              | 15%  | Remaining allocation released linearly over 6 months                   |
+| DEX Liquidity       | 100% | Available at TGE                                                       |
+| Treasury            | —    | 24-month lock                                                          |
+| Team                | —    | 12-month cliff, then 24-month linear                                   |
+| Community           | —    | Progressive release                                                    |
+| Advisors            | —    | 6-month cliff, then 12-month linear                                    |
+| CEX / Market Making | —    | Released progressively according to listing and liquidity requirements |
+
 
 ### Initial Circulating Supply
 
-| Allocation | TGE Tokens |
-| --- | --- |
-| DEX Liquidity, 100% | 10.00M |
-| Public, 15% | 3.00M |
-| Private, 10% | 1.00M |
-| Seed, 10% | 0.60M |
-| Pre Seed, 10% | 0.15M |
-| Initial Circulating Supply | 14.75M |
+
+| Allocation                 | TGE Tokens |
+| -------------------------- | ---------- |
+| DEX Liquidity, 100%        | 10.00M     |
+| Public, 15%                | 3.00M      |
+| Private, 10%               | 1.00M      |
+| Seed, 10%                  | 0.60M      |
+| Pre Seed, 10%              | 0.15M      |
+| Initial Circulating Supply | 14.75M     |
+
 
 Initial circulating supply: 14.75M $DEXLA, representing 14.75% of total supply.
 
@@ -717,28 +727,55 @@ This design is intended to support a utility-focused token model and does not co
 
 ---
 
-# 14. Security Architecture
+# 14. Security, Privacy & MEV Protection
+
+Security architecture risk surface
+
+Smart contract risk
+Permission risk
+Market data risk
+Cross-chain & bridge risk
+Liquidity & execution risk
+Privacy & transaction exposure risk
+MEV & front-running risk
+Asset & issuer risk
+Regulatory risk
+Operational risk
 
 Security is a core requirement of INDEXLA.
 
+INDEXLA uses layered controls across the execution lifecycle:
+
+User Authorization → Permission Controls → Policy & Risk Checks → Route Validation → Simulation → Execution → Monitoring → Emergency Controls
+
+Key protections include:
+
+- Scoped permissions — assets, chains, spending limits, slippage, expiry and execution restrictions
+- Fail-closed execution — invalid, expired, unauthorized or unsafe conditions are rejected
+- Revocable automation — users can revoke automation at any time
+- AI boundary — AI monitors conditions and assists execution; it cannot expand permissions or override user rules
+- Market-data protection — stale or conflicting data can prevent execution
+- Execution protection — route validation, simulation and MEV-aware execution where supported
+- Transaction privacy — INDEXLA is designed to minimize unnecessary exposure of transaction and trade details where supported
+- MEV protection — privacy-aware and MEV-aware execution mechanisms are used where supported to reduce exposure to front-running and sandwich attacks
+- Monitoring — trigger integrity, deduplication, heartbeats, backfill and degraded-state handling
+- Emergency controls — controlled protocol-level emergency pause without access to user funds
+
 Major risk categories include:
 
-- Smart contract risk
-- Permission risk
+- Smart contract and permission risk
 - Market data risk
 - Cross-chain and bridge risk
 - Liquidity and execution risk
+- Privacy and transaction exposure risk
+- MEV and front-running risk
 - Asset and issuer risk
-- Regulatory risk
 - Operational infrastructure risk
+- Regulatory risk
 
-INDEXLA intends to conduct independent security reviews and smart-contract audits before broad production deployment.
+Security will progressively increase through independent reviews, smart-contract audits and a public bug bounty before broad production deployment.
 
-A public bug bounty program is also intended to be established as the protocol approaches production deployment.
-
-The detailed permission architecture, execution controls, routing design, recovery systems, and security mechanisms are documented separately in the INDEXLA Technical Paper.
-
-No audit or security process can eliminate all risk.
+No security, privacy or MEV protection mechanism can eliminate all risk.
 
 ---
 
