@@ -35,9 +35,9 @@ function ctaRect(w: number, h: number, compact: boolean) {
   // Keep clear of Build Your Portfolio + Click to enter (center card)
   return compact
     ? {
-        x0: w * 0.08,
-        x1: w * 0.92,
-        y0: h * 0.38,
+        x0: w * 0.06,
+        x1: w * 0.94,
+        y0: h * 0.62,
         y1: h,
       }
     : {
@@ -50,7 +50,7 @@ function ctaRect(w: number, h: number, compact: boolean) {
 
 /**
  * Keepout for logo + headline + CTA column.
- * Bubbles stay in side bands only — never cover brand, type, or CTA.
+ * Mobile: logo/headline high, CTA low — mid sides free for bubbles.
  */
 function contentColumnAt(
   w: number,
@@ -62,11 +62,16 @@ function contentColumnAt(
     return { x0: w * 0.36, x1: w * 0.64 };
   }
   const t = y / Math.max(1, h);
-  // Full content stack keepout (logo high → compact headline → CTA)
-  if (t < 0.4) {
-    return { x0: w * 0.3, x1: w * 0.7 };
+  // Logo + compact headline (top)
+  if (t < 0.28) {
+    return { x0: w * 0.28, x1: w * 0.72 };
   }
-  return { x0: w * 0.28, x1: w * 0.72 };
+  // Mid band — wider side lanes for bubbles
+  if (t < 0.58) {
+    return { x0: w * 0.34, x1: w * 0.66 };
+  }
+  // CTA band
+  return { x0: w * 0.22, x1: w * 0.78 };
 }
 
 function constrainBubble(
