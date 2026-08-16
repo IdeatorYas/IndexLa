@@ -24,11 +24,11 @@ function AssetRow({
       initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{
-        duration: 0.28,
+        duration: 0.42,
         ease: [0.22, 1, 0.36, 1],
         delay: 0,
       }}
-      className="flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.03] px-2.5 py-2 sm:gap-3 sm:px-3 sm:py-2.5"
+      className="flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5 sm:gap-3 sm:px-3 sm:py-2"
       style={{
         boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
       }}
@@ -113,7 +113,7 @@ export function RevealPhone({
             </h3>
             <div className="mt-3 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-            <ul className="mt-3 max-h-[min(42svh,22rem)] space-y-1.5 overflow-y-auto overscroll-contain pr-0.5 sm:mt-3.5 sm:max-h-[24rem] sm:space-y-2">
+            <ul className="mt-3 max-h-[min(48svh,26rem)] space-y-1 overflow-y-auto overscroll-contain pr-0.5 sm:mt-3.5 sm:max-h-[28rem] sm:space-y-1.5">
               <AnimatePresence initial={false}>
                 {shown.map((asset, i) => (
                   <AssetRow key={asset.id} asset={asset} index={i} />

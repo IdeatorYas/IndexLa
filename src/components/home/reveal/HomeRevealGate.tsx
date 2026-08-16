@@ -26,11 +26,12 @@ type Phase =
   | "exiting"
   | "done";
 
-const ASSET_STAGGER_MS = 95;
-const FORMING_PHONE_IN_MS = 420;
-const IDENTITY_HOLD_MS = 900;
-const WELCOME_HOLD_MS = 1400;
-const EXIT_MS = 700;
+const ASSET_STAGGER_MS = 200;
+const FORMING_PHONE_IN_MS = 700;
+const POST_POPULATE_HOLD_MS = 650;
+const IDENTITY_HOLD_MS = 1400;
+const WELCOME_HOLD_MS = 1900;
+const EXIT_MS = 850;
 
 type HomeRevealGateProps = {
   children: ReactNode;
@@ -87,9 +88,9 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
     setPhase("forming");
 
     if (reduceMotion) {
-      schedule(() => setPhase("identity"), 280);
-      schedule(() => setPhase("welcome"), 280 + 500);
-      schedule(() => finish(), 280 + 500 + 900);
+      schedule(() => setPhase("identity"), 400);
+      schedule(() => setPhase("welcome"), 400 + 900);
+      schedule(() => finish(), 400 + 900 + 1200);
       return;
     }
 
@@ -97,7 +98,8 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
       REVEAL_ASSETS.forEach((_, i) => {
         schedule(() => setVisibleCount(i + 1), i * ASSET_STAGGER_MS);
       });
-      const populateDone = REVEAL_ASSETS.length * ASSET_STAGGER_MS + 180;
+      const populateDone =
+        REVEAL_ASSETS.length * ASSET_STAGGER_MS + POST_POPULATE_HOLD_MS;
       schedule(() => setPhase("identity"), populateDone);
       schedule(() => setPhase("welcome"), populateDone + IDENTITY_HOLD_MS);
       schedule(
@@ -179,7 +181,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
                       showWelcome && !reduceMotion ? "blur(5px)" : "blur(0px)",
                   }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <RevealPhone
                     assets={REVEAL_ASSETS}

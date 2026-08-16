@@ -2,22 +2,29 @@
 
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { FloatingAssetBubble } from "./FloatingAssetBubble";
+import {
+  FloatingAssetBubble,
+  type FloatingBubbleVariant,
+} from "./FloatingAssetBubble";
 import { HERO_PORTFOLIO_ASSETS } from "./portfolioAssets";
 
 type FloatingPortfolioProps = {
   className?: string;
   /** When false, hides the centered Portfolio / 100% allocated badge */
   showBadge?: boolean;
+  /** Reveal mode: larger premium bubbles; homepage hero stays on default */
+  variant?: FloatingBubbleVariant;
 };
 
 export function FloatingPortfolio({
   className = "",
   showBadge = true,
+  variant = "default",
 }: FloatingPortfolioProps) {
   const reduce = useReducedMotion();
   const [compact, setCompact] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const isReveal = variant === "reveal";
 
   useEffect(() => {
     setMounted(true);
@@ -37,16 +44,16 @@ export function FloatingPortfolio({
     );
   }
 
-  const assets = compact
-    ? HERO_PORTFOLIO_ASSETS.filter((a) => a.mobile)
-    : HERO_PORTFOLIO_ASSETS;
+  const assets =
+    isReveal || !compact
+      ? HERO_PORTFOLIO_ASSETS
+      : HERO_PORTFOLIO_ASSETS.filter((a) => a.mobile);
 
   return (
     <div
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
       aria-label="Illustrative portfolio allocation visualization"
     >
-      {/* Soft depth planes — restrained */}
       <div
         className="absolute inset-[8%] rounded-[2rem] border border-white/[0.02]"
         aria-hidden
@@ -75,13 +82,20 @@ export function FloatingPortfolio({
       ) : null}
 
       {assets.map((asset) => {
-        const position = compact ? asset.mobile! : asset.desktop;
+        const position = compact
+          ? (asset.mobile ?? {
+              x: asset.desktop.x,
+              y: Math.min(90, 10 + asset.desktop.y * 0.78),
+              depth: asset.desktop.depth,
+            })
+          : asset.desktop;
         return (
           <FloatingAssetBubble
             key={asset.id}
             asset={asset}
             compact={compact}
             position={position}
+            variant={variant}
           />
         );
       })}

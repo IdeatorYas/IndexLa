@@ -118,7 +118,17 @@ export const HERO_PORTFOLIO_ASSETS: FloatingPortfolioAsset[] = [
 ];
 
 /** Bubble diameter in rem from allocation weight (BTC largest, NVDA smallest). */
-export function allocationSizeRem(allocation: number, compact = false): number {
+export function allocationSizeRem(
+  allocation: number,
+  compact = false,
+  variant: "default" | "reveal" = "default",
+): number {
+  if (variant === "reveal") {
+    const min = compact ? 3.55 : 4.35;
+    const max = compact ? 6.35 : 7.85;
+    const t = Math.max(0, Math.min(1, (allocation - 1) / 32));
+    return min + t * (max - min);
+  }
   const min = compact ? 2.35 : 2.7;
   const max = compact ? 4.6 : 5.85;
   const t = Math.max(0, Math.min(1, (allocation - 1) / 32));
