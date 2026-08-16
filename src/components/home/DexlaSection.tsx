@@ -64,7 +64,7 @@ export function DexlaSection() {
 
           <div>
             <FadeIn className="text-center">
-              <h3 className={`${homeH3} text-danger`}>5 Burn Mechanisms</h3>
+              <h3 className={`${homeH2} text-danger`}>5 Burn Mechanisms</h3>
             </FadeIn>
             <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {burns.map((item) => (
