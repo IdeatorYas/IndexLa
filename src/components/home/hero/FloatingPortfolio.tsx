@@ -82,13 +82,29 @@ export function FloatingPortfolio({
       ) : null}
 
       {assets.map((asset) => {
-        const position = compact
+        const base = compact
           ? (asset.mobile ?? {
               x: asset.desktop.x,
               y: Math.min(90, 10 + asset.desktop.y * 0.78),
               depth: asset.desktop.depth,
             })
           : asset.desktop;
+
+        // Reveal: keep a clear center corridor for logo + CTA
+        const position = isReveal
+          ? {
+              x: Math.max(
+                5,
+                Math.min(95, 50 + (base.x - 50) * (compact ? 1.22 : 1.28)),
+              ),
+              y: Math.max(
+                7,
+                Math.min(93, 50 + (base.y - 50) * (compact ? 1.18 : 1.24)),
+              ),
+              depth: base.depth,
+            }
+          : base;
+
         return (
           <FloatingAssetBubble
             key={asset.id}

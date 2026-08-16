@@ -120,7 +120,7 @@ export function FloatingAssetBubble({
             <p className="text-[0.78rem] font-semibold tracking-[-0.01em] text-ink sm:text-[0.88rem]">
               {asset.ticker}
             </p>
-            <p className="display mt-1.5 text-[1.2rem] font-semibold tracking-[-0.03em] text-electric sm:mt-2 sm:text-[1.45rem]">
+            <p className="display mt-1.5 text-[1.35rem] font-semibold tracking-[-0.03em] text-electric sm:mt-2 sm:text-[1.65rem]">
               {asset.allocation}%
             </p>
           </div>

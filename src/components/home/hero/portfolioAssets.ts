@@ -124,8 +124,8 @@ export function allocationSizeRem(
   variant: "default" | "reveal" = "default",
 ): number {
   if (variant === "reveal") {
-    const min = compact ? 3.55 : 4.35;
-    const max = compact ? 6.35 : 7.85;
+    const min = compact ? 3.15 : 3.85;
+    const max = compact ? 5.35 : 6.55;
     const t = Math.max(0, Math.min(1, (allocation - 1) / 32));
     return min + t * (max - min);
   }
