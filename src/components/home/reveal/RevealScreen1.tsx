@@ -27,7 +27,7 @@ export function RevealScreen1({
       }}
       transition={{ duration: reduceMotion ? 0.2 : 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
-      <FloatingPortfolio />
+      <FloatingPortfolio showBadge={false} />
 
       <div className="relative z-20 flex min-h-[100svh] flex-col items-center px-5 pb-10 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-8">
         <motion.div

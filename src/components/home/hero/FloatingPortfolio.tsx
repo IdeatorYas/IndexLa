@@ -7,9 +7,14 @@ import { HERO_PORTFOLIO_ASSETS } from "./portfolioAssets";
 
 type FloatingPortfolioProps = {
   className?: string;
+  /** When false, hides the centered Portfolio / 100% allocated badge */
+  showBadge?: boolean;
 };
 
-export function FloatingPortfolio({ className = "" }: FloatingPortfolioProps) {
+export function FloatingPortfolio({
+  className = "",
+  showBadge = true,
+}: FloatingPortfolioProps) {
   const reduce = useReducedMotion();
   const [compact, setCompact] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -51,21 +56,23 @@ export function FloatingPortfolio({ className = "" }: FloatingPortfolioProps) {
         aria-hidden
       />
 
-      <motion.div
-        className="absolute left-1/2 top-[calc(5rem+0.75rem)] z-[5] -translate-x-1/2 lg:top-[calc(5rem+1.25rem)]"
-        initial={reduce ? false : { opacity: 0, y: -6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.15 }}
-      >
-        <div className="rounded-full border border-line bg-void/75 px-3 py-1.5 text-center shadow-[0_8px_24px_rgba(0,0,0,0.25)] backdrop-blur-sm sm:px-3.5">
-          <p className="text-[0.55rem] font-semibold uppercase tracking-[0.16em] text-electric">
-            Portfolio
-          </p>
-          <p className="mt-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-            100% allocated
-          </p>
-        </div>
-      </motion.div>
+      {showBadge ? (
+        <motion.div
+          className="absolute left-1/2 top-[calc(5rem+0.75rem)] z-[5] -translate-x-1/2 lg:top-[calc(5rem+1.25rem)]"
+          initial={reduce ? false : { opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+        >
+          <div className="rounded-full border border-line bg-void/75 px-3 py-1.5 text-center shadow-[0_8px_24px_rgba(0,0,0,0.25)] backdrop-blur-sm sm:px-3.5">
+            <p className="text-[0.55rem] font-semibold uppercase tracking-[0.16em] text-electric">
+              Portfolio
+            </p>
+            <p className="mt-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+              100% allocated
+            </p>
+          </div>
+        </motion.div>
+      ) : null}
 
       {assets.map((asset) => {
         const position = compact ? asset.mobile! : asset.desktop;
