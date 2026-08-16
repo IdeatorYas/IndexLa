@@ -124,9 +124,9 @@ export function allocationSizeRem(
   variant: "default" | "reveal" = "default",
 ): number {
   if (variant === "reveal") {
-    // Larger overall; compact sized to fit side corridors without covering
-    const min = compact ? 4.85 : 7.0;
-    const max = compact ? 7.6 : 12.4;
+    // Larger overall; compact sized so side corridors can fit 5 bubbles
+    const min = compact ? 4.4 : 7.0;
+    const max = compact ? 6.4 : 12.4;
     const t = Math.pow(
       Math.max(0, Math.min(1, (allocation - 1) / 32)),
       0.55,

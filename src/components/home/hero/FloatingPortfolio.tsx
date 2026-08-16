@@ -33,15 +33,15 @@ function ctaRect(w: number, h: number, compact: boolean) {
   // Keep clear of Build Your Portfolio + Click to enter
   return compact
     ? {
-        x0: w * 0.06,
-        x1: w * 0.94,
-        y0: h * 0.56,
+        x0: w * 0.04,
+        x1: w * 0.96,
+        y0: h * 0.52,
         y1: h,
       }
     : {
-        x0: w * 0.22,
-        x1: w * 0.78,
-        y0: h * 0.54,
+        x0: w * 0.2,
+        x1: w * 0.8,
+        y0: h * 0.5,
         y1: h,
       };
 }
@@ -49,8 +49,70 @@ function ctaRect(w: number, h: number, compact: boolean) {
 /** Logo + headline + CTA column — bubbles stay in side corridors */
 function contentColumn(w: number, h: number, compact: boolean) {
   return compact
-    ? { x0: w * 0.3, x1: w * 0.7, y0: h * 0.1, y1: h * 0.98 }
-    : { x0: w * 0.32, x1: w * 0.68, y0: h * 0.04, y1: h * 0.98 };
+    ? { x0: w * 0.32, x1: w * 0.68, y0: h * 0.06, y1: h * 0.98 }
+    : { x0: w * 0.33, x1: w * 0.67, y0: h * 0.04, y1: h * 0.98 };
+}
+
+function constrainBubble(
+  b: SimBubble,
+  width: number,
+  height: number,
+  compact: boolean,
+  col: { x0: number; x1: number },
+  zone: { x0: number; x1: number; y0: number },
+  fieldBottom: number,
+) {
+  const leftSide = b.x < width * 0.5;
+  if (leftSide) {
+    const maxX = col.x0 - b.r - 10;
+    const minX = b.r + 6;
+    // Prefer corridor; if bubble is too large for side band, pin to outer edge
+    if (maxX >= minX) {
+      if (b.x > maxX) {
+        b.x = maxX;
+        b.vx = -Math.abs(b.vx) - 0.12;
+      }
+      if (b.x < minX) {
+        b.x = minX;
+        b.vx = Math.abs(b.vx) * 0.9;
+      }
+    } else {
+      b.x = minX;
+      b.vx = Math.min(b.vx, 0);
+    }
+  } else {
+    const minX = col.x1 + b.r + 10;
+    const maxX = width - b.r - 6;
+    if (minX <= maxX) {
+      if (b.x < minX) {
+        b.x = minX;
+        b.vx = Math.abs(b.vx) + 0.12;
+      }
+      if (b.x > maxX) {
+        b.x = maxX;
+        b.vx = -Math.abs(b.vx) * 0.9;
+      }
+    } else {
+      b.x = maxX;
+      b.vx = Math.max(b.vx, 0);
+    }
+  }
+
+  const minY = b.r + 6;
+  const maxY = fieldBottom - b.r;
+  if (b.y < minY) {
+    b.y = minY;
+    b.vy = Math.abs(b.vy) * 0.9;
+  } else if (b.y > maxY) {
+    b.y = maxY;
+    b.vy = -Math.abs(b.vy) * 0.9;
+  }
+
+  // CTA floor — never cover Build Your Portfolio / Click to enter
+  if (b.y + b.r > zone.y0 - 4 && b.x + b.r > zone.x0 && b.x - b.r < zone.x1) {
+    b.y = zone.y0 - b.r - 10;
+    b.vy = -Math.abs(b.vy) - 0.28;
+  }
 }
 
 function seedRevealPositions(
@@ -63,8 +125,6 @@ function seedRevealPositions(
     typeof window !== "undefined"
       ? parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
       : 16;
-
-  const fieldBottom = compact ? height * 0.92 : height * 0.9;
 
   return assets.map((asset, i) => {
     const base = compact
@@ -79,22 +139,24 @@ function seedRevealPositions(
     const sizeRem = allocationSizeRem(asset.allocation, compact, "reveal");
     const r = (sizeRem * rootFs) / 2;
     const col = contentColumn(width, height, compact);
+    const zone = ctaRect(width, height, compact);
+    const fieldBottom = compact ? height * 0.9 : height * 0.88;
 
     const sideIndex = Math.floor(i / 2);
     const sideCount = Math.ceil(assets.length / 2);
     const ySlot = (sideIndex + 0.5) / sideCount;
     let x = left
-      ? Math.min(col.x0 - r - 10, width * 0.14)
-      : Math.max(col.x1 + r + 10, width * 0.86);
+      ? Math.min(col.x0 - r - 12, width * 0.14)
+      : Math.max(col.x1 + r + 12, width * 0.86);
     x = Math.min(width - r - 8, Math.max(r + 8, x));
     const y = Math.min(
       fieldBottom - r,
-      Math.max(r + 12, height * (0.08 + ySlot * 0.78)),
+      Math.max(r + 12, height * (0.08 + ySlot * 0.72)),
     );
 
     const speed = compact ? 0.35 : 0.48;
     const angle = (i / assets.length) * Math.PI * 2 + 0.55;
-    return {
+    const bubble: SimBubble = {
       id: asset.id,
       asset,
       x,
@@ -104,6 +166,8 @@ function seedRevealPositions(
       r,
       depth: base.depth,
     };
+    constrainBubble(bubble, width, height, compact, col, zone, fieldBottom);
+    return bubble;
   });
 }
 
@@ -186,16 +250,36 @@ export function FloatingPortfolio({
           }
         }
       }
-      for (const b of bubbles) {
-        b.r = (allocationSizeRem(b.asset.allocation, compact, "reveal") * rootFs) / 2;
-        const col = contentColumn(width, height, compact);
-        if (b.x < width * 0.5) {
-          b.x = Math.min(b.x, col.x0 - b.r - 6);
-        } else {
-          b.x = Math.max(b.x, col.x1 + b.r + 6);
+      const col = contentColumn(width, height, compact);
+      const zone = ctaRect(width, height, compact);
+      const fieldBottom = compact ? height * 0.9 : height * 0.88;
+      for (let pass = 0; pass < 4; pass++) {
+        for (let i = 0; i < bubbles.length; i++) {
+          for (let j = i + 1; j < bubbles.length; j++) {
+            const a = bubbles[i];
+            const b = bubbles[j];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const dist = Math.hypot(dx, dy) || 0.001;
+            const minDist = a.r + b.r + (compact ? 12 : 10);
+            if (dist < minDist) {
+              const push = (minDist - dist) / 2;
+              const nx = dx / dist;
+              const ny = dy / dist;
+              a.x -= nx * push;
+              a.y -= ny * push;
+              b.x += nx * push;
+              b.y += ny * push;
+            }
+          }
         }
-        b.x = Math.min(width - b.r - 6, Math.max(b.r + 6, b.x));
-        b.y = Math.min(height * 0.9 - b.r, Math.max(b.r + 6, b.y));
+        for (const b of bubbles) {
+          b.r =
+            (allocationSizeRem(b.asset.allocation, compact, "reveal") *
+              rootFs) /
+            2;
+          constrainBubble(b, width, height, compact, col, zone, fieldBottom);
+        }
       }
       publish();
     };
@@ -224,8 +308,8 @@ export function FloatingPortfolio({
       const bubbles = simRef.current;
       const zone = ctaRect(width, height, compact);
       const col = contentColumn(width, height, compact);
-      const fieldBottom = compact ? height * 0.92 : height * 0.9;
-      const pad = compact ? 16 : 14;
+      const fieldBottom = compact ? height * 0.9 : height * 0.88;
+      const pad = compact ? 14 : 16;
 
       for (let i = 0; i < bubbles.length; i++) {
         const b = bubbles[i];
@@ -238,80 +322,46 @@ export function FloatingPortfolio({
         b.vy += Math.sin(phase * 0.9 + 0.8) * 0.048 * dt;
 
         const sp = Math.hypot(b.vx, b.vy);
-        const maxSp = compact ? 0.9 : 1.25;
+        const maxSp = compact ? 0.85 : 1.25;
         if (sp > maxSp) {
           b.vx = (b.vx / sp) * maxSp;
           b.vy = (b.vy / sp) * maxSp;
         }
 
-        b.x += b.vx * dt * 1.2;
-        b.y += b.vy * dt * 1.2;
-
-        // Side corridor walls (never enter logo/headline/CTA column)
-        const leftSide = b.x < width * 0.5;
-        if (leftSide) {
-          const maxX = col.x0 - b.r - 8;
-          if (b.x > maxX) {
-            b.x = maxX;
-            b.vx = -Math.abs(b.vx) - 0.15;
-          }
-        } else {
-          const minX = col.x1 + b.r + 8;
-          if (b.x < minX) {
-            b.x = minX;
-            b.vx = Math.abs(b.vx) + 0.15;
-          }
-        }
-
-        const minX = b.r + 6;
-        const maxX = width - b.r - 6;
-        const minY = b.r + 6;
-        const maxY = fieldBottom - b.r;
-        if (b.x < minX) {
-          b.x = minX;
-          b.vx = Math.abs(b.vx) * 0.9;
-        } else if (b.x > maxX) {
-          b.x = maxX;
-          b.vx = -Math.abs(b.vx) * 0.9;
-        }
-        if (b.y < minY) {
-          b.y = minY;
-          b.vy = Math.abs(b.vy) * 0.9;
-        } else if (b.y > maxY) {
-          b.y = maxY;
-          b.vy = -Math.abs(b.vy) * 0.9;
-        }
-
-        // Extra CTA floor repulsion
-        if (b.y + b.r > zone.y0 && b.x > zone.x0 && b.x < zone.x1) {
-          b.y = zone.y0 - b.r - 6;
-          b.vy = -Math.abs(b.vy) - 0.25;
-        }
+        b.x += b.vx * dt * 1.15;
+        b.y += b.vy * dt * 1.15;
+        constrainBubble(b, width, height, compact, col, zone, fieldBottom);
       }
 
-      for (let i = 0; i < bubbles.length; i++) {
-        for (let j = i + 1; j < bubbles.length; j++) {
-          const a = bubbles[i];
-          const b = bubbles[j];
-          const dx = b.x - a.x;
-          const dy = b.y - a.y;
-          const dist = Math.hypot(dx, dy) || 0.001;
-          const minDist = a.r + b.r + pad;
-          if (dist < minDist) {
-            const overlap = minDist - dist;
-            const nx = dx / dist;
-            const ny = dy / dist;
-            const share = overlap * 0.52;
-            a.x -= nx * share;
-            a.y -= ny * share;
-            b.x += nx * share;
-            b.y += ny * share;
-            const bounce = 0.12 * dt;
-            a.vx -= nx * bounce;
-            a.vy -= ny * bounce;
-            b.vx += nx * bounce;
-            b.vy += ny * bounce;
+      // Soft collisions then re-clamp corridors so bubbles never cover content
+      for (let pass = 0; pass < 2; pass++) {
+        for (let i = 0; i < bubbles.length; i++) {
+          for (let j = i + 1; j < bubbles.length; j++) {
+            const a = bubbles[i];
+            const b = bubbles[j];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const dist = Math.hypot(dx, dy) || 0.001;
+            const minDist = a.r + b.r + pad;
+            if (dist < minDist) {
+              const overlap = minDist - dist;
+              const nx = dx / dist;
+              const ny = dy / dist;
+              const share = overlap * 0.55;
+              a.x -= nx * share;
+              a.y -= ny * share;
+              b.x += nx * share;
+              b.y += ny * share;
+              const bounce = 0.14 * dt;
+              a.vx -= nx * bounce;
+              a.vy -= ny * bounce;
+              b.vx += nx * bounce;
+              b.vy += ny * bounce;
+            }
           }
+        }
+        for (const b of bubbles) {
+          constrainBubble(b, width, height, compact, col, zone, fieldBottom);
         }
       }
 
