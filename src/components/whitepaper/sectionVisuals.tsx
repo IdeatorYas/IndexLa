@@ -78,7 +78,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: (
             <WhitepaperExploreCta
               href="/how-it-works"
-              label="See How It Works →"
+              label="Test the Static Demo →"
             />
           ),
         },
@@ -98,7 +98,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <EconomicFlywheelDiagram />,
         },
       ];
-    case "10-investor-overview":
+    case "11-investor-experience":
       return [
         {
           id: "investor-stack",
@@ -111,12 +111,12 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: (
             <WhitepaperExploreCta
               href="/investors"
-              label="Explore Investor Experience →"
+              label="Explore INDEXLA for Investors →"
             />
           ),
         },
       ];
-    case "11-strategies":
+    case "12-strategies":
       return [
         {
           id: "strategy-engine",
@@ -129,12 +129,12 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: (
             <WhitepaperExploreCta
               href="/strategies"
-              label="Explore Strategies →"
+              label="Explore INDEXLA Strategies →"
             />
           ),
         },
       ];
-    case "12-creator-economy":
+    case "13-creator-economy":
       return [
         {
           id: "creator-flow",
@@ -147,12 +147,12 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: (
             <WhitepaperExploreCta
               href="/creators"
-              label="Explore Creator Program →"
+              label="Explore INDEXLA for Creators →"
             />
           ),
         },
       ];
-    case "13-dexla-utility-tokenomics":
+    case "14-dexla-utility-tokenomics":
       return [
         {
           id: "fee-discounts",
@@ -178,20 +178,23 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           afterHeadingId: "vesting-release-schedule",
           node: <VestingTimelineDiagram />,
         },
-        {
-          id: "explore-dexla",
-          placement: "end",
-          node: (
-            <WhitepaperExploreCta href="/tokenomics" label="Explore $DEXLA →" />
-          ),
-        },
       ];
-    case "14-security-architecture":
+    case "15-security-privacy-mev-protection":
       return [
         {
           id: "security-risk",
           placement: "before",
           node: <SecurityRiskDiagram />,
+        },
+        {
+          id: "explore-technical-paper",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/whitepaper/technical"
+              label="Explore the Technical Paper →"
+            />
+          ),
         },
       ];
     case "16-go-to-market":

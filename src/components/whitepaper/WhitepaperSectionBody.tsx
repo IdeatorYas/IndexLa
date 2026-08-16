@@ -22,7 +22,7 @@ const CARDIFY_SECTIONS: Record<string, number> = {
   "6-why-the-architecture-gap-is-structural": 3,
   "7-market-opportunity": 3,
   "9-how-indexla-works": 3,
-  "11-strategies": 3,
+  "12-strategies": 3,
   "18-risk-factors": 3,
 };
 
@@ -31,9 +31,9 @@ const ACCENT_LIST_SECTIONS = new Set([
   "2-the-problem",
   "5-why-indexla-differs",
   "9-business-model",
-  "10-investor-overview",
-  "12-creator-economy",
-  "13-dexla-utility-tokenomics",
+  "11-investor-experience",
+  "13-creator-economy",
+  "14-dexla-utility-tokenomics",
 ]);
 
 function plainHeading(raw: string): string {
