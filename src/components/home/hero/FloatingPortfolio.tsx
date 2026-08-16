@@ -35,9 +35,9 @@ function ctaRect(w: number, h: number, compact: boolean) {
   // Keep clear of Build Your Portfolio + Click to enter (center card)
   return compact
     ? {
-        x0: w * 0.08,
-        x1: w * 0.92,
-        y0: h * 0.58,
+        x0: w * 0.1,
+        x1: w * 0.9,
+        y0: h * 0.54,
         y1: h,
       }
     : {
@@ -50,7 +50,7 @@ function ctaRect(w: number, h: number, compact: boolean) {
 
 /**
  * Keepout for logo + headline + CTA.
- * Desktop corridors unchanged. Mobile: softer center so bubbles orbit the logo.
+ * Desktop corridors unchanged. Mobile: soft center so bubbles orbit the logo.
  */
 function contentColumnAt(
   w: number,
@@ -62,15 +62,15 @@ function contentColumnAt(
     return { x0: w * 0.36, x1: w * 0.64 };
   }
   const t = y / Math.max(1, h);
-  // Logo + CAPITAL headline core
-  if (t < 0.36) {
-    return { x0: w * 0.3, x1: w * 0.7 };
+  // Tight keepout only over logo wordmark + CAPITAL
+  if (t < 0.34) {
+    return { x0: w * 0.34, x1: w * 0.66 };
   }
-  // Approach CTA
-  if (t < 0.55) {
-    return { x0: w * 0.26, x1: w * 0.74 };
+  // Mid field — allow bubbles closer around the brand
+  if (t < 0.52) {
+    return { x0: w * 0.28, x1: w * 0.72 };
   }
-  return { x0: w * 0.18, x1: w * 0.82 };
+  return { x0: w * 0.16, x1: w * 0.84 };
 }
 
 function constrainBubble(
@@ -203,16 +203,16 @@ function seedRevealPositions(
     if (compact) {
       // Orbit around logo — visible, not stuck to screen edges
       const cx = width * 0.5;
-      const cy = height * 0.3;
+      const cy = height * 0.28;
       const angle = (i / assets.length) * Math.PI * 2 - Math.PI / 2;
       const orbit =
-        Math.min(width * 0.38, height * 0.26) * (0.78 + (i % 3) * 0.12);
+        Math.min(width * 0.34, height * 0.24) * (0.72 + (i % 3) * 0.1);
       x = cx + Math.cos(angle) * orbit;
-      y = cy + Math.sin(angle) * orbit * 0.92;
+      y = cy + Math.sin(angle) * orbit * 0.88;
       side = x < width * 0.5 ? "left" : "right";
-      const speed = 0.38;
-      vx = Math.cos(angle + 1.2) * speed;
-      vy = Math.sin(angle + 0.7) * speed * 0.9;
+      const speed = 0.36;
+      vx = Math.cos(angle + 1.15) * speed;
+      vy = Math.sin(angle + 0.65) * speed * 0.85;
     } else {
       // Desktop seeding — unchanged corridor approach
       const left = base.x < 50;

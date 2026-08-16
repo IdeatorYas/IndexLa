@@ -29,7 +29,7 @@ export function RevealScreen1({
     >
       <FloatingPortfolio showBadge={false} variant="reveal" />
 
-      <div className="relative z-40 flex min-h-[100svh] flex-col items-center justify-center px-5 py-[max(1rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] md:px-10 md:py-10">
+      <div className="relative z-40 flex min-h-[100svh] flex-col items-center justify-center px-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] md:px-10 md:py-10">
         <motion.div
           className="mx-auto flex w-full max-w-[21rem] flex-col items-center text-center md:max-w-[32rem]"
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
@@ -41,7 +41,7 @@ export function RevealScreen1({
             alt="INDEXLA"
             width={520}
             height={208}
-            className="mx-auto h-[4.85rem] w-auto object-contain drop-shadow-[0_16px_48px_rgba(0,0,0,0.55)] md:h-[8.35rem]"
+            className="mx-auto h-[5.5rem] w-auto object-contain drop-shadow-[0_16px_48px_rgba(0,0,0,0.55)] md:h-[8.75rem]"
             priority
           />
 
