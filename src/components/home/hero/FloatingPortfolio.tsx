@@ -35,9 +35,9 @@ function ctaRect(w: number, h: number, compact: boolean) {
   // Keep clear of Build Your Portfolio + Click to enter (center card)
   return compact
     ? {
-        x0: w * 0.06,
-        x1: w * 0.94,
-        y0: h * 0.62,
+        x0: w * 0.08,
+        x1: w * 0.92,
+        y0: h * 0.58,
         y1: h,
       }
     : {
@@ -49,8 +49,8 @@ function ctaRect(w: number, h: number, compact: boolean) {
 }
 
 /**
- * Keepout for logo + headline + CTA column.
- * Mobile: logo/headline high, CTA low — mid sides free for bubbles.
+ * Keepout for logo + headline + CTA.
+ * Desktop corridors unchanged. Mobile: softer center so bubbles orbit the logo.
  */
 function contentColumnAt(
   w: number,
@@ -62,16 +62,15 @@ function contentColumnAt(
     return { x0: w * 0.36, x1: w * 0.64 };
   }
   const t = y / Math.max(1, h);
-  // Logo + compact headline (top)
-  if (t < 0.28) {
-    return { x0: w * 0.28, x1: w * 0.72 };
+  // Logo + CAPITAL headline core
+  if (t < 0.36) {
+    return { x0: w * 0.3, x1: w * 0.7 };
   }
-  // Mid band — wider side lanes for bubbles
-  if (t < 0.58) {
-    return { x0: w * 0.34, x1: w * 0.66 };
+  // Approach CTA
+  if (t < 0.55) {
+    return { x0: w * 0.26, x1: w * 0.74 };
   }
-  // CTA band
-  return { x0: w * 0.22, x1: w * 0.78 };
+  return { x0: w * 0.18, x1: w * 0.82 };
 }
 
 function constrainBubble(
@@ -84,36 +83,54 @@ function constrainBubble(
 ) {
   const col = contentColumnAt(width, height, b.y, compact);
   const leftSide = b.side === "left";
-  // Prefer clipping at the screen edge over covering logo/headline
-  const edgeSlack = compact ? b.r * 0.42 : 4;
 
-  if (leftSide) {
-    // Right edge of bubble must stay left of content keepout
-    const maxCenter = col.x0 - b.r - 6;
-    const minCenter = -edgeSlack + 4;
-    if (b.x > maxCenter) {
-      b.x = maxCenter;
-      b.vx = -Math.abs(b.vx) - 0.2;
-    }
-    if (b.x < minCenter) {
-      b.x = minCenter;
-      b.vx = Math.abs(b.vx) * 0.85;
+  if (compact) {
+    // Stay fully on-screen (no horizontal scroll / edge clipping)
+    const minCenter = b.r + 8;
+    const maxCenter = width - b.r - 8;
+    if (leftSide) {
+      const maxX = Math.min(maxCenter, col.x0 - b.r - 4);
+      b.x = Math.min(b.x, maxX);
+      b.x = Math.max(b.x, minCenter);
+      if (b.x >= maxX - 0.5) b.vx = -Math.abs(b.vx) - 0.12;
+      if (b.x <= minCenter + 0.5) b.vx = Math.abs(b.vx) * 0.85;
+    } else {
+      const minX = Math.max(minCenter, col.x1 + b.r + 4);
+      b.x = Math.max(b.x, minX);
+      b.x = Math.min(b.x, maxCenter);
+      if (b.x <= minX + 0.5) b.vx = Math.abs(b.vx) + 0.12;
+      if (b.x >= maxCenter - 0.5) b.vx = -Math.abs(b.vx) * 0.85;
     }
   } else {
-    const minCenter = col.x1 + b.r + 6;
-    const maxCenter = width + edgeSlack - 4;
-    if (b.x < minCenter) {
-      b.x = minCenter;
-      b.vx = Math.abs(b.vx) + 0.2;
-    }
-    if (b.x > maxCenter) {
-      b.x = maxCenter;
-      b.vx = -Math.abs(b.vx) * 0.85;
+    // Desktop — preserve existing corridor / edge behavior
+    const edgeSlack = 4;
+    if (leftSide) {
+      const maxCenter = col.x0 - b.r - 6;
+      const minCenter = -edgeSlack + 4;
+      if (b.x > maxCenter) {
+        b.x = maxCenter;
+        b.vx = -Math.abs(b.vx) - 0.2;
+      }
+      if (b.x < minCenter) {
+        b.x = minCenter;
+        b.vx = Math.abs(b.vx) * 0.85;
+      }
+    } else {
+      const minCenter = col.x1 + b.r + 6;
+      const maxCenter = width + edgeSlack - 4;
+      if (b.x < minCenter) {
+        b.x = minCenter;
+        b.vx = Math.abs(b.vx) + 0.2;
+      }
+      if (b.x > maxCenter) {
+        b.x = maxCenter;
+        b.vx = -Math.abs(b.vx) * 0.85;
+      }
     }
   }
 
-  const minY = Math.max(6, b.r * 0.55);
-  const maxY = fieldBottom - b.r * 0.55;
+  const minY = compact ? b.r + 10 : Math.max(6, b.r * 0.55);
+  const maxY = fieldBottom - (compact ? b.r + 8 : b.r * 0.55);
   if (b.y < minY) {
     b.y = minY;
     b.vy = Math.abs(b.vy) * 0.9;
@@ -128,14 +145,27 @@ function constrainBubble(
     b.vy = -Math.abs(b.vy) - 0.35;
   }
 
-  // Re-apply horizontal keepout after CTA vertical push (y may have changed)
+  // Re-apply horizontal keepout after CTA vertical push
   const col2 = contentColumnAt(width, height, b.y, compact);
-  if (leftSide) {
-    b.x = Math.min(b.x, col2.x0 - b.r - 6);
-    b.x = Math.max(b.x, -edgeSlack + 4);
+  if (compact) {
+    const minCenter = b.r + 8;
+    const maxCenter = width - b.r - 8;
+    if (leftSide) {
+      b.x = Math.min(b.x, Math.min(maxCenter, col2.x0 - b.r - 4));
+      b.x = Math.max(b.x, minCenter);
+    } else {
+      b.x = Math.max(b.x, Math.max(minCenter, col2.x1 + b.r + 4));
+      b.x = Math.min(b.x, maxCenter);
+    }
   } else {
-    b.x = Math.max(b.x, col2.x1 + b.r + 6);
-    b.x = Math.min(b.x, width + edgeSlack - 4);
+    const edgeSlack = 4;
+    if (leftSide) {
+      b.x = Math.min(b.x, col2.x0 - b.r - 6);
+      b.x = Math.max(b.x, -edgeSlack + 4);
+    } else {
+      b.x = Math.max(b.x, col2.x1 + b.r + 6);
+      b.x = Math.min(b.x, width + edgeSlack - 4);
+    }
   }
 }
 
@@ -159,40 +189,63 @@ function seedRevealPositions(
         })
       : asset.desktop;
 
-    const left = base.x < 50;
-    const side: "left" | "right" = left ? "left" : "right";
     const sizeRem = allocationSizeRem(asset.allocation, compact, "reveal");
     const r = (sizeRem * rootFs) / 2;
     const zone = ctaRect(width, height, compact);
-    const fieldBottom = compact ? height * 0.94 : height * 0.88;
+    const fieldBottom = compact ? height * 0.9 : height * 0.88;
 
-    const sideIndex = Math.floor(i / 2);
-    const sideCount = Math.ceil(assets.length / 2);
-    const ySlot = (sideIndex + 0.5) / sideCount;
-    // Spread along the side; lower slots sit in outer corners beside CTA
-    const y = Math.min(
-      fieldBottom - r,
-      Math.max(r + 12, height * (0.08 + ySlot * 0.78)),
-    );
-    const col = contentColumnAt(width, height, y, compact);
-    let x = left
-      ? Math.min(col.x0 - r - 8, width * 0.1)
-      : Math.max(col.x1 + r + 8, width * 0.9);
-    const edgeSlack = compact ? r * 0.42 : 4;
-    x = left
-      ? Math.min(x, col.x0 - r - 6)
-      : Math.max(x, col.x1 + r + 6);
-    x = Math.min(width + edgeSlack - 4, Math.max(-edgeSlack + 4, x));
+    let x: number;
+    let y: number;
+    let side: "left" | "right";
+    let vx: number;
+    let vy: number;
 
-    const speed = compact ? 0.32 : 0.48;
-    const angle = (i / assets.length) * Math.PI * 2 + 0.55;
+    if (compact) {
+      // Orbit around logo — visible, not stuck to screen edges
+      const cx = width * 0.5;
+      const cy = height * 0.3;
+      const angle = (i / assets.length) * Math.PI * 2 - Math.PI / 2;
+      const orbit =
+        Math.min(width * 0.38, height * 0.26) * (0.78 + (i % 3) * 0.12);
+      x = cx + Math.cos(angle) * orbit;
+      y = cy + Math.sin(angle) * orbit * 0.92;
+      side = x < width * 0.5 ? "left" : "right";
+      const speed = 0.38;
+      vx = Math.cos(angle + 1.2) * speed;
+      vy = Math.sin(angle + 0.7) * speed * 0.9;
+    } else {
+      // Desktop seeding — unchanged corridor approach
+      const left = base.x < 50;
+      side = left ? "left" : "right";
+      const sideIndex = Math.floor(i / 2);
+      const sideCount = Math.ceil(assets.length / 2);
+      const ySlot = (sideIndex + 0.5) / sideCount;
+      y = Math.min(
+        fieldBottom - r,
+        Math.max(r + 12, height * (0.08 + ySlot * 0.78)),
+      );
+      const col = contentColumnAt(width, height, y, compact);
+      x = left
+        ? Math.min(col.x0 - r - 8, width * 0.1)
+        : Math.max(col.x1 + r + 8, width * 0.9);
+      const edgeSlack = 4;
+      x = left
+        ? Math.min(x, col.x0 - r - 6)
+        : Math.max(x, col.x1 + r + 6);
+      x = Math.min(width + edgeSlack - 4, Math.max(-edgeSlack + 4, x));
+      const speed = 0.48;
+      const ang = (i / assets.length) * Math.PI * 2 + 0.55;
+      vx = Math.cos(ang) * speed * (left ? 1 : -0.85);
+      vy = Math.sin(ang * 1.25) * speed * 0.9;
+    }
+
     const bubble: SimBubble = {
       id: asset.id,
       asset,
       x,
       y,
-      vx: Math.cos(angle) * speed * (left ? 1 : -0.85),
-      vy: Math.sin(angle * 1.25) * speed * 0.9,
+      vx,
+      vy,
       r,
       depth: base.depth,
       side,

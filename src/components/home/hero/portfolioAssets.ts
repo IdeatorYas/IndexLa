@@ -124,9 +124,9 @@ export function allocationSizeRem(
   variant: "default" | "reveal" = "default",
 ): number {
   if (variant === "reveal") {
-    // Desktop: large premium circles. Compact: fit side bands beside content stack.
-    const min = compact ? 3.55 : 7.0;
-    const max = compact ? 4.55 : 12.4;
+    // Desktop unchanged. Compact: slightly larger so orbit around logo reads clearly.
+    const min = compact ? 3.75 : 7.0;
+    const max = compact ? 5.0 : 12.4;
     const t = Math.pow(
       Math.max(0, Math.min(1, (allocation - 1) / 32)),
       0.55,
