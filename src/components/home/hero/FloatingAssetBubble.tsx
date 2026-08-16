@@ -52,7 +52,7 @@ export function FloatingAssetBubble({
   const displayName = REVEAL_LABEL[asset.id] ?? asset.ticker;
 
   if (isReveal) {
-    const chipW = compact ? "8.6rem" : "10.25rem";
+    const chipW = compact ? "7.85rem" : "9.6rem";
     return (
       <div
         className="absolute"
@@ -115,8 +115,8 @@ export function FloatingAssetBubble({
               <span
                 className="flex shrink-0 items-center justify-center rounded-full border border-white/[0.12] bg-void/80"
                 style={{
-                  width: `${Math.max(2.4, sizeRem * 0.55)}rem`,
-                  height: `${Math.max(2.4, sizeRem * 0.55)}rem`,
+                  width: `${Math.max(2.55, sizeRem * 0.52)}rem`,
+                  height: `${Math.max(2.55, sizeRem * 0.52)}rem`,
                 }}
               >
                 {asset.assetKey ? (
@@ -131,17 +131,17 @@ export function FloatingAssetBubble({
                     alt=""
                     width={Math.round(logoPx * 0.72)}
                     height={Math.round(logoPx * 0.72)}
-                    className="object-contain"
+                    className="h-[60%] w-[60%] object-contain"
                     draggable={false}
                     aria-hidden
                   />
                 )}
               </span>
               <div className="min-w-0 flex-1 text-left">
-                <p className="truncate text-[0.82rem] font-semibold tracking-[-0.015em] text-ink sm:text-[0.95rem]">
+                <p className="truncate text-[0.88rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.02rem]">
                   {displayName}
                 </p>
-                <p className="mt-1 text-[0.78rem] font-semibold tracking-[-0.01em] text-electric sm:text-[0.9rem]">
+                <p className="mt-1.5 text-[0.86rem] font-semibold tracking-[-0.01em] text-electric sm:text-[0.98rem]">
                   Allocation {asset.allocation}%
                 </p>
               </div>

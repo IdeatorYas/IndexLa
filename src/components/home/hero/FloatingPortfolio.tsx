@@ -94,12 +94,12 @@ export function FloatingPortfolio({
         const position = isReveal
           ? {
               x: Math.max(
-                5,
-                Math.min(95, 50 + (base.x - 50) * (compact ? 1.22 : 1.28)),
+                4,
+                Math.min(96, 50 + (base.x - 50) * (compact ? 1.38 : 1.42)),
               ),
               y: Math.max(
-                7,
-                Math.min(93, 50 + (base.y - 50) * (compact ? 1.18 : 1.24)),
+                6,
+                Math.min(94, 50 + (base.y - 50) * (compact ? 1.28 : 1.32)),
               ),
               depth: base.depth,
             }
