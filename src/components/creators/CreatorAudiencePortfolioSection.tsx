@@ -17,31 +17,35 @@ export function CreatorAudiencePortfolioSection() {
           </h2>
 
           <p className={`mt-6 ${crBody} text-balance`}>
-            Your audience already trusts your market knowledge.
+            Your audience trusts your edge.
+          </p>
+
+          <p className={`mt-4 ${crBodyStrong} text-balance`}>
+            Turn it into a portfolio they can follow.
+          </p>
+
+          <p className={`mt-6 ${crBody} text-balance`}>
+            Build a multi-asset, cross-chain portfolio.
           </p>
 
           <p className={`mt-4 ${crBody} text-balance`}>
-            INDEXLA turns that conviction into a multi asset, cross chain
-            portfolio they can follow, customize, and allocate to while keeping
-            full custody.
+            They customize assets and allocations while{" "}
+            <span className="font-semibold text-ink">
+              you keep the strategy rules.
+            </span>
           </p>
 
-          <p className={`mt-4 ${crBody} text-balance`}>
-            Followers can customize assets and allocations while keeping full
-            custody. They cannot change the creator&apos;s core strategy rules.
-          </p>
-
-          <p className={`mt-4 ${crBody} text-balance`}>
-            Combine supported crypto, tokenized stocks, commodities, RWAs, and
-            other assets across multiple networks.
+          <p className={`mt-6 ${crBodyStrong} tracking-wide text-electric`}>
+            Crypto · Tokenized Stocks · Commodities · RWAs · More
           </p>
 
           <p className={`mt-6 ${crBodyStrong} text-balance`}>
-            You build the portfolio. They keep control.
+            You build the strategy. They keep custody.
           </p>
 
-          <p className={`mt-3 ${crBody} text-balance`}>
-            Pause, update, or remove it anytime. No lock in.
+          <p className={`mt-4 ${crBody} text-balance`}>
+            Pause. Update. Remove.{" "}
+            <span className="font-semibold text-ink">No lock-in.</span>
           </p>
         </FadeIn>
       </div>
