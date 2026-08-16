@@ -124,9 +124,9 @@ export function allocationSizeRem(
   variant: "default" | "reveal" = "default",
 ): number {
   if (variant === "reveal") {
-    // Larger overall; compact sized so side corridors can fit 5 bubbles
-    const min = compact ? 4.4 : 7.0;
-    const max = compact ? 6.4 : 12.4;
+    // Desktop: large premium circles. Compact: sized to clear full-bleed headline.
+    const min = compact ? 4.0 : 7.0;
+    const max = compact ? 5.15 : 12.4;
     const t = Math.pow(
       Math.max(0, Math.min(1, (allocation - 1) / 32)),
       0.55,

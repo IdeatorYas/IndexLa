@@ -27,15 +27,17 @@ type SimBubble = {
   vy: number;
   r: number; // px radius
   depth: number;
+  /** Permanent corridor — never flip sides after collision */
+  side: "left" | "right";
 };
 
 function ctaRect(w: number, h: number, compact: boolean) {
-  // Keep clear of Build Your Portfolio + Click to enter
+  // Keep clear of Build Your Portfolio + Click to enter (center card)
   return compact
     ? {
-        x0: w * 0.04,
-        x1: w * 0.96,
-        y0: h * 0.52,
+        x0: w * 0.14,
+        x1: w * 0.86,
+        y0: h * 0.5,
         y1: h,
       }
     : {
@@ -46,11 +48,22 @@ function ctaRect(w: number, h: number, compact: boolean) {
       };
 }
 
-/** Logo + headline + CTA column — bubbles stay in side corridors */
-function contentColumn(w: number, h: number, compact: boolean) {
-  return compact
-    ? { x0: w * 0.32, x1: w * 0.68, y0: h * 0.06, y1: h * 0.98 }
-    : { x0: w * 0.33, x1: w * 0.67, y0: h * 0.04, y1: h * 0.98 };
+/** Keepout for logo + headline; wider on mobile where type is nearly full-bleed */
+function contentColumnAt(
+  w: number,
+  h: number,
+  y: number,
+  compact: boolean,
+): { x0: number; x1: number } {
+  if (!compact) {
+    return { x0: w * 0.33, x1: w * 0.67 };
+  }
+  const t = y / Math.max(1, h);
+  // Headline band — strongest keepout so type stays fully readable
+  if (t > 0.18 && t < 0.52) {
+    return { x0: w * 0.4, x1: w * 0.6 };
+  }
+  return { x0: w * 0.36, x1: w * 0.64 };
 }
 
 function constrainBubble(
@@ -58,43 +71,44 @@ function constrainBubble(
   width: number,
   height: number,
   compact: boolean,
-  col: { x0: number; x1: number },
   zone: { x0: number; x1: number; y0: number },
   fieldBottom: number,
 ) {
-  const leftSide = b.x < width * 0.5;
+  const col = contentColumnAt(width, height, b.y, compact);
+  const leftSide = b.side === "left";
+
   if (leftSide) {
-    const maxX = col.x0 - b.r - 10;
-    const minX = b.r + 6;
-    // Prefer corridor; if bubble is too large for side band, pin to outer edge
+    const maxX = col.x0 - b.r - 8;
+    const minX = b.r + 4;
     if (maxX >= minX) {
       if (b.x > maxX) {
         b.x = maxX;
-        b.vx = -Math.abs(b.vx) - 0.12;
+        b.vx = -Math.abs(b.vx) - 0.18;
       }
       if (b.x < minX) {
         b.x = minX;
-        b.vx = Math.abs(b.vx) * 0.9;
+        b.vx = Math.abs(b.vx) * 0.85;
       }
     } else {
-      b.x = minX;
-      b.vx = Math.min(b.vx, 0);
+      // Too large for band — pin to outer edge, never enter center
+      b.x = Math.min(minX, width * 0.12);
+      b.vx = Math.min(b.vx, -0.05);
     }
   } else {
-    const minX = col.x1 + b.r + 10;
-    const maxX = width - b.r - 6;
+    const minX = col.x1 + b.r + 8;
+    const maxX = width - b.r - 4;
     if (minX <= maxX) {
       if (b.x < minX) {
         b.x = minX;
-        b.vx = Math.abs(b.vx) + 0.12;
+        b.vx = Math.abs(b.vx) + 0.18;
       }
       if (b.x > maxX) {
         b.x = maxX;
-        b.vx = -Math.abs(b.vx) * 0.9;
+        b.vx = -Math.abs(b.vx) * 0.85;
       }
     } else {
-      b.x = maxX;
-      b.vx = Math.max(b.vx, 0);
+      b.x = Math.max(maxX, width * 0.88);
+      b.vx = Math.max(b.vx, 0.05);
     }
   }
 
@@ -109,9 +123,19 @@ function constrainBubble(
   }
 
   // CTA floor — never cover Build Your Portfolio / Click to enter
-  if (b.y + b.r > zone.y0 - 4 && b.x + b.r > zone.x0 && b.x - b.r < zone.x1) {
-    b.y = zone.y0 - b.r - 10;
-    b.vy = -Math.abs(b.vy) - 0.28;
+  if (b.y + b.r > zone.y0 - 6 && b.x + b.r > zone.x0 && b.x - b.r < zone.x1) {
+    b.y = zone.y0 - b.r - 12;
+    b.vy = -Math.abs(b.vy) - 0.35;
+  }
+
+  // Re-apply horizontal keepout after CTA vertical push (y changed)
+  const col2 = contentColumnAt(width, height, b.y, compact);
+  if (leftSide) {
+    b.x = Math.min(b.x, col2.x0 - b.r - 8);
+    b.x = Math.max(b.x, b.r + 4);
+  } else {
+    b.x = Math.max(b.x, col2.x1 + b.r + 8);
+    b.x = Math.min(b.x, width - b.r - 4);
   }
 }
 
@@ -136,25 +160,27 @@ function seedRevealPositions(
       : asset.desktop;
 
     const left = base.x < 50;
+    const side: "left" | "right" = left ? "left" : "right";
     const sizeRem = allocationSizeRem(asset.allocation, compact, "reveal");
     const r = (sizeRem * rootFs) / 2;
-    const col = contentColumn(width, height, compact);
     const zone = ctaRect(width, height, compact);
-    const fieldBottom = compact ? height * 0.9 : height * 0.88;
+    const fieldBottom = compact ? height * 0.94 : height * 0.88;
 
     const sideIndex = Math.floor(i / 2);
     const sideCount = Math.ceil(assets.length / 2);
     const ySlot = (sideIndex + 0.5) / sideCount;
-    let x = left
-      ? Math.min(col.x0 - r - 12, width * 0.14)
-      : Math.max(col.x1 + r + 12, width * 0.86);
-    x = Math.min(width - r - 8, Math.max(r + 8, x));
+    // Spread along the side; lower slots sit in outer corners beside CTA
     const y = Math.min(
       fieldBottom - r,
-      Math.max(r + 12, height * (0.08 + ySlot * 0.72)),
+      Math.max(r + 12, height * (0.08 + ySlot * 0.78)),
     );
+    const col = contentColumnAt(width, height, y, compact);
+    let x = left
+      ? Math.min(col.x0 - r - 10, width * 0.12)
+      : Math.max(col.x1 + r + 10, width * 0.88);
+    x = Math.min(width - r - 6, Math.max(r + 6, x));
 
-    const speed = compact ? 0.35 : 0.48;
+    const speed = compact ? 0.32 : 0.48;
     const angle = (i / assets.length) * Math.PI * 2 + 0.55;
     const bubble: SimBubble = {
       id: asset.id,
@@ -162,11 +188,12 @@ function seedRevealPositions(
       x,
       y,
       vx: Math.cos(angle) * speed * (left ? 1 : -0.85),
-      vy: Math.sin(angle * 1.25) * speed * 0.85,
+      vy: Math.sin(angle * 1.25) * speed * 0.9,
       r,
       depth: base.depth,
+      side,
     };
-    constrainBubble(bubble, width, height, compact, col, zone, fieldBottom);
+    constrainBubble(bubble, width, height, compact, zone, fieldBottom);
     return bubble;
   });
 }
@@ -227,33 +254,11 @@ export function FloatingPortfolio({
         width,
         height,
       );
-      // Resolve initial overlaps
+      // Resolve initial overlaps — prefer vertical separation on same side
       const bubbles = simRef.current;
-      for (let pass = 0; pass < 8; pass++) {
-        for (let i = 0; i < bubbles.length; i++) {
-          for (let j = i + 1; j < bubbles.length; j++) {
-            const a = bubbles[i];
-            const b = bubbles[j];
-            const dx = b.x - a.x;
-            const dy = b.y - a.y;
-            const dist = Math.hypot(dx, dy) || 0.001;
-            const minDist = a.r + b.r + 10;
-            if (dist < minDist) {
-              const push = (minDist - dist) / 2;
-              const nx = dx / dist;
-              const ny = dy / dist;
-              a.x -= nx * push;
-              a.y -= ny * push;
-              b.x += nx * push;
-              b.y += ny * push;
-            }
-          }
-        }
-      }
-      const col = contentColumn(width, height, compact);
       const zone = ctaRect(width, height, compact);
-      const fieldBottom = compact ? height * 0.9 : height * 0.88;
-      for (let pass = 0; pass < 4; pass++) {
+      const fieldBottom = compact ? height * 0.94 : height * 0.88;
+      for (let pass = 0; pass < 6; pass++) {
         for (let i = 0; i < bubbles.length; i++) {
           for (let j = i + 1; j < bubbles.length; j++) {
             const a = bubbles[i];
@@ -261,11 +266,19 @@ export function FloatingPortfolio({
             const dx = b.x - a.x;
             const dy = b.y - a.y;
             const dist = Math.hypot(dx, dy) || 0.001;
-            const minDist = a.r + b.r + (compact ? 12 : 10);
+            const minDist = a.r + b.r + (compact ? 14 : 12);
             if (dist < minDist) {
               const push = (minDist - dist) / 2;
-              const nx = dx / dist;
-              const ny = dy / dist;
+              let nx = dx / dist;
+              let ny = dy / dist;
+              if (a.side === b.side) {
+                // Same corridor: separate mostly vertically
+                ny = ny === 0 ? (a.y <= b.y ? -1 : 1) : Math.sign(ny) || 1;
+                nx *= 0.25;
+                const nlen = Math.hypot(nx, ny) || 1;
+                nx /= nlen;
+                ny /= nlen;
+              }
               a.x -= nx * push;
               a.y -= ny * push;
               b.x += nx * push;
@@ -278,7 +291,7 @@ export function FloatingPortfolio({
             (allocationSizeRem(b.asset.allocation, compact, "reveal") *
               rootFs) /
             2;
-          constrainBubble(b, width, height, compact, col, zone, fieldBottom);
+          constrainBubble(b, width, height, compact, zone, fieldBottom);
         }
       }
       publish();
@@ -307,8 +320,7 @@ export function FloatingPortfolio({
         parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
       const bubbles = simRef.current;
       const zone = ctaRect(width, height, compact);
-      const col = contentColumn(width, height, compact);
-      const fieldBottom = compact ? height * 0.9 : height * 0.88;
+      const fieldBottom = compact ? height * 0.94 : height * 0.88;
       const pad = compact ? 14 : 16;
 
       for (let i = 0; i < bubbles.length; i++) {
@@ -318,19 +330,19 @@ export function FloatingPortfolio({
           2;
 
         const phase = wanderT + i * 1.55;
-        b.vx += Math.cos(phase) * 0.055 * dt;
-        b.vy += Math.sin(phase * 0.9 + 0.8) * 0.048 * dt;
+        b.vx += Math.cos(phase) * 0.05 * dt;
+        b.vy += Math.sin(phase * 0.9 + 0.8) * 0.055 * dt;
 
         const sp = Math.hypot(b.vx, b.vy);
-        const maxSp = compact ? 0.85 : 1.25;
+        const maxSp = compact ? 0.8 : 1.25;
         if (sp > maxSp) {
           b.vx = (b.vx / sp) * maxSp;
           b.vy = (b.vy / sp) * maxSp;
         }
 
-        b.x += b.vx * dt * 1.15;
-        b.y += b.vy * dt * 1.15;
-        constrainBubble(b, width, height, compact, col, zone, fieldBottom);
+        b.x += b.vx * dt * 1.1;
+        b.y += b.vy * dt * 1.1;
+        constrainBubble(b, width, height, compact, zone, fieldBottom);
       }
 
       // Soft collisions then re-clamp corridors so bubbles never cover content
@@ -345,8 +357,15 @@ export function FloatingPortfolio({
             const minDist = a.r + b.r + pad;
             if (dist < minDist) {
               const overlap = minDist - dist;
-              const nx = dx / dist;
-              const ny = dy / dist;
+              let nx = dx / dist;
+              let ny = dy / dist;
+              if (a.side === b.side) {
+                ny = ny === 0 ? (a.y <= b.y ? -1 : 1) : Math.sign(ny) || 1;
+                nx *= 0.22;
+                const nlen = Math.hypot(nx, ny) || 1;
+                nx /= nlen;
+                ny /= nlen;
+              }
               const share = overlap * 0.55;
               a.x -= nx * share;
               a.y -= ny * share;
@@ -361,7 +380,7 @@ export function FloatingPortfolio({
           }
         }
         for (const b of bubbles) {
-          constrainBubble(b, width, height, compact, col, zone, fieldBottom);
+          constrainBubble(b, width, height, compact, zone, fieldBottom);
         }
       }
 
