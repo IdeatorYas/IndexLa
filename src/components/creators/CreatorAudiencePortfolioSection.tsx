@@ -1,7 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   crBody,
-  crBodyStrong,
   crH2,
   crSection,
 } from "@/components/creators/creatorRhythm";
@@ -20,7 +19,7 @@ export function CreatorAudiencePortfolioSection() {
             Your audience trusts your edge.
           </p>
 
-          <p className={`mt-4 ${crBodyStrong} text-balance`}>
+          <p className={`mt-4 ${crBody} text-balance`}>
             Turn it into a portfolio they can follow.
           </p>
 
@@ -29,23 +28,20 @@ export function CreatorAudiencePortfolioSection() {
           </p>
 
           <p className={`mt-4 ${crBody} text-balance`}>
-            They customize assets and allocations while{" "}
-            <span className="font-semibold text-ink">
-              you keep the strategy rules.
-            </span>
+            They customize assets and allocations while you keep the strategy
+            rules.
           </p>
 
-          <p className={`mt-6 ${crBodyStrong} tracking-wide text-electric`}>
+          <p className={`mt-6 ${crBody} text-balance`}>
             Crypto · Tokenized Stocks · Commodities · RWAs · More
           </p>
 
-          <p className={`mt-6 ${crBodyStrong} text-balance`}>
+          <p className={`mt-6 ${crBody} text-balance`}>
             You build the strategy. They keep custody.
           </p>
 
           <p className={`mt-4 ${crBody} text-balance`}>
-            Pause. Update. Remove.{" "}
-            <span className="font-semibold text-ink">No lock-in.</span>
+            Pause. Update. Remove. No lock-in.
           </p>
         </FadeIn>
       </div>
