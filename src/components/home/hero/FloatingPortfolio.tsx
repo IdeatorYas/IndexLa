@@ -35,20 +35,23 @@ function ctaRect(w: number, h: number, compact: boolean) {
   // Keep clear of Build Your Portfolio + Click to enter (center card)
   return compact
     ? {
-        x0: w * 0.14,
-        x1: w * 0.86,
-        y0: h * 0.5,
+        x0: w * 0.1,
+        x1: w * 0.9,
+        y0: h * 0.42,
         y1: h,
       }
     : {
-        x0: w * 0.2,
-        x1: w * 0.8,
-        y0: h * 0.5,
+        x0: w * 0.22,
+        x1: w * 0.78,
+        y0: h * 0.48,
         y1: h,
       };
 }
 
-/** Keepout for logo + headline; wider on mobile where type is nearly full-bleed */
+/**
+ * Keepout for logo + headline + CTA column.
+ * Responsive: mobile logo sits high; headline is compact; side bands hold bubbles.
+ */
 function contentColumnAt(
   w: number,
   h: number,
@@ -56,14 +59,19 @@ function contentColumnAt(
   compact: boolean,
 ): { x0: number; x1: number } {
   if (!compact) {
-    return { x0: w * 0.33, x1: w * 0.67 };
+    return { x0: w * 0.34, x1: w * 0.66 };
   }
   const t = y / Math.max(1, h);
-  // Headline band — strongest keepout so type stays fully readable
-  if (t > 0.16 && t < 0.55) {
-    return { x0: w * 0.42, x1: w * 0.58 };
+  // Logo band (top)
+  if (t < 0.22) {
+    return { x0: w * 0.34, x1: w * 0.66 };
   }
-  return { x0: w * 0.38, x1: w * 0.62 };
+  // Compact headline band
+  if (t < 0.42) {
+    return { x0: w * 0.36, x1: w * 0.64 };
+  }
+  // CTA / lower content
+  return { x0: w * 0.32, x1: w * 0.68 };
 }
 
 function constrainBubble(
