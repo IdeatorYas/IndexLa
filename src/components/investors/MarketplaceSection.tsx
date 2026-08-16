@@ -1,37 +1,40 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
-import { Button } from "@/components/ui/Button";
 import {
   invBody,
-  invGreenBox,
-  invGreenText,
   invH2,
+  invH3,
   invSection,
 } from "@/components/investors/investorRhythm";
 
 const steps = [
   {
     n: "01",
-    title: "Discover",
+    label: "Discover",
+    flow: "Discover → Follow",
     body: "Find portfolios built around different markets and strategies.",
   },
   {
     n: "02",
-    title: "Follow",
+    label: "Follow",
+    flow: "Follow → Customize",
     body: "Choose a portfolio that matches your conviction.",
   },
   {
     n: "03",
-    title: "Customize",
+    label: "Customize",
+    flow: "Customize → Build",
     body: "Adjust assets, allocations, and rules to fit your strategy.",
+    note: "Followers can customize assets and allocations while keeping full custody. They cannot change the creator's core strategy rules.",
   },
   {
     n: "04",
-    title: "Build",
+    label: "Build",
+    flow: null,
     body: "Create your own portfolio from the ground up.",
   },
-];
+] as const;
 
 export function MarketplaceSection() {
   return (
@@ -50,63 +53,94 @@ export function MarketplaceSection() {
             strategies.
           </p>
           <p className={`mt-5 ${invBody}`}>
-            New here? Start with Discover. Ready to build? Go to Build → Define
-            → Automate.
+            New here? Start with{" "}
+            <span className="font-semibold text-muted">Discover</span>. Ready to
+            build? Go to{" "}
+            <span className="font-semibold text-muted">
+              Build → Define → Automate.
+            </span>
           </p>
         </FadeIn>
 
-        <FadeIn className="mt-10">
-          <div className="mx-auto max-w-3xl overflow-hidden rounded-[1.35rem] border border-line bg-void/45">
-            <ol className="divide-y divide-line">
-              {steps.map((step, i) => (
-                <li
-                  key={step.title}
-                  className="flex items-start gap-4 px-5 py-5 sm:gap-5 sm:px-7"
-                >
-                  <span className="display shrink-0 text-[1.35rem] gradient-text">
-                    {step.n}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="display text-[1.15rem] text-ink">
-                        {step.title}
-                      </h3>
-                      {i < steps.length - 1 && (
-                        <span className="text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                          → {steps[i + 1].title}
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">
-                      {step.body}
+        <FadeIn className="mt-12" delay={0.04}>
+          <div className="flex flex-col gap-4 md:flex-row md:items-stretch md:gap-3 lg:gap-4">
+            {steps.map((step, i) => (
+              <div
+                key={step.n}
+                className="flex flex-col gap-3 md:flex-1 md:flex-row md:items-stretch md:gap-3 lg:gap-4"
+              >
+                <article className="flex h-full flex-1 flex-col rounded-2xl border border-white/[0.09] bg-void/50 p-5 shadow-[0_18px_48px_rgba(0,0,0,0.22)] sm:p-6">
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
+                    {step.n} · {step.label}
+                  </p>
+                  {step.flow ? (
+                    <h3 className="mt-4 display text-[1.12rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.18rem]">
+                      {step.flow}
+                    </h3>
+                  ) : (
+                    <h3 className="mt-4 display text-[1.12rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.18rem]">
+                      Build
+                    </h3>
+                  )}
+                  <p className="mt-3 text-[0.95rem] leading-relaxed text-muted sm:text-[0.98rem]">
+                    {step.body}
+                  </p>
+                  {"note" in step && step.note ? (
+                    <p className="mt-3 border-t border-white/[0.06] pt-3 text-[0.9rem] leading-relaxed text-muted">
+                      {step.note}
                     </p>
-                    {step.title === "Customize" ? (
-                      <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">
-                        Followers can customize assets and allocations while
-                        keeping full custody. They cannot change the
-                        creator&apos;s core strategy rules.
-                      </p>
-                    ) : null}
+                  ) : null}
+                </article>
+                {i < steps.length - 1 ? (
+                  <div
+                    className="flex shrink-0 items-center justify-center text-electric/50 md:w-4 lg:w-5"
+                    aria-hidden
+                  >
+                    <span className="text-[1.1rem] font-semibold md:hidden">
+                      ↓
+                    </span>
+                    <span className="hidden text-[1.15rem] font-semibold md:inline">
+                      →
+                    </span>
                   </div>
-                </li>
-              ))}
-            </ol>
+                ) : null}
+              </div>
+            ))}
           </div>
         </FadeIn>
 
-        <FadeIn className="mt-8 space-y-5 text-center">
-          <div className="inline-flex justify-center">
-            <div className={invGreenBox}>
-              <p className={invGreenText}>
-                Don&apos;t blindly copy someone else&apos;s conviction. Make it
-                yours.
-              </p>
+        <FadeIn className="mx-auto mt-14 max-w-4xl" delay={0.08}>
+          <div className="rounded-2xl border border-white/[0.09] bg-void/40 px-6 py-8 sm:px-8 sm:py-9 md:px-10">
+            <div className="grid gap-8 md:grid-cols-[minmax(0,1.4fr)_minmax(12rem,0.9fr)] md:items-start md:gap-10">
+              <div>
+                <h3 className={`${invH3} uppercase`}>
+                  Back a Creator. Share the Rewards.
+                </h3>
+                <div className={`mt-5 space-y-3 ${invBody}`}>
+                  <p>
+                    Invest in a creator&apos;s portfolio and tip them with{" "}
+                    <span className="font-semibold text-muted">$DEXLA</span>.
+                  </p>
+                  <p>
+                    If their portfolio ranks in the{" "}
+                    <span className="font-semibold text-muted">Top 25</span>, you
+                    become eligible for the{" "}
+                    <span className="font-semibold text-muted">
+                      investor share of the monthly Creator Rewards Pool
+                    </span>
+                    .
+                  </p>
+                </div>
+              </div>
+              <aside className="border-t border-white/[0.08] pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-8">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+                  Monthly Pool Split
+                </p>
+                <p className="mt-3 display text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.2rem]">
+                  50% → Creators · 50% → Eligible Investors
+                </p>
+              </aside>
             </div>
-          </div>
-          <div>
-            <Button href="/strategies" className="min-w-[13.5rem]">
-              Explore Marketplace
-            </Button>
           </div>
         </FadeIn>
       </div>

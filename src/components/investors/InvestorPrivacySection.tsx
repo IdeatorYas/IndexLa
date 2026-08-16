@@ -1,6 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   invBody,
   invEyebrow,
@@ -23,6 +24,13 @@ export function InvestorPrivacySection() {
             and trade details where supported. MEV-aware execution helps reduce
             exposure to front-running and sandwich attacks.
           </p>
+          <div className="mt-8 flex justify-center">
+            <HomeReadMore
+              href="/whitepaper/technical"
+              label="Read Technical Paper →"
+              external={false}
+            />
+          </div>
         </FadeIn>
       </div>
     </section>

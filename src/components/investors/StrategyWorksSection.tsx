@@ -308,7 +308,7 @@ export function StrategyWorksSection() {
           {strategyGroups.map((group, i) => (
             <FadeIn key={group.key} delay={i * 0.04}>
               <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-5 text-center">
-                <h3 className="display text-[1.15rem] tracking-[-0.02em] text-ink uppercase">
+                <h3 className="display text-[1.15rem] tracking-[-0.02em] text-electric uppercase">
                   {group.title}
                 </h3>
                 <ul className="mt-4 space-y-2.5 border-t border-line pt-4">
