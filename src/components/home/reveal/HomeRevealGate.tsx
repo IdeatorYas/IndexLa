@@ -34,7 +34,8 @@ const FORMING_PHONE_IN_MS = 850;
 /** Pause after final asset with completed portfolio visible */
 const POST_POPULATE_HOLD_MS = 1300;
 const IDENTITY_HOLD_MS = 1300;
-const WELCOME_HOLD_MS = 1900;
+/** Hold welcome copy long enough to read before exit */
+const WELCOME_HOLD_MS = 4200;
 const EXIT_MS = 850;
 
 type HomeRevealGateProps = {
@@ -96,7 +97,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
     if (reduceMotion) {
       schedule(() => setPhase("identity"), 900);
       schedule(() => setPhase("welcome"), 900 + 1600);
-      schedule(() => finish(), 900 + 1600 + 2400);
+      schedule(() => finish(), 900 + 1600 + WELCOME_HOLD_MS);
       return;
     }
 
