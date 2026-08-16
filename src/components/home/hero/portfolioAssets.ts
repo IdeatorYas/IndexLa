@@ -124,9 +124,9 @@ export function allocationSizeRem(
   variant: "default" | "reveal" = "default",
 ): number {
   if (variant === "reveal") {
-    // Visibly proportional, but floor keeps 1–5% labels readable in-circle
-    const min = compact ? 5.2 : 5.9;
-    const max = compact ? 8.75 : 10.5;
+    // Larger overall; floor keeps 1–5% labels readable in-circle
+    const min = compact ? 6.15 : 7.0;
+    const max = compact ? 10.6 : 12.4;
     const t = Math.pow(
       Math.max(0, Math.min(1, (allocation - 1) / 32)),
       0.55,

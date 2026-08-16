@@ -27,6 +27,8 @@ type FloatingAssetBubbleProps = {
   compact?: boolean;
   position: { x: number; y: number; depth: number };
   variant?: FloatingBubbleVariant;
+  /** Reveal physics parent drives x/y — skip local keyframe drift */
+  physicsDriven?: boolean;
 };
 
 export function FloatingAssetBubble({
@@ -34,6 +36,7 @@ export function FloatingAssetBubble({
   compact = false,
   position,
   variant = "default",
+  physicsDriven = false,
 }: FloatingAssetBubbleProps) {
   const reduce = useReducedMotion();
   const isReveal = variant === "reveal";
@@ -48,19 +51,14 @@ export function FloatingAssetBubble({
   const displayName = REVEAL_LABEL[asset.id] ?? asset.ticker;
 
   if (isReveal) {
-    // Orbital drift so circles travel and cross paths, not bob in place
-    const amp = compact ? 2.35 : 2.85;
-    const dx = asset.drift.x * amp;
-    const dy = asset.drift.y * amp;
-    const side = position.x < 50 ? 1 : -1;
-    const duration = asset.drift.duration * 1.15;
-    const nameFs = Math.max(0.62, sizeRem * 0.108);
-    const allocFs = Math.max(0.58, sizeRem * 0.098);
-    const logoSize = Math.round(Math.max(18, sizeRem * 3.05));
+    const nameFs = Math.max(0.68, sizeRem * 0.11);
+    const allocFs = Math.max(0.64, sizeRem * 0.1);
+    const logoSize = Math.round(Math.max(22, sizeRem * 3.15));
+    const isBullion = asset.id === "gold" || asset.id === "silver";
 
     return (
       <div
-        className="absolute"
+        className="absolute will-change-transform"
         style={{
           left: `${position.x}%`,
           top: `${position.y}%`,
@@ -68,37 +66,25 @@ export function FloatingAssetBubble({
           zIndex: Math.round(4 + position.depth * 16),
           opacity,
           filter: blur > 0.08 ? `blur(${blur}px)` : undefined,
+          transition: physicsDriven
+            ? "left 0.05s linear, top 0.05s linear"
+            : undefined,
         }}
       >
         <motion.div
           animate={
-            reduce
+            reduce || physicsDriven
               ? undefined
               : {
-                  x: [
-                    0,
-                    dx * side * 1.15,
-                    dx * side * -0.85,
-                    dx * side * 0.55,
-                    -dx * side * 0.4,
-                    0,
-                  ],
-                  y: [
-                    0,
-                    -dy * 1.1,
-                    dy * 0.95,
-                    -dy * 0.45,
-                    dy * 0.65,
-                    0,
-                  ],
-                  rotate: [0, 2.4 * side, -1.8 * side, 1.2 * side, 0],
+                  x: [0, 12, -10, 8, 0],
+                  y: [0, -14, 10, -6, 0],
                 }
           }
           transition={
-            reduce
+            reduce || physicsDriven
               ? undefined
               : {
-                  duration,
+                  duration: asset.drift.duration * 1.1,
                   delay: asset.drift.delay * 0.45,
                   repeat: Infinity,
                   ease: "easeInOut",
@@ -131,7 +117,11 @@ export function FloatingAssetBubble({
           >
             <span className="mb-1 flex shrink-0 items-center justify-center sm:mb-1.5">
               {asset.assetKey ? (
-                <AssetLogo asset={asset.assetKey} size={logoSize} />
+                <AssetLogo
+                  asset={asset.assetKey}
+                  size={logoSize}
+                  className={isBullion ? "scale-110" : undefined}
+                />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
