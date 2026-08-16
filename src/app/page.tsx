@@ -7,6 +7,7 @@ import { FeesSection } from "@/components/home/FeesSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { Hero } from "@/components/home/Hero";
 import { HomeFaqSection } from "@/components/home/HomeFaqSection";
+import { HomeRevealGate } from "@/components/home/reveal/HomeRevealGate";
 import { PortfolioExamplesSection } from "@/components/home/PortfolioExamplesSection";
 import { SecurityControlSection } from "@/components/home/SecurityControlSection";
 import { TokenizationSection } from "@/components/home/TokenizationSection";
@@ -15,21 +16,23 @@ import { WhyIndexlaDifferentSection } from "@/components/home/WhyIndexlaDifferen
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <WhatIsIndexlaSection />
-      <WhyIndexlaDifferentSection />
-      <DistributionSection />
-      <TokenizationSection />
-      <BuildAutomateSection />
-      <PortfolioExamplesSection />
-      <SecurityControlSection />
-      <CreatorsSection />
-      <FeesSection />
-      <DexlaSection />
-      <FinalCtaSection />
-      <HomeFaqSection />
-      <ContactUsSection />
-    </main>
+    <HomeRevealGate>
+      <main>
+        <Hero />
+        <WhatIsIndexlaSection />
+        <WhyIndexlaDifferentSection />
+        <DistributionSection />
+        <TokenizationSection />
+        <BuildAutomateSection />
+        <PortfolioExamplesSection />
+        <SecurityControlSection />
+        <CreatorsSection />
+        <FeesSection />
+        <DexlaSection />
+        <FinalCtaSection />
+        <HomeFaqSection />
+        <ContactUsSection />
+      </main>
+    </HomeRevealGate>
   );
 }
