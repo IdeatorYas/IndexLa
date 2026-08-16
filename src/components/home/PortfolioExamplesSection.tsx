@@ -12,10 +12,10 @@ import {
 const themes = [
   "DeFi",
   "AI",
-  "Crypto Cycles",
+  "DeFi",
   "Macro",
   "RWAs",
-  "Hybrid Assets",
+  "Tech Stocks",
 ] as const;
 
 const ILLUSTRATIVE_LABEL =
@@ -35,8 +35,8 @@ export function PortfolioExamplesSection() {
             investment theses.
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-            {themes.map((theme) => (
-              <span key={theme} className={homePill}>
+            {themes.map((theme, i) => (
+              <span key={`${theme}-${i}`} className={homePill}>
                 {theme}
               </span>
             ))}

@@ -95,7 +95,7 @@ export function WhyIndexlaDifferentSection() {
                 <p
                   className={`mt-5 border-t border-line pt-4 ${homeBodyStrong}`}
                 >
-                  <span className="text-electric" aria-hidden>
+                  <span className="font-semibold text-electric" aria-hidden>
                     →{" "}
                   </span>
                   {item.solution}

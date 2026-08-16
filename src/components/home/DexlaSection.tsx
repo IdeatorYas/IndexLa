@@ -39,7 +39,10 @@ export function DexlaSection() {
             $DEXLA The Utility &{" "}
             <span className="gradient-text">Deflation Engine</span>
           </h2>
-          <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
+          <p className="mx-auto mt-4 max-w-3xl display text-[clamp(1.35rem,3vw,1.95rem)] font-semibold tracking-[-0.025em] text-ink text-balance text-pretty sm:mt-5">
+            5 Core Utilities + 5 Burn Mechanisms
+          </p>
+          <p className={`mt-5 ${homeMeasure} ${homeBody} sm:mt-6`}>
             $DEXLA powers core platform and creator mechanics.
           </p>
         </FadeIn>
@@ -64,7 +67,7 @@ export function DexlaSection() {
 
           <div>
             <FadeIn className="text-center">
-              <h3 className={`${homeH2} text-danger`}>5 Burn Mechanisms</h3>
+              <h3 className={`${homeH3} text-danger`}>5 Burn Mechanisms</h3>
             </FadeIn>
             <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {burns.map((item) => (

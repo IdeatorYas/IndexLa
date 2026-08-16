@@ -64,9 +64,7 @@ export function CreatorsSection() {
                 }`}
               >
                 <h3
-                  className={`${homeH3} text-[clamp(1.15rem,2vw,1.4rem)] ${
-                    item.featured ? "text-electric" : ""
-                  }`}
+                  className={`${homeH3} text-[clamp(1.15rem,2vw,1.4rem)] text-electric`}
                 >
                   {item.title}
                 </h3>

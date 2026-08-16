@@ -92,8 +92,9 @@ export function Hero() {
             </EarlyAccessCta>
           </div>
 
-          <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-ink/80 text-balance sm:mt-3.5 sm:text-[0.78rem]">
+          <p className="mt-3 max-w-[36rem] text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-ink/75 text-balance sm:mt-3.5 sm:text-[0.76rem] sm:tracking-[0.12em]">
             Non-Custodial · Revocable Permissions · No Admin Access to User Funds
+            · Privacy Protected
           </p>
         </motion.div>
       </div>
