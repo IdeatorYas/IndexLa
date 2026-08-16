@@ -176,22 +176,6 @@ export function CreatorMonetizeSection() {
             </div>
           </FadeIn>
         </div>
-
-        <FadeIn className="mx-auto mt-14 max-w-3xl text-center" delay={0.12}>
-          <h3 className={`${crH2} uppercase`}>
-            Your Audience. Your Scale.{" "}
-            <span className="gradient-text">Your Terms</span>
-          </h3>
-          <p className={`mt-5 ${crBody} text-balance`}>
-            Creators with significant audiences can access tailored partnership
-            terms designed around their scale.
-          </p>
-          <p className={`mt-4 ${crBody} text-balance`}>
-            Potential structures include enhanced revenue share, $DEXLA
-            allocations, performance bonuses, AUM incentives, and strategic
-            partnerships.
-          </p>
-        </FadeIn>
       </div>
     </section>
   );
