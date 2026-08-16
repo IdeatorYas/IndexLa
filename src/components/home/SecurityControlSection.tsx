@@ -23,7 +23,9 @@ export function SecurityControlSection() {
         <FadeIn className="text-center">
           <p className={homeEyebrow}>SECURITY &amp; CONTROL</p>
           <h2 className={`mt-3 ${homeH2} ${homeMeasure}`}>
-            Your Keys. Your Assets. Your Permissions.
+            <span className="block">Your Keys</span>
+            <span className="mt-1.5 block sm:mt-2">Your Assets</span>
+            <span className="mt-1.5 block sm:mt-2">Your Permissions</span>
           </h2>
         </FadeIn>
 

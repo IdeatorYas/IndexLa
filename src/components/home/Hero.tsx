@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { homeBody, homeCta } from "@/components/home/homeRhythm";
+import { FloatingPortfolio } from "@/components/home/hero/FloatingPortfolio";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -18,6 +19,8 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-void via-void/80 to-transparent"
         aria-hidden
       />
+
+      <FloatingPortfolio />
 
       <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col items-center justify-center pb-6 pt-[5rem] sm:pb-8 lg:pb-7 lg:pt-20">
         <motion.div

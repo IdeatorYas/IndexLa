@@ -1,0 +1,83 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { FloatingAssetBubble } from "./FloatingAssetBubble";
+import { HERO_PORTFOLIO_ASSETS } from "./portfolioAssets";
+
+type FloatingPortfolioProps = {
+  className?: string;
+};
+
+export function FloatingPortfolio({ className = "" }: FloatingPortfolioProps) {
+  const reduce = useReducedMotion();
+  const [compact, setCompact] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setCompact(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div
+        className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+        aria-hidden
+      />
+    );
+  }
+
+  const assets = compact
+    ? HERO_PORTFOLIO_ASSETS.filter((a) => a.mobile)
+    : HERO_PORTFOLIO_ASSETS;
+
+  return (
+    <div
+      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+      aria-label="Illustrative portfolio allocation visualization"
+    >
+      {/* Soft depth planes — restrained */}
+      <div
+        className="absolute inset-[8%] rounded-[2rem] border border-white/[0.02]"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-[16%] rounded-[1.75rem] border border-electric/[0.04]"
+        aria-hidden
+      />
+
+      <motion.div
+        className="absolute left-1/2 top-[calc(5rem+0.75rem)] z-[5] -translate-x-1/2 lg:top-[calc(5rem+1.25rem)]"
+        initial={reduce ? false : { opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.15 }}
+      >
+        <div className="rounded-full border border-line bg-void/75 px-3 py-1.5 text-center shadow-[0_8px_24px_rgba(0,0,0,0.25)] backdrop-blur-sm sm:px-3.5">
+          <p className="text-[0.55rem] font-semibold uppercase tracking-[0.16em] text-electric">
+            Portfolio
+          </p>
+          <p className="mt-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+            100% allocated
+          </p>
+        </div>
+      </motion.div>
+
+      {assets.map((asset) => {
+        const position = compact ? asset.mobile! : asset.desktop;
+        return (
+          <FloatingAssetBubble
+            key={asset.id}
+            asset={asset}
+            compact={compact}
+            position={position}
+          />
+        );
+      })}
+    </div>
+  );
+}

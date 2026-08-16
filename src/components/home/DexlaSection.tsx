@@ -9,19 +9,19 @@ import {
 } from "@/components/home/homeRhythm";
 
 const utilities = [
-  "Publish",
-  "Feature",
+  "Publish to earn",
+  "Feature portfolio",
   "Fee Discounts",
   "Tips & Ranking",
   "Creator Strategy Access",
 ] as const;
 
 const burns = [
-  { title: "Creator Publishing", rate: "100%" },
+  { title: "Creator Publishing fees", rate: "100%" },
   { title: "Protocol Fees", rate: "10%" },
-  { title: "Promotion", rate: "100%" },
+  { title: "Promotion fees", rate: "100%" },
   { title: "Treasury Profits", rate: "25%" },
-  { title: "Creator Strategy Access", rate: "50%" },
+  { title: "Creator Strategy Access", rate: null },
 ] as const;
 
 const utilityCard =
@@ -73,9 +73,11 @@ export function DexlaSection() {
                     <p className="text-[1.05rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.125rem]">
                       {item.title}
                     </p>
-                    <p className="text-[1.05rem] font-semibold text-danger sm:text-[1.125rem]">
-                      ({item.rate})
-                    </p>
+                    {item.rate ? (
+                      <p className="text-[1.05rem] font-semibold text-danger sm:text-[1.125rem]">
+                        ({item.rate})
+                      </p>
+                    ) : null}
                   </article>
                 </FadeIn>
               ))}

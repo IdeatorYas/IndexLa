@@ -41,14 +41,16 @@ export function CreatorsSection() {
       <div className="section-pad container-max">
         <FadeIn className="text-center">
           <h2 className={homeH2}>CREATOR MARKETPLACE</h2>
-          <p className={`mt-3 ${homeLede}`}>
+          <p className={`mt-3 ${homeLede} text-electric`}>
             Turn Your Thesis Into a Portfolio
           </p>
           <p className={`mt-5 ${homeMeasure} ${homeBody}`}>
             Publish your strategy, build an audience and earn from your
             portfolio.
           </p>
-          <h3 className={`mt-8 ${homeH2}`}>4 Ways to Earn</h3>
+          <div className="mt-8 inline-flex rounded-2xl border border-electric/40 bg-electric/[0.08] px-5 py-3.5 shadow-[inset_0_1px_0_rgba(56,189,248,0.14)] sm:px-6">
+            <h3 className={`${homeH2} text-electric`}>4 Ways to Earn</h3>
+          </div>
         </FadeIn>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
