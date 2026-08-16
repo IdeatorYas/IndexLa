@@ -60,10 +60,10 @@ function contentColumnAt(
   }
   const t = y / Math.max(1, h);
   // Headline band — strongest keepout so type stays fully readable
-  if (t > 0.18 && t < 0.52) {
-    return { x0: w * 0.4, x1: w * 0.6 };
+  if (t > 0.16 && t < 0.55) {
+    return { x0: w * 0.42, x1: w * 0.58 };
   }
-  return { x0: w * 0.36, x1: w * 0.64 };
+  return { x0: w * 0.38, x1: w * 0.62 };
 }
 
 function constrainBubble(
@@ -76,44 +76,36 @@ function constrainBubble(
 ) {
   const col = contentColumnAt(width, height, b.y, compact);
   const leftSide = b.side === "left";
+  // Prefer clipping at the screen edge over covering logo/headline
+  const edgeSlack = compact ? b.r * 0.42 : 4;
 
   if (leftSide) {
-    const maxX = col.x0 - b.r - 8;
-    const minX = b.r + 4;
-    if (maxX >= minX) {
-      if (b.x > maxX) {
-        b.x = maxX;
-        b.vx = -Math.abs(b.vx) - 0.18;
-      }
-      if (b.x < minX) {
-        b.x = minX;
-        b.vx = Math.abs(b.vx) * 0.85;
-      }
-    } else {
-      // Too large for band — pin to outer edge, never enter center
-      b.x = Math.min(minX, width * 0.12);
-      b.vx = Math.min(b.vx, -0.05);
+    // Right edge of bubble must stay left of content keepout
+    const maxCenter = col.x0 - b.r - 6;
+    const minCenter = -edgeSlack + 4;
+    if (b.x > maxCenter) {
+      b.x = maxCenter;
+      b.vx = -Math.abs(b.vx) - 0.2;
+    }
+    if (b.x < minCenter) {
+      b.x = minCenter;
+      b.vx = Math.abs(b.vx) * 0.85;
     }
   } else {
-    const minX = col.x1 + b.r + 8;
-    const maxX = width - b.r - 4;
-    if (minX <= maxX) {
-      if (b.x < minX) {
-        b.x = minX;
-        b.vx = Math.abs(b.vx) + 0.18;
-      }
-      if (b.x > maxX) {
-        b.x = maxX;
-        b.vx = -Math.abs(b.vx) * 0.85;
-      }
-    } else {
-      b.x = Math.max(maxX, width * 0.88);
-      b.vx = Math.max(b.vx, 0.05);
+    const minCenter = col.x1 + b.r + 6;
+    const maxCenter = width + edgeSlack - 4;
+    if (b.x < minCenter) {
+      b.x = minCenter;
+      b.vx = Math.abs(b.vx) + 0.2;
+    }
+    if (b.x > maxCenter) {
+      b.x = maxCenter;
+      b.vx = -Math.abs(b.vx) * 0.85;
     }
   }
 
-  const minY = b.r + 6;
-  const maxY = fieldBottom - b.r;
+  const minY = Math.max(6, b.r * 0.55);
+  const maxY = fieldBottom - b.r * 0.55;
   if (b.y < minY) {
     b.y = minY;
     b.vy = Math.abs(b.vy) * 0.9;
@@ -128,14 +120,14 @@ function constrainBubble(
     b.vy = -Math.abs(b.vy) - 0.35;
   }
 
-  // Re-apply horizontal keepout after CTA vertical push (y changed)
+  // Re-apply horizontal keepout after CTA vertical push (y may have changed)
   const col2 = contentColumnAt(width, height, b.y, compact);
   if (leftSide) {
-    b.x = Math.min(b.x, col2.x0 - b.r - 8);
-    b.x = Math.max(b.x, b.r + 4);
+    b.x = Math.min(b.x, col2.x0 - b.r - 6);
+    b.x = Math.max(b.x, -edgeSlack + 4);
   } else {
-    b.x = Math.max(b.x, col2.x1 + b.r + 8);
-    b.x = Math.min(b.x, width - b.r - 4);
+    b.x = Math.max(b.x, col2.x1 + b.r + 6);
+    b.x = Math.min(b.x, width + edgeSlack - 4);
   }
 }
 
@@ -176,9 +168,13 @@ function seedRevealPositions(
     );
     const col = contentColumnAt(width, height, y, compact);
     let x = left
-      ? Math.min(col.x0 - r - 10, width * 0.12)
-      : Math.max(col.x1 + r + 10, width * 0.88);
-    x = Math.min(width - r - 6, Math.max(r + 6, x));
+      ? Math.min(col.x0 - r - 8, width * 0.1)
+      : Math.max(col.x1 + r + 8, width * 0.9);
+    const edgeSlack = compact ? r * 0.42 : 4;
+    x = left
+      ? Math.min(x, col.x0 - r - 6)
+      : Math.max(x, col.x1 + r + 6);
+    x = Math.min(width + edgeSlack - 4, Math.max(-edgeSlack + 4, x));
 
     const speed = compact ? 0.32 : 0.48;
     const angle = (i / assets.length) * Math.PI * 2 + 0.55;

@@ -125,8 +125,8 @@ export function allocationSizeRem(
 ): number {
   if (variant === "reveal") {
     // Desktop: large premium circles. Compact: sized to clear full-bleed headline.
-    const min = compact ? 4.0 : 7.0;
-    const max = compact ? 5.15 : 12.4;
+    const min = compact ? 3.85 : 7.0;
+    const max = compact ? 4.95 : 12.4;
     const t = Math.pow(
       Math.max(0, Math.min(1, (allocation - 1) / 32)),
       0.55,
