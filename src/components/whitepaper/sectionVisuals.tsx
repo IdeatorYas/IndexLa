@@ -49,15 +49,25 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <NonCustodialFlowDiagram />,
         },
       ];
-    case "6-why-the-architecture-gap-is-structural":
+    case "7-why-the-architecture-gap-is-structural":
       return [
         {
           id: "architecture-gap",
           placement: "before",
           node: <ArchitectureGapDiagram />,
         },
+        {
+          id: "explore-technical-paper-architecture",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/whitepaper/technical"
+              label="Read Full Technical Paper →"
+            />
+          ),
+        },
       ];
-    case "7-market-opportunity":
+    case "8-market-opportunity":
       return [
         {
           id: "tam-sam-som",
@@ -177,6 +187,16 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           placement: "after",
           afterHeadingId: "vesting-release-schedule",
           node: <VestingTimelineDiagram />,
+        },
+        {
+          id: "explore-tokenomics",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/tokenomics"
+              label="Visit Tokenomics Page →"
+            />
+          ),
         },
       ];
     case "15-security-privacy-mev-protection":
