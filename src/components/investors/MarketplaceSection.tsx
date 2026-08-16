@@ -5,6 +5,7 @@ import {
   invBody,
   invH2,
   invH3,
+  invPremiumSurface,
   invSection,
 } from "@/components/investors/investorRhythm";
 
@@ -69,7 +70,7 @@ export function MarketplaceSection() {
                 key={step.n}
                 className="flex flex-col gap-3 md:flex-1 md:flex-row md:items-stretch md:gap-3 lg:gap-4"
               >
-                <article className="flex h-full flex-1 flex-col rounded-2xl border border-white/[0.09] bg-void/50 p-5 shadow-[0_18px_48px_rgba(0,0,0,0.22)] sm:p-6">
+                <article className={`${invPremiumSurface} flex h-full flex-1 flex-col p-5 sm:p-6`}>
                   <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-electric">
                     {step.n} · {step.label}
                   </p>
@@ -110,7 +111,7 @@ export function MarketplaceSection() {
         </FadeIn>
 
         <FadeIn className="mx-auto mt-14 max-w-4xl" delay={0.08}>
-          <div className="rounded-2xl border border-white/[0.09] bg-void/40 px-6 py-8 sm:px-8 sm:py-9 md:px-10">
+          <div className={`${invPremiumSurface} rounded-2xl px-6 py-8 sm:px-8 sm:py-9 md:px-10`}>
             <div className="grid gap-8 md:grid-cols-[minmax(0,1.4fr)_minmax(12rem,0.9fr)] md:items-start md:gap-10">
               <div>
                 <h3 className={`${invH3} uppercase`}>
@@ -136,7 +137,7 @@ export function MarketplaceSection() {
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                   Monthly Pool Split
                 </p>
-                <p className="mt-3 display text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.2rem]">
+                <p className="mt-3 display text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.2rem]">
                   50% → Creators · 50% → Eligible Investors
                 </p>
               </aside>

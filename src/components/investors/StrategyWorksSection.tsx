@@ -8,6 +8,8 @@ import {
   invEyebrow,
   invH2,
   invH3,
+  invPremiumAccent,
+  invPremiumSurface,
   invSection,
 } from "@/components/investors/investorRhythm";
 
@@ -128,9 +130,9 @@ export function StrategyWorksSection() {
             {aiBoundaries.map((line) => (
               <div
                 key={line}
-                className="rounded-[1.1rem] border border-line bg-void/45 px-4 py-4 text-center sm:px-5"
+                className={`${invPremiumSurface} px-4 py-5 text-center sm:px-5`}
               >
-                <p className="text-[0.95rem] font-semibold leading-snug text-ink text-pretty">
+                <p className="text-[0.95rem] font-semibold leading-snug text-muted text-pretty">
                   {line}
                 </p>
               </div>
@@ -139,7 +141,7 @@ export function StrategyWorksSection() {
         </FadeIn>
 
         <FadeIn className="mt-6" delay={0.05}>
-          <div className="rounded-[1.2rem] border border-electric/30 bg-electric/[0.06] px-4 py-4 sm:px-6 sm:py-5">
+          <div className={`${invPremiumAccent} px-4 py-4 sm:px-6 sm:py-5`}>
             <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
               {executionFlow.map((step, i) => (
                 <div key={step} className="flex items-center gap-2">
@@ -168,9 +170,13 @@ export function StrategyWorksSection() {
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {buildSteps.map((step, i) => (
             <FadeIn key={step.n} delay={i * 0.04}>
-              <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-6 text-center">
-                <p className="display text-[1.4rem] gradient-text">{step.n}</p>
-                <h3 className="mt-1 display text-[1.2rem] tracking-[-0.02em] text-ink">
+              <article
+                className={`${invPremiumSurface} flex h-full flex-col p-6 text-center`}
+              >
+                <p className="text-[0.7rem] font-semibold tabular-nums tracking-[0.16em] text-electric">
+                  {step.n}
+                </p>
+                <h3 className="mt-3 display text-[1.25rem] tracking-[-0.02em] text-ink">
                   {step.title}
                 </h3>
                 <p className={`mt-3 ${invBody}`}>{step.body}</p>
@@ -264,19 +270,23 @@ export function StrategyWorksSection() {
           <p className={`${invH3} uppercase`}>Strategy Progression</p>
         </FadeIn>
         <FadeIn className="mt-6" delay={0.03}>
-          <div className="rounded-[1.25rem] border border-line bg-void/45 px-4 py-5 sm:px-6 sm:py-6">
-            <div className="flex flex-col items-stretch gap-2 md:flex-row md:items-center md:justify-between md:gap-2">
+          <div className={`${invPremiumSurface} px-4 py-5 sm:px-6 sm:py-6`}>
+            <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-between md:gap-2">
               {progression.map((phase, i) => (
                 <div
                   key={phase.stage}
                   className="flex flex-col items-center gap-2 md:flex-1 md:flex-row"
                 >
-                  <article className="w-full rounded-xl border border-line bg-deep/50 px-3.5 py-4 text-center">
+                  <article
+                    className={`${invPremiumAccent} w-full px-3.5 py-5 text-center`}
+                  >
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
                       {phase.stage}
                     </p>
                     {phase.meta ? (
-                      <p className="mt-2 text-[0.85rem] text-muted">{phase.meta}</p>
+                      <p className="mt-2 text-[0.85rem] text-muted">
+                        {phase.meta}
+                      </p>
                     ) : null}
                     <p className="mt-2 display text-[1.05rem] tracking-[-0.02em] text-ink">
                       {phase.action}
@@ -304,18 +314,20 @@ export function StrategyWorksSection() {
         <FadeIn className="mt-12 max-w-3xl">
           <p className={`${invH3} uppercase`}>Combine Strategies</p>
         </FadeIn>
-        <div className="mt-6 grid gap-3 md:grid-cols-3">
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
           {strategyGroups.map((group, i) => (
             <FadeIn key={group.key} delay={i * 0.04}>
-              <article className="h-full rounded-[1.2rem] border border-line bg-void/45 p-5 text-center">
+              <article
+                className={`${invPremiumSurface} flex h-full flex-col p-5 text-center sm:p-6`}
+              >
                 <h3 className="display text-[1.15rem] tracking-[-0.02em] text-electric uppercase">
                   {group.title}
                 </h3>
-                <ul className="mt-4 space-y-2.5 border-t border-line pt-4">
+                <ul className="mt-4 space-y-2.5 border-t border-white/[0.08] pt-4">
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="text-[0.95rem] font-semibold leading-snug text-ink"
+                      className="text-[0.95rem] font-semibold leading-snug text-muted"
                     >
                       {item}
                     </li>
@@ -327,7 +339,7 @@ export function StrategyWorksSection() {
         </div>
 
         <FadeIn className="mt-5" delay={0.08}>
-          <div className="rounded-[1.1rem] border border-line bg-void/40 px-5 py-4 text-center">
+          <div className={`${invPremiumAccent} px-5 py-5 text-center`}>
             <p className="text-[1rem] font-semibold text-ink">
               Buy on Fear → Hold → Sell on Greed
             </p>

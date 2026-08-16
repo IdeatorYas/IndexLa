@@ -5,6 +5,7 @@ import {
   invBody,
   invBodyStrong,
   invH2,
+  invPremiumAccent,
   invSection,
 } from "@/components/investors/investorRhythm";
 
@@ -39,9 +40,9 @@ export function OwnershipSection() {
             {pillars.map((label) => (
               <div
                 key={label}
-                className="rounded-[1.2rem] border border-line bg-deep/55 px-5 py-8 text-center"
+                className={`${invPremiumAccent} px-5 py-8 text-center`}
               >
-                <p className="display text-[1.05rem] tracking-[-0.02em] text-ink capitalize sm:text-[1.15rem]">
+                <p className="display text-[1.05rem] tracking-[-0.02em] text-electric capitalize sm:text-[1.15rem]">
                   {label}
                 </p>
               </div>

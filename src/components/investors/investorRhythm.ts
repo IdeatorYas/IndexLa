@@ -24,6 +24,14 @@ export {
 export const invCard =
   "rounded-[1.25rem] border border-line bg-void/40 p-5 text-center sm:p-6";
 
+/** Premium investment-grade surface — subtle depth, no neon */
+export const invPremiumSurface =
+  "rounded-2xl border border-white/[0.09] bg-void/55 shadow-[0_18px_48px_rgba(0,0,0,0.22)]";
+
+/** Accent-highlighted premium box for key statements */
+export const invPremiumAccent =
+  "rounded-2xl border border-electric/30 bg-electric/[0.08] shadow-[inset_0_1px_0_rgba(59,130,246,0.12),0_14px_36px_rgba(0,0,0,0.18)]";
+
 /** Investors H1 — match homepage hero scale */
 export const invH1 =
   "display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold tracking-[-0.035em] text-balance text-pretty";

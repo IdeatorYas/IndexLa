@@ -5,6 +5,7 @@ import {
   invGreenBox,
   invGreenText,
   invH2,
+  invPremiumAccent,
   invSection,
 } from "@/components/investors/investorRhythm";
 
@@ -25,9 +26,9 @@ export function InvestorFeesSection() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="rounded-2xl border border-line bg-void/50 px-5 py-7 text-center"
+                className={`${invPremiumAccent} px-5 py-7 text-center`}
               >
-                <p className="display text-[2.2rem] leading-none text-ink sm:text-[2.5rem]">
+                <p className="display text-[2.2rem] leading-none text-electric sm:text-[2.5rem]">
                   {item.value}
                 </p>
                 <p className="mt-3 text-[0.95rem] font-semibold uppercase tracking-[0.08em] text-muted">
