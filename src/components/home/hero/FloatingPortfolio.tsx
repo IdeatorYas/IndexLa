@@ -34,9 +34,9 @@ type SimBubble = {
 function ctaRect(w: number, h: number, compact: boolean) {
   return compact
     ? {
-        x0: w * 0.08,
-        x1: w * 0.92,
-        y0: h * 0.68,
+        x0: w * 0.06,
+        x1: w * 0.94,
+        y0: h * 0.7,
         y1: h,
       }
     : {
@@ -47,9 +47,20 @@ function ctaRect(w: number, h: number, compact: boolean) {
       };
 }
 
+/** Mobile: logo island in vertical mid. Desktop unused. */
+function logoRect(w: number, h: number, compact: boolean) {
+  if (!compact) return null;
+  return {
+    x0: w * 0.26,
+    x1: w * 0.74,
+    y0: h * 0.3,
+    y1: h * 0.52,
+  };
+}
+
 /**
  * Keepout for logo + headline + CTA.
- * Desktop corridors unchanged. Mobile: logo/headline high; mid band for bubbles; CTA low.
+ * Desktop corridors unchanged.
  */
 function contentColumnAt(
   w: number,
@@ -61,16 +72,47 @@ function contentColumnAt(
     return { x0: w * 0.36, x1: w * 0.64 };
   }
   const t = y / Math.max(1, h);
-  // Logo + headline (top)
-  if (t < 0.26) {
-    return { x0: w * 0.28, x1: w * 0.72 };
+  // Soft logo island only — mid screen stays open for floating assets
+  if (t > 0.28 && t < 0.54) {
+    return { x0: w * 0.3, x1: w * 0.7 };
   }
-  // Mid — bubbles float L/R around brand
-  if (t < 0.64) {
-    return { x0: w * 0.32, x1: w * 0.68 };
+  // Headline + CTA band
+  if (t >= 0.66) {
+    return { x0: w * 0.1, x1: w * 0.9 };
   }
-  // CTA
-  return { x0: w * 0.12, x1: w * 0.88 };
+  // Upper / mid field — narrow keepout so bubbles fill the composition
+  return { x0: w * 0.42, x1: w * 0.58 };
+}
+
+function pushOutOfRect(
+  b: SimBubble,
+  rect: { x0: number; x1: number; y0: number; y1: number },
+) {
+  const inside =
+    b.x + b.r > rect.x0 &&
+    b.x - b.r < rect.x1 &&
+    b.y + b.r > rect.y0 &&
+    b.y - b.r < rect.y1;
+  if (!inside) return;
+
+  const dxL = Math.abs(b.x - (rect.x0 - b.r));
+  const dxR = Math.abs(b.x - (rect.x1 + b.r));
+  const dyT = Math.abs(b.y - (rect.y0 - b.r));
+  const dyB = Math.abs(b.y - (rect.y1 + b.r));
+  const m = Math.min(dxL, dxR, dyT, dyB);
+  if (m === dxL) {
+    b.x = rect.x0 - b.r - 4;
+    b.vx = -Math.abs(b.vx) - 0.1;
+  } else if (m === dxR) {
+    b.x = rect.x1 + b.r + 4;
+    b.vx = Math.abs(b.vx) + 0.1;
+  } else if (m === dyT) {
+    b.y = rect.y0 - b.r - 4;
+    b.vy = -Math.abs(b.vy) - 0.1;
+  } else {
+    b.y = rect.y1 + b.r + 4;
+    b.vy = Math.abs(b.vy) + 0.1;
+  }
 }
 
 function constrainBubble(
@@ -81,56 +123,73 @@ function constrainBubble(
   zone: { x0: number; x1: number; y0: number },
   fieldBottom: number,
 ) {
+  if (compact) {
+    // Free float across the field — only avoid logo island + CTA/headline
+    const logo = logoRect(width, height, true);
+    if (logo) pushOutOfRect(b, logo);
+
+    const minCenter = b.r + 10;
+    const maxCenter = width - b.r - 10;
+    // Pull inward from edges so assets aren't stuck on sides
+    const edgeIn = width * 0.08;
+    b.x = Math.min(maxCenter, Math.max(minCenter, b.x));
+    if (b.x < edgeIn + b.r) {
+      b.x = edgeIn + b.r;
+      b.vx = Math.abs(b.vx) + 0.08;
+    } else if (b.x > width - edgeIn - b.r) {
+      b.x = width - edgeIn - b.r;
+      b.vx = -Math.abs(b.vx) - 0.08;
+    }
+
+    const minY = b.r + 12;
+    const maxY = Math.min(fieldBottom - b.r, zone.y0 - b.r - 14);
+    if (b.y < minY) {
+      b.y = minY;
+      b.vy = Math.abs(b.vy) * 0.9;
+    } else if (b.y > maxY) {
+      b.y = maxY;
+      b.vy = -Math.abs(b.vy) - 0.2;
+    }
+
+    // CTA + headline floor
+    if (b.y + b.r > zone.y0 - 8 && b.x + b.r > zone.x0 && b.x - b.r < zone.x1) {
+      b.y = zone.y0 - b.r - 14;
+      b.vy = -Math.abs(b.vy) - 0.3;
+    }
+    if (logo) pushOutOfRect(b, logo);
+    return;
+  }
+
+  // Desktop — preserve existing corridor / edge behavior
   const col = contentColumnAt(width, height, b.y, compact);
   const leftSide = b.side === "left";
-
-  if (compact) {
-    // Stay fully on-screen (no horizontal scroll / edge clipping)
-    const minCenter = b.r + 8;
-    const maxCenter = width - b.r - 8;
-    if (leftSide) {
-      const maxX = Math.min(maxCenter, col.x0 - b.r - 4);
-      b.x = Math.min(b.x, maxX);
-      b.x = Math.max(b.x, minCenter);
-      if (b.x >= maxX - 0.5) b.vx = -Math.abs(b.vx) - 0.12;
-      if (b.x <= minCenter + 0.5) b.vx = Math.abs(b.vx) * 0.85;
-    } else {
-      const minX = Math.max(minCenter, col.x1 + b.r + 4);
-      b.x = Math.max(b.x, minX);
-      b.x = Math.min(b.x, maxCenter);
-      if (b.x <= minX + 0.5) b.vx = Math.abs(b.vx) + 0.12;
-      if (b.x >= maxCenter - 0.5) b.vx = -Math.abs(b.vx) * 0.85;
+  const edgeSlack = 4;
+  if (leftSide) {
+    const maxCenter = col.x0 - b.r - 6;
+    const minCenter = -edgeSlack + 4;
+    if (b.x > maxCenter) {
+      b.x = maxCenter;
+      b.vx = -Math.abs(b.vx) - 0.2;
+    }
+    if (b.x < minCenter) {
+      b.x = minCenter;
+      b.vx = Math.abs(b.vx) * 0.85;
     }
   } else {
-    // Desktop — preserve existing corridor / edge behavior
-    const edgeSlack = 4;
-    if (leftSide) {
-      const maxCenter = col.x0 - b.r - 6;
-      const minCenter = -edgeSlack + 4;
-      if (b.x > maxCenter) {
-        b.x = maxCenter;
-        b.vx = -Math.abs(b.vx) - 0.2;
-      }
-      if (b.x < minCenter) {
-        b.x = minCenter;
-        b.vx = Math.abs(b.vx) * 0.85;
-      }
-    } else {
-      const minCenter = col.x1 + b.r + 6;
-      const maxCenter = width + edgeSlack - 4;
-      if (b.x < minCenter) {
-        b.x = minCenter;
-        b.vx = Math.abs(b.vx) + 0.2;
-      }
-      if (b.x > maxCenter) {
-        b.x = maxCenter;
-        b.vx = -Math.abs(b.vx) * 0.85;
-      }
+    const minCenter = col.x1 + b.r + 6;
+    const maxCenter = width + edgeSlack - 4;
+    if (b.x < minCenter) {
+      b.x = minCenter;
+      b.vx = Math.abs(b.vx) + 0.2;
+    }
+    if (b.x > maxCenter) {
+      b.x = maxCenter;
+      b.vx = -Math.abs(b.vx) * 0.85;
     }
   }
 
-  const minY = compact ? b.r + 10 : Math.max(6, b.r * 0.55);
-  const maxY = fieldBottom - (compact ? b.r + 8 : b.r * 0.55);
+  const minY = Math.max(6, b.r * 0.55);
+  const maxY = fieldBottom - b.r * 0.55;
   if (b.y < minY) {
     b.y = minY;
     b.vy = Math.abs(b.vy) * 0.9;
@@ -139,33 +198,18 @@ function constrainBubble(
     b.vy = -Math.abs(b.vy) * 0.9;
   }
 
-  // CTA floor — never cover Build Your Portfolio / Click to enter
   if (b.y + b.r > zone.y0 - 6 && b.x + b.r > zone.x0 && b.x - b.r < zone.x1) {
     b.y = zone.y0 - b.r - 12;
     b.vy = -Math.abs(b.vy) - 0.35;
   }
 
-  // Re-apply horizontal keepout after CTA vertical push
   const col2 = contentColumnAt(width, height, b.y, compact);
-  if (compact) {
-    const minCenter = b.r + 8;
-    const maxCenter = width - b.r - 8;
-    if (leftSide) {
-      b.x = Math.min(b.x, Math.min(maxCenter, col2.x0 - b.r - 4));
-      b.x = Math.max(b.x, minCenter);
-    } else {
-      b.x = Math.max(b.x, Math.max(minCenter, col2.x1 + b.r + 4));
-      b.x = Math.min(b.x, maxCenter);
-    }
+  if (leftSide) {
+    b.x = Math.min(b.x, col2.x0 - b.r - 6);
+    b.x = Math.max(b.x, -edgeSlack + 4);
   } else {
-    const edgeSlack = 4;
-    if (leftSide) {
-      b.x = Math.min(b.x, col2.x0 - b.r - 6);
-      b.x = Math.max(b.x, -edgeSlack + 4);
-    } else {
-      b.x = Math.max(b.x, col2.x1 + b.r + 6);
-      b.x = Math.min(b.x, width + edgeSlack - 4);
-    }
+    b.x = Math.max(b.x, col2.x1 + b.r + 6);
+    b.x = Math.min(b.x, width + edgeSlack - 4);
   }
 }
 
@@ -201,21 +245,20 @@ function seedRevealPositions(
     let vy: number;
 
     if (compact) {
-      // Float beside logo/headline in the mid band — visible, no edge-stick
+      // Scatter through mid-field around logo — not two side columns
       const cx = width * 0.5;
-      const cy = height * 0.38;
-      const angle = (i / assets.length) * Math.PI * 2 - Math.PI / 2;
-      const orbit =
-        Math.min(width * 0.36, height * 0.28) * (0.7 + (i % 3) * 0.11);
-      x = cx + Math.cos(angle) * orbit;
-      y = Math.min(
-        height * 0.62,
-        Math.max(height * 0.2, cy + Math.sin(angle) * orbit * 0.95),
-      );
+      const cy = height * 0.4;
+      const angle = (i / assets.length) * Math.PI * 2 + 0.35;
+      const ring = 0.55 + (i % 4) * 0.12;
+      const orbitX = Math.min(width * 0.32, height * 0.26) * ring;
+      const orbitY = Math.min(width * 0.28, height * 0.24) * ring;
+      x = cx + Math.cos(angle) * orbitX;
+      y = cy + Math.sin(angle) * orbitY;
+      y = Math.min(height * 0.64, Math.max(height * 0.12, y));
       side = x < width * 0.5 ? "left" : "right";
-      const speed = 0.34;
-      vx = Math.cos(angle + 1.1) * speed * (side === "left" ? -0.4 : 0.4);
-      vy = Math.sin(angle + 0.6) * speed * 0.8;
+      const speed = 0.36;
+      vx = Math.cos(angle + 0.9) * speed;
+      vy = Math.sin(angle + 1.3) * speed * 0.85;
     } else {
       // Desktop seeding — unchanged corridor approach
       const left = base.x < 50;
@@ -331,8 +374,8 @@ export function FloatingPortfolio({
               const push = (minDist - dist) / 2;
               let nx = dx / dist;
               let ny = dy / dist;
-              if (a.side === b.side) {
-                // Same corridor: separate mostly vertically
+              if (!compact && a.side === b.side) {
+                // Desktop corridors: separate mostly vertically
                 ny = ny === 0 ? (a.y <= b.y ? -1 : 1) : Math.sign(ny) || 1;
                 nx *= 0.25;
                 const nlen = Math.hypot(nx, ny) || 1;
@@ -419,7 +462,7 @@ export function FloatingPortfolio({
               const overlap = minDist - dist;
               let nx = dx / dist;
               let ny = dy / dist;
-              if (a.side === b.side) {
+              if (!compact && a.side === b.side) {
                 ny = ny === 0 ? (a.y <= b.y ? -1 : 1) : Math.sign(ny) || 1;
                 nx *= 0.22;
                 const nlen = Math.hypot(nx, ny) || 1;
