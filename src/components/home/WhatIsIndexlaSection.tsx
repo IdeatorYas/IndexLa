@@ -44,7 +44,7 @@ export function WhatIsIndexlaSection() {
           </h2>
 
           <div className={`mx-auto mt-7 max-w-2xl space-y-4 ${homeBody}`}>
-            <p className={homeBodyStrong}>
+            <p className={`${homeBodyStrong} text-electric`}>
               INDEXLA is a non-custodial portfolio layer for crypto and tokenized
               assets.
             </p>
