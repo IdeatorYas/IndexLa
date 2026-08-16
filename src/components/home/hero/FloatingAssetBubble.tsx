@@ -48,12 +48,15 @@ export function FloatingAssetBubble({
   const displayName = REVEAL_LABEL[asset.id] ?? asset.ticker;
 
   if (isReveal) {
-    // Large orbital drift so capsules travel and cross paths, not bob in place
+    // Orbital drift so circles travel and cross paths, not bob in place
     const amp = compact ? 2.35 : 2.85;
     const dx = asset.drift.x * amp;
     const dy = asset.drift.y * amp;
     const side = position.x < 50 ? 1 : -1;
     const duration = asset.drift.duration * 1.15;
+    const nameFs = Math.max(0.62, sizeRem * 0.108);
+    const allocFs = Math.max(0.58, sizeRem * 0.098);
+    const logoSize = Math.round(Math.max(18, sizeRem * 3.05));
 
     return (
       <div
@@ -102,67 +105,59 @@ export function FloatingAssetBubble({
                 }
           }
           className="relative"
+          style={{ width: `${sizeRem}rem`, height: `${sizeRem}rem` }}
         >
-          {/* Soft neon halo — controlled, not loud */}
           <div
-            className="pointer-events-none absolute inset-0 -z-10 scale-[1.35] rounded-full bg-electric/20 blur-2xl"
+            className="pointer-events-none absolute inset-0 -z-10 scale-[1.28] rounded-full bg-electric/18 blur-2xl"
             aria-hidden
           />
 
           <div
-            className="relative flex items-center gap-2.5 rounded-full border border-electric/40 px-3 py-2 sm:gap-3 sm:px-3.5 sm:py-2.5"
+            className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-full border border-electric/40 px-2.5 text-center"
             style={{
+              aspectRatio: "1 / 1",
               background:
-                "linear-gradient(145deg, rgba(26,32,48,0.72) 0%, rgba(8,10,18,0.88) 48%, rgba(12,28,40,0.78) 100%)",
+                "radial-gradient(circle at 32% 28%, rgba(56,189,248,0.18) 0%, rgba(18,22,36,0.82) 42%, rgba(8,10,18,0.94) 100%)",
               backdropFilter: "blur(18px)",
               WebkitBackdropFilter: "blur(18px)",
               boxShadow: [
                 "0 22px 48px rgba(0,0,0,0.55)",
-                "0 0 28px rgba(56,189,248,0.14)",
-                "inset 0 1px 0 rgba(255,255,255,0.22)",
-                "inset 0 -1px 0 rgba(56,189,248,0.12)",
-                "inset 1px 0 0 rgba(255,255,255,0.06)",
+                "0 0 32px rgba(56,189,248,0.16)",
+                "inset 0 1px 0 rgba(255,255,255,0.24)",
+                "inset 0 -10px 22px rgba(56,189,248,0.08)",
+                "inset 0 0 0 1px rgba(255,255,255,0.05)",
               ].join(", "),
             }}
           >
-            <span
-              className="relative flex shrink-0 items-center justify-center rounded-full"
-              style={{
-                width: `${Math.max(2.75, sizeRem * 0.48)}rem`,
-                height: `${Math.max(2.75, sizeRem * 0.48)}rem`,
-                background:
-                  "radial-gradient(circle at 35% 30%, rgba(56,189,248,0.22), rgba(8,10,18,0.95) 70%)",
-                boxShadow:
-                  "inset 0 1px 0 rgba(255,255,255,0.2), 0 0 0 1px rgba(56,189,248,0.28), 0 6px 16px rgba(0,0,0,0.35)",
-              }}
-            >
+            <span className="mb-1 flex shrink-0 items-center justify-center sm:mb-1.5">
               {asset.assetKey ? (
-                <AssetLogo
-                  asset={asset.assetKey}
-                  size={Math.round(logoPx * 0.7)}
-                />
+                <AssetLogo asset={asset.assetKey} size={logoSize} />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={asset.logoSrc}
                   alt=""
-                  width={Math.round(logoPx * 0.7)}
-                  height={Math.round(logoPx * 0.7)}
-                  className="h-[58%] w-[58%] object-contain"
+                  width={logoSize}
+                  height={logoSize}
+                  className="object-contain"
+                  style={{ width: logoSize, height: logoSize }}
                   draggable={false}
                   aria-hidden
                 />
               )}
             </span>
-
-            <div className="min-w-0 pr-1 text-left leading-tight">
-              <p className="truncate text-[0.95rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.08rem]">
-                {displayName}
-              </p>
-              <p className="mt-1 text-[0.9rem] font-semibold tracking-[-0.015em] text-electric sm:mt-1.5 sm:text-[1.05rem]">
-                Allocation {asset.allocation}%
-              </p>
-            </div>
+            <p
+              className="max-w-[92%] truncate font-semibold tracking-[-0.02em] text-ink"
+              style={{ fontSize: `${nameFs}rem`, lineHeight: 1.15 }}
+            >
+              {displayName}
+            </p>
+            <p
+              className="mt-0.5 max-w-[94%] font-semibold tracking-[-0.015em] text-electric sm:mt-1"
+              style={{ fontSize: `${allocFs}rem`, lineHeight: 1.2 }}
+            >
+              Allocation {asset.allocation}%
+            </p>
           </div>
         </motion.div>
       </div>

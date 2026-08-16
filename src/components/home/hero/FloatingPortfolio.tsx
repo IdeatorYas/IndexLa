@@ -12,7 +12,7 @@ type FloatingPortfolioProps = {
   className?: string;
   /** When false, hides the centered Portfolio / 100% allocated badge */
   showBadge?: boolean;
-  /** Reveal mode: larger premium bubbles; homepage hero stays on default */
+  /** Reveal mode: allocation-sized circular bubbles (homepage Hero has no bubbles) */
   variant?: FloatingBubbleVariant;
 };
 
@@ -90,16 +90,16 @@ export function FloatingPortfolio({
             })
           : asset.desktop;
 
-        // Reveal: wide stage anchors — drift animation carries capsules across paths
+        // Reveal: wide stage anchors — drift carries circles across paths
         const position = isReveal
           ? (() => {
               const left = base.x < 50;
               const x = left
-                ? Math.min(28, Math.max(10, 8 + base.x * 0.42))
-                : Math.max(72, Math.min(90, 72 + (base.x - 50) * 0.36));
+                ? Math.min(26, Math.max(12, 10 + base.x * 0.38))
+                : Math.max(74, Math.min(88, 74 + (base.x - 50) * 0.32));
               const y = Math.max(
-                10,
-                Math.min(90, 8 + (base.y / 100) * 78),
+                12,
+                Math.min(88, 10 + (base.y / 100) * 74),
               );
               return { x, y, depth: base.depth };
             })()
