@@ -35,7 +35,7 @@ const FORMING_PHONE_IN_MS = 850;
 const POST_POPULATE_HOLD_MS = 1300;
 const IDENTITY_HOLD_MS = 1300;
 /** Hold welcome copy long enough to read before exit */
-const WELCOME_HOLD_MS = 4200;
+const WELCOME_HOLD_MS = 2000;
 const EXIT_MS = 850;
 
 type HomeRevealGateProps = {
