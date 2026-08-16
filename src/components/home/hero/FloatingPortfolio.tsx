@@ -49,8 +49,8 @@ function ctaRect(w: number, h: number, compact: boolean) {
 /** Logo + headline + CTA column — bubbles stay in side corridors */
 function contentColumn(w: number, h: number, compact: boolean) {
   return compact
-    ? { x0: w * 0.22, x1: w * 0.78, y0: h * 0.08, y1: h * 0.98 }
-    : { x0: w * 0.3, x1: w * 0.7, y0: h * 0.04, y1: h * 0.98 };
+    ? { x0: w * 0.3, x1: w * 0.7, y0: h * 0.1, y1: h * 0.98 }
+    : { x0: w * 0.32, x1: w * 0.68, y0: h * 0.04, y1: h * 0.98 };
 }
 
 function seedRevealPositions(
@@ -80,16 +80,16 @@ function seedRevealPositions(
     const r = (sizeRem * rootFs) / 2;
     const col = contentColumn(width, height, compact);
 
-    const sideSlots = 5;
-    const slot = i % sideSlots;
-    const ySlot = (slot + 0.55) / (sideSlots + 0.2);
+    const sideIndex = Math.floor(i / 2);
+    const sideCount = Math.ceil(assets.length / 2);
+    const ySlot = (sideIndex + 0.5) / sideCount;
     let x = left
-      ? Math.min(col.x0 - r - 8, width * (0.08 + (slot % 3) * 0.04))
-      : Math.max(col.x1 + r + 8, width * (0.82 + (slot % 3) * 0.04));
+      ? Math.min(col.x0 - r - 10, width * 0.14)
+      : Math.max(col.x1 + r + 10, width * 0.86);
     x = Math.min(width - r - 8, Math.max(r + 8, x));
     const y = Math.min(
       fieldBottom - r,
-      Math.max(r + 10, height * (0.1 + ySlot * 0.72)),
+      Math.max(r + 12, height * (0.08 + ySlot * 0.78)),
     );
 
     const speed = compact ? 0.35 : 0.48;
@@ -225,7 +225,7 @@ export function FloatingPortfolio({
       const zone = ctaRect(width, height, compact);
       const col = contentColumn(width, height, compact);
       const fieldBottom = compact ? height * 0.92 : height * 0.9;
-      const pad = 14;
+      const pad = compact ? 16 : 14;
 
       for (let i = 0; i < bubbles.length; i++) {
         const b = bubbles[i];
