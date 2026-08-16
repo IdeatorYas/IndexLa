@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { RevealPhone } from "@/components/home/reveal/RevealPhone";
 import { RevealScreen1 } from "@/components/home/reveal/RevealScreen1";
@@ -16,6 +17,7 @@ import {
   markRevealSeen,
   shouldForceReveal,
 } from "@/components/home/reveal/revealAssets";
+import { LOGO_TRANSPARENT } from "@/lib/site";
 
 type Phase =
   | "boot"
@@ -174,7 +176,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
               {showFormation ? (
                 <motion.div
                   key="formation"
-                  className="absolute inset-0 z-30 flex items-center justify-center px-3 py-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 sm:py-4"
+                  className="absolute inset-0 z-30 flex items-center justify-center overflow-visible px-3 py-[max(0.5rem,env(safe-area-inset-top))] sm:px-6 sm:py-3"
                   initial={
                     reduceMotion
                       ? { opacity: 1 }
@@ -217,10 +219,18 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
+                  <Image
+                    src={LOGO_TRANSPARENT}
+                    alt="INDEXLA"
+                    width={480}
+                    height={192}
+                    className="mb-6 h-[4.75rem] w-auto object-contain drop-shadow-[0_16px_48px_rgba(0,0,0,0.55)] sm:mb-8 sm:h-[6.25rem] md:h-[7.5rem]"
+                    priority
+                  />
                   <p className="display text-[clamp(2rem,6vw,3.4rem)] font-semibold tracking-[-0.04em] text-ink text-balance">
                     Welcome to INDEXLA.
                   </p>
-                  <p className="mx-auto mt-4 max-w-md text-[1.05rem] font-medium leading-snug tracking-[-0.015em] text-electric text-pretty sm:text-[1.2rem]">
+                  <p className="mx-auto mt-5 max-w-xl text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold leading-snug tracking-[-0.025em] text-electric text-pretty">
                     The distribution layer for digital assets.
                   </p>
                 </motion.div>

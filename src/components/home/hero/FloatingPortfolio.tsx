@@ -90,19 +90,19 @@ export function FloatingPortfolio({
             })
           : asset.desktop;
 
-        // Reveal: keep a clear center corridor for logo + CTA
+        // Reveal: wide stage anchors — drift animation carries capsules across paths
         const position = isReveal
-          ? {
-              x: Math.max(
-                4,
-                Math.min(96, 50 + (base.x - 50) * (compact ? 1.38 : 1.42)),
-              ),
-              y: Math.max(
-                6,
-                Math.min(94, 50 + (base.y - 50) * (compact ? 1.28 : 1.32)),
-              ),
-              depth: base.depth,
-            }
+          ? (() => {
+              const left = base.x < 50;
+              const x = left
+                ? Math.min(28, Math.max(10, 8 + base.x * 0.42))
+                : Math.max(72, Math.min(90, 72 + (base.x - 50) * 0.36));
+              const y = Math.max(
+                10,
+                Math.min(90, 8 + (base.y / 100) * 78),
+              );
+              return { x, y, depth: base.depth };
+            })()
           : base;
 
         return (

@@ -42,17 +42,19 @@ export function FloatingAssetBubble({
     sizeRem * (isReveal ? (compact ? 10 : 11) : compact ? 9.5 : 10.5),
   );
   const opacity = isReveal
-    ? 0.88 + position.depth * 0.12
+    ? 0.9 + position.depth * 0.1
     : 0.58 + position.depth * 0.38;
-  const blur = isReveal ? (1 - position.depth) * 0.2 : (1 - position.depth) * 0.5;
-  const driftScale = isReveal ? 1.85 : 1;
-  const driftDuration = isReveal
-    ? asset.drift.duration * 0.95
-    : asset.drift.duration;
+  const blur = isReveal ? (1 - position.depth) * 0.15 : (1 - position.depth) * 0.5;
   const displayName = REVEAL_LABEL[asset.id] ?? asset.ticker;
 
   if (isReveal) {
-    const chipW = compact ? "7.85rem" : "9.6rem";
+    // Large orbital drift so capsules travel and cross paths, not bob in place
+    const amp = compact ? 2.35 : 2.85;
+    const dx = asset.drift.x * amp;
+    const dy = asset.drift.y * amp;
+    const side = position.x < 50 ? 1 : -1;
+    const duration = asset.drift.duration * 1.15;
+
     return (
       <div
         className="absolute"
@@ -72,85 +74,103 @@ export function FloatingAssetBubble({
               : {
                   x: [
                     0,
-                    asset.drift.x * driftScale,
-                    -asset.drift.x * 0.7 * driftScale,
-                    asset.drift.x * 0.35 * driftScale,
+                    dx * side * 1.15,
+                    dx * side * -0.85,
+                    dx * side * 0.55,
+                    -dx * side * 0.4,
                     0,
                   ],
                   y: [
                     0,
-                    asset.drift.y * driftScale,
-                    -asset.drift.y * 0.75 * driftScale,
-                    asset.drift.y * 0.4 * driftScale,
+                    -dy * 1.1,
+                    dy * 0.95,
+                    -dy * 0.45,
+                    dy * 0.65,
                     0,
                   ],
-                  rotate: [0, 1.2, -1.1, 0.6, 0],
+                  rotate: [0, 2.4 * side, -1.8 * side, 1.2 * side, 0],
                 }
           }
           transition={
             reduce
               ? undefined
               : {
-                  duration: driftDuration,
-                  delay: asset.drift.delay * 0.6,
+                  duration,
+                  delay: asset.drift.delay * 0.45,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }
           }
           className="relative"
-          style={{ width: chipW }}
         >
+          {/* Soft neon halo — controlled, not loud */}
           <div
-            className="relative overflow-hidden rounded-2xl border border-electric/30 bg-gradient-to-br from-deep/95 via-void/90 to-panel/80 px-3 py-2.5 shadow-[0_16px_40px_rgba(0,0,0,0.45)] backdrop-blur-md sm:rounded-[1.15rem] sm:px-3.5 sm:py-3"
+            className="pointer-events-none absolute inset-0 -z-10 scale-[1.35] rounded-full bg-electric/20 blur-2xl"
+            aria-hidden
+          />
+
+          <div
+            className="relative flex items-center gap-2.5 rounded-full border border-electric/40 px-3 py-2 sm:gap-3 sm:px-3.5 sm:py-2.5"
             style={{
-              boxShadow:
-                "0 16px 40px rgba(0,0,0,0.48), inset 0 1px 0 rgba(56,189,248,0.16), 0 0 0 1px rgba(255,255,255,0.04)",
+              background:
+                "linear-gradient(145deg, rgba(26,32,48,0.72) 0%, rgba(8,10,18,0.88) 48%, rgba(12,28,40,0.78) 100%)",
+              backdropFilter: "blur(18px)",
+              WebkitBackdropFilter: "blur(18px)",
+              boxShadow: [
+                "0 22px 48px rgba(0,0,0,0.55)",
+                "0 0 28px rgba(56,189,248,0.14)",
+                "inset 0 1px 0 rgba(255,255,255,0.22)",
+                "inset 0 -1px 0 rgba(56,189,248,0.12)",
+                "inset 1px 0 0 rgba(255,255,255,0.06)",
+              ].join(", "),
             }}
           >
-            <div
-              className="pointer-events-none absolute -right-4 -top-4 h-14 w-14 rounded-full bg-electric/15 blur-2xl"
-              aria-hidden
-            />
-            <div className="relative flex items-center gap-2.5">
-              <span
-                className="flex shrink-0 items-center justify-center rounded-full border border-white/[0.12] bg-void/80"
-                style={{
-                  width: `${Math.max(2.55, sizeRem * 0.52)}rem`,
-                  height: `${Math.max(2.55, sizeRem * 0.52)}rem`,
-                }}
-              >
-                {asset.assetKey ? (
-                  <AssetLogo
-                    asset={asset.assetKey}
-                    size={Math.round(logoPx * 0.72)}
-                  />
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={asset.logoSrc}
-                    alt=""
-                    width={Math.round(logoPx * 0.72)}
-                    height={Math.round(logoPx * 0.72)}
-                    className="h-[60%] w-[60%] object-contain"
-                    draggable={false}
-                    aria-hidden
-                  />
-                )}
-              </span>
-              <div className="min-w-0 flex-1 text-left">
-                <p className="truncate text-[0.88rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.02rem]">
-                  {displayName}
-                </p>
-                <p className="mt-1.5 text-[0.86rem] font-semibold tracking-[-0.01em] text-electric sm:text-[0.98rem]">
-                  Allocation {asset.allocation}%
-                </p>
-              </div>
+            <span
+              className="relative flex shrink-0 items-center justify-center rounded-full"
+              style={{
+                width: `${Math.max(2.75, sizeRem * 0.48)}rem`,
+                height: `${Math.max(2.75, sizeRem * 0.48)}rem`,
+                background:
+                  "radial-gradient(circle at 35% 30%, rgba(56,189,248,0.22), rgba(8,10,18,0.95) 70%)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.2), 0 0 0 1px rgba(56,189,248,0.28), 0 6px 16px rgba(0,0,0,0.35)",
+              }}
+            >
+              {asset.assetKey ? (
+                <AssetLogo
+                  asset={asset.assetKey}
+                  size={Math.round(logoPx * 0.7)}
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={asset.logoSrc}
+                  alt=""
+                  width={Math.round(logoPx * 0.7)}
+                  height={Math.round(logoPx * 0.7)}
+                  className="h-[58%] w-[58%] object-contain"
+                  draggable={false}
+                  aria-hidden
+                />
+              )}
+            </span>
+
+            <div className="min-w-0 pr-1 text-left leading-tight">
+              <p className="truncate text-[0.95rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.08rem]">
+                {displayName}
+              </p>
+              <p className="mt-1 text-[0.9rem] font-semibold tracking-[-0.015em] text-electric sm:mt-1.5 sm:text-[1.05rem]">
+                Allocation {asset.allocation}%
+              </p>
             </div>
           </div>
         </motion.div>
       </div>
     );
   }
+
+  const driftScale = 1;
+  const driftDuration = asset.drift.duration;
 
   return (
     <div
