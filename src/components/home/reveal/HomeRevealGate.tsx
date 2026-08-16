@@ -25,6 +25,8 @@ type Phase =
   | "forming"
   | "identity"
   | "welcome"
+  | "welcomeExit"
+  | "reveal"
   | "exiting"
   | "done";
 
@@ -36,7 +38,10 @@ const POST_POPULATE_HOLD_MS = 1300;
 const IDENTITY_HOLD_MS = 1300;
 /** Hold welcome copy long enough to read before exit */
 const WELCOME_HOLD_MS = 2000;
-const EXIT_MS = 850;
+/** Fast welcome fade-up out, then reveal fades in */
+const WELCOME_EXIT_MS = 280;
+const REVEAL_IN_MS = 280;
+const EXIT_MS = 500;
 
 type HomeRevealGateProps = {
   children: ReactNode;
@@ -86,6 +91,11 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
     schedule(() => setPhase("done"), EXIT_MS);
   }, [schedule]);
 
+  const goToReveal = useCallback(() => {
+    setPhase("welcomeExit");
+    schedule(() => setPhase("reveal"), WELCOME_EXIT_MS);
+  }, [schedule]);
+
   const startFormation = useCallback(() => {
     if (startedRef.current) return;
     startedRef.current = true;
@@ -97,7 +107,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
     if (reduceMotion) {
       schedule(() => setPhase("identity"), 900);
       schedule(() => setPhase("welcome"), 900 + 1600);
-      schedule(() => finish(), 900 + 1600 + WELCOME_HOLD_MS);
+      schedule(() => goToReveal(), 900 + 1600 + WELCOME_HOLD_MS);
       return;
     }
 
@@ -114,20 +124,21 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
       schedule(() => setPhase("identity"), populateDone);
       schedule(() => setPhase("welcome"), populateDone + IDENTITY_HOLD_MS);
       schedule(
-        () => finish(),
+        () => goToReveal(),
         populateDone + IDENTITY_HOLD_MS + WELCOME_HOLD_MS,
       );
     }, FORMING_PHONE_IN_MS);
-  }, [clearTimers, finish, reduceMotion, schedule]);
+  }, [clearTimers, goToReveal, reduceMotion, schedule]);
 
   const active = phase !== "done";
-  const showScreen1 = phase === "intro" || phase === "forming";
+  const showScreen1 =
+    phase === "intro" || phase === "forming" || phase === "reveal";
   const showFormation =
     phase === "forming" ||
     phase === "identity" ||
     phase === "welcome" ||
-    phase === "exiting";
-  const showWelcome = phase === "welcome" || phase === "exiting";
+    phase === "welcomeExit";
+  const showWelcome = phase === "welcome" || phase === "welcomeExit";
 
   return (
     <>
@@ -143,7 +154,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
               opacity: phase === "exiting" ? 0 : 1,
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: EXIT_MS / 1000, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: EXIT_MS / 1000, ease: "easeOut" }}
             role="dialog"
             aria-modal="true"
             aria-label="INDEXLA portfolio reveal"
@@ -165,13 +176,31 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
               <div className="absolute inset-0 z-50 bg-void" aria-hidden />
             ) : null}
 
-            {showScreen1 ? (
-              <RevealScreen1
-                onBuild={startFormation}
-                fading={phase === "forming"}
-                reduceMotion={!!reduceMotion}
-              />
-            ) : null}
+            <AnimatePresence mode="wait">
+              {showScreen1 ? (
+                <motion.div
+                  key={phase === "reveal" ? "reveal-return" : "reveal-intro"}
+                  className="absolute inset-0"
+                  initial={
+                    phase === "reveal" && !reduceMotion
+                      ? { opacity: 0 }
+                      : false
+                  }
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: reduceMotion ? 0 : REVEAL_IN_MS / 1000,
+                    ease: "easeOut",
+                  }}
+                >
+                  <RevealScreen1
+                    onBuild={phase === "reveal" ? finish : startFormation}
+                    fading={phase === "forming"}
+                    reduceMotion={!!reduceMotion}
+                  />
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
 
             <AnimatePresence>
               {showFormation ? (
@@ -191,7 +220,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
                       showWelcome && !reduceMotion ? "blur(5px)" : "blur(0px)",
                   }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
                 >
                   <RevealPhone
                     assets={REVEAL_ASSETS}
@@ -200,7 +229,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
                     showIdentity={
                       phase === "identity" ||
                       phase === "welcome" ||
-                      phase === "exiting"
+                      phase === "welcomeExit"
                     }
                     reduceMotion={!!reduceMotion}
                   />
@@ -216,9 +245,16 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
                   initial={
                     reduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }
                   }
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  animate={
+                    phase === "welcomeExit"
+                      ? { opacity: 0, y: -10 }
+                      : { opacity: 1, y: 0 }
+                  }
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{
+                    duration: reduceMotion ? 0.15 : WELCOME_EXIT_MS / 1000,
+                    ease: "easeOut",
+                  }}
                 >
                   <Image
                     src={LOGO_TRANSPARENT}
