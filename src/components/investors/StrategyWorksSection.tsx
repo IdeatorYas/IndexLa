@@ -271,30 +271,28 @@ export function StrategyWorksSection() {
         </FadeIn>
         <FadeIn className="mt-6" delay={0.03}>
           <div className={`${invPremiumSurface} px-4 py-5 sm:px-6 sm:py-6`}>
-            <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-between md:gap-2">
+            <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-stretch md:gap-2">
               {progression.map((phase, i) => (
                 <div
                   key={phase.stage}
-                  className="flex flex-col items-center gap-2 md:flex-1 md:flex-row"
+                  className="flex flex-col items-stretch gap-2 md:contents"
                 >
                   <article
-                    className={`${invPremiumAccent} w-full px-3.5 py-5 text-center`}
+                    className={`${invPremiumAccent} flex h-full min-h-[8.75rem] w-full flex-1 flex-col justify-center px-3.5 py-5 text-center`}
                   >
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
                       {phase.stage}
                     </p>
-                    {phase.meta ? (
-                      <p className="mt-2 text-[0.85rem] text-muted">
-                        {phase.meta}
-                      </p>
-                    ) : null}
+                    <p className="mt-2 min-h-[1.275rem] text-[0.85rem] leading-normal text-muted">
+                      {phase.meta || "\u00A0"}
+                    </p>
                     <p className="mt-2 display text-[1.05rem] tracking-[-0.02em] text-ink">
                       {phase.action}
                     </p>
                   </article>
                   {i < progression.length - 1 ? (
                     <span
-                      className="shrink-0 text-electric/55 md:px-0.5"
+                      className="flex shrink-0 items-center justify-center self-center text-electric/55 md:px-0.5"
                       aria-hidden
                     >
                       <span className="md:hidden">↓</span>
