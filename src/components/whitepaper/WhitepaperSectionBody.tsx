@@ -21,7 +21,7 @@ const CARDIFY_SECTIONS: Record<string, number> = {
   "4-why-now": 3,
   "6-why-the-architecture-gap-is-structural": 3,
   "7-market-opportunity": 3,
-  "8-how-indexla-works": 3,
+  "9-how-indexla-works": 3,
   "11-strategies": 3,
   "18-risk-factors": 3,
 };

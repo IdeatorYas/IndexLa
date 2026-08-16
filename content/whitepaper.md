@@ -381,32 +381,33 @@ More assets become tokenized → more assets become programmable → more portfo
 
 # 9. How INDEXLA Works
 
-### Build
+### 1. Build
 
-Select assets and allocations.
+Select assets and define portfolio allocations.
 
-### Configure
+### 2. Configure
 
-Define strategy rules and execution parameters.
+Choose your strategy and set its rules, triggers, and execution parameters.
 
-### Authorize
+### 3. Authorize
 
-Approve the actions automation can perform.
+Grant scoped permissions for the actions the automation is allowed to perform.
 
-### Monitor
+### 4. Monitor
 
-Monitor relevant market and portfolio conditions.
+INDEXLA continuously monitors market conditions, portfolio state, and strategy triggers.
 
-### Execute
+### 5. Execute
 
-Coordinate authorized transactions through available decentralized liquidity and execution infrastructure.
+When conditions are met, INDEXLA coordinates authorized transactions through connected execution and liquidity infrastructure.
 
-### Manage
+### 6. Manage
 
-Adjust allocations, change strategies or stop automation.
+Review performance, adjust allocations or strategy rules, pause automation, or revoke permissions at any time.
 
-You define the strategy.  
- INDEXLA coordinates the execution.
+**You define the strategy.**
+**You control the permissions.**
+**INDEXLA coordinates the execution.**
 
 
 

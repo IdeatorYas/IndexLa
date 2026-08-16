@@ -65,7 +65,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <MarketOpportunityDiagram />,
         },
       ];
-    case "8-how-indexla-works":
+    case "9-how-indexla-works":
       return [
         {
           id: "how-works",
