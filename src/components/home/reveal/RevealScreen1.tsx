@@ -39,14 +39,11 @@ export function RevealScreen1({
           <Image
             src={LOGO_TRANSPARENT}
             alt="INDEXLA"
-            width={72}
-            height={72}
-            className="h-14 w-14 object-contain sm:h-16 sm:w-16"
+            width={160}
+            height={64}
+            className="h-12 w-auto object-contain sm:h-14"
             priority
           />
-          <p className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-ink/90">
-            INDEXLA
-          </p>
         </motion.div>
 
         {/* Spacer keeps CTA clear of floating bubbles */}
