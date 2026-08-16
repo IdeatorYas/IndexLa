@@ -203,23 +203,6 @@ export function InvestorHero() {
             <HeroStrategyPanel />
           </motion.div>
         </div>
-
-        <motion.div
-          className="mt-8 max-w-2xl space-y-3 border-t border-line/70 pt-7 lg:mt-10 lg:pt-8"
-          initial={reduce ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className={`${invBody} text-pretty`}>
-            You want one action to buy crypto and tokenized assets across
-            different chains. You want to hold the actual assets in your own
-            wallet, not a wrapper. You want to automate Buy Fear / Sell Greed
-            rules without giving up control.
-          </p>
-          <p className="text-[1.15rem] font-bold leading-snug tracking-[-0.02em] text-ink text-pretty sm:text-[1.28rem]">
-            One action. Real assets. Your wallet. Your rules.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
