@@ -1,5 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   crBody,
   crBodyStrong,
@@ -48,6 +49,13 @@ export function CreatorStrategyRulesSection() {
             <EarlyAccessCta mode="creator" className={crCta}>
               Creator Early Access →
             </EarlyAccessCta>
+          </div>
+          <div className="mt-5 flex justify-center">
+            <HomeReadMore
+              href="/strategies"
+              label="Explore INDEXLA Strategies →"
+              external={false}
+            />
           </div>
         </FadeIn>
       </div>

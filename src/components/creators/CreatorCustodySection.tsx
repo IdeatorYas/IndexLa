@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   crBody,
   crBodyStrong,
@@ -40,6 +41,14 @@ export function CreatorCustodySection() {
             <p className={`${crBodyStrong} text-balance`}>
               You build the portfolio. They control the assets.
             </p>
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <HomeReadMore
+              href="/whitepaper/technical"
+              label="Read Technical Paper →"
+              external={false}
+            />
           </div>
         </FadeIn>
       </div>
