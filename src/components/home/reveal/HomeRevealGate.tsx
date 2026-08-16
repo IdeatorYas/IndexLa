@@ -94,9 +94,9 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
     setPhase("forming");
 
     if (reduceMotion) {
-      schedule(() => setPhase("identity"), 450);
-      schedule(() => setPhase("welcome"), 450 + 1000);
-      schedule(() => finish(), 450 + 1000 + 1200);
+      schedule(() => setPhase("identity"), 900);
+      schedule(() => setPhase("welcome"), 900 + 1600);
+      schedule(() => finish(), 900 + 1600 + 2400);
       return;
     }
 
@@ -222,15 +222,15 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
                   <Image
                     src={LOGO_TRANSPARENT}
                     alt="INDEXLA"
-                    width={480}
-                    height={192}
-                    className="mb-6 h-[4.75rem] w-auto object-contain drop-shadow-[0_16px_48px_rgba(0,0,0,0.55)] sm:mb-8 sm:h-[6.25rem] md:h-[7.5rem]"
+                    width={520}
+                    height={208}
+                    className="mb-7 h-[5.5rem] w-auto object-contain drop-shadow-[0_16px_48px_rgba(0,0,0,0.55)] sm:mb-9 sm:h-[7.5rem] md:h-[8.75rem]"
                     priority
                   />
                   <p className="display text-[clamp(2rem,6vw,3.4rem)] font-semibold tracking-[-0.04em] text-ink text-balance">
                     Welcome to INDEXLA.
                   </p>
-                  <p className="mx-auto mt-5 max-w-xl text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold leading-snug tracking-[-0.025em] text-electric text-pretty">
+                  <p className="mx-auto mt-6 max-w-2xl text-[clamp(1.45rem,4.6vw,2.2rem)] font-semibold leading-snug tracking-[-0.03em] text-electric text-pretty">
                     The distribution layer for digital assets.
                   </p>
                 </motion.div>

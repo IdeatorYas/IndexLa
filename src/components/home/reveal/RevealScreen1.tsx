@@ -29,9 +29,9 @@ export function RevealScreen1({
     >
       <FloatingPortfolio showBadge={false} variant="reveal" />
 
-      <div className="relative z-40 flex min-h-[100svh] flex-col items-center justify-center px-5 py-6 sm:px-8 sm:py-8">
+      <div className="relative z-40 flex min-h-[100svh] flex-col items-center justify-center px-5 py-5 sm:px-8 sm:py-8">
         <motion.div
-          className="mx-auto flex w-full max-w-[22rem] flex-col items-center text-center sm:max-w-[28rem]"
+          className="mx-auto flex w-full max-w-[22rem] flex-col items-center text-center sm:max-w-[30rem]"
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
@@ -41,17 +41,17 @@ export function RevealScreen1({
             alt="INDEXLA"
             width={520}
             height={208}
-            className="h-[6.5rem] w-auto object-contain drop-shadow-[0_16px_48px_rgba(0,0,0,0.55)] sm:h-[8.5rem] md:h-[10rem]"
+            className="h-[5.75rem] w-auto object-contain drop-shadow-[0_16px_48px_rgba(0,0,0,0.55)] sm:h-[8rem] md:h-[9.5rem]"
             priority
           />
 
-          <h1 className="display mt-4 text-[clamp(2rem,7.2vw,3.45rem)] font-semibold leading-[1.08] tracking-[-0.045em] text-ink sm:mt-6">
+          <h1 className="display mt-3 text-[clamp(1.85rem,6.6vw,3.25rem)] font-semibold leading-[1.1] tracking-[-0.045em] text-ink sm:mt-5">
             <span className="block">Invest in Everything</span>
             <span className="block">Own Everything</span>
             <span className="block">Control Everything</span>
           </h1>
 
-          <div className="mt-7 w-full rounded-[1.75rem] border border-white/[0.12] bg-void/90 px-5 py-5 shadow-[0_28px_72px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:mt-8 sm:px-7 sm:py-6">
+          <div className="mt-5 w-full rounded-[1.75rem] border border-white/[0.12] bg-void/90 px-5 py-4 shadow-[0_28px_72px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:mt-7 sm:px-7 sm:py-5">
             <button
               type="button"
               onClick={onBuild}
@@ -60,7 +60,7 @@ export function RevealScreen1({
             >
               Build Your Portfolio
             </button>
-            <p className="mt-4 text-[1.05rem] font-semibold tracking-[-0.01em] text-muted sm:text-[1.15rem]">
+            <p className="mt-3.5 text-[1.05rem] font-semibold tracking-[-0.01em] text-muted sm:text-[1.15rem]">
               Click to enter
             </p>
           </div>
