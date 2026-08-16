@@ -129,7 +129,7 @@ const utilities: ArchCard[] = [
       "Higher balances unlock greater discounts while maintaining the required balance.",
       "Larger holdings can directly reduce automated portfolio execution costs.",
     ],
-    metric: "2,500 → 10% · 5,000 → 25% · 10,000 → 40%",
+    metric: "2,500 → 10% · 5,000 → 20% · 10,000 → 30%",
   },
   {
     n: "05",
