@@ -31,7 +31,7 @@ export function RevealScreen1({
 
       <div className="relative z-20 flex min-h-[100svh] flex-col items-center px-5 pb-10 pt-[max(1.25rem,env(safe-area-inset-top))] sm:px-8">
         <motion.div
-          className="relative z-40 mt-5 flex max-w-[22rem] flex-col items-center text-center sm:mt-7 sm:max-w-[30rem] lg:mt-9"
+          className="relative z-40 mt-4 flex max-w-[34rem] flex-col items-center text-center sm:mt-6 lg:mt-8"
           initial={reduceMotion ? false : { opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -39,19 +39,19 @@ export function RevealScreen1({
           <Image
             src={LOGO_TRANSPARENT}
             alt="INDEXLA"
-            width={320}
-            height={128}
-            className="h-[5.25rem] w-auto object-contain drop-shadow-[0_12px_40px_rgba(0,0,0,0.55)] sm:h-[6.25rem] md:h-[7rem]"
+            width={420}
+            height={168}
+            className="h-[6.5rem] w-auto object-contain drop-shadow-[0_16px_48px_rgba(0,0,0,0.55)] sm:h-[8rem] md:h-[9.25rem]"
             priority
           />
-          <p className="mt-3.5 max-w-[18rem] text-[0.8rem] font-medium leading-snug tracking-[-0.01em] text-muted text-pretty sm:mt-4 sm:max-w-[24rem] sm:text-[0.95rem]">
+          <h1 className="display mt-5 max-w-[20rem] text-[clamp(1.55rem,5.2vw,2.65rem)] font-semibold leading-[1.12] tracking-[-0.035em] text-ink text-balance sm:mt-6 sm:max-w-[32rem]">
             Invest in Everything. Own Everything. Control Everything.
-          </p>
+          </h1>
         </motion.div>
 
         <div className="relative z-40 flex flex-1 flex-col items-center justify-center py-8 sm:py-10">
           <motion.div
-            className="mx-auto flex max-w-[22rem] flex-col items-center text-center sm:max-w-[28rem]"
+            className="mx-auto flex max-w-[22rem] flex-col items-center text-center sm:max-w-[26rem]"
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -60,19 +60,16 @@ export function RevealScreen1({
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <div className="rounded-[1.75rem] border border-white/[0.1] bg-void/78 px-6 py-7 shadow-[0_28px_72px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:px-10 sm:py-9">
-              <h1 className="display text-[clamp(1.85rem,5.5vw,3.1rem)] font-semibold tracking-[-0.04em] text-ink text-balance">
-                Build Your Portfolio
-              </h1>
+            <div className="rounded-[1.75rem] border border-white/[0.1] bg-void/80 px-7 py-7 shadow-[0_28px_72px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:px-10 sm:py-8">
               <button
                 type="button"
                 onClick={onBuild}
                 disabled={fading}
-                className={`${homeCta} mt-7 inline-flex items-center justify-center rounded-2xl bg-electric font-semibold text-void transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric disabled:pointer-events-none sm:mt-8`}
+                className={`${homeCta} inline-flex items-center justify-center rounded-2xl bg-electric font-semibold text-void transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric disabled:pointer-events-none`}
               >
                 Build Your Portfolio
               </button>
-              <p className="mt-3 text-[0.78rem] font-medium tracking-[-0.01em] text-muted sm:text-[0.85rem]">
+              <p className="mt-4 text-[0.98rem] font-semibold tracking-[-0.01em] text-muted sm:text-[1.08rem]">
                 Click to enter
               </p>
             </div>

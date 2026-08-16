@@ -26,10 +26,12 @@ type Phase =
   | "exiting"
   | "done";
 
-const ASSET_STAGGER_MS = 200;
-const FORMING_PHONE_IN_MS = 700;
-const POST_POPULATE_HOLD_MS = 650;
-const IDENTITY_HOLD_MS = 1400;
+/** Time between each asset fly-in — long enough to see each entry */
+const ASSET_STAGGER_MS = 420;
+const FORMING_PHONE_IN_MS = 850;
+/** Pause after final asset with completed portfolio visible */
+const POST_POPULATE_HOLD_MS = 1300;
+const IDENTITY_HOLD_MS = 1300;
 const WELCOME_HOLD_MS = 1900;
 const EXIT_MS = 850;
 
@@ -41,6 +43,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
   const reduceMotion = useReducedMotion();
   const [phase, setPhase] = useState<Phase>("boot");
   const [visibleCount, setVisibleCount] = useState(0);
+  const [enteringIndex, setEnteringIndex] = useState(-1);
   const timers = useRef<number[]>([]);
   const startedRef = useRef(false);
 
@@ -85,21 +88,26 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
     startedRef.current = true;
     clearTimers();
     setVisibleCount(reduceMotion ? REVEAL_ASSETS.length : 0);
+    setEnteringIndex(-1);
     setPhase("forming");
 
     if (reduceMotion) {
-      schedule(() => setPhase("identity"), 400);
-      schedule(() => setPhase("welcome"), 400 + 900);
-      schedule(() => finish(), 400 + 900 + 1200);
+      schedule(() => setPhase("identity"), 450);
+      schedule(() => setPhase("welcome"), 450 + 1000);
+      schedule(() => finish(), 450 + 1000 + 1200);
       return;
     }
 
     schedule(() => {
       REVEAL_ASSETS.forEach((_, i) => {
-        schedule(() => setVisibleCount(i + 1), i * ASSET_STAGGER_MS);
+        schedule(() => {
+          setEnteringIndex(i);
+          setVisibleCount(i + 1);
+        }, i * ASSET_STAGGER_MS);
       });
       const populateDone =
         REVEAL_ASSETS.length * ASSET_STAGGER_MS + POST_POPULATE_HOLD_MS;
+      schedule(() => setEnteringIndex(-1), REVEAL_ASSETS.length * ASSET_STAGGER_MS);
       schedule(() => setPhase("identity"), populateDone);
       schedule(() => setPhase("welcome"), populateDone + IDENTITY_HOLD_MS);
       schedule(
@@ -150,7 +158,6 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
               aria-hidden
             />
 
-            {/* Boot / first paint cover — prevents homepage flash */}
             {phase === "boot" ? (
               <div className="absolute inset-0 z-50 bg-void" aria-hidden />
             ) : null}
@@ -167,14 +174,14 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
               {showFormation ? (
                 <motion.div
                   key="formation"
-                  className="absolute inset-0 z-30 flex flex-col items-center justify-center px-4 py-8 sm:px-6"
+                  className="absolute inset-0 z-30 flex items-center justify-center px-3 py-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 sm:py-4"
                   initial={
                     reduceMotion
                       ? { opacity: 1 }
-                      : { opacity: 0, y: 24, scale: 0.96 }
+                      : { opacity: 0, y: 20, scale: 0.96 }
                   }
                   animate={{
-                    opacity: showWelcome ? 0.18 : 1,
+                    opacity: showWelcome ? 0.16 : 1,
                     y: 0,
                     scale: showWelcome && !reduceMotion ? 0.97 : 1,
                     filter:
@@ -186,6 +193,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
                   <RevealPhone
                     assets={REVEAL_ASSETS}
                     visibleCount={visibleCount}
+                    enteringIndex={enteringIndex}
                     showIdentity={
                       phase === "identity" ||
                       phase === "welcome" ||
@@ -203,9 +211,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
                   key="welcome"
                   className="absolute inset-0 z-40 flex flex-col items-center justify-center px-6 text-center"
                   initial={
-                    reduceMotion
-                      ? { opacity: 1 }
-                      : { opacity: 0, y: 12 }
+                    reduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }
                   }
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}

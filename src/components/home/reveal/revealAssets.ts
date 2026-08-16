@@ -14,13 +14,35 @@ export const REVEAL_ASSET_ORDER = [
   "nvda",
 ] as const;
 
+/** Display names for reveal copy — keep allocation data from HERO_PORTFOLIO_ASSETS */
+export const REVEAL_DISPLAY_NAME: Record<
+  (typeof REVEAL_ASSET_ORDER)[number],
+  string
+> = {
+  btc: "Bitcoin",
+  eth: "Ethereum",
+  sol: "Solana",
+  tao: "TAO",
+  sp500: "S&P 500",
+  gold: "Gold",
+  sui: "SUI",
+  silver: "Silver",
+  msft: "MSFT",
+  nvda: "NVDA",
+};
+
 export const REVEAL_ASSETS = REVEAL_ASSET_ORDER.map((id) => {
   const asset = HERO_PORTFOLIO_ASSETS.find((a) => a.id === id);
   if (!asset) {
     throw new Error(`Missing reveal asset: ${id}`);
   }
-  return asset;
+  return {
+    ...asset,
+    displayName: REVEAL_DISPLAY_NAME[id],
+  };
 });
+
+export type RevealAsset = (typeof REVEAL_ASSETS)[number];
 
 export const REVEAL_STORAGE_KEY = "indexla-portfolio-reveal-seen";
 
