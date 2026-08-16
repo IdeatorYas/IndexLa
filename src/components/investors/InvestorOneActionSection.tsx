@@ -25,7 +25,7 @@ export function InvestorOneActionSection() {
                 alt=""
                 width={220}
                 height={220}
-                className="h-[9.5rem] w-[9.5rem] object-contain opacity-[0.07] sm:h-[11.5rem] sm:w-[11.5rem] md:h-[13rem] md:w-[13rem]"
+                className="h-[9.5rem] w-[9.5rem] object-contain opacity-[0.12] sm:h-[11.5rem] sm:w-[11.5rem] md:h-[13rem] md:w-[13rem]"
                 priority={false}
               />
             </div>
