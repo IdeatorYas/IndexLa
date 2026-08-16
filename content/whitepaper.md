@@ -42,48 +42,47 @@ INDEXLA can onboard users and begin product testing before $DEXLA utility activa
 
 Modern investing is fragmented.
 
-Assets exist across different chains, wallets, protocols, exchanges and financial platforms.
-
-A diversified portfolio can require multiple transactions, bridges, approvals, interfaces and execution venues.
+Your assets sit across different chains, wallets, protocols and platforms. Building one diversified portfolio often means moving between multiple interfaces, bridges, swaps and execution venues.
 
 ### Fragmented Investing
 
-Users manage:
+**One portfolio. Multiple systems.**
 
-Separate wallets  
- Multiple swaps and bridges  
- Different execution venues  
- Manual rebalancing  
- Fragmented portfolio visibility
+Separate wallets. Multiple bridges. Different execution venues. Manual rebalancing. Fragmented visibility.
 
-A diversified portfolio becomes a collection of transactions rather than one coherent system.
+What should be one coherent portfolio becomes a collection of disconnected transactions.
 
-### Manual Strategy Execution
+### The Wrapper Problem
 
-Investors may know exactly what they want to do but still execute manually.
+Most basket products solve diversification by issuing a single token that represents a basket of assets.
 
-DCA, rebalancing, Take Profit, Stop Loss, Fear & Greed, RSI and Momentum strategies require consistent action when conditions occur.
+That creates another layer between the investor and the assets:
 
-The problem is not a lack of strategies.
+• One token represents the entire portfolio
+• Underlying assets sit inside a vault or contract
+• Rebalancing depends on the basket mechanism
+• The token's market price can diverge from the underlying basket's NAV
+• Holdings, fees and execution can be harder to verify directly
 
-The problem is consistent execution.
+**You own the representation of the portfolio — not the assets themselves.**
 
-### Creators Lack Portfolio Infrastructure
+### Strategies Without Execution
 
-Financial creators already build audiences around research, market views and investment strategies.
+Investors often know exactly what they want to do. Markets do not wait.
 
-Yet their thesis often remains content.
+DCA, rebalancing, take-profit, stop-loss and signal-based strategies only work when they are executed consistently at the right moment.
 
-They need infrastructure to:
+**Knowing the strategy is easy. Executing it every time is the real problem.**
 
-Build portfolios  
- Distribute strategies  
- Automate execution  
- Monetize strategy IP  
- Earn from portfolio activity  
- Receive community support
+### Creators Have Influence, Not Infrastructure
 
-INDEXLA connects financial influence with portfolio infrastructure.
+Creators already produce research, market views and investment theses that audiences trust.
+
+But most of that value stops at content, followers and engagement.
+
+They lack the infrastructure to turn a thesis into an investable portfolio, automate it, distribute it and build real economics around it.
+
+**The audience exists. The thesis exists. The portfolio infrastructure is missing.**
 
 
 
@@ -93,54 +92,57 @@ INDEXLA connects financial influence with portfolio infrastructure.
 
 # 3. The INDEXLA Solution
 
-INDEXLA is a decentralized portfolio layer connecting:
+INDEXLA is a non-custodial portfolio layer connecting:
 
-Assets → Portfolios → Strategies → Permissions → Monitoring → Execution
+**Assets → Portfolios → Strategies → Permissions → Monitoring → Execution**
 
-Users choose:
+### Direct Asset Ownership
 
-Assets  
- Allocations  
- Strategy rules  
- Risk parameters  
- Execution permissions
+INDEXLA does not issue a single token representing your portfolio.
 
-INDEXLA coordinates authorized actions.
+It buys and holds the individual underlying assets.
+
+**BTC + ETH + NVDA + Gold + RWAs** means you actually hold those assets in your non-custodial account.
+
+**No basket wrapper. No single token replacing the assets.**
 
 ### One Portfolio Layer
 
-Designed for portfolios combining:
+Combine crypto, tokenized stocks, commodities, real estate and RWAs inside one portfolio architecture.
 
-Crypto + Tokenized Stocks + Tokenized Commodities + Tokenized Real Estate + RWAs
+### Programmable Automation
 
-### Programmable Strategies
+Turn defined rules into authorized automated actions:
 
-DCA  
- Buy Fear  
- Sell Greed  
- Take Profit  
- Stop Loss  
- RSI  
- Momentum  
- Rebalancing
+**DCA · Rebalancing · Take Profit · Stop Loss · Fear & Greed · RSI · Momentum**
 
 ### Non-Custodial
 
-INDEXLA does not take custody of user assets.
+INDEXLA never takes custody of user assets.
 
-Users retain ownership while automation operates within permissions they authorize.
+Users retain ownership of their assets. Automation only operates inside the exact permissions they authorize.
 
-Your keys. Your assets. Your permissions.
+**Your keys. Your assets. Your permissions.**
 
 ### Cross-Chain
 
-INDEXLA is designed to coordinate portfolio activity across supported networks and decentralized liquidity infrastructure.
+Portfolio activity is coordinated across supported networks and decentralized liquidity infrastructure.
 
 ### Creator Portfolios
 
-Creators can package investment theses into portfolios with defined allocations and strategies that users can discover and follow.
+Creators turn investment theses into portfolios that users can discover, follow and invest in.
 
-Creators receive 50% of applicable execution fees generated by activity in their portfolios.
+They receive **50% of applicable execution fees** generated by their portfolios.
+
+**From audience → portfolio → activity → recurring economics.**
+
+---
+
+## The Difference
+
+**Traditional basket:** One token represents the portfolio.
+
+**INDEXLA:** The portfolio contains the assets.
 
 
 
