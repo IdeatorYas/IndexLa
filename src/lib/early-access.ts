@@ -1,4 +1,5 @@
 import { creators, getDb, investors } from "@/db";
+import { sendEarlyAccessConfirmation } from "@/lib/mail";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PLATFORMS = new Set(["x", "linkedin"] as const);
@@ -88,13 +89,22 @@ export async function createInvestorSignup(
   try {
     const db = getDb();
     await db.insert(investors).values({ email });
-    return { ok: true };
   } catch (error) {
     if (isUniqueViolation(error)) {
       return { ok: false, error: "duplicate_email" };
     }
     return { ok: false, error: "server_error" };
   }
+
+  try {
+    await sendEarlyAccessConfirmation(email, "investor");
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "unknown email error";
+    console.error("[early-access] investor confirmation email failed:", message);
+  }
+
+  return { ok: true };
 }
 
 export async function createCreatorSignup(input: {
@@ -140,11 +150,20 @@ export async function createCreatorSignup(input: {
       socialHandle,
       socialVerified: false,
     });
-    return { ok: true };
   } catch (error) {
     if (isUniqueViolation(error)) {
       return { ok: false, error: "duplicate_email" };
     }
     return { ok: false, error: "server_error" };
   }
+
+  try {
+    await sendEarlyAccessConfirmation(email, "creator");
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "unknown email error";
+    console.error("[early-access] creator confirmation email failed:", message);
+  }
+
+  return { ok: true };
 }
