@@ -46,6 +46,13 @@ function ctaRect(w: number, h: number, compact: boolean) {
       };
 }
 
+/** Logo + headline + CTA column — bubbles stay in side corridors */
+function contentColumn(w: number, h: number, compact: boolean) {
+  return compact
+    ? { x0: w * 0.22, x1: w * 0.78, y0: h * 0.08, y1: h * 0.98 }
+    : { x0: w * 0.3, x1: w * 0.7, y0: h * 0.04, y1: h * 0.98 };
+}
+
 function seedRevealPositions(
   assets: FloatingPortfolioAsset[],
   compact: boolean,
@@ -57,7 +64,7 @@ function seedRevealPositions(
       ? parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
       : 16;
 
-  const fieldBottom = compact ? height * 0.5 : height * 0.48;
+  const fieldBottom = compact ? height * 0.92 : height * 0.9;
 
   return assets.map((asset, i) => {
     const base = compact
@@ -71,20 +78,19 @@ function seedRevealPositions(
     const left = base.x < 50;
     const sizeRem = allocationSizeRem(asset.allocation, compact, "reveal");
     const r = (sizeRem * rootFs) / 2;
+    const col = contentColumn(width, height, compact);
 
-    const col = i % 5;
-    const row = Math.floor(i / 5);
-    const xBand = left
-      ? width * (0.14 + col * 0.06)
-      : width * (0.72 + (col % 3) * 0.06);
-    const yBand = height * (0.14 + row * 0.16 + (i % 2) * 0.05);
-
-    let x = Math.min(width - r - 8, Math.max(r + 8, xBand));
-    // Bias left/right from asset side
-    if (left) x = Math.min(x, width * 0.38);
-    else x = Math.max(x, width * 0.62);
-
-    const y = Math.min(fieldBottom - r, Math.max(r + 8, yBand));
+    const sideSlots = 5;
+    const slot = i % sideSlots;
+    const ySlot = (slot + 0.55) / (sideSlots + 0.2);
+    let x = left
+      ? Math.min(col.x0 - r - 8, width * (0.08 + (slot % 3) * 0.04))
+      : Math.max(col.x1 + r + 8, width * (0.82 + (slot % 3) * 0.04));
+    x = Math.min(width - r - 8, Math.max(r + 8, x));
+    const y = Math.min(
+      fieldBottom - r,
+      Math.max(r + 10, height * (0.1 + ySlot * 0.72)),
+    );
 
     const speed = compact ? 0.35 : 0.48;
     const angle = (i / assets.length) * Math.PI * 2 + 0.55;
@@ -182,8 +188,14 @@ export function FloatingPortfolio({
       }
       for (const b of bubbles) {
         b.r = (allocationSizeRem(b.asset.allocation, compact, "reveal") * rootFs) / 2;
+        const col = contentColumn(width, height, compact);
+        if (b.x < width * 0.5) {
+          b.x = Math.min(b.x, col.x0 - b.r - 6);
+        } else {
+          b.x = Math.max(b.x, col.x1 + b.r + 6);
+        }
         b.x = Math.min(width - b.r - 6, Math.max(b.r + 6, b.x));
-        b.y = Math.min(height * 0.5 - b.r, Math.max(b.r + 6, b.y));
+        b.y = Math.min(height * 0.9 - b.r, Math.max(b.r + 6, b.y));
       }
       publish();
     };
@@ -211,8 +223,9 @@ export function FloatingPortfolio({
         parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
       const bubbles = simRef.current;
       const zone = ctaRect(width, height, compact);
-      const fieldBottom = compact ? height * 0.52 : height * 0.5;
-      const pad = 12;
+      const col = contentColumn(width, height, compact);
+      const fieldBottom = compact ? height * 0.92 : height * 0.9;
+      const pad = 14;
 
       for (let i = 0; i < bubbles.length; i++) {
         const b = bubbles[i];
@@ -225,14 +238,30 @@ export function FloatingPortfolio({
         b.vy += Math.sin(phase * 0.9 + 0.8) * 0.048 * dt;
 
         const sp = Math.hypot(b.vx, b.vy);
-        const maxSp = compact ? 0.85 : 1.15;
+        const maxSp = compact ? 0.9 : 1.25;
         if (sp > maxSp) {
           b.vx = (b.vx / sp) * maxSp;
           b.vy = (b.vy / sp) * maxSp;
         }
 
-        b.x += b.vx * dt * 1.15;
-        b.y += b.vy * dt * 1.15;
+        b.x += b.vx * dt * 1.2;
+        b.y += b.vy * dt * 1.2;
+
+        // Side corridor walls (never enter logo/headline/CTA column)
+        const leftSide = b.x < width * 0.5;
+        if (leftSide) {
+          const maxX = col.x0 - b.r - 8;
+          if (b.x > maxX) {
+            b.x = maxX;
+            b.vx = -Math.abs(b.vx) - 0.15;
+          }
+        } else {
+          const minX = col.x1 + b.r + 8;
+          if (b.x < minX) {
+            b.x = minX;
+            b.vx = Math.abs(b.vx) + 0.15;
+          }
+        }
 
         const minX = b.r + 6;
         const maxX = width - b.r - 6;
@@ -253,15 +282,10 @@ export function FloatingPortfolio({
           b.vy = -Math.abs(b.vy) * 0.9;
         }
 
-        // CTA repulsion
-        const zx0 = zone.x0 - b.r * 0.2;
-        const zx1 = zone.x1 + b.r * 0.2;
-        const zy0 = zone.y0 - b.r * 0.35;
-        if (b.x > zx0 && b.x < zx1 && b.y + b.r > zy0) {
-          b.y = Math.min(b.y, zy0 - b.r - 4);
-          b.vy = -Math.abs(b.vy) - 0.2;
-          const cx = (zx0 + zx1) / 2;
-          b.vx += b.x < cx ? -0.08 : 0.08;
+        // Extra CTA floor repulsion
+        if (b.y + b.r > zone.y0 && b.x > zone.x0 && b.x < zone.x1) {
+          b.y = zone.y0 - b.r - 6;
+          b.vy = -Math.abs(b.vy) - 0.25;
         }
       }
 
