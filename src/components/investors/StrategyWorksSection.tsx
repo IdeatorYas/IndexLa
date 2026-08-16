@@ -27,7 +27,7 @@ const buildSteps = [
   {
     n: "03",
     title: "AUTOMATE",
-    body: "Approve your rules. AI monitors for your conditions and coordinates execution when they are met.",
+    body: "Set your rules. AI monitors your conditions and coordinates execution.",
   },
 ] as const;
 
