@@ -88,7 +88,13 @@ restore_known_good() {
 
   log "RESTORE: reverting source to known-good ${good_short} (${reason})"
   git -C "$APP_DIR" reset --hard "$good_full"
-  git -C "$APP_DIR" clean -fd -e .env.local
+  git -C "$APP_DIR" clean -fd \
+    -e .env.local \
+    -e .next-good \
+    -e .deploy-good-commit \
+    -e .deploy-good-commit-full \
+    -e .deploy-state \
+    -e .next-pre-deploy-*
 
   log "RESTORE: reinstalling exact dependencies for known-good commit"
   cd "$APP_DIR"
@@ -251,7 +257,13 @@ run_deploy() {
 
   log "DEPLOY: updating source to origin/${BRANCH}"
   git reset --hard "origin/${BRANCH}"
-  git clean -fd -e .env.local
+  git clean -fd \
+    -e .env.local \
+    -e .next-good \
+    -e .deploy-good-commit \
+    -e .deploy-good-commit-full \
+    -e .deploy-state \
+    -e .next-pre-deploy-*
 
   log "DEPLOY: installing exact dependencies (npm ci)"
   npm ci
