@@ -63,11 +63,17 @@ snapshot_known_good() {
     log "SNAPSHOT: preserving current live build as known-good"
     rm -rf "$GOOD_BUILD_DIR"
     cp -a "${APP_DIR}/.next" "$GOOD_BUILD_DIR"
+    if ! verify_build_artifacts "$GOOD_BUILD_DIR"; then
+      log "CRITICAL: failed to snapshot known-good build"
+      rm -rf "$GOOD_BUILD_DIR"
+      return 1
+    fi
     git -C "$APP_DIR" rev-parse HEAD >"$GOOD_COMMIT_FULL_FILE"
     git -C "$APP_DIR" rev-parse --short HEAD >"$GOOD_COMMIT_FILE"
   else
     log "WARN: no valid live .next to snapshot (first deploy or corrupt live build)"
   fi
+  return 0
 }
 
 restore_known_good() {
@@ -98,6 +104,7 @@ restore_known_good() {
 
   log "RESTORE: reinstalling exact dependencies for known-good commit"
   cd "$APP_DIR"
+  rm -rf node_modules
   npm ci
 
   log "RESTORE: restoring known-good .next"
@@ -253,7 +260,10 @@ run_deploy() {
   fi
 
   log "DEPLOY: new commit detected ${local_short} -> ${remote_short}"
-  snapshot_known_good
+  if ! snapshot_known_good; then
+    log "ABORT: unable to preserve known-good backup before deploy"
+    exit 1
+  fi
 
   log "DEPLOY: updating source to origin/${BRANCH}"
   git reset --hard "origin/${BRANCH}"
@@ -266,6 +276,7 @@ run_deploy() {
     -e .next-pre-deploy-*
 
   log "DEPLOY: installing exact dependencies (npm ci)"
+  rm -rf node_modules
   npm ci
 
   if grep -q '"build"[[:space:]]*:[[:space:]]*"next build --turbopack"' package.json; then
