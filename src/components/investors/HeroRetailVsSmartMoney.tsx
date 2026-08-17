@@ -6,48 +6,48 @@ import { useEffect, useMemo, useState } from "react";
 const PHASES = [
   {
     id: "falls",
-    label: "Market falls",
-    shortLabel: "Falls",
+    label: "Market falls / Fear",
+    shortLabel: "Falls / Fear",
     emotionalAction: "Sells in panic",
     disciplinedAction: "Buys carefully",
-    emotionalValue: 7_200,
-    disciplinedValue: 12_400,
+    emotionalValue: 3_000,
+    disciplinedValue: 15_000,
     pathEnd: 0.18,
   },
   {
     id: "calms",
-    label: "Market calms",
-    shortLabel: "Calms",
+    label: "Market calms / Neutral",
+    shortLabel: "Calms / Neutral",
     emotionalAction: "Waits and hesitates",
     disciplinedAction: "Adjusts the plan",
-    emotionalValue: 6_800,
-    disciplinedValue: 18_600,
+    emotionalValue: 2_800,
+    disciplinedValue: 22_000,
     pathEnd: 0.36,
   },
   {
     id: "rises",
-    label: "Market rises",
-    shortLabel: "Rises",
+    label: "Market rises / Greed",
+    shortLabel: "Rises / Greed",
     emotionalAction: "Buys because others are buying",
     disciplinedAction: "Takes some profit",
-    emotionalValue: 9_200,
-    disciplinedValue: 30_000,
+    emotionalValue: 5_500,
+    disciplinedValue: 35_000,
     pathEnd: 0.55,
   },
   {
     id: "peaks",
-    label: "Market peaks",
-    shortLabel: "Peaks",
+    label: "Market peaks / Euphoria",
+    shortLabel: "Peaks / Euphoria",
     emotionalAction: "Buys at the top",
     disciplinedAction: "Cash Out",
-    emotionalValue: 10_500,
-    disciplinedValue: 42_000,
+    emotionalValue: 8_000,
+    disciplinedValue: 48_000,
     pathEnd: 0.74,
   },
   {
     id: "falls-again",
-    label: "Market falls again",
-    shortLabel: "Falls again",
+    label: "Market falls again / Fear",
+    shortLabel: "Falls again / Fear",
     emotionalAction: "Sells in fear",
     disciplinedAction: "Buys again",
     emotionalValue: 1_000,
@@ -192,7 +192,7 @@ function MarketPath({
           return (
             <p
               key={phase.id}
-              className={`text-center text-[0.52rem] font-semibold uppercase leading-tight tracking-[0.03em] sm:text-[0.58rem] ${
+              className={`text-center text-[0.48rem] font-semibold uppercase leading-tight tracking-[0.02em] sm:text-[0.55rem] ${
                 active
                   ? "text-electric"
                   : done
@@ -243,7 +243,7 @@ function DeskColumn({
     <div className="flex min-w-0 flex-1 flex-col rounded-xl border border-line bg-void/55 p-3 sm:p-3.5">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className="text-[0.82rem] font-semibold uppercase leading-tight tracking-[0.1em] text-electric sm:text-[0.9rem]">
+          <p className="text-[0.95rem] font-semibold uppercase leading-tight tracking-[0.08em] text-electric sm:text-[1.05rem]">
             {title}
           </p>
           <p className="mt-1 text-[0.65rem] leading-snug text-muted-dim">
@@ -251,11 +251,7 @@ function DeskColumn({
           </p>
         </div>
         <span
-          className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[0.65rem] font-bold ${
-            tone === "danger"
-              ? "border-danger/40 bg-danger/10 text-danger"
-              : "border-success/40 bg-success/10 text-success"
-          }`}
+          className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-electric/45 bg-electric/15 text-[0.7rem] font-bold text-electric"
           aria-hidden
         >
           {monogram}
