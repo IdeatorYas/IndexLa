@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { WhitepaperSectionBody } from "@/components/whitepaper/WhitepaperSectionBody";
 import { WhitepaperShell } from "@/components/whitepaper/WhitepaperShell";
+import { prepareBodyMarkdown } from "@/lib/whitepaper";
 import { loadDocsEdition } from "@/lib/whitepaper.server";
 
 export const metadata: Metadata = {
@@ -22,8 +24,8 @@ export default async function TechnicalPaperSectionPage({
   const { slug } = await params;
   const technical = loadDocsEdition("technical-paper");
   const whitepaper = loadDocsEdition("whitepaper");
-  const exists = technical.sections.some((section) => section.slug === slug);
-  if (!exists) notFound();
+  const section = technical.sections.find((item) => item.slug === slug);
+  if (!section) notFound();
 
   return (
     <WhitepaperShell
@@ -35,6 +37,11 @@ export default async function TechnicalPaperSectionPage({
         whitepaper: `/whitepaper/${whitepaper.sections[0]?.slug ?? "1-executive-summary"}`,
         technical: `/whitepaper/technical/${technical.sections[0]?.slug ?? slug}`,
       }}
-    />
+    >
+      <WhitepaperSectionBody
+        slug={section.slug}
+        markdown={prepareBodyMarkdown("technical-paper", section)}
+      />
+    </WhitepaperShell>
   );
 }

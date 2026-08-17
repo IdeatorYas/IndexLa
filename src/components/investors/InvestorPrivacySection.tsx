@@ -1,5 +1,3 @@
-"use client";
-
 import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {

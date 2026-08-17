@@ -16,6 +16,8 @@ export function AssetLogo({ asset, size = 28, className = "" }: AssetLogoProps) 
       width={size}
       height={size}
       className={`object-contain ${className}`}
+      decoding="async"
+      loading="lazy"
       draggable={false}
       title={data.name}
     />

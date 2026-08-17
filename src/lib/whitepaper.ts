@@ -228,3 +228,36 @@ export function formatProgress(index: number, total: number): string {
   const end = String(total).padStart(2, "0");
   return `${current} / ${end}`;
 }
+
+function stripMajorHeading(
+  markdown: string,
+  sectionNumber: number,
+  headline: string,
+): string {
+  if (/disclaimer/i.test(headline)) {
+    return markdown
+      .replace(/^#\s+\*?\*?(?:Comprehensive\s+)?Disclaimer\*?\*?\s*\n+/im, "")
+      .trim();
+  }
+  const escaped = headline.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(
+    `^#{1,3}\\s+(?:\\*\\*)?${sectionNumber}\\.\\s+(?:\\*\\*)?${escaped}(?:\\*\\*)?\\s*\\n+`,
+    "m",
+  );
+  return markdown.replace(pattern, "").trim();
+}
+
+export function prepareBodyMarkdown(
+  edition: DocsEdition,
+  section: WhitepaperSection,
+): string {
+  let body = stripMajorHeading(
+    section.markdown,
+    section.number,
+    section.headline,
+  );
+  if (edition === "whitepaper" && section.slug === "5-competitive-landscape") {
+    body = stripCompetitorMarkdownTable(body);
+  }
+  return body;
+}

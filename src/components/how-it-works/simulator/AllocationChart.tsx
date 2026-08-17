@@ -1,5 +1,3 @@
-"use client";
-
 import type { SelectedAsset } from "./types";
 import { allocationTotal } from "./types";
 

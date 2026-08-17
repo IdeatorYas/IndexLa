@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import type { DocsEdition } from "@/lib/whitepaper";
 import { DOCS_EDITIONS } from "@/lib/whitepaper";

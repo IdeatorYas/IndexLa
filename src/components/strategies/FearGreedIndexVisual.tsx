@@ -1,5 +1,3 @@
-"use client";
-
 /** Illustrative Crypto Fear & Greed gauge — Extreme Fear at score 10 (low end) */
 export function FearGreedIndexVisual() {
   const value = 10;

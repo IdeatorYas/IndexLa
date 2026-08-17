@@ -1,9 +1,22 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { HowItWorksPageCta } from "@/components/how-it-works/HowItWorksPageCta";
 import { HowItWorksPageHero } from "@/components/how-it-works/HowItWorksPageHero";
-import { MarketplaceSection } from "@/components/how-it-works/simulator/MarketplaceSection";
 import { SimulatorProvider } from "@/components/how-it-works/simulator/SimulatorContext";
-import { HowItWorksSimulator } from "@/components/how-it-works/simulator/WizardShell";
+
+const HowItWorksSimulator = dynamic(
+  () =>
+    import("@/components/how-it-works/simulator/WizardShell").then(
+      (mod) => mod.HowItWorksSimulator,
+    ),
+);
+
+const MarketplaceSection = dynamic(
+  () =>
+    import("@/components/how-it-works/simulator/MarketplaceSection").then(
+      (mod) => mod.MarketplaceSection,
+    ),
+);
 
 export const metadata: Metadata = {
   title: "How It Works | INDEXLA",

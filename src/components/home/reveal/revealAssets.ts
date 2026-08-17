@@ -45,10 +45,19 @@ export const REVEAL_ASSETS = REVEAL_ASSET_ORDER.map((id) => {
 export type RevealAsset = (typeof REVEAL_ASSETS)[number];
 
 export const REVEAL_STORAGE_KEY = "indexla-portfolio-reveal-seen";
+export const REVEAL_COOKIE = "indexla-reveal-seen";
 
 export function shouldForceReveal(): boolean {
   if (typeof window === "undefined") return false;
   return new URLSearchParams(window.location.search).get("reveal") === "1";
+}
+
+function persistRevealCookie(): void {
+  try {
+    document.cookie = `${REVEAL_COOKIE}=1; Path=/; Max-Age=31536000; SameSite=Lax`;
+  } catch {
+    /* ignore */
+  }
 }
 
 export function hasSeenReveal(): boolean {
@@ -66,4 +75,5 @@ export function markRevealSeen(): void {
   } catch {
     /* ignore quota / private mode */
   }
+  persistRevealCookie();
 }

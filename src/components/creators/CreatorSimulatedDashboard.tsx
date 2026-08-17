@@ -1,5 +1,3 @@
-"use client";
-
 import { FadeIn } from "@/components/ui/FadeIn";
 import { XLogo } from "@/components/creators/SocialBrandLogos";
 import {

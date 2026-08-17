@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { AssetLogo } from "@/components/ui/AssetLogo";
 import { ASSETS, TYPE_STYLES, type Portfolio } from "@/lib/site";
 
@@ -13,10 +10,8 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
   const typeStyle = TYPE_STYLES[portfolio.type];
 
   return (
-    <motion.article
-      whileHover={{ y: -3 }}
-      transition={{ type: "spring", stiffness: 320, damping: 28 }}
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-deep/45 p-4 sm:p-5 ${
+    <article
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-deep/45 p-4 transition-transform duration-300 ease-out hover:-translate-y-[3px] sm:p-5 ${
         featured ? "md:col-span-2 lg:col-span-1" : ""
       }`}
     >
@@ -90,12 +85,9 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
               <span>{row.pct}%</span>
             </div>
             <div className="h-1 overflow-hidden rounded-full bg-white/5">
-              <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-purple/80 to-electric/80"
-                initial={{ width: 0 }}
-                whileInView={{ width: `${row.pct}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              <div
+                className="h-full origin-left rounded-full bg-gradient-to-r from-purple/80 to-electric/80 motion-safe:animate-[bar-fill_0.9s_cubic-bezier(0.22,1,0.36,1)_both]"
+                style={{ width: `${row.pct}%` }}
               />
             </div>
           </div>
@@ -106,6 +98,6 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
         <span className="text-electric/90">Activity · </span>
         {portfolio.activity}
       </p>
-    </motion.article>
+    </article>
   );
 }

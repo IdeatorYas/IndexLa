@@ -1,5 +1,3 @@
-"use client";
-
 /** Exact competitor comparison from the INDEXLA whitepaper */
 const HEADERS = [
   "Capability",

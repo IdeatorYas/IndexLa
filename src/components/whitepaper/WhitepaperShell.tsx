@@ -1,35 +1,15 @@
 "use client";
 
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { DocsEdition, TocItem, WhitepaperSection } from "@/lib/whitepaper";
 import {
   docsBasePath,
   formatProgress,
-  stripCompetitorMarkdownTable,
 } from "@/lib/whitepaper";
 import { DocsEditionSwitcher } from "@/components/whitepaper/DocsEditionSwitcher";
 import { WhitepaperSidebar } from "@/components/whitepaper/WhitepaperSidebar";
-import { WhitepaperSectionBody } from "@/components/whitepaper/WhitepaperSectionBody";
-
-function stripMajorHeading(
-  markdown: string,
-  sectionNumber: number,
-  headline: string,
-): string {
-  if (/disclaimer/i.test(headline)) {
-    return markdown
-      .replace(/^#\s+\*?\*?(?:Comprehensive\s+)?Disclaimer\*?\*?\s*\n+/im, "")
-      .trim();
-  }
-  const escaped = headline.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const pattern = new RegExp(
-    `^#{1,3}\\s+(?:\\*\\*)?${sectionNumber}\\.\\s+(?:\\*\\*)?${escaped}(?:\\*\\*)?\\s*\\n+`,
-    "m",
-  );
-  return markdown.replace(pattern, "").trim();
-}
 
 function sidebarSubsections(section: WhitepaperSection): TocItem[] {
   const roots = section.subsections;
@@ -45,36 +25,20 @@ function sidebarSubsections(section: WhitepaperSection): TocItem[] {
   );
 }
 
-function prepareBodyMarkdown(
-  edition: DocsEdition,
-  section: WhitepaperSection,
-): string {
-  let body = stripMajorHeading(
-    section.markdown,
-    section.number,
-    section.headline,
-  );
-  if (
-    edition === "whitepaper" &&
-    section.slug === "5-competitive-landscape"
-  ) {
-    body = stripCompetitorMarkdownTable(body);
-  }
-  return body;
-}
-
 export function WhitepaperShell({
   edition,
   docTitle,
   sections,
   activeSlug,
   switcherHrefs,
+  children,
 }: {
   edition: DocsEdition;
   docTitle: string;
   sections: WhitepaperSection[];
   activeSlug: string;
   switcherHrefs: { whitepaper: string; technical: string };
+  children: ReactNode;
 }) {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -89,11 +53,6 @@ export function WhitepaperShell({
   const prev = activeIndex > 0 ? sections[activeIndex - 1] : null;
   const next = activeIndex < total - 1 ? sections[activeIndex + 1] : null;
   const sectionLabel = String(section.number).padStart(2, "0");
-
-  const bodyMarkdown = useMemo(
-    () => prepareBodyMarkdown(edition, section),
-    [edition, section],
-  );
 
   const subs = useMemo(() => sidebarSubsections(section), [section]);
 
@@ -198,7 +157,7 @@ export function WhitepaperShell({
             </h1>
           </header>
 
-          <WhitepaperSectionBody slug={section.slug} markdown={bodyMarkdown} />
+          {children}
 
           <nav
             aria-label="Section pagination"

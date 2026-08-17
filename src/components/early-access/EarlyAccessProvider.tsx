@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import {
   createContext,
   useCallback,
@@ -8,7 +9,14 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { EarlyAccessModal } from "@/components/early-access/EarlyAccessModal";
+
+const EarlyAccessModal = dynamic(
+  () =>
+    import("@/components/early-access/EarlyAccessModal").then(
+      (mod) => mod.EarlyAccessModal,
+    ),
+  { ssr: false },
+);
 
 export type EarlyAccessMode = "general" | "creator";
 
@@ -60,12 +68,14 @@ export function EarlyAccessProvider({ children }: { children: ReactNode }) {
   return (
     <EarlyAccessContext.Provider value={value}>
       {children}
-      <EarlyAccessModal
-        key={session.sessionId}
-        open={session.open}
-        mode={session.mode}
-        onClose={closeEarlyAccess}
-      />
+      {session.open ? (
+        <EarlyAccessModal
+          key={session.sessionId}
+          open
+          mode={session.mode}
+          onClose={closeEarlyAccess}
+        />
+      ) : null}
     </EarlyAccessContext.Provider>
   );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import { FadeIn } from "@/components/ui/FadeIn";
 import { FaqAccordionItem } from "@/components/faq/FaqAccordionItem";
 import type { FaqSection } from "@/lib/faq";

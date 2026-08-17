@@ -63,6 +63,7 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
   useEffect(() => {
     const force = shouldForceReveal();
     if (!force && hasSeenReveal()) {
+      markRevealSeen();
       setPhase("done");
       return;
     }

@@ -1,5 +1,3 @@
-"use client";
-
 import type { ReactNode } from "react";
 import { WhitepaperMarkdown } from "@/components/whitepaper/WhitepaperMarkdown";
 import {

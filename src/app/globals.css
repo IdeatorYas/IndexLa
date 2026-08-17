@@ -27,6 +27,7 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5.75rem;
+    overflow-x: clip;
   }
 
   html.simulator-lock,
@@ -74,6 +75,15 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  @keyframes bar-fill {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
   }
 
   .hero-glow {

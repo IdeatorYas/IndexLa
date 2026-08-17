@@ -1,5 +1,3 @@
-"use client";
-
 import { FadeIn } from "@/components/ui/FadeIn";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {

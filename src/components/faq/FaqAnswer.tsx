@@ -1,5 +1,3 @@
-"use client";
-
 function renderInline(text: string) {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g);
   return parts.map((part, i) => {

@@ -1,5 +1,3 @@
-"use client";
-
 import { FadeIn } from "@/components/ui/FadeIn";
 import { TriggerAction } from "@/components/strategies/TriggerAction";
 import { FearGreedIndexVisual } from "@/components/strategies/FearGreedIndexVisual";

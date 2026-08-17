@@ -1,5 +1,3 @@
-"use client";
-
 import {
   HYBRID_BUY_OPTIONS,
   HYBRID_SELL_OPTIONS,
