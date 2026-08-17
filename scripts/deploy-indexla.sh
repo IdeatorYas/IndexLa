@@ -304,6 +304,11 @@ run_deploy() {
   update_deploy_header "$remote_short"
   write_state "success" "$remote_short" "$remote_hash" "deployed successfully"
 
+  if [[ -f "${APP_DIR}/scripts/deploy-indexla.sh" ]]; then
+    cp "${APP_DIR}/scripts/deploy-indexla.sh" /usr/local/bin/deploy-indexla.sh
+    chmod +x /usr/local/bin/deploy-indexla.sh
+  fi
+
   log "SUCCESS: production running ${remote_short}"
 }
 
