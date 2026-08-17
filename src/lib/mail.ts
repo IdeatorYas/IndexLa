@@ -238,7 +238,7 @@ function creatorConfirmationCopy(): {
     "<tr>",
     '<td bgcolor="#12081f" style="padding:24px 28px 28px 28px;background-color:#12081f;border-top:1px solid #2a1b45;">',
     `<a href="${SITE_URL}" style="text-decoration:none;">`,
-    `<img src="${LOGO_CID_SRC}" width="110" alt="INDEXLA" style="display:block;width:110px;max-width:38%;height:auto;border:0;outline:none;text-decoration:none;margin:0 0 14px 0;" />`,
+    `<img src="${LOGO_CID_SRC}" width="80" alt="INDEXLA" style="display:block;width:80px;max-width:28%;height:auto;border:0;outline:none;text-decoration:none;margin:0 0 12px 0;" />`,
     "</a>",
     `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="${SITE_URL}" style="color:#38bdf8;text-decoration:none;font-weight:700;">indexla.tech</a></p>`,
     `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="mailto:${CONTACT_EMAIL}" style="color:#38bdf8;text-decoration:none;">${CONTACT_EMAIL}</a></p>`,
