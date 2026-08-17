@@ -228,22 +228,25 @@ health_check() {
     "/whitepaper/1-executive-summary"
   )
 
+  local path
   for path in "${paths[@]}"; do
     local code
-    code="$(curl -s -o /tmp/indexla-health.html -w '%{http_code}' --max-time 20 "http://${HEALTH_HOST}:${PORT}${path}" || echo "000")"
+    code="$(curl -s -o /tmp/indexla-health-path.html -w '%{http_code}' --max-time 20 "http://${HEALTH_HOST}:${PORT}${path}" || echo "000")"
     if [[ "$code" != "200" ]]; then
       log "HEALTH FAIL: ${path} returned HTTP ${code}"
       failures=$((failures + 1))
     fi
   done
 
-  if ! grep -q "HomeRevealGate" /tmp/indexla-health.html 2>/dev/null; then
+  curl -s -o /tmp/indexla-health-home.html --max-time 20 "http://${HEALTH_HOST}:${PORT}/" >/dev/null || true
+
+  if ! grep -q "HomeRevealGate" /tmp/indexla-health-home.html 2>/dev/null; then
     log "HEALTH FAIL: homepage missing HomeRevealGate marker"
     failures=$((failures + 1))
   fi
 
   local chunk
-  chunk="$(grep -oE '/_next/static/chunks/[^\" ]+\.js' /tmp/indexla-health.html 2>/dev/null | head -1 || true)"
+  chunk="$(grep -oE '/_next/static/chunks/[^\" ]+\.js' /tmp/indexla-health-home.html 2>/dev/null | head -1 || true)"
   if [[ -z "$chunk" ]]; then
     log "HEALTH FAIL: no Next.js chunk found on homepage"
     failures=$((failures + 1))
@@ -340,6 +343,8 @@ run_deploy() {
     pm2 start "${APP_DIR}/node_modules/next/dist/bin/next" --name "$PM2_APP" -- start
   fi
   pm2 save
+
+  sleep 2
 
   if ! health_check "$remote_short"; then
     abort_deploy "health checks failed after activation" "$remote_short" "$remote_hash"
