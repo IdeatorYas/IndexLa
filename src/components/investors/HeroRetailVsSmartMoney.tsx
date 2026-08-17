@@ -7,35 +7,49 @@ const PHASES = [
   {
     id: "falls",
     label: "Market falls",
+    shortLabel: "Falls",
     emotionalAction: "Sells in panic",
     disciplinedAction: "Buys carefully",
     emotionalValue: 7_200,
     disciplinedValue: 12_400,
-    pathEnd: 0.22,
+    pathEnd: 0.18,
   },
   {
     id: "calms",
     label: "Market calms",
+    shortLabel: "Calms",
     emotionalAction: "Waits and hesitates",
     disciplinedAction: "Adjusts the plan",
     emotionalValue: 6_800,
     disciplinedValue: 18_600,
-    pathEnd: 0.45,
+    pathEnd: 0.36,
   },
   {
     id: "rises",
     label: "Market rises",
+    shortLabel: "Rises",
     emotionalAction: "Buys because others are buying",
     disciplinedAction: "Takes some profit",
-    emotionalValue: 8_400,
-    disciplinedValue: 34_000,
-    pathEnd: 0.72,
+    emotionalValue: 9_200,
+    disciplinedValue: 30_000,
+    pathEnd: 0.55,
   },
   {
     id: "peaks",
     label: "Market peaks",
+    shortLabel: "Peaks",
     emotionalAction: "Buys at the top",
-    disciplinedAction: "Reduces risk",
+    disciplinedAction: "Cash Out",
+    emotionalValue: 10_500,
+    disciplinedValue: 42_000,
+    pathEnd: 0.74,
+  },
+  {
+    id: "falls-again",
+    label: "Market falls again",
+    shortLabel: "Falls again",
+    emotionalAction: "Sells in fear",
+    disciplinedAction: "Buys again",
     emotionalValue: 1_000,
     disciplinedValue: 60_000,
     pathEnd: 1,
@@ -45,12 +59,15 @@ const PHASES = [
 const START = 10_000;
 const END_EMOTIONAL = 1_000;
 const END_DISCIPLINED = 60_000;
-const PHASE_MS = 2600;
+const PHASE_MS = 2400;
 const OUTCOME_MS = 4800;
 
-/** Shared market path: start mid → drop → flat → rise → peak */
+/**
+ * Shared market path: fall → calm → rise → peak → fall again.
+ * Ends near the depth of the first drop so the cycle reads as looping.
+ */
 const MARKET_PATH =
-  "M 8 42 C 28 42, 42 78, 70 78 C 98 78, 112 58, 140 52 C 175 44, 205 28, 245 18 C 275 10, 295 8, 312 6";
+  "M 14 44 C 32 44, 48 76, 78 76 C 102 76, 118 60, 142 54 C 172 46, 200 28, 232 16 C 252 9, 268 7, 284 10 C 298 22, 306 48, 314 74";
 
 function formatUsd(n: number) {
   return new Intl.NumberFormat("en-US", {
@@ -101,7 +118,13 @@ function Sparkline({
   );
 }
 
-function MarketPath({ progress }: { progress: number }) {
+function MarketPath({
+  progress,
+  showLoop,
+}: {
+  progress: number;
+  showLoop: boolean;
+}) {
   const p = Math.max(0, Math.min(1, progress));
 
   return (
@@ -111,14 +134,30 @@ function MarketPath({ progress }: { progress: number }) {
           Same market for both
         </p>
         <p className="text-[0.62rem] font-medium text-muted-dim">
-          Up &amp; down together
+          A repeating cycle
         </p>
       </div>
       <svg
-        viewBox="0 0 320 88"
-        className="h-[4.25rem] w-full sm:h-[4.75rem]"
+        viewBox="0 0 330 96"
+        className="h-[4.5rem] w-full sm:h-[5rem]"
         aria-hidden
       >
+        {/* Ghost loop hint: end → back toward first fall */}
+        <path
+          d="M 314 74 C 300 90, 120 94, 78 76"
+          fill="none"
+          stroke="rgba(56,189,248,0.28)"
+          strokeWidth="1.5"
+          strokeDasharray="4 4"
+          strokeLinecap="round"
+          opacity={showLoop ? 1 : 0.45}
+        />
+        <polygon
+          points="78,76 88,70 88,82"
+          fill="rgba(56,189,248,0.45)"
+          opacity={showLoop ? 1 : 0.4}
+        />
+
         <path
           d={MARKET_PATH}
           fill="none"
@@ -140,19 +179,20 @@ function MarketPath({ progress }: { progress: number }) {
         <defs>
           <linearGradient id="marketStroke" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#94a3b8" />
-            <stop offset="55%" stopColor="#38bdf8" />
+            <stop offset="50%" stopColor="#38bdf8" />
             <stop offset="100%" stopColor="#818cf8" />
           </linearGradient>
         </defs>
       </svg>
-      <div className="mt-0.5 grid grid-cols-4 gap-1">
+      <div className="mt-0.5 grid grid-cols-5 gap-0.5 sm:gap-1">
         {PHASES.map((phase, i) => {
-          const active = p > (i === 0 ? 0 : PHASES[i - 1].pathEnd) && p <= phase.pathEnd;
+          const prevEnd = i === 0 ? 0 : PHASES[i - 1].pathEnd;
+          const active = p > prevEnd && p <= phase.pathEnd;
           const done = p > phase.pathEnd;
           return (
             <p
               key={phase.id}
-              className={`text-center text-[0.55rem] font-semibold uppercase leading-tight tracking-[0.04em] sm:text-[0.6rem] ${
+              className={`text-center text-[0.52rem] font-semibold uppercase leading-tight tracking-[0.03em] sm:text-[0.58rem] ${
                 active
                   ? "text-electric"
                   : done
@@ -160,7 +200,8 @@ function MarketPath({ progress }: { progress: number }) {
                     : "text-muted-dim"
               }`}
             >
-              {phase.label}
+              <span className="sm:hidden">{phase.shortLabel}</span>
+              <span className="hidden sm:inline">{phase.label}</span>
             </p>
           );
         })}
@@ -272,6 +313,7 @@ function DeskColumn({
 export function HeroRetailVsSmartMoney() {
   const reduce = useReducedMotion();
   const [step, setStep] = useState(0);
+  const lastPhase = PHASES[PHASES.length - 1];
 
   useEffect(() => {
     if (reduce) {
@@ -325,12 +367,12 @@ export function HeroRetailVsSmartMoney() {
   }, [phaseIndex, showOutcome]);
 
   const emotionalAction = showOutcome
-    ? "Buys at the top"
+    ? lastPhase.emotionalAction
     : activePhase
       ? activePhase.emotionalAction
       : "Watching the market";
   const disciplinedAction = showOutcome
-    ? "Reduces risk"
+    ? lastPhase.disciplinedAction
     : activePhase
       ? activePhase.disciplinedAction
       : "Following a plan";
@@ -341,13 +383,20 @@ export function HeroRetailVsSmartMoney() {
       ? activePhase.pathEnd
       : 0.02;
 
+  const phaseHint =
+    activePhase?.id === "falls-again"
+      ? "Fear returns. Cash from the peak can buy again."
+      : activePhase?.id === "peaks"
+        ? "At the peak, one locks gains. The other buys more."
+        : "Same ups and downs. Only their choices change.";
+
   return (
     <div
       className="rounded-[1.25rem] border border-line bg-deep/80 p-3.5 sm:p-4"
-      aria-label="Illustrative story: two investors start with the same money in the same market and end with different outcomes"
+      aria-label="Illustrative story: two investors start with the same money in the same repeating market cycle and end with different outcomes"
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <div className="min-w-0 max-w-[18rem] sm:max-w-none">
+        <div className="min-w-0 max-w-[20rem] sm:max-w-none">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-electric sm:text-[0.75rem]">
             Same {formatUsd(START)}. Same market. Different behavior.
           </p>
@@ -362,7 +411,7 @@ export function HeroRetailVsSmartMoney() {
       </div>
 
       <div className="mt-3.5">
-        <MarketPath progress={marketProgress} />
+        <MarketPath progress={marketProgress} showLoop={showOutcome || phaseIndex >= 3} />
       </div>
 
       <div className="mt-3 flex gap-2.5 sm:gap-3">
@@ -402,8 +451,8 @@ export function HeroRetailVsSmartMoney() {
             transition={{ duration: 0.45 }}
             className="mt-3.5 space-y-1.5 text-center"
           >
-            <p className="display text-[0.95rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.05rem]">
-              Same market. Different behavior.{" "}
+            <p className="display text-[0.92rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.02rem]">
+              Same {formatUsd(START)}. Same market. Different behavior.{" "}
               <span className="gradient-text">Different outcome.</span>
             </p>
             <p className="text-[0.8rem] font-semibold text-electric">
@@ -424,7 +473,7 @@ export function HeroRetailVsSmartMoney() {
           >
             {isStart
               ? "Both start equal. The market begins to move."
-              : "Same ups and downs. Only their choices change."}
+              : phaseHint}
           </motion.p>
         )}
       </AnimatePresence>
