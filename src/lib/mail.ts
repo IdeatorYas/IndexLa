@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import nodemailer from "nodemailer";
 
 type SignupRole = "investor" | "creator";
@@ -6,6 +8,10 @@ const SITE_URL = "https://indexla.tech";
 const CONTACT_EMAIL = "contact@indexla.tech";
 const LINKEDIN_URL =
   "https://www.linkedin.com/company/indexla-onchain-investing";
+/** Inline CID — attached at send time so clients never load a remote image. */
+const LOGO_CID = "indexla-logo@indexla.tech";
+const LOGO_CID_SRC = `cid:${LOGO_CID}`;
+const EMAIL_LOGO_RELATIVE = "public/logo/indexla-logo-email.png";
 
 function requireEnv(name: string): string {
   const value = process.env[name]?.trim();
@@ -23,6 +29,17 @@ function getSmtpConfig() {
     password: requireEnv("SMTP_PASSWORD"),
     from: process.env.SMTP_FROM?.trim() || "INDEXLA <contact@indexla.tech>",
   };
+}
+
+function resolveEmailLogoPath(): string {
+  const candidates = [
+    path.join(process.cwd(), EMAIL_LOGO_RELATIVE),
+    path.join(process.cwd(), "logo", "indexla-logo-email.png"),
+  ];
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  throw new Error(`Creator email logo missing: ${EMAIL_LOGO_RELATIVE}`);
 }
 
 function investorConfirmationCopy(): {
@@ -61,12 +78,15 @@ function creatorConfirmationCopy(): {
   const subject =
     "INDEXLA Creator Early Access — Stop Selling Calls. Start Building.";
 
+  const subheadline =
+    "Become a Decentralized Portfolio Creator — turn your ideas into investable portfolios, share them with your audience, and earn 50% of the execution fees they generate.";
+
   const text = [
     "CREATOR EARLY ACCESS",
     "",
     "STOP SELLING CALLS. START BUILDING DIGITAL INVESTMENT PRODUCTS.",
     "",
-    "Become a Decentralized Portfolio Creator — turn your ideas into investable portfolios, share them with your audience, and earn 50% of applicable execution fees.",
+    subheadline,
     "",
     "4 WAYS TO EARN",
     "",
@@ -124,7 +144,7 @@ function creatorConfirmationCopy(): {
     .map((row, index) => {
       const bottomPad = index === earnRows.length - 1 ? "0" : "12";
       return [
-        '<tr>',
+        "<tr>",
         `<td style="padding:0 0 ${bottomPad}px 0;">`,
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#1a0f2e" style="background-color:#1a0f2e;border:1px solid #3b2a5c;border-radius:14px;">',
         "<tr>",
@@ -141,9 +161,9 @@ function creatorConfirmationCopy(): {
     })
     .join("");
 
-  // Table + bgcolor based HTML (email-client safe). No external images.
+  // CID logo is attached inline at send time — never loads from the public web.
   const html = [
-    "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">",
+    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">',
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">',
     "<head>",
     '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />',
@@ -158,12 +178,21 @@ function creatorConfirmationCopy(): {
     '<td align="center" bgcolor="#07040f" style="padding:28px 12px 40px 12px;background-color:#07040f;">',
     '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#0a0614" style="width:100%;max-width:600px;background-color:#0a0614;border:1px solid #2a1b45;border-radius:20px;">',
 
-    // Hero — HTML/CSS only, no images
+    // Header logo — large brand mark (inline CID)
     "<tr>",
-    '<td bgcolor="#1a0f2e" style="padding:32px 28px 28px 28px;background-color:#1a0f2e;">',
+    '<td bgcolor="#1a0f2e" align="center" style="padding:28px 28px 8px 28px;background-color:#1a0f2e;">',
+    `<a href="${SITE_URL}" style="text-decoration:none;">`,
+    `<img src="${LOGO_CID_SRC}" width="260" alt="INDEXLA" style="display:block;width:260px;max-width:82%;height:auto;border:0;outline:none;text-decoration:none;" />`,
+    "</a>",
+    "</td>",
+    "</tr>",
+
+    // Hero copy
+    "<tr>",
+    '<td bgcolor="#1a0f2e" style="padding:20px 28px 28px 28px;background-color:#1a0f2e;">',
     '<p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#a78bfa;font-weight:700;">CREATOR EARLY ACCESS</p>',
     '<h1 style="margin:0 0 18px 0;font-family:Arial,Helvetica,sans-serif;font-size:28px;line-height:1.2;letter-spacing:-0.02em;color:#f4f1ff;font-weight:800;">STOP SELLING CALLS.<br />START BUILDING DIGITAL INVESTMENT PRODUCTS.</h1>',
-    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#c4b5fd;">Become a Decentralized Portfolio Creator — turn your ideas into investable portfolios, share them with your audience, and earn 50% of applicable execution fees.</p>',
+    `<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#c4b5fd;">${subheadline}</p>`,
     "</td>",
     "</tr>",
 
@@ -181,7 +210,7 @@ function creatorConfirmationCopy(): {
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#12081f" style="background-color:#12081f;border:1px solid #38bdf8;border-radius:16px;">',
     "<tr>",
     '<td bgcolor="#12081f" style="padding:22px 20px;background-color:#12081f;">',
-    '<p style="margin:0 0 10px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#38bdf8;font-weight:700;">Get In Early</p>',
+    '<p style="margin:0 0 10px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#38bdf8;font-weight:700;">GET IN EARLY</p>',
     '<p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;">INDEXLA is currently in MVP development. Early creators can test the platform on Testnet.</p>',
     '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#a89bc4;">Active Testnet participants who provide valuable feedback will be eligible for early-adopter rewards.</p>',
     "</td>",
@@ -198,19 +227,24 @@ function creatorConfirmationCopy(): {
     "</td>",
     "</tr>",
 
-    // Signature + footer
+    // Signature
     "<tr>",
     '<td bgcolor="#0a0614" style="padding:28px 28px 16px 28px;background-color:#0a0614;">',
     '<p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#a89bc4;">Regards,</p>',
     '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;font-weight:700;">INDEXLA Team</p>',
     "</td>",
     "</tr>",
+
+    // Footer with logo + links
     "<tr>",
-    '<td bgcolor="#12081f" style="padding:22px 28px 28px 28px;background-color:#12081f;border-top:1px solid #2a1b45;">',
+    '<td bgcolor="#12081f" style="padding:24px 28px 28px 28px;background-color:#12081f;border-top:1px solid #2a1b45;">',
+    `<a href="${SITE_URL}" style="text-decoration:none;">`,
+    `<img src="${LOGO_CID_SRC}" width="160" alt="INDEXLA" style="display:block;width:160px;max-width:55%;height:auto;border:0;outline:none;text-decoration:none;margin:0 0 14px 0;" />`,
+    "</a>",
     '<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:#f4f1ff;font-weight:700;letter-spacing:0.04em;">INDEXLA</p>',
     `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="${SITE_URL}" style="color:#38bdf8;text-decoration:none;font-weight:700;">indexla.tech</a></p>`,
     `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="mailto:${CONTACT_EMAIL}" style="color:#38bdf8;text-decoration:none;">${CONTACT_EMAIL}</a></p>`,
-    `<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#a89bc4;">LinkedIn: <a href="${LINKEDIN_URL}" style="color:#38bdf8;text-decoration:underline;">${LINKEDIN_URL}</a></p>`,
+    `<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="${LINKEDIN_URL}" style="color:#38bdf8;text-decoration:underline;font-weight:700;">LinkedIn</a></p>`,
     "</td>",
     "</tr>",
 
@@ -225,8 +259,11 @@ function creatorConfirmationCopy(): {
   if (!html.includes("STOP SELLING CALLS") || html.length < 1000) {
     throw new Error("Creator confirmation HTML failed validation");
   }
-  if (html.includes("<img") || html.includes("indexla-logo")) {
-    throw new Error("Creator confirmation HTML must not include external images");
+  if (!html.includes(LOGO_CID_SRC)) {
+    throw new Error("Creator confirmation HTML missing inline logo CID");
+  }
+  if (html.includes("http://") && html.includes("/logo/indexla-logo")) {
+    throw new Error("Creator confirmation HTML must not use remote logo URLs");
   }
 
   return { subject, text, html };
@@ -261,14 +298,17 @@ export async function sendEarlyAccessConfirmation(
     const required = [
       "STOP SELLING CALLS",
       "CREATOR EARLY ACCESS",
+      "earn 50% of the execution fees they generate",
       "Portfolio Revenue",
       "Private Strategy Revenue",
       "$DEXLA Tips",
       "Creator Rewards",
-      "Get In Early",
+      "GET IN EARLY",
       "INDEXLA Team",
       CONTACT_EMAIL,
       LINKEDIN_URL,
+      '">LinkedIn</a>',
+      LOGO_CID_SRC,
       "mailto:contact@indexla.tech",
     ];
     for (const token of required) {
@@ -288,6 +328,19 @@ export async function sendEarlyAccessConfirmation(
     },
   });
 
+  const attachments =
+    role === "creator"
+      ? [
+          {
+            filename: "indexla-logo-email.png",
+            path: resolveEmailLogoPath(),
+            cid: LOGO_CID,
+            contentType: "image/png",
+            contentDisposition: "inline" as const,
+          },
+        ]
+      : undefined;
+
   const info = await transporter.sendMail({
     from: smtp.from,
     to,
@@ -295,6 +348,7 @@ export async function sendEarlyAccessConfirmation(
     text: copy.text,
     html: copy.html,
     encoding: "utf-8",
+    attachments,
     headers: {
       "X-Indexla-Email": role,
       "Content-Language": "en",
