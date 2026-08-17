@@ -169,18 +169,27 @@ update_deploy_header() {
   fi
 }
 
+pm2_app_status() {
+  node -e "
+    const { execSync } = require('child_process');
+    const apps = JSON.parse(execSync('pm2 jlist', { encoding: 'utf8' }));
+    const app = apps.find((entry) => entry.name === process.argv[1]);
+    process.stdout.write(app?.pm2_env?.status || 'missing');
+  " "$PM2_APP" 2>/dev/null || echo "missing"
+}
+
 wait_for_app_ready() {
   local attempt
   for attempt in $(seq 1 30); do
     local code
-    code="$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 "http://${HEALTH_HOST}:${PORT}/" || echo "000")"
-    if [[ "$code" == "200" ]]; then
-      log "READY: app responding on attempt ${attempt}"
+    code="$(curl -s -o /tmp/indexla-ready.html -w '%{http_code}' --max-time 5 "http://${HEALTH_HOST}:${PORT}/" || echo "000")"
+    if [[ "$code" == "200" ]] && grep -q "HomeRevealGate" /tmp/indexla-ready.html 2>/dev/null; then
+      log "READY: homepage valid on attempt ${attempt}"
       return 0
     fi
     sleep 2
   done
-  log "READY FAIL: app did not respond with HTTP 200 within 60s"
+  log "READY FAIL: homepage not valid within 60s"
   return 1
 }
 
@@ -201,8 +210,7 @@ health_check() {
   fi
 
   local pm2_status
-  pm2_status="$(pm2 describe "$PM2_APP" 2>/dev/null | awk -F'│' '/│ status / { gsub(/^[[:space:]]+|[[:space:]]+$/, "", $3); print $3; exit }')"
-  pm2_status="${pm2_status:-missing}"
+  pm2_status="$(pm2_app_status)"
 
   if [[ "$pm2_status" != "online" ]]; then
     log "HEALTH FAIL: PM2 status is ${pm2_status}"
