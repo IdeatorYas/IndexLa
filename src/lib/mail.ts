@@ -76,10 +76,10 @@ function creatorConfirmationCopy(): {
   html: string;
 } {
   const subject =
-    "INDEXLA Creator Early Access — Stop Selling Calls. Start Building.";
+    "INDEXLA Creator Early Access: Stop Selling Calls. Start Building.";
 
   const subheadline =
-    "Become a Decentralized Portfolio Creator — turn your ideas into investable portfolios, share them with your audience, and earn 50% of the execution fees they generate.";
+    "Become a Decentralized Portfolio Creator: turn your ideas into investable portfolios, share them with your audience, and earn 50% of the execution fees they generate.";
 
   const text = [
     "CREATOR EARLY ACCESS",
@@ -110,7 +110,7 @@ function creatorConfirmationCopy(): {
     "",
     "We'll notify you the moment Creator access opens.",
     "",
-    "Build the strategies people actually invest in — and earn passive income.",
+    "Build the strategies people actually invest in, and earn passive income.",
     "",
     "Regards,",
     "INDEXLA Team",
@@ -222,7 +222,7 @@ function creatorConfirmationCopy(): {
     '<td bgcolor="#0a0614" style="padding:28px 28px 8px 28px;background-color:#0a0614;">',
     '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:1.45;color:#f4f1ff;font-weight:700;">Your strategy. Your community. Your upside.</p>',
     '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#a89bc4;">We\'ll notify you the moment Creator access opens.</p>',
-    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#c4b5fd;font-weight:600;">Build the strategies people actually invest in — and earn passive income.</p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#c4b5fd;font-weight:600;">Build the strategies people actually invest in, and earn passive income.</p>',
     "</td>",
     "</tr>",
 
