@@ -3,7 +3,9 @@ import nodemailer from "nodemailer";
 type SignupRole = "investor" | "creator";
 
 const SITE_URL = "https://indexla.tech";
-const LOGO_URL = `${SITE_URL}/logo/indexla-logo-transparent.png`;
+const CONTACT_EMAIL = "contact@indexla.tech";
+const LINKEDIN_URL =
+  "https://www.linkedin.com/company/indexla-onchain-investing";
 
 function requireEnv(name: string): string {
   const value = process.env[name]?.trim();
@@ -60,6 +62,8 @@ function creatorConfirmationCopy(): {
     "INDEXLA Creator Early Access — Stop Selling Calls. Start Building.";
 
   const text = [
+    "CREATOR EARLY ACCESS",
+    "",
     "STOP SELLING CALLS. START BUILDING DIGITAL INVESTMENT PRODUCTS.",
     "",
     "Become a Decentralized Portfolio Creator — turn your ideas into investable portfolios, share them with your audience, and earn 50% of applicable execution fees.",
@@ -91,7 +95,10 @@ function creatorConfirmationCopy(): {
     "Regards,",
     "INDEXLA Team",
     "",
+    "INDEXLA",
     "indexla.tech",
+    CONTACT_EMAIL,
+    `LinkedIn: ${LINKEDIN_URL}`,
   ].join("\n");
 
   const earnRows: Array<{ title: string; body: string }> = [
@@ -134,8 +141,7 @@ function creatorConfirmationCopy(): {
     })
     .join("");
 
-  // Table + bgcolor based HTML (email-client safe). Avoid relying on <style>
-  // alone — many clients strip CSS backgrounds and leave light text invisible.
+  // Table + bgcolor based HTML (email-client safe). No external images.
   const html = [
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">",
     '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">',
@@ -151,24 +157,16 @@ function creatorConfirmationCopy(): {
     "<tr>",
     '<td align="center" bgcolor="#07040f" style="padding:28px 12px 40px 12px;background-color:#07040f;">',
     '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#0a0614" style="width:100%;max-width:600px;background-color:#0a0614;border:1px solid #2a1b45;border-radius:20px;">',
+
+    // Hero — HTML/CSS only, no images
     "<tr>",
-    '<td bgcolor="#1a0f2e" style="padding:28px 28px 8px 28px;background-color:#1a0f2e;" align="center">',
-    `<a href="${SITE_URL}" style="text-decoration:none;">`,
-    `<img src="${LOGO_URL}" width="180" height="72" alt="INDEXLA" style="display:block;width:180px;max-width:70%;height:auto;border:0;outline:none;text-decoration:none;" />`,
-    "</a>",
-    "</td>",
-    "</tr>",
-    "<tr>",
-    '<td bgcolor="#1a0f2e" style="padding:18px 28px 8px 28px;background-color:#1a0f2e;">',
-    '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#a78bfa;font-weight:700;">Creator Early Access</p>',
-    '<h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:28px;line-height:1.2;letter-spacing:-0.02em;color:#f4f1ff;font-weight:800;">STOP SELLING CALLS.<br />START BUILDING DIGITAL INVESTMENT PRODUCTS.</h1>',
-    "</td>",
-    "</tr>",
-    "<tr>",
-    '<td bgcolor="#0a0614" style="padding:16px 28px 24px 28px;background-color:#0a0614;">',
+    '<td bgcolor="#1a0f2e" style="padding:32px 28px 28px 28px;background-color:#1a0f2e;">',
+    '<p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#a78bfa;font-weight:700;">CREATOR EARLY ACCESS</p>',
+    '<h1 style="margin:0 0 18px 0;font-family:Arial,Helvetica,sans-serif;font-size:28px;line-height:1.2;letter-spacing:-0.02em;color:#f4f1ff;font-weight:800;">STOP SELLING CALLS.<br />START BUILDING DIGITAL INVESTMENT PRODUCTS.</h1>',
     '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#c4b5fd;">Become a Decentralized Portfolio Creator — turn your ideas into investable portfolios, share them with your audience, and earn 50% of applicable execution fees.</p>',
     "</td>",
     "</tr>",
+
     "<tr>",
     '<td bgcolor="#0a0614" style="padding:8px 28px 10px 28px;background-color:#0a0614;">',
     '<p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#38bdf8;font-weight:700;">4 Ways to Earn</p>',
@@ -177,6 +175,7 @@ function creatorConfirmationCopy(): {
     "</table>",
     "</td>",
     "</tr>",
+
     "<tr>",
     '<td bgcolor="#0a0614" style="padding:24px 28px 8px 28px;background-color:#0a0614;">',
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#12081f" style="background-color:#12081f;border:1px solid #38bdf8;border-radius:16px;">',
@@ -190,6 +189,7 @@ function creatorConfirmationCopy(): {
     "</table>",
     "</td>",
     "</tr>",
+
     "<tr>",
     '<td bgcolor="#0a0614" style="padding:28px 28px 8px 28px;background-color:#0a0614;">',
     '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:1.45;color:#f4f1ff;font-weight:700;">Your strategy. Your community. Your upside.</p>',
@@ -197,13 +197,23 @@ function creatorConfirmationCopy(): {
     '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#c4b5fd;font-weight:600;">Build the strategies people actually invest in — and earn passive income.</p>',
     "</td>",
     "</tr>",
+
+    // Signature + footer
     "<tr>",
-    '<td bgcolor="#0a0614" style="padding:28px 28px 36px 28px;background-color:#0a0614;">',
+    '<td bgcolor="#0a0614" style="padding:28px 28px 16px 28px;background-color:#0a0614;">',
     '<p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#a89bc4;">Regards,</p>',
-    '<p style="margin:0 0 18px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;font-weight:700;">INDEXLA Team</p>',
-    `<a href="${SITE_URL}" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#38bdf8;text-decoration:none;font-weight:700;">indexla.tech</a>`,
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;font-weight:700;">INDEXLA Team</p>',
     "</td>",
     "</tr>",
+    "<tr>",
+    '<td bgcolor="#12081f" style="padding:22px 28px 28px 28px;background-color:#12081f;border-top:1px solid #2a1b45;">',
+    '<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:#f4f1ff;font-weight:700;letter-spacing:0.04em;">INDEXLA</p>',
+    `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="${SITE_URL}" style="color:#38bdf8;text-decoration:none;font-weight:700;">indexla.tech</a></p>`,
+    `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="mailto:${CONTACT_EMAIL}" style="color:#38bdf8;text-decoration:none;">${CONTACT_EMAIL}</a></p>`,
+    `<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#a89bc4;">LinkedIn: <a href="${LINKEDIN_URL}" style="color:#38bdf8;text-decoration:underline;">${LINKEDIN_URL}</a></p>`,
+    "</td>",
+    "</tr>",
+
     "</table>",
     "</td>",
     "</tr>",
@@ -214,6 +224,9 @@ function creatorConfirmationCopy(): {
 
   if (!html.includes("STOP SELLING CALLS") || html.length < 1000) {
     throw new Error("Creator confirmation HTML failed validation");
+  }
+  if (html.includes("<img") || html.includes("indexla-logo")) {
+    throw new Error("Creator confirmation HTML must not include external images");
   }
 
   return { subject, text, html };
@@ -247,13 +260,16 @@ export async function sendEarlyAccessConfirmation(
   if (role === "creator") {
     const required = [
       "STOP SELLING CALLS",
+      "CREATOR EARLY ACCESS",
       "Portfolio Revenue",
       "Private Strategy Revenue",
       "$DEXLA Tips",
       "Creator Rewards",
       "Get In Early",
       "INDEXLA Team",
-      LOGO_URL,
+      CONTACT_EMAIL,
+      LINKEDIN_URL,
+      "mailto:contact@indexla.tech",
     ];
     for (const token of required) {
       if (!copy.html.includes(token)) {
