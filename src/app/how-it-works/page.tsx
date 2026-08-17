@@ -33,7 +33,7 @@ export default function HowItWorksPage() {
           aria-labelledby="indexla-demo-heading"
           className="border-t border-white/[0.06] bg-void"
         >
-          <div className="section-pad container-max pb-4 pt-10 sm:pb-5 sm:pt-12">
+          <div className="section-pad container-max pb-2 pt-6 sm:pb-5 sm:pt-12">
             <h2
               id="indexla-demo-heading"
               className="display text-center text-[clamp(1.55rem,3.2vw,2.15rem)] font-semibold tracking-[-0.03em] text-ink"
@@ -44,7 +44,9 @@ export default function HowItWorksPage() {
           </div>
           <HowItWorksSimulator />
         </section>
-        <MarketplaceSection />
+        <div className="hidden sm:block">
+          <MarketplaceSection />
+        </div>
       </SimulatorProvider>
       <HowItWorksPageCta />
     </main>

@@ -10,7 +10,7 @@ import { StrategyStep } from "./steps/StrategyStep";
 import { ReviewStep } from "./steps/ReviewStep";
 import { PublishSuccess } from "./steps/PublishSuccess";
 import { ManagePanel } from "./ManagePanel";
-import { LivePreview, LivePreviewCompact } from "./LivePreview";
+import { LivePreview } from "./LivePreview";
 import { surfaceClass } from "./ui";
 
 const STEP_LABELS = WIZARD_STEPS;
@@ -175,11 +175,11 @@ export function HowItWorksSimulator() {
     <>
       <section
         id="simulator"
-        className="relative z-20 flex h-[calc(100svh-5rem)] max-h-[calc(100svh-5rem)] flex-col overflow-hidden bg-void"
+        className="relative z-20 flex h-[calc(100dvh-5rem)] max-h-[calc(100dvh-5rem)] flex-col overflow-hidden bg-void sm:h-[calc(100svh-5rem)] sm:max-h-[calc(100svh-5rem)]"
         aria-label="Portfolio simulator"
       >
-        <div className="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-col px-3 py-2.5 sm:px-5 lg:px-6">
-          <div className="mb-2 shrink-0">
+        <div className="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-col px-3 py-2 sm:px-5 sm:py-2.5 lg:px-6">
+          <div className="mb-1.5 shrink-0 sm:mb-2">
             <Progress />
           </div>
 
@@ -188,11 +188,6 @@ export function HowItWorksSimulator() {
               className={`${surfaceClass} flex min-h-0 flex-col overflow-hidden`}
             >
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-                {step !== "assets" ? (
-                  <div className="shrink-0 px-3 pt-2.5 sm:hidden">
-                    <LivePreviewCompact />
-                  </div>
-                ) : null}
                 <div className="min-h-0 flex-1 overflow-hidden px-3 sm:px-5">
                   <div className="h-full min-h-0">
                     <StepBody />
@@ -217,7 +212,9 @@ export function HowItWorksSimulator() {
           </div>
         </div>
       </section>
-      <ManagePanel />
+      <div className="hidden sm:block">
+        <ManagePanel />
+      </div>
     </>
   );
 }
