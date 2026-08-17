@@ -243,10 +243,10 @@ function DeskColumn({
     <div className="flex min-w-0 flex-1 flex-col rounded-xl border border-line bg-void/55 p-3 sm:p-3.5">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink">
+          <p className="text-[0.82rem] font-semibold uppercase leading-tight tracking-[0.1em] text-electric sm:text-[0.9rem]">
             {title}
           </p>
-          <p className="mt-0.5 text-[0.65rem] leading-snug text-muted-dim">
+          <p className="mt-1 text-[0.65rem] leading-snug text-muted-dim">
             {subtitle}
           </p>
         </div>
@@ -449,14 +449,15 @@ export function HeroRetailVsSmartMoney() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45 }}
-            className="mt-3.5 space-y-1.5 text-center"
+            className="mt-4 space-y-3 text-center"
           >
-            <p className="display text-[0.92rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.02rem]">
+            <p className="mx-auto max-w-[22rem] text-balance text-[0.95rem] font-semibold leading-snug tracking-[-0.015em] text-ink sm:max-w-[28rem] sm:text-[1.05rem]">
               Same {formatUsd(START)}. Same market. Different behavior.{" "}
               <span className="gradient-text">Different outcome.</span>
             </p>
-            <p className="text-[0.8rem] font-semibold text-electric">
-              INDEXLA helps you set the plan once — and stick to it.
+            <p className="mx-auto max-w-[22rem] text-pretty text-[0.85rem] font-semibold leading-snug text-electric sm:max-w-[28rem] sm:text-[0.9rem]">
+              Pick your assets. Set your strategy. Let INDEXLA automate the
+              execution.
             </p>
             <p className="text-[0.62rem] leading-snug text-muted-dim">
               Illustrative example — not a prediction or INDEXLA performance
