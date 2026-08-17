@@ -3,53 +3,54 @@
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
-type PhaseId = "fear" | "neutral" | "greed" | "euphoria" | "outcome";
-
-const PHASES: {
-  id: PhaseId;
-  label: string;
-  retailAction: string;
-  smartAction: string;
-  retailValue: number;
-  smartValue: number;
-}[] = [
+const PHASES = [
   {
-    id: "fear",
-    label: "Fear",
-    retailAction: "Panic Sell",
-    smartAction: "Accumulate",
-    retailValue: 7_200,
-    smartValue: 12_400,
+    id: "falls",
+    label: "Market falls",
+    emotionalAction: "Sells in panic",
+    disciplinedAction: "Buys carefully",
+    emotionalValue: 7_200,
+    disciplinedValue: 12_400,
+    pathEnd: 0.22,
   },
   {
-    id: "neutral",
-    label: "Neutral",
-    retailAction: "Wait / Hesitate",
-    smartAction: "Rebalance",
-    retailValue: 6_800,
-    smartValue: 18_600,
+    id: "calms",
+    label: "Market calms",
+    emotionalAction: "Waits and hesitates",
+    disciplinedAction: "Adjusts the plan",
+    emotionalValue: 6_800,
+    disciplinedValue: 18_600,
+    pathEnd: 0.45,
   },
   {
-    id: "greed",
-    label: "Greed",
-    retailAction: "FOMO Buy",
-    smartAction: "Take Profit",
-    retailValue: 8_400,
-    smartValue: 34_000,
+    id: "rises",
+    label: "Market rises",
+    emotionalAction: "Buys because others are buying",
+    disciplinedAction: "Takes some profit",
+    emotionalValue: 8_400,
+    disciplinedValue: 34_000,
+    pathEnd: 0.72,
   },
   {
-    id: "euphoria",
-    label: "Euphoria",
-    retailAction: "Buy the Top",
-    smartAction: "Reduce Exposure",
-    retailValue: 1_000,
-    smartValue: 60_000,
+    id: "peaks",
+    label: "Market peaks",
+    emotionalAction: "Buys at the top",
+    disciplinedAction: "Reduces risk",
+    emotionalValue: 1_000,
+    disciplinedValue: 60_000,
+    pathEnd: 1,
   },
-];
+] as const;
 
 const START = 10_000;
-const PHASE_MS = 2400;
-const OUTCOME_MS = 4200;
+const END_EMOTIONAL = 1_000;
+const END_DISCIPLINED = 60_000;
+const PHASE_MS = 2600;
+const OUTCOME_MS = 4800;
+
+/** Shared market path: start mid → drop → flat → rise → peak */
+const MARKET_PATH =
+  "M 8 42 C 28 42, 42 78, 70 78 C 98 78, 112 58, 140 52 C 175 44, 205 28, 245 18 C 275 10, 295 8, 312 6";
 
 function formatUsd(n: number) {
   return new Intl.NumberFormat("en-US", {
@@ -100,22 +101,96 @@ function Sparkline({
   );
 }
 
+function MarketPath({ progress }: { progress: number }) {
+  const p = Math.max(0, Math.min(1, progress));
+
+  return (
+    <div className="rounded-xl border border-line bg-void/50 px-2.5 py-2.5 sm:px-3">
+      <div className="mb-1.5 flex items-center justify-between gap-2">
+        <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
+          Same market for both
+        </p>
+        <p className="text-[0.62rem] font-medium text-muted-dim">
+          Up &amp; down together
+        </p>
+      </div>
+      <svg
+        viewBox="0 0 320 88"
+        className="h-[4.25rem] w-full sm:h-[4.75rem]"
+        aria-hidden
+      >
+        <path
+          d={MARKET_PATH}
+          fill="none"
+          stroke="rgba(148,163,184,0.22)"
+          strokeWidth="2.25"
+          strokeLinecap="round"
+        />
+        <motion.path
+          d={MARKET_PATH}
+          fill="none"
+          stroke="url(#marketStroke)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          pathLength={1}
+          initial={false}
+          animate={{ pathLength: p }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        />
+        <defs>
+          <linearGradient id="marketStroke" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#94a3b8" />
+            <stop offset="55%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#818cf8" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div className="mt-0.5 grid grid-cols-4 gap-1">
+        {PHASES.map((phase, i) => {
+          const active = p > (i === 0 ? 0 : PHASES[i - 1].pathEnd) && p <= phase.pathEnd;
+          const done = p > phase.pathEnd;
+          return (
+            <p
+              key={phase.id}
+              className={`text-center text-[0.55rem] font-semibold uppercase leading-tight tracking-[0.04em] sm:text-[0.6rem] ${
+                active
+                  ? "text-electric"
+                  : done
+                    ? "text-muted"
+                    : "text-muted-dim"
+              }`}
+            >
+              {phase.label}
+            </p>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function DeskColumn({
   title,
+  monogram,
+  subtitle,
   action,
   value,
   history,
   tone,
   pctLabel,
   showOutcome,
+  isStart,
 }: {
   title: string;
+  monogram: string;
+  subtitle: string;
   action: string;
   value: number;
   history: number[];
   tone: "danger" | "success";
   pctLabel: string;
   showOutcome: boolean;
+  isStart: boolean;
 }) {
   const actionTone =
     tone === "danger"
@@ -125,38 +200,58 @@ function DeskColumn({
 
   return (
     <div className="flex min-w-0 flex-1 flex-col rounded-xl border border-line bg-void/55 p-3 sm:p-3.5">
-      <div className="flex items-center justify-between gap-2">
-        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-          {title}
-        </p>
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink">
+            {title}
+          </p>
+          <p className="mt-0.5 text-[0.65rem] leading-snug text-muted-dim">
+            {subtitle}
+          </p>
+        </div>
         <span
-          className={`inline-flex h-6 w-6 items-center justify-center rounded-full border text-[0.65rem] font-bold ${
+          className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[0.65rem] font-bold ${
             tone === "danger"
               ? "border-danger/40 bg-danger/10 text-danger"
               : "border-success/40 bg-success/10 text-success"
           }`}
           aria-hidden
         >
-          {title === "Retail" ? "R" : "S"}
+          {monogram}
         </span>
       </div>
 
-      <p className="mt-2.5 display text-[1.35rem] leading-none tracking-[-0.03em] text-ink sm:text-[1.5rem]">
+      <motion.p
+        key={value}
+        initial={{ opacity: 0.55, y: 4 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+        className={`mt-3 display text-[1.55rem] leading-none tracking-[-0.035em] sm:text-[1.7rem] ${
+          showOutcome ? valueTone : "text-ink"
+        }`}
+      >
         {formatUsd(value)}
-      </p>
-      <p className="mt-1 text-[0.68rem] font-medium uppercase tracking-[0.1em] text-muted-dim">
-        Portfolio value
+      </motion.p>
+      <p className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.1em] text-muted-dim">
+        {isStart ? "Starting money" : "Their money now"}
       </p>
 
       <div className="mt-2.5">
         <Sparkline points={history} tone={tone} />
       </div>
 
-      <div
-        className={`mt-2.5 rounded-lg border px-2.5 py-1.5 text-center text-[0.72rem] font-semibold uppercase tracking-[0.08em] ${actionTone}`}
-      >
-        {action}
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={action}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.28 }}
+          className={`mt-2.5 rounded-lg border px-2 py-1.5 text-center text-[0.68rem] font-semibold leading-snug tracking-[0.02em] sm:text-[0.72rem] ${actionTone}`}
+        >
+          {action}
+        </motion.div>
+      </AnimatePresence>
 
       <AnimatePresence>
         {showOutcome && (
@@ -164,7 +259,7 @@ function DeskColumn({
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={`mt-2.5 text-center display text-[1.15rem] font-semibold tracking-[-0.02em] ${valueTone}`}
+            className={`mt-2.5 text-center display text-[1.2rem] font-semibold tracking-[-0.02em] ${valueTone}`}
           >
             {pctLabel}
           </motion.p>
@@ -177,7 +272,6 @@ function DeskColumn({
 export function HeroRetailVsSmartMoney() {
   const reduce = useReducedMotion();
   const [step, setStep] = useState(0);
-  // steps: 0 = start, 1..4 = phases, 5 = outcome hold
 
   useEffect(() => {
     if (reduce) {
@@ -195,119 +289,106 @@ export function HeroRetailVsSmartMoney() {
   const phaseIndex = step >= 1 && step <= PHASES.length ? step - 1 : -1;
   const activePhase = phaseIndex >= 0 ? PHASES[phaseIndex] : null;
   const showOutcome = step > PHASES.length;
+  const isStart = step === 0;
 
-  const retailValue = showOutcome
-    ? 1_000
+  const emotionalValue = showOutcome
+    ? END_EMOTIONAL
     : activePhase
-      ? activePhase.retailValue
+      ? activePhase.emotionalValue
       : START;
-  const smartValue = showOutcome
-    ? 60_000
+  const disciplinedValue = showOutcome
+    ? END_DISCIPLINED
     : activePhase
-      ? activePhase.smartValue
+      ? activePhase.disciplinedValue
       : START;
 
-  const retailHistory = useMemo(() => {
+  const emotionalHistory = useMemo(() => {
     const pts = [START];
     for (let i = 0; i <= Math.max(phaseIndex, -1); i++) {
-      if (i >= 0 && PHASES[i]) pts.push(PHASES[i].retailValue);
+      if (i >= 0 && PHASES[i]) pts.push(PHASES[i].emotionalValue);
     }
-    if (showOutcome && pts[pts.length - 1] !== 1_000) pts.push(1_000);
+    if (showOutcome && pts[pts.length - 1] !== END_EMOTIONAL) {
+      pts.push(END_EMOTIONAL);
+    }
     return pts.length === 1 ? [START, START] : pts;
   }, [phaseIndex, showOutcome]);
 
-  const smartHistory = useMemo(() => {
+  const disciplinedHistory = useMemo(() => {
     const pts = [START];
     for (let i = 0; i <= Math.max(phaseIndex, -1); i++) {
-      if (i >= 0 && PHASES[i]) pts.push(PHASES[i].smartValue);
+      if (i >= 0 && PHASES[i]) pts.push(PHASES[i].disciplinedValue);
     }
-    if (showOutcome && pts[pts.length - 1] !== 60_000) pts.push(60_000);
+    if (showOutcome && pts[pts.length - 1] !== END_DISCIPLINED) {
+      pts.push(END_DISCIPLINED);
+    }
     return pts.length === 1 ? [START, START] : pts;
   }, [phaseIndex, showOutcome]);
 
-  const retailAction = showOutcome
-    ? "Buy the Top"
+  const emotionalAction = showOutcome
+    ? "Buys at the top"
     : activePhase
-      ? activePhase.retailAction
-      : "Ready";
-  const smartAction = showOutcome
-    ? "Reduce Exposure"
+      ? activePhase.emotionalAction
+      : "Watching the market";
+  const disciplinedAction = showOutcome
+    ? "Reduces risk"
     : activePhase
-      ? activePhase.smartAction
-      : "Ready";
+      ? activePhase.disciplinedAction
+      : "Following a plan";
 
-  const cycleIndex = showOutcome
-    ? PHASES.length - 1
-    : Math.max(phaseIndex, 0);
+  const marketProgress = showOutcome
+    ? 1
+    : activePhase
+      ? activePhase.pathEnd
+      : 0.02;
 
   return (
     <div
       className="rounded-[1.25rem] border border-line bg-deep/80 p-3.5 sm:p-4"
-      aria-label="Illustrative retail versus smart money market cycle scenario"
+      aria-label="Illustrative story: two investors start with the same money in the same market and end with different outcomes"
     >
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div>
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-electric">
-            Same market. Different execution.
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div className="min-w-0 max-w-[18rem] sm:max-w-none">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-electric sm:text-[0.75rem]">
+            Same {formatUsd(START)}. Same market. Different behavior.
           </p>
-          <p className="mt-0.5 text-[0.72rem] text-muted">
-            Starting capital: {formatUsd(START)} each
+          <p className="mt-1 text-[0.75rem] leading-snug text-muted">
+            Watch what happens when one person reacts… and the other follows a
+            plan.
           </p>
         </div>
         <p className="rounded-full border border-line bg-void/50 px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-          Illustrative scenario
+          Illustrative example
         </p>
       </div>
 
-      {/* Shared cycle rail */}
-      <div className="mt-3.5 grid grid-cols-4 gap-1.5">
-        {PHASES.map((p, i) => {
-          const active = !showOutcome && phaseIndex === i;
-          const done = phaseIndex > i || showOutcome;
-          return (
-            <div
-              key={p.id}
-              className={`rounded-lg border px-1 py-1.5 text-center transition-colors ${
-                active
-                  ? "border-electric/50 bg-electric/15 text-ink"
-                  : done
-                    ? "border-line bg-void/40 text-muted"
-                    : "border-line/60 bg-void/20 text-muted-dim"
-              }`}
-            >
-              <p className="text-[0.58rem] font-semibold uppercase tracking-[0.08em] sm:text-[0.62rem]">
-                {p.label}
-              </p>
-            </div>
-          );
-        })}
+      <div className="mt-3.5">
+        <MarketPath progress={marketProgress} />
       </div>
-      <p className="mt-1.5 text-center text-[0.65rem] font-medium uppercase tracking-[0.12em] text-muted-dim">
-        {showOutcome
-          ? "Cycle complete"
-          : activePhase
-            ? `Phase: ${activePhase.label}`
-            : "Market cycle begins"}
-      </p>
 
-      <div className="mt-3.5 flex gap-2.5 sm:gap-3">
+      <div className="mt-3 flex gap-2.5 sm:gap-3">
         <DeskColumn
-          title="Retail"
-          action={retailAction}
-          value={retailValue}
-          history={retailHistory}
+          title="Emotional Investor"
+          monogram="E"
+          subtitle="Reacts to emotion"
+          action={emotionalAction}
+          value={emotionalValue}
+          history={emotionalHistory}
           tone="danger"
           pctLabel="-90%"
           showOutcome={showOutcome}
+          isStart={isStart}
         />
         <DeskColumn
-          title="Smart Money"
-          action={smartAction}
-          value={smartValue}
-          history={smartHistory}
+          title="Disciplined Investor"
+          monogram="D"
+          subtitle="Follows a plan"
+          action={disciplinedAction}
+          value={disciplinedValue}
+          history={disciplinedHistory}
           tone="success"
           pctLabel="+500%"
           showOutcome={showOutcome}
+          isStart={isStart}
         />
       </div>
 
@@ -319,29 +400,31 @@ export function HeroRetailVsSmartMoney() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45 }}
-            className="mt-3.5 space-y-2 text-center"
+            className="mt-3.5 space-y-1.5 text-center"
           >
             <p className="display text-[0.95rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.05rem]">
-              Emotions are universal.{" "}
-              <span className="gradient-text">Execution is not.</span>
+              Same market. Different behavior.{" "}
+              <span className="gradient-text">Different outcome.</span>
             </p>
             <p className="text-[0.8rem] font-semibold text-electric">
-              Set the rules once. Let execution follow.
+              INDEXLA helps you set the plan once — and stick to it.
             </p>
-            <p className="text-[0.65rem] leading-snug text-muted-dim">
-              Illustrative scenario only. Not historical performance. Not an
-              INDEXLA return claim.
+            <p className="text-[0.62rem] leading-snug text-muted-dim">
+              Illustrative example — not a prediction or INDEXLA performance
+              claim.
             </p>
           </motion.div>
         ) : (
           <motion.p
-            key={`phase-msg-${cycleIndex}`}
+            key={activePhase?.id ?? "start"}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="mt-3.5 text-center text-[0.72rem] leading-snug text-muted"
           >
-            Both face the same cycle. Only the decisions change.
+            {isStart
+              ? "Both start equal. The market begins to move."
+              : "Same ups and downs. Only their choices change."}
           </motion.p>
         )}
       </AnimatePresence>
