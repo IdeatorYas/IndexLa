@@ -118,6 +118,7 @@ restore_known_good() {
   fi
 
   log "RESTORE: restarting PM2 with known-good build"
+  pm2 flush "$PM2_APP" >/dev/null 2>&1 || true
   pm2 restart "$PM2_APP" --update-env || {
     pm2 delete "$PM2_APP" >/dev/null 2>&1 || true
     pm2 start "${APP_DIR}/node_modules/next/dist/bin/next" --name "$PM2_APP" -- start
@@ -168,6 +169,21 @@ update_deploy_header() {
   fi
 }
 
+wait_for_app_ready() {
+  local attempt
+  for attempt in $(seq 1 30); do
+    local code
+    code="$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 "http://${HEALTH_HOST}:${PORT}/" || echo "000")"
+    if [[ "$code" == "200" ]]; then
+      log "READY: app responding on attempt ${attempt}"
+      return 0
+    fi
+    sleep 2
+  done
+  log "READY FAIL: app did not respond with HTTP 200 within 60s"
+  return 1
+}
+
 health_check() {
   local commit_short="$1"
   local failures=0
@@ -179,8 +195,13 @@ health_check() {
     return 1
   fi
 
+  if ! wait_for_app_ready; then
+    log "HEALTH FAIL: app not ready"
+    return 1
+  fi
+
   local pm2_status
-  pm2_status="$(pm2 list 2>/dev/null | awk -v app="$PM2_APP" '$2==app {print $10; exit}')"
+  pm2_status="$(pm2 describe "$PM2_APP" 2>/dev/null | awk -F'│' '/│ status / { gsub(/^[[:space:]]+|[[:space:]]+$/, "", $3); print $3; exit }')"
   pm2_status="${pm2_status:-missing}"
 
   if [[ "$pm2_status" != "online" ]]; then
@@ -214,7 +235,7 @@ health_check() {
   fi
 
   local chunk
-  chunk="$(grep -oE '/_next/static/chunks/[^\" ]+\\.js' /tmp/indexla-health.html 2>/dev/null | head -1 || true)"
+  chunk="$(grep -oE '/_next/static/chunks/[^\" ]+\.js' /tmp/indexla-health.html 2>/dev/null | head -1 || true)"
   if [[ -z "$chunk" ]]; then
     log "HEALTH FAIL: no Next.js chunk found on homepage"
     failures=$((failures + 1))
@@ -302,7 +323,7 @@ run_deploy() {
   log "DEPLOY: candidate build verified — activating"
   cleanup_pre_deploy_build
 
-  : > /root/.pm2/logs/indexla-error.log 2>/dev/null || true
+  pm2 flush "$PM2_APP" >/dev/null 2>&1 || true
 
   log "DEPLOY: restarting PM2"
   if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
@@ -311,8 +332,6 @@ run_deploy() {
     pm2 start "${APP_DIR}/node_modules/next/dist/bin/next" --name "$PM2_APP" -- start
   fi
   pm2 save
-
-  sleep 4
 
   if ! health_check "$remote_short"; then
     abort_deploy "health checks failed after activation" "$remote_short" "$remote_hash"
