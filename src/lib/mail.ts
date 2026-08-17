@@ -39,7 +39,60 @@ function resolveEmailLogoPath(): string {
   for (const candidate of candidates) {
     if (fs.existsSync(candidate)) return candidate;
   }
-  throw new Error(`Creator email logo missing: ${EMAIL_LOGO_RELATIVE}`);
+  throw new Error(`Email logo missing: ${EMAIL_LOGO_RELATIVE}`);
+}
+
+function emailShellStart(title: string): string[] {
+  return [
+    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">',
+    '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">',
+    "<head>",
+    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+    '<meta name="color-scheme" content="light dark" />',
+    '<meta name="supported-color-schemes" content="light dark" />',
+    `<title>${title}</title>`,
+    "</head>",
+    '<body bgcolor="#07040f" style="margin:0;padding:0;background-color:#07040f;width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#07040f" style="background-color:#07040f;width:100%;">',
+    "<tr>",
+    '<td align="center" bgcolor="#07040f" style="padding:28px 12px 40px 12px;background-color:#07040f;">',
+    '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#0a0614" style="width:100%;max-width:600px;background-color:#0a0614;border:1px solid #2a1b45;border-radius:20px;">',
+    "<tr>",
+    '<td bgcolor="#1a0f2e" align="center" style="padding:28px 28px 8px 28px;background-color:#1a0f2e;">',
+    `<a href="${SITE_URL}" style="text-decoration:none;">`,
+    `<img src="${LOGO_CID_SRC}" width="260" alt="INDEXLA" style="display:block;width:260px;max-width:82%;height:auto;border:0;outline:none;text-decoration:none;" />`,
+    "</a>",
+    "</td>",
+    "</tr>",
+  ];
+}
+
+function emailSignatureAndFooter(): string[] {
+  return [
+    "<tr>",
+    '<td bgcolor="#0a0614" style="padding:28px 28px 16px 28px;background-color:#0a0614;">',
+    '<p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#a89bc4;">Regards,</p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;font-weight:700;">INDEXLA Team</p>',
+    "</td>",
+    "</tr>",
+    "<tr>",
+    '<td bgcolor="#12081f" style="padding:24px 28px 28px 28px;background-color:#12081f;border-top:1px solid #2a1b45;">',
+    `<a href="${SITE_URL}" style="text-decoration:none;">`,
+    `<img src="${LOGO_CID_SRC}" width="80" alt="INDEXLA" style="display:block;width:80px;max-width:28%;height:auto;border:0;outline:none;text-decoration:none;margin:0 0 12px 0;" />`,
+    "</a>",
+    `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="${SITE_URL}" style="color:#38bdf8;text-decoration:none;font-weight:700;">indexla.tech</a></p>`,
+    `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="mailto:${CONTACT_EMAIL}" style="color:#38bdf8;text-decoration:none;">${CONTACT_EMAIL}</a></p>`,
+    `<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="${LINKEDIN_URL}" style="color:#38bdf8;text-decoration:underline;font-weight:700;">LinkedIn</a></p>`,
+    "</td>",
+    "</tr>",
+    "</table>",
+    "</td>",
+    "</tr>",
+    "</table>",
+    "</body>",
+    "</html>",
+  ];
 }
 
 function investorConfirmationCopy(): {
@@ -47,25 +100,64 @@ function investorConfirmationCopy(): {
   text: string;
   html: string;
 } {
-  const subject = "INDEXLA Early Access Confirmation — Investor";
+  const subject =
+    "INDEXLA Investor Early Access: Invest in Everything. Own Everything. Control Everything.";
+
   const text = [
-    "Thank you for joining INDEXLA early access as a Investor.",
+    "INVESTOR EARLY ACCESS",
     "",
-    "Your email has been received and saved.",
-    "We will follow up with next steps as early access opens.",
+    "INVEST IN EVERYTHING. OWN EVERYTHING. CONTROL EVERYTHING.",
     "",
-    "— INDEXLA",
-    SITE_URL,
+    "Hi,",
+    "",
+    "You're officially on the INDEXLA Early Access list.",
+    "",
+    "INDEXLA is a non-custodial platform that lets you build and automate diversified portfolios across crypto, tokenized RWAs, metals, stocks, and more while keeping full control of your assets, while your transactions remain privately protected.",
+    "",
+    "We're currently in MVP development. As an early-access investor, you'll be among the first to test the platform on Testnet.",
+    "",
+    "Active Testnet participants who provide valuable feedback will be eligible for early-adopter rewards.",
+    "",
+    "Invest in Everything. Own Everything. Control Everything.",
+    "",
+    "Regards,",
+    "INDEXLA Team",
+    "",
+    "indexla.tech",
+    CONTACT_EMAIL,
+    `LinkedIn: ${LINKEDIN_URL}`,
   ].join("\n");
 
-  const html = `
-    <div style="font-family: Arial, Helvetica, sans-serif; color: #111; line-height: 1.5;">
-      <p>Thank you for joining INDEXLA early access as a <strong>Investor</strong>.</p>
-      <p>Your email has been received and saved.</p>
-      <p>We will follow up with next steps as early access opens.</p>
-      <p style="margin-top: 24px;">— INDEXLA<br /><a href="${SITE_URL}">indexla.tech</a></p>
-    </div>
-  `.trim();
+  const html = [
+    ...emailShellStart("INDEXLA Investor Early Access"),
+    "<tr>",
+    '<td bgcolor="#1a0f2e" style="padding:20px 28px 28px 28px;background-color:#1a0f2e;">',
+    '<p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#a78bfa;font-weight:700;">INVESTOR EARLY ACCESS</p>',
+    '<h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:28px;line-height:1.2;letter-spacing:-0.02em;color:#f4f1ff;font-weight:800;">INVEST IN EVERYTHING.<br />OWN EVERYTHING.<br />CONTROL EVERYTHING.</h1>',
+    "</td>",
+    "</tr>",
+    "<tr>",
+    '<td bgcolor="#0a0614" style="padding:24px 28px 8px 28px;background-color:#0a0614;">',
+    '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;">Hi,</p>',
+    '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#c4b5fd;">You\'re officially on the INDEXLA Early Access list.</p>',
+    '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#a89bc4;">INDEXLA is a non-custodial platform that lets you build and automate diversified portfolios across crypto, tokenized RWAs, metals, stocks, and more while keeping full control of your assets, while your transactions remain privately protected.</p>',
+    '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#a89bc4;">We\'re currently in MVP development. As an early-access investor, you\'ll be among the first to test the platform on Testnet.</p>',
+    '<p style="margin:0 0 18px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#a89bc4;">Active Testnet participants who provide valuable feedback will be eligible for early-adopter rewards.</p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:1.45;color:#f4f1ff;font-weight:700;">Invest in Everything. Own Everything. Control Everything.</p>',
+    "</td>",
+    "</tr>",
+    ...emailSignatureAndFooter(),
+  ].join("");
+
+  if (!html.includes("INVESTOR EARLY ACCESS") || html.length < 1000) {
+    throw new Error("Investor confirmation HTML failed validation");
+  }
+  if (!html.includes(LOGO_CID_SRC)) {
+    throw new Error("Investor confirmation HTML missing inline logo CID");
+  }
+  if (html.includes("—")) {
+    throw new Error("Investor confirmation HTML must not include em dashes");
+  }
 
   return { subject, text, html };
 }
@@ -162,29 +254,7 @@ function creatorConfirmationCopy(): {
 
   // CID logo is attached inline at send time — never loads from the public web.
   const html = [
-    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">',
-    '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">',
-    "<head>",
-    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />',
-    '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
-    '<meta name="color-scheme" content="light dark" />',
-    '<meta name="supported-color-schemes" content="light dark" />',
-    "<title>INDEXLA Creator Early Access</title>",
-    "</head>",
-    '<body bgcolor="#07040f" style="margin:0;padding:0;background-color:#07040f;width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">',
-    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#07040f" style="background-color:#07040f;width:100%;">',
-    "<tr>",
-    '<td align="center" bgcolor="#07040f" style="padding:28px 12px 40px 12px;background-color:#07040f;">',
-    '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#0a0614" style="width:100%;max-width:600px;background-color:#0a0614;border:1px solid #2a1b45;border-radius:20px;">',
-
-    // Header logo — large brand mark (inline CID)
-    "<tr>",
-    '<td bgcolor="#1a0f2e" align="center" style="padding:28px 28px 8px 28px;background-color:#1a0f2e;">',
-    `<a href="${SITE_URL}" style="text-decoration:none;">`,
-    `<img src="${LOGO_CID_SRC}" width="260" alt="INDEXLA" style="display:block;width:260px;max-width:82%;height:auto;border:0;outline:none;text-decoration:none;" />`,
-    "</a>",
-    "</td>",
-    "</tr>",
+    ...emailShellStart("INDEXLA Creator Early Access"),
 
     // Hero copy
     "<tr>",
@@ -226,32 +296,7 @@ function creatorConfirmationCopy(): {
     "</td>",
     "</tr>",
 
-    // Signature
-    "<tr>",
-    '<td bgcolor="#0a0614" style="padding:28px 28px 16px 28px;background-color:#0a0614;">',
-    '<p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#a89bc4;">Regards,</p>',
-    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;font-weight:700;">INDEXLA Team</p>',
-    "</td>",
-    "</tr>",
-
-    // Footer with logo + links
-    "<tr>",
-    '<td bgcolor="#12081f" style="padding:24px 28px 28px 28px;background-color:#12081f;border-top:1px solid #2a1b45;">',
-    `<a href="${SITE_URL}" style="text-decoration:none;">`,
-    `<img src="${LOGO_CID_SRC}" width="80" alt="INDEXLA" style="display:block;width:80px;max-width:28%;height:auto;border:0;outline:none;text-decoration:none;margin:0 0 12px 0;" />`,
-    "</a>",
-    `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="${SITE_URL}" style="color:#38bdf8;text-decoration:none;font-weight:700;">indexla.tech</a></p>`,
-    `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="mailto:${CONTACT_EMAIL}" style="color:#38bdf8;text-decoration:none;">${CONTACT_EMAIL}</a></p>`,
-    `<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;"><a href="${LINKEDIN_URL}" style="color:#38bdf8;text-decoration:underline;font-weight:700;">LinkedIn</a></p>`,
-    "</td>",
-    "</tr>",
-
-    "</table>",
-    "</td>",
-    "</tr>",
-    "</table>",
-    "</body>",
-    "</html>",
+    ...emailSignatureAndFooter(),
   ].join("");
 
   if (!html.includes("STOP SELLING CALLS") || html.length < 1000) {
@@ -316,6 +361,30 @@ export async function sendEarlyAccessConfirmation(
     }
   }
 
+  if (role === "investor") {
+    const required = [
+      "INVESTOR EARLY ACCESS",
+      "INVEST IN EVERYTHING",
+      "OWN EVERYTHING",
+      "CONTROL EVERYTHING",
+      "You're officially on the INDEXLA Early Access list",
+      "INDEXLA Team",
+      CONTACT_EMAIL,
+      LINKEDIN_URL,
+      '">LinkedIn</a>',
+      LOGO_CID_SRC,
+      "mailto:contact@indexla.tech",
+    ];
+    for (const token of required) {
+      if (!copy.html.includes(token)) {
+        throw new Error(`Investor HTML missing required content: ${token}`);
+      }
+    }
+    if (copy.html.includes("—") || copy.text.includes("—") || copy.subject.includes("—")) {
+      throw new Error("Investor email must not include em dashes");
+    }
+  }
+
   const transporter = nodemailer.createTransport({
     host: smtp.host,
     port: smtp.port,
@@ -326,18 +395,15 @@ export async function sendEarlyAccessConfirmation(
     },
   });
 
-  const attachments =
-    role === "creator"
-      ? [
-          {
-            filename: "indexla-logo-email.png",
-            path: resolveEmailLogoPath(),
-            cid: LOGO_CID,
-            contentType: "image/png",
-            contentDisposition: "inline" as const,
-          },
-        ]
-      : undefined;
+  const attachments = [
+    {
+      filename: "indexla-logo-email.png",
+      path: resolveEmailLogoPath(),
+      cid: LOGO_CID,
+      contentType: "image/png",
+      contentDisposition: "inline" as const,
+    },
+  ];
 
   const info = await transporter.sendMail({
     from: smtp.from,
