@@ -114,154 +114,107 @@ function creatorConfirmationCopy(): {
   ];
 
   const earnCards = earnRows
-    .map(
-      (row, index) => `
-        <tr>
-          <td style="padding: 0 0 ${index === earnRows.length - 1 ? "0" : "12px"} 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#1a0f2e; border:1px solid #3b2a5c; border-radius:14px;">
-              <tr>
-                <td style="padding:18px 18px 16px 18px;">
-                  <p style="margin:0 0 8px 0; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:1; letter-spacing:0.14em; text-transform:uppercase; color:#38bdf8; font-weight:700;">
-                    ${index + 1}
-                  </p>
-                  <p style="margin:0 0 8px 0; font-family:Arial, Helvetica, sans-serif; font-size:17px; line-height:1.35; color:#f4f1ff; font-weight:700;">
-                    ${row.title}
-                  </p>
-                  <p style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.55; color:#a89bc4;">
-                    ${row.body}
-                  </p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>`,
-    )
+    .map((row, index) => {
+      const bottomPad = index === earnRows.length - 1 ? "0" : "12";
+      return [
+        '<tr>',
+        `<td style="padding:0 0 ${bottomPad}px 0;">`,
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#1a0f2e" style="background-color:#1a0f2e;border:1px solid #3b2a5c;border-radius:14px;">',
+        "<tr>",
+        '<td bgcolor="#1a0f2e" style="padding:18px 18px 16px 18px;background-color:#1a0f2e;">',
+        `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1;letter-spacing:0.14em;text-transform:uppercase;color:#38bdf8;font-weight:700;">${index + 1}</p>`,
+        `<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.35;color:#f4f1ff;font-weight:700;">${row.title}</p>`,
+        `<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.55;color:#a89bc4;">${row.body}</p>`,
+        "</td>",
+        "</tr>",
+        "</table>",
+        "</td>",
+        "</tr>",
+      ].join("");
+    })
     .join("");
 
-  const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>INDEXLA Creator Early Access</title>
-  <!--[if mso]>
-  <style type="text/css">
-    body, table, td { font-family: Arial, Helvetica, sans-serif !important; }
-  </style>
-  <![endif]-->
-  <style type="text/css">
-    @media only screen and (max-width: 620px) {
-      .email-shell { width: 100% !important; }
-      .email-pad { padding-left: 18px !important; padding-right: 18px !important; }
-      .hero-title { font-size: 26px !important; line-height: 1.2 !important; }
-      .subhead { font-size: 15px !important; }
-    }
-  </style>
-</head>
-<body style="margin:0; padding:0; background-color:#07040f; width:100%; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;">
-  <div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">
-    Become a Decentralized Portfolio Creator on INDEXLA.
-  </div>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#07040f; width:100%;">
-    <tr>
-      <td align="center" style="padding:28px 12px 40px 12px;">
-        <table role="presentation" class="email-shell" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background-color:#0a0614; border:1px solid #2a1b45; border-radius:20px; overflow:hidden;">
-          <tr>
-            <td style="padding:0; background:linear-gradient(180deg, #1a0f2e 0%, #0a0614 100%);">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                  <td class="email-pad" align="center" style="padding:28px 36px 8px 36px;">
-                    <a href="${SITE_URL}" style="text-decoration:none;">
-                      <img src="${LOGO_URL}" width="180" alt="INDEXLA" style="display:block; width:180px; max-width:70%; height:auto; border:0;" />
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="email-pad" style="padding:18px 36px 8px 36px;">
-                    <p style="margin:0 0 14px 0; font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#a78bfa; font-weight:700;">
-                      Creator Early Access
-                    </p>
-                    <h1 class="hero-title" style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:32px; line-height:1.18; letter-spacing:-0.02em; color:#f4f1ff; font-weight:800;">
-                      STOP SELLING CALLS.<br />START BUILDING DIGITAL INVESTMENT PRODUCTS.
-                    </h1>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="email-pad" style="padding:16px 36px 28px 36px;">
-                    <p class="subhead" style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:1.6; color:#c4b5fd;">
-                      Become a Decentralized Portfolio Creator — turn your ideas into investable portfolios, share them with your audience, and earn 50% of applicable execution fees.
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+  // Table + bgcolor based HTML (email-client safe). Avoid relying on <style>
+  // alone — many clients strip CSS backgrounds and leave light text invisible.
+  const html = [
+    "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">",
+    '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">',
+    "<head>",
+    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+    '<meta name="color-scheme" content="light dark" />',
+    '<meta name="supported-color-schemes" content="light dark" />',
+    "<title>INDEXLA Creator Early Access</title>",
+    "</head>",
+    '<body bgcolor="#07040f" style="margin:0;padding:0;background-color:#07040f;width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#07040f" style="background-color:#07040f;width:100%;">',
+    "<tr>",
+    '<td align="center" bgcolor="#07040f" style="padding:28px 12px 40px 12px;background-color:#07040f;">',
+    '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#0a0614" style="width:100%;max-width:600px;background-color:#0a0614;border:1px solid #2a1b45;border-radius:20px;">',
+    "<tr>",
+    '<td bgcolor="#1a0f2e" style="padding:28px 28px 8px 28px;background-color:#1a0f2e;" align="center">',
+    `<a href="${SITE_URL}" style="text-decoration:none;">`,
+    `<img src="${LOGO_URL}" width="180" height="72" alt="INDEXLA" style="display:block;width:180px;max-width:70%;height:auto;border:0;outline:none;text-decoration:none;" />`,
+    "</a>",
+    "</td>",
+    "</tr>",
+    "<tr>",
+    '<td bgcolor="#1a0f2e" style="padding:18px 28px 8px 28px;background-color:#1a0f2e;">',
+    '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#a78bfa;font-weight:700;">Creator Early Access</p>',
+    '<h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:28px;line-height:1.2;letter-spacing:-0.02em;color:#f4f1ff;font-weight:800;">STOP SELLING CALLS.<br />START BUILDING DIGITAL INVESTMENT PRODUCTS.</h1>',
+    "</td>",
+    "</tr>",
+    "<tr>",
+    '<td bgcolor="#0a0614" style="padding:16px 28px 24px 28px;background-color:#0a0614;">',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#c4b5fd;">Become a Decentralized Portfolio Creator — turn your ideas into investable portfolios, share them with your audience, and earn 50% of applicable execution fees.</p>',
+    "</td>",
+    "</tr>",
+    "<tr>",
+    '<td bgcolor="#0a0614" style="padding:8px 28px 10px 28px;background-color:#0a0614;">',
+    '<p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#38bdf8;font-weight:700;">4 Ways to Earn</p>',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">',
+    earnCards,
+    "</table>",
+    "</td>",
+    "</tr>",
+    "<tr>",
+    '<td bgcolor="#0a0614" style="padding:24px 28px 8px 28px;background-color:#0a0614;">',
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#12081f" style="background-color:#12081f;border:1px solid #38bdf8;border-radius:16px;">',
+    "<tr>",
+    '<td bgcolor="#12081f" style="padding:22px 20px;background-color:#12081f;">',
+    '<p style="margin:0 0 10px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#38bdf8;font-weight:700;">Get In Early</p>',
+    '<p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;">INDEXLA is currently in MVP development. Early creators can test the platform on Testnet.</p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#a89bc4;">Active Testnet participants who provide valuable feedback will be eligible for early-adopter rewards.</p>',
+    "</td>",
+    "</tr>",
+    "</table>",
+    "</td>",
+    "</tr>",
+    "<tr>",
+    '<td bgcolor="#0a0614" style="padding:28px 28px 8px 28px;background-color:#0a0614;">',
+    '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:1.45;color:#f4f1ff;font-weight:700;">Your strategy. Your community. Your upside.</p>',
+    '<p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#a89bc4;">We\'ll notify you the moment Creator access opens.</p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#c4b5fd;font-weight:600;">Build the strategies people actually invest in — and earn passive income.</p>',
+    "</td>",
+    "</tr>",
+    "<tr>",
+    '<td bgcolor="#0a0614" style="padding:28px 28px 36px 28px;background-color:#0a0614;">',
+    '<p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#a89bc4;">Regards,</p>',
+    '<p style="margin:0 0 18px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#f4f1ff;font-weight:700;">INDEXLA Team</p>',
+    `<a href="${SITE_URL}" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#38bdf8;text-decoration:none;font-weight:700;">indexla.tech</a>`,
+    "</td>",
+    "</tr>",
+    "</table>",
+    "</td>",
+    "</tr>",
+    "</table>",
+    "</body>",
+    "</html>",
+  ].join("");
 
-          <tr>
-            <td class="email-pad" style="padding:8px 36px 10px 36px;">
-              <p style="margin:0 0 16px 0; font-family:Arial, Helvetica, sans-serif; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#38bdf8; font-weight:700;">
-                4 Ways to Earn
-              </p>
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                ${earnCards}
-              </table>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="email-pad" style="padding:24px 36px 8px 36px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#12081f; border:1px solid #38bdf8; border-radius:16px;">
-                <tr>
-                  <td style="padding:22px 20px;">
-                    <p style="margin:0 0 10px 0; font-family:Arial, Helvetica, sans-serif; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#38bdf8; font-weight:700;">
-                      Get In Early
-                    </p>
-                    <p style="margin:0 0 12px 0; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.6; color:#f4f1ff;">
-                      INDEXLA is currently in MVP development. Early creators can test the platform on Testnet.
-                    </p>
-                    <p style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.6; color:#a89bc4;">
-                      Active Testnet participants who provide valuable feedback will be eligible for early-adopter rewards.
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="email-pad" style="padding:28px 36px 8px 36px;">
-              <p style="margin:0 0 14px 0; font-family:Arial, Helvetica, sans-serif; font-size:18px; line-height:1.45; color:#f4f1ff; font-weight:700;">
-                Your strategy. Your community. Your upside.
-              </p>
-              <p style="margin:0 0 14px 0; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.6; color:#a89bc4;">
-                We’ll notify you the moment Creator access opens.
-              </p>
-              <p style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.6; color:#c4b5fd; font-weight:600;">
-                Build the strategies people actually invest in — and earn passive income.
-              </p>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="email-pad" style="padding:28px 36px 36px 36px;">
-              <p style="margin:0 0 4px 0; font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.6; color:#a89bc4;">
-                Regards,
-              </p>
-              <p style="margin:0 0 18px 0; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.6; color:#f4f1ff; font-weight:700;">
-                INDEXLA Team
-              </p>
-              <a href="${SITE_URL}" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#38bdf8; text-decoration:none; font-weight:700;">
-                indexla.tech
-              </a>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>`;
+  if (!html.includes("STOP SELLING CALLS") || html.length < 1000) {
+    throw new Error("Creator confirmation HTML failed validation");
+  }
 
   return { subject, text, html };
 }
@@ -276,12 +229,38 @@ function confirmationCopy(role: SignupRole): {
     : investorConfirmationCopy();
 }
 
+export function getEarlyAccessConfirmationContent(role: SignupRole) {
+  return confirmationCopy(role);
+}
+
 export async function sendEarlyAccessConfirmation(
   to: string,
   role: SignupRole,
 ): Promise<void> {
   const smtp = getSmtpConfig();
   const copy = confirmationCopy(role);
+
+  if (!copy.html?.trim() || !copy.text?.trim()) {
+    throw new Error("Cannot send early-access email with empty body");
+  }
+
+  if (role === "creator") {
+    const required = [
+      "STOP SELLING CALLS",
+      "Portfolio Revenue",
+      "Private Strategy Revenue",
+      "$DEXLA Tips",
+      "Creator Rewards",
+      "Get In Early",
+      "INDEXLA Team",
+      LOGO_URL,
+    ];
+    for (const token of required) {
+      if (!copy.html.includes(token)) {
+        throw new Error(`Creator HTML missing required content: ${token}`);
+      }
+    }
+  }
 
   const transporter = nodemailer.createTransport({
     host: smtp.host,
@@ -293,11 +272,20 @@ export async function sendEarlyAccessConfirmation(
     },
   });
 
-  await transporter.sendMail({
+  const info = await transporter.sendMail({
     from: smtp.from,
     to,
     subject: copy.subject,
     text: copy.text,
     html: copy.html,
+    encoding: "utf-8",
+    headers: {
+      "X-Indexla-Email": role,
+      "Content-Language": "en",
+    },
   });
+
+  if (!info.messageId) {
+    throw new Error("SMTP accepted message without messageId");
+  }
 }
