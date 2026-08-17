@@ -23,15 +23,84 @@ const NEXT_HINT: Partial<Record<WizardStep, string>> = {
   success: "Your audience can now allocate.",
 };
 
+const MOBILE_STEP: Record<
+  Exclude<WizardStep, "success">,
+  { where: string; do: string; next: string }
+> = {
+  create: {
+    where: "Create",
+    do: "Name your portfolio and choose a type.",
+    next: "Next: select assets",
+  },
+  assets: {
+    where: "Assets & Allocation",
+    do: "Choose assets, then set weights to 100%.",
+    next: "Next: choose strategy",
+  },
+  strategy: {
+    where: "Strategy",
+    do: "Pick a strategy and enter its settings.",
+    next: "Next: final review",
+  },
+  review: {
+    where: "Final Review",
+    do: "Confirm everything and set investment.",
+    next: "Next: authorize & publish",
+  },
+};
+
 function Progress() {
   const { step } = useSimulator();
   if (step === "success") return null;
   const activeIdx = STEP_LABELS.findIndex((s) => s.id === step);
   const completed = Math.max(0, activeIdx);
   const pct = Math.round(((activeIdx + 1) / STEP_LABELS.length) * 100);
+  const mobile = MOBILE_STEP[step as Exclude<WizardStep, "success">];
 
   return (
-    <div className="shrink-0">
+    <>
+      {/* Mobile: focused app step header (assets sub-flow has its own 1/3 indicator) */}
+      <div className="shrink-0 sm:hidden">
+        {step === "assets" ? (
+          <div className="border-b border-white/[0.06] px-1 pb-2.5">
+            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-electric">
+              Portfolio demo · Step {activeIdx + 1} of {STEP_LABELS.length}
+            </p>
+            <p className="display mt-0.5 text-[1.05rem] font-semibold tracking-[-0.02em] text-ink">
+              Assets & Allocation
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="flex items-center justify-between gap-3 border-b border-white/[0.06] px-1 pb-2.5">
+              <div className="min-w-0">
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-electric">
+                  Portfolio demo · Step {activeIdx + 1} of {STEP_LABELS.length}
+                </p>
+                <p className="display mt-0.5 truncate text-[1.05rem] font-semibold tracking-[-0.02em] text-ink">
+                  {mobile.where}
+                </p>
+              </div>
+              <p className="shrink-0 text-[0.72rem] font-semibold tabular-nums text-electric">
+                {pct}%
+              </p>
+            </div>
+            <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/[0.06]">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-electric/80 to-electric transition-all duration-500 ease-out"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+            <p className="mt-2 text-[0.88rem] leading-snug text-muted">{mobile.do}</p>
+            <p className="mt-0.5 text-[0.75rem] font-semibold text-electric/90">
+              {mobile.next}
+            </p>
+          </>
+        )}
+      </div>
+
+      {/* Desktop: unchanged progress */}
+      <div className="hidden shrink-0 sm:block">
       <div className="mb-1 flex items-center justify-between gap-3">
         <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-muted">
           Step {activeIdx + 1} of {STEP_LABELS.length}
@@ -74,7 +143,8 @@ function Progress() {
           })}
         </ol>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -110,9 +180,9 @@ function WizardNav() {
   const isReview = step === "review";
 
   return (
-    <div className="shrink-0 border-t border-white/[0.08] bg-void/95 px-3 py-2.5 backdrop-blur-sm sm:px-5">
+    <div className="shrink-0 border-t border-white/[0.08] bg-void/95 px-3 py-3 backdrop-blur-sm sm:px-5 sm:py-2.5 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       {NEXT_HINT[step] ? (
-        <p className="mb-1.5 text-center text-[0.72rem] text-muted">
+        <p className="mb-1.5 hidden text-center text-[0.72rem] text-muted sm:block">
           {NEXT_HINT[step]}
         </p>
       ) : null}
@@ -120,7 +190,7 @@ function WizardNav() {
         <Button
           variant="ghost"
           onClick={goBack}
-          className="!px-4 !py-2 text-[0.88rem]"
+          className="!min-h-11 !px-4 !py-2.5 text-[0.88rem] sm:!min-h-0 sm:!py-2"
           type="button"
         >
           Back
@@ -128,7 +198,9 @@ function WizardNav() {
         {isReview ? (
           <Button
             onClick={() => publish()}
-            className={`!px-5 !py-2 ${!canProceed("review") ? "pointer-events-none opacity-40" : ""}`}
+            className={`!min-h-11 !px-5 !py-2.5 text-[0.88rem] sm:!min-h-0 sm:!py-2 ${
+              !canProceed("review") ? "pointer-events-none opacity-40" : ""
+            }`}
             type="button"
           >
             Authorize & Publish Portfolio
@@ -136,7 +208,9 @@ function WizardNav() {
         ) : (
           <Button
             onClick={goNext}
-            className={`!px-5 !py-2 ${!canProceed(step) ? "pointer-events-none opacity-40" : ""}`}
+            className={`!min-h-11 !px-5 !py-2.5 text-[0.88rem] sm:!min-h-0 sm:!py-2 ${
+              !canProceed(step) ? "pointer-events-none opacity-40" : ""
+            }`}
             type="button"
           >
             Continue
@@ -178,14 +252,14 @@ export function HowItWorksSimulator() {
         className="relative z-20 flex h-[calc(100dvh-5rem)] max-h-[calc(100dvh-5rem)] flex-col overflow-hidden bg-void sm:h-[calc(100svh-5rem)] sm:max-h-[calc(100svh-5rem)]"
         aria-label="Portfolio simulator"
       >
-        <div className="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-col px-3 py-2 sm:px-5 sm:py-2.5 lg:px-6">
-          <div className="mb-1.5 shrink-0 sm:mb-2">
+        <div className="mx-auto flex h-full min-h-0 w-full max-w-[90rem] flex-col px-0 py-0 sm:px-5 sm:py-2.5 lg:px-6">
+          <div className="mb-0 shrink-0 px-3 pt-2 sm:mb-2 sm:px-0 sm:pt-0">
             <Progress />
           </div>
 
-          <div className="grid min-h-0 flex-1 gap-2.5 sm:grid-cols-[minmax(0,1.15fr)_minmax(17rem,0.85fr)] sm:items-stretch">
+          <div className="grid min-h-0 flex-1 gap-0 sm:grid-cols-[minmax(0,1.15fr)_minmax(17rem,0.85fr)] sm:gap-2.5 sm:items-stretch">
             <div
-              className={`${surfaceClass} flex min-h-0 flex-col overflow-hidden`}
+              className={`${surfaceClass} flex min-h-0 flex-col overflow-hidden rounded-none border-x-0 sm:rounded-[1.35rem] sm:border-x`}
             >
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
                 <div className="min-h-0 flex-1 overflow-hidden px-3 sm:px-5">

@@ -8,6 +8,11 @@ import type {
 } from "./types";
 import { createManualDcaLeg } from "./types";
 
+function fmtNum(n: number | undefined, suffix = ""): string {
+  if (typeof n !== "number" || !Number.isFinite(n)) return "—";
+  return `${n}${suffix}`;
+}
+
 export type StrategyDef = {
   id: StrategyId;
   title: string;
@@ -100,7 +105,11 @@ function formatManualLegs(legs: ManualDcaLeg[] | undefined): string {
   return legs
     .map((leg) => {
       const size =
-        leg.sizing === "pct" ? `${leg.value}% of funds` : `$${leg.value}`;
+        leg.sizing === "pct"
+          ? `${fmtNum(leg.value, "%")} of funds`
+          : leg.value !== undefined
+            ? `$${leg.value}`
+            : "—";
       return `${leg.side === "buy" ? "Buy" : "Sell"} ${size} on ${leg.date}`;
     })
     .join(" · ");
@@ -114,9 +123,9 @@ export function formatHybridSummary(hybrid: HybridConfig): string {
     HYBRID_SELL_OPTIONS.find((s) => s.id === hybrid.sellCondition)?.label ??
     hybrid.sellCondition;
   if (hybrid.sellExecution === "direct") {
-    return `${buy} → ${sell} → Sell Direct → ${hybrid.sellDirectPct ?? 100}%`;
+    return `${buy} → ${sell} → Sell Direct → ${fmtNum(hybrid.sellDirectPct, "%")}`;
   }
-  return `${buy} → ${sell} → DCA OUT → ${hybrid.dcaFrequency} → ${hybrid.dcaOutPct}% of available funds`;
+  return `${buy} → ${sell} → DCA OUT → ${hybrid.dcaFrequency} → ${fmtNum(hybrid.dcaOutPct, "%")} of available funds`;
 }
 
 export function summarizeStrategy(
@@ -130,12 +139,12 @@ export function summarizeStrategy(
       const parts = ["Buy immediately when authorized"];
       if (config.enableTakeProfit) {
         parts.push(
-          `Take profit at +${config.takeProfitPct ?? 20}% gain · sell ${config.takeProfitSellPct ?? 100}%`,
+          `Take profit at +${fmtNum(config.takeProfitPct, "%")} gain · sell ${fmtNum(config.takeProfitSellPct, "%")}`,
         );
       }
       if (config.enableStopLoss) {
         parts.push(
-          `Stop loss at −${config.stopLossPct ?? 10}% loss · sell ${config.stopLossSellPct ?? 100}%`,
+          `Stop loss at −${fmtNum(config.stopLossPct, "%")} loss · sell ${fmtNum(config.stopLossSellPct, "%")}`,
         );
       }
       if (config.enableManualDca && (config.manualDcaLegs?.length ?? 0) > 0) {
@@ -144,9 +153,9 @@ export function summarizeStrategy(
       return parts.join(" · ");
     }
     case "fear-greed":
-      return `When Fear < ${config.fearThreshold ?? 20} → DCA IN ${config.dcaInPct ?? 10}% of available funds · When Greed > ${config.greedThreshold ?? 70} → DCA OUT ${config.dcaOutPct ?? 10}% · ${config.dcaFrequency ?? "Weekly"}`;
+      return `When Fear < ${fmtNum(config.fearThreshold)} → DCA IN ${fmtNum(config.dcaInPct, "%")} of available funds · When Greed > ${fmtNum(config.greedThreshold)} → DCA OUT ${fmtNum(config.dcaOutPct, "%")} · ${config.dcaFrequency ?? "Weekly"}`;
     case "rsi":
-      return `RSI ${config.rsiTimeframe ?? "Weekly"} · Oversold < ${config.rsiBuyThreshold ?? 30} → DCA IN ${config.dcaInPct ?? 10}% · Overbought > ${config.rsiSellThreshold ?? 70} → DCA OUT ${config.dcaOutPct ?? 10}%`;
+      return `RSI ${config.rsiTimeframe ?? "Weekly"} · Oversold < ${fmtNum(config.rsiBuyThreshold)} → DCA IN ${fmtNum(config.dcaInPct, "%")} · Overbought > ${fmtNum(config.rsiSellThreshold)} → DCA OUT ${fmtNum(config.dcaOutPct, "%")}`;
     case "momentum": {
       const tf = config.momentumTimeframe ?? "Weekly";
       const mode = config.momentumMode ?? "trend-dca";
@@ -155,12 +164,12 @@ export function summarizeStrategy(
         if (bearish === "sell-all") {
           return `Buy Now → when Momentum turns Bearish (${tf}) → Sell All`;
         }
-        return `Buy Now → when Momentum turns Bearish (${tf}) → DCA OUT ${config.dcaOutPct ?? 10}%`;
+        return `Buy Now → when Momentum turns Bearish (${tf}) → DCA OUT ${fmtNum(config.dcaOutPct, "%")}`;
       }
       if (bearish === "sell-all") {
-        return `Momentum ${tf} · Bullish → DCA IN ${config.dcaInPct ?? 10}% · Bearish → Sell All`;
+        return `Momentum ${tf} · Bullish → DCA IN ${fmtNum(config.dcaInPct, "%")} · Bearish → Sell All`;
       }
-      return `Momentum ${tf} · Bullish → DCA IN ${config.dcaInPct ?? 10}% · Bearish → DCA OUT ${config.dcaOutPct ?? 10}%`;
+      return `Momentum ${tf} · Bullish → DCA IN ${fmtNum(config.dcaInPct, "%")} · Bearish → DCA OUT ${fmtNum(config.dcaOutPct, "%")}`;
     }
     case "manual-dca":
       return `Manual DCA · ${formatManualLegs(config.manualDcaLegs)}`;
@@ -179,36 +188,18 @@ export function defaultsForStrategy(id: StrategyId): Partial<StrategyConfig> {
       return {
         enableTakeProfit: false,
         enableStopLoss: false,
-        takeProfitPct: 20,
-        takeProfitSellPct: 100,
-        stopLossPct: 10,
-        stopLossSellPct: 100,
         enableManualDca: false,
         manualDcaLegs: [],
       };
     case "fear-greed":
-      return {
-        fearThreshold: 20,
-        greedThreshold: 70,
-        dcaFrequency: "Weekly",
-        dcaInPct: 10,
-        dcaOutPct: 10,
-      };
+      return { dcaFrequency: "Weekly" };
     case "rsi":
-      return {
-        rsiTimeframe: "Weekly",
-        rsiBuyThreshold: 30,
-        rsiSellThreshold: 70,
-        dcaInPct: 10,
-        dcaOutPct: 10,
-      };
+      return { rsiTimeframe: "Weekly" };
     case "momentum":
       return {
         momentumTimeframe: "Weekly",
         momentumMode: "trend-dca",
         momentumBearishAction: "dca-out",
-        dcaInPct: 10,
-        dcaOutPct: 10,
       };
     case "manual-dca":
       return {
@@ -227,11 +218,7 @@ export function defaultHybridConfig(): HybridConfig {
     buyCondition: "buy-now",
     sellCondition: "sell-greed",
     sellExecution: "dca-out",
-    dcaOutPct: 25,
-    sellDirectPct: 100,
     dcaFrequency: "Weekly",
-    greedThreshold: 70,
-    rsiSellThreshold: 70,
     rsiTimeframe: "Weekly",
     momentumTimeframe: "Weekly",
   };
@@ -241,7 +228,7 @@ export function validateManualLegs(legs: ManualDcaLeg[] | undefined): boolean {
   if (!legs?.length) return false;
   return legs.every((leg) => {
     if (!leg.date) return false;
-    if (!(leg.value > 0)) return false;
+    if (typeof leg.value !== "number" || !(leg.value > 0)) return false;
     if (leg.sizing === "pct" && !(leg.value <= 100)) return false;
     return leg.side === "buy" || leg.side === "sell";
   });

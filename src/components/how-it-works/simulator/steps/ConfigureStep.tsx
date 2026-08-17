@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   formatHybridSummary,
@@ -26,6 +26,7 @@ import {
   labelClass,
   optionCardActive,
   optionCardIdle,
+  OptionalNumInput,
 } from "../ui";
 
 function Panel({
@@ -49,34 +50,6 @@ function Panel({
         {title}
       </p>
       <div className="mt-2.5 space-y-2.5">{children}</div>
-    </div>
-  );
-}
-
-function NumInput({
-  value,
-  onChange,
-  suffix,
-  min,
-  max,
-}: {
-  value: number;
-  onChange: (n: number) => void;
-  suffix?: string;
-  min?: number;
-  max?: number;
-}) {
-  return (
-    <div className="flex items-center gap-2">
-      <input
-        type="number"
-        className={`${fieldClass} !mt-0 max-w-[9rem] !py-2`}
-        value={value}
-        min={min}
-        max={max}
-        onChange={(e) => onChange(Number(e.target.value))}
-      />
-      {suffix ? <span className="text-[0.85rem] text-muted">{suffix}</span> : null}
     </div>
   );
 }
@@ -192,19 +165,10 @@ function ManualDcaEditor({
                   : "Amount (USD)"}
               </p>
               <div className="mt-1.5">
-                <NumInput
+                <OptionalNumInput
                   value={leg.value}
-                  onChange={(n) =>
-                    patchLeg(leg.id, {
-                      value:
-                        leg.sizing === "pct"
-                          ? Math.max(1, Math.min(100, n || 0))
-                          : Math.max(1, n || 0),
-                    })
-                  }
+                  onChange={(n) => patchLeg(leg.id, { value: n })}
                   suffix={leg.sizing === "pct" ? "%" : undefined}
-                  min={1}
-                  max={leg.sizing === "pct" ? 100 : undefined}
                 />
               </div>
             </div>
@@ -228,7 +192,7 @@ function HybridBuilder() {
 
   return (
     <div className="space-y-3">
-      <Panel title="1 · Buy">
+      <Panel title="1 Â· Buy">
         <div className="grid gap-2">
           {HYBRID_BUY_OPTIONS.map((opt) => {
             const active = h.buyCondition === opt.id;
@@ -251,7 +215,7 @@ function HybridBuilder() {
         </div>
       </Panel>
 
-      <Panel title="2 · Sell condition">
+      <Panel title="2 Â· Sell condition">
         <div className="grid gap-2">
           {HYBRID_SELL_OPTIONS.map((opt) => {
             const active = h.sellCondition === opt.id;
@@ -276,11 +240,9 @@ function HybridBuilder() {
           <div className="mt-2">
             <p className={labelClass}>Greed threshold</p>
             <div className="mt-1.5">
-              <NumInput
-                value={h.greedThreshold ?? 70}
+              <OptionalNumInput
+                value={h.greedThreshold}
                 onChange={(n) => setHybrid({ greedThreshold: n })}
-                min={0}
-                max={100}
               />
             </div>
           </div>
@@ -290,11 +252,9 @@ function HybridBuilder() {
             <div>
               <p className={labelClass}>RSI overbought above</p>
               <div className="mt-1.5">
-                <NumInput
-                  value={h.rsiSellThreshold ?? 70}
+                <OptionalNumInput
+                  value={h.rsiSellThreshold}
                   onChange={(n) => setHybrid({ rsiSellThreshold: n })}
-                  min={1}
-                  max={99}
                 />
               </div>
             </div>
@@ -324,7 +284,7 @@ function HybridBuilder() {
         ) : null}
       </Panel>
 
-      <Panel title="3 · Sell action">
+      <Panel title="3 Â· Sell action">
         <div className="grid gap-2 sm:grid-cols-2">
           <button
             type="button"
@@ -360,16 +320,10 @@ function HybridBuilder() {
           <div className="mt-2">
             <p className={labelClass}>% to sell</p>
             <div className="mt-1.5">
-              <NumInput
-                value={h.sellDirectPct ?? 100}
-                onChange={(n) =>
-                  setHybrid({
-                    sellDirectPct: Math.max(1, Math.min(100, n || 0)),
-                  })
-                }
+              <OptionalNumInput
+                value={h.sellDirectPct}
+                onChange={(n) => setHybrid({ sellDirectPct: n })}
                 suffix="%"
-                min={1}
-                max={100}
               />
             </div>
           </div>
@@ -388,16 +342,10 @@ function HybridBuilder() {
             <div>
               <p className={labelClass}>% of available funds per execution</p>
               <div className="mt-1.5">
-                <NumInput
+                <OptionalNumInput
                   value={h.dcaOutPct}
-                  onChange={(n) =>
-                    setHybrid({
-                      dcaOutPct: Math.max(1, Math.min(100, n || 0)),
-                    })
-                  }
+                  onChange={(n) => setHybrid({ dcaOutPct: n })}
                   suffix="%"
-                  min={1}
-                  max={100}
                 />
               </div>
             </div>
@@ -410,7 +358,7 @@ function HybridBuilder() {
   );
 }
 
-/** Product-style strategy configuration — no generic Trigger/Action cards. */
+/** Product-style strategy configuration â€” no generic Trigger/Action cards. */
 export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
   const { draft, updateDraft } = useSimulator();
   const id = draft.strategyId;
@@ -458,8 +406,8 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
               <div>
                 <p className={labelClass}>Take profit at (% gain)</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.takeProfitPct ?? 20}
+                  <OptionalNumInput
+                    value={c.takeProfitPct}
                     onChange={(n) =>
                       patchConfig({
                         takeProfitPct: n,
@@ -467,25 +415,21 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
                       })
                     }
                     suffix="% gain"
-                    min={1}
-                    max={500}
                   />
                 </div>
               </div>
               <div>
                 <p className={labelClass}>Sell (% of allocation)</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.takeProfitSellPct ?? 100}
+                  <OptionalNumInput
+                    value={c.takeProfitSellPct}
                     onChange={(n) =>
                       patchConfig({
-                        takeProfitSellPct: Math.max(1, Math.min(100, n || 0)),
+                        takeProfitSellPct: n,
                         enableTakeProfit: true,
                       })
                     }
                     suffix="%"
-                    min={1}
-                    max={100}
                   />
                 </div>
               </div>
@@ -514,8 +458,8 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
               <div>
                 <p className={labelClass}>Stop loss at (% loss)</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.stopLossPct ?? 10}
+                  <OptionalNumInput
+                    value={c.stopLossPct}
                     onChange={(n) =>
                       patchConfig({
                         stopLossPct: n,
@@ -523,25 +467,21 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
                       })
                     }
                     suffix="% loss"
-                    min={1}
-                    max={99}
                   />
                 </div>
               </div>
               <div>
                 <p className={labelClass}>Sell (% of allocation)</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.stopLossSellPct ?? 100}
+                  <OptionalNumInput
+                    value={c.stopLossSellPct}
                     onChange={(n) =>
                       patchConfig({
-                        stopLossSellPct: Math.max(1, Math.min(100, n || 0)),
+                        stopLossSellPct: n,
                         enableStopLoss: true,
                       })
                     }
                     suffix="%"
-                    min={1}
-                    max={100}
                   />
                 </div>
               </div>
@@ -581,7 +521,7 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
               />
             ) : (
               <p className="text-[0.8rem] text-muted">
-                Optional — schedule buys or sells on exact dates in addition to
+                Optional â€” schedule buys or sells on exact dates in addition to
                 Buy Now.
               </p>
             )}
@@ -606,52 +546,44 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
             </div>
           </div>
           <div className="grid gap-2.5 sm:grid-cols-2">
-            <Panel title="Buy Fear → DCA IN" accent="buy">
+            <Panel title="Buy Fear â†’ DCA IN" accent="buy">
               <div>
                 <p className={labelClass}>Fear threshold (below)</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.fearThreshold ?? 20}
+                  <OptionalNumInput
+                    value={c.fearThreshold}
                     onChange={(n) => patchConfig({ fearThreshold: n })}
-                    min={0}
-                    max={100}
                   />
                 </div>
               </div>
               <div>
                 <p className={labelClass}>% of available funds</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.dcaInPct ?? 10}
+                  <OptionalNumInput
+                    value={c.dcaInPct}
                     onChange={(n) => patchConfig({ dcaInPct: n })}
                     suffix="%"
-                    min={1}
-                    max={100}
                   />
                 </div>
               </div>
             </Panel>
-            <Panel title="Sell Greed → DCA OUT" accent="sell">
+            <Panel title="Sell Greed â†’ DCA OUT" accent="sell">
               <div>
                 <p className={labelClass}>Greed threshold (above)</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.greedThreshold ?? 70}
+                  <OptionalNumInput
+                    value={c.greedThreshold}
                     onChange={(n) => patchConfig({ greedThreshold: n })}
-                    min={0}
-                    max={100}
                   />
                 </div>
               </div>
               <div>
                 <p className={labelClass}>% of available funds</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.dcaOutPct ?? 10}
+                  <OptionalNumInput
+                    value={c.dcaOutPct}
                     onChange={(n) => patchConfig({ dcaOutPct: n })}
                     suffix="%"
-                    min={1}
-                    max={100}
                   />
                 </div>
               </div>
@@ -674,52 +606,44 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
             </div>
           </div>
           <div className="grid gap-2.5 sm:grid-cols-2">
-            <Panel title="RSI Oversold → DCA IN" accent="buy">
+            <Panel title="RSI Oversold â†’ DCA IN" accent="buy">
               <div>
                 <p className={labelClass}>Oversold when RSI below</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.rsiBuyThreshold ?? 30}
+                  <OptionalNumInput
+                    value={c.rsiBuyThreshold}
                     onChange={(n) => patchConfig({ rsiBuyThreshold: n })}
-                    min={1}
-                    max={99}
                   />
                 </div>
               </div>
               <div>
                 <p className={labelClass}>% of available funds</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.dcaInPct ?? 10}
+                  <OptionalNumInput
+                    value={c.dcaInPct}
                     onChange={(n) => patchConfig({ dcaInPct: n })}
                     suffix="%"
-                    min={1}
-                    max={100}
                   />
                 </div>
               </div>
             </Panel>
-            <Panel title="RSI Overbought → DCA OUT" accent="sell">
+            <Panel title="RSI Overbought â†’ DCA OUT" accent="sell">
               <div>
                 <p className={labelClass}>Overbought when RSI above</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.rsiSellThreshold ?? 70}
+                  <OptionalNumInput
+                    value={c.rsiSellThreshold}
                     onChange={(n) => patchConfig({ rsiSellThreshold: n })}
-                    min={1}
-                    max={99}
                   />
                 </div>
               </div>
               <div>
                 <p className={labelClass}>% of available funds</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.dcaOutPct ?? 10}
+                  <OptionalNumInput
+                    value={c.dcaOutPct}
                     onChange={(n) => patchConfig({ dcaOutPct: n })}
                     suffix="%"
-                    min={1}
-                    max={100}
                   />
                 </div>
               </div>
@@ -754,7 +678,7 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
             >
               <p className="font-semibold text-ink">Trend DCA</p>
               <p className="mt-0.5 text-[0.78rem] text-muted">
-                DCA IN on bullish · exit on bearish
+                DCA IN on bullish Â· exit on bearish
               </p>
             </button>
             <button
@@ -766,7 +690,7 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
                   : optionCardIdle
               }`}
             >
-              <p className="font-semibold text-ink">Buy Now → Exit on Bearish</p>
+              <p className="font-semibold text-ink">Buy Now â†’ Exit on Bearish</p>
               <p className="mt-0.5 text-[0.78rem] text-muted">
                 Enter now, exit when momentum turns bearish
               </p>
@@ -774,15 +698,13 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
           </div>
 
           {(c.momentumMode ?? "trend-dca") === "trend-dca" ? (
-            <Panel title="Bullish Trend → DCA IN" accent="buy">
+            <Panel title="Bullish Trend â†’ DCA IN" accent="buy">
               <p className={labelClass}>% of available funds</p>
               <div className="mt-1.5">
-                <NumInput
-                  value={c.dcaInPct ?? 10}
+                <OptionalNumInput
+                  value={c.dcaInPct}
                   onChange={(n) => patchConfig({ dcaInPct: n })}
                   suffix="%"
-                  min={1}
-                  max={100}
                 />
               </div>
             </Panel>
@@ -834,12 +756,10 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
               <div className="mt-2">
                 <p className={labelClass}>% of available funds</p>
                 <div className="mt-1.5">
-                  <NumInput
-                    value={c.dcaOutPct ?? 10}
+                  <OptionalNumInput
+                    value={c.dcaOutPct}
                     onChange={(n) => patchConfig({ dcaOutPct: n })}
                     suffix="%"
-                    min={1}
-                    max={100}
                   />
                 </div>
               </div>
@@ -853,7 +773,7 @@ export function ConfigureStep({ embedded = false }: { embedded?: boolean }) {
       {id === "manual-dca" ? (
         <div className="space-y-3">
           <p className="text-[0.88rem] text-muted">
-            Define your own buy/sell schedule by date and size — no market
+            Define your own buy/sell schedule by date and size â€” no market
             condition required.
           </p>
           <ManualDcaEditor

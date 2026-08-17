@@ -13,6 +13,7 @@ import { defaultHybridConfig, defaultsForStrategy, validateManualLegs } from "./
 import {
   allocationTotal,
   emptyDraft,
+  freshStrategyConfig,
   type DraftPortfolio,
   type HybridConfig,
   type SelectedAsset,
@@ -99,12 +100,23 @@ function validateHybrid(hybrid: HybridConfig): boolean {
   if (!hybrid.buyCondition || !hybrid.sellCondition) return false;
   if (!hybrid.sellExecution) return false;
   if (hybrid.sellExecution === "dca-out") {
-    if (!(hybrid.dcaOutPct > 0 && hybrid.dcaOutPct <= 100)) return false;
+    if (
+      !(typeof hybrid.dcaOutPct === "number" &&
+        hybrid.dcaOutPct > 0 &&
+        hybrid.dcaOutPct <= 100)
+    ) {
+      return false;
+    }
     if (!hybrid.dcaFrequency) return false;
   }
   if (hybrid.sellExecution === "direct") {
-    const pct = hybrid.sellDirectPct ?? 100;
-    if (!(pct > 0 && pct <= 100)) return false;
+    if (
+      !(typeof hybrid.sellDirectPct === "number" &&
+        hybrid.sellDirectPct > 0 &&
+        hybrid.sellDirectPct <= 100)
+    ) {
+      return false;
+    }
   }
   if (hybrid.sellCondition === "sell-greed") {
     return typeof hybrid.greedThreshold === "number";
@@ -130,15 +142,15 @@ function validateConfigure(draft: DraftPortfolio): boolean {
         if (!(typeof c.takeProfitPct === "number" && c.takeProfitPct > 0)) {
           return false;
         }
-        const sell = c.takeProfitSellPct ?? 100;
-        if (!(sell > 0 && sell <= 100)) return false;
+        const sell = c.takeProfitSellPct;
+        if (!(typeof sell === "number" && sell > 0 && sell <= 100)) return false;
       }
       if (c.enableStopLoss) {
         if (!(typeof c.stopLossPct === "number" && c.stopLossPct > 0)) {
           return false;
         }
-        const sell = c.stopLossSellPct ?? 100;
-        if (!(sell > 0 && sell <= 100)) return false;
+        const sell = c.stopLossSellPct;
+        if (!(typeof sell === "number" && sell > 0 && sell <= 100)) return false;
       }
       if (c.enableManualDca) {
         return validateManualLegs(c.manualDcaLegs);
@@ -261,8 +273,8 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       return {
         ...d,
         strategyId: id,
-        strategyConfig: { ...d.strategyConfig, ...defaultsForStrategy(id) },
-        hybrid: id === "hybrid" ? d.hybrid : defaultHybridConfig(),
+        strategyConfig: { ...freshStrategyConfig(), ...defaultsForStrategy(id) },
+        hybrid: id === "hybrid" ? defaultHybridConfig() : d.hybrid,
       };
     });
   }, []);
@@ -332,7 +344,6 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
         hybrid: {
           ...defaultHybridConfig(),
           ...p.hybrid,
-          sellDirectPct: p.hybrid.sellDirectPct ?? 100,
         },
         authorized: p.authorized,
         transactionLimitUsd: 5000,
