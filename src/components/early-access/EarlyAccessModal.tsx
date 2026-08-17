@@ -6,8 +6,10 @@ import {
   useId,
   useState,
 } from "react";
+import Image from "next/image";
 import type { EarlyAccessMode } from "@/components/early-access/EarlyAccessProvider";
 import { XLogo } from "@/components/creators/SocialBrandLogos";
+import { LOGO_TRANSPARENT } from "@/lib/site";
 
 type Role = "investor" | "creator";
 type SocialPlatform = "x" | "linkedin";
@@ -165,7 +167,9 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
 
   const heading =
     activeStep === "success"
-      ? "Thank you"
+      ? activeRole === "creator"
+        ? "CREATOR EARLY ACCESS"
+        : "INVESTOR EARLY ACCESS"
       : activeStep === "role"
         ? "Are you an Investor or Creator?"
         : activeRole === "creator"
@@ -187,195 +191,234 @@ export function EarlyAccessModal({ open, mode, onClose }: EarlyAccessModalProps)
         aria-labelledby={titleId}
         className="relative z-[101] flex max-h-[min(92svh,40rem)] w-full max-w-lg flex-col overflow-hidden rounded-t-[1.5rem] border border-electric/30 bg-gradient-to-b from-panel via-deep to-void shadow-[0_24px_80px_rgba(0,0,0,0.55)] sm:rounded-[1.5rem]"
       >
-        <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4 sm:px-6">
-          <div>
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
-              Early Access
-            </p>
-            <h2
-              id={titleId}
-              className="display mt-1 text-[1.25rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.4rem]"
-            >
-              {heading}
-            </h2>
-            {mode === "creator" &&
-            activeStep === "form" &&
-            activeRole === "creator" ? (
-              <p className="mt-2 max-w-sm text-[0.92rem] leading-snug text-muted text-pretty text-balance sm:text-[0.95rem]">
-                Build portfolios and strategies. Earn from your alpha.
-              </p>
-            ) : null}
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-full border border-line px-3 py-1.5 text-[0.85rem] font-semibold text-muted transition-colors hover:border-electric/40 hover:text-ink"
-          >
-            Close
-          </button>
-        </div>
-
-        <div className="overflow-y-auto px-5 py-5 sm:px-6 sm:py-6">
-          {activeStep === "success" ? (
-            <div className="space-y-6 text-center">
-              <div className="mx-auto max-w-sm space-y-3">
-                <p className="text-[1.15rem] font-semibold tracking-[-0.015em] text-ink text-balance">
-                  Thank you for your interest in INDEXLA.
-                </p>
-                <p className="text-[1rem] leading-relaxed text-muted text-balance">
-                  You’ll be among the first to know when our testnet goes live.
-                </p>
-              </div>
-              <button type="button" className={primaryBtnClass} onClick={onClose}>
-                Done
-              </button>
-            </div>
-          ) : null}
-
-          {activeStep === "role" ? (
-            <div className="grid gap-3">
+        {activeStep === "success" ? (
+          <>
+            <div className="flex justify-end border-b border-line px-5 py-4 sm:px-6">
               <button
                 type="button"
-                onClick={() => chooseRole("investor")}
-                className="rounded-2xl border border-line bg-white/[0.03] px-5 py-5 text-left transition-colors hover:border-electric/45 hover:bg-electric/[0.06]"
+                onClick={onClose}
+                className="rounded-full border border-line px-3 py-1.5 text-[0.85rem] font-semibold text-muted transition-colors hover:border-electric/40 hover:text-ink"
               >
-                <p className="text-[1.05rem] font-semibold text-ink">Investor</p>
-                <p className="mt-1 text-[0.92rem] text-muted">
-                  Build and automate your portfolio.
-                </p>
-              </button>
-              <button
-                type="button"
-                onClick={() => chooseRole("creator")}
-                className="rounded-2xl border border-line bg-white/[0.03] px-5 py-5 text-left transition-colors hover:border-electric/45 hover:bg-electric/[0.06]"
-              >
-                <p className="text-[1.05rem] font-semibold text-ink">Creator</p>
-                <p className="mt-1 text-[0.92rem] text-muted">
-                  Build portfolios and strategies. Earn from your alpha.
-                </p>
+                Close
               </button>
             </div>
-          ) : null}
 
-          {activeStep === "form" && activeRole ? (
-            <form className="space-y-4" onSubmit={onSubmit} noValidate>
-              {mode === "general" ? (
+            <div className="overflow-y-auto px-5 py-7 sm:px-8 sm:py-8">
+              <div className="mx-auto flex max-w-sm flex-col items-center text-center">
+                <Image
+                  src={LOGO_TRANSPARENT}
+                  alt="INDEXLA"
+                  width={220}
+                  height={88}
+                  className="h-14 w-auto object-contain sm:h-16"
+                  priority
+                />
+
+                <h2
+                  id={titleId}
+                  className="display mt-6 text-[clamp(1.55rem,5vw,2rem)] font-semibold leading-[1.2] tracking-[0.04em] text-balance"
+                >
+                  <span className="text-ink">
+                    {activeRole === "creator" ? "CREATOR" : "INVESTOR"}
+                  </span>{" "}
+                  <span className="text-electric">EARLY ACCESS</span>
+                </h2>
+
+                <p className="mt-5 text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
+                  Thank you for joining INDEXLA Early Access.
+                </p>
+
                 <button
                   type="button"
-                  onClick={goBackToRole}
-                  className="text-[0.88rem] font-semibold text-electric transition-colors hover:text-ink"
+                  className={`${primaryBtnClass} mt-8`}
+                  onClick={onClose}
                 >
-                  ← Back
+                  Done
                 </button>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4 sm:px-6">
+              <div>
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
+                  Early Access
+                </p>
+                <h2
+                  id={titleId}
+                  className="display mt-1 text-[1.25rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.4rem]"
+                >
+                  {heading}
+                </h2>
+                {mode === "creator" &&
+                activeStep === "form" &&
+                activeRole === "creator" ? (
+                  <p className="mt-2 max-w-sm text-[0.92rem] leading-snug text-muted text-pretty text-balance sm:text-[0.95rem]">
+                    Build portfolios and strategies. Earn from your alpha.
+                  </p>
+                ) : null}
+              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                className="rounded-full border border-line px-3 py-1.5 text-[0.85rem] font-semibold text-muted transition-colors hover:border-electric/40 hover:text-ink"
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="overflow-y-auto px-5 py-5 sm:px-6 sm:py-6">
+              {activeStep === "role" ? (
+                <div className="grid gap-3">
+                  <button
+                    type="button"
+                    onClick={() => chooseRole("investor")}
+                    className="rounded-2xl border border-line bg-white/[0.03] px-5 py-5 text-left transition-colors hover:border-electric/45 hover:bg-electric/[0.06]"
+                  >
+                    <p className="text-[1.05rem] font-semibold text-ink">
+                      Investor
+                    </p>
+                    <p className="mt-1 text-[0.92rem] text-muted">
+                      Build and automate your portfolio.
+                    </p>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => chooseRole("creator")}
+                    className="rounded-2xl border border-line bg-white/[0.03] px-5 py-5 text-left transition-colors hover:border-electric/45 hover:bg-electric/[0.06]"
+                  >
+                    <p className="text-[1.05rem] font-semibold text-ink">
+                      Creator
+                    </p>
+                    <p className="mt-1 text-[0.92rem] text-muted">
+                      Build portfolios and strategies. Earn from your alpha.
+                    </p>
+                  </button>
+                </div>
               ) : null}
 
-              <div>
-                <label htmlFor="ea-email" className={labelClass}>
-                  Email
-                </label>
-                <input
-                  id="ea-email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  className={fieldClass}
-                />
-              </div>
+              {activeStep === "form" && activeRole ? (
+                <form className="space-y-4" onSubmit={onSubmit} noValidate>
+                  {mode === "general" ? (
+                    <button
+                      type="button"
+                      onClick={goBackToRole}
+                      className="text-[0.88rem] font-semibold text-electric transition-colors hover:text-ink"
+                    >
+                      ← Back
+                    </button>
+                  ) : null}
 
-              {activeRole === "creator" ? (
-                <>
                   <div>
-                    <p className={labelClass}>Choose your platform</p>
-                    <div className="mt-2 grid grid-cols-2 gap-3">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setPlatform("x");
-                          setHandle("");
-                          setError(null);
-                        }}
-                        aria-pressed={platform === "x"}
-                        className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors ${
-                          platform === "x"
-                            ? "border-electric/50 bg-electric/[0.1] text-ink"
-                            : "border-line bg-void/60 text-muted hover:border-electric/35 hover:text-ink"
-                        }`}
-                      >
-                        <XLogo className="h-4 w-4" />
-                        X
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setPlatform("linkedin");
-                          setHandle("");
-                          setError(null);
-                        }}
-                        aria-pressed={platform === "linkedin"}
-                        className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors ${
-                          platform === "linkedin"
-                            ? "border-electric/50 bg-electric/[0.1] text-ink"
-                            : "border-line bg-void/60 text-muted hover:border-electric/35 hover:text-ink"
-                        }`}
-                      >
-                        <LinkedInLogo className="h-4 w-4" />
-                        LinkedIn
-                      </button>
-                    </div>
+                    <label htmlFor="ea-email" className={labelClass}>
+                      Email
+                    </label>
+                    <input
+                      id="ea-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@example.com"
+                      className={fieldClass}
+                    />
                   </div>
 
-                  {platform ? (
-                    <div>
-                      <label htmlFor="ea-handle" className={labelClass}>
-                        {platform === "linkedin"
-                          ? "LinkedIn Profile URL"
-                          : "X Handle"}
-                      </label>
-                      <input
-                        id="ea-handle"
-                        name="socialHandle"
-                        type={platform === "linkedin" ? "url" : "text"}
-                        autoComplete={
-                          platform === "linkedin" ? "url" : "username"
-                        }
-                        required
-                        value={handle}
-                        onChange={(e) => setHandle(e.target.value)}
-                        placeholder={
-                          platform === "linkedin"
-                            ? "https://linkedin.com/in/username"
-                            : "@username"
-                        }
-                        className={fieldClass}
-                      />
-                    </div>
+                  {activeRole === "creator" ? (
+                    <>
+                      <div>
+                        <p className={labelClass}>Choose your platform</p>
+                        <div className="mt-2 grid grid-cols-2 gap-3">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setPlatform("x");
+                              setHandle("");
+                              setError(null);
+                            }}
+                            aria-pressed={platform === "x"}
+                            className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors ${
+                              platform === "x"
+                                ? "border-electric/50 bg-electric/[0.1] text-ink"
+                                : "border-line bg-void/60 text-muted hover:border-electric/35 hover:text-ink"
+                            }`}
+                          >
+                            <XLogo className="h-4 w-4" />
+                            X
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setPlatform("linkedin");
+                              setHandle("");
+                              setError(null);
+                            }}
+                            aria-pressed={platform === "linkedin"}
+                            className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-[0.95rem] font-semibold transition-colors ${
+                              platform === "linkedin"
+                                ? "border-electric/50 bg-electric/[0.1] text-ink"
+                                : "border-line bg-void/60 text-muted hover:border-electric/35 hover:text-ink"
+                            }`}
+                          >
+                            <LinkedInLogo className="h-4 w-4" />
+                            LinkedIn
+                          </button>
+                        </div>
+                      </div>
+
+                      {platform ? (
+                        <div>
+                          <label htmlFor="ea-handle" className={labelClass}>
+                            {platform === "linkedin"
+                              ? "LinkedIn Profile URL"
+                              : "X Handle"}
+                          </label>
+                          <input
+                            id="ea-handle"
+                            name="socialHandle"
+                            type={platform === "linkedin" ? "url" : "text"}
+                            autoComplete={
+                              platform === "linkedin" ? "url" : "username"
+                            }
+                            required
+                            value={handle}
+                            onChange={(e) => setHandle(e.target.value)}
+                            placeholder={
+                              platform === "linkedin"
+                                ? "https://linkedin.com/in/username"
+                                : "@username"
+                            }
+                            className={fieldClass}
+                          />
+                        </div>
+                      ) : null}
+                    </>
                   ) : null}
-                </>
-              ) : null}
 
-              {error ? (
-                <p
-                  role="alert"
-                  className="rounded-xl border border-danger/35 bg-danger/[0.08] px-4 py-3 text-[0.92rem] text-danger"
-                >
-                  {error}
-                </p>
-              ) : null}
+                  {error ? (
+                    <p
+                      role="alert"
+                      className="rounded-xl border border-danger/35 bg-danger/[0.08] px-4 py-3 text-[0.92rem] text-danger"
+                    >
+                      {error}
+                    </p>
+                  ) : null}
 
-              <button
-                type="submit"
-                className={primaryBtnClass}
-                disabled={submitting}
-              >
-                {submitting ? "Submitting…" : "Submit"}
-              </button>
-            </form>
-          ) : null}
-        </div>
+                  <button
+                    type="submit"
+                    className={primaryBtnClass}
+                    disabled={submitting}
+                  >
+                    {submitting ? "Submitting…" : "Submit"}
+                  </button>
+                </form>
+              ) : null}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
