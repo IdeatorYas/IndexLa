@@ -5,6 +5,7 @@ import { useSimulator } from "./SimulatorContext";
 import { WIZARD_STEPS, type WizardStep } from "./types";
 import { CreateStep } from "./steps/CreateStep";
 import { AssetsAllocationStep } from "./steps/AssetsAllocationStep";
+import { MobileAssetsFlow } from "./steps/MobileAssetsFlow";
 import { StrategyStep } from "./steps/StrategyStep";
 import { ReviewStep } from "./steps/ReviewStep";
 import { PublishSuccess } from "./steps/PublishSuccess";
@@ -83,7 +84,16 @@ function StepBody() {
     case "create":
       return <CreateStep />;
     case "assets":
-      return <AssetsAllocationStep />;
+      return (
+        <>
+          <div className="hidden h-full min-h-0 sm:contents">
+            <AssetsAllocationStep />
+          </div>
+          <div className="flex h-full min-h-0 flex-col sm:hidden">
+            <MobileAssetsFlow />
+          </div>
+        </>
+      );
     case "strategy":
       return <StrategyStep />;
     case "review":
@@ -178,9 +188,11 @@ export function HowItWorksSimulator() {
               className={`${surfaceClass} flex min-h-0 flex-col overflow-hidden`}
             >
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-                <div className="shrink-0 px-3 pt-2.5 sm:hidden">
-                  <LivePreviewCompact />
-                </div>
+                {step !== "assets" ? (
+                  <div className="shrink-0 px-3 pt-2.5 sm:hidden">
+                    <LivePreviewCompact />
+                  </div>
+                ) : null}
                 <div className="min-h-0 flex-1 overflow-hidden px-3 sm:px-5">
                   <div className="h-full min-h-0">
                     <StepBody />
@@ -192,7 +204,13 @@ export function HowItWorksSimulator() {
                   </p>
                 ) : null}
               </div>
-              <WizardNav />
+              {step === "assets" ? (
+                <div className="hidden sm:block">
+                  <WizardNav />
+                </div>
+              ) : (
+                <WizardNav />
+              )}
             </div>
 
             <LivePreview />

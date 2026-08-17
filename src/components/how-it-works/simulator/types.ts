@@ -249,6 +249,42 @@ export function allocationTotal(assets: SelectedAsset[]): number {
   return Math.round(assets.reduce((sum, a) => sum + a.pct, 0) * 100) / 100;
 }
 
+/** Equal-weight split that always sums to 100 (basis-point remainder on first assets). */
+export function equalWeightAssets(assets: SelectedAsset[]): SelectedAsset[] {
+  const n = assets.length;
+  if (n === 0) return assets;
+  const bps = 10000;
+  const base = Math.floor(bps / n);
+  const extra = bps % n;
+  return assets.map((a, i) => ({
+    ...a,
+    pct: (base + (i < extra ? 1 : 0)) / 100,
+  }));
+}
+
+/** Set one asset's % and split the remainder equally across the others (total stays 100). */
+export function setAssetPctKeepTotal(
+  assets: SelectedAsset[],
+  key: string,
+  pct: number,
+): SelectedAsset[] {
+  const n = assets.length;
+  if (n === 0) return assets;
+  if (n === 1) return assets.map((a) => ({ ...a, pct: 100 }));
+  const target = Math.round(Math.max(0, Math.min(100, pct)) * 100) / 100;
+  const restBps = Math.round((100 - target) * 100);
+  const m = n - 1;
+  const base = Math.floor(restBps / m);
+  const extra = restBps % m;
+  let j = 0;
+  return assets.map((a) => {
+    if (a.key === key) return { ...a, pct: target };
+    const next = (base + (j < extra ? 1 : 0)) / 100;
+    j += 1;
+    return { ...a, pct: next };
+  });
+}
+
 /** Sell Direct uses sellDirectPct; DCA OUT uses dcaOutPct */
 export function resolveSellPct(hybrid: HybridConfig): number {
   if (hybrid.sellExecution === "direct") {
