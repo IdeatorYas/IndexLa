@@ -220,17 +220,54 @@ export function CreatorMonetizeSection() {
                   Pool.
                 </h3>
                 <div className={chapterBody}>
-                  <p>Creator ranking:</p>
                   <p>
-                    Performance 35% · AUM 30% · Volume 20% · Tips 15%
+                    <span className="font-semibold text-ink">Creator ranking:</span>
                   </p>
-                  <p>The Top 25 portfolios qualify.</p>
                   <p>
-                    Investors who are invested in a Top 25 creator&apos;s
-                    portfolio AND have tipped that creator in $DEXLA become
-                    eligible for the investor share of the monthly rewards pool.
+                    Performance{" "}
+                    <span className="font-semibold text-ink">50%</span> · AUM{" "}
+                    <span className="font-semibold text-ink">25%</span> · Volume{" "}
+                    <span className="font-semibold text-ink">15%</span> · Tips{" "}
+                    <span className="font-semibold text-ink">10%</span>
                   </p>
-                  <p>Build. Perform. Earn. Climb.</p>
+                  <p>
+                    The{" "}
+                    <span className="font-semibold text-ink">
+                      Top 10 portfolios
+                    </span>{" "}
+                    qualify each month.
+                  </p>
+                  <p>
+                    Rewards purchase the{" "}
+                    <span className="font-semibold text-ink">
+                      underlying assets of each winning portfolio
+                    </span>{" "}
+                    and are split:
+                  </p>
+                  <p>
+                    <span className="font-semibold text-ink">
+                      50% → Creator · 50% → Eligible Investors
+                    </span>
+                  </p>
+                  <p>
+                    To qualify, investors must{" "}
+                    <span className="font-semibold text-ink">
+                      hold the portfolio for 7+ days and tip the creator in
+                      $DEXLA
+                    </span>
+                    .
+                  </p>
+                  <p>Investor rewards are weighted:</p>
+                  <p>
+                    <span className="font-semibold text-ink">
+                      80% → Amount Invested · 20% → Amount Tipped
+                    </span>
+                  </p>
+                  <p>
+                    <span className="font-semibold text-ink">
+                      Build. Perform. Earn. Climb.
+                    </span>
+                  </p>
                 </div>
               </div>
               <aside className={chapterAside}>
