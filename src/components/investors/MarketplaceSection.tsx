@@ -128,16 +128,7 @@ export function MarketplaceSection() {
               </div>
             </div>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-3 sm:gap-5">
-              <div className="rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 sm:px-5 sm:py-5">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                  Monthly Pool Split
-                </p>
-                <p className="mt-3 display text-[1.05rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.12rem]">
-                  50% → Creator · 50% → Eligible Investors
-                </p>
-              </div>
-
+            <div className="mt-8 space-y-6">
               <div className="rounded-xl border border-electric/25 bg-electric/[0.06] px-4 py-4 sm:px-5 sm:py-5">
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-electric">
                   Investor Eligibility
@@ -147,20 +138,40 @@ export function MarketplaceSection() {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 sm:px-5 sm:py-5">
+              <div>
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+                  Monthly Pool Split
+                </p>
+                <div className="mt-3 grid grid-cols-2 gap-3 sm:gap-4">
+                  <div className="rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 text-center sm:px-5 sm:py-5">
+                    <p className="display text-[1rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.08rem]">
+                      50% → Creator
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 text-center sm:px-5 sm:py-5">
+                    <p className="display text-[1rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.08rem]">
+                      50% → Eligible Investors
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                   Investor Reward Weight
                 </p>
-                <div
-                  className="mt-3 flex h-2 overflow-hidden rounded-full border border-white/[0.08]"
-                  aria-hidden
-                >
-                  <div className="h-full w-[80%] bg-electric" />
-                  <div className="h-full w-[20%] bg-purple-bright" />
+                <div className="mt-3 grid grid-cols-2 gap-3 sm:gap-4">
+                  <div className="rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 text-center sm:px-5 sm:py-5">
+                    <p className="display text-[1rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.08rem]">
+                      80% → Amount Invested
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 text-center sm:px-5 sm:py-5">
+                    <p className="display text-[1rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.08rem]">
+                      20% → Amount Tipped
+                    </p>
+                  </div>
                 </div>
-                <p className="mt-3 text-[0.92rem] font-semibold leading-snug text-ink sm:text-[0.98rem]">
-                  80% → Amount Invested · 20% → Amount Tipped
-                </p>
               </div>
             </div>
           </div>
