@@ -50,9 +50,9 @@ const chapterTitle =
   "display text-[1.2rem] font-semibold leading-snug tracking-[-0.025em] text-ink text-pretty md:text-[1.35rem] lg:text-[1.45rem]";
 const chapterBody = "mt-4 space-y-3 text-[1.02rem] leading-[1.7] text-muted md:text-[1.05rem]";
 const rewardBox =
-  "rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-5 sm:py-5";
+  "rounded-2xl border border-white/[0.18] bg-deep/70 px-4 py-7 text-center shadow-[0_16px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/10 sm:px-6 sm:py-9";
 const rewardBoxLabel =
-  "display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.05rem]";
+  "display text-[1.15rem] font-semibold leading-snug tracking-[-0.03em] text-ink sm:text-[1.35rem] md:text-[1.45rem]";
 const chapterAside =
   "md:pt-1 md:text-right border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-0";
 const asideLabel =
@@ -233,7 +233,7 @@ export function CreatorMonetizeSection() {
                     Rewards purchase the underlying assets of each winning
                     portfolio and are split:
                   </p>
-                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                  <div className="grid grid-cols-2 gap-4 sm:gap-5">
                     {["50% → Creator", "50% → Eligible Investors"].map(
                       (label) => (
                         <div key={label} className={rewardBox}>
@@ -247,7 +247,7 @@ export function CreatorMonetizeSection() {
                     and tip the creator in $DEXLA.
                   </p>
                   <p>Investor rewards are weighted:</p>
-                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                  <div className="grid grid-cols-2 gap-4 sm:gap-5">
                     {["80% → Amount Invested", "20% → Amount Tipped"].map(
                       (label) => (
                         <div key={label} className={rewardBox}>
@@ -256,7 +256,7 @@ export function CreatorMonetizeSection() {
                       )
                     )}
                   </div>
-                  <p>Build. Perform. Earn. Climb.</p>
+                  <p>Build. Publish. Grow. Earn.</p>
                 </div>
               </div>
               <aside className={chapterAside}>
