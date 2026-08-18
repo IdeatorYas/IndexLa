@@ -414,14 +414,22 @@ INDEXLA gives investors control over what they own, how their portfolios behave,
 
 **User → Portfolio → Strategy → AI Monitoring → Execution**
 
-**01 — User**  
-→  
-**02 — Portfolio**  
-→  
-**03 — Strategy**  
-→  
-**04 — AI Monitoring**  
-→  
+**01 — User**
+
+→
+
+**02 — Portfolio**
+
+→
+
+**03 — Strategy**
+
+→
+
+**04 — AI Monitoring**
+
+→
+
 **05 — Execution**
 
 Investors can:
@@ -446,12 +454,14 @@ Investors become eligible for the investor share when:
 
 If the portfolio ranks in the **Top 10**, eligible investors receive a share of the monthly Creator Rewards Pool.
 
-**50% → Creator**  
+**50% → Creator**
+
 **50% → Eligible Investors**
 
 Investor rewards are weighted:
 
-**80% → Amount Invested**  
+**80% → Amount Invested**
+
 **20% → Amount Tipped**
 
 The principle is simple:
