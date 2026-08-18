@@ -39,7 +39,10 @@ export function loadDocsEdition(edition: DocsEdition): {
 
   const sections = splitWhitepaperSections(body).map((section) => ({
     ...section,
-    markdown: markKeyStatements(section.markdown),
+    markdown:
+      section.slug === "11-investor-experience"
+        ? section.markdown
+        : markKeyStatements(section.markdown),
   }));
 
   return { docTitle, sections };
