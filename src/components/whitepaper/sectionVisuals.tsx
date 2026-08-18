@@ -2,9 +2,7 @@ import type { ReactNode } from "react";
 import { WhitepaperExploreCta } from "@/components/whitepaper/WhitepaperExploreCta";
 import {
   ArchitectureGapDiagram,
-  BurnBuybackFlowDiagram,
   EconomicFlywheelDiagram,
-  FeeDiscountTiersDiagram,
   FeeDistributionDiagram,
   GtmGrowthFlywheelDiagram,
   HowIndexlaWorksDiagram,
@@ -15,8 +13,6 @@ import {
   SecurityRiskDiagram,
   SolutionFlowDiagram,
   StrategyEngineDiagram,
-  TokenAllocationDiagram,
-  VestingTimelineDiagram,
 } from "@/components/whitepaper/diagrams/WhitepaperDiagrams";
 
 export type VisualPlacement = "before" | "after" | "end";
@@ -158,30 +154,6 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
       ];
     case "14-dexla-utility-tokenomics":
       return [
-        {
-          id: "fee-discounts",
-          placement: "after",
-          afterHeadingId: "04-save",
-          node: <FeeDiscountTiersDiagram />,
-        },
-        {
-          id: "burn",
-          placement: "after",
-          afterHeadingId: "05-strategy-monetization-burn",
-          node: <BurnBuybackFlowDiagram />,
-        },
-        {
-          id: "allocation",
-          placement: "after",
-          afterHeadingId: "network",
-          node: <TokenAllocationDiagram />,
-        },
-        {
-          id: "vesting",
-          placement: "after",
-          afterHeadingId: "vesting-release-schedule",
-          node: <VestingTimelineDiagram />,
-        },
         {
           id: "explore-tokenomics",
           placement: "end",

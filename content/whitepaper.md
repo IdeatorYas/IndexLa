@@ -559,50 +559,123 @@ INDEXLA turns creator expertise into a portfolio-based business where better str
 
 $DEXLA is built around INDEXLA usage.
 
-### 5 Core Utilities
+The token connects creators, investors, and platform activity through practical utilities and permanent supply-reduction mechanisms.
 
-01 — Publish  
- 1,000 $DEXLA → Public Portfolio
+**5 Token Utilities · 6 Burn Mechanisms**
 
-02 — Feature  
- 2,500 $DEXLA → 7 Days Featured
+---
 
-03 — Monetize  
- Creators set prices for private strategy access in $DEXLA.
+## 5 Core Utilities
 
-04 — Save  
- Holders receive execution-fee discounts.
+### 01 — Publish
 
+Creators use $DEXLA to publish portfolios on the Marketplace.
 
-|             |                        |
-| ----------- | ---------------------- |
+Publish portfolios to attract investors and earn from portfolio activity.
+
+**1,000 $DEXLA → Public Portfolio**
+
+### 02 — Feature
+
+Creators use $DEXLA to promote portfolios on the Marketplace.
+
+Featured portfolios appear at the top of the Marketplace for greater visibility.
+
+**2,500 $DEXLA → 7 Days Featured**
+
+### 03 — Monetize
+
+Creators use $DEXLA to list strategies in the Creator Strategy Marketplace.
+
+Other creators pay $DEXLA to access and use listed strategies.
+
+**500 $DEXLA → List Strategy · Set Access Price**
+
+### 04 — Save
+
+Investors use $DEXLA to receive lower execution fees.
+
+Higher balances unlock greater fee discounts.
+
 | $DEXLA Held | Execution Fee Discount |
+| ----------- | ---------------------- |
 | 2,500       | 10%                    |
 | 5,000       | 20%                    |
 | 10,000      | 30%                    |
 
+### 05 — Tip
 
-05 — Tip  
- Investors can tip creators directly in $DEXLA.
+Investors use $DEXLA to directly support valuable creators.
 
-### 5 Burn Mechanisms
+Tips contribute to Creator Leaderboard ranking and reward eligibility.
 
-Publishing Burn  
- 100% burned.
+**Discover → Follow → Invest → Tip**
 
-Featured Burn  
- 100% burned.
+---
 
-Execution Burn  
- 10% of execution-fee revenue → Buyback & Burn.
+## 6 Burn Mechanisms
 
-Treasury Burn  
- 25% of realized Treasury profits → Buyback & Burn.
+### 01 — Publishing Burn
 
-Strategy Monetization Burn  
- 50% of strategy-access payments → Permanent Burn.
+Every public portfolio requires 1,000 $DEXLA to enter the Marketplace.
 
-### Multi-Chain $DEXLA Utility
+**Published Portfolio → 100% Burned**
+
+### 02 — Featured Burn
+
+Creators use 2,500 $DEXLA to secure Featured placement for seven days.
+
+**Featured Portfolio → 100% Burned**
+
+### 03 — Strategy Listing Burn
+
+Creators pay 500 $DEXLA to list a strategy in the Creator Strategy Marketplace.
+
+**Strategy Listing → 500 $DEXLA → 100% Burned**
+
+### 04 — Strategy Access Burn
+
+When another creator purchases access to a listed strategy, the $DEXLA payment is split between the strategy creator and the burn.
+
+**Strategy Access → 50% Creator · 50% Burned**
+
+### 05 — Execution Fee Buyback & Burn
+
+INDEXLA directs 10% of execution fee revenue toward $DEXLA buybacks.
+
+**Execution Fees → 10% Buyback & Burn**
+
+### 06 — Treasury Buyback & Burn
+
+INDEXLA directs 25% of realized Treasury profits toward $DEXLA buybacks.
+
+**Treasury Profits → 25% Buyback & Burn**
+
+---
+
+## Why $DEXLA Exists
+
+The token is embedded directly into INDEXLA’s platform economy.
+
+Creators use it to publish portfolios.
+
+Creators use it to feature portfolios and increase visibility.
+
+Creators use it to monetize their strategies.
+
+Creators use it to access strategies from other creators.
+
+Investors use it to reduce execution costs.
+
+Investors use it to support creators.
+
+Platform activity creates direct burns and buyback demand.
+
+**That is the INDEXLA token economy.**
+
+---
+
+## Multi-Chain $DEXLA Utility
 
 $DEXLA is Solana-native.
 
@@ -610,76 +683,37 @@ For users operating on other supported networks, cross-chain $DEXLA utility will
 
 The platform does not assume that a Solana-native token is automatically available on every network.
 
-### Utility
+---
 
-Creators use $DEXLA to:
+## Utility
 
-Publish · Feature · Monetize
+**Creators use $DEXLA to:**  
+Publish · Feature · Monetize · Access
 
-Investors use it to:
-
+**Investors use it to:**  
 Save · Tip
 
-Platform activity creates:
-
+**Platform activity creates:**  
 Buyback + Burn
 
-### Supply
+---
 
-100,000,000 $DEXLA  
- Network: Solana
+## The $DEXLA Economic Engine
 
+**01 — CREATE**  
+Portfolio or Index + Strategy
 
-|                     |        |
-| ------------------- | ------ |
-| Allocation          | Supply |
-| Pre Seed            | 1.5%   |
-| Seed                | 6%     |
-| Private             | 10%    |
-| Public              | 20%    |
-| DEX Liquidity       | 10%    |
-| Treasury            | 20%    |
-| Team                | 15%    |
-| Community           | 10%    |
-| Advisors            | 2.5%   |
-| CEX / Market Making | 5%     |
-| Total               | 100%   |
+**02 — USE $DEXLA**  
+Publish · Feature · Monetize · Save · Tip
 
+**03 — ACTIVITY + REVENUE**  
+AUM · Volume · Fees · Strategy Access
 
-### Vesting
+**04 — SUPPLY REDUCTION**  
+Burns + Buybacks
 
-
-|                     |      |                                    |
-| ------------------- | ---- | ---------------------------------- |
-| Allocation          | TGE  | Vesting / Release                  |
-| Pre Seed            | 10%  | 3-month cliff + 18-month linear    |
-| Seed                | 10%  | 3-month cliff + 18-month linear    |
-| Private             | 10%  | 3-month cliff + 18-month linear    |
-| Public              | 15%  | Remaining allocation over 6 months |
-| DEX Liquidity       | 100% | Available at TGE                   |
-| Treasury            | —    | 24-month lock                      |
-| Team                | —    | 12-month cliff + 24-month linear   |
-| Community           | —    | Progressive release                |
-| Advisors            | —    | 6-month cliff + 12-month linear    |
-| CEX / Market Making | —    | Progressive release                |
-
-
-### Initial Circulation
-
-14.75M $DEXLA — 14.75% of total supply
-
-### Utility-Only Position
-
-$DEXLA does not provide:
-
-Staking rewards  
- Governance rights  
- Protocol revenue sharing  
- Ownership rights  
- Treasury claims  
- Profit or dividend rights
-
-It is designed around platform utility, access, discounts, creator activity and supply reduction.
+**LOOP**  
+**More Platform Activity → More $DEXLA Utility → More Token Burns**
 
 ---
 
