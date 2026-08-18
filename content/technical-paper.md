@@ -737,7 +737,13 @@ CoW remains a modular provider, not a hard protocol dependency.
 
 
 
-## 28. LI.FI
+## 28. Cross-Chain Execution Infrastructure
+
+INDEXLA uses redundant cross-chain execution infrastructure to avoid dependence on a single provider.
+
+The AI Execution Router evaluates available providers based on **cost, slippage, liquidity, speed, reliability, and chain/asset support**, then selects the best available execution path.
+
+### Primary Execution Provider: LI.FI
 
 LI.FI provides:
 
@@ -746,7 +752,23 @@ LI.FI provides:
 - Multi-protocol routing
 - Cross-chain execution
 
-LI.FI remains the primary cross-chain execution infrastructure.
+LI.FI remains **the primary execution provider** within the INDEXLA execution layer.
+
+### Secondary Execution Provider: Across
+
+Across acts as the secondary cross-chain execution path and dedicated failover provider.
+
+When both providers return viable routes, the AI Execution Router compares them and selects the superior option for that transaction.
+
+If LI.FI has no viable route or fails, the router can automatically switch to Across when a viable route is available.
+
+For eligible transactions, INDEXLA may split execution across providers when this improves liquidity, execution quality, or resilience.
+
+### Execution Flow
+
+`AI Orchestrator → AI Execution Router → LI.FI / Across → Best Route → Execution`
+
+This provides **execution redundancy, automatic failover, and intelligent provider selection**.
 
 
 
@@ -754,21 +776,23 @@ LI.FI remains the primary cross-chain execution infrastructure.
 
 
 
-## 29. CoW + LI.FI Routing
+## 29. CoW + Cross-Chain Routing
 
-They are not treated as interchangeable.
+Execution providers are selected according to transaction type and are validated independently.
 
-CoW: eligible same-chain intent-based swaps.
+**CoW Protocol**  
+Used for eligible same-chain, intent-based swaps.
 
-LI.FI: cross-chain routes and bridging.
+**LI.FI / Across**  
+Used for cross-chain routing and bridging. The AI Execution Router selects between them based on execution quality, cost, speed, and availability.
 
-Provider failure does not trigger blind fallback.
+Providers are not treated as interchangeable. Provider failure does not trigger blind fallback.
 
-A replacement route must pass:
+Any alternative route must pass the full validation pipeline again:
 
-Intent → Policy → Risk → Permission → Route Validation
+`Intent → Policy → Risk → Permission → Route Validation → Execution`
 
-again.
+This ensures every execution path remains policy-controlled, permissioned, and independently validated.
 
 
 
@@ -1116,65 +1140,24 @@ An agent can never:
 
 The complete decision chain must be reconstructable:
 
-Market Data
-
- ↓
-
-Evaluation
-
- ↓
-
-Trigger
-
- ↓
-
-Intent
-
- ↓
-
-Policy
-
- ↓
-
-Risk
-
- ↓
-
-Permission
-
- ↓
-
-Simulation
-
- ↓
-
-Provider
-
- ↓
-
-Transaction
-
- ↓
-
-Settlement
-
-  
-
+`Market Data → Evaluation → Trigger → Intent → Policy → Risk → Permission → Simulation → Provider → Transaction → Settlement`
 
 Operational monitoring covers:
 
 - Monitoring Engine
-- Market data
+- Market Data
 - AI
 - Permissions
 - Risk
 - Simulation
-- CoW
-- LI.FI
+- CoW Protocol
+- Cross-chain execution providers
 - RPC
 - Chain adapters
 - Degraded sessions
 - Cross-chain state
+
+Provider selection, execution attempts, failures, route changes, and failover events must be recorded for auditability.
 
 
 
@@ -1186,11 +1169,11 @@ Operational monitoring covers:
 
 ### Provider Failure
 
-Record failure and re-evaluate the route.
+Record the failure and re-evaluate the route. If an alternative execution provider is available, it must pass the full validation pipeline before execution.
 
 ### Bridge Failure
 
-Record state, notify where required and require route revalidation before retry.
+Record state, notify where required, and require route revalidation before retry.
 
 ### Stale Data
 
@@ -1206,7 +1189,7 @@ Reject execution.
 
 ### Monitoring Failure
 
-Mark affected sessions DEGRADED.
+Mark affected sessions **DEGRADED**.
 
 No failure path may silently expand authority.
 
