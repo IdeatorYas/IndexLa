@@ -20,7 +20,10 @@ export function DistributionSection() {
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <h2 className={homeH2}>The Missing Layer: Distribution</h2>
+          <h2 className={homeH2}>
+            The Missing Layer:{" "}
+            <span className="gradient-text">Distribution</span>
+          </h2>
           <div
             className={`mx-auto mt-6 max-w-xl space-y-2.5 ${homeBody} font-medium text-ink`}
           >

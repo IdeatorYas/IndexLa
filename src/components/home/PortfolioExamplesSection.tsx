@@ -28,7 +28,9 @@ export function PortfolioExamplesSection() {
         <FadeIn className="text-center">
           <h2 className={`${homeH2} ${homeMeasure}`}>
             <span className="block">Discover Investment Ideas</span>
-            <span className="mt-1.5 block sm:mt-2">Choose What Fits You</span>
+            <span className="mt-1.5 block gradient-text sm:mt-2">
+              Choose What Fits You
+            </span>
           </h2>
           <p className={`mt-5 ${homeMeasure} ${homeBody}`}>
             Explore portfolios built around different strategies, markets and

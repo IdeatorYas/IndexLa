@@ -1,11 +1,11 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
-  homeBodyStrong,
   homeH2,
   homeH3,
   homeMeasure,
   homeSection,
+  homeSolution,
 } from "@/components/home/homeRhythm";
 
 const capabilities = [
@@ -51,7 +51,9 @@ export function WhyIndexlaDifferentSection() {
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <h2 className={`${homeH2} ${homeMeasure}`}>Why INDEXLA</h2>
+          <h2 className={`${homeH2} ${homeMeasure}`}>
+            Why <span className="gradient-text">INDEXLA</span>
+          </h2>
           <p className="mx-auto mt-5 max-w-2xl text-[1.15rem] font-semibold leading-snug text-electric text-pretty text-balance sm:text-[1.25rem]">
             No platform today brings this combination together.
           </p>
@@ -71,8 +73,8 @@ export function WhyIndexlaDifferentSection() {
         </div>
 
         <FadeIn className="mx-auto mt-8 max-w-3xl text-center" delay={0.12}>
-          <div className="rounded-2xl border border-electric/35 bg-electric/[0.08] px-5 py-4 sm:px-6 sm:py-5">
-            <p className={`${homeBodyStrong} text-balance`}>
+          <div className="rounded-2xl border border-electric/25 bg-electric/[0.06] px-5 py-5 text-center sm:px-6 sm:py-6">
+            <p className={`${homeBody} text-balance`}>
               INDEXLA turns investment strategies into programmable products.
             </p>
           </div>
@@ -80,7 +82,8 @@ export function WhyIndexlaDifferentSection() {
 
         <FadeIn className="mx-auto mt-14 max-w-3xl text-center" delay={0.04}>
           <h3 className={`${homeH3} text-[clamp(1.35rem,3vw,1.85rem)]`}>
-            Investing Is Fragmented. INDEXLA Connects It.
+            Investing Is Fragmented.{" "}
+            <span className="gradient-text">INDEXLA Connects It.</span>
           </h3>
         </FadeIn>
 
@@ -92,12 +95,8 @@ export function WhyIndexlaDifferentSection() {
                   {item.title}
                 </h4>
                 <p className={`mt-3 flex-1 ${homeBody}`}>{item.problem}</p>
-                <p
-                  className={`mt-5 border-t border-line pt-4 ${homeBodyStrong}`}
-                >
-                  <span className="font-semibold text-electric" aria-hidden>
-                    →{" "}
-                  </span>
+                <p className={`mt-5 border-t border-line pt-4 ${homeSolution}`}>
+                  <span aria-hidden>→ </span>
                   {item.solution}
                 </p>
               </article>
@@ -108,14 +107,19 @@ export function WhyIndexlaDifferentSection() {
         <FadeIn className="mx-auto mt-14 max-w-3xl" delay={0.06}>
           <div className="rounded-2xl border border-line bg-deep/55 px-6 py-8 text-center sm:px-8 sm:py-10">
             <h3 className={`${homeH3} text-[clamp(1.35rem,3vw,1.85rem)]`}>
-              Creators Have No Distribution Layer
+              Creators Have No{" "}
+              <span className="gradient-text">Distribution Layer</span>
             </h3>
             <p className={`mx-auto mt-6 max-w-2xl ${homeBody}`}>
-              <span className="text-electric" aria-hidden>
-                →{" "}
-              </span>
-              INDEXLA lets creators publish portfolios, automate strategies,
-              reach investors, and earn through four creator revenue streams.
+              Creators share strategies and investment ideas across X, Telegram,
+              and other communities, but valuable content gets buried in the
+              feed.
+            </p>
+            <p className={`mx-auto mt-5 max-w-2xl ${homeSolution}`}>
+              <span aria-hidden>→ </span>
+              INDEXLA gives creators a dedicated distribution layer to turn
+              strategies into investable portfolios, reach investors, and
+              monetize their expertise.
             </p>
           </div>
         </FadeIn>

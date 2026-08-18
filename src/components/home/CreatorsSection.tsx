@@ -29,9 +29,9 @@ const earnWays = [
     featured: false,
   },
   {
-    title: "Strategy Monetization",
-    body: "Set your price when other creators use your strategy.",
-    featured: false,
+    title: "Strategy Revenue",
+    body: "Earn access fees + 10% of applicable execution fees when other creators use your strategy.",
+    featured: true,
   },
 ] as const;
 
@@ -40,22 +40,25 @@ export function CreatorsSection() {
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <h2 className={homeH2}>CREATOR MARKETPLACE</h2>
+          <h2 className={homeH2}>
+            CREATOR{" "}
+            <span className="gradient-text">MARKETPLACE</span>
+          </h2>
           <p className={`mt-3 ${homeLede} text-electric`}>
             Turn Your Thesis Into a Portfolio
           </p>
           <p className={`mt-5 ${homeMeasure} ${homeBody}`}>
-            Publish your strategy, build an audience and earn from your
-            portfolio.
+            Publish your strategy, build an audience, and earn from your
+            portfolios and strategies.
           </p>
           <div className="mt-8 inline-flex rounded-2xl border border-electric/40 bg-electric/[0.08] px-5 py-3.5 shadow-[inset_0_1px_0_rgba(56,189,248,0.14)] sm:px-6">
-            <h3 className={`${homeH2} text-electric`}>4 Ways to Earn</h3>
+            <h3 className={`${homeH3} text-electric`}>4 Ways to Earn</h3>
           </div>
         </FadeIn>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {earnWays.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 0.04}>
+            <FadeIn key={item.title} delay={i * 0.04} className="h-full">
               <article
                 className={`flex h-full flex-col items-center rounded-2xl px-5 py-7 text-center sm:px-6 ${
                   item.featured
@@ -68,7 +71,7 @@ export function CreatorsSection() {
                 >
                   {item.title}
                 </h3>
-                <p className={`mt-3 ${homeMeasureTight} ${homeBody}`}>
+                <p className={`mt-3 flex-1 ${homeMeasureTight} ${homeBody}`}>
                   {item.body}
                 </p>
               </article>

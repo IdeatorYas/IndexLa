@@ -40,7 +40,8 @@ export function WhatIsIndexlaSection() {
 
           <p className={homeEyebrow}>What is INDEXLA?</p>
           <h2 className={`mx-auto mt-3 ${homeMeasure} ${homeH2}`}>
-            Decentralized Portfolio Management
+            Decentralized Portfolio{" "}
+            <span className="gradient-text">Management</span>
           </h2>
 
           <div className={`mx-auto mt-7 max-w-2xl space-y-4 ${homeBody}`}>

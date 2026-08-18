@@ -44,7 +44,9 @@ export function HomeFaqSection() {
     <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={homeH2}>Frequently Asked Questions</h2>
+          <h2 className={homeH2}>
+            Frequently Asked <span className="gradient-text">Questions</span>
+          </h2>
         </FadeIn>
 
         <FadeIn className="mx-auto mt-8 max-w-3xl">

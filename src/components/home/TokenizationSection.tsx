@@ -23,7 +23,9 @@ export function TokenizationSection() {
 
       <div className="section-pad container-max relative">
         <FadeIn className="text-center">
-          <h2 className={homeH2}>Why Now</h2>
+          <h2 className={homeH2}>
+            Why <span className="gradient-text">Now</span>
+          </h2>
           <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
             Crypto adoption is growing while traditional assets are moving
             on-chain.

@@ -29,7 +29,8 @@ export function FinalCtaSection() {
           transition={{ duration: 0.7 }}
         >
           <h2 className={`${homeH2} ${homeMeasure}`}>
-            Invest in Everything. Own Everything. Control Everything.
+            Invest in Everything. Own Everything.{" "}
+            <span className="gradient-text">Control Everything.</span>
           </h2>
           <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
             Build programmable portfolios across the evolving on-chain financial

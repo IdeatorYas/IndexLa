@@ -2,11 +2,11 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
-  homeBodyStrong,
   homeH2,
   homeH3,
   homeMeasureTight,
   homeSection,
+  homeSolution,
 } from "@/components/home/homeRhythm";
 
 const feeHighlights = [
@@ -16,12 +16,27 @@ const feeHighlights = [
   "1% Execution Fees",
 ] as const;
 
+const businessBoxes = [
+  {
+    title: "Platform Execution Fees",
+    body: "1% execution fee on portfolio trades.",
+    highlight: "50% → Creator · 50% → INDEXLA",
+  },
+  {
+    title: "INDEXLA Treasury Portfolio",
+    body: "Profits from INDEXLA's treasury portfolio provide additional protocol revenue.",
+    highlight: "25% → $DEXLA Buyback & Burn",
+  },
+] as const;
+
 export function FeesSection() {
   return (
     <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <h2 className={homeH2}>BUSINESS MODEL</h2>
+          <h2 className={homeH2}>
+            BUSINESS <span className="gradient-text">MODEL</span>
+          </h2>
           <p className="mt-3 display text-[clamp(1.25rem,2.4vw,1.65rem)] tracking-[-0.025em] text-electric text-balance text-pretty">
             Simple. Multiple Revenue Streams.
           </p>
@@ -42,38 +57,21 @@ export function FeesSection() {
           </div>
         </FadeIn>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <FadeIn>
-            <article className="flex h-full flex-col items-center rounded-3xl border border-line bg-void/45 px-6 py-8 text-center sm:px-8">
-              <h3 className={homeH3}>Platform Execution Fees</h3>
-              <p className={`mt-4 ${homeMeasureTight} ${homeBody}`}>
-                1% execution fee when portfolio trades execute.
-              </p>
-              <p className={`mt-5 ${homeMeasureTight} ${homeBodyStrong}`}>
-                50% → Creator · 50% → INDEXLA
-              </p>
-            </article>
-          </FadeIn>
-
-          <FadeIn delay={0.05}>
-            <article className="flex h-full flex-col items-center rounded-3xl border border-line bg-void/45 px-6 py-8 text-center sm:px-8">
-              <h3 className={homeH3}>INDEXLA Treasury Portfolio</h3>
-              <p className={`mt-4 ${homeMeasureTight} ${homeBody}`}>
-                INDEXLA manages one dedicated treasury portfolio. Profits from
-                this portfolio provide an additional source of protocol revenue.
-              </p>
-              <p className={`mt-5 ${homeMeasureTight} ${homeBodyStrong}`}>
-                25% of Treasury profits allocated to $DEXLA buyback &amp; burn
-              </p>
-            </article>
-          </FadeIn>
+        <div className="mt-8 grid auto-rows-fr gap-4 md:grid-cols-2">
+          {businessBoxes.map((item, i) => (
+            <FadeIn key={item.title} delay={i * 0.05} className="h-full">
+              <article className="flex h-full flex-col items-center rounded-2xl border border-electric/30 bg-electric/[0.06] px-6 py-8 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:px-8">
+                <h3 className={`${homeH3} text-electric`}>{item.title}</h3>
+                <p className={`mt-4 flex-1 ${homeMeasureTight} ${homeBody}`}>
+                  {item.body}
+                </p>
+                <p className={`mt-auto pt-5 ${homeMeasureTight} ${homeSolution}`}>
+                  {item.highlight}
+                </p>
+              </article>
+            </FadeIn>
+          ))}
         </div>
-
-        <FadeIn className="mt-7 text-center">
-          <p className="mx-auto whitespace-normal text-[1.05rem] font-semibold tracking-[-0.015em] text-ink sm:whitespace-nowrap sm:text-[1.125rem]">
-            0% Management · 0% Performance · 0% Exit
-          </p>
-        </FadeIn>
 
         <FadeIn className="mt-8 text-center">
           <HomeReadMore

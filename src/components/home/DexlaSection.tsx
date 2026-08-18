@@ -6,36 +6,47 @@ import {
   homeH3,
   homeMeasure,
   homeSection,
+  homeSolution,
 } from "@/components/home/homeRhythm";
 
 const utilities = [
-  "Publish to earn",
-  "Feature portfolio",
-  "Fee Discounts",
-  "Tips & Ranking",
-] as const;
-
-const marketplaceLines = [
-  "Creator Strategy Marketplace",
-  "500 $DEXLA → List Strategy · Set Access Price",
-  "Strategy Access → 50% Creator · 50% Permanently Burned",
-  "Strategy Usage → 10% of applicable execution fees to the strategy creator",
+  {
+    title: "Publish",
+    body: "Publish portfolios to the Marketplace.",
+  },
+  {
+    title: "Feature",
+    body: "Increase portfolio visibility.",
+  },
+  {
+    title: "Save",
+    body: "Hold $DEXLA for lower execution fees.",
+  },
+  {
+    title: "Tips & Ranking",
+    body: "Tip creators and boost leaderboard ranking.",
+  },
+  {
+    title: "Monetize",
+    body: "List proprietary strategies and monetize their use.",
+    metric: "500 $DEXLA → List Strategy · Set Access Price",
+  },
 ] as const;
 
 const burns = [
-  { title: "Creator Publishing fees", rate: "100%" },
-  { title: "Protocol Fees", rate: "10%" },
-  { title: "Promotion fees", rate: "100%" },
-  { title: "Treasury Profits", rate: "25%" },
-  { title: "500 $DEXLA → List Strategy · Set Access Price", rate: null },
-  { title: "Strategy Access → 50% Creator · 50% Permanently Burned", rate: null },
+  "Creator Publishing Fees — 100% Burned",
+  "Promotion Fees — 100% Burned",
+  "Strategy Listing — 100% Burned",
+  "Strategy Access — 50% Burned",
+  "Protocol Fees — 10% Burned",
+  "Treasury Profits — 25% Burned",
 ] as const;
 
-const utilityCard =
-  "flex h-full min-h-[7.5rem] flex-col items-center justify-center gap-2 rounded-2xl border border-success/35 bg-success/[0.06] px-5 py-6 text-center shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14)]";
+const panel =
+  "rounded-2xl border border-white/[0.08] bg-deep/55 px-4 py-7 shadow-[0_16px_48px_rgba(0,0,0,0.22)] sm:px-6 sm:py-8";
 
-const burnCard =
-  "flex h-full min-h-[8.5rem] flex-col items-center justify-center gap-2 rounded-2xl border border-danger/35 bg-danger/[0.06] px-5 py-6 text-center shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14)]";
+const innerCard =
+  "flex h-full min-h-[7.25rem] flex-col items-center justify-center rounded-xl px-4 py-5 text-center";
 
 export function DexlaSection() {
   return (
@@ -43,82 +54,81 @@ export function DexlaSection() {
       <div className="section-pad container-max">
         <FadeIn className="text-center">
           <h2 className={homeH2}>
-            $DEXLA The Utility &{" "}
+            $DEXLA — The Utility &{" "}
             <span className="gradient-text">Deflation Engine</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl display text-[clamp(1.35rem,3vw,1.95rem)] font-semibold tracking-[-0.025em] text-ink text-balance text-pretty sm:mt-5">
-            5 Core Utilities + 6 Burn Mechanisms
+          <p className="mx-auto mt-4 max-w-3xl display text-[clamp(1.25rem,2.6vw,1.75rem)] font-semibold tracking-[-0.025em] text-electric text-balance">
+            100,000,000 Fixed Supply
           </p>
-          <p className={`mt-5 ${homeMeasure} ${homeBody} sm:mt-6`}>
-            $DEXLA powers core platform and creator mechanics.
+          <p className={`mx-auto mt-5 max-w-2xl ${homeBody}`}>
+            $DEXLA powers platform utilities, creator mechanics, and
+            usage-linked deflation across INDEXLA.
           </p>
         </FadeIn>
 
-        <div className="mt-10 space-y-8">
-          <div>
-            <FadeIn className="text-center">
-              <h3 className={`${homeH3} text-success`}>5 Core Utilities</h3>
-            </FadeIn>
-            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <FadeIn className="mt-10">
+          <div className={panel}>
+            <h3 className={`${homeH3} text-center text-success`}>
+              5 Core Utilities
+            </h3>
+            <div className="mt-6 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {utilities.map((item) => (
-                <FadeIn key={item}>
-                  <article className={utilityCard}>
-                    <p className="text-[1.1rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.15rem]">
-                      {item}
-                    </p>
-                  </article>
-                </FadeIn>
-              ))}
-            </div>
-            <FadeIn className="mt-3">
-              <article className={`${utilityCard} min-h-0 gap-2.5 py-5`}>
-                {marketplaceLines.map((line) => (
-                  <p
-                    key={line}
-                    className="text-[1.05rem] font-semibold tracking-[-0.015em] text-ink text-balance sm:text-[1.125rem]"
-                  >
-                    {line}
+                <article
+                  key={item.title}
+                  className={`${innerCard} border border-success/30 bg-success/[0.06] shadow-[inset_0_1px_0_rgba(52,211,153,0.12)] ${
+                    item.title === "Monetize"
+                      ? "sm:col-span-2 lg:col-span-1"
+                      : ""
+                  }`}
+                >
+                  <p className="display text-[1.12rem] font-semibold tracking-[-0.02em] text-ink">
+                    {item.title}
                   </p>
-                ))}
-              </article>
-            </FadeIn>
-          </div>
-
-          <div>
-            <FadeIn className="text-center">
-              <h3 className={`${homeH3} text-danger`}>6 Burn Mechanisms</h3>
-            </FadeIn>
-            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {burns.map((item) => (
-                <FadeIn key={item.title}>
-                  <article className={burnCard}>
-                    <p className="text-[1.05rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.125rem]">
-                      {item.title}
+                  <p
+                    className={`mt-2 ${homeBody} text-[1.02rem] leading-snug sm:text-[1.05rem]`}
+                  >
+                    {item.body}
+                  </p>
+                  {"metric" in item && item.metric ? (
+                    <p
+                      className={`mt-3 ${homeSolution} text-[0.98rem] leading-snug sm:text-[1.02rem]`}
+                    >
+                      {item.metric}
                     </p>
-                    {item.rate ? (
-                      <p className="text-[1.05rem] font-semibold text-danger sm:text-[1.125rem]">
-                        ({item.rate})
-                      </p>
-                    ) : null}
-                  </article>
-                </FadeIn>
+                  ) : null}
+                </article>
               ))}
             </div>
           </div>
-        </div>
+        </FadeIn>
+
+        <FadeIn className="mt-5">
+          <div className={panel}>
+            <h3 className={`${homeH3} text-center text-danger`}>
+              6 Burn Mechanisms
+            </h3>
+            <div className="mt-6 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {burns.map((item) => (
+                <article
+                  key={item}
+                  className={`${innerCard} border border-danger/30 bg-danger/[0.06] shadow-[inset_0_1px_0_rgba(248,113,113,0.12)]`}
+                >
+                  <p className="text-[1.02rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.08rem]">
+                    {item}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
 
         <FadeIn className="mt-8 text-center">
-          <p className={`${homeBody} font-semibold text-ink`}>
-            Total Supply: 100,000,000 $DEXLA
-          </p>
-          <p className={`mt-3 ${homeBody} font-semibold text-ink`}>
-            Fixed Supply · Real Utility · Usage-Linked Value Accrual
+          <p className={`${homeSolution} ${homeMeasure}`}>
+            Utility → Usage → Buyback & Burn
           </p>
           <Link
             href="/tokenomics"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink"
+            className="mt-5 inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink"
           >
             Read Tokenomics →
           </Link>

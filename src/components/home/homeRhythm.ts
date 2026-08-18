@@ -35,6 +35,10 @@ export const homeLede =
 export const homeBodyStrong =
   "text-[1.125rem] leading-[1.7] text-ink text-pretty text-balance sm:text-[1.175rem]";
 
+/** Solution / highlight line — light blue, same size as body */
+export const homeSolution =
+  "text-[1.125rem] font-semibold leading-[1.7] text-electric text-pretty text-balance sm:text-[1.175rem]";
+
 /** Compact UI labels inside cards/demos — not page body copy */
 export const homeLabel =
   "text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted";

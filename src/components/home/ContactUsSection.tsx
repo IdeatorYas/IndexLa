@@ -13,7 +13,7 @@ export function ContactUsSection() {
       <div className="section-pad container-max">
         <div className="mx-auto max-w-xl text-center">
           <h2 id="contact-us" className={homeH2}>
-            Contact Us
+            Contact <span className="gradient-text">Us</span>
           </h2>
           <div className={`mt-6 flex flex-col items-center gap-3 ${homeBody}`}>
             <a

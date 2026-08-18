@@ -50,7 +50,9 @@ export function BuildAutomateSection() {
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
           <div className="mx-auto mb-5 h-px w-12 bg-gradient-to-r from-transparent via-electric/70 to-transparent" />
-          <h2 className={homeH2}>BUILD &amp; AUTOMATE</h2>
+          <h2 className={homeH2}>
+            BUILD &amp; <span className="gradient-text">AUTOMATE</span>
+          </h2>
           <p className={`mt-5 ${homeMeasure} ${homeBody}`}>
             Build and automate portfolios with strategies designed for different
             market conditions.

@@ -25,7 +25,9 @@ export function SecurityControlSection() {
           <h2 className={`mt-3 ${homeH2} ${homeMeasure}`}>
             <span className="block">Your Keys</span>
             <span className="mt-1.5 block sm:mt-2">Your Assets</span>
-            <span className="mt-1.5 block sm:mt-2">Your Permissions</span>
+            <span className="mt-1.5 block gradient-text sm:mt-2">
+              Your Permissions
+            </span>
           </h2>
         </FadeIn>
 
