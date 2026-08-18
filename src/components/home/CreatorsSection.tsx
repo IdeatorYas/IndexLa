@@ -5,8 +5,6 @@ import {
   homeBody,
   homeCta,
   homeH2,
-  homeH3,
-  homeLede,
   homeMeasure,
   homeMeasureTight,
   homeSection,
@@ -44,7 +42,7 @@ export function CreatorsSection() {
             CREATOR{" "}
             <span className="gradient-text">MARKETPLACE</span>
           </h2>
-          <p className={`mt-3 ${homeLede} text-electric`}>
+          <p className="mt-3 text-[1.15rem] font-semibold leading-snug text-electric text-pretty text-balance sm:text-[1.25rem]">
             Turn Your Thesis Into a Portfolio
           </p>
           <p className={`mt-5 ${homeMeasure} ${homeBody}`}>
@@ -52,7 +50,9 @@ export function CreatorsSection() {
             portfolios and strategies.
           </p>
           <div className="mt-8 inline-flex rounded-2xl border border-electric/40 bg-electric/[0.08] px-5 py-3.5 shadow-[inset_0_1px_0_rgba(56,189,248,0.14)] sm:px-6">
-            <h3 className={`${homeH3} text-electric`}>4 Ways to Earn</h3>
+            <h3 className="display text-[clamp(1.25rem,2.4vw,1.65rem)] tracking-[-0.025em] text-electric text-balance text-pretty">
+              4 Ways to Earn
+            </h3>
           </div>
         </FadeIn>
 
@@ -66,9 +66,7 @@ export function CreatorsSection() {
                     : "border border-line bg-deep/55"
                 }`}
               >
-                <h3
-                  className={`${homeH3} text-[clamp(1.15rem,2vw,1.4rem)] text-electric`}
-                >
+                <h3 className="display text-[clamp(1.15rem,2vw,1.4rem)] font-semibold tracking-[-0.025em] text-electric text-balance text-pretty">
                   {item.title}
                 </h3>
                 <p className={`mt-3 flex-1 ${homeMeasureTight} ${homeBody}`}>

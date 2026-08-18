@@ -3,7 +3,6 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
   homeH2,
-  homeH3,
   homeMeasure,
   homeSection,
   homeSolution,
@@ -68,7 +67,7 @@ export function DexlaSection() {
 
         <FadeIn className="mt-10">
           <div className={panel}>
-            <h3 className={`${homeH3} text-center text-success`}>
+            <h3 className="display text-[clamp(1.25rem,2.4vw,1.65rem)] tracking-[-0.025em] text-success text-balance text-pretty text-center">
               5 Core Utilities
             </h3>
             <div className="mt-6 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -104,7 +103,7 @@ export function DexlaSection() {
 
         <FadeIn className="mt-5">
           <div className={panel}>
-            <h3 className={`${homeH3} text-center text-danger`}>
+            <h3 className="display text-[clamp(1.25rem,2.4vw,1.65rem)] tracking-[-0.025em] text-danger text-balance text-pretty text-center">
               6 Burn Mechanisms
             </h3>
             <div className="mt-6 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-3">
