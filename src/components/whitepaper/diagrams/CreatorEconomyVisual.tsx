@@ -214,8 +214,10 @@ export function CreatorEconomyVisual() {
         </p>
       </div>
 
-      {/* Creator Score */}
-      <SectionHeading id="creator-score">Creator Score</SectionHeading>
+      {/* Creator Leaderboard Ranking */}
+      <SectionHeading id="creator-leaderboard-ranking">
+        Creator Leaderboard Ranking
+      </SectionHeading>
       <DiagramFrame title="Creator score breakdown">
         <div className="flex h-4 overflow-hidden rounded-full border border-line">
           {scoreWeights.map((item) => (
@@ -249,7 +251,7 @@ export function CreatorEconomyVisual() {
         <div className="mt-5">
           <FlowSteps
             steps={[
-              "Creator Score",
+              "Creator Leaderboard",
               "Leaderboard",
               "Top 10",
               "Ranked Reward Allocation",

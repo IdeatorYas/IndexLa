@@ -13,7 +13,13 @@ const utilities = [
   "Feature portfolio",
   "Fee Discounts",
   "Tips & Ranking",
-  "Creator Strategy Access",
+] as const;
+
+const marketplaceLines = [
+  "Creator Strategy Marketplace",
+  "500 $DEXLA → List Strategy · Set Access Price",
+  "Strategy Access → 50% Creator · 50% Permanently Burned",
+  "Strategy Usage → 10% of applicable execution fees to the strategy creator",
 ] as const;
 
 const burns = [
@@ -21,7 +27,8 @@ const burns = [
   { title: "Protocol Fees", rate: "10%" },
   { title: "Promotion fees", rate: "100%" },
   { title: "Treasury Profits", rate: "25%" },
-  { title: "Creator Strategy Access", rate: null },
+  { title: "500 $DEXLA → List Strategy · Set Access Price", rate: null },
+  { title: "Strategy Access → 50% Creator · 50% Permanently Burned", rate: null },
 ] as const;
 
 const utilityCard =
@@ -40,7 +47,7 @@ export function DexlaSection() {
             <span className="gradient-text">Deflation Engine</span>
           </h2>
           <p className="mx-auto mt-4 max-w-3xl display text-[clamp(1.35rem,3vw,1.95rem)] font-semibold tracking-[-0.025em] text-ink text-balance text-pretty sm:mt-5">
-            5 Core Utilities + 5 Burn Mechanisms
+            5 Core Utilities + 6 Burn Mechanisms
           </p>
           <p className={`mt-5 ${homeMeasure} ${homeBody} sm:mt-6`}>
             $DEXLA powers core platform and creator mechanics.
@@ -52,7 +59,7 @@ export function DexlaSection() {
             <FadeIn className="text-center">
               <h3 className={`${homeH3} text-success`}>5 Core Utilities</h3>
             </FadeIn>
-            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {utilities.map((item) => (
                 <FadeIn key={item}>
                   <article className={utilityCard}>
@@ -63,13 +70,25 @@ export function DexlaSection() {
                 </FadeIn>
               ))}
             </div>
+            <FadeIn className="mt-3">
+              <article className={`${utilityCard} min-h-0 gap-2.5 py-5`}>
+                {marketplaceLines.map((line) => (
+                  <p
+                    key={line}
+                    className="text-[1.05rem] font-semibold tracking-[-0.015em] text-ink text-balance sm:text-[1.125rem]"
+                  >
+                    {line}
+                  </p>
+                ))}
+              </article>
+            </FadeIn>
           </div>
 
           <div>
             <FadeIn className="text-center">
-              <h3 className={`${homeH3} text-danger`}>5 Burn Mechanisms</h3>
+              <h3 className={`${homeH3} text-danger`}>6 Burn Mechanisms</h3>
             </FadeIn>
-            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {burns.map((item) => (
                 <FadeIn key={item.title}>
                   <article className={burnCard}>

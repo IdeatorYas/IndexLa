@@ -14,7 +14,7 @@ Users can build portfolios across supported crypto assets, tokenized securities,
 
 Instead of managing positions across multiple chains, wallets, DEXs and interfaces, INDEXLA provides one portfolio layer where users define allocations, strategies and execution permissions.
 
-Creators can turn investment theses and strategies into portfolios, distribute them through the Marketplace, monetize private strategies and earn from portfolio activity.
+Creators can turn investment theses and strategies into portfolios, distribute them through the Marketplace, list proprietary strategies in the Creator Strategy Marketplace and earn from portfolio activity.
 
 Three structural shifts are converging:
 

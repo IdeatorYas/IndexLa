@@ -526,11 +526,13 @@ Creators compete for additional monthly rewards based on:
 
 50% Portfolio Performance
 
-30% AUM
+25% AUM
 
-20% Trading Volume
+15% Volume
 
-The Top 25 Creators share the monthly rewards pool.
+10% $DEXLA Tips
+
+The Top 10 portfolios qualify each month.
 
 Leaderboard rewards are separate from Creator execution-fee earnings.
 

@@ -7,10 +7,10 @@ import {
 } from "@/components/creators/creatorRhythm";
 
 const weights = [
-  { label: "Performance", pct: "35%" },
-  { label: "AUM", pct: "30%" },
-  { label: "Volume", pct: "20%" },
-  { label: "Tips", pct: "15%" },
+  { label: "Performance", pct: "50%" },
+  { label: "AUM", pct: "25%" },
+  { label: "Volume", pct: "15%" },
+  { label: "Tips", pct: "10%" },
 ] as const;
 
 export function CreatorMonthlyRewardsSection() {
@@ -24,11 +24,11 @@ export function CreatorMonthlyRewardsSection() {
           </h2>
           <p className={`mx-auto mt-5 max-w-2xl ${crBody} text-balance`}>
             10% of execution fees from creator portfolios funds the monthly
-            Creator Rewards Pool, distributed to Top 25 creators based on
-            performance points.
+            Creator Rewards Pool, distributed to Top 10 portfolios based on
+            Creator Leaderboard ranking.
           </p>
           <p className="mx-auto mt-5 display text-[clamp(1rem,2.5vw,1.25rem)] font-semibold tracking-[-0.01em] text-ink">
-            Performance 35% + AUM 30% + Volume 20% + Tips 15%
+            Performance 50% + AUM 25% + Volume 15% + Tips 10%
           </p>
         </FadeIn>
 
