@@ -3,7 +3,6 @@ import { WhitepaperExploreCta } from "@/components/whitepaper/WhitepaperExploreC
 import {
   ArchitectureGapDiagram,
   BurnBuybackFlowDiagram,
-  CreatorMarketplaceFlowDiagram,
   EconomicFlywheelDiagram,
   FeeDiscountTiersDiagram,
   FeeDistributionDiagram,
@@ -146,11 +145,6 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
       ];
     case "13-creator-economy":
       return [
-        {
-          id: "creator-flow",
-          placement: "before",
-          node: <CreatorMarketplaceFlowDiagram />,
-        },
         {
           id: "explore-creators",
           placement: "end",

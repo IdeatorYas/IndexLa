@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CreatorEconomyVisual } from "@/components/whitepaper/diagrams/CreatorEconomyVisual";
 import { WhitepaperMarkdown } from "@/components/whitepaper/WhitepaperMarkdown";
 import {
   getSectionVisuals,
@@ -116,6 +117,18 @@ export function WhitepaperSectionBody({
     (v) => v.placement === "before" && !v.afterHeadingId,
   );
   const end = visuals.filter((v) => v.placement === "end");
+
+  if (slug === "13-creator-economy") {
+    return (
+      <div>
+        <CreatorEconomyVisual />
+        {end.map((v) => (
+          <div key={v.id}>{v.node}</div>
+        ))}
+      </div>
+    );
+  }
+
   const blocks = splitIntoHeadingBlocks(markdown);
   const prologueVisuals = visualsAfter(visuals, null);
   const cardifyLevel = CARDIFY_SECTIONS[slug] ?? null;
