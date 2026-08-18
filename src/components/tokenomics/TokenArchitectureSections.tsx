@@ -65,13 +65,16 @@ function UtilityCard({
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        <ArchCardHeader n={item.n} title={item.title} tone="utility" />
+        <div className="flex flex-col items-center gap-1.5 text-center">
+          <span className={`${tkArchNum} text-success`}>{item.n}</span>
+          <h3 className={tkArchTitle}>{item.title}</h3>
+        </div>
 
-        <div className={`${tkArchBody} min-h-0`}>
+        <div className="mt-3 flex min-h-0 flex-1 flex-col items-center justify-start gap-2 text-center">
           {item.lines.map((line, lineIndex) => (
             <p
               key={`${item.n}-${lineIndex}`}
-              className={`${tkBody} flex flex-1 items-start justify-center text-balance text-[1.05rem] leading-snug sm:text-[1.1rem]`}
+              className={`${tkBody} text-balance text-[1.05rem] leading-snug sm:text-[1.1rem]`}
             >
               {line}
             </p>
