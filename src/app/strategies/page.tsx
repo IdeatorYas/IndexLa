@@ -8,6 +8,7 @@ import { MomentumStrategySection } from "@/components/strategies/MomentumStrateg
 import { TakeProfitSection } from "@/components/strategies/TakeProfitSection";
 import { StopLossSection } from "@/components/strategies/StopLossSection";
 import { RebalancingSection } from "@/components/strategies/RebalancingSection";
+import { CreatorStrategyMarketplaceSection } from "@/components/strategies/CreatorStrategyMarketplaceSection";
 import { YouDefineAiWatchesSection } from "@/components/strategies/YouDefineAiWatchesSection";
 import { StrategiesFinalCta } from "@/components/strategies/StrategiesFinalCta";
 import { StrategySuitability } from "@/components/strategies/StrategySuitability";
@@ -31,6 +32,7 @@ export default function StrategiesPage() {
       <TakeProfitSection />
       <StopLossSection />
       <RebalancingSection />
+      <CreatorStrategyMarketplaceSection />
       <YouDefineAiWatchesSection />
       <StrategiesFinalCta />
       <StrategySuitability />
