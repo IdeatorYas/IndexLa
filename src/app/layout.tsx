@@ -19,10 +19,28 @@ const body = Source_Sans_3({
   weight: ["400", "500", "600", "700"],
 });
 
+const SITE_URL = "https://indexla.tech";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "INDEXLA | Decentralized Portfolio Management",
   description:
-    "Invest across crypto, tokenized stocks, commodities, and RWAs. Define your strategy. Keep control of your assets.",
+    "One portfolio. Every asset. Every chain. Invest across crypto, tokenized stocks, commodities, and RWAs with automated, non-custodial strategies.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: "INDEXLA",
+    title: "INDEXLA | Decentralized Portfolio Management",
+    description:
+      "One portfolio. Every asset. Every chain. Invest across crypto, tokenized stocks, commodities, and RWAs with automated, non-custodial strategies.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "INDEXLA | Decentralized Portfolio Management",
+    description:
+      "One portfolio. Every asset. Every chain. Invest across crypto, tokenized stocks, commodities, and RWAs with automated, non-custodial strategies.",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
