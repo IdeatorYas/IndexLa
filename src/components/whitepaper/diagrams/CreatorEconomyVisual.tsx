@@ -36,8 +36,6 @@ const earnWays = [
   {
     n: "04",
     title: "Monthly Creator Performance Rewards",
-    detail:
-      "A portion of platform fees funds the monthly Creator Rewards Pool.",
   },
 ] as const;
 
@@ -135,9 +133,11 @@ export function CreatorEconomyVisual() {
             <h3 className="display mt-2 text-[1.12rem] font-semibold tracking-[-0.02em] text-ink sm:text-[1.2rem]">
               {way.title}
             </h3>
+            {"detail" in way && way.detail ? (
             <p className="mt-3 text-[0.95rem] leading-[1.65] text-muted">
               {way.detail}
             </p>
+            ) : null}
             {"note" in way && way.note ? (
               <p className="mt-2 text-[0.88rem] leading-snug text-muted">
                 {way.note}
