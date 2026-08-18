@@ -49,8 +49,6 @@ const chapterNum =
 const chapterTitle =
   "display text-[1.2rem] font-semibold leading-snug tracking-[-0.025em] text-ink text-pretty md:text-[1.35rem] lg:text-[1.45rem]";
 const chapterBody = "mt-4 space-y-3 text-[1.02rem] leading-[1.7] text-muted md:text-[1.05rem]";
-const chapterBodyInk =
-  "mt-4 space-y-3 text-[1.02rem] leading-[1.7] text-ink md:text-[1.05rem]";
 const rewardBox =
   "rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-5 sm:py-5";
 const rewardBoxLabel =
@@ -225,9 +223,9 @@ export function CreatorMonetizeSection() {
                   A portion of platform fees funds the monthly Creator Rewards
                   Pool.
                 </h3>
-                <div className={chapterBodyInk}>
+                <div className={chapterBody}>
                   <p>Creator ranking:</p>
-                  <p className="font-semibold">
+                  <p>
                     Performance 50% · AUM 25% · Volume 15% · Tips 10%
                   </p>
                   <p>The Top 10 portfolios qualify each month.</p>
@@ -258,9 +256,7 @@ export function CreatorMonetizeSection() {
                       )
                     )}
                   </div>
-                  <p className="pt-1 text-center text-[1.12rem] font-semibold leading-snug tracking-[-0.02em] sm:text-[1.2rem]">
-                    Build. Perform. Earn. Climb.
-                  </p>
+                  <p>Build. Perform. Earn. Climb.</p>
                 </div>
               </div>
               <aside className={chapterAside}>
