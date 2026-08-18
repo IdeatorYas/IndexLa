@@ -48,6 +48,44 @@ function ArchCardHeader({
   );
 }
 
+function UtilityCard({
+  item,
+  delay,
+}: {
+  item: ArchCard;
+  delay: number;
+}) {
+  const reduce = useReducedMotion();
+
+  return (
+    <FadeIn delay={delay} className="h-full">
+      <motion.article
+        className={`${tkArchCardUtility} h-full`}
+        initial={reduce ? false : { opacity: 0.8 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
+        <ArchCardHeader n={item.n} title={item.title} tone="utility" />
+
+        <div className={`${tkArchBody} min-h-0`}>
+          {item.lines.map((line, lineIndex) => (
+            <p
+              key={`${item.n}-${lineIndex}`}
+              className={`${tkBody} flex flex-1 items-start justify-center text-balance text-[1.05rem] leading-snug sm:text-[1.1rem]`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+
+        <div className={tkArchMetricUtility}>
+          <p className={`${tkArchMetricLabel} text-success`}>{item.metric}</p>
+        </div>
+      </motion.article>
+    </FadeIn>
+  );
+}
+
 function ArchitectureCard({
   item,
   tone,
@@ -100,7 +138,7 @@ const utilities: ArchCard[] = [
     title: "Publish",
     lines: [
       "Creators use $DEXLA to publish portfolios on the Marketplace.",
-      "Public portfolios become discoverable and attract investors.",
+      "Publish portfolios to attract investors and earn from portfolio activity.",
     ],
     metric: "1,000 $DEXLA → Public Portfolio",
   },
@@ -108,8 +146,8 @@ const utilities: ArchCard[] = [
     n: "02",
     title: "Feature",
     lines: [
-      "Creators use $DEXLA to increase portfolio visibility.",
-      "Featured placement puts portfolios in front of more investors.",
+      "Creators use $DEXLA to promote portfolios on the Marketplace.",
+      "Featured portfolios appear at the top of the Marketplace for greater visibility.",
     ],
     metric: "2,500 $DEXLA → 7 Days Featured",
   },
@@ -117,8 +155,8 @@ const utilities: ArchCard[] = [
     n: "03",
     title: "Monetize",
     lines: [
-      "Creators monetize proprietary strategies by listing them in the Creator Strategy Marketplace.",
-      "Other creators pay the creator's set access price in $DEXLA to access the strategy.",
+      "Creators use $DEXLA to list strategies in the Creator Strategy Marketplace.",
+      "Other creators pay $DEXLA to access and use listed strategies.",
     ],
     metric: "500 $DEXLA → List Strategy · Set Access Price",
   },
@@ -126,8 +164,8 @@ const utilities: ArchCard[] = [
     n: "04",
     title: "Save",
     lines: [
-      "Investors holding $DEXLA receive lower execution fees.",
-      "Higher balances unlock greater discounts.",
+      "Investors use $DEXLA to receive lower execution fees.",
+      "Higher balances unlock greater fee discounts.",
     ],
     metric: "2,500 → 10% · 5,000 → 20% · 10,000 → 30%",
   },
@@ -135,7 +173,7 @@ const utilities: ArchCard[] = [
     n: "05",
     title: "Tip",
     lines: [
-      "Investors can tip creators directly in $DEXLA.",
+      "Investors use $DEXLA to directly support valuable creators.",
       "Tips contribute to Creator Leaderboard ranking and reward eligibility.",
     ],
     metric: "Discover → Follow → Invest → Tip",
@@ -216,12 +254,7 @@ export function TokenUtilitySection() {
 
         <div className={tkUtilityGrid}>
           {utilities.map((item, i) => (
-            <ArchitectureCard
-              key={item.n}
-              item={item}
-              tone="utility"
-              delay={i * 0.03}
-            />
+            <UtilityCard key={item.n} item={item} delay={i * 0.03} />
           ))}
         </div>
       </div>
