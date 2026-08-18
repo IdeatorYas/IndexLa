@@ -5,6 +5,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   tkArchBody,
+  tkArchBodyUtility,
+  tkArchMetricUtilityCompact,
   tkArchCardBurn,
   tkArchCardUtility,
   tkArchMetricBurn,
@@ -28,7 +30,6 @@ type ArchCard = {
   title: string;
   lines: readonly ReactNode[];
   metric: string;
-  metricSecondary?: string;
 };
 
 function ArchCardHeader({
@@ -64,17 +65,21 @@ function ArchitectureCard({
     tone === "utility" ? tkArchMetricUtility : tkArchMetricBurn;
   const metricAccent = tone === "utility" ? "text-success" : "text-danger";
 
+  const bodyClass = tone === "utility" ? tkArchBodyUtility : tkArchBody;
+  const metricClass =
+    tone === "utility" ? tkArchMetricUtilityCompact : metricShell;
+
   return (
-    <FadeIn delay={delay} className="h-full">
+    <FadeIn delay={delay} className={tone === "burn" ? "h-full" : undefined}>
       <motion.article
-        className={shell}
+        className={`${shell}${tone === "burn" ? " h-full" : ""}`}
         initial={reduce ? false : { opacity: 0.8 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
         <ArchCardHeader n={item.n} title={item.title} tone={tone} />
 
-        <div className={tkArchBody}>
+        <div className={bodyClass}>
           {item.lines.map((line, lineIndex) => (
             <p
               key={`${item.n}-${lineIndex}`}
@@ -85,19 +90,10 @@ function ArchitectureCard({
           ))}
         </div>
 
-        <div className="mt-auto flex w-full flex-col gap-2.5">
-          <div className={metricShell}>
-            <p className={`${tkArchMetricLabel} ${metricAccent}`}>
-              {item.metric}
-            </p>
-          </div>
-          {item.metricSecondary ? (
-            <div className={metricShell}>
-              <p className={`${tkArchMetricLabel} ${metricAccent}`}>
-                {item.metricSecondary}
-              </p>
-            </div>
-          ) : null}
+        <div className={metricClass}>
+          <p className={`${tkArchMetricLabel} ${metricAccent}`}>
+            {item.metric}
+          </p>
         </div>
       </motion.article>
     </FadeIn>
@@ -131,7 +127,6 @@ const utilities: ArchCard[] = [
       "Other creators pay $DEXLA to access the strategy.",
     ],
     metric: "500 $DEXLA → List Strategy · Set Access Price",
-    metricSecondary: "List → Discover → Pay → Access",
   },
   {
     n: "04",
