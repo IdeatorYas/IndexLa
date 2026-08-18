@@ -136,7 +136,7 @@ const utilities: ArchCard[] = [
     title: "Tip",
     lines: [
       "Investors can tip creators directly in $DEXLA.",
-      "Tips also contribute to Creator Rewards ranking.",
+      "Tips contribute to Creator Leaderboard ranking and reward eligibility.",
     ],
     metric: "Discover → Follow → Invest → Tip",
   },
