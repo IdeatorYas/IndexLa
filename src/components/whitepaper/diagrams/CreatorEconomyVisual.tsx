@@ -37,8 +37,7 @@ const earnWays = [
     n: "04",
     title: "Monthly Creator Performance Rewards",
     detail:
-      "A portion of protocol fees generated across INDEXLA activity funds the monthly Creator Rewards Pool.",
-    note: "Each month, the Top 10 portfolios qualify based on the Creator Score.",
+      "A portion of platform fees funds the monthly Creator Rewards Pool.",
   },
 ] as const;
 
@@ -47,13 +46,6 @@ const scoreWeights = [
   { label: "AUM", pct: 25, color: "#7c3aed" },
   { label: "Volume", pct: 15, color: "#22d3ee" },
   { label: "$DEXLA Tips", pct: 10, color: "#f472b6" },
-] as const;
-
-const rewardFlow = [
-  "Creator Rewards Pool",
-  "Monthly Leaderboard",
-  "Top 10",
-  "Buy Portfolio Assets",
 ] as const;
 
 const flywheel = [
@@ -75,7 +67,7 @@ function SectionHeading({
   children,
 }: {
   id: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <h2
@@ -168,88 +160,59 @@ export function CreatorEconomyVisual() {
         ))}
       </div>
 
-      {/* Monthly rewards mechanism — inside card 4 area, full width */}
-      <DiagramFrame title="Monthly creator performance rewards">
-        <div className="flex flex-col items-center gap-2">
-          {rewardFlow.map((step, i) => (
-            <div key={step} className="flex w-full max-w-md flex-col items-center">
-              <div className="w-full rounded-lg border border-electric/30 bg-electric/10 px-4 py-3 text-center">
-                <p className="text-[0.85rem] font-semibold text-ink">{step}</p>
-              </div>
-              {i < rewardFlow.length - 1 ? (
-                <span className="my-1 text-electric" aria-hidden>
-                  ↓
-                </span>
-              ) : null}
+      {/* Monthly Creator Rewards — white text, four equal boxes */}
+      <div className="my-6 overflow-hidden rounded-xl border border-line bg-void/50 px-4 py-6 sm:px-6 sm:py-7">
+        <p className="text-[1.02rem] leading-[1.75] text-ink">
+          A portion of platform fees funds the monthly Creator Rewards Pool.
+        </p>
+        <p className="mt-4 text-[1.02rem] leading-[1.75] text-ink">
+          Creator ranking:
+        </p>
+        <p className="mt-1 text-[1.02rem] font-semibold leading-[1.75] text-ink">
+          Performance 50% · AUM 25% · Volume 15% · Tips 10%
+        </p>
+        <p className="mt-4 text-[1.02rem] leading-[1.75] text-ink">
+          The Top 10 portfolios qualify each month.
+        </p>
+        <p className="mt-4 text-[1.02rem] leading-[1.75] text-ink">
+          Rewards purchase the underlying assets of each winning portfolio and
+          are split:
+        </p>
+        <div className="mt-3 grid grid-cols-2 gap-3 sm:gap-4">
+          {["50% → Creator", "50% → Eligible Investors"].map((label) => (
+            <div
+              key={label}
+              className="rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-5 sm:py-5"
+            >
+              <p className="display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.05rem]">
+                {label}
+              </p>
             </div>
           ))}
-          <div className="mt-2 grid w-full max-w-md grid-cols-2 gap-2">
-            <div className="rounded-lg border border-purple-bright/35 bg-purple-bright/10 px-3 py-3 text-center">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                Creator
-              </p>
-              <p className="display mt-1 text-[1.35rem] font-semibold text-ink">
-                50%
-              </p>
-            </div>
-            <div className="rounded-lg border border-electric/35 bg-electric/10 px-3 py-3 text-center">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                Eligible Investors
-              </p>
-              <p className="display mt-1 text-[1.35rem] font-semibold text-ink">
-                50%
-              </p>
-            </div>
-          </div>
-          <p className="mt-3 max-w-lg text-center text-[0.82rem] leading-relaxed text-muted">
-            The reward for each winning portfolio is used to purchase its
-            underlying assets according to its current allocation.
-          </p>
         </div>
-
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-line bg-deep/70 px-4 py-4">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
-              Investor eligibility
-            </p>
-            <p className="mt-2 text-[0.95rem] font-semibold leading-snug text-ink">
-              Hold ≥ 7 Days + Tip Creator in $DEXLA
-            </p>
-          </div>
-          <div className="rounded-xl border border-line bg-deep/70 px-4 py-4">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
-              Investor reward weighting
-            </p>
-            <div className="mt-3 flex h-2.5 overflow-hidden rounded-full border border-line">
-              <div
-                className="h-full bg-electric"
-                style={{ width: "80%" }}
-                title="Amount Invested 80%"
-              />
-              <div
-                className="h-full bg-purple-bright"
-                style={{ width: "20%" }}
-                title="Amount Tipped 20%"
-              />
-            </div>
-            <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-[0.78rem] text-muted">
-              <li>
-                <span className="font-semibold text-ink">80%</span> Amount
-                Invested
-              </li>
-              <li>
-                <span className="font-semibold text-ink">20%</span> Amount
-                Tipped
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <p className="mt-4 text-center text-[0.82rem] leading-relaxed text-muted">
-          Creators can invest in their own portfolios and their capital counts
-          toward ranking, but creators cannot receive the investor share.
+        <p className="mt-5 text-[1.02rem] leading-[1.75] text-ink">
+          To qualify, investors must hold the portfolio for 7+ days and tip the
+          creator in $DEXLA.
         </p>
-      </DiagramFrame>
+        <p className="mt-4 text-[1.02rem] leading-[1.75] text-ink">
+          Investor rewards are weighted:
+        </p>
+        <div className="mt-3 grid grid-cols-2 gap-3 sm:gap-4">
+          {["80% → Amount Invested", "20% → Amount Tipped"].map((label) => (
+            <div
+              key={label}
+              className="rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-5 sm:py-5"
+            >
+              <p className="display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.05rem]">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-6 text-center text-[1.12rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.2rem]">
+          Build. Perform. Earn. Climb.
+        </p>
+      </div>
 
       {/* Creator Score */}
       <SectionHeading id="creator-score">Creator Score</SectionHeading>
