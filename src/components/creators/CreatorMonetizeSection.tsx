@@ -49,6 +49,12 @@ const chapterNum =
 const chapterTitle =
   "display text-[1.2rem] font-semibold leading-snug tracking-[-0.025em] text-ink text-pretty md:text-[1.35rem] lg:text-[1.45rem]";
 const chapterBody = "mt-4 space-y-3 text-[1.02rem] leading-[1.7] text-muted md:text-[1.05rem]";
+const chapterBodyInk =
+  "mt-4 space-y-3 text-[1.02rem] leading-[1.7] text-ink md:text-[1.05rem]";
+const rewardBox =
+  "rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-5 sm:py-5";
+const rewardBoxLabel =
+  "display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.05rem]";
 const chapterAside =
   "md:pt-1 md:text-right border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-0";
 const asideLabel =
@@ -219,60 +225,49 @@ export function CreatorMonetizeSection() {
                   A portion of platform fees funds the monthly Creator Rewards
                   Pool.
                 </h3>
-                <div className={chapterBody}>
-                  <p>
-                    <span className="font-semibold text-ink">Creator ranking:</span>
+                <div className={chapterBodyInk}>
+                  <p>Creator ranking:</p>
+                  <p className="font-semibold">
+                    Performance 50% · AUM 25% · Volume 15% · Tips 10%
                   </p>
+                  <p>The Top 10 portfolios qualify each month.</p>
                   <p>
-                    Performance{" "}
-                    <span className="font-semibold text-ink">50%</span> · AUM{" "}
-                    <span className="font-semibold text-ink">25%</span> · Volume{" "}
-                    <span className="font-semibold text-ink">15%</span> · Tips{" "}
-                    <span className="font-semibold text-ink">10%</span>
+                    Rewards purchase the underlying assets of each winning
+                    portfolio and are split:
                   </p>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    {["50% → Creator", "50% → Eligible Investors"].map(
+                      (label) => (
+                        <div key={label} className={rewardBox}>
+                          <p className={rewardBoxLabel}>{label}</p>
+                        </div>
+                      )
+                    )}
+                  </div>
                   <p>
-                    The{" "}
-                    <span className="font-semibold text-ink">
-                      Top 10 portfolios
-                    </span>{" "}
-                    qualify each month.
-                  </p>
-                  <p>
-                    Rewards purchase the{" "}
-                    <span className="font-semibold text-ink">
-                      underlying assets of each winning portfolio
-                    </span>{" "}
-                    and are split:
-                  </p>
-                  <p>
-                    <span className="font-semibold text-ink">
-                      50% → Creator · 50% → Eligible Investors
-                    </span>
-                  </p>
-                  <p>
-                    To qualify, investors must{" "}
-                    <span className="font-semibold text-ink">
-                      hold the portfolio for 7+ days and tip the creator in
-                      $DEXLA
-                    </span>
-                    .
+                    To qualify, investors must hold the portfolio for 7+ days
+                    and tip the creator in $DEXLA.
                   </p>
                   <p>Investor rewards are weighted:</p>
-                  <p>
-                    <span className="font-semibold text-ink">
-                      80% → Amount Invested · 20% → Amount Tipped
-                    </span>
-                  </p>
-                  <p>
-                    <span className="font-semibold text-ink">
-                      Build. Perform. Earn. Climb.
-                    </span>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    {["80% → Amount Invested", "20% → Amount Tipped"].map(
+                      (label) => (
+                        <div key={label} className={rewardBox}>
+                          <p className={rewardBoxLabel}>{label}</p>
+                        </div>
+                      )
+                    )}
+                  </div>
+                  <p className="pt-1 text-center text-[1.12rem] font-semibold leading-snug tracking-[-0.02em] sm:text-[1.2rem]">
+                    Build. Perform. Earn. Climb.
                   </p>
                 </div>
               </div>
               <aside className={chapterAside}>
                 <p className={asideLabel}>Pool Split</p>
-                <p className={asideValue}>50% → Creators · 50% → Investors</p>
+                <p className={asideValue}>
+                  50% → Creator · 50% → Eligible Investors
+                </p>
               </aside>
             </div>
           </FadeIn>
