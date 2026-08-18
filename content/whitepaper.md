@@ -410,22 +410,53 @@ Operations · Development · Security · Infrastructure · Marketing · Partners
 
 # 11. Investor Experience
 
-INDEXLA is designed for investors who want control over how portfolios are built and managed.
+INDEXLA gives investors control over what they own, how their portfolios behave, and when predefined rules are executed. AI monitors the selected strategy while the investor remains in control.
+
+**User → Portfolio → Strategy → AI Monitoring → Execution**
+
+**01 — User**  
+→  
+**02 — Portfolio**  
+→  
+**03 — Strategy**  
+→  
+**04 — AI Monitoring**  
+→  
+**05 — Execution**
 
 Investors can:
 
-Build their own portfolios  
- Discover creator portfolios  
- Follow strategies  
- Combine asset categories  
- Automate predefined rules  
- Manage portfolios through one interface  
- Hold $DEXLA for fee discounts  
- Tip creators
+- Build their own portfolios
+- Discover creator portfolios
+- Use INDEXLA Strategies for free
+- Use Creator Strategies through portfolios for free
+- Combine different asset categories
+- Automate predefined investment rules
+- Manage portfolios through one interface
+- Hold $DEXLA for execution-fee discounts
+- Tip creators directly in $DEXLA
+- Invest in creator portfolios
+- Become eligible for the investor share of the monthly Creator Rewards Pool
+
+### Creator Rewards Eligibility
+
+Investors become eligible for the investor share when:
+
+**Invest in a Creator Portfolio + Tip the Creator in $DEXLA + Hold ≥ 7 Days**
+
+If the portfolio ranks in the **Top 10**, eligible investors receive a share of the monthly Creator Rewards Pool.
+
+**50% → Creator**  
+**50% → Eligible Investors**
+
+Investor rewards are weighted:
+
+**80% → Amount Invested**  
+**20% → Amount Tipped**
 
 The principle is simple:
 
-Choose your assets. Define your strategy. Keep control.
+**Choose your assets. Choose your strategy. Invest. Support creators. Share in the rewards. Keep control.**
 
 ---
 
