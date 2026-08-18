@@ -7,16 +7,18 @@ import {
   tkArchBody,
   tkArchCardBurn,
   tkArchCardUtility,
-  tkArchGrid,
   tkArchMetricBurn,
+  tkArchMetricLabel,
   tkArchMetricUtility,
   tkArchNum,
   tkArchTitle,
   tkBody,
   tkBurnGlow,
+  tkBurnGrid,
   tkH2,
   tkSection,
   tkUtilityGlow,
+  tkUtilityGrid,
 } from "@/components/tokenomics/tokenomicsRhythm";
 
 type Tone = "utility" | "burn";
@@ -26,6 +28,7 @@ type ArchCard = {
   title: string;
   lines: readonly ReactNode[];
   metric: string;
+  metricSecondary?: string;
 };
 
 function ArchCardHeader({
@@ -39,7 +42,7 @@ function ArchCardHeader({
 }) {
   const accent = tone === "utility" ? "text-success" : "text-danger";
   return (
-    <div className="flex flex-col items-center gap-2 text-center">
+    <div className="flex flex-col items-center gap-2.5 text-center">
       <span className={`${tkArchNum} ${accent}`}>{n}</span>
       <h3 className={tkArchTitle}>{title}</h3>
     </div>
@@ -73,18 +76,28 @@ function ArchitectureCard({
 
         <div className={tkArchBody}>
           {item.lines.map((line, lineIndex) => (
-            <p key={`${item.n}-${lineIndex}`} className={tkBody}>
+            <p
+              key={`${item.n}-${lineIndex}`}
+              className={`${tkBody} text-[1.05rem] sm:text-[1.1rem]`}
+            >
               {line}
             </p>
           ))}
         </div>
 
-        <div className={metricShell}>
-          <p
-            className={`text-[0.92rem] font-semibold leading-snug tracking-[-0.015em] text-balance sm:text-[1rem] ${metricAccent}`}
-          >
-            {item.metric}
-          </p>
+        <div className="mt-auto flex w-full flex-col gap-2.5">
+          <div className={metricShell}>
+            <p className={`${tkArchMetricLabel} ${metricAccent}`}>
+              {item.metric}
+            </p>
+          </div>
+          {item.metricSecondary ? (
+            <div className={metricShell}>
+              <p className={`${tkArchMetricLabel} ${metricAccent}`}>
+                {item.metricSecondary}
+              </p>
+            </div>
+          ) : null}
         </div>
       </motion.article>
     </FadeIn>
@@ -97,7 +110,7 @@ const utilities: ArchCard[] = [
     title: "Publish",
     lines: [
       "Creators use $DEXLA to publish portfolios on the Marketplace.",
-      "Public portfolios become discoverable and can attract investors and followers.",
+      "Public portfolios become discoverable and attract investors.",
     ],
     metric: "1,000 $DEXLA → Public Portfolio",
   },
@@ -105,60 +118,36 @@ const utilities: ArchCard[] = [
     n: "02",
     title: "Feature",
     lines: [
-      "Creators use $DEXLA to increase portfolio visibility on the Marketplace.",
-      "Featured placement puts portfolios in front of more potential investors.",
+      "Creators use $DEXLA to increase portfolio visibility.",
+      "Featured placement puts portfolios in front of more investors.",
     ],
     metric: "2,500 $DEXLA → 7 Days Featured",
   },
   {
     n: "03",
-    title: "Monetize",
+    title: "Strategy Marketplace",
     lines: [
-      <>
-        Creators can make their proprietary strategies available to other
-        creators through the{" "}
-        <span className="font-semibold text-ink">
-          Creator Strategy Marketplace
-        </span>
-        .
-      </>,
-      "Pay 500 $DEXLA to list a strategy in the Creator Strategy Marketplace, then set your own access price in $DEXLA.",
-      "Other creators pay in $DEXLA to access and use your strategy.",
+      "Creators list proprietary strategies in the Creator Strategy Marketplace.",
+      "Other creators pay $DEXLA to access the strategy.",
     ],
-    metric: "500 $DEXLA → List Strategy · Creator Sets Price",
+    metric: "500 $DEXLA → List Strategy · Set Access Price",
+    metricSecondary: "List → Discover → Pay → Access",
   },
   {
     n: "04",
-    title: "Access",
-    lines: [
-      <>
-        Creators can discover and access strategies from other creators through
-        the{" "}
-        <span className="font-semibold text-ink">
-          Creator Strategy Marketplace
-        </span>
-        .
-      </>,
-      "Pay the creator’s set access price in $DEXLA to use the strategy in your own portfolio.",
-      "Investors using a strategy through a portfolio they invest in pay no separate strategy access fee.",
-    ],
-    metric: "Discover Strategy → Pay $DEXLA → Use Strategy",
-  },
-  {
-    n: "05",
     title: "Save",
     lines: [
-      "Investors holding $DEXLA receive lower execution fees on platform activity.",
+      "Investors holding $DEXLA receive lower execution fees.",
       "Higher balances unlock greater discounts.",
     ],
     metric: "2,500 → 10% · 5,000 → 20% · 10,000 → 30%",
   },
   {
-    n: "06",
+    n: "05",
     title: "Tip",
     lines: [
-      "Investors can tip creators directly in $DEXLA for valuable strategies.",
-      "$DEXLA tips also contribute to Creator Rewards ranking.",
+      "Investors can tip creators directly in $DEXLA.",
+      "Tips also contribute to Creator Rewards ranking.",
     ],
     metric: "Discover → Follow → Invest → Tip",
   },
@@ -232,11 +221,11 @@ export function TokenUtilitySection() {
       <div className="section-pad container-max relative mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>
-            Six Core <span className="text-success">Utilities</span>
+            Five Core <span className="text-success">Utilities</span>
           </h2>
         </FadeIn>
 
-        <div className={tkArchGrid}>
+        <div className={tkUtilityGrid}>
           {utilities.map((item, i) => (
             <ArchitectureCard
               key={item.n}
@@ -267,7 +256,7 @@ export function TokenBurnMechanismSection() {
           </h2>
         </FadeIn>
 
-        <div className={tkArchGrid}>
+        <div className={tkBurnGrid}>
           {burns.map((item, i) => (
             <ArchitectureCard
               key={item.n}

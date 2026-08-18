@@ -14,8 +14,10 @@ const points = [
   "Creators use it to access strategies from other creators.",
   "Investors use it to reduce execution costs.",
   "Investors use it to support creators.",
-  "Platform activity creates direct burns and buyback demand.",
 ] as const;
+
+const platformActivityStatement =
+  "Platform activity creates direct burns and buyback demand.";
 
 const flowSteps = [
   { label: "Creators", accent: "text-success" },
@@ -68,6 +70,12 @@ export function TokenWhyDexlaSection() {
                   {line}
                 </p>
               ))}
+            </div>
+
+            <div className="mx-auto mt-8 max-w-2xl border border-electric/35 bg-electric/[0.08] px-6 py-8 text-center shadow-[0_0_48px_-12px_rgba(56,189,248,0.28)] sm:px-8 sm:py-10">
+              <p className="text-[1.12rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.32rem] md:text-[1.42rem]">
+                {platformActivityStatement}
+              </p>
             </div>
 
             <p className="mt-8 text-center text-[1.08rem] font-semibold tracking-[-0.015em] text-ink sm:text-[1.15rem]">

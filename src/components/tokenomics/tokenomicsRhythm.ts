@@ -44,36 +44,44 @@ export const tkBurnPanel =
 export const tkBurnGlow =
   "radial-gradient(ellipse 50% 40% at 50% 0%, rgba(248,113,113,0.1), transparent 65%)";
 
-/** Shared architecture grid — six equal cards */
-export const tkArchGrid =
-  "mt-9 grid auto-rows-fr gap-3.5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4";
+/** Shared architecture grid */
+export const tkUtilityGrid =
+  "mt-10 grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-5 sm:gap-5";
+
+export const tkBurnGrid =
+  "mt-10 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-5";
+
+export const tkArchGrid = tkBurnGrid;
 
 export const tkArchCard =
-  "group relative flex h-full flex-col overflow-hidden border bg-panel/35 px-5 py-5 text-center backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-6 sm:py-6";
+  "group relative flex h-full flex-col overflow-hidden border bg-panel/40 px-5 py-6 text-center shadow-[0_16px_48px_rgba(0,0,0,0.22)] backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-6 sm:py-7";
 
 export const tkArchCardUtility =
-  `${tkArchCard} border-success/30 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.1)] hover:border-success/50 hover:bg-success/[0.05]`;
+  `${tkArchCard} border-success/35 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14),0_16px_48px_rgba(0,0,0,0.22)] hover:border-success/55 hover:bg-success/[0.06]`;
 
 export const tkArchCardBurn =
-  `${tkArchCard} border-danger/35 bg-gradient-to-b from-danger/[0.06] to-transparent shadow-[inset_0_1px_0_0_rgba(248,113,113,0.12)] hover:border-danger/55 hover:from-danger/[0.09]`;
+  `${tkArchCard} border-danger/35 bg-gradient-to-b from-danger/[0.07] to-transparent shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14),0_16px_48px_rgba(0,0,0,0.22)] hover:border-danger/55 hover:from-danger/[0.1]`;
 
 export const tkArchNum =
-  "display text-[clamp(1.75rem,3vw,2.25rem)] font-semibold leading-none tabular-nums tracking-[-0.04em]";
+  "display text-[clamp(2.25rem,4.5vw,3.25rem)] font-semibold leading-none tabular-nums tracking-[-0.05em]";
 
 export const tkArchTitle =
-  "display text-[clamp(1.05rem,1.8vw,1.22rem)] tracking-[-0.02em] text-ink uppercase text-balance";
+  "display text-[clamp(1.12rem,2vw,1.35rem)] font-semibold tracking-[-0.025em] text-ink uppercase text-balance";
 
 export const tkArchMetric =
-  "mt-auto flex min-h-[4.75rem] flex-col items-center justify-center border px-4 py-3.5 text-center sm:min-h-[5.25rem] sm:py-4";
+  "mt-auto flex min-h-[5rem] flex-col items-center justify-center border px-4 py-4 text-center sm:min-h-[5.5rem] sm:px-5 sm:py-5";
 
 export const tkArchMetricUtility =
-  `${tkArchMetric} border-success/25 bg-success/[0.06]`;
+  `${tkArchMetric} border-success/30 bg-success/[0.08]`;
 
 export const tkArchMetricBurn =
-  `${tkArchMetric} border-danger/35 bg-danger/[0.09]`;
+  `${tkArchMetric} border-danger/35 bg-danger/[0.1]`;
+
+export const tkArchMetricLabel =
+  "text-[1rem] font-semibold leading-snug tracking-[-0.02em] text-balance sm:text-[1.12rem] md:text-[1.18rem]";
 
 export const tkArchBody =
-  "mt-4 flex flex-1 flex-col items-center justify-start gap-2.5 text-center";
+  "mt-5 flex flex-1 flex-col items-center justify-start gap-3 text-center";
 
 /** Hero protocol stat panels */
 export const tkHeroStatPanel =

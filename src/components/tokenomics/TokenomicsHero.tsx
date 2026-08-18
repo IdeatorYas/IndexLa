@@ -66,7 +66,7 @@ export function TokenomicsHero() {
               aria-hidden
             />
             <p className="relative display text-[clamp(2.5rem,6vw,3.5rem)] font-semibold leading-none tracking-[-0.05em] text-success">
-              6
+              5
             </p>
             <p className="relative mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-success sm:text-[0.78rem]">
               Token Utilities
