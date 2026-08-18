@@ -55,10 +55,16 @@ const rewardBoxLabel =
   "display text-[1.15rem] font-semibold leading-snug tracking-[-0.03em] text-ink sm:text-[1.35rem] md:text-[1.45rem]";
 const chapterAside =
   "md:pt-1 md:text-right border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-0";
+const chapterAsideBoxes =
+  "border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-1";
 const asideLabel =
   "text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim";
-const asideValue =
-  "mt-2 display text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-ink text-pretty md:text-[1.2rem]";
+const asideValueBlue =
+  "mt-2 display text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-electric text-pretty md:text-[1.2rem]";
+const statBox =
+  "rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-4 sm:py-5";
+const statBoxText =
+  "display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.05rem]";
 
 export function CreatorMonetizeSection() {
   return (
@@ -113,11 +119,17 @@ export function CreatorMonetizeSection() {
                   <p>More activity → more recurring creator revenue.</p>
                 </div>
               </div>
-              <aside className={chapterAside}>
-                <p className={asideLabel}>Creator Share</p>
-                <p className={asideValue}>
-                  1% Execution Fee → 50% Creator Share
-                </p>
+              <aside className={chapterAsideBoxes}>
+                <div className="grid grid-cols-1 gap-3">
+                  <div className={statBox}>
+                    <p className={statBoxText}>Creator Share</p>
+                  </div>
+                  <div className={statBox}>
+                    <p className={statBoxText}>
+                      1% Execution Fee → 50% Creator Share
+                    </p>
+                  </div>
+                </div>
               </aside>
             </div>
 
@@ -178,7 +190,7 @@ export function CreatorMonetizeSection() {
               </div>
               <aside className={chapterAside}>
                 <p className={asideLabel}>Pricing</p>
-                <p className={asideValue}>Set your price in $DEXLA.</p>
+                <p className={asideValueBlue}>Set your price in $DEXLA.</p>
               </aside>
             </div>
           </FadeIn>
@@ -202,8 +214,8 @@ export function CreatorMonetizeSection() {
               </div>
               <aside className={chapterAside}>
                 <p className={asideLabel}>Ranking Weight</p>
-                <p className={asideValue}>
-                  Tips = 15% of Creator Rewards ranking.
+                <p className={asideValueBlue}>
+                  Tips = 10% of Creator Rewards ranking.
                 </p>
               </aside>
             </div>
@@ -259,11 +271,14 @@ export function CreatorMonetizeSection() {
                   <p>Build. Publish. Grow. Earn.</p>
                 </div>
               </div>
-              <aside className={chapterAside}>
-                <p className={asideLabel}>Pool Split</p>
-                <p className={asideValue}>
-                  50% → Creator · 50% → Eligible Investors
-                </p>
+              <aside className={chapterAsideBoxes}>
+                <div className="grid grid-cols-2 gap-3">
+                  {["50% → Creators", "50% → Investors"].map((label) => (
+                    <div key={label} className={statBox}>
+                      <p className={statBoxText}>{label}</p>
+                    </div>
+                  ))}
+                </div>
               </aside>
             </div>
           </FadeIn>
