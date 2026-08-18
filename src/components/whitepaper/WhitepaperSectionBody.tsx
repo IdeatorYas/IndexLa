@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CreatorEconomyVisual } from "@/components/whitepaper/diagrams/CreatorEconomyVisual";
 import { WhitepaperMarkdown } from "@/components/whitepaper/WhitepaperMarkdown";
 import {
   getSectionVisuals,
@@ -22,6 +21,7 @@ const CARDIFY_SECTIONS: Record<string, number> = {
   "8-market-opportunity": 3,
   "9-how-indexla-works": 3,
   "12-strategies": 3,
+  "13-creator-economy": 3,
   "18-risk-factors": 3,
 };
 
@@ -117,17 +117,6 @@ export function WhitepaperSectionBody({
     (v) => v.placement === "before" && !v.afterHeadingId,
   );
   const end = visuals.filter((v) => v.placement === "end");
-
-  if (slug === "13-creator-economy") {
-    return (
-      <div>
-        <CreatorEconomyVisual />
-        {end.map((v) => (
-          <div key={v.id}>{v.node}</div>
-        ))}
-      </div>
-    );
-  }
 
   const blocks = splitIntoHeadingBlocks(markdown);
   const prologueVisuals = visualsAfter(visuals, null);
