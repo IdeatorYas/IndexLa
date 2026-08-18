@@ -49,10 +49,16 @@ const chapterNum =
 const chapterTitle =
   "display text-[1.2rem] font-semibold leading-snug tracking-[-0.025em] text-ink text-pretty md:text-[1.35rem] lg:text-[1.45rem]";
 const chapterBody = "mt-4 space-y-3 text-[1.02rem] leading-[1.7] text-muted md:text-[1.05rem]";
-const rewardBox =
-  "rounded-2xl border border-white/[0.18] bg-deep/70 px-4 py-7 text-center shadow-[0_16px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/10 sm:px-6 sm:py-9";
-const rewardBoxLabel =
-  "display text-[1.15rem] font-semibold leading-snug tracking-[-0.03em] text-ink sm:text-[1.35rem] md:text-[1.45rem]";
+const splitBox =
+  "rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-4 sm:py-5";
+const splitBoxLabel =
+  "display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.05rem]";
+const weightBox =
+  "rounded-2xl border border-white/[0.18] bg-deep/70 px-4 py-8 text-center shadow-[0_16px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/10 sm:px-6 sm:py-11";
+const weightBoxLabel =
+  "display text-[1.2rem] font-semibold leading-snug tracking-[-0.03em] text-ink sm:text-[1.45rem] md:text-[1.55rem]";
+const closingLine =
+  "pt-5 text-center display text-[1.2rem] font-semibold leading-snug tracking-[-0.03em] text-ink sm:text-[1.4rem] md:text-[1.5rem]";
 const chapterAside =
   "md:pt-1 md:text-right border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-0";
 const chapterAsideBoxes =
@@ -245,11 +251,11 @@ export function CreatorMonetizeSection() {
                     Rewards purchase the underlying assets of each winning
                     portfolio and are split:
                   </p>
-                  <div className="grid grid-cols-2 gap-4 sm:gap-5">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     {["50% → Creator", "50% → Eligible Investors"].map(
                       (label) => (
-                        <div key={label} className={rewardBox}>
-                          <p className={rewardBoxLabel}>{label}</p>
+                        <div key={label} className={splitBox}>
+                          <p className={splitBoxLabel}>{label}</p>
                         </div>
                       )
                     )}
@@ -262,13 +268,13 @@ export function CreatorMonetizeSection() {
                   <div className="grid grid-cols-2 gap-4 sm:gap-5">
                     {["80% → Amount Invested", "20% → Amount Tipped"].map(
                       (label) => (
-                        <div key={label} className={rewardBox}>
-                          <p className={rewardBoxLabel}>{label}</p>
+                        <div key={label} className={weightBox}>
+                          <p className={weightBoxLabel}>{label}</p>
                         </div>
                       )
                     )}
                   </div>
-                  <p>Build. Publish. Grow. Earn.</p>
+                  <p className={closingLine}>Build. Publish. Grow. Earn.</p>
                 </div>
               </div>
               <aside className={chapterAsideBoxes}>
