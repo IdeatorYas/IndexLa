@@ -46,7 +46,7 @@ export const tkBurnGlow =
 
 /** Shared architecture grid */
 export const tkUtilityGrid =
-  "mt-10 grid items-start gap-4 sm:grid-cols-2 xl:grid-cols-5 sm:gap-5";
+  "mt-10 grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-5 sm:gap-5";
 
 export const tkBurnGrid =
   "mt-10 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-5";
@@ -57,7 +57,7 @@ export const tkArchCard =
   "group relative flex h-full flex-col overflow-hidden border bg-panel/40 px-5 py-6 text-center shadow-[0_16px_48px_rgba(0,0,0,0.22)] backdrop-blur-[2px] transition-[border-color,box-shadow,background-color] duration-300 sm:px-6 sm:py-7";
 
 export const tkArchCardUtility =
-  `${tkArchCard} border-success/35 py-5 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14),0_16px_48px_rgba(0,0,0,0.22)] hover:border-success/55 hover:bg-success/[0.06] sm:py-6`;
+  `${tkArchCard} border-success/35 shadow-[inset_0_1px_0_0_rgba(52,211,153,0.14),0_16px_48px_rgba(0,0,0,0.22)] hover:border-success/55 hover:bg-success/[0.06]`;
 
 export const tkArchCardBurn =
   `${tkArchCard} border-danger/35 bg-gradient-to-b from-danger/[0.07] to-transparent shadow-[inset_0_1px_0_0_rgba(248,113,113,0.14),0_16px_48px_rgba(0,0,0,0.22)] hover:border-danger/55 hover:from-danger/[0.1]`;

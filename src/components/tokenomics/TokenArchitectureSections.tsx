@@ -5,8 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   tkArchBody,
-  tkArchBodyUtility,
-  tkArchMetricUtilityCompact,
   tkArchCardBurn,
   tkArchCardUtility,
   tkArchMetricBurn,
@@ -65,21 +63,17 @@ function ArchitectureCard({
     tone === "utility" ? tkArchMetricUtility : tkArchMetricBurn;
   const metricAccent = tone === "utility" ? "text-success" : "text-danger";
 
-  const bodyClass = tone === "utility" ? tkArchBodyUtility : tkArchBody;
-  const metricClass =
-    tone === "utility" ? tkArchMetricUtilityCompact : metricShell;
-
   return (
-    <FadeIn delay={delay} className={tone === "burn" ? "h-full" : undefined}>
+    <FadeIn delay={delay} className="h-full">
       <motion.article
-        className={`${shell}${tone === "burn" ? " h-full" : ""}`}
+        className={`${shell} h-full`}
         initial={reduce ? false : { opacity: 0.8 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
         <ArchCardHeader n={item.n} title={item.title} tone={tone} />
 
-        <div className={bodyClass}>
+        <div className={tkArchBody}>
           {item.lines.map((line, lineIndex) => (
             <p
               key={`${item.n}-${lineIndex}`}
@@ -90,7 +84,7 @@ function ArchitectureCard({
           ))}
         </div>
 
-        <div className={metricClass}>
+        <div className={metricShell}>
           <p className={`${tkArchMetricLabel} ${metricAccent}`}>
             {item.metric}
           </p>
