@@ -115,10 +115,10 @@ const utilities: ArchCard[] = [
   },
   {
     n: "03",
-    title: "Strategy Marketplace",
+    title: "Monetize",
     lines: [
-      "Creators list proprietary strategies in the Creator Strategy Marketplace.",
-      "Other creators pay $DEXLA to access the strategy.",
+      "Creators monetize proprietary strategies by listing them in the Creator Strategy Marketplace.",
+      "Other creators pay the creator's set access price in $DEXLA to access the strategy.",
     ],
     metric: "500 $DEXLA → List Strategy · Set Access Price",
   },
