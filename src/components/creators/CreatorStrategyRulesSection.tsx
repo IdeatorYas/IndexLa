@@ -48,9 +48,8 @@ export function CreatorStrategyRulesSection() {
               Keep your strategy private for your own portfolios and investors,
               or make it available to other creators through the{" "}
               <span className="font-semibold text-ink">
-                Creator Strategy Marketplace
+                Creator Strategy Marketplace.
               </span>
-              .
             </p>
           </FadeIn>
         </div>
