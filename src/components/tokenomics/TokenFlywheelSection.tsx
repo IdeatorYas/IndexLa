@@ -4,162 +4,140 @@ import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { tkH2, tkSection, tkSurface } from "@/components/tokenomics/tokenomicsRhythm";
 
-type StageCategory =
-  | "ACTIVITY"
-  | "UTILITY · BURNS"
-  | "GROWTH"
-  | "REVENUE"
-  | "EXPANSION"
-  | "BUYBACKS"
-  | "SUPPLY REDUCTION";
-
-type FlywheelStage = {
+type FlywheelPhase = {
   id: string;
-  label: string;
-  category: StageCategory;
-  emphasis: boolean;
+  num: string;
+  title: string;
+  lines: readonly string[];
+  emphasis?: string;
+  highlight: boolean;
 };
 
-const stages: FlywheelStage[] = [
+const phases: FlywheelPhase[] = [
   {
-    id: "01",
-    label: "Create Portfolio/Index + Strategy",
-    category: "ACTIVITY",
-    emphasis: false,
+    id: "create",
+    num: "01",
+    title: "CREATE",
+    lines: ["Portfolio / Index + Strategy"],
+    highlight: false,
   },
   {
-    id: "02",
-    label: "Publish · Feature · List Strategy → Burn $DEXLA",
-    category: "UTILITY · BURNS",
-    emphasis: true,
+    id: "use",
+    num: "02",
+    title: "USE $DEXLA",
+    lines: ["Publish · Feature · List Strategy"],
+    emphasis: "Direct burns happen here",
+    highlight: true,
   },
   {
-    id: "03",
-    label: "Attract Investors → More AUM + Volume",
-    category: "GROWTH",
-    emphasis: false,
+    id: "activity",
+    num: "03",
+    title: "ACTIVITY + REVENUE",
+    lines: [
+      "Investors → AUM + Volume",
+      "Portfolio Fees + Strategy Access Revenue",
+    ],
+    highlight: false,
   },
   {
-    id: "04",
-    label: "Earn Portfolio Fees + Strategy Access Revenue",
-    category: "REVENUE",
-    emphasis: false,
-  },
-  {
-    id: "05",
-    label: "More Creator Activity + More Strategies Listed",
-    category: "EXPANSION",
-    emphasis: false,
-  },
-  {
-    id: "06",
-    label: "Higher $DEXLA Utility + More Direct Burns",
-    category: "UTILITY · BURNS",
-    emphasis: true,
-  },
-  {
-    id: "07",
-    label: "Execution Fee + Treasury Buybacks",
-    category: "BUYBACKS",
-    emphasis: true,
-  },
-  {
-    id: "08",
-    label: "Permanent Supply Reduction",
-    category: "SUPPLY REDUCTION",
-    emphasis: true,
+    id: "supply",
+    num: "04",
+    title: "SUPPLY REDUCTION",
+    lines: ["Direct Burns + Buybacks", "→ Permanent Supply Reduction"],
+    highlight: true,
   },
 ];
 
-const STAGE_COUNT = stages.length;
-const RING_RADIUS = 41;
+/** Clockwise anchor positions: top → right → bottom → left */
+const DESKTOP_ANCHORS = [
+  { x: 50, y: 11 },
+  { x: 89, y: 50 },
+  { x: 50, y: 89 },
+  { x: 11, y: 50 },
+] as const;
 
-function polarToPercent(index: number, radius: number) {
-  const angle = (index / STAGE_COUNT) * 2 * Math.PI - Math.PI / 2;
-  return {
-    left: 50 + radius * Math.cos(angle),
-    top: 50 + radius * Math.sin(angle),
-  };
-}
+const CONNECTOR_PATHS = [
+  "M 50 18 Q 72 18 82 50",
+  "M 82 50 Q 72 82 50 82",
+  "M 50 82 Q 28 82 18 50",
+  "M 18 50 Q 28 18 50 18",
+] as const;
 
-function polarToCartesian(
-  cx: number,
-  cy: number,
-  r: number,
-  angle: number,
-) {
-  return {
-    x: cx + r * Math.cos(angle),
-    y: cy + r * Math.sin(angle),
-  };
-}
-
-function nodeSurface(stage: FlywheelStage) {
-  if (stage.category === "SUPPLY REDUCTION") {
-    return "border-danger/40 bg-danger/[0.08] shadow-[0_0_28px_-10px_rgba(248,113,113,0.35)]";
+function phasePanelClass(highlight: boolean, supply = false) {
+  if (supply) {
+    return "border-danger/40 bg-danger/[0.07] shadow-[0_0_36px_-12px_rgba(248,113,113,0.32),inset_0_1px_0_0_rgba(248,113,113,0.12)] hover:border-danger/55 hover:shadow-[0_0_44px_-10px_rgba(248,113,113,0.38)]";
   }
-  if (stage.emphasis) {
-    return "border-electric/40 bg-electric/[0.09] shadow-[0_0_32px_-10px_rgba(56,189,248,0.38)]";
+  if (highlight) {
+    return "border-electric/45 bg-electric/[0.08] shadow-[0_0_40px_-12px_rgba(56,189,248,0.35),inset_0_1px_0_0_rgba(56,189,248,0.14)] hover:border-electric/60 hover:shadow-[0_0_48px_-10px_rgba(56,189,248,0.42)]";
   }
-  return "border-white/[0.14] bg-panel/80 shadow-[0_10px_36px_rgba(0,0,0,0.28)]";
+  return "border-white/[0.14] bg-panel/75 shadow-[0_12px_40px_rgba(0,0,0,0.28),inset_0_1px_0_0_rgba(255,255,255,0.05)] hover:border-white/25 hover:shadow-[0_16px_48px_rgba(0,0,0,0.32)]";
 }
 
-function categoryTone(category: StageCategory) {
-  if (category === "SUPPLY REDUCTION") return "text-danger";
-  if (category === "UTILITY · BURNS" || category === "BUYBACKS") {
-    return "text-electric";
-  }
-  if (category === "REVENUE") return "text-success";
-  return "text-muted-dim";
-}
-
-function FlywheelStageCard({
-  stage,
+function PhasePanel({
+  phase,
   compact = false,
 }: {
-  stage: FlywheelStage;
+  phase: FlywheelPhase;
   compact?: boolean;
 }) {
+  const isSupply = phase.id === "supply";
+  const numAccent = isSupply
+    ? "text-danger"
+    : phase.highlight
+      ? "text-electric"
+      : "text-muted-dim";
+
   return (
-    <div
-      className={`border backdrop-blur-[2px] transition-[border-color,box-shadow] duration-300 hover:border-electric/50 ${nodeSurface(stage)} ${
-        compact ? "px-4 py-3.5" : "px-3 py-3 sm:px-3.5 sm:py-3.5"
-      } ${stage.emphasis && !compact ? "sm:px-4 sm:py-4" : ""}`}
+    <motion.div
+      className={`border backdrop-blur-[3px] transition-[border-color,box-shadow,transform] duration-300 ${phasePanelClass(phase.highlight, isSupply)} ${
+        compact ? "px-5 py-5" : "px-4 py-4 sm:px-5 sm:py-5"
+      }`}
+      whileHover={compact ? undefined : { y: -2 }}
     >
       <p
-        className={`font-semibold uppercase tracking-[0.14em] ${categoryTone(stage.category)} ${
-          compact ? "text-[0.62rem]" : "text-[0.58rem] sm:text-[0.62rem]"
+        className={`display font-semibold leading-none tabular-nums tracking-[-0.05em] ${numAccent} ${
+          compact ? "text-[2rem]" : "text-[1.65rem] sm:text-[2rem]"
         }`}
       >
-        {stage.category}
+        {phase.num}
       </p>
-      <p
-        className={`mt-1.5 font-semibold leading-snug tracking-[-0.015em] text-ink ${
+      <h3
+        className={`display mt-2 font-semibold uppercase tracking-[-0.02em] text-ink ${
           compact
-            ? "text-[0.88rem] sm:text-[0.95rem]"
-            : stage.emphasis
-              ? "text-[0.72rem] sm:text-[0.82rem]"
-              : "text-[0.68rem] sm:text-[0.76rem]"
+            ? "text-[0.95rem]"
+            : phase.highlight
+              ? "text-[0.82rem] sm:text-[0.92rem]"
+              : "text-[0.78rem] sm:text-[0.88rem]"
         }`}
       >
-        {stage.label}
-      </p>
-    </div>
+        {phase.title}
+      </h3>
+      <div className={`space-y-1 ${compact ? "mt-3" : "mt-3 sm:mt-3.5"}`}>
+        {phase.lines.map((line) => (
+          <p
+            key={line}
+            className={`font-medium leading-snug tracking-[-0.015em] text-muted ${
+              compact ? "text-[0.88rem]" : "text-[0.78rem] sm:text-[0.86rem]"
+            }`}
+          >
+            {line}
+          </p>
+        ))}
+      </div>
+      {phase.emphasis ? (
+        <p
+          className={`mt-2.5 font-semibold uppercase tracking-[0.12em] text-electric ${
+            compact ? "text-[0.62rem]" : "text-[0.58rem] sm:text-[0.62rem]"
+          }`}
+        >
+          {phase.emphasis}
+        </p>
+      ) : null}
+    </motion.div>
   );
 }
 
-function FlywheelRingSvg({ animate }: { animate: boolean }) {
-  const cx = 50;
-  const cy = 50;
-  const segments = Array.from({ length: STAGE_COUNT }, (_, i) => {
-    const startAngle = (i / STAGE_COUNT) * 2 * Math.PI - Math.PI / 2;
-    const endAngle = ((i + 1) / STAGE_COUNT) * 2 * Math.PI - Math.PI / 2;
-    const start = polarToCartesian(cx, cy, RING_RADIUS, startAngle);
-    const end = polarToCartesian(cx, cy, RING_RADIUS, endAngle);
-    const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
-    return `M ${start.x} ${start.y} A ${RING_RADIUS} ${RING_RADIUS} 0 ${largeArc} 1 ${end.x} ${end.y}`;
-  });
-
+function FlywheelConnectors({ animate }: { animate: boolean }) {
   return (
     <svg
       className="pointer-events-none absolute inset-0 h-full w-full"
@@ -168,130 +146,164 @@ function FlywheelRingSvg({ animate }: { animate: boolean }) {
     >
       <defs>
         <marker
-          id="flywheel-segment-arrow"
-          markerWidth="3.5"
-          markerHeight="3.5"
-          refX="2.8"
-          refY="1.75"
+          id="flywheel-arrow"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.2"
+          refY="2"
           orient="auto"
         >
-          <path d="M0,0 L3.5,1.75 L0,3.5 Z" fill="rgba(56,189,248,0.7)" />
+          <path d="M0,0 L4,2 L0,4 Z" fill="rgba(56,189,248,0.75)" />
         </marker>
-        <radialGradient id="flywheel-core-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="rgba(56,189,248,0.14)" />
+        <radialGradient id="flywheel-hub-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(56,189,248,0.16)" />
           <stop offset="100%" stopColor="rgba(56,189,248,0)" />
         </radialGradient>
+        <linearGradient id="flywheel-flow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="rgba(56,189,248,0)" />
+          <stop offset="50%" stopColor="rgba(56,189,248,0.55)" />
+          <stop offset="100%" stopColor="rgba(56,189,248,0)" />
+        </linearGradient>
       </defs>
 
-      <circle cx={cx} cy={cy} r="28" fill="url(#flywheel-core-glow)" />
+      <circle cx={50} cy={50} r={22} fill="url(#flywheel-hub-glow)" />
 
-      {segments.map((d, i) => (
-        <motion.path
-          key={`segment-${i}`}
-          d={d}
-          fill="none"
-          stroke="rgba(56,189,248,0.28)"
-          strokeWidth="0.28"
-          strokeLinecap="round"
-          markerEnd="url(#flywheel-segment-arrow)"
-          initial={animate ? { pathLength: 0, opacity: 0.35 } : false}
-          whileInView={animate ? { pathLength: 1, opacity: 1 } : undefined}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.55,
-            delay: i * 0.05,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        />
-      ))}
-
-      {(() => {
-        const lastAngle =
-          ((STAGE_COUNT - 1) / STAGE_COUNT) * 2 * Math.PI - Math.PI / 2;
-        const firstAngle = -Math.PI / 2;
-        const loopStart = polarToCartesian(cx, cy, RING_RADIUS + 4, lastAngle);
-        const loopEnd = polarToCartesian(cx, cy, RING_RADIUS + 4, firstAngle);
-        return (
+      {CONNECTOR_PATHS.map((d, i) => (
+        <g key={`connector-${i}`}>
           <motion.path
-            d={`M ${loopStart.x} ${loopStart.y} A ${RING_RADIUS + 4} ${RING_RADIUS + 4} 0 1 1 ${loopEnd.x} ${loopEnd.y}`}
+            d={d}
             fill="none"
-            stroke="rgba(56,189,248,0.42)"
-            strokeWidth="0.32"
-            strokeDasharray="1.8 1.2"
-            markerEnd="url(#flywheel-segment-arrow)"
-            initial={animate ? { opacity: 0.2 } : false}
-            whileInView={animate ? { opacity: 0.85 } : undefined}
+            stroke="rgba(56,189,248,0.14)"
+            strokeWidth="0.55"
+            strokeLinecap="round"
+            initial={animate ? { pathLength: 0, opacity: 0.3 } : false}
+            whileInView={animate ? { pathLength: 1, opacity: 1 } : undefined}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.45 }}
+            transition={{
+              duration: 0.7,
+              delay: i * 0.08,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           />
-        );
-      })()}
+          <motion.path
+            d={d}
+            fill="none"
+            stroke="rgba(56,189,248,0.38)"
+            strokeWidth="0.32"
+            strokeLinecap="round"
+            markerEnd="url(#flywheel-arrow)"
+            initial={animate ? { pathLength: 0, opacity: 0.4 } : false}
+            whileInView={animate ? { pathLength: 1, opacity: 1 } : undefined}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.12 + i * 0.08,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          />
+          {animate ? (
+            <motion.path
+              d={d}
+              fill="none"
+              stroke="url(#flywheel-flow)"
+              strokeWidth="0.45"
+              strokeLinecap="round"
+              strokeDasharray="2 6"
+              initial={{ pathLength: 1, opacity: 0 }}
+              animate={{
+                strokeDashoffset: [0, -8],
+                opacity: [0.35, 0.65, 0.35],
+              }}
+              transition={{
+                strokeDashoffset: {
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: i * 0.4,
+                },
+                opacity: {
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.4,
+                },
+              }}
+            />
+          ) : null}
+        </g>
+      ))}
     </svg>
   );
 }
 
 function DesktopFlywheel({ animate }: { animate: boolean }) {
+  const panelWidth = "w-[42%] max-w-[13.5rem] sm:max-w-[14.5rem] lg:max-w-[15.5rem]";
+
   return (
-    <div className="relative mx-auto hidden aspect-square w-full max-w-[34rem] md:block lg:max-w-[40rem]">
-      <FlywheelRingSvg animate={animate} />
+    <div className="relative mx-auto hidden aspect-square w-full max-w-[36rem] md:block lg:max-w-[42rem] xl:max-w-[44rem]">
+      <FlywheelConnectors animate={animate} />
 
       <motion.div
-        className="absolute left-1/2 top-1/2 z-20 w-[34%] max-w-[10.5rem] -translate-x-1/2 -translate-y-1/2"
-        initial={animate ? { opacity: 0, scale: 0.94 } : false}
+        className="absolute left-1/2 top-1/2 z-20 w-[38%] max-w-[11.5rem] -translate-x-1/2 -translate-y-1/2"
+        initial={animate ? { opacity: 0, scale: 0.92 } : false}
         whileInView={animate ? { opacity: 1, scale: 1 } : undefined}
         viewport={{ once: true }}
         animate={
           animate
             ? {
                 boxShadow: [
-                  "0 0 40px -8px rgba(56,189,248,0.25)",
-                  "0 0 52px -6px rgba(56,189,248,0.42)",
-                  "0 0 40px -8px rgba(56,189,248,0.25)",
+                  "0 0 48px -10px rgba(56,189,248,0.22)",
+                  "0 0 64px -8px rgba(56,189,248,0.38)",
+                  "0 0 48px -10px rgba(56,189,248,0.22)",
                 ],
               }
             : undefined
         }
         transition={
           animate
-            ? { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+            ? { duration: 5, repeat: Infinity, ease: "easeInOut" }
             : undefined
         }
       >
-        <div className="border border-electric/45 bg-void/95 px-4 py-5 text-center sm:px-5 sm:py-6">
-          <p className="display text-[1.15rem] font-semibold tracking-[-0.04em] text-electric sm:text-[1.45rem]">
+        <div className="relative border border-electric/50 bg-void/95 px-5 py-6 text-center shadow-[inset_0_1px_0_0_rgba(56,189,248,0.18)] sm:px-6 sm:py-7">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-60"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 40%, rgba(56,189,248,0.12), transparent 70%)",
+            }}
+            aria-hidden
+          />
+          <p className="display relative text-[1.35rem] font-semibold tracking-[-0.04em] text-electric sm:text-[1.65rem]">
             $DEXLA
           </p>
-          <p className="mt-2 text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-muted-dim sm:text-[0.65rem]">
+          <p className="relative mt-2.5 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-muted-dim sm:text-[0.65rem]">
             INDEXLA Economic Engine
           </p>
         </div>
       </motion.div>
 
-      {stages.map((stage, index) => {
-        const { left, top } = polarToPercent(index, RING_RADIUS);
-        const widthClass = stage.emphasis
-          ? "w-[34%] max-w-[10.5rem] sm:max-w-[11.5rem]"
-          : "w-[30%] max-w-[9rem] sm:max-w-[10rem]";
+      {phases.map((phase, index) => {
+        const anchor = DESKTOP_ANCHORS[index];
 
         return (
           <motion.div
-            key={stage.id}
-            className={`absolute z-10 ${widthClass}`}
+            key={phase.id}
+            className={`absolute z-10 ${panelWidth} -translate-x-1/2 -translate-y-1/2`}
             style={{
-              left: `${left}%`,
-              top: `${top}%`,
-              transform: "translate(-50%, -50%)",
+              left: `${anchor.x}%`,
+              top: `${anchor.y}%`,
             }}
-            initial={animate ? { opacity: 0, scale: 0.92 } : false}
+            initial={animate ? { opacity: 0, scale: 0.94 } : false}
             whileInView={animate ? { opacity: 1, scale: 1 } : undefined}
             viewport={{ once: true }}
             transition={{
-              duration: 0.45,
-              delay: index * 0.05,
+              duration: 0.5,
+              delay: 0.08 + index * 0.07,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <FlywheelStageCard stage={stage} />
+            <PhasePanel phase={phase} />
           </motion.div>
         );
       })}
@@ -303,38 +315,37 @@ function MobileFlywheelFlow() {
   return (
     <div className="relative md:hidden">
       <div
-        className="absolute bottom-6 left-1/2 top-6 w-px -translate-x-1/2 bg-gradient-to-b from-electric/10 via-electric/35 to-electric/10"
+        className="absolute bottom-8 left-1/2 top-8 w-px -translate-x-1/2 bg-gradient-to-b from-electric/10 via-electric/35 to-electric/10"
         aria-hidden
       />
 
-      <ol className="relative space-y-4">
-        {stages.map((stage, index) => (
-          <li key={stage.id} className="relative">
+      <ol className="relative space-y-3">
+        {phases.map((phase, index) => (
+          <li key={phase.id}>
             <div className="mx-auto max-w-md">
-              <FlywheelStageCard stage={stage} compact />
+              <PhasePanel phase={phase} compact />
             </div>
-            {index < stages.length - 1 ? (
+            {index < phases.length - 1 ? (
               <p
-                className="my-2 text-center text-[0.85rem] font-semibold text-electric/55"
+                className="my-2.5 text-center text-[0.9rem] font-semibold text-electric/55"
                 aria-hidden
               >
                 ↓
               </p>
             ) : (
-              <div className="mt-4 text-center">
+              <div className="mt-3 text-center">
                 <p
-                  className="text-[0.85rem] font-semibold text-electric/55"
+                  className="text-[0.9rem] font-semibold text-electric/55"
                   aria-hidden
                 >
                   ↓
                 </p>
-                <div className="mx-auto mt-4 max-w-md border border-electric/35 bg-electric/[0.07] px-4 py-3.5 text-center">
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-electric">
+                <div className="mx-auto mt-4 max-w-md border border-electric/35 bg-electric/[0.07] px-5 py-4 text-center">
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-electric">
                     Continuous Loop
                   </p>
-                  <p className="mt-1.5 text-[0.88rem] font-semibold leading-snug text-ink">
-                    Permanent Supply Reduction ↺ Create Portfolio/Index +
-                    Strategy
+                  <p className="mt-2 text-[0.9rem] font-semibold leading-snug text-ink">
+                    SUPPLY REDUCTION ↺ CREATE
                   </p>
                 </div>
               </div>
@@ -353,10 +364,10 @@ export function TokenFlywheelSection() {
   return (
     <section className={`${tkSection} relative overflow-hidden bg-deep`}>
       <div
-        className="pointer-events-none absolute inset-0 opacity-50"
+        className="pointer-events-none absolute inset-0 opacity-55"
         style={{
           background:
-            "radial-gradient(ellipse 55% 45% at 50% 42%, rgba(56,189,248,0.08), transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 45%, rgba(56,189,248,0.09), transparent 72%)",
         }}
         aria-hidden
       />
@@ -370,7 +381,7 @@ export function TokenFlywheelSection() {
 
         <FadeIn className="mt-10">
           <div
-            className={`mx-auto max-w-5xl ${tkSurface} px-4 py-8 sm:px-8 sm:py-10 lg:py-12`}
+            className={`mx-auto max-w-5xl ${tkSurface} px-4 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12`}
           >
             <DesktopFlywheel animate={animate} />
             <MobileFlywheelFlow />
