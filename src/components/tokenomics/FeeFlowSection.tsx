@@ -10,67 +10,57 @@ const columns = [
   "Creator",
   "Platform",
   "Treasury",
-  "Rewards Pool",
+  "Rewards",
   "Buyback & Burn",
 ] as const;
 
 const rows = [
   {
-    type: "Protocol Created Portfolio",
-    values: ["—", "20%", "30%", "40%", "10%"],
+    type: "INDEXLA Portfolio",
+    values: ["—", "50%", "20%", "20%", "10%"],
+    accent: "electric" as const,
   },
   {
     type: "Creator Portfolio",
     values: ["50%", "20%", "10%", "10%", "10%"],
+    accent: "success" as const,
   },
 ] as const;
 
+function pctClass(value: string, isCreatorCol: boolean) {
+  if (value === "—") return "text-muted-dim";
+  if (isCreatorCol && value === "50%") return "gradient-text";
+  return "text-ink";
+}
+
 export function FeeFlowSection() {
   return (
-    <section className={`${tkSection} bg-void`}>
+    <section className={`${tkSection} bg-deep`}>
       <div className="section-pad container-max mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>
-            Execution Fee{" "}
+            Platform Fee{" "}
             <span className="gradient-text">Distribution</span>
           </h2>
           <p className={`mx-auto mt-5 max-w-2xl ${tkBody} text-balance`}>
-            The 1% execution fee is distributed according to the type of
-            portfolio generating the activity.
+            All INDEXLA execution activity contributes 10% of execution fees to
+            the $DEXLA Buyback &amp; Burn mechanism, regardless of portfolio
+            ownership.
           </p>
         </FadeIn>
 
         <FadeIn className="mt-10">
           <div className={`mx-auto max-w-5xl ${tkSurface}`}>
-            <div className="flex flex-wrap items-center justify-center gap-2 border-b border-white/[0.08] px-5 py-5 sm:gap-3 sm:px-7">
-              {["Eligible Activity", "1% Execution Fee", "Distribution"].map(
-                (step, i, steps) => (
-                  <div key={step} className="flex items-center gap-2 sm:gap-3">
-                    <span className="rounded-lg border border-electric/30 bg-electric/[0.08] px-3.5 py-2 text-[0.85rem] font-semibold text-ink sm:text-[0.92rem]">
-                      {step}
-                    </span>
-                    {i < steps.length - 1 ? (
-                      <span className="text-electric/50" aria-hidden>
-                        →
-                      </span>
-                    ) : null}
-                  </div>
-                ),
-              )}
-            </div>
-
-            {/* Desktop table */}
-            <div className="hidden overflow-x-auto md:block">
-              <table className="w-full min-w-[40rem] text-left">
+            {/* Desktop dashboard */}
+            <div className="hidden md:block">
+              <table className="w-full text-left">
                 <thead>
                   <tr className="border-b border-white/[0.08] bg-void/40 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-dim">
-                    <th className="px-5 py-3.5 font-semibold sm:px-6">
-                      Portfolio Type
-                    </th>
+                    <th className="px-6 py-4 font-semibold">Portfolio</th>
                     {columns.map((col) => (
                       <th
                         key={col}
-                        className="px-3 py-3.5 text-center font-semibold"
+                        className="px-3 py-4 text-center font-semibold"
                       >
                         {col}
                       </th>
@@ -83,19 +73,24 @@ export function FeeFlowSection() {
                       key={row.type}
                       className="border-b border-white/[0.06] last:border-0"
                     >
-                      <td className="px-5 py-5 text-[0.95rem] font-semibold text-ink sm:px-6">
-                        {row.type}
+                      <td className="px-6 py-6">
+                        <span
+                          className={`inline-flex rounded-lg border px-3 py-1.5 text-[0.82rem] font-semibold uppercase tracking-[0.08em] ${
+                            row.accent === "electric"
+                              ? "border-electric/30 bg-electric/[0.08] text-electric"
+                              : "border-success/30 bg-success/[0.08] text-success"
+                          }`}
+                        >
+                          {row.type}
+                        </span>
                       </td>
                       {row.values.map((value, i) => (
-                        <td key={`${row.type}-${columns[i]}`} className="px-3 py-5 text-center">
+                        <td
+                          key={`${row.type}-${columns[i]}`}
+                          className="px-3 py-6 text-center"
+                        >
                           <span
-                            className={`display text-[1.15rem] tabular-nums ${
-                              value === "—"
-                                ? "text-muted-dim"
-                                : value === "50%"
-                                  ? "gradient-text"
-                                  : "text-ink"
-                            }`}
+                            className={`display text-[clamp(1.25rem,2vw,1.65rem)] font-semibold tabular-nums ${pctClass(value, i === 0)}`}
                           >
                             {value}
                           </span>
@@ -107,35 +102,48 @@ export function FeeFlowSection() {
               </table>
             </div>
 
-            {/* Mobile stacked cards */}
-            <div className="divide-y divide-white/[0.07] md:hidden">
+            {/* Mobile cards */}
+            <div className="grid gap-4 p-4 md:hidden">
               {rows.map((row) => (
-                <div key={row.type} className="px-5 py-5">
-                  <p className="text-[0.95rem] font-semibold text-ink">
-                    {row.type}
-                  </p>
-                  <ul className="mt-4 space-y-2.5">
+                <article
+                  key={row.type}
+                  className="overflow-hidden border border-white/[0.08] bg-void/35"
+                >
+                  <div
+                    className={`border-b border-white/[0.08] px-4 py-3 ${
+                      row.accent === "electric"
+                        ? "bg-electric/[0.06]"
+                        : "bg-success/[0.06]"
+                    }`}
+                  >
+                    <p
+                      className={`text-[0.78rem] font-semibold uppercase tracking-[0.1em] ${
+                        row.accent === "electric"
+                          ? "text-electric"
+                          : "text-success"
+                      }`}
+                    >
+                      {row.type}
+                    </p>
+                  </div>
+                  <ul className="grid grid-cols-2 gap-px bg-white/[0.06]">
                     {columns.map((col, i) => (
                       <li
                         key={`${row.type}-m-${col}`}
-                        className="flex items-center justify-between gap-3 border-b border-white/[0.06] pb-2.5 last:border-0 last:pb-0"
+                        className="flex flex-col items-center justify-center bg-panel/40 px-3 py-4 text-center"
                       >
-                        <span className="text-[0.82rem] text-muted">{col}</span>
+                        <span className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
+                          {col}
+                        </span>
                         <span
-                          className={`display text-[1.1rem] tabular-nums ${
-                            row.values[i] === "—"
-                              ? "text-muted-dim"
-                              : row.values[i] === "50%"
-                                ? "gradient-text"
-                                : "text-ink"
-                          }`}
+                          className={`mt-1.5 display text-[1.35rem] font-semibold tabular-nums ${pctClass(row.values[i], i === 0)}`}
                         >
                           {row.values[i]}
                         </span>
                       </li>
                     ))}
                   </ul>
-                </div>
+                </article>
               ))}
             </div>
           </div>

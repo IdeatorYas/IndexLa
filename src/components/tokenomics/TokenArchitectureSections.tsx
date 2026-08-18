@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
@@ -23,7 +24,7 @@ type Tone = "utility" | "burn";
 type ArchCard = {
   n: string;
   title: string;
-  lines: readonly [string, string, string];
+  lines: readonly ReactNode[];
   metric: string;
 };
 
@@ -80,7 +81,7 @@ function ArchitectureCard({
 
         <div className={metricShell}>
           <p
-            className={`text-[0.98rem] font-semibold leading-snug tracking-[-0.015em] text-balance sm:text-[1.05rem] ${metricAccent}`}
+            className={`text-[0.92rem] font-semibold leading-snug tracking-[-0.015em] text-balance sm:text-[1rem] ${metricAccent}`}
           >
             {item.metric}
           </p>
@@ -97,7 +98,6 @@ const utilities: ArchCard[] = [
     lines: [
       "Creators use $DEXLA to publish portfolios on the Marketplace.",
       "Public portfolios become discoverable and can attract investors and followers.",
-      "Publishing requires a fixed $DEXLA amount to access the Marketplace.",
     ],
     metric: "1,000 $DEXLA → Public Portfolio",
   },
@@ -106,8 +106,7 @@ const utilities: ArchCard[] = [
     title: "Feature",
     lines: [
       "Creators use $DEXLA to increase portfolio visibility on the Marketplace.",
-      "Featured placement puts strategies in front of more potential investors.",
-      "Greater visibility can drive followers, AUM, and creator earnings.",
+      "Featured placement puts portfolios in front of more potential investors.",
     ],
     metric: "2,500 $DEXLA → 7 Days Featured",
   },
@@ -115,29 +114,51 @@ const utilities: ArchCard[] = [
     n: "03",
     title: "Monetize",
     lines: [
-      "Creators can make their strategies available to other creators.",
-      "They set their own price for others to access and use them.",
-      "This creates another direct revenue opportunity for strategy creators.",
+      <>
+        Creators can make their proprietary strategies available to other
+        creators through the{" "}
+        <span className="font-semibold text-ink">
+          Creator Strategy Marketplace
+        </span>
+        .
+      </>,
+      "Pay 500 $DEXLA to list a strategy in the Creator Strategy Marketplace, then set your own access price in $DEXLA.",
+      "Other creators pay in $DEXLA to access and use your strategy.",
     ],
-    metric: "Creator Sets Price → Other Creators Pay",
+    metric: "500 $DEXLA → List Strategy · Creator Sets Price",
   },
   {
     n: "04",
+    title: "Access",
+    lines: [
+      <>
+        Creators can discover and access strategies from other creators through
+        the{" "}
+        <span className="font-semibold text-ink">
+          Creator Strategy Marketplace
+        </span>
+        .
+      </>,
+      "Pay the creator’s set access price in $DEXLA to use the strategy in your own portfolio.",
+      "Investors using a strategy through a portfolio they invest in pay no separate strategy access fee.",
+    ],
+    metric: "Discover Strategy → Pay $DEXLA → Use Strategy",
+  },
+  {
+    n: "05",
     title: "Save",
     lines: [
       "Investors holding $DEXLA receive lower execution fees on platform activity.",
-      "Higher balances unlock greater discounts while maintaining the required balance.",
-      "Larger holdings can directly reduce automated portfolio execution costs.",
+      "Higher balances unlock greater discounts.",
     ],
     metric: "2,500 → 10% · 5,000 → 20% · 10,000 → 30%",
   },
   {
-    n: "05",
+    n: "06",
     title: "Tip",
     lines: [
       "Investors can tip creators directly in $DEXLA for valuable strategies.",
-      "Tips reward creators without introducing management or performance fees.",
-      "$DEXLA tips also strengthen creator engagement and Marketplace participation.",
+      "$DEXLA tips also contribute to Creator Rewards ranking.",
     ],
     metric: "Discover → Follow → Invest → Tip",
   },
@@ -150,7 +171,6 @@ const burns: ArchCard[] = [
     lines: [
       "Every public portfolio requires 1,000 $DEXLA to enter the Marketplace.",
       "The entire amount is permanently removed from the token supply.",
-      "Supply reduction scales directly with creator and Marketplace growth.",
     ],
     metric: "Published Portfolio → 100% Burned",
   },
@@ -160,39 +180,43 @@ const burns: ArchCard[] = [
     lines: [
       "Creators use 2,500 $DEXLA to secure Featured placement for seven days.",
       "The entire amount is permanently removed from the token supply.",
-      "Creator promotion therefore creates direct and measurable supply reduction.",
     ],
     metric: "Featured Portfolio → 100% Burned",
   },
   {
     n: "03",
-    title: "Execution Fee Burn",
+    title: "Strategy Listing Burn",
+    lines: [
+      "Creators pay 500 $DEXLA to list a strategy in the Creator Strategy Marketplace.",
+      "The entire listing fee is permanently removed from the token supply.",
+    ],
+    metric: "Strategy Listing → 500 $DEXLA → 100% Burned",
+  },
+  {
+    n: "04",
+    title: "Strategy Access Burn",
+    lines: [
+      "When another creator purchases access to a listed strategy, the $DEXLA payment is split between the strategy creator and the burn.",
+    ],
+    metric: "Strategy Access → 50% Creator · 50% Burned",
+  },
+  {
+    n: "05",
+    title: "Execution Fee Buyback & Burn",
     lines: [
       "INDEXLA directs 10% of execution fee revenue toward $DEXLA buybacks.",
       "Purchased tokens are permanently removed from the circulating supply.",
-      "The mechanism scales naturally with platform execution and user activity.",
     ],
     metric: "Execution Fees → 10% Buyback & Burn",
   },
   {
-    n: "04",
-    title: "Treasury Burn",
+    n: "06",
+    title: "Treasury Buyback & Burn",
     lines: [
       "INDEXLA directs 25% of realized Treasury profits toward $DEXLA buybacks.",
       "Purchased tokens are permanently removed from the circulating supply.",
-      "The mechanism connects Treasury profitability with long-term supply reduction.",
     ],
     metric: "Treasury Profits → 25% Buyback & Burn",
-  },
-  {
-    n: "05",
-    title: "Strategy Monetization Burn",
-    lines: [
-      "Creators set a price for others to use and copy their strategies.",
-      "Other creators pay the required $DEXLA to access the strategy.",
-      "Half of each payment is distributed to the creator and burned.",
-    ],
-    metric: "Strategy Access → 50% Creator · 50% Burned",
   },
 ];
 
@@ -208,7 +232,7 @@ export function TokenUtilitySection() {
       <div className="section-pad container-max relative mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>
-            Five Core <span className="text-success">Utilities</span>
+            Six Core <span className="text-success">Utilities</span>
           </h2>
         </FadeIn>
 
@@ -239,7 +263,7 @@ export function TokenBurnMechanismSection() {
       <div className="section-pad container-max relative mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>
-            Five Burn <span className="text-danger">Mechanisms</span>
+            Six Burn <span className="text-danger">Mechanisms</span>
           </h2>
         </FadeIn>
 
