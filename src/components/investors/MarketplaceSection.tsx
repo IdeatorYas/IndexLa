@@ -110,35 +110,58 @@ export function MarketplaceSection() {
 
         <FadeIn className="mx-auto mt-14 max-w-4xl" delay={0.08}>
           <div className={`${invPremiumSurface} rounded-2xl px-6 py-8 sm:px-8 sm:py-9 md:px-10`}>
-            <div className="grid gap-8 md:grid-cols-[minmax(0,1.4fr)_minmax(12rem,0.9fr)] md:items-start md:gap-10">
-              <div>
-                <h3 className={`${invH3} uppercase`}>
-                  Back a Creator. Share the Rewards.
-                </h3>
-                <div className={`mt-5 space-y-3 ${invBody}`}>
-                  <p>
-                    Invest in a creator&apos;s portfolio and tip them with{" "}
-                    <span className="font-semibold text-muted">$DEXLA</span>.
-                  </p>
-                  <p>
-                    If their portfolio ranks in the{" "}
-                    <span className="font-semibold text-muted">Top 25</span>, you
-                    become eligible for the{" "}
-                    <span className="font-semibold text-muted">
-                      investor share of the monthly Creator Rewards Pool
-                    </span>
-                    .
-                  </p>
-                </div>
+            <div>
+              <h3 className={`${invH3} uppercase`}>
+                Back a Creator. Share the Rewards.
+              </h3>
+              <div className={`mt-5 max-w-2xl space-y-3 ${invBody}`}>
+                <p>
+                  Invest in a creator&apos;s portfolio and tip them with{" "}
+                  <span className="font-semibold text-ink">$DEXLA</span>.
+                </p>
+                <p>
+                  If their portfolio ranks in the{" "}
+                  <span className="font-semibold text-ink">Top 10</span>, you
+                  become eligible for the investor share of the monthly Creator
+                  Rewards Pool.
+                </p>
               </div>
-              <aside className="border-t border-white/[0.08] pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-8">
+            </div>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-3 sm:gap-5">
+              <div className="rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 sm:px-5 sm:py-5">
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                   Monthly Pool Split
                 </p>
-                <p className="mt-3 display text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.2rem]">
-                  50% → Creators · 50% → Eligible Investors
+                <p className="mt-3 display text-[1.05rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.12rem]">
+                  50% → Creator · 50% → Eligible Investors
                 </p>
-              </aside>
+              </div>
+
+              <div className="rounded-xl border border-electric/25 bg-electric/[0.06] px-4 py-4 sm:px-5 sm:py-5">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-electric">
+                  Investor Eligibility
+                </p>
+                <p className="mt-3 text-[1.02rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[1.05rem]">
+                  Hold ≥ 7 Days + Tip Creator
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 sm:px-5 sm:py-5">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+                  Investor Reward Weight
+                </p>
+                <div
+                  className="mt-3 flex h-2 overflow-hidden rounded-full border border-white/[0.08]"
+                  aria-hidden
+                >
+                  <div className="h-full w-[80%] bg-electric" />
+                  <div className="h-full w-[20%] bg-purple-bright" />
+                </div>
+                <p className="mt-3 text-[0.92rem] font-semibold leading-snug text-ink sm:text-[0.98rem]">
+                  80% → Amount Invested · 20% → Amount Tipped
+                </p>
+              </div>
             </div>
           </div>
         </FadeIn>
