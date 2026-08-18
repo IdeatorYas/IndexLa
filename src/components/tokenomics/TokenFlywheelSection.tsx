@@ -118,13 +118,13 @@ function EngineConnectors({ animate }: { animate: boolean }) {
       <defs>
         <marker
           id="engine-arrow"
-          markerWidth="3.6"
-          markerHeight="3.6"
-          refX="2.9"
-          refY="1.8"
+          markerWidth="5"
+          markerHeight="5"
+          refX="4.1"
+          refY="2.5"
           orient="auto"
         >
-          <path d="M0,0 L3.6,1.8 L0,3.6 Z" fill="rgba(56,189,248,0.78)" />
+          <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(56,189,248,0.85)" />
         </marker>
         <radialGradient id="engine-core-glow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="rgba(56,189,248,0.18)" />
@@ -139,8 +139,8 @@ function EngineConnectors({ animate }: { animate: boolean }) {
           <motion.path
             d={d}
             fill="none"
-            stroke="rgba(56,189,248,0.22)"
-            strokeWidth="0.28"
+            stroke="rgba(56,189,248,0.32)"
+            strokeWidth="0.4"
             strokeLinecap="round"
             markerEnd="url(#engine-arrow)"
             initial={animate ? { pathLength: 0, opacity: 0.3 } : false}
