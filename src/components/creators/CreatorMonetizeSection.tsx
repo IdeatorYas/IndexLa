@@ -14,14 +14,14 @@ const ways = [
   },
   {
     n: "02",
-    title: "Private Strategy Access",
-    detail: "Set your strategy access price",
+    title: "Creator Strategy Marketplace",
+    detail: "Keep it private or make it available to other creators",
     availability: "Available after $DEXLA Launch",
   },
   {
     n: "03",
     title: "$DEXLA Tips",
-    detail: "Direct audience support",
+    detail: "Tips count for 10% of Creator Rewards ranking",
     availability: "Available after $DEXLA Launch",
   },
   {
@@ -57,8 +57,7 @@ const weightBox =
   "rounded-2xl border border-white/[0.18] bg-deep/70 px-4 py-8 text-center shadow-[0_16px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/10 sm:px-6 sm:py-11";
 const weightBoxLabel =
   "display text-[1.2rem] font-semibold leading-snug tracking-[-0.03em] text-ink sm:text-[1.45rem] md:text-[1.55rem]";
-const closingLine =
-  "pt-5 text-center display text-[1.2rem] font-semibold leading-snug tracking-[-0.03em] text-ink sm:text-[1.4rem] md:text-[1.5rem]";
+const closingWords = ["BUILD", "PUBLISH", "GROW", "EARN"] as const;
 const chapterAside =
   "md:pt-1 md:text-right border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-0";
 const chapterAsideBoxes =
@@ -176,7 +175,7 @@ export function CreatorMonetizeSection() {
             </div>
           </FadeIn>
 
-          {/* 02 Private Strategy Access */}
+          {/* 02 Creator Strategy Marketplace */}
           <FadeIn className={chapter} delay={0.06}>
             <div className={chapterGrid}>
               <p className={chapterNum} aria-hidden>
@@ -184,19 +183,38 @@ export function CreatorMonetizeSection() {
               </p>
               <div className="min-w-0">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                  Private Strategy Access
+                  Creator Strategy Marketplace
                 </p>
                 <h3 className={`mt-3 ${chapterTitle}`}>
-                  Launch your proprietary strategy and monetize it.
+                  Publish your proprietary strategy and choose whether to keep
+                  it private or make it available to other creators.
                 </h3>
                 <div className={chapterBody}>
-                  <p>Private strategies will be introduced after launch.</p>
-                  <p>Investors and creators pay to access your strategy.</p>
+                  <div className={statBox}>
+                    <p className={statBoxText}>
+                      Publish Strategy → Set Access Price → Earn in $DEXLA
+                    </p>
+                  </div>
+                  <p>
+                    Other creators pay your set access price in $DEXLA to use
+                    your strategy in their own portfolios.
+                  </p>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    {["50% → Strategy Creator", "50% → Burned"].map((label) => (
+                      <div key={label} className={statBox}>
+                        <p className={statBoxText}>{label}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p>
+                    Investors using your strategy through your portfolio pay
+                    nothing.
+                  </p>
                 </div>
               </div>
               <aside className={chapterAside}>
-                <p className={asideLabel}>Pricing</p>
-                <p className={asideValueBlue}>Set your price in $DEXLA.</p>
+                <p className={asideLabel}>Availability</p>
+                <p className={asideValueBlue}>Available after $DEXLA Launch</p>
               </aside>
             </div>
           </FadeIn>
@@ -215,13 +233,13 @@ export function CreatorMonetizeSection() {
                   Let your audience support you directly with $DEXLA Tips.
                 </h3>
                 <div className={chapterBody}>
-                  <p>Only $DEXLA tips count toward Creator Rewards ranking.</p>
+                  <p>Tips count for 10% of the Creator Rewards ranking.</p>
                 </div>
               </div>
               <aside className={chapterAside}>
                 <p className={asideLabel}>Ranking Weight</p>
                 <p className={asideValueBlue}>
-                  Tips = 10% of Creator Rewards ranking.
+                  Tips count for 10% of the Creator Rewards ranking.
                 </p>
               </aside>
             </div>
@@ -242,14 +260,13 @@ export function CreatorMonetizeSection() {
                   Pool.
                 </h3>
                 <div className={chapterBody}>
-                  <p>Creator ranking:</p>
                   <p>
                     Performance 50% · AUM 25% · Volume 15% · Tips 10%
                   </p>
                   <p>The Top 10 portfolios qualify each month.</p>
                   <p>
                     Rewards purchase the underlying assets of each winning
-                    portfolio and are split:
+                    portfolio and split:
                   </p>
                   <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     {["50% → Creator", "50% → Eligible Investors"].map(
@@ -261,8 +278,8 @@ export function CreatorMonetizeSection() {
                     )}
                   </div>
                   <p>
-                    To qualify, investors must hold the portfolio for 7+ days
-                    and tip the creator in $DEXLA.
+                    Only investors who have held the portfolio for 7+ days and
+                    tipped the creator in $DEXLA are eligible.
                   </p>
                   <p>Investor rewards are weighted:</p>
                   <div className="grid grid-cols-2 gap-4 sm:gap-5">
@@ -274,7 +291,6 @@ export function CreatorMonetizeSection() {
                       )
                     )}
                   </div>
-                  <p className={closingLine}>Build. Publish. Grow. Earn.</p>
                 </div>
               </div>
               <aside className={chapterAsideBoxes}>
@@ -289,6 +305,27 @@ export function CreatorMonetizeSection() {
             </div>
           </FadeIn>
         </div>
+
+        <FadeIn className="mx-auto mt-12 max-w-5xl md:mt-16" delay={0.12}>
+          <div className="overflow-hidden rounded-2xl border border-white/[0.18] bg-deep/70 shadow-[0_16px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4">
+              {closingWords.map((word, i) => (
+                <div
+                  key={word}
+                  className={`flex min-h-[5.75rem] items-center justify-center px-3 py-8 text-center sm:min-h-[6.75rem] sm:py-10 ${
+                    i % 2 === 1 ? "border-l border-white/[0.12]" : ""
+                  } ${i >= 2 ? "border-t border-white/[0.12]" : ""} ${
+                    i > 0 ? "md:border-l md:border-t-0 md:border-white/[0.12]" : "md:border-t-0"
+                  }`}
+                >
+                  <p className="display text-[1.35rem] font-semibold tracking-[-0.04em] text-ink sm:text-[1.55rem] md:text-[1.7rem]">
+                    {word}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

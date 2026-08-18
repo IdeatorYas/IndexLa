@@ -34,18 +34,29 @@ export function CreatorStrategyRulesSection() {
           <FadeIn className={`${crSurfaceSoft} p-6 sm:p-7`} delay={0.08}>
             <h3 className={`${crH3} uppercase`}>Bring Your Own Strategy</h3>
             <p className={`mt-4 ${crBody} text-balance`}>
-              Build with a Technical Indicator, On Chain Indicator, or Hybrid
+              Build with a Technical Indicator, On-Chain Indicator, or Hybrid
               Strategy.
+            </p>
+            <p className={`mt-4 ${crBodyStrong} text-balance`}>
+              You define the rules. INDEXLA coordinates authorized execution
+              when conditions are met.
+            </p>
+            <h3 className={`mt-8 ${crH3} uppercase`}>
+              Keep It Private or Monetize It
+            </h3>
+            <p className={`mt-4 ${crBody} text-balance`}>
+              Keep your strategy private for your own portfolios and investors,
+              or make it available to other creators through the{" "}
+              <span className="font-semibold text-ink">
+                Creator Strategy Marketplace
+              </span>
+              .
             </p>
           </FadeIn>
         </div>
 
         <FadeIn className="mx-auto mt-8 max-w-2xl text-center">
-          <p className={`${crBodyStrong} text-balance`}>
-            You define the rules. INDEXLA coordinates authorized execution when
-            conditions are met.
-          </p>
-          <div className="mt-8 flex justify-center">
+          <div className="flex justify-center">
             <EarlyAccessCta mode="creator" className={crCta}>
               Creator Early Access →
             </EarlyAccessCta>
