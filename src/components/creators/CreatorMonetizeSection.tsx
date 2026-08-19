@@ -1,5 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
+  crBodyStrong,
   crH2,
   crSection,
   crSurfaceSoft,
@@ -48,28 +49,55 @@ const chapterNum =
   "display text-[2.75rem] font-semibold leading-none tracking-[-0.04em] text-electric/90 md:text-[3.25rem] lg:text-[3.5rem]";
 const chapterTitle =
   "display text-[1.2rem] font-semibold leading-snug tracking-[-0.025em] text-ink text-pretty md:text-[1.35rem] lg:text-[1.45rem]";
-const chapterBody = "mt-4 space-y-3 text-[1.02rem] leading-[1.7] text-muted md:text-[1.05rem]";
+const chapterBody =
+  "mt-4 space-y-3 text-[1.02rem] leading-[1.7] text-muted md:text-[1.05rem]";
 const splitBox =
   "rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-4 sm:py-5";
 const splitBoxLabel =
   "display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.05rem]";
+const feeBox =
+  "flex flex-col items-center justify-center rounded-xl border border-white/[0.12] bg-deep/55 px-4 py-5 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:px-5 sm:py-6";
+const feeBoxLabel =
+  "text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-dim";
+const feeBoxValue =
+  "mt-2 display text-[1.05rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.15rem]";
 const weightBox =
-  "rounded-2xl border border-electric/25 bg-electric/[0.05] px-4 py-7 text-center shadow-[0_16px_48px_rgba(0,0,0,0.28)] sm:px-6 sm:py-9";
+  "flex flex-col items-center justify-center rounded-xl border border-electric/30 bg-electric/[0.06] px-4 py-5 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.1)] sm:px-5 sm:py-6";
 const weightBoxLabel =
-  "display text-[1.2rem] font-semibold leading-snug tracking-[-0.03em] text-electric sm:text-[1.45rem] md:text-[1.55rem]";
-const closingWords = ["BUILD", "PUBLISH", "GROW", "EARN"] as const;
+  "display text-[1.05rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.12rem]";
+const closingWords = [
+  {
+    word: "BUILD",
+    tone: "border-electric/35 bg-electric/[0.1] shadow-[inset_0_1px_0_rgba(56,189,248,0.16),0_12px_32px_rgba(0,0,0,0.2)]",
+  },
+  {
+    word: "PUBLISH",
+    tone: "border-purple/35 bg-purple/[0.1] shadow-[inset_0_1px_0_rgba(168,85,247,0.16),0_12px_32px_rgba(0,0,0,0.2)]",
+  },
+  {
+    word: "GROW",
+    tone: "border-success/35 bg-success/[0.1] shadow-[inset_0_1px_0_rgba(52,211,153,0.16),0_12px_32px_rgba(0,0,0,0.2)]",
+  },
+  {
+    word: "EARN",
+    tone: "border-amber-400/35 bg-amber-400/[0.08] shadow-[inset_0_1px_0_rgba(251,191,36,0.16),0_12px_32px_rgba(0,0,0,0.2)]",
+  },
+] as const;
 const chapterAside =
   "md:pt-1 md:text-right border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-0";
 const chapterAsideBoxes =
   "border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-1";
 const asideLabel =
   "text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim";
-const asideValueBlue =
-  "mt-2 display text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-electric text-pretty md:text-[1.2rem]";
+const asideValue =
+  "mt-2 display text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-ink text-pretty md:text-[1.2rem]";
 const statBox =
   "rounded-xl border border-white/[0.12] bg-deep/55 px-3 py-4 text-center sm:px-4 sm:py-5";
 const statBoxText =
-  "display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.05rem]";
+  "display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.05rem]";
+
+const monetizeCard =
+  `${crSurfaceSoft} row-span-4 grid grid-rows-subgrid gap-0 p-5 text-left`;
 
 export function CreatorMonetizeSection() {
   return (
@@ -82,23 +110,19 @@ export function CreatorMonetizeSection() {
           </h2>
         </FadeIn>
 
-        <div className="mx-auto mt-10 grid max-w-5xl auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 [grid-template-rows:repeat(4,auto)] sm:grid-cols-2 lg:grid-cols-4">
           {ways.map((way, i) => (
-            <FadeIn
-              key={way.n}
-              className={`${crSurfaceSoft} grid h-full grid-rows-[auto_3rem_auto_1fr] items-start p-5`}
-              delay={0.03 * i}
-            >
+            <FadeIn key={way.n} className={monetizeCard} delay={0.03 * i}>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 {way.n}
               </p>
-              <p className="mt-2 self-center display text-[1.12rem] tracking-[-0.02em] text-ink">
+              <p className="mt-2 flex min-h-[3.25rem] items-center display text-[1.12rem] tracking-[-0.02em] text-ink lg:min-h-[4rem]">
                 {way.title}
               </p>
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-success">
+              <p className="mt-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-success">
                 {way.availability}
               </p>
-              <p className="mt-2 text-[0.92rem] leading-relaxed text-muted self-start">
+              <p className="mt-2 text-[0.92rem] leading-relaxed text-muted">
                 {way.detail}
               </p>
             </FadeIn>
@@ -125,14 +149,14 @@ export function CreatorMonetizeSection() {
                 </div>
               </div>
               <aside className={chapterAsideBoxes}>
-                <div className="grid grid-cols-1 gap-3">
-                  <div className={statBox}>
-                    <p className={statBoxText}>Creator Share</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className={feeBox}>
+                    <p className={feeBoxLabel}>Execution Fee</p>
+                    <p className={feeBoxValue}>1% Execution Fee</p>
                   </div>
-                  <div className={statBox}>
-                    <p className={statBoxText}>
-                      1% Execution Fee → 50% Creator Share
-                    </p>
+                  <div className={feeBox}>
+                    <p className={feeBoxLabel}>Creator Share</p>
+                    <p className={feeBoxValue}>50% Creator Share</p>
                   </div>
                 </div>
               </aside>
@@ -214,7 +238,7 @@ export function CreatorMonetizeSection() {
               </div>
               <aside className={chapterAside}>
                 <p className={asideLabel}>Availability</p>
-                <p className={asideValueBlue}>Available after $DEXLA Launch</p>
+                <p className={asideValue}>Available after $DEXLA Launch</p>
               </aside>
             </div>
           </FadeIn>
@@ -233,7 +257,7 @@ export function CreatorMonetizeSection() {
                   The community can tip creators using any token.
                 </h3>
                 <div className={chapterBody}>
-                  <p className="font-semibold text-electric">
+                  <p className={`${crBodyStrong}`}>
                     Only $DEXLA tips count toward Creator Ranking and Investor
                     Rewards eligibility.
                   </p>
@@ -242,7 +266,7 @@ export function CreatorMonetizeSection() {
               </div>
               <aside className={chapterAside}>
                 <p className={asideLabel}>Ranking Weight</p>
-                <p className={asideValueBlue}>
+                <p className={asideValue}>
                   Tips count for 10% of the Creator Rewards ranking.
                 </p>
               </aside>
@@ -278,7 +302,7 @@ export function CreatorMonetizeSection() {
                         <div key={label} className={splitBox}>
                           <p className={splitBoxLabel}>{label}</p>
                         </div>
-                      )
+                      ),
                     )}
                   </div>
                   <p>
@@ -286,13 +310,13 @@ export function CreatorMonetizeSection() {
                     tipped the creator in $DEXLA are eligible.
                   </p>
                   <p>Investor rewards are weighted:</p>
-                  <div className="grid grid-cols-2 gap-4 sm:gap-5">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     {["80% → Amount Invested", "20% → Amount Tipped"].map(
                       (label) => (
                         <div key={label} className={weightBox}>
                           <p className={weightBoxLabel}>{label}</p>
                         </div>
-                      )
+                      ),
                     )}
                   </div>
                 </div>
@@ -312,12 +336,12 @@ export function CreatorMonetizeSection() {
 
         <FadeIn className="mx-auto mt-12 max-w-5xl md:mt-16" delay={0.12}>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {closingWords.map((word) => (
+            {closingWords.map(({ word, tone }) => (
               <div
                 key={word}
-                className="flex min-h-[5.5rem] items-center justify-center rounded-2xl border border-electric/30 bg-electric/[0.06] px-4 py-6 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12),0_14px_36px_rgba(0,0,0,0.18)] sm:min-h-[6.5rem]"
+                className={`flex min-h-[5.5rem] items-center justify-center rounded-2xl border px-4 py-6 text-center sm:min-h-[6.25rem] ${tone}`}
               >
-                <p className="display text-[1.35rem] font-semibold tracking-[-0.04em] text-ink sm:text-[1.55rem] md:text-[1.7rem]">
+                <p className="display text-[1.35rem] font-semibold tracking-[-0.04em] text-ink sm:text-[1.55rem] md:text-[1.65rem]">
                   {word}
                 </p>
               </div>

@@ -1,6 +1,7 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   invBody,
+  invBodyStrong,
   invH2,
   invH3,
   invPremiumSurface,
@@ -29,6 +30,13 @@ const steps = [
     body: "Create your own portfolio, choose your assets, allocations, and strategy rules.",
   },
 ] as const;
+
+const weightSplitBox =
+  "flex flex-col items-center justify-center rounded-xl border border-electric/30 bg-electric/[0.06] px-4 py-5 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.1)] sm:px-5 sm:py-6";
+const weightSplitValue =
+  "display text-[1.65rem] font-semibold leading-none tracking-[-0.03em] text-electric sm:text-[1.85rem]";
+const weightSplitLabel =
+  "mt-2 text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-electric/80 sm:text-[0.88rem]";
 
 export function MarketplaceSection() {
   return (
@@ -93,12 +101,12 @@ export function MarketplaceSection() {
                 Back a Creator. Share the{" "}
                 <span className="gradient-text">Rewards.</span>
               </h3>
-              <div className={`mt-5 max-w-2xl space-y-3 ${invBody}`}>
+              <div className={`mt-5 max-w-2xl space-y-4 ${invBody}`}>
                 <p>
                   The community can tip creators using{" "}
                   <span className="font-semibold text-ink">any token</span>.
                 </p>
-                <p className="font-semibold text-electric">
+                <p className={invBodyStrong}>
                   Only $DEXLA tips count toward Creator Ranking and Investor
                   Rewards eligibility.
                 </p>
@@ -143,16 +151,14 @@ export function MarketplaceSection() {
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
                   Investor Reward Weight
                 </p>
-                <div className="mt-3 grid auto-rows-fr grid-cols-2 gap-3 sm:gap-4">
-                  <div className="flex min-h-[4.75rem] items-center justify-center rounded-xl border border-electric/30 bg-electric/[0.06] px-4 py-4 text-center sm:px-5 sm:py-5">
-                    <p className="display text-[1.05rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.12rem]">
-                      80% → Amount Invested
-                    </p>
+                <div className="mt-3 grid grid-cols-2 gap-3 sm:gap-4">
+                  <div className={weightSplitBox}>
+                    <p className={weightSplitValue}>80%</p>
+                    <p className={weightSplitLabel}>Amount Invested</p>
                   </div>
-                  <div className="flex min-h-[4.75rem] items-center justify-center rounded-xl border border-electric/30 bg-electric/[0.06] px-4 py-4 text-center sm:px-5 sm:py-5">
-                    <p className="display text-[1.05rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.12rem]">
-                      20% → Amount Tipped
-                    </p>
+                  <div className={weightSplitBox}>
+                    <p className={weightSplitValue}>20%</p>
+                    <p className={weightSplitLabel}>Amount Tipped</p>
                   </div>
                 </div>
               </div>
