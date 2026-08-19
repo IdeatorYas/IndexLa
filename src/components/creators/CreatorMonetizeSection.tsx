@@ -82,23 +82,23 @@ export function CreatorMonetizeSection() {
           </h2>
         </FadeIn>
 
-        <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto mt-10 grid max-w-5xl auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {ways.map((way, i) => (
             <FadeIn
               key={way.n}
-              className={`${crSurfaceSoft} flex flex-col p-5`}
+              className={`${crSurfaceSoft} grid h-full grid-rows-[auto_3rem_auto_1fr] items-start p-5`}
               delay={0.03 * i}
             >
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 {way.n}
               </p>
-              <p className="mt-3 display text-[1.12rem] tracking-[-0.02em] text-ink">
+              <p className="mt-2 self-center display text-[1.12rem] tracking-[-0.02em] text-ink">
                 {way.title}
               </p>
-              <p className="mt-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-success">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-success">
                 {way.availability}
               </p>
-              <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-muted">
+              <p className="mt-2 text-[0.92rem] leading-relaxed text-muted self-start">
                 {way.detail}
               </p>
             </FadeIn>
