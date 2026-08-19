@@ -147,7 +147,7 @@ export function MarketCyclesSection() {
             Let INDEXLA execute before emotions take over.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-            <div className={invGreenBox}>
+            <div className="inline-flex max-w-full items-center justify-center rounded-xl border border-danger/55 bg-danger/[0.18] px-5 py-3.5 text-center shadow-[inset_0_1px_0_rgba(248,113,113,0.28),0_0_24px_rgba(248,113,113,0.1)]">
               <p className={invGreenText}>
                 You don&apos;t need to predict the cycle.
               </p>

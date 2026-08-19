@@ -95,8 +95,12 @@ export function MarketplaceSection() {
               </h3>
               <div className={`mt-5 max-w-2xl space-y-3 ${invBody}`}>
                 <p>
-                  Invest in a creator&apos;s portfolio and tip them with{" "}
-                  <span className="font-semibold text-ink">$DEXLA</span>.
+                  The community can tip creators using{" "}
+                  <span className="font-semibold text-ink">any token</span>.
+                </p>
+                <p className="font-semibold text-electric">
+                  Only $DEXLA tips count toward Creator Ranking and Investor
+                  Rewards eligibility.
                 </p>
                 <p>
                   If their portfolio ranks in the{" "}
@@ -140,13 +144,13 @@ export function MarketplaceSection() {
                   Investor Reward Weight
                 </p>
                 <div className="mt-3 grid auto-rows-fr grid-cols-2 gap-3 sm:gap-4">
-                  <div className="flex min-h-[4.75rem] items-center justify-center rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 text-center sm:px-5 sm:py-5">
-                    <p className="display text-[1rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.08rem]">
+                  <div className="flex min-h-[4.75rem] items-center justify-center rounded-xl border border-electric/30 bg-electric/[0.06] px-4 py-4 text-center sm:px-5 sm:py-5">
+                    <p className="display text-[1.05rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.12rem]">
                       80% → Amount Invested
                     </p>
                   </div>
-                  <div className="flex min-h-[4.75rem] items-center justify-center rounded-xl border border-white/[0.08] bg-deep/40 px-4 py-4 text-center sm:px-5 sm:py-5">
-                    <p className="display text-[1rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.08rem]">
+                  <div className="flex min-h-[4.75rem] items-center justify-center rounded-xl border border-electric/30 bg-electric/[0.06] px-4 py-4 text-center sm:px-5 sm:py-5">
+                    <p className="display text-[1.05rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[1.12rem]">
                       20% → Amount Tipped
                     </p>
                   </div>

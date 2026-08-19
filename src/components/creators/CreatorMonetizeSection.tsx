@@ -54,9 +54,9 @@ const splitBox =
 const splitBoxLabel =
   "display text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[1.05rem]";
 const weightBox =
-  "rounded-2xl border border-white/[0.18] bg-deep/70 px-4 py-8 text-center shadow-[0_16px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/10 sm:px-6 sm:py-11";
+  "rounded-2xl border border-electric/25 bg-electric/[0.05] px-4 py-7 text-center shadow-[0_16px_48px_rgba(0,0,0,0.28)] sm:px-6 sm:py-9";
 const weightBoxLabel =
-  "display text-[1.2rem] font-semibold leading-snug tracking-[-0.03em] text-ink sm:text-[1.45rem] md:text-[1.55rem]";
+  "display text-[1.2rem] font-semibold leading-snug tracking-[-0.03em] text-electric sm:text-[1.45rem] md:text-[1.55rem]";
 const closingWords = ["BUILD", "PUBLISH", "GROW", "EARN"] as const;
 const chapterAside =
   "md:pt-1 md:text-right border-t border-white/[0.06] pt-4 md:border-t-0 md:pt-0";
@@ -86,19 +86,19 @@ export function CreatorMonetizeSection() {
           {ways.map((way, i) => (
             <FadeIn
               key={way.n}
-              className={`${crSurfaceSoft} p-5 text-left`}
+              className={`${crSurfaceSoft} flex flex-col p-5`}
               delay={0.03 * i}
             >
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
                 {way.n}
               </p>
-              <p className="mt-3 display text-[1.15rem] tracking-[-0.02em] text-ink">
+              <p className="mt-3 display text-[1.12rem] tracking-[-0.02em] text-ink">
                 {way.title}
               </p>
-              <p className="mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-electric">
+              <p className="mt-2 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-success">
                 {way.availability}
               </p>
-              <p className={`mt-2 text-[0.95rem] leading-relaxed text-muted`}>
+              <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-muted">
                 {way.detail}
               </p>
             </FadeIn>
@@ -230,9 +230,13 @@ export function CreatorMonetizeSection() {
                   $DEXLA Tips
                 </p>
                 <h3 className={`mt-3 ${chapterTitle}`}>
-                  Let your audience support you directly with $DEXLA Tips.
+                  The community can tip creators using any token.
                 </h3>
                 <div className={chapterBody}>
+                  <p className="font-semibold text-electric">
+                    Only $DEXLA tips count toward Creator Ranking and Investor
+                    Rewards eligibility.
+                  </p>
                   <p>Tips count for 10% of the Creator Rewards ranking.</p>
                 </div>
               </div>
@@ -307,23 +311,17 @@ export function CreatorMonetizeSection() {
         </div>
 
         <FadeIn className="mx-auto mt-12 max-w-5xl md:mt-16" delay={0.12}>
-          <div className="overflow-hidden rounded-2xl border border-white/[0.18] bg-deep/70 shadow-[0_16px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/10">
-            <div className="grid grid-cols-2 md:grid-cols-4">
-              {closingWords.map((word, i) => (
-                <div
-                  key={word}
-                  className={`flex min-h-[5.75rem] items-center justify-center px-3 py-8 text-center sm:min-h-[6.75rem] sm:py-10 ${
-                    i % 2 === 1 ? "border-l border-white/[0.12]" : ""
-                  } ${i >= 2 ? "border-t border-white/[0.12]" : ""} ${
-                    i > 0 ? "md:border-l md:border-t-0 md:border-white/[0.12]" : "md:border-t-0"
-                  }`}
-                >
-                  <p className="display text-[1.35rem] font-semibold tracking-[-0.04em] text-ink sm:text-[1.55rem] md:text-[1.7rem]">
-                    {word}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            {closingWords.map((word) => (
+              <div
+                key={word}
+                className="flex min-h-[5.5rem] items-center justify-center rounded-2xl border border-electric/30 bg-electric/[0.06] px-4 py-6 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12),0_14px_36px_rgba(0,0,0,0.18)] sm:min-h-[6.5rem]"
+              >
+                <p className="display text-[1.35rem] font-semibold tracking-[-0.04em] text-ink sm:text-[1.55rem] md:text-[1.7rem]">
+                  {word}
+                </p>
+              </div>
+            ))}
           </div>
         </FadeIn>
       </div>

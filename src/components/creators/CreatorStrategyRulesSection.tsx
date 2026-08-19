@@ -22,18 +22,18 @@ export function CreatorStrategyRulesSection() {
           </h2>
         </FadeIn>
 
-        <div className="mx-auto mt-10 grid max-w-5xl gap-5 md:grid-cols-2">
-          <FadeIn className={`${crSurfaceSoft} p-6 sm:p-7`} delay={0.04}>
+        <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
+          <FadeIn className={`${crSurfaceSoft} flex flex-col p-6 sm:p-7`} delay={0.04}>
             <h3 className={`${crH3} uppercase`}>Use INDEXLA Strategies</h3>
-            <p className={`mt-4 ${crBody} text-balance`}>
+            <p className={`mt-4 flex-1 ${crBody} text-balance`}>
               Predefined strategies such as Buy the Fear, Sell the Greed, Buy
               RSI Oversold, Sell RSI Overbought, Momentum, and Rebalancing.
             </p>
           </FadeIn>
 
-          <FadeIn className={`${crSurfaceSoft} p-6 sm:p-7`} delay={0.08}>
+          <FadeIn className={`${crSurfaceSoft} flex flex-col p-6 sm:p-7`} delay={0.06}>
             <h3 className={`${crH3} uppercase`}>Bring Your Own Strategy</h3>
-            <p className={`mt-4 ${crBody} text-balance`}>
+            <p className={`mt-4 flex-1 ${crBody} text-balance`}>
               Build with a Technical Indicator, On-Chain Indicator, or Hybrid
               Strategy.
             </p>
@@ -41,10 +41,13 @@ export function CreatorStrategyRulesSection() {
               You define the rules. INDEXLA coordinates authorized execution
               when conditions are met.
             </p>
-            <h3 className={`mt-8 ${crH3} uppercase`}>
+          </FadeIn>
+
+          <FadeIn className={`${crSurfaceSoft} flex flex-col p-6 sm:p-7`} delay={0.08}>
+            <h3 className={`${crH3} uppercase`}>
               Keep It Private or Monetize It
             </h3>
-            <p className={`mt-4 ${crBody} text-balance`}>
+            <p className={`mt-4 flex-1 ${crBody} text-balance`}>
               Keep your strategy private for your own portfolios and investors,
               or make it available to other creators through the{" "}
               <span className="font-semibold text-ink">
