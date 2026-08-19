@@ -2,11 +2,12 @@ import type { ReactNode } from "react";
 import { WhitepaperExploreCta } from "@/components/whitepaper/WhitepaperExploreCta";
 import {
   ArchitectureGapDiagram,
+  DexlaUtilityBurnLoopDiagram,
   EconomicFlywheelDiagram,
   FeeDistributionDiagram,
   GtmGrowthFlywheelDiagram,
   HowIndexlaWorksDiagram,
-  InvestorExecutionStackDiagram,
+  IndexlaArchitectureDiagram,
   MarketOpportunityDiagram,
   NonCustodialFlowDiagram,
   RoadmapPhasesDiagram,
@@ -26,7 +27,6 @@ export type SectionVisual = {
 
 /**
  * Visuals keyed by section slug. Labels/numbers match whitepaper content only.
- * Source: docs/INDEXLA WHITEPAPER FINAL.docx (20 numbered sections + disclaimer).
  */
 export function getSectionVisuals(slug: string): SectionVisual[] {
   switch (slug) {
@@ -88,12 +88,12 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           ),
         },
       ];
-    case "9-business-model":
+    case "10-business-model":
       return [
         {
           id: "fee-dist",
           placement: "after",
-          afterHeadingId: "1-execution-fee",
+          afterHeadingId: "fee-distribution",
           node: <FeeDistributionDiagram />,
         },
         {
@@ -105,11 +105,6 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
       ];
     case "11-investor-experience":
       return [
-        {
-          id: "investor-stack",
-          placement: "before",
-          node: <InvestorExecutionStackDiagram />,
-        },
         {
           id: "explore-investors",
           placement: "end",
@@ -155,6 +150,12 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
     case "14-dexla-utility-tokenomics":
       return [
         {
+          id: "dexla-utility-burn-loop",
+          placement: "after",
+          afterHeadingId: "the-dexla-economic-engine",
+          node: <DexlaUtilityBurnLoopDiagram />,
+        },
+        {
           id: "explore-tokenomics",
           placement: "end",
           node: (
@@ -167,6 +168,11 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
       ];
     case "15-security-privacy-mev-protection":
       return [
+        {
+          id: "indexla-architecture",
+          placement: "before",
+          node: <IndexlaArchitectureDiagram />,
+        },
         {
           id: "security-risk",
           placement: "before",
@@ -183,7 +189,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           ),
         },
       ];
-    case "16-go-to-market":
+    case "17-go-to-market":
       return [
         {
           id: "gtm-flywheel",
@@ -191,7 +197,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <GtmGrowthFlywheelDiagram />,
         },
       ];
-    case "17-progressive-deployment-roadmap":
+    case "18-progressive-deployment-roadmap":
       return [
         {
           id: "roadmap",

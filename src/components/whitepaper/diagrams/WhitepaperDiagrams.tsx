@@ -140,16 +140,8 @@ export function CreatorMarketplaceFlowDiagram() {
 export function FeeDistributionDiagram() {
   const rows = [
     {
-      type: "INDEXLA Portfolio",
-      parts: [
-        { label: "Platform", pct: 30, color: "#38bdf8" },
-        { label: "Treasury", pct: 30, color: "#7c3aed" },
-        { label: "Rewards", pct: 30, color: "#22d3ee" },
-        { label: "Buyback & Burn", pct: 10, color: "#f472b6" },
-      ],
-    },
-    {
       type: "Creator Portfolio",
+      subtitle: "1% Execution Fee",
       parts: [
         { label: "Creator", pct: 50, color: "#a78bfa" },
         { label: "Platform", pct: 20, color: "#38bdf8" },
@@ -158,14 +150,29 @@ export function FeeDistributionDiagram() {
         { label: "Buyback & Burn", pct: 10, color: "#f472b6" },
       ],
     },
+    {
+      type: "INDEXLA Portfolio",
+      subtitle: "1% Execution Fee",
+      parts: [
+        { label: "Platform", pct: 50, color: "#38bdf8" },
+        { label: "Treasury", pct: 20, color: "#7c3aed" },
+        { label: "Rewards", pct: 20, color: "#22d3ee" },
+        { label: "Buyback & Burn", pct: 10, color: "#f472b6" },
+      ],
+    },
   ];
 
   return (
-    <DiagramFrame title="Execution fee distribution">
+    <DiagramFrame title="Fee distribution">
       <div className="space-y-5">
         {rows.map((row) => (
           <div key={row.type}>
-            <p className="mb-2 text-[0.8rem] font-semibold text-ink">{row.type}</p>
+            <div className="mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              <p className="text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-ink">
+                {row.type}
+              </p>
+              <p className="text-[0.78rem] font-medium text-muted">{row.subtitle}</p>
+            </div>
             <div className="flex h-3 overflow-hidden rounded-full border border-line">
               {row.parts.map((part) => (
                 <div
@@ -185,7 +192,7 @@ export function FeeDistributionDiagram() {
                     className="h-2 w-2 rounded-full"
                     style={{ background: part.color }}
                   />
-                  {part.label} {part.pct}%
+                  {part.pct}% → {part.label}
                 </li>
               ))}
             </ul>
@@ -327,7 +334,7 @@ export function VestingTimelineDiagram() {
     { label: "Pre Seed / Seed / Private", detail: "10% TGE · 3-month cliff · 18-month linear" },
     { label: "Public", detail: "15% TGE · remaining linear over 6 months" },
     { label: "DEX Liquidity", detail: "100% available at TGE" },
-    { label: "Treasury", detail: "24-month lock" },
+    { label: "Treasury", detail: "36-month lock" },
     { label: "Team", detail: "12-month cliff · then 24-month linear" },
     { label: "Community", detail: "Progressive release" },
     { label: "Advisors", detail: "6-month cliff · then 12-month linear" },
@@ -807,6 +814,73 @@ export function ArchitectureGapDiagram() {
       <p className="mt-4 text-center text-[0.85rem] text-muted">
         Not a feature checklist: a different custody, permission, and fee-routing model.
       </p>
+    </DiagramFrame>
+  );
+}
+
+export function IndexlaArchitectureDiagram() {
+  const steps = [
+    "User",
+    "Smart Account",
+    "Scoped Permissions",
+    "AI Monitoring",
+    "Execution Layers",
+    "Underlying Assets",
+  ];
+
+  return (
+    <DiagramFrame title="INDEXLA architecture">
+      <ol className="mx-auto max-w-md space-y-2">
+        {steps.map((step, i) => (
+          <li key={step} className="flex flex-col items-center">
+            <div className="w-full rounded-lg border border-electric/30 bg-electric/10 px-4 py-3 text-center">
+              <p className="text-[0.88rem] font-semibold text-ink">{step}</p>
+            </div>
+            {i < steps.length - 1 ? (
+              <span className="py-1 text-electric" aria-hidden>
+                ↓
+              </span>
+            ) : null}
+          </li>
+        ))}
+      </ol>
+      <p className="mt-4 text-center text-[0.85rem] leading-relaxed text-muted">
+        AI monitors and assists. Permissions determine what can execute. AI
+        cannot expand permissions or override user rules.
+      </p>
+    </DiagramFrame>
+  );
+}
+
+export function DexlaUtilityBurnLoopDiagram() {
+  const steps = [
+    "Creators + Investors",
+    "Publish · Feature · Monetize · Save · Tip",
+    "Platform Activity",
+    "Fees + Strategy Access",
+    "Burns + Buybacks",
+    "Supply Reduction",
+    "More $DEXLA Utility",
+  ];
+
+  return (
+    <DiagramFrame title="$DEXLA utility and burn loop">
+      <ol className="mx-auto max-w-md space-y-2">
+        {steps.map((step, i) => (
+          <li key={step} className="flex flex-col items-center">
+            <div className="w-full rounded-lg border border-line bg-deep/70 px-4 py-3 text-center">
+              <p className="text-[0.86rem] font-semibold leading-snug text-ink">
+                {step}
+              </p>
+            </div>
+            {i < steps.length - 1 ? (
+              <span className="py-1 text-electric" aria-hidden>
+                ↓
+              </span>
+            ) : null}
+          </li>
+        ))}
+      </ol>
     </DiagramFrame>
   );
 }

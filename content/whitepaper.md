@@ -28,6 +28,18 @@ It is to connect them.
 
 INDEXLA can onboard users and begin product testing before $DEXLA utility activation. Token-dependent creator utilities activate when $DEXLA utility is enabled.
 
+## What INDEXLA Is Not
+
+INDEXLA is not:
+• A custodial platform
+• A traditional investment manager
+• A vault or pooled basket
+• A wrapper token representing a portfolio
+• A guarantee of investment performance
+• Financial, investment, legal or tax advice
+
+Users retain control of their assets and authorize the permissions used for automation.
+
 ---
 
 # 2. The Problem
@@ -249,6 +261,10 @@ Velvet: live product, AI infrastructure and ecosystem backing.
 INDEXLA is still proving execution, security, liquidity and adoption.
 
 The differentiation is therefore architectural, not a claim of traction.
+
+### The INDEXLA Moat
+
+The moat is the full-stack combination of true underlying ownership, scoped permissions, execution infrastructure, creator distribution and token economics. No single competitor currently owns this intersection. The moat can strengthen through network effects as more creators, portfolios and capital join the platform.
 
 ### The INDEXLA Challenge
 
