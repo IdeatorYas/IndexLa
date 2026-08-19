@@ -1,20 +1,29 @@
 "use client";
 
+import Image from "next/image";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
-import { dcCta } from "@/components/degen-club/degenRhythm";
+import {
+  dcBody,
+  dcBodyStrong,
+  dcCta,
+  dcH1,
+  dcH2,
+  dcH3,
+} from "@/components/degen-club/degenRhythm";
+import {
+  DEGEN_MEME_LOGOS,
+  MEME_COIN_COLORS,
+  type DegenMemeTicker,
+} from "@/components/degen-club/memeLogos";
 import type { DegenBlock } from "@/lib/degen-club";
 
-export const MEME_COINS = [
-  { ticker: "DOGE", color: "#C2A633" },
-  { ticker: "SHIB", color: "#FFA409" },
-  { ticker: "PEPE", color: "#3D9970" },
-  { ticker: "BONK", color: "#F7931A" },
-  { ticker: "WIF", color: "#E8B849" },
-  { ticker: "FLOKI", color: "#FB923C" },
-  { ticker: "BRETT", color: "#3B82F6" },
-  { ticker: "POPCAT", color: "#A78BFA" },
-  { ticker: "MOG", color: "#94A3B8" },
-] as const;
+export const MEME_COINS = (Object.keys(DEGEN_MEME_LOGOS) as DegenMemeTicker[]).map(
+  (ticker) => ({
+    ticker,
+    color: MEME_COIN_COLORS[ticker],
+    src: DEGEN_MEME_LOGOS[ticker],
+  })
+);
 
 export const CHAINS = ["Solana", "Ethereum", "Base", "BNB", "Multi-Chain"] as const;
 
@@ -25,10 +34,145 @@ export const EXAMPLE_ALLOCATIONS = [
   { ticker: "FLOKI", pct: 10 },
   { ticker: "DOGE", pct: 12 },
   { ticker: "SHIB", pct: 10 },
-  { ticker: "BRETT", pct: 8 },
-  { ticker: "MOG", pct: 10 },
+  { ticker: "PENGU", pct: 8 },
+  { ticker: "SPX6900", pct: 10 },
 ] as const;
 
+export function splitAccentTitle(text: string): { lead: string; accent: string | null } {
+  if (text.includes(">")) {
+    const idx = text.indexOf(">");
+    return { lead: text.slice(0, idx + 1).trim(), accent: text.slice(idx + 1).trim() };
+  }
+
+  const sentences = text.match(/[^.!?]+[.!?]+/g);
+  if (sentences && sentences.length >= 2) {
+    const accent = sentences[sentences.length - 1].trim();
+    const lead = sentences.slice(0, -1).join(" ").trim();
+    return { lead, accent };
+  }
+
+  const colonIdx = text.indexOf(": ");
+  if (colonIdx !== -1 && colonIdx < text.length - 4) {
+    return {
+      lead: text.slice(0, colonIdx + 1),
+      accent: text.slice(colonIdx + 2).trim(),
+    };
+  }
+
+  const trimmed = text.trim();
+  const words = trimmed.split(/\s+/);
+  if (words.length >= 3) {
+    const accent = words.slice(-2).join(" ");
+    const lead = words.slice(0, -2).join(" ");
+    return { lead, accent };
+  }
+
+  return { lead: text, accent: null };
+}
+
+export function DegenAccentHeadline({
+  text,
+  as = "h2",
+  className = "",
+  align = "left",
+}: {
+  text: string;
+  as?: "h1" | "h2" | "h3";
+  className?: string;
+  align?: "left" | "center";
+}) {
+  const { lead, accent } = splitAccentTitle(text);
+  const Tag = as;
+  const sizeClass = as === "h1" ? dcH1 : as === "h3" ? dcH3 : dcH2;
+  const alignClass = align === "center" ? "text-center" : "";
+
+  return (
+    <Tag className={`${sizeClass} ${alignClass} ${className}`}>
+      <span className="text-ink">{lead}</span>
+      {accent ? (
+        <>
+          {lead.endsWith(":") || lead.endsWith(">") ? " " : " "}
+          <span className="text-electric">{accent}</span>
+        </>
+      ) : null}
+    </Tag>
+  );
+}
+
+export function DegenSectionTitle({
+  title,
+  className = "",
+  align = "center",
+}: {
+  title: string;
+  className?: string;
+  align?: "left" | "center";
+}) {
+  return (
+    <DegenAccentHeadline
+      text={title}
+      as="h2"
+      className={className}
+      align={align}
+    />
+  );
+}
+
+export function MemeCoinLogo({
+  ticker,
+  size = "md",
+  className = "",
+}: {
+  ticker: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  className?: string;
+}) {
+  const key = ticker.toUpperCase() as DegenMemeTicker;
+  const src = DEGEN_MEME_LOGOS[key];
+  const color = MEME_COIN_COLORS[key] ?? "#38bdf8";
+
+  const sizes = {
+    xs: "h-7 w-7",
+    sm: "h-9 w-9",
+    md: "h-11 w-11",
+    lg: "h-14 w-14",
+    xl: "h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20",
+  };
+
+  if (!src) {
+    return (
+      <div
+        className={`flex shrink-0 items-center justify-center rounded-full border font-bold text-ink ${sizes[size]} ${className}`}
+        style={{ borderColor: `${color}66`, background: `${color}18` }}
+        aria-hidden
+      >
+        {ticker.slice(0, 3)}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`relative shrink-0 overflow-hidden rounded-full border bg-void/80 ${sizes[size]} ${className}`}
+      style={{
+        borderColor: `${color}55`,
+        boxShadow: `0 0 24px ${color}22`,
+      }}
+      title={ticker}
+    >
+      <Image
+        src={src}
+        alt=""
+        fill
+        className="object-cover"
+        sizes={size === "xl" ? "80px" : size === "lg" ? "56px" : "44px"}
+        aria-hidden
+      />
+    </div>
+  );
+}
+
+/** @deprecated Use MemeCoinLogo — kept for non-hero sections during transition */
 export function MemeCoinBadge({
   ticker,
   color,
@@ -38,6 +182,12 @@ export function MemeCoinBadge({
   color: string;
   size?: "sm" | "md" | "lg";
 }) {
+  const logoSize = size === "lg" ? "lg" : size === "sm" ? "sm" : "md";
+  const key = ticker.toUpperCase() as DegenMemeTicker;
+  if (DEGEN_MEME_LOGOS[key]) {
+    return <MemeCoinLogo ticker={key} size={logoSize} />;
+  }
+
   const sizes = {
     sm: "h-8 w-8 text-[0.55rem]",
     md: "h-10 w-10 text-[0.62rem]",
@@ -50,9 +200,7 @@ export function MemeCoinBadge({
       style={{
         borderColor: `${color}66`,
         background: `linear-gradient(145deg, ${color}33 0%, ${color}12 100%)`,
-        boxShadow: `0 0 20px ${color}22`,
       }}
-      title={ticker}
       aria-hidden
     >
       {ticker.slice(0, 4)}
@@ -62,13 +210,11 @@ export function MemeCoinBadge({
 
 export function ChainPills({ compact }: { compact?: boolean }) {
   return (
-    <div
-      className={`flex flex-wrap gap-2 ${compact ? "justify-center" : ""}`}
-    >
+    <div className={`flex flex-wrap gap-2 ${compact ? "justify-center" : ""}`}>
       {CHAINS.map((chain) => (
         <span
           key={chain}
-          className="rounded-full border border-line bg-void/50 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-muted"
+          className="rounded-full border border-line bg-void/50 px-3.5 py-1.5 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-muted sm:text-[0.88rem]"
         >
           {chain}
         </span>
@@ -85,6 +231,20 @@ export function DegenCta({ label }: { label: string }) {
   );
 }
 
+function renderBold(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={i} className="font-semibold text-ink">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
 export function DegenCopy({
   blocks,
   className = "",
@@ -93,31 +253,25 @@ export function DegenCopy({
   className?: string;
 }) {
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div className={`space-y-3.5 sm:space-y-4 ${className}`}>
       {blocks.map((block, i) => {
         if (block.type === "h2") {
-          return (
-            <h2 key={i} className="display text-[clamp(1.5rem,3vw,2rem)] tracking-[-0.02em] text-ink">
-              {block.text}
-            </h2>
-          );
+          return <DegenAccentHeadline key={i} text={block.text} as="h2" />;
         }
         if (block.type === "h3") {
-          return (
-            <h3 key={i} className="display text-[1.05rem] tracking-[-0.02em] text-ink sm:text-[1.12rem]">
-              {block.text}
-            </h3>
-          );
+          return <DegenAccentHeadline key={i} text={block.text} as="h3" />;
         }
         if (block.type === "cta") {
           return <DegenCta key={i} label={block.text} />;
         }
+
+        const isBoldLine = block.text.startsWith("**") && block.text.endsWith("**");
         return (
           <p
             key={i}
-            className="whitespace-pre-line text-[1rem] leading-relaxed text-muted sm:text-[1.05rem]"
+            className={`whitespace-pre-line ${isBoldLine ? dcBodyStrong : dcBody}`}
           >
-            {block.text}
+            {renderBold(block.text)}
           </p>
         );
       })}
@@ -140,7 +294,7 @@ export function TerminalShell({
           <span className="h-2 w-2 rounded-full bg-amber-400/80" />
           <span className="h-2 w-2 rounded-full bg-success/80" />
         </div>
-        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
           {title}
         </p>
       </div>
@@ -154,13 +308,11 @@ export function AllocationBar({
 }: {
   items: readonly { ticker: string; pct: number }[];
 }) {
-  const colors = Object.fromEntries(
-    MEME_COINS.map((c) => [c.ticker, c.color])
-  ) as Record<string, string>;
+  const colors = MEME_COIN_COLORS as Record<string, string>;
 
   return (
     <div>
-      <div className="flex h-2.5 overflow-hidden rounded-full border border-line">
+      <div className="flex h-3 overflow-hidden rounded-full border border-line">
         {items.map((item) => (
           <div
             key={item.ticker}
@@ -176,17 +328,13 @@ export function AllocationBar({
         {items.map((item) => (
           <li
             key={item.ticker}
-            className="flex items-center justify-between rounded-lg border border-line/80 bg-void/40 px-3 py-2"
+            className="flex items-center justify-between rounded-lg border border-line/80 bg-void/40 px-3 py-2.5"
           >
-            <span className="flex items-center gap-2 text-[0.85rem] font-semibold text-ink">
-              <MemeCoinBadge
-                ticker={item.ticker}
-                color={colors[item.ticker] ?? "#38bdf8"}
-                size="sm"
-              />
+            <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold text-ink sm:text-[1rem]">
+              <MemeCoinLogo ticker={item.ticker} size="sm" />
               {item.ticker}
             </span>
-            <span className="tabular-nums text-[0.85rem] font-semibold text-electric">
+            <span className="tabular-nums text-[0.95rem] font-semibold text-electric sm:text-[1rem]">
               {item.pct}%
             </span>
           </li>

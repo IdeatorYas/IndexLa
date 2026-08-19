@@ -6,16 +6,19 @@ import {
   AllocationBar,
   DegenCopy,
   DegenCta,
-  MEME_COINS,
+  MemeCoinLogo,
   TerminalShell,
 } from "@/components/degen-club/DegenShared";
 import { dcEyebrow, dcSection } from "@/components/degen-club/degenRhythm";
+import { HERO_PORTFOLIO_COINS } from "@/components/degen-club/memeLogos";
 import type { DegenSection } from "@/lib/degen-club";
 
 export function DegenFinalSection({ section }: { section: DegenSection }) {
   const reduce = useReducedMotion();
   const cta = section.blocks.find((b) => b.type === "cta");
   const copy = section.blocks.filter((b) => b.type !== "cta");
+  const h2Block = copy.filter((b) => b.type === "h2");
+  const bodyBlocks = copy.filter((b) => b.type === "p");
 
   return (
     <section className={`${dcSection} relative overflow-hidden bg-void`}>
@@ -27,41 +30,36 @@ export function DegenFinalSection({ section }: { section: DegenSection }) {
         <div className="mx-auto max-w-5xl">
           <FadeIn className="text-center">
             <p className={dcEyebrow}>DEGEN CLUB</p>
-            <DegenCopy blocks={copy.filter((b) => b.type === "h2")} className="mt-3" />
+            <DegenCopy blocks={h2Block} className="mt-3" />
           </FadeIn>
 
-          <FadeIn className="mt-10">
+          <FadeIn className="mt-8">
             <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-4 sm:gap-5">
                 <motion.div
-                  className="rounded-2xl border border-success/30 bg-success/10 px-8 py-6 text-center"
+                  className="rounded-2xl border border-success/30 bg-success/10 px-8 py-6 text-center sm:px-10 sm:py-7"
                   animate={reduce ? undefined : { scale: [1, 1.02, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
-                  <p className="display text-[2.5rem] text-success">100x</p>
+                  <p className="display text-[clamp(2.25rem,5vw,3.25rem)] font-semibold text-success">
+                    100x
+                  </p>
                 </motion.div>
                 <motion.div
-                  className="rounded-2xl border border-danger/35 bg-danger/10 px-8 py-6 text-center"
+                  className="rounded-2xl border border-danger/35 bg-danger/10 px-8 py-6 text-center sm:px-10 sm:py-7"
                   animate={reduce ? undefined : { scale: [1, 1.02, 1] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
                 >
-                  <p className="display text-[2.5rem] text-danger">0</p>
+                  <p className="display text-[clamp(2.25rem,5vw,3.25rem)] font-semibold text-danger">
+                    0
+                  </p>
                 </motion.div>
               </div>
 
               <TerminalShell title="Portfolio Philosophy">
-                <div className="flex flex-wrap justify-center gap-2">
-                  {MEME_COINS.slice(0, 6).map((c) => (
-                    <div
-                      key={c.ticker}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border text-[0.55rem] font-bold"
-                      style={{
-                        borderColor: `${c.color}55`,
-                        background: `${c.color}15`,
-                      }}
-                    >
-                      {c.ticker.slice(0, 3)}
-                    </div>
+                <div className="flex flex-wrap justify-center gap-2.5">
+                  {HERO_PORTFOLIO_COINS.slice(0, 6).map((ticker) => (
+                    <MemeCoinLogo key={ticker} ticker={ticker} size="md" />
                   ))}
                 </div>
                 <AllocationBar
@@ -77,12 +75,10 @@ export function DegenFinalSection({ section }: { section: DegenSection }) {
             </div>
           </FadeIn>
 
-          <FadeIn className="mx-auto mt-10 max-w-2xl text-center">
-            <DegenCopy
-              blocks={copy.filter((b) => b.type === "p")}
-            />
+          <FadeIn className="mx-auto mt-8 max-w-2xl text-center">
+            <DegenCopy blocks={bodyBlocks} />
             {cta?.type === "cta" ? (
-              <div className="mt-8 flex justify-center">
+              <div className="mt-7 flex justify-center">
                 <DegenCta label={cta.text} />
               </div>
             ) : null}

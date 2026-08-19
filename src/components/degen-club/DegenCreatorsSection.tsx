@@ -5,9 +5,10 @@ import {
   AllocationBar,
   DegenCopy,
   DegenCta,
+  DegenSectionTitle,
   TerminalShell,
 } from "@/components/degen-club/DegenShared";
-import { dcH2, dcSection } from "@/components/degen-club/degenRhythm";
+import { dcLabel, dcSection, dcStatement } from "@/components/degen-club/degenRhythm";
 import type { DegenSection } from "@/lib/degen-club";
 
 export function DegenCreatorsSection({ section }: { section: DegenSection }) {
@@ -19,10 +20,10 @@ export function DegenCreatorsSection({ section }: { section: DegenSection }) {
       <div className="section-pad container-max">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
-            <h2 className={`${dcH2} max-w-3xl text-ink`}>{section.title}</h2>
+            <DegenSectionTitle title={section.title} align="left" />
           </FadeIn>
 
-          <div className="mt-10 grid gap-10 xl:grid-cols-[1fr_1.05fr]">
+          <div className="mt-8 grid gap-8 xl:grid-cols-[1fr_1.05fr]">
             <FadeIn>
               <DegenCopy blocks={copy} />
               {cta?.type === "cta" ? (
@@ -37,7 +38,7 @@ export function DegenCreatorsSection({ section }: { section: DegenSection }) {
                 <div className="flex flex-wrap justify-center gap-2">
                   {["CREATE", "PUBLISH", "COMMUNITY", "EARN"].map((step, i) => (
                     <div key={step} className="flex items-center gap-2">
-                      <span className="rounded-lg border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-[0.75rem] font-bold uppercase tracking-[0.08em] text-amber-300">
+                      <span className={`rounded-lg border border-amber-400/30 bg-amber-400/10 px-3.5 py-2.5 text-[0.88rem] font-bold uppercase tracking-[0.08em] text-amber-300 sm:text-[0.92rem]`}>
                         {step}
                       </span>
                       {i < 3 ? <span className="text-muted-dim">→</span> : null}
@@ -46,12 +47,10 @@ export function DegenCreatorsSection({ section }: { section: DegenSection }) {
                 </div>
 
                 <div className="mt-5 rounded-xl border border-amber-400/25 bg-amber-400/[0.06] p-4">
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-amber-400/80">
+                  <p className={`${dcLabel} text-amber-400/80`}>
                     Creator Index
                   </p>
-                  <p className="mt-2 display text-[1.35rem] tracking-[-0.02em] text-ink">
-                    DEGEN META INDEX
-                  </p>
+                  <p className={`mt-2 ${dcStatement}`}>DEGEN META INDEX</p>
                   <AllocationBar
                     items={[
                       { ticker: "PEPE", pct: 20 },
@@ -59,12 +58,12 @@ export function DegenCreatorsSection({ section }: { section: DegenSection }) {
                       { ticker: "BONK", pct: 15 },
                       { ticker: "FLOKI", pct: 10 },
                       { ticker: "DOGE", pct: 18 },
-                      { ticker: "MOG", pct: 12 },
+                      { ticker: "SPX6900", pct: 12 },
                     ]}
                   />
                 </div>
 
-                <div className="mt-4 space-y-2 text-center text-[0.82rem] font-semibold text-muted">
+                <div className="mt-4 space-y-2 text-center text-[0.95rem] font-semibold text-muted sm:text-[1rem]">
                   <p>Creator → Portfolio → Community wallets → Creator revenue</p>
                 </div>
 
@@ -72,7 +71,7 @@ export function DegenCreatorsSection({ section }: { section: DegenSection }) {
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-success">
                     Creator revenue share
                   </p>
-                  <p className="mt-1 display text-[2rem] tabular-nums tracking-[-0.03em] text-ink">
+                  <p className="mt-1 display text-[clamp(2rem,4vw,2.75rem)] tabular-nums tracking-[-0.03em] text-ink">
                     50%
                   </p>
                 </div>
