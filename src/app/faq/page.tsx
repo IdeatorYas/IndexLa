@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import { FaqExperience } from "@/components/faq/FaqExperience";
 import { FaqHero } from "@/components/faq/FaqHero";
-import { FaqSections } from "@/components/faq/FaqSections";
 import { loadFaq } from "@/lib/faq.server";
 
 export const metadata: Metadata = {
   title: "FAQ | INDEXLA",
   description:
-    "Frequently asked questions about INDEXLA: getting started, safety and risk, strategies and automation, fees and $DEXLA, and creators.",
+    "Frequently asked questions about INDEXLA: fees, $DEXLA, creators, security, cross-chain execution, tokenomics, and risks.",
 };
 
 export default function FaqPage() {
@@ -14,8 +14,8 @@ export default function FaqPage() {
 
   return (
     <main>
-      <FaqHero sections={sections} />
-      <FaqSections sections={sections} disclaimer={disclaimer} />
+      <FaqHero />
+      <FaqExperience sections={sections} disclaimer={disclaimer} />
     </main>
   );
 }
