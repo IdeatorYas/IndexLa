@@ -1,0 +1,15 @@
+name: Deploy to Production
+on:
+  push:
+    branches: [master]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deployment
+        uses: appleboy/ssh-action@v1
+        with:
+          host: indexla.tech
+          username: root
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: /usr/local/bin/deploy-indexla.sh
