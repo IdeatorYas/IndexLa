@@ -68,7 +68,7 @@ export function TokenomicsHero() {
               <p className="relative display text-[clamp(2.5rem,6vw,3.5rem)] font-semibold leading-none tracking-[-0.05em] text-success">
                 5
               </p>
-              <p className="relative mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-success sm:text-[0.78rem]">
+              <p className="relative text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-success sm:text-[0.78rem]">
                 Token Utilities
               </p>
             </div>
@@ -85,7 +85,7 @@ export function TokenomicsHero() {
               <p className="relative display text-[clamp(2.5rem,6vw,3.5rem)] font-semibold leading-none tracking-[-0.05em] text-danger">
                 6
               </p>
-              <p className="relative mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-danger sm:text-[0.78rem]">
+              <p className="relative text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-danger sm:text-[0.78rem]">
                 Burn Mechanisms
               </p>
             </div>

@@ -27,6 +27,39 @@ const flowSteps = [
   { label: "Burns", accent: "text-danger" },
 ] as const;
 
+const pointCardStyles = [
+  {
+    border: "border-success/30",
+    bg: "bg-success/[0.06]",
+    bar: "bg-success/70",
+  },
+  {
+    border: "border-electric/30",
+    bg: "bg-electric/[0.06]",
+    bar: "bg-electric/70",
+  },
+  {
+    border: "border-electric/30",
+    bg: "bg-electric/[0.06]",
+    bar: "bg-electric/70",
+  },
+  {
+    border: "border-purple/30",
+    bg: "bg-purple/[0.07]",
+    bar: "bg-purple/70",
+  },
+  {
+    border: "border-danger/30",
+    bg: "bg-danger/[0.06]",
+    bar: "bg-danger/70",
+  },
+  {
+    border: "border-amber-400/35",
+    bg: "bg-amber-400/[0.07]",
+    bar: "bg-amber-400/70",
+  },
+] as const;
+
 export function TokenWhyDexlaSection() {
   return (
     <section className={`${tkSection} bg-void`}>
@@ -61,15 +94,24 @@ export function TokenWhyDexlaSection() {
               ))}
             </div>
 
-            <div className="mt-8 grid gap-2.5 sm:grid-cols-2">
-              {points.map((line) => (
-                <p
-                  key={line}
-                  className={`border border-white/[0.07] bg-void/40 px-4 py-3.5 ${tkBody}`}
-                >
-                  {line}
-                </p>
-              ))}
+            <div className="mt-8 grid auto-rows-fr gap-3 sm:grid-cols-2">
+              {points.map((line, i) => {
+                const style = pointCardStyles[i % pointCardStyles.length];
+                return (
+                  <div
+                    key={line}
+                    className={`relative flex min-h-[6rem] items-start gap-4 rounded-2xl border ${style.border} ${style.bg} px-5 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]`}
+                  >
+                    <span
+                      className={`mt-1 inline-flex h-2 w-10 shrink-0 rounded-full ${style.bar}`}
+                      aria-hidden
+                    />
+                    <p className={`${tkBody} font-semibold text-ink`}>
+                      {line}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="mx-auto mt-8 max-w-2xl border border-electric/35 bg-electric/[0.08] px-6 py-8 text-center shadow-[0_0_48px_-12px_rgba(56,189,248,0.28)] sm:px-8 sm:py-10">

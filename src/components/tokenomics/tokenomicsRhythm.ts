@@ -91,7 +91,7 @@ export const tkArchMetricUtilityCompact =
 
 /** Hero protocol stat panels */
 export const tkHeroStatPanel =
-  "relative overflow-hidden border bg-panel/60 px-5 py-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:px-6 sm:py-6";
+  "relative flex min-h-[9.25rem] flex-col items-center justify-center gap-2 overflow-hidden border bg-panel/60 px-5 py-6 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:min-h-[10.25rem] sm:px-6 sm:py-6";
 
 export const tkHeroStatPanelUtility =
   `${tkHeroStatPanel} border-success/25 shadow-[0_0_40px_-12px_rgba(52,211,153,0.2)]`;

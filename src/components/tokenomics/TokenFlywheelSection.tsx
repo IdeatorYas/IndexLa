@@ -63,12 +63,12 @@ function polarPoint(cx: number, cy: number, r: number, angle: number) {
 
 function panelStyles(accent: PhaseAccent) {
   if (accent === "danger") {
-    return "border-danger/42 bg-void/90 shadow-[0_0_28px_-12px_rgba(248,113,113,0.32),inset_0_1px_0_0_rgba(248,113,113,0.12)] hover:border-danger/58";
+    return "border-danger/42 bg-gradient-to-b from-danger/[0.12] via-void/82 to-transparent shadow-[0_0_28px_-12px_rgba(248,113,113,0.32),inset_0_1px_0_0_rgba(248,113,113,0.12)]";
   }
   if (accent === "electric") {
-    return "border-electric/48 bg-void/90 shadow-[0_0_32px_-12px_rgba(56,189,248,0.36),inset_0_1px_0_0_rgba(56,189,248,0.14)] hover:border-electric/62";
+    return "border-electric/48 bg-gradient-to-b from-electric/[0.12] via-void/82 to-transparent shadow-[0_0_32px_-12px_rgba(56,189,248,0.36),inset_0_1px_0_0_rgba(56,189,248,0.14)]";
   }
-  return "border-white/[0.14] bg-void/90 shadow-[0_10px_32px_rgba(0,0,0,0.28),inset_0_1px_0_0_rgba(255,255,255,0.05)] hover:border-white/26";
+  return "border-white/[0.14] bg-gradient-to-b from-white/[0.08] via-void/82 to-transparent shadow-[0_10px_32px_rgba(0,0,0,0.28),inset_0_1px_0_0_rgba(255,255,255,0.05)]";
 }
 
 function numStyles(accent: PhaseAccent) {
@@ -80,8 +80,7 @@ function numStyles(accent: PhaseAccent) {
 function PhaseCard({ phase }: { phase: EnginePhase }) {
   return (
     <motion.article
-      className={`border px-3 py-2.5 text-center backdrop-blur-[2px] transition-[border-color,box-shadow,transform] duration-300 sm:px-3.5 sm:py-3 ${panelStyles(phase.accent)}`}
-      whileHover={{ y: -2 }}
+      className={`border px-3 py-2.5 text-center sm:px-3.5 sm:py-3 ${panelStyles(phase.accent)}`}
     >
       <p
         className={`display text-[1.15rem] font-semibold leading-none tabular-nums tracking-[-0.05em] sm:text-[1.35rem] ${numStyles(phase.accent)}`}
@@ -98,16 +97,10 @@ function PhaseCard({ phase }: { phase: EnginePhase }) {
   );
 }
 
-function EngineConnectors({ animate }: { animate: boolean }) {
+function EngineConnectors() {
   const cx = 50;
   const cy = 50;
-  const arcs = Array.from({ length: PHASE_COUNT }, (_, i) => {
-    const startAngle = (i / PHASE_COUNT) * 2 * Math.PI - Math.PI / 2;
-    const endAngle = ((i + 1) / PHASE_COUNT) * 2 * Math.PI - Math.PI / 2;
-    const start = polarPoint(cx, cy, RING_RADIUS, startAngle);
-    const end = polarPoint(cx, cy, RING_RADIUS, endAngle);
-    return `M ${start.x} ${start.y} A ${RING_RADIUS} ${RING_RADIUS} 0 0 1 ${end.x} ${end.y}`;
-  });
+  const connectorR = RING_RADIUS * 0.76;
 
   return (
     <svg
@@ -130,47 +123,34 @@ function EngineConnectors({ animate }: { animate: boolean }) {
           <stop offset="0%" stopColor="rgba(56,189,248,0.18)" />
           <stop offset="100%" stopColor="rgba(56,189,248,0)" />
         </radialGradient>
+        <radialGradient id="engine-node-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(56,189,248,0.26)" />
+          <stop offset="100%" stopColor="rgba(56,189,248,0)" />
+        </radialGradient>
       </defs>
 
       <circle cx={cx} cy={cy} r={22} fill="url(#engine-core-glow)" />
 
-      {arcs.map((d, i) => (
-        <g key={`arc-${i}`}>
-          <motion.path
-            d={d}
-            fill="none"
-            stroke="rgba(56,189,248,0.32)"
-            strokeWidth="0.4"
-            strokeLinecap="round"
-            markerEnd="url(#engine-arrow)"
-            initial={animate ? { pathLength: 0, opacity: 0.3 } : false}
-            whileInView={animate ? { pathLength: 1, opacity: 1 } : undefined}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.7,
-              delay: i * 0.08,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          />
-          {animate ? (
-            <motion.path
-              d={d}
-              fill="none"
-              stroke="rgba(56,189,248,0.45)"
-              strokeWidth="0.22"
+      {Array.from({ length: PHASE_COUNT }, (_, i) => {
+        const angle = (i / PHASE_COUNT) * 2 * Math.PI - Math.PI / 2;
+        const end = polarPoint(cx, cy, connectorR, angle);
+        return (
+          <g key={`connector-${i}`}>
+            <line
+              x1={cx}
+              y1={cy}
+              x2={end.x}
+              y2={end.y}
+              stroke="rgba(56,189,248,0.52)"
+              strokeWidth="0.65"
               strokeLinecap="round"
-              strokeDasharray="1.2 5.2"
-              animate={{ strokeDashoffset: [0, -6.4] }}
-              transition={{
-                duration: 4.2,
-                repeat: Infinity,
-                ease: "linear",
-                delay: i * 0.35,
-              }}
+              markerEnd="url(#engine-arrow)"
             />
-          ) : null}
-        </g>
-      ))}
+            <circle cx={end.x} cy={end.y} r="1.1" fill="rgba(56,189,248,0.6)" />
+            <circle cx={end.x} cy={end.y} r="4.8" fill="url(#engine-node-glow)" />
+          </g>
+        );
+      })}
     </svg>
   );
 }
@@ -181,29 +161,13 @@ export function DexlaEconomicEngine() {
 
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[22rem] sm:max-w-[26rem] lg:max-w-[30rem] xl:max-w-[32rem]">
-      <EngineConnectors animate={animate} />
+      <EngineConnectors />
 
       <motion.div
         className="absolute left-1/2 top-1/2 z-20 w-[38%] max-w-[8.5rem] -translate-x-1/2 -translate-y-1/2 sm:max-w-[9.5rem]"
         initial={animate ? { opacity: 0, scale: 0.92 } : false}
         whileInView={animate ? { opacity: 1, scale: 1 } : undefined}
         viewport={{ once: true }}
-        animate={
-          animate
-            ? {
-                boxShadow: [
-                  "0 0 40px -10px rgba(56,189,248,0.24)",
-                  "0 0 56px -8px rgba(56,189,248,0.4)",
-                  "0 0 40px -10px rgba(56,189,248,0.24)",
-                ],
-              }
-            : undefined
-        }
-        transition={
-          animate
-            ? { duration: 5.2, repeat: Infinity, ease: "easeInOut" }
-            : undefined
-        }
       >
         <div className="relative border border-electric/50 bg-void/96 px-3 py-4 text-center shadow-[inset_0_1px_0_0_rgba(56,189,248,0.18)] sm:px-4 sm:py-5">
           <div

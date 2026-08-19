@@ -65,16 +65,16 @@ function UtilityCard({
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        <div className="flex flex-col items-center gap-1.5 text-center">
+        <div className="flex min-h-[5.5rem] flex-col items-center justify-center gap-1.5 text-center">
           <span className={`${tkArchNum} text-success`}>{item.n}</span>
           <h3 className={tkArchTitle}>{item.title}</h3>
         </div>
 
-        <div className="mt-3 flex min-h-0 flex-1 flex-col items-center justify-start gap-2 text-center">
+        <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 text-center">
           {item.lines.map((line, lineIndex) => (
             <p
               key={`${item.n}-${lineIndex}`}
-              className={`${tkBody} text-balance text-[1.05rem] leading-snug sm:text-[1.1rem]`}
+              className={`${tkBody} text-balance text-pretty text-[1.05rem] leading-snug sm:text-[1.1rem]`}
             >
               {line}
             </p>
@@ -82,7 +82,11 @@ function UtilityCard({
         </div>
 
         <div className={tkArchMetricUtility}>
-          <p className={`${tkArchMetricLabel} text-success`}>{item.metric}</p>
+          <p
+            className={`${tkArchMetricLabel} text-success leading-snug text-balance text-pretty`}
+          >
+            {item.metric}
+          </p>
         </div>
       </motion.article>
     </FadeIn>
@@ -159,7 +163,7 @@ const utilities: ArchCard[] = [
     title: "Monetize",
     lines: [
       "Creators use $DEXLA to list proprietary strategies on the Marketplace.",
-      "Other creators pay to access strategies, while creators earn access fees + 10% of applicable execution fees generated whenever their strategy is used.",
+      "Creators use $DEXLA to publish and monetize proprietary strategies. Earn access fees + 10% of applicable execution fees when your strategy is used.",
     ],
     metric: "500 $DEXLA → List Strategy · Set Access Price",
   },
