@@ -1,8 +1,8 @@
 import { readFileSync } from "fs";
 import { join } from "path";
-import { parseFaqMarkdown, type FaqSection } from "@/lib/faq";
+import { parseFaqMarkdown, type ParsedFaq } from "@/lib/faq";
 
-export function loadFaqSections(): FaqSection[] {
+export function loadFaq(): ParsedFaq {
   const markdown = readFileSync(
     join(process.cwd(), "content", "faq.md"),
     "utf8"

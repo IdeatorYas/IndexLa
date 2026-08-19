@@ -1,14 +1,21 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { FaqAccordionItem } from "@/components/faq/FaqAccordionItem";
-import type { FaqSection } from "@/lib/faq";
+import { FaqDisclaimer } from "@/components/faq/FaqDisclaimer";
+import type { FaqBlock, FaqSection } from "@/lib/faq";
 
-export function FaqSections({ sections }: { sections: FaqSection[] }) {
+export function FaqSections({
+  sections,
+  disclaimer,
+}: {
+  sections: FaqSection[];
+  disclaimer: FaqBlock[];
+}) {
   return (
     <div className="border-t border-line bg-deep pb-20 md:pb-28">
       <div className="section-pad container-max">
         <div className="mx-auto max-w-3xl space-y-12 md:space-y-16">
           {sections.map((section) => {
-            const isSafety = section.id === "safety-risk";
+            const isSafety = section.id.includes("security");
             return (
               <FadeIn key={section.id}>
                 <section id={section.id} className="scroll-mt-28">
@@ -36,6 +43,8 @@ export function FaqSections({ sections }: { sections: FaqSection[] }) {
               </FadeIn>
             );
           })}
+
+          <FaqDisclaimer blocks={disclaimer} />
         </div>
       </div>
     </div>

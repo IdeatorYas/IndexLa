@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FaqAnswer } from "@/components/faq/FaqAnswer";
+import { FaqInline } from "@/components/faq/faqInline";
 import type { FaqItem } from "@/lib/faq";
 
 export function FaqAccordionItem({ item }: { item: FaqItem }) {
@@ -21,7 +22,7 @@ export function FaqAccordionItem({ item }: { item: FaqItem }) {
           className="group flex w-full items-start justify-between gap-4 py-4 text-left sm:py-5"
         >
           <span className="display text-[1.05rem] leading-snug tracking-[-0.02em] text-ink transition-colors group-hover:text-electric sm:text-[1.12rem]">
-            {item.q}
+            <FaqInline text={item.q} />
           </span>
           <span
             className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-electric transition-all duration-300 ${
@@ -55,7 +56,7 @@ export function FaqAccordionItem({ item }: { item: FaqItem }) {
             className="overflow-hidden"
           >
             <div className="pb-5 pr-10 sm:pb-6">
-              <FaqAnswer paragraphs={item.a} />
+              <FaqAnswer blocks={item.a} />
             </div>
           </motion.div>
         ) : null}
