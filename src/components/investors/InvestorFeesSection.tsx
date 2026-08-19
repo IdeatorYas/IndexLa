@@ -16,7 +16,7 @@ export function InvestorFeesSection() {
             Simple, Transparent{" "}
             <span className="gradient-text">Fees.</span>
           </h2>
-          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <div className="mt-8 grid auto-rows-fr gap-3 sm:grid-cols-3">
             {[
               { value: "0%", label: "Management Fees" },
               { value: "0%", label: "Performance Fees" },
@@ -24,7 +24,7 @@ export function InvestorFeesSection() {
             ].map((item) => (
               <div
                 key={item.label}
-                className={`${invPremiumAccent} px-5 py-7 text-center`}
+                className={`${invPremiumAccent} flex h-full min-h-[8.5rem] flex-col items-center justify-center px-5 py-7 text-center`}
               >
                 <p className="display text-[2.2rem] leading-none text-electric sm:text-[2.5rem]">
                   {item.value}

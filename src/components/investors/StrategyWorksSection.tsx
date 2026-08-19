@@ -3,6 +3,9 @@ import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   invBody,
   invBodyStrong,
+  invBoundaryGreen,
+  invBoundaryRed,
+  invBoundaryText,
   invEyebrow,
   invH2,
   invH3,
@@ -29,11 +32,13 @@ const buildSteps = [
   },
 ] as const;
 
-const aiBoundaries = [
+const aiRestrictions = [
   "AI does NOT decide what to buy or sell.",
   "AI does NOT create or change your strategy.",
-  "AI only monitors your conditions and coordinates execution of the rules you approved.",
 ] as const;
+
+const aiPermission =
+  "AI only monitors your conditions and coordinates execution of the rules you approved.";
 
 const executionFlow = [
   "AI MONITORS",
@@ -103,38 +108,45 @@ export function StrategyWorksSection() {
     <section className={`${invSection} bg-deep`}>
       <div className="section-pad container-max">
         {/* 1 — Title + AI-Assisted Strategy Automation */}
-        <FadeIn className="max-w-3xl">
+        <FadeIn>
           <h2 className={`${invH2} uppercase`}>
             See How Your{" "}
             <span className="gradient-text">Strategy Works</span>
           </h2>
-          <p className={`mt-5 ${invH3} uppercase`}>
-            AI-Assisted Strategy Automation
-          </p>
-          <p className={`mt-4 ${invBodyStrong}`}>
-            AI monitors the market. You define the decision. INDEXLA executes
-            your rules.
-          </p>
-          <p className={`mt-4 ${invBody}`}>
-            INDEXLA&apos;s AI continuously monitors the market conditions you
-            choose and checks them against your pre-approved strategy rules.
-            When your conditions are met, it coordinates execution within the
-            permissions and limits you defined.
-          </p>
         </FadeIn>
 
-        <FadeIn className="mt-6" delay={0.03}>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {aiBoundaries.map((line) => (
-              <div
-                key={line}
-                className={`${invPremiumSurface} px-4 py-5 text-center sm:px-5`}
-              >
-                <p className="text-[0.95rem] font-semibold leading-snug text-muted text-pretty">
-                  {line}
-                </p>
+        <FadeIn className="mt-7" delay={0.03}>
+          <div
+            className={`${invPremiumAccent} mx-auto max-w-4xl px-6 py-8 text-center sm:px-10 sm:py-10`}
+          >
+            <p className="display text-[clamp(1.35rem,2.8vw,1.85rem)] font-semibold uppercase tracking-[-0.025em] text-electric text-balance">
+              AI-Assisted Strategy Automation
+            </p>
+            <p className={`mx-auto mt-5 max-w-2xl ${invBodyStrong}`}>
+              AI monitors the market. You define the decision. INDEXLA executes
+              your rules.
+            </p>
+            <p className={`mx-auto mt-4 max-w-2xl ${invBody}`}>
+              INDEXLA&apos;s AI continuously monitors the market conditions you
+              choose and checks them against your pre-approved strategy rules.
+              When your conditions are met, it coordinates execution within the
+              permissions and limits you defined.
+            </p>
+          </div>
+        </FadeIn>
+
+        <FadeIn className="mt-6" delay={0.05}>
+          <div className="mx-auto grid max-w-5xl auto-rows-fr gap-3 sm:grid-cols-2">
+            {aiRestrictions.map((line) => (
+              <div key={line} className={invBoundaryRed}>
+                <p className={invBoundaryText}>{line}</p>
               </div>
             ))}
+          </div>
+          <div className="mx-auto mt-3 flex max-w-5xl justify-center">
+            <div className={`w-full ${invBoundaryGreen}`}>
+              <p className={invBoundaryText}>{aiPermission}</p>
+            </div>
           </div>
         </FadeIn>
 
@@ -169,7 +181,7 @@ export function StrategyWorksSection() {
           {buildSteps.map((step, i) => (
             <FadeIn key={step.n} delay={i * 0.04}>
               <article
-                className={`${invPremiumSurface} flex h-full flex-col p-6 text-center`}
+                className={`${invPremiumSurface} flex h-full min-h-[12.5rem] flex-col p-6 text-center`}
               >
                 <p className="text-[0.7rem] font-semibold tabular-nums tracking-[0.16em] text-electric">
                   {step.n}
@@ -314,7 +326,7 @@ export function StrategyWorksSection() {
           {strategyGroups.map((group, i) => (
             <FadeIn key={group.key} delay={i * 0.04}>
               <article
-                className={`${invPremiumSurface} flex h-full flex-col p-5 text-center sm:p-6`}
+                className={`${invPremiumSurface} flex h-full min-h-[11.5rem] flex-col p-5 text-center sm:p-6`}
               >
                 <h3 className="display text-[1.15rem] tracking-[-0.02em] text-electric uppercase">
                   {group.title}

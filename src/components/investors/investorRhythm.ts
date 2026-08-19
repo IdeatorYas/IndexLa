@@ -32,6 +32,17 @@ export const invPremiumSurface =
 export const invPremiumAccent =
   "rounded-2xl border border-electric/30 bg-electric/[0.08] shadow-[inset_0_1px_0_rgba(59,130,246,0.12),0_14px_36px_rgba(0,0,0,0.18)]";
 
+/** AI boundary — restriction */
+export const invBoundaryRed =
+  "flex h-full min-h-[8.75rem] items-center justify-center rounded-2xl border border-danger/35 bg-danger/[0.07] px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(248,113,113,0.14),0_16px_40px_rgba(0,0,0,0.2)] sm:px-6 sm:py-7";
+
+/** AI boundary — permitted role */
+export const invBoundaryGreen =
+  "flex h-full min-h-[8.75rem] items-center justify-center rounded-2xl border border-success/40 bg-success/[0.08] px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(52,211,153,0.16),0_16px_40px_rgba(0,0,0,0.2)] sm:px-7 sm:py-7";
+
+export const invBoundaryText =
+  "text-[1.15rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-pretty text-balance sm:text-[1.28rem]";
+
 /** Investors H1 — match homepage hero scale */
 export const invH1 =
   "display text-[clamp(2.25rem,6.5vw,4.5rem)] font-semibold tracking-[-0.035em] text-balance text-pretty";

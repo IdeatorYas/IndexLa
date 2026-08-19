@@ -34,13 +34,13 @@ export function OwnershipSection() {
         </FadeIn>
 
         <FadeIn className="mt-10">
-          <div className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-3">
+          <div className="mx-auto grid max-w-3xl auto-rows-fr gap-3 sm:grid-cols-3">
             {pillars.map((label) => (
               <div
                 key={label}
-                className={`${invPremiumAccent} px-5 py-8 text-center`}
+                className={`${invPremiumAccent} flex h-full min-h-[7.25rem] items-center justify-center px-5 py-8 text-center`}
               >
-                <p className="display text-[1.05rem] tracking-[-0.02em] text-electric capitalize sm:text-[1.15rem]">
+                <p className="display text-[1.05rem] tracking-[-0.02em] text-electric sm:text-[1.15rem]">
                   {label}
                 </p>
               </div>

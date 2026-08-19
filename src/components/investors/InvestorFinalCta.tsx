@@ -32,7 +32,10 @@ export function InvestorFinalCta() {
           <p className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-muted-dim">
             Early Access
           </p>
-          <h2 className={`mt-3 ${invH2} uppercase`}>Reserve Early Access</h2>
+          <h2 className={`mt-3 ${invH2} uppercase`}>
+            Reserve{" "}
+            <span className="gradient-text">Early Access</span>
+          </h2>
           <p className={`mx-auto mt-5 max-w-md ${invBody} text-balance`}>
             Early users who secure access will be eligible for exclusive launch
             rewards and early-user benefits.

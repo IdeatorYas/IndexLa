@@ -8,7 +8,7 @@ import { LOGO_TRANSPARENT } from "@/lib/site";
 
 export function InvestorOneActionSection() {
   return (
-    <section className={`${invSection} bg-deep`}>
+    <section className={`${invSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-4xl">
           <div
