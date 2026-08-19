@@ -45,7 +45,7 @@ export function SecurityControlSection() {
 
         <FadeIn className="mt-9 text-center">
           <HomeReadMore
-            href="/whitepaper/14-security-architecture"
+            href="/whitepaper/15-security-privacy-mev-protection"
             label="Security & Permissions →"
           />
         </FadeIn>

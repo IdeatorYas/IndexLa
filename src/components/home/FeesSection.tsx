@@ -59,7 +59,7 @@ export function FeesSection() {
         <div className="mt-8 grid auto-rows-fr gap-4 md:grid-cols-2">
           {businessBoxes.map((item, i) => (
             <FadeIn key={item.title} delay={i * 0.05} className="h-full">
-              <article className="flex h-full flex-col items-center rounded-2xl border border-electric/30 bg-electric/[0.06] px-6 py-8 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:px-8">
+              <article className="flex h-full min-h-[20rem] flex-col items-center rounded-2xl border border-electric/30 bg-electric/[0.06] px-6 py-8 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:px-8">
                 <h3 className="display text-[clamp(1.25rem,2.4vw,1.65rem)] tracking-[-0.025em] text-electric text-balance text-pretty">
                   {item.title}
                 </h3>
@@ -76,7 +76,7 @@ export function FeesSection() {
 
         <FadeIn className="mt-8 text-center">
           <HomeReadMore
-            href="/whitepaper/9-business-model"
+            href="/whitepaper/10-business-model"
             label="Read the Business Model →"
           />
         </FadeIn>
