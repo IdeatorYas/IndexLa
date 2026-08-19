@@ -3,7 +3,6 @@ import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeH2,
-  homeMeasureTight,
   homeSection,
   homeSolution,
 } from "@/components/home/homeRhythm";
@@ -46,7 +45,7 @@ export function FeesSection() {
             {feeHighlights.map((label) => (
               <div
                 key={label}
-                className="flex min-h-[4.25rem] items-center justify-center rounded-xl border border-electric/25 bg-void/50 px-3 py-3 text-center"
+                className="flex min-h-[3.75rem] items-center justify-center rounded-xl border border-electric/25 bg-void/50 px-3 py-2.5 text-center"
               >
                 <p className="text-[0.88rem] font-semibold leading-snug tracking-[-0.01em] text-ink sm:text-[0.95rem]">
                   {label}
@@ -56,17 +55,21 @@ export function FeesSection() {
           </div>
         </FadeIn>
 
-        <div className="mt-8 grid auto-rows-fr gap-4 md:grid-cols-2">
+        <div className="mx-auto mt-6 grid max-w-4xl auto-rows-fr gap-4 md:grid-cols-2">
           {businessBoxes.map((item, i) => (
             <FadeIn key={item.title} delay={i * 0.05} className="h-full">
-              <article className="flex h-full min-h-[20rem] flex-col items-center rounded-2xl border border-electric/30 bg-electric/[0.06] px-6 py-8 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:px-8">
-                <h3 className="display text-[clamp(1.25rem,2.4vw,1.65rem)] tracking-[-0.025em] text-electric text-balance text-pretty">
+              <article className="flex h-full flex-col items-center justify-center rounded-2xl border border-electric/30 bg-electric/[0.06] px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:px-7 sm:py-7">
+                <h3 className="display text-[1.18rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.28rem]">
                   {item.title}
                 </h3>
-                <p className={`mt-4 flex-1 ${homeMeasureTight} ${homeBody}`}>
+                <p
+                  className={`mt-2.5 max-w-[20rem] ${homeBody} text-[1rem] leading-snug sm:text-[1.05rem]`}
+                >
                   {item.body}
                 </p>
-                <p className={`mt-auto pt-5 ${homeMeasureTight} ${homeSolution}`}>
+                <p
+                  className={`mt-4 ${homeSolution} text-[1.05rem] sm:text-[1.1rem]`}
+                >
                   {item.highlight}
                 </p>
               </article>
