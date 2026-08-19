@@ -79,6 +79,9 @@ export function DegenDiscoverSection({ section }: { section: DegenSection }) {
                   </div>
                   <div className="mt-auto pt-4">
                     <AllocationBar items={EXAMPLE_ALLOCATIONS.slice(0, 4)} />
+                    <p className="mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-electric">
+                      Rules active
+                    </p>
                   </div>
                 </article>
               ))}

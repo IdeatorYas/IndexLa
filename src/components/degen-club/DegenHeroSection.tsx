@@ -42,24 +42,40 @@ function HeroPortfolioVisual() {
           <p className="mt-1 display text-[1rem] tracking-[-0.02em] text-ink">
             DEGEN CLUB Index
           </p>
-          <div className="relative mt-4 flex flex-wrap justify-center gap-2">
-            {MEME_COINS.slice(0, 7).map((coin, i) => (
+          <div className="relative mt-4 h-28 sm:h-32">
+            <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-electric/20 bg-electric/5" />
+            {MEME_COINS.slice(0, 6).map((coin, i) => (
               <motion.div
                 key={coin.ticker}
-                className="flex h-9 w-9 items-center justify-center rounded-full border text-[0.55rem] font-bold"
+                className="absolute left-1/2 top-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border text-[0.5rem] font-bold"
                 style={{
                   borderColor: `${coin.color}55`,
                   background: `${coin.color}18`,
                 }}
-                initial={reduce ? false : { opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.15 + i * 0.06 }}
+                animate={
+                  reduce
+                    ? undefined
+                    : {
+                        rotate: 360,
+                      }
+                }
+                transition={{
+                  duration: 18 + i * 2,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
               >
-                {coin.ticker.slice(0, 3)}
+                <div
+                  style={{
+                    transform: `translateX(${36 + i * 6}px)`,
+                  }}
+                >
+                  {coin.ticker.slice(0, 3)}
+                </div>
               </motion.div>
             ))}
           </div>
-          <div className="mt-4">
+          <div className="mt-2 flex flex-wrap justify-center gap-2">
             <AllocationBar
               items={[
                 { ticker: "PEPE", pct: 22 },
