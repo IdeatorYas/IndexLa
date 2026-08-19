@@ -6,28 +6,23 @@
 
 Everyone wants the next 100x.
 
-You find the coin.  
-The community is exploding.  
-Volume is flying.  
-Everyone is talking about it.  
-You buy.  
-Then it dies.  
-Capital gone. Back to zero.
+You find the coin.
+You buy.
+It dies.
 
-DEGEN CLUB turns one-shot memecoin bets into rules-based portfolios.
+**Capital gone. Back to zero.**
 
-Build a basket. Define the rules. Automate the execution.
+DEGEN CLUB turns one-shot memecoin bets into **rules-based portfolios.**
 
-One coin = one shot.  
-A portfolio = multiple shots.
+**Build the basket. Define the rules. Automate the execution.**
+
+**One coin. One shot.**
+
+**A portfolio. Multiple shots.**
 
 Reserve Early Access →
 
-
-
 ---
-
-
 
 # Build The Basket. Own The Thesis.
 
@@ -46,11 +41,7 @@ Non-custodial ownership.
 
 Reserve Early Access →
 
-
-
 ---
-
-
 
 # Creators: Turn Your Memecoin Thesis Into A Product.
 
@@ -85,11 +76,7 @@ It's owning the basket.
 
 Reserve Early Access →
 
-
-
 ---
-
-
 
 # Discover Or Build.
 
@@ -107,11 +94,7 @@ Choose your memecoins, define allocations, set your rules, and automate the port
 
 Build Your Portfolio →
 
-
-
 ---
-
-
 
 # 10 Shots > 1 Shot
 
@@ -128,11 +111,7 @@ One coin can go 100x.
 
 A degen portfolio gives you exposure to both.
 
-
-
 ---
-
-
 
 # Play It Like A System.
 
@@ -164,11 +143,7 @@ Move out of fading positions and make room for new opportunities.
 
 Keep your portfolio active instead of starting from zero every cycle.
 
-
-
 ---
-
-
 
 # Define Your Trading Rules.
 
@@ -198,11 +173,7 @@ Combine your own TP, SL, rotation and allocation rules.
 
 You define the rules. INDEXLA executes them.
 
-
-
 ---
-
-
 
 # Don't Become A Bagholder.
 
@@ -219,11 +190,7 @@ No emotional decisions.
 
 Don't let greed turn a win into a bag.
 
-
-
 ---
-
-
 
 # Automated. Private. MEV-Protected.
 
@@ -239,11 +206,7 @@ MEV-protected execution helps reduce adverse execution and front-running.
 
 You define the strategy. INDEXLA handles the execution.
 
-
-
 ---
-
-
 
 # Full Exit. One Click.
 
@@ -259,11 +222,7 @@ One action.
 
 Entire portfolio.
 
-
-
 ---
-
-
 
 # DEGEN CLUB
 
@@ -282,11 +241,7 @@ High risk · High volatility · Rules-based · On-chain · Non-custodial
 
 Reserve Early Access →
 
-
-
 ---
-
-
 
 ## Important Risk Disclaimer
 
@@ -307,5 +262,3 @@ Automation, diversification, rebalancing, and risk-management rules do not elimi
 Only invest what you can afford to lose.
 
 The 100x is possible. So is zero.
-
-  
