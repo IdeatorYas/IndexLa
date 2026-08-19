@@ -24,8 +24,8 @@ export function FaqHero() {
             FAQ
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-[0.98rem] leading-relaxed text-muted sm:text-[1.02rem]">
-            Search or browse by category to find answers about INDEXLA, fees,
-            $DEXLA, creators, security, and cross-chain execution.
+            Search or browse by category across Product, Creators, Investors,
+            $DEXLA + Tokenomics, and Security + Regulations.
           </p>
         </motion.div>
       </div>
