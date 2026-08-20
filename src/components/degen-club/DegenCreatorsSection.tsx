@@ -164,7 +164,7 @@ function CreatorsVisual() {
   );
 }
 
-function ThesisLine({ text }: { text: string }) {
+function ThesisBoxes({ text }: { text: string }) {
   const parts = text
     .split(/\n+/)
     .map((p) => p.trim())
@@ -172,21 +172,25 @@ function ThesisLine({ text }: { text: string }) {
 
   if (parts.length <= 1) {
     return (
-      <p className="display text-[clamp(0.95rem,1.8vw,1.2rem)] font-semibold leading-snug tracking-[-0.02em] text-ink text-balance">
+      <p className="display text-[clamp(0.95rem,1.8vw,1.2rem)] font-semibold leading-snug tracking-[-0.02em] text-electric text-balance">
         {renderBold(text)}
       </p>
     );
   }
 
   return (
-    <p className="display text-[clamp(0.88rem,1.7vw,1.15rem)] font-semibold leading-snug tracking-[-0.02em] text-ink">
-      {parts.map((part, i) => (
-        <span key={part}>
-          {i > 0 ? <span className="mx-1 text-muted-dim sm:mx-1.5">·</span> : null}
-          {part}
-        </span>
+    <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4 sm:gap-2">
+      {parts.map((part) => (
+        <div
+          key={part}
+          className="rounded-lg border border-electric/30 bg-electric/[0.06] px-2 py-2 text-center sm:px-2.5 sm:py-2.5"
+        >
+          <p className="display text-[0.82rem] font-semibold leading-snug tracking-[-0.02em] text-electric sm:text-[0.9rem]">
+            {part}
+          </p>
+        </div>
       ))}
-    </p>
+    </div>
   );
 }
 
@@ -221,7 +225,7 @@ function CreatorsClosing({ blocks }: { blocks: DegenBlock[] }) {
         }
 
         if (block.type === "p" && block.text.includes("Your thesis")) {
-          return <ThesisLine key={i} text={block.text} />;
+          return <ThesisBoxes key={i} text={block.text} />;
         }
 
         if (
