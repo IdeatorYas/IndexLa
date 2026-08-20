@@ -210,11 +210,15 @@ export function MemeCoinBadge({
 
 export function ChainPills({ compact }: { compact?: boolean }) {
   return (
-    <div className={`flex flex-wrap gap-2 ${compact ? "justify-center" : ""}`}>
+    <div className={`flex flex-wrap gap-1.5 ${compact ? "justify-center sm:justify-start" : "gap-2"}`}>
       {CHAINS.map((chain) => (
         <span
           key={chain}
-          className="rounded-full border border-line bg-void/50 px-3.5 py-1.5 text-[0.82rem] font-semibold uppercase tracking-[0.08em] text-muted sm:text-[0.88rem]"
+          className={`rounded-full border border-line bg-void/50 font-semibold uppercase tracking-[0.08em] text-muted ${
+            compact
+              ? "px-2.5 py-1 text-[0.72rem] sm:text-[0.78rem]"
+              : "px-3.5 py-1.5 text-[0.82rem] sm:text-[0.88rem]"
+          }`}
         >
           {chain}
         </span>
@@ -282,37 +286,53 @@ export function DegenCopy({
 export function TerminalShell({
   title,
   children,
+  compact = false,
 }: {
   title: string;
   children: React.ReactNode;
+  compact?: boolean;
 }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-deep/75 shadow-[0_24px_80px_rgba(0,0,0,0.4)]">
-      <div className="flex items-center justify-between border-b border-white/[0.06] bg-void/70 px-4 py-2.5">
+      <div
+        className={`flex items-center justify-between border-b border-white/[0.06] bg-void/70 px-3 ${
+          compact ? "py-2" : "px-4 py-2.5"
+        }`}
+      >
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-danger/80" />
           <span className="h-2 w-2 rounded-full bg-amber-400/80" />
           <span className="h-2 w-2 rounded-full bg-success/80" />
         </div>
-        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+        <p
+          className={`font-semibold uppercase tracking-[0.14em] text-muted-dim ${
+            compact ? "text-[0.65rem]" : "text-[0.72rem]"
+          }`}
+        >
           {title}
         </p>
       </div>
-      <div className="p-4 sm:p-5">{children}</div>
+      <div className={compact ? "p-3 sm:p-3.5" : "p-4 sm:p-5"}>{children}</div>
     </div>
   );
 }
 
 export function AllocationBar({
   items,
+  compact = false,
 }: {
   items: readonly { ticker: string; pct: number }[];
+  compact?: boolean;
 }) {
   const colors = MEME_COIN_COLORS as Record<string, string>;
 
   return (
     <div>
-      <div className="flex h-3 overflow-hidden rounded-full border border-line">
+      <div
+        className={`flex overflow-hidden rounded-full border border-line ${
+          compact ? "h-2" : "h-3"
+        }`}
+      >
         {items.map((item) => (
           <div
             key={item.ticker}
@@ -324,17 +344,33 @@ export function AllocationBar({
           />
         ))}
       </div>
-      <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+      <ul
+        className={`grid sm:grid-cols-2 ${
+          compact ? "mt-2 gap-1" : "mt-3 gap-2"
+        }`}
+      >
         {items.map((item) => (
           <li
             key={item.ticker}
-            className="flex items-center justify-between rounded-lg border border-line/80 bg-void/40 px-3 py-2.5"
+            className={`flex items-center justify-between rounded-lg border border-line/80 bg-void/40 ${
+              compact ? "px-2 py-1.5" : "px-3 py-2.5"
+            }`}
           >
-            <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold text-ink sm:text-[1rem]">
-              <MemeCoinLogo ticker={item.ticker} size="sm" />
+            <span
+              className={`flex items-center gap-2 font-semibold text-ink ${
+                compact
+                  ? "gap-1.5 text-[0.82rem] sm:text-[0.88rem]"
+                  : "gap-2.5 text-[0.95rem] sm:text-[1rem]"
+              }`}
+            >
+              <MemeCoinLogo ticker={item.ticker} size={compact ? "xs" : "sm"} />
               {item.ticker}
             </span>
-            <span className="tabular-nums text-[0.95rem] font-semibold text-electric sm:text-[1rem]">
+            <span
+              className={`tabular-nums font-semibold text-electric ${
+                compact ? "text-[0.82rem] sm:text-[0.88rem]" : "text-[0.95rem] sm:text-[1rem]"
+              }`}
+            >
               {item.pct}%
             </span>
           </li>
