@@ -8,15 +8,15 @@ import {
 } from "@/components/tokenomics/tokenomicsRhythm";
 
 const allocations = [
-  { label: "Pre-Seed Round", pct: 1.5, tokens: "1.5M", color: "#7c3aed" },
-  { label: "Seed Round", pct: 6, tokens: "6M", color: "#8b5cf6" },
-  { label: "Private Sale", pct: 10, tokens: "10M", color: "#a78bfa" },
-  { label: "Public Sale", pct: 20, tokens: "20M", color: "#38bdf8" },
-  { label: "DEX Liquidity", pct: 10, tokens: "10M", color: "#22d3ee" },
-  { label: "Treasury", pct: 20, tokens: "20M", color: "#34d399" },
+  { label: "Pre-Seed", pct: 2.5, tokens: "2.5M", color: "#7c3aed" },
+  { label: "Seed", pct: 6, tokens: "6M", color: "#8b5cf6" },
+  { label: "Private", pct: 14, tokens: "14M", color: "#a78bfa" },
+  { label: "Public", pct: 20, tokens: "20M", color: "#38bdf8" },
+  { label: "Community & Airdrops", pct: 15, tokens: "15M", color: "#fb923c" },
   { label: "Team", pct: 15, tokens: "15M", color: "#fbbf24" },
-  { label: "Community Airdrops", pct: 10, tokens: "10M", color: "#fb923c" },
-  { label: "CEX Listings & Market Making", pct: 5, tokens: "5M", color: "#f87171" },
+  { label: "Treasury (36-month lock)", pct: 10, tokens: "10M", color: "#34d399" },
+  { label: "DEX Liquidity", pct: 10, tokens: "10M", color: "#22d3ee" },
+  { label: "CEX Listings", pct: 5, tokens: "5M", color: "#f87171" },
   { label: "Advisors", pct: 2.5, tokens: "2.5M", color: "#e879f9" },
 ] as const;
 
