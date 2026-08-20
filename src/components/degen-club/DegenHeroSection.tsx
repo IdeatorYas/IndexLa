@@ -316,7 +316,9 @@ export function DegenHeroSection({ section }: { section: DegenSection }) {
                 <DegenAccentHeadline text={h3.text} as="h3" className="mt-1" />
               ) : null}
             </div>
-            <HeroShotVisual />
+            <div className="origin-top scale-[0.98] sm:scale-[0.96] lg:scale-[0.86] xl:scale-[0.9] 2xl:scale-[0.94] lg:-mb-14 xl:-mb-10 2xl:-mb-5">
+              <HeroShotVisual />
+            </div>
           </motion.div>
         </div>
       </div>
