@@ -20,8 +20,8 @@ import {
 import type { DegenBlock, DegenSection } from "@/lib/degen-club";
 
 const VISUAL_TAGLINES = {
-  oneCoin: "One coin. One shot.",
-  portfolio: "A portfolio. Multiple shots.",
+  oneCoin: "One Coin. One Shot.",
+  portfolio: "Portfolio. Multiple Shots.",
 } as const;
 
 function renderBold(text: string) {
@@ -40,8 +40,10 @@ function renderBold(text: string) {
 
 function HeroBodyCopy({ blocks }: { blocks: DegenBlock[] }) {
   const skipTexts = new Set([
-    VISUAL_TAGLINES.oneCoin.replace(/\*\*/g, ""),
-    VISUAL_TAGLINES.portfolio.replace(/\*\*/g, ""),
+    VISUAL_TAGLINES.oneCoin,
+    VISUAL_TAGLINES.portfolio,
+    "One coin. One shot.",
+    "A portfolio. Multiple shots.",
     "**One coin. One shot.**",
     "**A portfolio. Multiple shots.**",
   ]);
@@ -56,7 +58,7 @@ function HeroBodyCopy({ blocks }: { blocks: DegenBlock[] }) {
   });
 
   return (
-    <div className="space-y-3.5 sm:space-y-4">
+    <div className="space-y-3 sm:space-y-3.5">
       {filtered.map((block, i) =>
         block.type === "p" ? (
           <p key={i} className={`whitespace-pre-line ${dcBody}`}>
@@ -77,7 +79,7 @@ function TargetReticle({
   color: string;
   size?: "lg" | "sm";
 }) {
-  const dim = size === "lg" ? 148 : 64;
+  const dim = size === "lg" ? 118 : 54;
   return (
     <svg
       width={dim}
@@ -135,7 +137,7 @@ function TargetingDevice() {
   return (
     <svg
       viewBox="0 0 200 80"
-      className="mx-auto w-[min(100%,12rem)] text-electric/80 sm:w-[14rem]"
+      className="mx-auto w-[min(100%,10.5rem)] text-electric/80 sm:w-[11.5rem]"
       aria-hidden
     >
       <defs>
@@ -182,37 +184,39 @@ function HeroShotVisual() {
   const revealDelay = reduce ? 0 : 1.2;
 
   return (
-    <div className="relative w-full">
+    <div className="relative mx-auto w-full max-w-[min(100%,22rem)] lg:max-w-none">
       <div
-        className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.12),transparent_68%)] sm:-inset-6"
+        className="pointer-events-none absolute -inset-3 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.12),transparent_68%)] sm:-inset-4"
         aria-hidden
       />
 
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-deep/85 shadow-[0_32px_100px_rgba(0,0,0,0.45)] backdrop-blur-sm">
-        <div className="border-b border-white/[0.06] px-4 py-4 sm:px-5 sm:py-5">
-          <HeroShotStatement lead="One coin." accent="One shot." className="text-center" />
-        </div>
+      <HeroShotStatement
+        lead="One Coin."
+        accent="One Shot."
+        className="text-center text-[clamp(1.35rem,2.8vw,1.85rem)]"
+      />
 
-        <div className="grid grid-cols-1 sm:grid-cols-[1fr_1.2fr]">
-          <div className="relative flex flex-col items-center justify-center border-b border-white/[0.06] px-4 py-5 sm:border-b-0 sm:border-r sm:py-6">
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-amber-400/95">
+      <div className="relative mt-2.5 overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-deep/85 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm sm:mt-3 sm:rounded-[1.65rem]">
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_1.15fr]">
+          <div className="relative flex flex-col items-center justify-center border-b border-white/[0.06] px-3 py-3.5 sm:border-b-0 sm:border-r sm:px-4 sm:py-4">
+            <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-amber-400/95 sm:text-[0.68rem]">
               1 Shot
             </p>
-            <div className="relative mt-3 flex h-[8.5rem] w-full items-center justify-center sm:h-[9.5rem]">
+            <div className="relative mt-2 flex h-[6.5rem] w-full items-center justify-center sm:h-[7rem]">
               <TargetReticle active color={singleColor} size="lg" />
               <motion.div
                 className="relative z-10"
                 animate={reduce ? undefined : { scale: [1, 1.05, 1] }}
                 transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
               >
-                <MemeCoinLogo ticker={HERO_SINGLE_COIN} size="xl" />
+                <MemeCoinLogo ticker={HERO_SINGLE_COIN} size="lg" className="!h-[3.75rem] !w-[3.75rem] sm:!h-16 sm:!w-16" />
               </motion.div>
             </div>
           </div>
 
-          <div className="relative flex flex-col items-center justify-center px-4 py-5 sm:py-6">
+          <div className="relative flex flex-col items-center justify-center px-3 py-3.5 sm:px-4 sm:py-4">
             <motion.p
-              className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-electric"
+              className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-electric sm:text-[0.68rem]"
               initial={reduce ? false : { opacity: 0.35 }}
               animate={{ opacity: 1 }}
               transition={{ delay: revealDelay, duration: 0.5 }}
@@ -220,7 +224,7 @@ function HeroShotVisual() {
               10 Shots
             </motion.p>
             <motion.div
-              className="relative mt-3 grid w-full max-w-[15rem] grid-cols-3 gap-2.5 sm:max-w-[16rem] sm:gap-3"
+              className="relative mt-2 grid w-full max-w-[12.5rem] grid-cols-3 gap-1.5 sm:max-w-[13.25rem] sm:gap-2"
               initial={reduce ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: revealDelay, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
@@ -235,10 +239,10 @@ function HeroShotVisual() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: revealDelay + 0.06 * i, duration: 0.4 }}
                   >
-                    <div className="relative flex h-14 w-full items-center justify-center sm:h-16">
+                    <div className="relative flex h-11 w-full items-center justify-center sm:h-12">
                       <TargetReticle active={false} color={color} size="sm" />
                       <div className="relative z-10">
-                        <MemeCoinLogo ticker={ticker} size="sm" />
+                        <MemeCoinLogo ticker={ticker} size="sm" className="!h-8 !w-8 sm:!h-[2.125rem] sm:!w-[2.125rem]" />
                       </div>
                     </div>
                   </motion.div>
@@ -248,16 +252,20 @@ function HeroShotVisual() {
           </div>
         </div>
 
-        <div className="border-t border-white/[0.06] bg-void/50 px-4 py-3">
+        <div className="border-t border-white/[0.06] bg-void/50 px-3 py-2 sm:px-4 sm:py-2.5">
           <TargetingDevice />
         </div>
       </div>
 
-      <div className="mt-4 sm:mt-5">
-        <HeroShotStatement lead="A portfolio." accent="Multiple shots." className="text-center" />
+      <div className="mt-2.5 sm:mt-3">
+        <HeroShotStatement
+          lead="Portfolio."
+          accent="Multiple Shots."
+          className="text-center text-[clamp(1.35rem,2.8vw,1.85rem)]"
+        />
       </div>
 
-      <p className={`mt-3 text-center ${dcDisclaimer}`}>
+      <p className={`mt-2 text-center ${dcDisclaimer}`}>
         Visual representation only. Logos do not imply endorsement.
       </p>
     </div>
@@ -279,46 +287,55 @@ export function DegenHeroSection({ section }: { section: DegenSection }) {
       />
       <div className="pointer-events-none absolute inset-0 hero-glow opacity-50" aria-hidden />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-void to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-void to-transparent"
         aria-hidden
       />
 
-      <div className="section-pad container-max relative z-10 flex min-h-[100svh] flex-col justify-center pb-8 pt-[5.5rem] lg:pb-10 lg:pt-[5.75rem] xl:pt-24">
-        <div className="grid items-start gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10 xl:gap-12">
+      <div className="section-pad container-max relative z-10 flex min-h-[100svh] items-center py-6 pt-[5.25rem] pb-6 lg:py-8 lg:pt-[5.5rem] lg:pb-8">
+        <div className="grid w-full items-center gap-6 sm:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)_minmax(0,1fr)] lg:gap-6 xl:gap-8">
           <motion.div
-            className="order-2 lg:order-1"
+            className="order-3 flex flex-col justify-center lg:order-1 lg:pr-2 xl:pr-4"
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className={dcEyebrow}>DEGEN CLUB</p>
-            <div className="mt-4 lg:mt-5">
+            <div className="mt-3 lg:mt-4">
               <HeroBodyCopy blocks={bodyBlocks} />
             </div>
             {cta?.type === "cta" ? (
-              <div className="mt-6 lg:mt-7">
+              <div className="mt-5 lg:mt-6">
                 <DegenCta label={cta.text} />
               </div>
             ) : null}
           </motion.div>
 
           <motion.div
-            className="order-1 lg:order-2"
+            className="order-1 flex flex-col items-center justify-center px-1 text-center lg:order-2 lg:px-3"
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.04 }}
+          >
+            {h2?.type === "h2" ? (
+              <DegenAccentHeadline text={h2.text} as="h1" align="center" />
+            ) : null}
+            {h3?.type === "h3" ? (
+              <DegenAccentHeadline
+                text={h3.text}
+                as="h3"
+                align="center"
+                className="mt-2 sm:mt-3"
+              />
+            ) : null}
+          </motion.div>
+
+          <motion.div
+            className="order-2 flex flex-col justify-center lg:order-3 lg:pl-1 xl:pl-2"
             initial={reduce ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.08 }}
           >
-            <div className="mb-4 space-y-2 sm:mb-5 sm:space-y-3 lg:mb-6">
-              {h2?.type === "h2" ? (
-                <DegenAccentHeadline text={h2.text} as="h1" />
-              ) : null}
-              {h3?.type === "h3" ? (
-                <DegenAccentHeadline text={h3.text} as="h3" className="mt-1" />
-              ) : null}
-            </div>
-            <div className="origin-top scale-[0.98] sm:scale-[0.96] lg:scale-[0.86] xl:scale-[0.9] 2xl:scale-[0.94] lg:-mb-14 xl:-mb-10 2xl:-mb-5">
-              <HeroShotVisual />
-            </div>
+            <HeroShotVisual />
           </motion.div>
         </div>
       </div>
