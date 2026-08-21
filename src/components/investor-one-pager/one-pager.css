@@ -46,8 +46,8 @@ body:has(#investor-one-pager-root) {
   display: flex;
   height: 100%;
   flex-direction: column;
-  padding: 0.26in 0.34in 0.22in;
-  gap: 0.1rem;
+  padding: 0.24in 0.34in 0.2in;
+  gap: 0.08rem;
 }
 
 .op-blue {
@@ -81,13 +81,13 @@ body:has(#investor-one-pager-root) {
   border: 1px solid rgba(2, 132, 199, 0.28);
   border-radius: 8px;
   background: linear-gradient(180deg, rgba(2, 132, 199, 0.1), rgba(255, 255, 255, 0.95));
-  padding: 0.45rem 1rem;
+  padding: 0.35rem 0.9rem;
   text-align: center;
 }
 
 .op-brand-name {
   font-family: var(--font-display);
-  font-size: 18pt;
+  font-size: 16pt;
   font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1;
@@ -97,13 +97,13 @@ body:has(#investor-one-pager-root) {
 
 .op-brand-sub {
   font-family: var(--font-display);
-  font-size: 8.5pt;
+  font-size: 8pt;
   font-weight: 700;
   letter-spacing: 0.12em;
   line-height: 1.15;
   text-transform: uppercase;
   color: #0f172a;
-  margin: 0.35rem 0 0;
+  margin: 0.28rem 0 0;
 }
 
 .op-card {
