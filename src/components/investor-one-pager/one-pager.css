@@ -64,7 +64,7 @@ body:has(#investor-one-pager-root) {
 
 .op-logo {
   display: block;
-  height: 52px;
+  height: 54px;
   width: auto;
   object-fit: contain;
   object-position: left center;
