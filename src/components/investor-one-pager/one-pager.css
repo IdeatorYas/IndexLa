@@ -64,21 +64,25 @@ body:has(#investor-one-pager-root) {
 
 .op-logo {
   display: block;
-  height: 58px;
+  height: 64px;
   width: auto;
-  max-width: 120px;
+  max-width: 72px;
   object-fit: contain;
   object-position: left center;
   image-rendering: auto;
   flex-shrink: 0;
-  overflow: visible;
 }
 
 .op-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.55rem 0.7rem;
+  min-height: 78px;
+  padding: 0.5rem 0.75rem;
+  overflow: visible;
+}
+
+.op-card.op-header {
   overflow: visible;
 }
 
