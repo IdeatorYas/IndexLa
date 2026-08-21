@@ -7,10 +7,10 @@ import {
   type OnePagerSection,
 } from "@/lib/investorOnePagerContent";
 
-/** Full print-optimized transparent logo (no crop). */
-const LOGO = "/logo/indexla-logo-onepager.png";
-const LOGO_W = 3000;
-const LOGO_H = 2748;
+/** Full transparent INDEXLA logo — no crop / no bake clipping. */
+const LOGO = "/logo/indexla-logo-transparent.png";
+const LOGO_W = 1003;
+const LOGO_H = 917;
 
 function stripMd(line: string): string {
   return line
