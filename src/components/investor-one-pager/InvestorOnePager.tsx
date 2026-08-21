@@ -414,15 +414,16 @@ export function InvestorOnePager() {
           <div className="op-inner">
             {/* Header */}
             <header className="op-card op-header">
-              {/* Native img avoids Next/Image wrapper clipping the stacked mark */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={LOGO}
-                alt="INDEXLA"
-                width={LOGO_W}
-                height={LOGO_H}
-                className="op-logo"
-              />
+              <div className="op-logo-slot">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={LOGO}
+                  alt="INDEXLA"
+                  width={LOGO_W}
+                  height={LOGO_H}
+                  className="op-logo"
+                />
+              </div>
               <div className="op-brand-box">
                 <p className="op-brand-name">INDEXLA</p>
                 <p className="op-brand-sub">Decentralized Portfolio Management</p>

@@ -62,26 +62,33 @@ body:has(#investor-one-pager-root) {
   color: #64748b;
 }
 
+.op-logo-slot {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 70px;
+  height: 70px;
+  padding: 3px;
+  overflow: visible;
+}
+
 .op-logo {
   display: block;
-  height: 64px;
-  width: auto;
-  max-width: 72px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: center center;
   image-rendering: auto;
-  flex-shrink: 0;
-  /* Mild contrast only — do not crop or mask */
-  filter: contrast(1.2) saturate(1.25) brightness(0.92);
 }
 
 .op-header {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  min-height: 84px;
-  /* Safe inset from page edges (page pad + header pad) */
-  padding: 0.55rem 0.85rem 0.55rem 0.7rem;
+  min-height: 80px;
+  padding: 0.4rem 0.85rem 0.4rem 0.6rem;
   overflow: visible;
 }
 
