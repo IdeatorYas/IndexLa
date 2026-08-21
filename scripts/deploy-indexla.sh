@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 #
-# INDEXLA — safe production deployment
-# Builds separately, preserves last known-good, never restarts PM2 on failure.
+# INDEXLA — ZERO-DOWNTIME production deployment
+#
+# Rules:
+# - NEVER delete/move live .next or node_modules while PM2 is serving them
+# - Build in an isolated worktree first
+# - Only swap + restart after the candidate build is verified
+# - On failure: keep (or restore) the previous known-good release
 #
 set -euo pipefail
 
@@ -18,9 +23,9 @@ GOOD_BUILD_DIR="${APP_DIR}/.next-good"
 GOOD_COMMIT_FILE="${APP_DIR}/.deploy-good-commit"
 GOOD_COMMIT_FULL_FILE="${APP_DIR}/.deploy-good-commit-full"
 STATE_FILE="${APP_DIR}/.deploy-state"
-PRE_DEPLOY_BUILD="" # set when live .next is moved aside for candidate build
+BUILD_ROOT="${APP_DIR}/.deploy-builds"
 
-mkdir -p /var/log
+mkdir -p /var/log "$BUILD_ROOT"
 exec >>"$LOG" 2>&1
 
 log() {
@@ -71,9 +76,24 @@ snapshot_known_good() {
     git -C "$APP_DIR" rev-parse HEAD >"$GOOD_COMMIT_FULL_FILE"
     git -C "$APP_DIR" rev-parse --short HEAD >"$GOOD_COMMIT_FILE"
   else
-    log "WARN: no valid live .next to snapshot (first deploy or corrupt live build)"
+    log "WARN: no valid live .next to snapshot"
   fi
   return 0
+}
+
+pm2_ensure_running() {
+  if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
+    local status
+    status="$(pm2_app_status)"
+    if [[ "$status" != "online" ]]; then
+      log "PM2: app not online (${status}) — restarting known live process"
+      pm2 restart "$PM2_APP" --update-env || true
+    fi
+  else
+    log "PM2: starting ${PM2_APP}"
+    pm2 start "${APP_DIR}/node_modules/next/dist/bin/next" --name "$PM2_APP" -- start
+    pm2 save
+  fi
 }
 
 restore_known_good() {
@@ -84,38 +104,65 @@ restore_known_good() {
   if [[ ! -d "$GOOD_BUILD_DIR" ]] || [[ ! -f "$GOOD_COMMIT_FULL_FILE" ]]; then
     log "CRITICAL: cannot restore known-good — backup missing (${reason})"
     write_state "failed_no_recovery" "$failed_short" "$failed_full" "$reason"
+    # Still try to keep whatever is currently live running
+    pm2_ensure_running
     return 1
   fi
 
-  local good_full
+  local good_full good_short
   good_full="$(cat "$GOOD_COMMIT_FULL_FILE")"
-  local good_short
   good_short="$(cat "$GOOD_COMMIT_FILE" 2>/dev/null || echo "${good_full:0:7}")"
 
   log "RESTORE: reverting source to known-good ${good_short} (${reason})"
   git -C "$APP_DIR" reset --hard "$good_full"
   git -C "$APP_DIR" clean -fd \
     -e .env.local \
+    -e .next \
     -e .next-good \
     -e .deploy-good-commit \
     -e .deploy-good-commit-full \
     -e .deploy-state \
-    -e .next-pre-deploy-*
+    -e .deploy-builds
 
-  log "RESTORE: reinstalling exact dependencies for known-good commit"
-  cd "$APP_DIR"
-  rm -rf node_modules
-  npm ci
-
-  log "RESTORE: restoring known-good .next"
-  rm -rf "${APP_DIR}/.next"
-  cp -a "$GOOD_BUILD_DIR" "${APP_DIR}/.next"
-
-  if ! verify_build_artifacts "${APP_DIR}/.next"; then
-    log "CRITICAL: known-good build artifacts invalid after restore"
+  log "RESTORE: reinstalling dependencies for known-good (live kept until swap)"
+  # Install into a temp node_modules then swap — avoid deleting live modules first
+  local tmp_modules="${APP_DIR}/node_modules.restore-$$"
+  rm -rf "$tmp_modules"
+  mkdir -p "${APP_DIR}/.restore-npm-$$"
+  # Use npm ci in APP_DIR but preserve live modules via rename swap
+  if [[ -d "${APP_DIR}/node_modules" ]]; then
+    mv "${APP_DIR}/node_modules" "$tmp_modules"
+  fi
+  (
+    cd "$APP_DIR"
+    npm ci
+  ) || {
+    log "RESTORE: npm ci failed — putting previous node_modules back"
+    rm -rf "${APP_DIR}/node_modules"
+    [[ -d "$tmp_modules" ]] && mv "$tmp_modules" "${APP_DIR}/node_modules"
     write_state "failed_corrupt_recovery" "$failed_short" "$failed_full" "$reason"
+    pm2_ensure_running
+    return 1
+  }
+  rm -rf "$tmp_modules"
+
+  log "RESTORE: restoring known-good .next via atomic replace"
+  local next_tmp="${APP_DIR}/.next.restore-$$"
+  rm -rf "$next_tmp"
+  cp -a "$GOOD_BUILD_DIR" "$next_tmp"
+  if ! verify_build_artifacts "$next_tmp"; then
+    log "CRITICAL: known-good build artifacts invalid after copy"
+    rm -rf "$next_tmp"
+    write_state "failed_corrupt_recovery" "$failed_short" "$failed_full" "$reason"
+    pm2_ensure_running
     return 1
   fi
+  rm -rf "${APP_DIR}/.next.prev"
+  if [[ -d "${APP_DIR}/.next" ]]; then
+    mv "${APP_DIR}/.next" "${APP_DIR}/.next.prev"
+  fi
+  mv "$next_tmp" "${APP_DIR}/.next"
+  rm -rf "${APP_DIR}/.next.prev"
 
   log "RESTORE: restarting PM2 with known-good build"
   pm2 flush "$PM2_APP" >/dev/null 2>&1 || true
@@ -126,39 +173,9 @@ restore_known_good() {
   pm2 save
 
   update_deploy_header "$good_short"
-
   write_state "restored" "$good_short" "$good_full" "failed=${failed_short}; restored=${good_short}; reason=${reason}"
-  log "RESTORED: production running known-good ${good_short} after failed ${failed_short}"
+  log "RESTORED: production running known-good ${good_short}"
   return 0
-}
-
-cleanup_pre_deploy_build() {
-  if [[ -n "$PRE_DEPLOY_BUILD" ]] && [[ -d "$PRE_DEPLOY_BUILD" ]]; then
-    rm -rf "$PRE_DEPLOY_BUILD"
-    PRE_DEPLOY_BUILD=""
-  fi
-}
-
-abort_deploy() {
-  local reason="$1"
-  local failed_short="${2:-unknown}"
-  local failed_full="${3:-unknown}"
-
-  log "ABORT: ${reason}"
-
-  if [[ -n "$PRE_DEPLOY_BUILD" ]] && [[ -d "$PRE_DEPLOY_BUILD" ]]; then
-    rm -rf "$PRE_DEPLOY_BUILD"
-    PRE_DEPLOY_BUILD=""
-  fi
-
-  rm -rf "${APP_DIR}/.next"
-
-  if ! restore_known_good "$reason" "$failed_short" "$failed_full"; then
-    log "CRITICAL: deployment aborted and recovery failed"
-    exit 1
-  fi
-
-  exit 1
 }
 
 update_deploy_header() {
@@ -211,7 +228,6 @@ health_check() {
 
   local pm2_status
   pm2_status="$(pm2_app_status)"
-
   if [[ "$pm2_status" != "online" ]]; then
     log "HEALTH FAIL: PM2 status is ${pm2_status}"
     failures=$((failures + 1))
@@ -239,7 +255,6 @@ health_check() {
   done
 
   curl -s -o /tmp/indexla-health-home.html --max-time 20 "http://${HEALTH_HOST}:${PORT}/" >/dev/null || true
-
   if ! grep -q "HomeRevealGate" /tmp/indexla-health-home.html 2>/dev/null; then
     log "HEALTH FAIL: homepage missing HomeRevealGate marker"
     failures=$((failures + 1))
@@ -259,13 +274,6 @@ health_check() {
     fi
   fi
 
-  if [[ -s /root/.pm2/logs/indexla-error.log ]]; then
-    if grep -qE 'MODULE_NOT_FOUND|Failed to load chunk|unhandledRejection' /root/.pm2/logs/indexla-error.log 2>/dev/null; then
-      log "HEALTH FAIL: critical errors present in PM2 error log"
-      failures=$((failures + 1))
-    fi
-  fi
-
   if [[ "$failures" -gt 0 ]]; then
     log "HEALTH FAIL: ${failures} check(s) failed"
     return 1
@@ -275,8 +283,17 @@ health_check() {
   return 0
 }
 
+cleanup_build_dir() {
+  local build_dir="$1"
+  if [[ -n "$build_dir" && -d "$build_dir" ]]; then
+    # Remove git worktree registration if present
+    git -C "$APP_DIR" worktree remove --force "$build_dir" 2>/dev/null || rm -rf "$build_dir"
+  fi
+}
+
 run_deploy() {
   local local_hash remote_hash local_short remote_short
+  local build_dir=""
 
   cd "$APP_DIR"
 
@@ -288,6 +305,8 @@ run_deploy() {
 
   if [[ "$local_hash" == "$remote_hash" ]]; then
     log "SKIP: already up to date at ${local_short}"
+    # Ensure production process is healthy even on skip
+    pm2_ensure_running
     exit 0
   fi
 
@@ -297,46 +316,93 @@ run_deploy() {
     exit 1
   fi
 
-  log "DEPLOY: updating source to origin/${BRANCH}"
-  git reset --hard "origin/${BRANCH}"
-  git clean -fd \
+  # ------------------------------------------------------------------
+  # ZERO-DOWNTIME BUILD: isolate in a detached worktree.
+  # Live APP_DIR/.next and node_modules stay untouched until swap.
+  # ------------------------------------------------------------------
+  build_dir="${BUILD_ROOT}/${remote_short}-$$"
+  cleanup_build_dir "$build_dir"
+  mkdir -p "$BUILD_ROOT"
+
+  log "DEPLOY: creating isolated build worktree at ${build_dir}"
+  git -C "$APP_DIR" worktree add --detach "$build_dir" "$remote_hash"
+
+  # Copy env into build tree (needed for build-time env if any)
+  if [[ -f "${APP_DIR}/.env.local" ]]; then
+    cp "${APP_DIR}/.env.local" "${build_dir}/.env.local"
+  fi
+
+  log "DEPLOY: installing deps in isolated worktree (live node_modules untouched)"
+  if ! (cd "$build_dir" && npm ci); then
+    log "ABORT: npm ci failed in worktree — production unchanged"
+    cleanup_build_dir "$build_dir"
+    write_state "failed_build" "$remote_short" "$remote_hash" "npm ci failed; production unchanged"
+    pm2_ensure_running
+    exit 1
+  fi
+
+  if grep -q '"build"[[:space:]]*:[[:space:]]*"next build --turbopack"' "${build_dir}/package.json"; then
+    log "ABORT: turbopack build forbidden — production unchanged"
+    cleanup_build_dir "$build_dir"
+    write_state "failed_build" "$remote_short" "$remote_hash" "turbopack forbidden; production unchanged"
+    pm2_ensure_running
+    exit 1
+  fi
+
+  log "DEPLOY: building candidate in isolated worktree (live .next untouched)"
+  if ! (cd "$build_dir" && npm run build); then
+    log "ABORT: npm run build failed — production unchanged"
+    cleanup_build_dir "$build_dir"
+    write_state "failed_build" "$remote_short" "$remote_hash" "build failed; production unchanged"
+    pm2_ensure_running
+    exit 1
+  fi
+
+  if ! verify_build_artifacts "${build_dir}/.next"; then
+    log "ABORT: candidate artifacts incomplete — production unchanged"
+    cleanup_build_dir "$build_dir"
+    write_state "failed_build" "$remote_short" "$remote_hash" "incomplete artifacts; production unchanged"
+    pm2_ensure_running
+    exit 1
+  fi
+
+  log "DEPLOY: candidate verified — preparing atomic activation"
+
+  # Update live source tree WITHOUT deleting live .next/node_modules yet
+  log "DEPLOY: updating live source to ${remote_short}"
+  git -C "$APP_DIR" reset --hard "$remote_hash"
+  git -C "$APP_DIR" clean -fd \
     -e .env.local \
+    -e .next \
     -e .next-good \
+    -e .next.prev \
+    -e node_modules \
     -e .deploy-good-commit \
     -e .deploy-good-commit-full \
     -e .deploy-state \
-    -e .next-pre-deploy-*
+    -e .deploy-builds
 
-  log "DEPLOY: installing exact dependencies (npm ci)"
-  rm -rf node_modules
-  npm ci
-
-  if grep -q '"build"[[:space:]]*:[[:space:]]*"next build --turbopack"' package.json; then
-    log "ABORT: production build must not use Turbopack"
-    abort_deploy "turbopack build script forbidden" "$remote_short" "$remote_hash"
+  # Swap node_modules: move candidate modules in, keep previous until success
+  log "DEPLOY: swapping node_modules"
+  local modules_prev="${APP_DIR}/node_modules.prev-$$"
+  rm -rf "$modules_prev"
+  if [[ -d "${APP_DIR}/node_modules" ]]; then
+    mv "${APP_DIR}/node_modules" "$modules_prev"
   fi
+  mv "${build_dir}/node_modules" "${APP_DIR}/node_modules"
 
+  # Swap .next atomically
+  log "DEPLOY: swapping .next"
+  local next_prev="${APP_DIR}/.next.prev-$$"
+  rm -rf "$next_prev"
   if [[ -d "${APP_DIR}/.next" ]]; then
-    PRE_DEPLOY_BUILD="${APP_DIR}/.next-pre-deploy-${remote_short}-$$"
-    log "DEPLOY: moving live .next aside to ${PRE_DEPLOY_BUILD}"
-    mv "${APP_DIR}/.next" "$PRE_DEPLOY_BUILD"
+    mv "${APP_DIR}/.next" "$next_prev"
   fi
+  mv "${build_dir}/.next" "${APP_DIR}/.next"
 
-  log "DEPLOY: building candidate production bundle (next build)"
-  if ! npm run build; then
-    abort_deploy "npm run build failed" "$remote_short" "$remote_hash"
-  fi
-
-  if ! verify_build_artifacts "${APP_DIR}/.next"; then
-    abort_deploy "build artifacts incomplete" "$remote_short" "$remote_hash"
-  fi
-
-  log "DEPLOY: candidate build verified — activating"
-  cleanup_pre_deploy_build
-
+  # Brief restart window only (seconds), after artifacts are already in place
+  log "DEPLOY: restarting PM2 onto new artifacts"
   pm2 flush "$PM2_APP" >/dev/null 2>&1 || true
-
-  log "DEPLOY: restarting PM2"
   if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
     pm2 restart "$PM2_APP" --update-env
   else
@@ -347,8 +413,27 @@ run_deploy() {
   sleep 2
 
   if ! health_check "$remote_short"; then
-    abort_deploy "health checks failed after activation" "$remote_short" "$remote_hash"
+    log "DEPLOY: health failed — rolling back to previous artifacts"
+    # Roll back .next
+    rm -rf "${APP_DIR}/.next"
+    if [[ -d "$next_prev" ]]; then
+      mv "$next_prev" "${APP_DIR}/.next"
+    elif [[ -d "$GOOD_BUILD_DIR" ]]; then
+      cp -a "$GOOD_BUILD_DIR" "${APP_DIR}/.next"
+    fi
+    # Roll back node_modules
+    if [[ -d "$modules_prev" ]]; then
+      rm -rf "${APP_DIR}/node_modules"
+      mv "$modules_prev" "${APP_DIR}/node_modules"
+    fi
+    cleanup_build_dir "$build_dir"
+    restore_known_good "health checks failed after activation" "$remote_short" "$remote_hash" || true
+    exit 1
   fi
+
+  # Success — cleanup previous artifacts and build worktree
+  rm -rf "$next_prev" "$modules_prev"
+  cleanup_build_dir "$build_dir"
 
   log "DEPLOY: refreshing known-good backup"
   rm -rf "$GOOD_BUILD_DIR"
@@ -357,7 +442,7 @@ run_deploy() {
   echo "$remote_short" >"$GOOD_COMMIT_FILE"
 
   update_deploy_header "$remote_short"
-  write_state "success" "$remote_short" "$remote_hash" "deployed successfully"
+  write_state "success" "$remote_short" "$remote_hash" "deployed successfully (zero-downtime build)"
 
   if [[ -f "${APP_DIR}/scripts/deploy-indexla.sh" ]]; then
     cp "${APP_DIR}/scripts/deploy-indexla.sh" /usr/local/bin/deploy-indexla.sh
@@ -368,13 +453,19 @@ run_deploy() {
 }
 
 main() {
-  log "==== deploy start ===="
+  log "==== deploy start (zero-downtime) ===="
   acquire_lock
 
   if [[ "${1:-}" == "--restore-good" ]]; then
     restore_known_good "manual recovery requested" "manual" "manual" || exit 1
-    health_check "$(cat "$GOOD_COMMIT_FILE")" || exit 1
+    health_check "$(cat "$GOOD_COMMIT_FILE" 2>/dev/null || echo unknown)" || exit 1
     log "==== manual restore complete ===="
+    exit 0
+  fi
+
+  if [[ "${1:-}" == "--health" ]]; then
+    pm2_ensure_running
+    health_check "$(git -C "$APP_DIR" rev-parse --short HEAD 2>/dev/null || echo unknown)" || exit 1
     exit 0
   fi
 

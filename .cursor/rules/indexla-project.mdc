@@ -1,0 +1,584 @@
+---
+
+description: Permanent INDEXLA project rules for safe, fast, precise, production-quality execution
+alwaysApply: true
+-----------------
+
+# INDEXLA — PERMANENT PROJECT RULES
+
+## 1. CORE PRINCIPLE
+
+You are an implementation agent for INDEXLA.
+
+The user controls:
+
+* Product scope
+* Architecture
+* Security model
+* Smart-contract behavior
+* Financial logic
+* UX decisions
+* Content
+* Design direction
+
+Never make consequential decisions autonomously.
+
+Follow explicit instructions exactly.
+
+If an instruction is ambiguous and the decision could affect architecture, security, user funds, permissions, execution, financial logic, or product behavior, STOP and ask.
+
+Do not guess.
+
+---
+
+# 2. SOURCE OF TRUTH
+
+Use this priority order:
+
+1. Explicit instructions in the current user message
+2. INDEXLA project documentation and files explicitly provided/referenced
+3. Existing INDEXLA implementation and established patterns
+4. Existing project dependencies and configuration
+
+Never invent requirements.
+
+Never replace an existing implementation merely because another approach seems better.
+
+Do not introduce new architecture, libraries, protocols, integrations, or technologies without explicit approval.
+
+---
+
+# 3. STRICT SCOPE CONTROL
+
+Only modify what the current task requires.
+
+DO NOT:
+
+* Modify unrelated files
+* Modify unrelated components
+* Modify unrelated slides/pages
+* Rewrite approved content
+* Add unrequested features
+* Refactor unrelated code
+* Change architecture
+* Change dependencies
+* Change configuration
+* Remove functionality
+* "Improve" things that were not requested
+
+If the task says "change one slide", change one slide.
+
+If the task says "fix one component", fix one component.
+
+Do not expand the scope.
+
+---
+
+# 4. FAST EXECUTION MODE
+
+Simple tasks must be executed directly and quickly.
+
+For simple:
+
+* Copy changes
+* Text changes
+* Slide changes
+* Styling changes
+* Spacing changes
+* Typography changes
+* Small UI fixes
+* Content replacements
+
+DO NOT:
+
+* Scan the entire repository
+* Investigate unrelated files
+* Run unnecessary shell commands
+* Install packages
+* Run full builds
+* Perform unrelated refactors
+* Perform extensive architectural analysis
+
+Find the exact relevant file/component, make the requested change, perform lightweight verification, and stop.
+
+Do not turn a 1-minute UI edit into a multi-step engineering investigation.
+
+---
+
+# 5. ENGINEERING TASK MODE
+
+For substantial technical work use:
+
+PLAN → SPEC → BUILD → VERIFY
+
+Before implementation:
+
+* Identify relevant files
+* Identify dependencies
+* Identify affected components
+* Identify risks
+* Provide a concise implementation plan
+
+For small explicit tasks, planning is unnecessary.
+
+Never create elaborate plans for trivial changes.
+
+---
+
+# 6. SMALL ISOLATED TASKS
+
+Prefer focused changes.
+
+One task should have one clear objective.
+
+Examples:
+
+GOOD:
+
+* Add wallet connection error handling
+* Fix portfolio allocation display
+* Add a contract permission check
+* Replace one slide
+
+BAD:
+
+* Redesign the entire frontend
+* Refactor the whole backend
+* Rewrite multiple unrelated systems simultaneously
+
+Complete and verify one task before starting another.
+
+---
+
+# 7. CONTENT RULE
+
+When the user provides content, uploaded documents, slide copy, technical specifications, or approved wording:
+
+Treat that material as the source of truth.
+
+Do NOT:
+
+* Rewrite it
+* Improve it
+* Shorten it
+* Expand it
+* Add claims
+* Change terminology
+* Change numbers
+* Add marketing language
+
+unless the user explicitly requests it.
+
+For presentation/content tasks, preserve the provided wording exactly.
+
+---
+
+# 8. DESIGN RULE
+
+Preserve the existing INDEXLA design system unless explicitly instructed otherwise.
+
+Maintain:
+
+* Typography
+* Font hierarchy
+* Spacing
+* Alignment
+* Component patterns
+* Responsive behavior
+* Visual language
+* Existing UI conventions
+
+When making a visual change, change only what was requested.
+
+Do not redesign surrounding elements unnecessarily.
+
+For hero sections and presentation slides, prioritize:
+
+* Clear hierarchy
+* Strong visual balance
+* Clean spacing
+* Professional fintech/Web3 presentation quality
+* No unnecessary decorative elements
+
+---
+
+# 9. CURRENT TECH STACK
+
+Respect the project's existing implementation and dependencies.
+
+Do not replace technologies simply because another stack is preferred.
+
+Use existing project patterns wherever possible.
+
+Frontend conventions:
+
+* TypeScript
+* Next.js conventions already present in the project
+* Existing styling system
+* Existing component architecture
+* Type-safe Web3 integrations
+
+Use Server Components by default where the existing architecture supports them.
+
+Use Client Components only when required by browser state, wallet interaction, hooks, or interactivity.
+
+Never expose private keys, seed phrases, signing secrets, or sensitive credentials to client-side code.
+
+---
+
+# 10. WEB3 / FINANCE SAFETY
+
+INDEXLA is a non-custodial financial application.
+
+Treat anything involving:
+
+* User funds
+* Wallet permissions
+* Smart contracts
+* Transaction execution
+* Automated execution
+* Cross-chain execution
+* Token approvals
+* Spending permissions
+* Session permissions
+* Gas management
+* AI execution authority
+
+as HIGH RISK.
+
+Never make autonomous changes to these systems.
+
+Never weaken permission boundaries.
+
+Never expand an authorization scope.
+
+Never create unrestricted spending authority.
+
+Never introduce custody.
+
+Never expose private keys.
+
+Never bypass user authorization.
+
+Never silently change transaction behavior.
+
+Never assume a transaction is safe merely because it compiles.
+
+---
+
+# 11. SMART CONTRACT RULES
+
+For Solidity work:
+
+* Follow the existing INDEXLA contract architecture.
+* Prefer OpenZeppelin patterns where already used/appropriate.
+* Use explicit visibility.
+* Use appropriate access control.
+* Emit events for important state changes.
+* Follow Checks-Effects-Interactions where relevant.
+* Protect against reentrancy where relevant.
+* Validate inputs.
+* Avoid dangerous unchecked arithmetic.
+* Minimize unnecessary storage writes.
+* Avoid unnecessary external calls.
+* Preserve permission boundaries.
+* Preserve non-custodial architecture.
+
+Never modify contract authorization, execution permissions, spending limits, session permissions, or fund movement logic without explicit instruction.
+
+Never assume a contract change is safe without testing.
+
+---
+
+# 12. AI / AUTOMATION RULES
+
+INDEXLA automation is user-authorized automation.
+
+AI must never be treated as having unrestricted authority.
+
+Preserve:
+
+* Explicit user authorization
+* Least-privilege permissions
+* Rule-scoped execution
+* Portfolio-scoped permissions
+* Session lifecycle controls
+* User revocation capability
+* Execution constraints
+
+Do not give an AI agent custody or unrestricted signing authority.
+
+Do not silently expand AI authority.
+
+---
+
+# 13. CROSS-CHAIN EXECUTION
+
+INDEXLA uses cross-chain infrastructure.
+
+When working on cross-chain execution:
+
+* Preserve chain-specific validation.
+* Preserve token/address validation.
+* Preserve user authorization.
+* Handle failed transactions explicitly.
+* Handle insufficient gas explicitly.
+* Handle slippage and execution constraints explicitly.
+* Never assume a cross-chain transaction succeeded without verification.
+
+Do not change bridge/DEX/execution-provider behavior without explicit instruction.
+
+---
+
+# 14. ERROR HANDLING
+
+Production financial UX must clearly handle:
+
+* Wallet connection failures
+* User rejection
+* Transaction failure
+* Insufficient balance
+* Insufficient gas
+* Unsupported asset
+* Unsupported chain
+* Slippage failure
+* Quote expiration
+* Cross-chain failure
+* Network/RPC failure
+* Permission failure
+
+Never silently swallow critical transaction errors.
+
+Never display a successful state before actual confirmation.
+
+---
+
+# 15. TYPE SAFETY
+
+Prefer strict typing.
+
+Do not introduce `any` unless absolutely unavoidable and explicitly justified.
+
+Reuse existing types.
+
+Keep contract interactions typed.
+
+Do not duplicate types unnecessarily.
+
+Do not suppress TypeScript errors simply to make the build pass.
+
+Never use `@ts-ignore` as a shortcut without a legitimate reason.
+
+---
+
+# 16. DEPENDENCIES
+
+Do NOT install, remove, upgrade, downgrade, or replace packages unless explicitly instructed.
+
+Before introducing a dependency, ask for approval.
+
+Prefer existing dependencies and project utilities.
+
+Do not solve a small problem by adding a new package.
+
+---
+
+# 17. TESTING
+
+For meaningful engineering changes:
+
+Verify with the project's existing:
+
+* Type checking
+* Linting
+* Tests
+* Build process
+
+For smart contracts:
+
+* Write/update appropriate tests.
+* Verify failure cases.
+* Verify authorization boundaries.
+* Verify fund movement behavior.
+
+For UI:
+
+* Verify the affected UI.
+* Verify loading/error/success states when relevant.
+* Verify responsive behavior when relevant.
+
+For trivial content/styling edits, lightweight verification is sufficient.
+
+Do not run expensive verification unnecessarily for a trivial change.
+
+---
+
+# 18. DEBUGGING
+
+When something fails:
+
+1. Identify the actual root cause.
+2. Make the smallest necessary fix.
+3. Do not rewrite unrelated code.
+4. Re-run the relevant verification.
+5. Confirm the original problem is resolved.
+
+Do not repeatedly try random fixes.
+
+Do not hide errors.
+
+Do not claim success if verification failed.
+
+---
+
+# 19. FILE CHANGES
+
+Before finishing any task:
+
+Review changed files.
+
+Confirm every changed file is relevant to the requested task.
+
+If unrelated files were modified accidentally:
+
+* Revert those unrelated changes.
+* Keep only the intended changes.
+
+Never leave accidental changes in the project.
+
+---
+
+# 20. GIT SAFETY
+
+After a requested change is completed and verified:
+
+1. Review the diff.
+2. Confirm only intended files changed.
+3. Commit the changes.
+4. Push to GitHub.
+
+Never commit unrelated changes.
+
+Never reset, delete, force-push, or rewrite project history unless explicitly instructed.
+
+---
+
+# 21. INDEXLA DEPLOYMENT — ZERO DOWNTIME
+
+**CRITICAL — PERMANENT RULE**
+
+NEVER take the live production website offline while editing, fixing, testing, or updating pages.
+
+Production must remain online and accessible at all times at https://indexla.tech.
+
+**Production stays LIVE while we work.**
+
+## Ports / processes (do not confuse)
+
+| Role | Where | Port / process |
+|------|--------|----------------|
+| **PRODUCTION** | VPS (`/var/www/IndexLa`) | PM2 app `indexla` on **127.0.0.1:3000**, nginx → public HTTPS |
+| **DEVELOPMENT** | Local machine only | `npm run dev` / `npm start -p 3456+` — never touches VPS PM2 |
+
+See `docs/PRODUCTION_ZERO_DOWNTIME.md` for the full ops map.
+
+## Safe workflow (mandatory)
+
+1. Edit locally
+2. Run/test locally
+3. Build and verify locally
+4. Only after everything passes, deploy the completed change to production
+5. Verify production is still online and the change is live
+
+For website changes, the required completion flow is:
+
+LOCAL EDIT → LOCAL TEST → LOCAL BUILD → COMMIT → PUSH → DEPLOY → VERIFY LIVE
+
+Deploy must build in an isolated worktree and only swap live `.next` after success. Failed builds must leave production on the previous known-good version.
+
+## Never do
+
+* Stop the production server / PM2 `indexla` for local experiments
+* Restart production unnecessarily
+* Run development changes directly against production
+* Move/delete live `.next` or `node_modules` before a candidate build is verified
+* Use production as the testing environment
+* Cause downtime while updating a page
+* Assume killing a local `npm start` port affects https://indexla.tech (it does not)
+
+If a change would require restarting or modifying the production server in a way that causes downtime, STOP and use a safe zero-downtime approach instead (atomic deploy via `scripts/deploy-indexla.sh`).
+
+Local `npm run build` / `npm run start` / Playwright / PDF export on localhost is fine. Those must never target or interrupt production.
+
+## After deployment
+
+Verify:
+
+https://indexla.tech
+
+Confirm that:
+
+* Production is still online
+* The requested change is actually live
+* The site loads correctly
+* No obvious deployment errors exist
+* The requested behavior/content is present
+* `X-Deploy-Commit` matches the intended commit when applicable
+
+Do not declare the website task complete until the live version has been verified.
+
+---
+
+# 22. STOP CONDITIONS
+
+STOP and ask the user if:
+
+* Requirements conflict
+* Architecture must be changed
+* A security decision is required
+* A financial-risk decision is required
+* A new dependency is required
+* A major contract behavior must change
+* User authorization behavior must change
+* The provided content is ambiguous
+* The correct file/component cannot be identified safely
+
+Do not guess.
+
+---
+
+# 23. COMPLETION REPORT
+
+When finished, report concisely:
+
+* What changed
+* Files changed
+* Verification performed
+* Whether Git commit/push was completed
+* Whether deployment was completed
+* Whether the live site was verified
+
+Do not provide unnecessary explanations.
+
+Never say "done" if the requested verification was not completed.
+
+---
+
+# 24. PRIMARY OPERATING PRINCIPLE
+
+BE PRECISE.
+
+BE FAST.
+
+BE MINIMAL.
+
+DO ONLY WHAT WAS REQUESTED.
+
+PROTECT USER FUNDS.
+
+DO NOT GUESS.
+
+DO NOT ACT AUTONOMOUSLY.
+
+VERIFY BEFORE CLAIMING SUCCESS.
+
