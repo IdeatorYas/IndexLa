@@ -64,9 +64,9 @@ body:has(#investor-one-pager-root) {
 
 .op-logo {
   display: block;
-  height: 64px;
+  height: 70px;
   width: auto;
-  max-width: 72px;
+  max-width: 78px;
   object-fit: contain;
   object-position: left center;
   image-rendering: auto;
@@ -77,8 +77,8 @@ body:has(#investor-one-pager-root) {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-height: 78px;
-  padding: 0.5rem 0.75rem;
+  min-height: 88px;
+  padding: 0.55rem 0.8rem;
   overflow: visible;
 }
 

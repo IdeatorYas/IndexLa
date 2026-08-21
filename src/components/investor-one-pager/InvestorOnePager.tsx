@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import "@/components/investor-one-pager/one-pager.css";
 import {
   loadInvestorOnePagerContent,
@@ -415,14 +414,14 @@ export function InvestorOnePager() {
           <div className="op-inner">
             {/* Header */}
             <header className="op-card op-header">
-              <Image
+              {/* Native img avoids Next/Image wrapper clipping the stacked mark */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={LOGO}
                 alt="INDEXLA"
                 width={LOGO_W}
                 height={LOGO_H}
                 className="op-logo"
-                priority
-                unoptimized
               />
               <div className="op-brand-box">
                 <p className="op-brand-name">INDEXLA</p>
