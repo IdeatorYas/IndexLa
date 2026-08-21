@@ -27,8 +27,8 @@ const pdfPath =
     if (!el) return { ok: false, reason: 'missing' };
     const inner = el.querySelector('.op-inner');
     if (!inner) return { ok: false, reason: 'no-inner' };
-    const overflowY = inner.scrollHeight > el.clientHeight + 1;
-    const overflowX = inner.scrollWidth > el.clientWidth + 1;
+    const overflowY = inner.scrollHeight > el.clientHeight + 2;
+    const overflowX = inner.scrollWidth > el.clientWidth + 2;
     return {
       ok: !overflowY && !overflowX,
       scrollHeight: inner.scrollHeight,

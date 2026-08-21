@@ -12,26 +12,15 @@ const fs = require('fs');
     deviceScaleFactor: 3,
   });
   const b64 = fs.readFileSync(src).toString('base64');
+  // Full logo — no crop. Contrast only for print clarity on white.
   const html =
-    '<!doctype html><html><body style="margin:0;background:transparent;display:flex;align-items:flex-start;justify-content:center;width:1400px;height:1400px;padding-top:40px">' +
+    '<!doctype html><html><body style="margin:0;background:transparent;display:flex;align-items:center;justify-content:center;width:1400px;height:1400px">' +
     '<img id="logo" src="data:image/png;base64,' +
     b64 +
-    '" style="width:1000px;height:auto;filter:brightness(0.78) contrast(1.5) saturate(1.55);" />' +
+    '" style="width:1000px;height:auto;filter:brightness(0.8) contrast(1.45) saturate(1.4);" />' +
     '</body></html>';
   await page.setContent(html, { waitUntil: 'load' });
-  const box = await page.locator('#logo').boundingBox();
-  if (!box) throw new Error('no logo box');
-  // Icon-only crop — wordmark is rendered as crisp text in the brand box
-  await page.screenshot({
-    path: out,
-    omitBackground: true,
-    clip: {
-      x: box.x + box.width * 0.12,
-      y: box.y,
-      width: box.width * 0.76,
-      height: box.height * 0.58,
-    },
-  });
+  await page.locator('#logo').screenshot({ path: out, omitBackground: true });
   const b = fs.readFileSync(out);
   console.log('wrote', out, b.readUInt32BE(16) + 'x' + b.readUInt32BE(20), b.length);
   await browser.close();

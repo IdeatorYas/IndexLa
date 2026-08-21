@@ -8,10 +8,10 @@ import {
   type OnePagerSection,
 } from "@/lib/investorOnePagerContent";
 
-/** Print-optimized transparent mark (baked contrast/saturation for PDF). */
+/** Full print-optimized transparent logo (no crop). */
 const LOGO = "/logo/indexla-logo-onepager.png";
 const LOGO_W = 3000;
-const LOGO_H = 2412;
+const LOGO_H = 2748;
 
 function stripMd(line: string): string {
   return line
@@ -414,13 +414,13 @@ export function InvestorOnePager() {
         <article className="op-page" data-one-pager="true">
           <div className="op-inner">
             {/* Header */}
-            <header className="op-card flex items-center gap-3 px-2.5 py-2">
+            <header className="op-card op-header">
               <Image
                 src={LOGO}
                 alt="INDEXLA"
                 width={LOGO_W}
                 height={LOGO_H}
-                className="op-logo shrink-0"
+                className="op-logo"
                 priority
                 unoptimized
               />
