@@ -8,10 +8,10 @@ import {
   type OnePagerSection,
 } from "@/lib/investorOnePagerContent";
 
-/** True RGBA logo — sharpest transparent-capable mark for white one-pager print. */
-const LOGO = "/logo/indexla-logo-email.png";
-const LOGO_W = 480;
-const LOGO_H = 439;
+/** Print-optimized transparent mark (baked contrast/saturation for PDF). */
+const LOGO = "/logo/indexla-logo-onepager.png";
+const LOGO_W = 3000;
+const LOGO_H = 2412;
 
 function stripMd(line: string): string {
   return line
@@ -43,9 +43,11 @@ function Card({
   accent?: boolean;
 }) {
   return (
-    <section className={`${accent ? "op-card-accent" : "op-card"} min-w-0 p-2 ${className}`}>
+    <section
+      className={`${accent ? "op-card-accent" : "op-card"} flex h-full min-w-0 flex-col p-2.5 ${className}`}
+    >
       <h2 className="op-section-title">{title}</h2>
-      {children}
+      <div className="flex min-h-0 flex-1 flex-col">{children}</div>
     </section>
   );
 }
@@ -201,41 +203,41 @@ function FundraisingRoadmap({ body }: { body: string }) {
   });
 
   return (
-    <div>
-      <div className="grid grid-cols-4 gap-1.5">
+    <div className="flex h-full flex-col">
+      <div className="grid flex-1 grid-cols-4 gap-2">
         {stages.map((s, idx) => (
           <div
             key={s.round}
-            className="relative rounded-lg border border-[#0284c7]/20 bg-white px-1.5 py-1.5"
+            className="relative flex flex-col rounded-lg border border-[#0284c7]/22 bg-[#0284c7]/[0.03] px-2 py-2"
           >
             {idx < stages.length - 1 ? (
               <span
-                className="absolute -right-1.5 top-[42%] z-10 -translate-y-1/2 text-[9pt] font-bold text-[#0284c7]"
+                className="absolute -right-2 top-[38%] z-10 -translate-y-1/2 text-[10pt] font-bold text-[#0284c7]"
                 aria-hidden
               >
                 →
               </span>
             ) : null}
-            <div className="mb-1 h-1 rounded-full bg-gradient-to-r from-[#0284c7] to-[#38bdf8]" />
-            <p className="font-[family-name:var(--font-display)] text-[7pt] font-bold uppercase tracking-[0.1em] text-[#0284c7]">
+            <div className="mb-1.5 h-1 rounded-full bg-gradient-to-r from-[#0284c7] to-[#38bdf8]" />
+            <p className="font-[family-name:var(--font-display)] text-[8pt] font-bold uppercase tracking-[0.1em] text-[#0369a1]">
               {s.round}
             </p>
-            <p className="mt-0.5 font-[family-name:var(--font-display)] text-[9pt] font-bold leading-tight text-[#0f172a]">
+            <p className="mt-1 font-[family-name:var(--font-display)] text-[10.5pt] font-bold leading-tight text-[#0f172a]">
               {s.amount}
             </p>
             {s.meta ? (
-              <p className="mt-0.5 rounded bg-[#0284c7]/10 px-1 py-0.5 text-[7.4pt] font-bold leading-snug text-[#0284c7]">
+              <p className="mt-1.5 rounded-md bg-[#0284c7]/12 px-1.5 py-1 text-[8pt] font-bold leading-snug text-[#0284c7]">
                 {s.meta}
               </p>
             ) : null}
-            <p className="mt-0.5 text-[7pt] leading-snug text-[#64748b]">
+            <p className="mt-auto pt-1.5 text-[7.6pt] leading-snug text-[#475569]">
               {s.milestone}
             </p>
           </div>
         ))}
       </div>
       {heads[0] ? (
-        <p className="mt-1.5 rounded-lg bg-[#0284c7] px-2 py-1 text-center font-[family-name:var(--font-display)] text-[10pt] font-bold tracking-[-0.01em] text-white">
+        <p className="mt-2 rounded-lg bg-[#0284c7] px-2.5 py-1.5 text-center font-[family-name:var(--font-display)] text-[10.5pt] font-bold tracking-[-0.01em] text-white">
           {heads[0]}
         </p>
       ) : null}
@@ -249,17 +251,17 @@ function MarketCards({ body }: { body: string }) {
   const metrics = rest.filter((l) => /^\$/.test(l));
 
   return (
-    <div>
-      <div className="grid grid-cols-3 gap-1.5">
+    <div className="flex h-full flex-col gap-1.5">
+      <div className="flex flex-1 flex-col gap-1.5">
         {metrics.map((m) => {
           const [num, ...labelParts] = m.split(/\s+/);
           return (
             <div
               key={m}
-              className="rounded-lg border border-[#0284c7]/18 bg-[#0284c7]/[0.05] px-1.5 py-2 text-center"
+              className="flex flex-1 flex-col items-center justify-center rounded-lg border border-[#0284c7]/18 bg-[#0284c7]/[0.05] px-2 py-1.5 text-center"
             >
-              <p className="op-metric text-[17pt]">{num}</p>
-              <p className="mt-1 text-[6.8pt] font-semibold leading-snug text-[#64748b]">
+              <p className="op-metric text-[18pt]">{num}</p>
+              <p className="mt-0.5 text-[7.4pt] font-semibold leading-snug text-[#475569]">
                 {labelParts.join(" ")}
               </p>
             </div>
@@ -267,7 +269,7 @@ function MarketCards({ body }: { body: string }) {
         })}
       </div>
       {heads[0] ? (
-        <p className="mt-1.5 text-center font-[family-name:var(--font-display)] text-[7.4pt] font-bold uppercase tracking-[0.04em] text-[#0284c7]">
+        <p className="text-center font-[family-name:var(--font-display)] text-[6.9pt] font-bold uppercase leading-snug tracking-[0.03em] text-[#0369a1]">
           {heads[0]}
         </p>
       ) : null}
@@ -336,40 +338,42 @@ function DexlaVisual({ section }: { section: OnePagerSection }) {
   );
 
   return (
-    <div className="grid grid-cols-2 gap-2">
-      <div className="rounded-lg border border-[#0284c7]/15 bg-[#0284c7]/[0.04] p-2">
-        <p className="font-[family-name:var(--font-display)] text-[7.5pt] font-bold uppercase tracking-[0.12em] text-[#0284c7]">
-          {heads.find((h) => /UTILIT/i.test(h)) ?? "Utility"}
-        </p>
-        <div className="mt-1.5 flex flex-wrap gap-1">
-          {utilities.map((u) => (
-            <span key={u} className="op-chip">
-              {u}
-            </span>
-          ))}
+    <div className="flex h-full flex-col gap-2">
+      <div className="grid min-h-0 flex-1 grid-cols-2 gap-2">
+        <div className="flex flex-col rounded-lg border border-[#0284c7]/15 bg-[#0284c7]/[0.04] p-2.5">
+          <p className="font-[family-name:var(--font-display)] text-[7.5pt] font-bold uppercase tracking-[0.12em] text-[#0369a1]">
+            {heads.find((h) => /UTILIT/i.test(h)) ?? "Utility"}
+          </p>
+          <div className="mt-2 flex flex-1 flex-wrap content-center gap-1.5">
+            {utilities.map((u) => (
+              <span key={u} className="op-chip">
+                {u}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col rounded-lg border border-[#0284c7]/15 bg-white p-2.5">
+          <p className="font-[family-name:var(--font-display)] text-[7.5pt] font-bold uppercase tracking-[0.12em] text-[#0369a1]">
+            Value Capture
+          </p>
+          <p className="mt-1 font-[family-name:var(--font-display)] text-[9.5pt] font-bold text-[#0f172a]">
+            Burns + Buybacks
+          </p>
+          <ul className="mt-1.5 flex flex-1 flex-col justify-center space-y-1">
+            {burnLines.map((l) => (
+              <li
+                key={l}
+                className="flex items-start gap-1.5 text-[7.4pt] leading-snug text-[#334155]"
+              >
+                <span className="mt-[0.3rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0284c7]" />
+                {l}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-      <div className="rounded-lg border border-[#0284c7]/15 bg-white p-2">
-        <p className="font-[family-name:var(--font-display)] text-[7.5pt] font-bold uppercase tracking-[0.12em] text-[#0284c7]">
-          Value Capture
-        </p>
-        <p className="mt-1 font-[family-name:var(--font-display)] text-[9pt] font-bold text-[#0f172a]">
-          Burns + Buybacks
-        </p>
-        <ul className="mt-1 space-y-0.5">
-          {burnLines.map((l) => (
-            <li
-              key={l}
-              className="flex items-start gap-1 text-[6.9pt] leading-snug text-[#475569]"
-            >
-              <span className="mt-[0.2rem] h-1 w-1 shrink-0 rounded-full bg-[#0284c7]" />
-              {l}
-            </li>
-          ))}
-        </ul>
-      </div>
       {flywheel ? (
-        <p className="col-span-2 rounded-md bg-[#0284c7]/10 px-2 py-1 text-center font-[family-name:var(--font-display)] text-[7.5pt] font-bold uppercase tracking-[0.04em] text-[#0284c7]">
+        <p className="rounded-md bg-[#0284c7]/10 px-2 py-1.5 text-center font-[family-name:var(--font-display)] text-[7.6pt] font-bold uppercase tracking-[0.04em] text-[#0369a1]">
           {flywheel}
         </p>
       ) : null}
@@ -417,12 +421,12 @@ export function InvestorOnePager() {
                   alt="INDEXLA"
                   width={LOGO_W}
                   height={LOGO_H}
-                  className="h-[56px] w-auto object-contain object-left"
+                  className="op-logo"
                   priority
                   unoptimized
                 />
                 <div className="min-w-0 border-l border-[#0284c7]/20 pl-3">
-                  <p className="font-[family-name:var(--font-display)] text-[13pt] font-bold leading-tight tracking-[-0.03em] text-[#0284c7]">
+                  <p className="font-[family-name:var(--font-display)] text-[13pt] font-bold leading-tight tracking-[-0.03em] text-[#0369a1]">
                     {coverTagline}
                   </p>
                   <p className="mt-0.5 font-[family-name:var(--font-display)] text-[10.5pt] font-semibold tracking-[-0.02em] text-[#0f172a]">
@@ -434,7 +438,7 @@ export function InvestorOnePager() {
                 </div>
               </div>
               <div className="shrink-0 rounded-lg border border-[#0284c7]/20 bg-[#0284c7]/[0.06] px-2.5 py-2 text-right">
-                <p className="font-[family-name:var(--font-display)] text-[7.5pt] font-bold uppercase tracking-[0.14em] text-[#0284c7]">
+                <p className="font-[family-name:var(--font-display)] text-[7.5pt] font-bold uppercase tracking-[0.14em] text-[#0369a1]">
                   Investor One-Pager
                 </p>
                 <p className="mt-1 text-[8pt] font-bold uppercase tracking-[0.06em] text-[#0f172a]">
@@ -452,7 +456,7 @@ export function InvestorOnePager() {
                   </p>
                 ))}
                 {problemBody.heads[0] ? (
-                  <p className="mt-2 rounded-md bg-[#0284c7]/10 px-2 py-1.5 font-[family-name:var(--font-display)] text-[8.5pt] font-bold leading-snug text-[#0284c7]">
+                  <p className="mt-2 rounded-md bg-[#0284c7]/10 px-2 py-1.5 font-[family-name:var(--font-display)] text-[8.5pt] font-bold leading-snug text-[#0369a1]">
                     {problemBody.heads[0]}
                   </p>
                 ) : null}
@@ -460,7 +464,7 @@ export function InvestorOnePager() {
 
               <Card title="THE SOLUTION" className="col-span-6" accent>
                 {solutionParsed.heads[0] ? (
-                  <p className="mb-1 font-[family-name:var(--font-display)] text-[9.5pt] font-bold uppercase tracking-[0.04em] text-[#0284c7]">
+                  <p className="mb-1 font-[family-name:var(--font-display)] text-[9.5pt] font-bold uppercase tracking-[0.04em] text-[#0369a1]">
                     {solutionParsed.heads[0]}
                   </p>
                 ) : null}
@@ -504,11 +508,11 @@ export function InvestorOnePager() {
               </Card>
             </div>
 
-            {/* Row 3 */}
-            <div className="grid grid-cols-12 gap-2">
+            {/* Row 3 — fills remaining vertical space */}
+            <div className="op-row-fill">
               <Card
                 title="$DEXLA — THE ECONOMIC BACKBONE"
-                className="col-span-5"
+                className="col-span-4"
               >
                 {dexla ? <DexlaVisual section={dexla} /> : null}
               </Card>
@@ -517,26 +521,19 @@ export function InvestorOnePager() {
                 {market ? <MarketCards body={market.body} /> : null}
               </Card>
 
-              <Card title="FUNDRAISING & MILESTONES" className="col-span-4">
+              <Card title="FUNDRAISING & MILESTONES" className="col-span-5">
                 {raise ? <FundraisingRoadmap body={raise.body} /> : null}
               </Card>
             </div>
 
-            {/* Closing */}
-            <footer className="mt-auto flex items-center justify-between gap-3 rounded-xl bg-[#0284c7] px-3 py-2">
+            {/* Closing — brand wordmark only (no small faded logo) */}
+            <footer className="mt-auto flex items-center justify-between gap-3 rounded-lg bg-[#0284c7] px-3.5 py-2.5">
               <p className="font-[family-name:var(--font-display)] text-[10.5pt] font-bold uppercase tracking-[0.08em] text-white">
                 {content.closingLine}
               </p>
-              <div className="shrink-0 rounded-md bg-white px-2 py-1">
-                <Image
-                  src={LOGO}
-                  alt={content.closingBrand}
-                  width={LOGO_W}
-                  height={LOGO_H}
-                  className="h-[30px] w-auto object-contain"
-                  unoptimized
-                />
-              </div>
+              <p className="shrink-0 font-[family-name:var(--font-display)] text-[12pt] font-bold tracking-[-0.02em] text-white">
+                {content.closingBrand}
+              </p>
             </footer>
           </div>
         </article>

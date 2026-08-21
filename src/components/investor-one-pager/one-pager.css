@@ -46,8 +46,8 @@ body:has(#investor-one-pager-root) {
   display: flex;
   height: 100%;
   flex-direction: column;
-  padding: 0.28in 0.36in 0.24in;
-  gap: 0.12rem;
+  padding: 0.26in 0.34in 0.22in;
+  gap: 0.1rem;
 }
 
 .op-blue {
@@ -62,17 +62,26 @@ body:has(#investor-one-pager-root) {
   color: #64748b;
 }
 
+.op-logo {
+  display: block;
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+  image-rendering: auto;
+}
+
 .op-card {
   background: #ffffff;
-  border: 1px solid rgba(2, 132, 199, 0.14);
-  border-radius: 10px;
+  border: 1px solid rgba(2, 132, 199, 0.16);
+  border-radius: 8px;
   box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
 }
 
 .op-card-accent {
-  background: linear-gradient(180deg, rgba(2, 132, 199, 0.07), rgba(255, 255, 255, 0.95));
-  border: 1px solid rgba(2, 132, 199, 0.22);
-  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(2, 132, 199, 0.08), rgba(255, 255, 255, 0.97));
+  border: 1px solid rgba(2, 132, 199, 0.24);
+  border-radius: 8px;
 }
 
 .op-section-title {
@@ -81,21 +90,21 @@ body:has(#investor-one-pager-root) {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #0284c7;
-  margin: 0 0 0.35rem;
+  color: #0369a1;
+  margin: 0 0 0.4rem;
   line-height: 1.1;
 }
 
 .op-body {
-  font-size: 8.4pt;
-  line-height: 1.3;
+  font-size: 8.5pt;
+  line-height: 1.32;
   color: #0f172a;
   margin: 0;
 }
 
 .op-body-sm {
-  font-size: 7.6pt;
-  line-height: 1.28;
+  font-size: 7.8pt;
+  line-height: 1.3;
   color: #334155;
   margin: 0;
 }
@@ -105,15 +114,15 @@ body:has(#investor-one-pager-root) {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  border: 1px solid rgba(2, 132, 199, 0.25);
-  background: rgba(2, 132, 199, 0.06);
-  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  background: rgba(2, 132, 199, 0.08);
+  color: #0369a1;
   font-family: var(--font-display);
-  font-size: 7.2pt;
+  font-size: 7.4pt;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 0.18rem 0.45rem;
+  padding: 0.22rem 0.5rem;
   white-space: nowrap;
 }
 
@@ -158,6 +167,15 @@ body:has(#investor-one-pager-root) {
   color: #0284c7;
   letter-spacing: -0.04em;
   line-height: 0.95;
+}
+
+.op-row-fill {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.45rem;
+  align-items: stretch;
+  flex: 0 0 auto;
+  min-height: 0;
 }
 
 @media print {
