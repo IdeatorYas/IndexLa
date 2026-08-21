@@ -46,8 +46,8 @@ body:has(#investor-one-pager-root) {
   display: flex;
   height: 100%;
   flex-direction: column;
-  padding: 0.24in 0.34in 0.2in;
-  gap: 0.08rem;
+  padding: 0.2in 0.34in 0.18in;
+  gap: 0.06rem;
 }
 
 .op-blue {
@@ -64,9 +64,9 @@ body:has(#investor-one-pager-root) {
 
 .op-logo {
   display: block;
-  height: 70px;
+  height: 62px;
   width: auto;
-  max-width: 78px;
+  max-width: 70px;
   object-fit: contain;
   object-position: left center;
   image-rendering: auto;
@@ -77,8 +77,8 @@ body:has(#investor-one-pager-root) {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-height: 88px;
-  padding: 0.55rem 0.8rem;
+  min-height: 80px;
+  padding: 0.45rem 0.75rem;
   overflow: visible;
 }
 
