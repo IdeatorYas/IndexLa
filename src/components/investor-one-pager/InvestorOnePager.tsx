@@ -414,28 +414,19 @@ export function InvestorOnePager() {
         <article className="op-page" data-one-pager="true">
           <div className="op-inner">
             {/* Header */}
-            <header className="op-card flex items-center justify-between gap-3 px-2.5 py-2">
-              <div className="flex min-w-0 flex-1 items-center gap-3">
-                <Image
-                  src={LOGO}
-                  alt="INDEXLA"
-                  width={LOGO_W}
-                  height={LOGO_H}
-                  className="op-logo"
-                  priority
-                  unoptimized
-                />
-                <div className="min-w-0 border-l border-[#0284c7]/20 pl-3">
-                  <p className="font-[family-name:var(--font-display)] text-[13pt] font-bold leading-tight tracking-[-0.03em] text-[#0369a1]">
-                    {coverTagline}
-                  </p>
-                  <p className="mt-0.5 font-[family-name:var(--font-display)] text-[10.5pt] font-semibold tracking-[-0.02em] text-[#0f172a]">
-                    {coverTag}
-                  </p>
-                  <p className="mt-0.5 text-[7.2pt] font-medium tracking-[0.04em] text-[#64748b]">
-                    {coverAttrs}
-                  </p>
-                </div>
+            <header className="op-card flex items-center gap-3 px-2.5 py-2">
+              <Image
+                src={LOGO}
+                alt="INDEXLA"
+                width={LOGO_W}
+                height={LOGO_H}
+                className="op-logo shrink-0"
+                priority
+                unoptimized
+              />
+              <div className="op-brand-box">
+                <p className="op-brand-name">INDEXLA</p>
+                <p className="op-brand-sub">Decentralized Portfolio Management</p>
               </div>
               <div className="shrink-0 rounded-lg border border-[#0284c7]/20 bg-[#0284c7]/[0.06] px-2.5 py-2 text-right">
                 <p className="font-[family-name:var(--font-display)] text-[7.5pt] font-bold uppercase tracking-[0.14em] text-[#0369a1]">
@@ -446,6 +437,17 @@ export function InvestorOnePager() {
                 </p>
               </div>
             </header>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 px-1">
+              <p className="font-[family-name:var(--font-display)] text-[10pt] font-bold tracking-[-0.02em] text-[#0369a1]">
+                {coverTagline}
+              </p>
+              <p className="font-[family-name:var(--font-display)] text-[9pt] font-semibold text-[#0f172a]">
+                {coverTag}
+              </p>
+              <p className="text-[7.2pt] font-medium tracking-[0.04em] text-[#64748b]">
+                {coverAttrs}
+              </p>
+            </div>
 
             {/* Row 1 */}
             <div className="grid grid-cols-12 gap-2">

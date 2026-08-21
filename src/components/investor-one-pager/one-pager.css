@@ -64,11 +64,46 @@ body:has(#investor-one-pager-root) {
 
 .op-logo {
   display: block;
-  height: 46px;
+  height: 52px;
   width: auto;
   object-fit: contain;
   object-position: left center;
   image-rendering: auto;
+}
+
+.op-brand-box {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(2, 132, 199, 0.28);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(2, 132, 199, 0.1), rgba(255, 255, 255, 0.95));
+  padding: 0.45rem 1rem;
+  text-align: center;
+}
+
+.op-brand-name {
+  font-family: var(--font-display);
+  font-size: 18pt;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  color: #0369a1;
+  margin: 0;
+}
+
+.op-brand-sub {
+  font-family: var(--font-display);
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #0f172a;
+  margin: 0.35rem 0 0;
 }
 
 .op-card {

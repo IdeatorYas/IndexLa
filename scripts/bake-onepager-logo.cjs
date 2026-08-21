@@ -12,17 +12,17 @@ const fs = require('fs');
     deviceScaleFactor: 3,
   });
   const b64 = fs.readFileSync(src).toString('base64');
+  // Darker / higher-contrast bake so gray INDEX letters stay readable on white
   const html =
     '<!doctype html><html><body style="margin:0;background:transparent;display:flex;align-items:flex-start;justify-content:center;width:1400px;height:1400px;padding-top:40px">' +
     '<img id="logo" src="data:image/png;base64,' +
     b64 +
-    '" style="width:1000px;height:auto;filter:saturate(1.85) contrast(1.42) brightness(0.88);" />' +
+    '" style="width:1000px;height:auto;filter:brightness(0.72) contrast(1.55) saturate(1.45);" />' +
     '</body></html>';
   await page.setContent(html, { waitUntil: 'load' });
   const logo = page.locator('#logo');
   const box = await logo.boundingBox();
   if (!box) throw new Error('no logo box');
-  // Crop away the tiny tagline band (~bottom 12%) so the mark stays sharp at print size
   await page.screenshot({
     path: out,
     omitBackground: true,
