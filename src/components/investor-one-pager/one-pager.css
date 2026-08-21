@@ -2,12 +2,12 @@
 
 .op-root {
   margin: 0;
-  background: #e8e6e1;
-  color: #0a0a0a;
+  background: #e5e2dc;
+  color: #0f172a;
 }
 
 body:has(#investor-one-pager-root) {
-  background: #e8e6e1;
+  background: #e5e2dc;
 }
 
 .op-viewport {
@@ -15,7 +15,7 @@ body:has(#investor-one-pager-root) {
   min-height: 100vh;
   align-items: flex-start;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 1.25rem;
 }
 
 .op-page {
@@ -24,10 +24,20 @@ body:has(#investor-one-pager-root) {
   width: 11in;
   height: 8.5in;
   overflow: hidden;
-  background: #faf9f7;
-  color: #111111;
+  background: #fbfaf8;
+  color: #0f172a;
   font-family: var(--font-body);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
+}
+
+.op-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 40% at 0% 0%, rgba(2, 132, 199, 0.07), transparent 55%),
+    radial-gradient(ellipse 45% 35% at 100% 100%, rgba(2, 132, 199, 0.05), transparent 50%);
 }
 
 .op-inner {
@@ -36,7 +46,8 @@ body:has(#investor-one-pager-root) {
   display: flex;
   height: 100%;
   flex-direction: column;
-  padding: 0.42in 0.48in 0.36in;
+  padding: 0.28in 0.36in 0.24in;
+  gap: 0.12rem;
 }
 
 .op-blue {
@@ -44,66 +55,115 @@ body:has(#investor-one-pager-root) {
 }
 
 .op-ink {
-  color: #111111;
+  color: #0f172a;
 }
 
 .op-muted {
-  color: #5b5b5b;
+  color: #64748b;
 }
 
-.op-rule {
-  height: 1px;
-  background: rgba(2, 132, 199, 0.22);
+.op-card {
+  background: #ffffff;
+  border: 1px solid rgba(2, 132, 199, 0.14);
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
+}
+
+.op-card-accent {
+  background: linear-gradient(180deg, rgba(2, 132, 199, 0.07), rgba(255, 255, 255, 0.95));
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  border-radius: 10px;
 }
 
 .op-section-title {
   font-family: var(--font-display);
-  font-size: 9.5pt;
+  font-size: 8.5pt;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #0284c7;
-  margin: 0 0 0.18rem;
-  line-height: 1.15;
+  margin: 0 0 0.35rem;
+  line-height: 1.1;
 }
 
 .op-body {
-  font-size: 8.6pt;
-  line-height: 1.28;
-  color: #111111;
+  font-size: 8.4pt;
+  line-height: 1.3;
+  color: #0f172a;
   margin: 0;
 }
 
 .op-body-sm {
-  font-size: 8pt;
-  line-height: 1.26;
-  color: #111111;
+  font-size: 7.6pt;
+  line-height: 1.28;
+  color: #334155;
   margin: 0;
 }
 
-.op-subhead {
+.op-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  background: rgba(2, 132, 199, 0.06);
+  color: #0284c7;
   font-family: var(--font-display);
-  font-size: 9.2pt;
+  font-size: 7.2pt;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #111111;
-  margin: 0 0 0.2rem;
-  line-height: 1.2;
+  padding: 0.18rem 0.45rem;
+  white-space: nowrap;
+}
+
+.op-step {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.op-step-num {
+  display: flex;
+  height: 1.15rem;
+  width: 1.15rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #0284c7;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 7pt;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.op-arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 0 0.15rem;
+  color: #0284c7;
+  font-size: 10pt;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .op-metric {
   font-family: var(--font-display);
   font-weight: 700;
   color: #0284c7;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
 @media print {
   .op-root,
   body:has(#investor-one-pager-root) {
-    background: #faf9f7 !important;
+    background: #fbfaf8 !important;
   }
 
   .op-viewport {
@@ -113,7 +173,5 @@ body:has(#investor-one-pager-root) {
 
   .op-page {
     box-shadow: none;
-    width: 11in;
-    height: 8.5in;
   }
 }
