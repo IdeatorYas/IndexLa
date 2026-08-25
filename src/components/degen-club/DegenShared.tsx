@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   dcBody,
@@ -13,6 +14,7 @@ import {
 import {
   DEGEN_MEME_LOGOS,
   MEME_COIN_COLORS,
+  resolveMemeLogoSrc,
   type DegenMemeTicker,
 } from "@/components/degen-club/memeLogos";
 import { DEGEN_SUPPORTED_CHAINS } from "@/components/degen-club/degenLandingBaskets";
@@ -129,10 +131,9 @@ export function MemeCoinLogo({
   className?: string;
 }) {
   const key = ticker.toUpperCase();
-  const src =
-    DEGEN_MEME_LOGOS[key as DegenMemeTicker] ??
-    (key === "SPX" ? DEGEN_MEME_LOGOS.SPX6900 : undefined);
-  const color = MEME_COIN_COLORS[key] ?? "#38bdf8";
+  const src = resolveMemeLogoSrc(ticker);
+  const color = MEME_COIN_COLORS[key] ?? MEME_COIN_COLORS[ticker] ?? "#38bdf8";
+  const [broken, setBroken] = useState(false);
 
   const sizes = {
     xs: "h-7 w-7",
@@ -142,7 +143,7 @@ export function MemeCoinLogo({
     xl: "h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20",
   };
 
-  if (!src) {
+  if (!src || broken) {
     return (
       <div
         className={`flex shrink-0 items-center justify-center rounded-full border font-bold text-ink ${sizes[size]} ${className}`}
@@ -154,6 +155,8 @@ export function MemeCoinLogo({
     );
   }
 
+  const isRemote = src.startsWith("http");
+
   return (
     <div
       className={`relative shrink-0 overflow-hidden rounded-full border bg-void/80 ${sizes[size]} ${className}`}
@@ -163,14 +166,25 @@ export function MemeCoinLogo({
       }}
       title={ticker}
     >
-      <Image
-        src={src}
-        alt=""
-        fill
-        className="object-cover"
-        sizes={size === "xl" ? "80px" : size === "lg" ? "56px" : "44px"}
-        aria-hidden
-      />
+      {isRemote ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt=""
+          className="h-full w-full object-cover"
+          aria-hidden
+          onError={() => setBroken(true)}
+        />
+      ) : (
+        <Image
+          src={src}
+          alt=""
+          fill
+          className="object-cover"
+          sizes={size === "xl" ? "80px" : size === "lg" ? "56px" : "44px"}
+          aria-hidden
+        />
+      )}
     </div>
   );
 }
@@ -246,7 +260,8 @@ export function SupportedChainLogos({
           title={chain.label}
         >
           <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-line bg-void/70 sm:h-10 sm:w-10">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={chain.logo}
               alt=""
               width={28}

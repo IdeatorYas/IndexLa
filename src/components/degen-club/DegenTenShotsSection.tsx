@@ -49,11 +49,11 @@ export function DegenTenShotsSection({ section }: { section: DegenSection }) {
           <FadeIn className="mt-8">
             <div className="grid gap-6 md:grid-cols-2 md:items-stretch">
               {/* 1 Shot — concentrated bet */}
-              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-danger/35 bg-danger/[0.05] p-6 sm:p-8">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-danger/35 bg-danger/[0.05] p-6 text-center sm:p-8">
                 <p className="display text-[clamp(2rem,4.5vw,3.25rem)] font-semibold uppercase tracking-[-0.03em] text-danger/90">
                   1 Shot
                 </p>
-                <p className="mt-2 text-[0.95rem] text-muted sm:text-[1.02rem]">
+                <p className="mx-auto mt-2 max-w-sm text-[0.95rem] text-muted sm:text-[1.02rem]">
                   One concentrated bet. All-in on a single outcome.
                 </p>
 
@@ -99,11 +99,11 @@ export function DegenTenShotsSection({ section }: { section: DegenSection }) {
               </div>
 
               {/* 10 Shots — diversified basket */}
-              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-electric/35 bg-electric/[0.05] p-6 sm:p-8">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-electric/35 bg-electric/[0.05] p-6 text-center sm:p-8">
                 <p className="display text-[clamp(2rem,4.5vw,3.25rem)] font-semibold uppercase tracking-[-0.03em] text-electric">
                   10 Shots
                 </p>
-                <p className="mt-2 text-[0.95rem] text-muted sm:text-[1.02rem]">
+                <p className="mx-auto mt-2 max-w-sm text-[0.95rem] text-muted sm:text-[1.02rem]">
                   Ten positions. Multiple chances. Managed downside.
                 </p>
 

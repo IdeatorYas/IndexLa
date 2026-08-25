@@ -1,52 +1,125 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
+import { LandingBasketDonut } from "@/components/degen-club/LandingBasketDonut";
 import {
   MemeCoinLogo,
   SupportedChainLogos,
 } from "@/components/degen-club/DegenShared";
 import {
+  basketChainIds,
   DEGEN_LANDING_INDEXES,
   DEGEN_LANDING_PORTFOLIOS,
+  getChainMeta,
+  type DegenChainId,
   type DegenLandingBasket,
 } from "@/components/degen-club/degenLandingBaskets";
-import { dcDisclaimer, dcLabel, dcSection } from "@/components/degen-club/degenRhythm";
+import {
+  dcDisclaimer,
+  dcSection,
+} from "@/components/degen-club/degenRhythm";
 import type { DegenSection } from "@/lib/degen-club";
+import type { ReactNode } from "react";
+
+const dcCardHeading =
+  "text-[1.05rem] font-bold uppercase tracking-[0.12em] text-electric sm:text-[1.15rem]";
+
+function CategoryHeading({ children }: { children: ReactNode }) {
+  return (
+    <div className="mx-auto flex w-full max-w-3xl items-center justify-center rounded-2xl border border-electric/35 bg-gradient-to-b from-electric/[0.12] to-electric/[0.04] px-6 py-4 shadow-[0_0_40px_-12px_rgba(56,189,248,0.45)] sm:px-10 sm:py-5">
+      <p className="display text-center text-[clamp(1.75rem,4.2vw,2.55rem)] font-semibold tracking-[-0.03em] text-electric">
+        {children}
+      </p>
+    </div>
+  );
+}
+
+function ChainLogoMark({
+  chainId,
+  size = "md",
+}: {
+  chainId: DegenChainId;
+  size?: "sm" | "md";
+}) {
+  const chain = getChainMeta(chainId);
+  const dim = size === "sm" ? "h-6 w-6" : "h-7 w-7 sm:h-8 sm:w-8";
+  const img = size === "sm" ? "h-4 w-4" : "h-[1.15rem] w-[1.15rem] sm:h-5 sm:w-5";
+  return (
+    <span
+      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-void/80 ${dim}`}
+      title={chain.label}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={chain.logo}
+        alt=""
+        className={`${img} object-contain`}
+        aria-hidden
+      />
+    </span>
+  );
+}
 
 function BasketCard({ basket }: { basket: DegenLandingBasket }) {
+  const chains = basketChainIds(basket);
+
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-line bg-void/45 p-4 sm:p-5">
-      <h3 className="display text-[1.15rem] tracking-[-0.02em] text-ink sm:text-[1.25rem]">
-        {basket.title}
-      </h3>
-      <p className="mt-2 min-h-[4.5rem] text-[0.92rem] leading-relaxed text-muted sm:min-h-[4.75rem] sm:text-[0.98rem]">
+    <article className="flex h-full min-w-0 flex-col rounded-2xl border border-line bg-void/45 p-4 sm:p-5">
+      <div className="flex items-start gap-2.5">
+        <div className="mt-0.5 flex shrink-0 items-center gap-1">
+          {chains.map((id) => (
+            <ChainLogoMark key={id} chainId={id} />
+          ))}
+        </div>
+        <h3 className="display min-w-0 flex-1 text-[1.12rem] leading-snug tracking-[-0.02em] text-ink sm:text-[1.22rem]">
+          {basket.title}
+        </h3>
+      </div>
+
+      <p className="mt-2 text-[0.88rem] leading-relaxed text-muted sm:text-[0.94rem]">
         {basket.description}
       </p>
-      <ul className="mt-4 grid flex-1 grid-cols-2 content-start gap-1.5 sm:grid-cols-5 sm:gap-2">
-        {basket.assets.map((asset) => (
-          <li
-            key={`${basket.title}-${asset.ticker}-${asset.chain ?? "x"}`}
-            className="flex min-w-0 flex-col items-center gap-1 rounded-lg border border-line/80 bg-deep/50 px-1 py-1.5"
-          >
-            <MemeCoinLogo ticker={asset.ticker} size="xs" />
-            <span className="w-full truncate text-center text-[0.62rem] font-bold uppercase tracking-[0.04em] text-ink sm:text-[0.66rem]">
-              {asset.ticker}
-            </span>
-            {asset.chain ? (
-              <span className="w-full truncate text-center text-[0.55rem] text-muted-dim">
-                {asset.chain}
+
+      <div className="mt-5 flex flex-1 flex-col items-center gap-5">
+        <LandingBasketDonut
+          segments={basket.assets.map((a) => ({
+            ticker: a.ticker,
+            percent: a.percent,
+          }))}
+          size={168}
+        />
+
+        <ul className="grid w-full min-w-0 grid-cols-2 gap-1.5 content-start">
+          {basket.assets.map((asset) => (
+            <li
+              key={`${basket.title}-${asset.ticker}-${asset.chain ?? "x"}`}
+              className="flex min-w-0 items-center gap-1.5 rounded-lg border border-line/70 bg-deep/45 px-1.5 py-1.5"
+            >
+              <MemeCoinLogo ticker={asset.ticker} size="xs" />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[0.68rem] font-bold uppercase tracking-[0.04em] text-ink">
+                  {asset.ticker}
+                </p>
+                {asset.chain ? (
+                  <p className="truncate text-[0.58rem] text-muted-dim">
+                    {asset.chain}
+                  </p>
+                ) : null}
+              </div>
+              <span className="shrink-0 text-[0.72rem] font-bold tabular-nums text-electric">
+                {asset.percent}%
               </span>
-            ) : null}
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
     </article>
   );
 }
 
 export function DegenDiscoverSection({ section }: { section: DegenSection }) {
   const discoverEnd = section.blocks.findIndex(
-    (b) => b.type === "h3" && b.text.startsWith("BUILD")
+    (b) => b.type === "h3" && b.text.startsWith("BUILD"),
   );
   const discoverBlocks =
     discoverEnd === -1 ? section.blocks : section.blocks.slice(0, discoverEnd);
@@ -72,28 +145,28 @@ export function DegenDiscoverSection({ section }: { section: DegenSection }) {
     .join(" ");
 
   return (
-    <section className={`${dcSection} bg-deep`}>
+    <section className={`${dcSection} overflow-x-clip bg-deep`}>
       <div className="section-pad container-max">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto w-full max-w-6xl">
           <FadeIn>
             <h2 className="display text-center text-[clamp(2rem,4.6vw,3.15rem)] font-semibold tracking-[-0.03em] text-ink">
               {section.title}
             </h2>
           </FadeIn>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-stretch">
-            <FadeIn className="h-full">
+          <div className="mt-8 grid w-full gap-6 lg:grid-cols-2 lg:items-stretch">
+            <FadeIn className="h-full min-w-0">
               <div className="flex h-full min-h-[11.5rem] flex-col rounded-2xl border border-line bg-void/40 p-6 sm:min-h-[12rem]">
-                <p className={dcLabel}>{discoverTitle}</p>
+                <p className={dcCardHeading}>{discoverTitle}</p>
                 <p className="mt-3 flex-1 text-[1.05rem] leading-relaxed text-muted sm:text-[1.12rem]">
                   {discoverCopy}
                 </p>
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.06} className="h-full">
+            <FadeIn delay={0.06} className="h-full min-w-0">
               <div className="flex h-full min-h-[11.5rem] flex-col rounded-2xl border border-line bg-void/40 p-6 sm:min-h-[12rem]">
-                <p className={dcLabel}>{buildTitle}</p>
+                <p className={dcCardHeading}>{buildTitle}</p>
                 <p className="mt-3 flex-1 text-[1.05rem] leading-relaxed text-muted sm:text-[1.12rem]">
                   {buildCopy}
                 </p>
@@ -105,29 +178,35 @@ export function DegenDiscoverSection({ section }: { section: DegenSection }) {
             <SupportedChainLogos />
           </FadeIn>
 
-          <FadeIn className="mt-10 sm:mt-12">
-            <p className={`${dcLabel} text-center text-electric`}>Memecoin Indexes</p>
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              {DEGEN_LANDING_INDEXES.map((basket) => (
-                <BasketCard key={basket.title} basket={basket} />
+          <div className="mt-10 sm:mt-12">
+            <FadeIn>
+              <CategoryHeading>Memecoin Indexes</CategoryHeading>
+            </FadeIn>
+            <div className="mt-5 grid w-full grid-cols-1 gap-5 md:grid-cols-2">
+              {DEGEN_LANDING_INDEXES.map((basket, i) => (
+                <FadeIn key={basket.title} delay={0.04 * (i % 2)} className="min-w-0">
+                  <BasketCard basket={basket} />
+                </FadeIn>
               ))}
             </div>
-          </FadeIn>
+          </div>
 
-          <FadeIn className="mt-10 sm:mt-12">
-            <p className={`${dcLabel} text-center text-electric`}>
-              Memecoin Portfolios
-            </p>
-            <div className="mt-4 grid gap-4 lg:grid-cols-3">
-              {DEGEN_LANDING_PORTFOLIOS.map((basket) => (
-                <BasketCard key={basket.title} basket={basket} />
+          <div className="mt-10 sm:mt-12">
+            <FadeIn>
+              <CategoryHeading>Memecoin Portfolios</CategoryHeading>
+            </FadeIn>
+            <div className="mt-5 grid w-full grid-cols-1 gap-5 lg:grid-cols-3">
+              {DEGEN_LANDING_PORTFOLIOS.map((basket, i) => (
+                <FadeIn key={basket.title} delay={0.04 * (i % 3)} className="min-w-0">
+                  <BasketCard basket={basket} />
+                </FadeIn>
               ))}
             </div>
-            <p className={`mt-4 text-center ${dcDisclaimer}`}>
+            <p className={`mt-5 text-center ${dcDisclaimer}`}>
               Illustrative baskets. Visual representation only. Logos do not imply
               endorsement.
             </p>
-          </FadeIn>
+          </div>
         </div>
       </div>
     </section>
