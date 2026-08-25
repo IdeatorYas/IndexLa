@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { Button } from "@/components/ui/Button";
 import { NAV_LINKS } from "@/lib/site";
 
 function linkIsActive(href: string, pathname: string) {
@@ -75,12 +74,6 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Button href="/creators" className="!px-4 !py-2.5 text-[0.9rem] xl:!px-5 xl:text-[0.9375rem]">
-            Build Your First Portfolio
-          </Button>
-        </div>
-
         <button
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/12 lg:hidden"
@@ -114,11 +107,6 @@ export function SiteHeader() {
                 </Link>
               );
             })}
-            <div className="mt-3 flex flex-col gap-2 px-3 pb-2">
-              <Button href="/creators" className="w-full">
-                Build Your First Portfolio
-              </Button>
-            </div>
           </nav>
         </div>
       )}
