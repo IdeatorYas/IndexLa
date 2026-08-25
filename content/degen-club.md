@@ -28,12 +28,11 @@ Build a portfolio around your thesis.
 
 Choose the assets → Set allocations → Define rules → Automate
 
-Solana · Ethereum · Base · BNB · Multi-Chain
-
+Multiple coins.  
+Multiple shots.  
 Multiple opportunities.  
-Defined allocations.  
-Rules-based execution.  
-Non-custodial ownership.
+
+A bigger chance of winning.
 
 Reserve Early Access →
 

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
@@ -137,26 +136,25 @@ export function MemeCoinLogo({
   const [broken, setBroken] = useState(false);
 
   const sizes = {
-    xs: "h-7 w-7",
-    sm: "h-9 w-9",
-    md: "h-11 w-11",
-    lg: "h-14 w-14",
-    xl: "h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20",
+    xs: "h-7 w-7 text-[0.55rem]",
+    sm: "h-9 w-9 text-[0.62rem]",
+    md: "h-11 w-11 text-[0.7rem]",
+    lg: "h-14 w-14 text-[0.78rem]",
+    xl: "h-[4.5rem] w-[4.5rem] text-[0.95rem] sm:h-20 sm:w-20",
   };
 
-  if (!src || broken) {
-    return (
-      <div
-        className={`flex shrink-0 items-center justify-center rounded-full border font-bold text-ink ${sizes[size]} ${className}`}
-        style={{ borderColor: `${color}66`, background: `${color}18` }}
-        aria-hidden
-      >
-        {ticker.slice(0, 3)}
-      </div>
-    );
-  }
+  const badge = (
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-full border font-bold uppercase tracking-tight text-ink ${sizes[size]} ${className}`}
+      style={{ borderColor: `${color}66`, background: `${color}18` }}
+      aria-hidden
+      title={ticker}
+    >
+      {ticker.replace(/[^A-Za-z0-9]/g, "").slice(0, 4) || "?"}
+    </div>
+  );
 
-  const isRemote = src.startsWith("http");
+  if (!src || broken) return badge;
 
   return (
     <div
@@ -167,25 +165,17 @@ export function MemeCoinLogo({
       }}
       title={ticker}
     >
-      {isRemote ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={src}
-          alt=""
-          className="h-full w-full object-cover"
-          aria-hidden
-          onError={() => setBroken(true)}
-        />
-      ) : (
-        <Image
-          src={src}
-          alt=""
-          fill
-          className="object-cover"
-          sizes={size === "xl" ? "80px" : size === "lg" ? "56px" : "44px"}
-          aria-hidden
-        />
-      )}
+      {/* Native img: reliable onError → ticker badge; no remote CDN at runtime */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt=""
+        className="h-full w-full object-cover"
+        aria-hidden
+        loading="lazy"
+        decoding="async"
+        onError={() => setBroken(true)}
+      />
     </div>
   );
 }
