@@ -60,7 +60,7 @@ function PermissionColumn({
         className={`inline-flex self-start rounded-full px-3.5 py-1.5 text-[0.72rem] font-bold uppercase tracking-[0.12em] ${
           isCan
             ? "bg-[var(--sc-green-soft)] text-[var(--sc-green)]"
-            : "bg-[#fef2f2] text-[#dc2626]"
+            : "bg-danger/10 text-danger"
         }`}
       >
         {title}
@@ -73,7 +73,7 @@ function PermissionColumn({
               className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[0.75rem] font-bold ${
                 isCan
                   ? "bg-[var(--sc-green-soft)] text-[var(--sc-green)]"
-                  : "bg-[#fef2f2] text-[#dc2626]"
+                  : "bg-danger/10 text-danger"
               }`}
               aria-hidden
             >

@@ -13,8 +13,8 @@ export function StableDisclaimerSection({
     <section className={`${scSectionAlt} pb-16`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl">
-          <div className="rounded-2xl border border-[var(--sc-line)] bg-white px-5 py-6 sm:px-8 sm:py-8">
-            <h2 className={`${scH3} text-[var(--sc-navy)]`}>{disclaimer.title}</h2>
+          <div className="rounded-2xl border border-line bg-void/50 px-5 py-6 sm:px-8 sm:py-8">
+            <h2 className={`${scH3} text-ink`}>{disclaimer.title}</h2>
             <div className="mt-4 space-y-3.5">
               {disclaimer.paragraphs.map((paragraph) => (
                 <p key={paragraph.slice(0, 48)} className={scDisclaimer}>

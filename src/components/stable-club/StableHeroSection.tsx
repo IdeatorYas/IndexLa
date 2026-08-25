@@ -32,15 +32,15 @@ function HeroFlowVisual() {
         aria-hidden
       >
         {/* Wallet */}
-        <rect x="24" y="100" width="88" height="72" rx="14" fill="#fff" stroke="#cbd5e1" strokeWidth="1.5" />
-        <text x="68" y="132" textAnchor="middle" fill="#0f172a" fontSize="11" fontWeight="600">
+        <rect x="24" y="100" width="88" height="72" rx="14" fill="#1a0f2e" stroke="rgba(167,139,250,0.25)" strokeWidth="1.5" />
+        <text x="68" y="132" textAnchor="middle" fill="#f4f1ff" fontSize="11" fontWeight="600">
           User
         </text>
-        <text x="68" y="150" textAnchor="middle" fill="#64748b" fontSize="10" fontWeight="500">
+        <text x="68" y="150" textAnchor="middle" fill="#a89bc4" fontSize="10" fontWeight="500">
           Wallet
         </text>
-        <circle cx="52" cy="118" r="6" fill="#2563eb" opacity="0.85" />
-        <circle cx="68" cy="118" r="6" fill="#0d9488" opacity="0.85" />
+        <circle cx="52" cy="118" r="6" fill="#38bdf8" opacity="0.85" />
+        <circle cx="68" cy="118" r="6" fill="#22d3ee" opacity="0.85" />
 
         {/* Arrow 1 */}
         <line
@@ -48,18 +48,18 @@ function HeroFlowVisual() {
           y1="136"
           x2="148"
           y2="136"
-          stroke="#2563eb"
+          stroke="#38bdf8"
           strokeWidth="2"
           className={reduce ? undefined : "sc-flow-line"}
         />
-        <polygon points="148,131 158,136 148,141" fill="#2563eb" />
+        <polygon points="148,131 158,136 148,141" fill="#38bdf8" />
 
         {/* Limited Permission */}
-        <rect x="158" y="108" width="104" height="56" rx="12" fill="#dbeafe" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="4 3" />
-        <text x="210" y="132" textAnchor="middle" fill="#1e40af" fontSize="10" fontWeight="600">
+        <rect x="158" y="108" width="104" height="56" rx="12" fill="rgba(56,189,248,0.12)" stroke="#38bdf8" strokeWidth="1.5" strokeDasharray="4 3" />
+        <text x="210" y="132" textAnchor="middle" fill="#38bdf8" fontSize="10" fontWeight="600">
           Limited
         </text>
-        <text x="210" y="148" textAnchor="middle" fill="#1e40af" fontSize="10" fontWeight="600">
+        <text x="210" y="148" textAnchor="middle" fill="#38bdf8" fontSize="10" fontWeight="600">
           Permission
         </text>
 
@@ -69,29 +69,29 @@ function HeroFlowVisual() {
           y1="136"
           x2="298"
           y2="136"
-          stroke="#0d9488"
+          stroke="#22d3ee"
           strokeWidth="2"
           className={reduce ? undefined : "sc-flow-line"}
         />
-        <polygon points="298,131 308,136 298,141" fill="#0d9488" />
+        <polygon points="298,131 308,136 298,141" fill="#22d3ee" />
 
         {/* Liquidity Pool */}
-        <rect x="308" y="88" width="88" height="96" rx="14" fill="#fff" stroke="#0d9488" strokeWidth="1.5" />
-        <text x="352" y="118" textAnchor="middle" fill="#0f172a" fontSize="11" fontWeight="600">
+        <rect x="308" y="88" width="88" height="96" rx="14" fill="#1a0f2e" stroke="#22d3ee" strokeWidth="1.5" />
+        <text x="352" y="118" textAnchor="middle" fill="#f4f1ff" fontSize="11" fontWeight="600">
           Liquidity
         </text>
-        <text x="352" y="134" textAnchor="middle" fill="#0f172a" fontSize="11" fontWeight="600">
+        <text x="352" y="134" textAnchor="middle" fill="#f4f1ff" fontSize="11" fontWeight="600">
           Pool
         </text>
-        <circle cx="332" cy="158" r="10" fill="#2563eb" opacity="0.9" />
+        <circle cx="332" cy="158" r="10" fill="#38bdf8" opacity="0.9" />
         <text x="332" y="162" textAnchor="middle" fill="#fff" fontSize="8" fontWeight="700">
           $
         </text>
-        <circle cx="352" cy="168" r="10" fill="#059669" opacity="0.9" />
+        <circle cx="352" cy="168" r="10" fill="#34d399" opacity="0.9" />
         <text x="352" y="172" textAnchor="middle" fill="#fff" fontSize="8" fontWeight="700">
           ₮
         </text>
-        <circle cx="372" cy="158" r="10" fill="#2563eb" opacity="0.7" />
+        <circle cx="372" cy="158" r="10" fill="#38bdf8" opacity="0.7" />
         <text x="372" y="162" textAnchor="middle" fill="#fff" fontSize="8" fontWeight="700">
           $
         </text>
@@ -103,7 +103,7 @@ function HeroFlowVisual() {
               cx="130"
               cy="136"
               r="5"
-              fill="#2563eb"
+              fill="#38bdf8"
               animate={{ cx: [130, 210, 290, 340], opacity: [0, 1, 1, 0.6] }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             />
@@ -111,21 +111,21 @@ function HeroFlowVisual() {
               cx="130"
               cy="128"
               r="4"
-              fill="#059669"
+              fill="#34d399"
               animate={{ cx: [130, 210, 290, 360], opacity: [0, 1, 1, 0.6] }}
               transition={{ duration: 3.4, repeat: Infinity, ease: "linear", delay: 0.8 }}
             />
           </>
         ) : null}
 
-        <text x="210" y="210" textAnchor="middle" fill="#64748b" fontSize="10">
+        <text x="210" y="210" textAnchor="middle" fill="#6e6288" fontSize="10">
           USDC / USDT → established pools
         </text>
       </svg>
 
       <div className="relative mt-4 flex items-center justify-center gap-4">
-        <StablecoinBadge symbol="USDC" color="#2563eb" size="sm" />
-        <StablecoinBadge symbol="USDT" color="#059669" size="sm" />
+        <StablecoinBadge symbol="USDC" color="#38bdf8" size="sm" />
+        <StablecoinBadge symbol="USDT" color="#34d399" size="sm" />
         <span className="text-[0.82rem] font-medium text-[var(--sc-muted)]">
           Direct pool deposit
         </span>

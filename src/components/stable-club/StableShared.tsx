@@ -133,7 +133,7 @@ export function AssetLogo({
 }) {
   return (
     <span
-      className="flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-[var(--sc-line)] bg-white"
+      className="flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-void/80"
       style={{ width: size, height: size }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}

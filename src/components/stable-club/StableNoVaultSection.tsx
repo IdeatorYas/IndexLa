@@ -20,14 +20,14 @@ function VaultComparisonVisual() {
           <span className="text-[var(--sc-muted)]" aria-hidden>
             ↓
           </span>
-          <div className="relative w-full max-w-[12rem] rounded-xl border-2 border-dashed border-[#dc2626]/40 bg-[#fef2f2] px-4 py-3 text-center">
+          <div className="relative w-full max-w-[12rem] rounded-xl border-2 border-dashed border-danger/40 bg-danger/10 px-4 py-3 text-center">
             <span
-              className="pointer-events-none absolute inset-0 flex items-center justify-center text-[1.75rem] font-light text-[#dc2626]/35"
+              className="pointer-events-none absolute inset-0 flex items-center justify-center text-[1.75rem] font-light text-danger/35"
               aria-hidden
             >
               ✕
             </span>
-            <p className="relative text-[0.88rem] font-semibold text-[#991b1b] line-through decoration-[#dc2626]/60">
+            <p className="relative text-[0.88rem] font-semibold text-danger line-through decoration-danger/60">
               Vault
             </p>
           </div>

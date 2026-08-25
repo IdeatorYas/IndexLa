@@ -27,7 +27,7 @@ export function StablePureLiquiditySection({ section }: { section: StableSection
             {lines.map((line) => (
               <li
                 key={line}
-                className="rounded-xl border border-[var(--sc-line)] bg-white px-4 py-3 text-[0.95rem] font-semibold text-[var(--sc-navy)] shadow-[var(--sc-shadow)]"
+                className="rounded-xl border border-line bg-deep/55 px-4 py-3 text-[0.95rem] font-semibold text-ink shadow-[0_12px_40px_rgba(0,0,0,0.25)]"
               >
                 {line.replace(/\*\*/g, "")}
               </li>

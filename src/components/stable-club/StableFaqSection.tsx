@@ -19,7 +19,7 @@ function StableFaqAccordionItem({
   return (
     <div
       data-open={open ? "true" : "false"}
-      className="rounded-xl border border-[var(--sc-line)] bg-white transition-colors hover:border-[rgba(37,99,235,0.2)] data-[open=true]:border-[rgba(37,99,235,0.28)] data-[open=true]:shadow-[var(--sc-shadow)]"
+      className="rounded-xl border border-[var(--sc-line)] bg-void/40 transition-colors hover:border-electric/25 data-[open=true]:border-electric/40 data-[open=true]:bg-void/55"
     >
       <h3>
         <button
@@ -29,14 +29,14 @@ function StableFaqAccordionItem({
           onClick={onToggle}
           className="group flex w-full items-start justify-between gap-3 px-4 py-4 text-left sm:gap-4 sm:px-5 sm:py-4"
         >
-          <span className="display text-[1rem] leading-snug tracking-[-0.02em] text-[var(--sc-navy)] transition-colors group-hover:text-[var(--sc-blue)] sm:text-[1.05rem]">
+          <span className="display text-[1rem] leading-snug tracking-[-0.02em] text-ink transition-colors group-hover:text-electric sm:text-[1.05rem]">
             {item.q}
           </span>
           <span
             className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-transform duration-200 ${
               open
-                ? "rotate-45 border-[var(--sc-blue)]/35 bg-[var(--sc-blue-soft)] text-[var(--sc-blue)]"
-                : "border-[var(--sc-line)] bg-[var(--sc-bg-alt)] text-[var(--sc-teal)] group-hover:border-[var(--sc-teal)]/30"
+                ? "rotate-45 border-electric/45 bg-electric/10 text-electric"
+                : "border-line bg-void/40 text-electric group-hover:border-electric/35"
             }`}
             aria-hidden
           >

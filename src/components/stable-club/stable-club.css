@@ -1,23 +1,23 @@
-/* STABLE CLUB — scoped institutional light theme within INDEXLA chrome */
+/* STABLE CLUB — scoped dark theme aligned with INDEXLA site */
 .stable-club-page {
-  --sc-bg: #f8fafc;
-  --sc-bg-alt: #f1f5f9;
-  --sc-surface: #ffffff;
-  --sc-surface-elevated: #ffffff;
-  --sc-navy: #0f172a;
-  --sc-navy-muted: #334155;
-  --sc-muted: #64748b;
-  --sc-muted-dim: #94a3b8;
-  --sc-blue: #2563eb;
-  --sc-blue-soft: #dbeafe;
-  --sc-teal: #0d9488;
-  --sc-teal-soft: #ccfbf1;
-  --sc-green: #059669;
-  --sc-green-soft: #d1fae5;
-  --sc-line: rgba(15, 23, 42, 0.08);
-  --sc-line-strong: rgba(37, 99, 235, 0.22);
-  --sc-shadow: 0 4px 24px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
-  --sc-shadow-lg: 0 16px 48px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+  --sc-bg: #0a0614;
+  --sc-bg-alt: #12081f;
+  --sc-surface: rgba(26, 15, 46, 0.55);
+  --sc-surface-elevated: #1a0f2e;
+  --sc-navy: #f4f1ff;
+  --sc-navy-muted: #a89bc4;
+  --sc-muted: #a89bc4;
+  --sc-muted-dim: #6e6288;
+  --sc-blue: #38bdf8;
+  --sc-blue-soft: rgba(56, 189, 248, 0.1);
+  --sc-teal: #22d3ee;
+  --sc-teal-soft: rgba(34, 211, 238, 0.1);
+  --sc-green: #34d399;
+  --sc-green-soft: rgba(52, 211, 153, 0.1);
+  --sc-line: rgba(167, 139, 250, 0.14);
+  --sc-line-strong: rgba(56, 189, 248, 0.28);
+  --sc-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --sc-shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
   background: var(--sc-bg);
   color: var(--sc-navy);
@@ -83,7 +83,7 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--sc-teal);
+  color: var(--sc-blue);
 }
 
 .stable-club-page .sc-card {
@@ -91,6 +91,7 @@
   border: 1px solid var(--sc-line);
   background: var(--sc-surface);
   box-shadow: var(--sc-shadow);
+  backdrop-filter: blur(12px);
 }
 
 .stable-club-page .sc-card-elevated {
@@ -101,7 +102,7 @@
 }
 
 .stable-club-page .sc-gradient-text {
-  background-image: linear-gradient(120deg, var(--sc-blue) 0%, var(--sc-teal) 100%);
+  background-image: linear-gradient(120deg, #c4b5fd 0%, #38bdf8 55%, #60a5fa 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -109,32 +110,24 @@
 
 .stable-club-page .sc-hero-glow {
   background:
-    radial-gradient(ellipse 60% 50% at 70% 30%, rgba(37, 99, 235, 0.08), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 20% 60%, rgba(13, 148, 136, 0.06), transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, var(--sc-bg) 100%);
+    radial-gradient(ellipse 70% 55% at 50% 35%, rgba(124, 58, 237, 0.28), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 75% 55%, rgba(56, 189, 248, 0.14), transparent 55%),
+    radial-gradient(ellipse 40% 35% at 20% 70%, rgba(34, 211, 238, 0.08), transparent 50%),
+    linear-gradient(180deg, #0a0614 0%, #12081f 100%);
 }
 
 .stable-club-page .sc-highlight-band {
   border-radius: 0.875rem;
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  background: linear-gradient(135deg, var(--sc-blue-soft) 0%, var(--sc-teal-soft) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.09);
+  box-shadow: inset 0 1px 0 rgba(56, 189, 248, 0.14);
   padding: 0.875rem 1.125rem;
 }
 
 .stable-club-page .sc-disclaimer {
   font-size: 0.88rem;
   line-height: 1.65;
-  color: var(--sc-muted);
-}
-
-@keyframes sc-flow-pulse {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-  50% {
-    opacity: 1;
-  }
+  color: var(--sc-muted-dim);
 }
 
 @keyframes sc-flow-move {
