@@ -31,8 +31,8 @@ export function DegenClubLanding() {
       {byId["discover-or-build"] ? (
         <DegenDiscoverSection section={byId["discover-or-build"]} />
       ) : null}
-      {byId["10-shots-1-shot"] ? (
-        <DegenTenShotsSection section={byId["10-shots-1-shot"]} />
+      {byId["1-shot-vs-10-shots"] ? (
+        <DegenTenShotsSection section={byId["1-shot-vs-10-shots"]} />
       ) : null}
       {byId["play-it-like-a-system"] ? (
         <DegenSystemSection section={byId["play-it-like-a-system"]} />

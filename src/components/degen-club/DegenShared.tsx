@@ -15,6 +15,7 @@ import {
   MEME_COIN_COLORS,
   type DegenMemeTicker,
 } from "@/components/degen-club/memeLogos";
+import { DEGEN_SUPPORTED_CHAINS } from "@/components/degen-club/degenLandingBaskets";
 import type { DegenBlock } from "@/lib/degen-club";
 
 export const MEME_COINS = (Object.keys(DEGEN_MEME_LOGOS) as DegenMemeTicker[]).map(
@@ -127,8 +128,10 @@ export function MemeCoinLogo({
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   className?: string;
 }) {
-  const key = ticker.toUpperCase() as DegenMemeTicker;
-  const src = DEGEN_MEME_LOGOS[key];
+  const key = ticker.toUpperCase();
+  const src =
+    DEGEN_MEME_LOGOS[key as DegenMemeTicker] ??
+    (key === "SPX" ? DEGEN_MEME_LOGOS.SPX6900 : undefined);
   const color = MEME_COIN_COLORS[key] ?? "#38bdf8";
 
   const sizes = {
@@ -222,6 +225,40 @@ export function ChainPills({ compact }: { compact?: boolean }) {
         >
           {chain}
         </span>
+      ))}
+    </div>
+  );
+}
+
+export function SupportedChainLogos({
+  className = "",
+}: {
+  className?: string;
+}) {
+  return (
+    <div
+      className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:gap-x-7 ${className}`}
+    >
+      {DEGEN_SUPPORTED_CHAINS.map((chain) => (
+        <div
+          key={chain.id}
+          className="flex flex-col items-center gap-1.5"
+          title={chain.label}
+        >
+          <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-line bg-void/70 sm:h-10 sm:w-10">
+            <Image
+              src={chain.logo}
+              alt=""
+              width={28}
+              height={28}
+              className="h-6 w-6 object-contain sm:h-7 sm:w-7"
+              aria-hidden
+            />
+          </span>
+          <span className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-muted-dim sm:text-[0.7rem]">
+            {chain.label}
+          </span>
+        </div>
       ))}
     </div>
   );

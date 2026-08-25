@@ -10,15 +10,11 @@ You find the coin.
 You buy.
 It dies.
 
-**Capital gone. Back to zero.**
+Capital gone. Back to zero.
 
-DEGEN CLUB turns one-shot memecoin bets into **rules-based portfolios.**
+DEGEN CLUB turns one-shot memecoin bets into rules-based portfolios.
 
-**Build the basket. Define the rules. Automate the execution.**
-
-**One coin. One shot.**
-
-**A portfolio. Multiple shots.**
+Build the basket. Define the rules. Automate the execution.
 
 Reserve Early Access →
 
@@ -82,21 +78,15 @@ Reserve Early Access →
 
 ### DISCOVER MEMECOIN INDEXES
 
-Explore rules-based memecoin indexes across different chains and markets.
-
-Solana · Ethereum · Base · BNB · Multi-Chain
-
-Discover Indexes →
+Explore memecoin indexes and portfolios across different chains, published by KOLs, researchers, and YouTubers.
 
 ### BUILD YOUR OWN
 
-Choose your memecoins, define allocations, set your rules, and automate the portfolio.
-
-Build Your Portfolio →
+Choose your memecoins, define allocations, set your rules, and automate your portfolio.
 
 ---
 
-# 10 Shots > 1 Shot
+# 1 Shot vs 10 Shots
 
 Nobody knows which memecoin becomes the next 100x.
 

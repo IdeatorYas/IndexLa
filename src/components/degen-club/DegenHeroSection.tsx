@@ -7,7 +7,6 @@ import {
   MemeCoinLogo,
 } from "@/components/degen-club/DegenShared";
 import {
-  dcBody,
   dcDisclaimer,
   dcEyebrow,
   dcHeroStatement,
@@ -24,18 +23,16 @@ const VISUAL_TAGLINES = {
   portfolio: "Portfolio. Multiple Shots.",
 } as const;
 
-function renderBold(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return (
-        <strong key={i} className="font-semibold text-ink">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-    return part;
-  });
+const CAPITAL_GONE_LINE = "Capital gone. Back to zero.";
+
+function renderHeroLine(text: string) {
+  const plain = text.replace(/\*\*/g, "").trim();
+  if (plain === CAPITAL_GONE_LINE) {
+    return (
+      <span className="font-semibold text-ink">{plain}</span>
+    );
+  }
+  return plain;
 }
 
 function HeroBodyCopy({ blocks }: { blocks: DegenBlock[] }) {
@@ -61,8 +58,11 @@ function HeroBodyCopy({ blocks }: { blocks: DegenBlock[] }) {
     <div className="space-y-3 sm:space-y-3.5">
       {filtered.map((block, i) =>
         block.type === "p" ? (
-          <p key={i} className={`whitespace-pre-line ${dcBody}`}>
-            {renderBold(block.text)}
+          <p
+            key={i}
+            className={`whitespace-pre-line text-[1.125rem] leading-[1.68] text-muted text-pretty sm:text-[1.2rem]`}
+          >
+            {renderHeroLine(block.text)}
           </p>
         ) : null
       )}

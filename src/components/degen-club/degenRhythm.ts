@@ -23,7 +23,7 @@ export const dcHeroStatement =
   "display text-[clamp(1.65rem,3.8vw,2.5rem)] font-semibold tracking-[-0.035em] leading-[1.08] text-balance";
 
 export const dcEyebrow =
-  "text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-amber-400/90";
+  "text-[1.05rem] font-bold uppercase tracking-[0.2em] text-amber-400 sm:text-[1.2rem]";
 
 export const dcLabel =
   "text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-dim";
