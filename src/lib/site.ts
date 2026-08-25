@@ -1,5 +1,7 @@
 export const LOGO_DARK = "/logo/indexla-logo-transparent.png";
 export const LOGO_TRANSPARENT = "/logo/indexla-logo-transparent.png";
+/** Transparent high-quality INDEXLA logo for deck / print (RGBA / palette+tRNS) */
+export const LOGO_DECK = "/logo/indexla-logo-transparent.png";
 export const LOGO_LIGHT = "/logo/indexla tranparent logo background.jpg";
 
 export const NAV_LINKS = [
@@ -8,6 +10,7 @@ export const NAV_LINKS = [
   { href: "/creators", label: "Creators" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/tokenomics", label: "Tokenomics" },
+  { href: "/degen-club", label: "Degen Club" },
   { href: "/faq", label: "FAQ" },
   { href: "/whitepaper", label: "Whitepaper" },
   { href: "/whitepaper/technical", label: "Technical Paper" },
