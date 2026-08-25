@@ -1,0 +1,158 @@
+/* STABLE CLUB — scoped institutional light theme within INDEXLA chrome */
+.stable-club-page {
+  --sc-bg: #f8fafc;
+  --sc-bg-alt: #f1f5f9;
+  --sc-surface: #ffffff;
+  --sc-surface-elevated: #ffffff;
+  --sc-navy: #0f172a;
+  --sc-navy-muted: #334155;
+  --sc-muted: #64748b;
+  --sc-muted-dim: #94a3b8;
+  --sc-blue: #2563eb;
+  --sc-blue-soft: #dbeafe;
+  --sc-teal: #0d9488;
+  --sc-teal-soft: #ccfbf1;
+  --sc-green: #059669;
+  --sc-green-soft: #d1fae5;
+  --sc-line: rgba(15, 23, 42, 0.08);
+  --sc-line-strong: rgba(37, 99, 235, 0.22);
+  --sc-shadow: 0 4px 24px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --sc-shadow-lg: 0 16px 48px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+
+  background: var(--sc-bg);
+  color: var(--sc-navy);
+}
+
+.stable-club-page .sc-section {
+  position: relative;
+  border-top: 1px solid var(--sc-line);
+  padding-block: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.stable-club-page .sc-section-alt {
+  background: var(--sc-bg-alt);
+}
+
+.stable-club-page .sc-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  color: var(--sc-navy);
+  text-wrap: balance;
+}
+
+.stable-club-page .sc-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4.2vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--sc-navy);
+  text-wrap: balance;
+}
+
+.stable-club-page .sc-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  color: var(--sc-navy);
+  text-wrap: balance;
+}
+
+.stable-club-page .sc-body {
+  font-size: clamp(1.05rem, 1.8vw, 1.125rem);
+  line-height: 1.68;
+  color: var(--sc-navy-muted);
+  text-wrap: pretty;
+}
+
+.stable-club-page .sc-body-strong {
+  font-size: clamp(1.05rem, 1.8vw, 1.125rem);
+  font-weight: 600;
+  line-height: 1.68;
+  color: var(--sc-navy);
+  text-wrap: pretty;
+}
+
+.stable-club-page .sc-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sc-teal);
+}
+
+.stable-club-page .sc-card {
+  border-radius: 1rem;
+  border: 1px solid var(--sc-line);
+  background: var(--sc-surface);
+  box-shadow: var(--sc-shadow);
+}
+
+.stable-club-page .sc-card-elevated {
+  border-radius: 1.25rem;
+  border: 1px solid var(--sc-line);
+  background: var(--sc-surface-elevated);
+  box-shadow: var(--sc-shadow-lg);
+}
+
+.stable-club-page .sc-gradient-text {
+  background-image: linear-gradient(120deg, var(--sc-blue) 0%, var(--sc-teal) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stable-club-page .sc-hero-glow {
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 30%, rgba(37, 99, 235, 0.08), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 60%, rgba(13, 148, 136, 0.06), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, var(--sc-bg) 100%);
+}
+
+.stable-club-page .sc-highlight-band {
+  border-radius: 0.875rem;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  background: linear-gradient(135deg, var(--sc-blue-soft) 0%, var(--sc-teal-soft) 100%);
+  padding: 0.875rem 1.125rem;
+}
+
+.stable-club-page .sc-disclaimer {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--sc-muted);
+}
+
+@keyframes sc-flow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes sc-flow-move {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.stable-club-page .sc-flow-line {
+  stroke-dasharray: 8 6;
+  animation: sc-flow-move 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stable-club-page .sc-flow-line {
+    animation: none;
+  }
+}
