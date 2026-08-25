@@ -13,15 +13,27 @@ export function SiteFooter() {
           </p>
         </div>
         <nav className="grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[1rem] font-medium text-muted transition-colors hover:text-electric"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.flatMap((link) =>
+            link.children?.length
+              ? link.children.map((child) => (
+                  <Link
+                    key={`${child.href}-${child.label}`}
+                    href={child.href}
+                    className="text-[1rem] font-medium text-muted transition-colors hover:text-electric"
+                  >
+                    {child.label}
+                  </Link>
+                ))
+              : [
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-[1rem] font-medium text-muted transition-colors hover:text-electric"
+                  >
+                    {link.label}
+                  </Link>,
+                ]
+          )}
         </nav>
       </div>
       <div className="section-pad container-max border-t border-line py-6 text-sm text-muted-dim">

@@ -4,16 +4,34 @@ export const LOGO_TRANSPARENT = "/logo/indexla-logo-transparent.png";
 export const LOGO_DECK = "/logo/indexla-logo-transparent.png";
 export const LOGO_LIGHT = "/logo/indexla tranparent logo background.jpg";
 
-export const NAV_LINKS = [
+export type NavChildLink = {
+  href: string;
+  label: string;
+};
+
+export type NavLink = {
+  href: string;
+  label: string;
+  children?: readonly NavChildLink[];
+};
+
+export const NAV_LINKS: readonly NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/investors", label: "Investors" },
   { href: "/creators", label: "Creators" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/tokenomics", label: "Tokenomics" },
+  { href: "/stable-club", label: "Stable Club" },
   { href: "/degen-club", label: "Degen Club" },
   { href: "/faq", label: "FAQ" },
-  { href: "/whitepaper", label: "Whitepaper" },
-  { href: "/whitepaper/technical", label: "Technical Paper" },
+  {
+    href: "/whitepaper",
+    label: "Whitepaper",
+    children: [
+      { href: "/whitepaper", label: "Whitepaper" },
+      { href: "/whitepaper/technical", label: "Technical Paper" },
+    ],
+  },
 ] as const;
 
 export type AssetKey =
