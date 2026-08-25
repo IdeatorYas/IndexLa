@@ -18,6 +18,7 @@ import {
   type DegenMemeTicker,
 } from "@/components/degen-club/memeLogos";
 import { DEGEN_SUPPORTED_CHAINS } from "@/components/degen-club/degenLandingBaskets";
+import { DegenLandingChainLogo } from "@/components/degen-club/DegenLandingChainLogo";
 import type { DegenBlock } from "@/lib/degen-club";
 
 export const MEME_COINS = (Object.keys(DEGEN_MEME_LOGOS) as DegenMemeTicker[]).map(
@@ -260,15 +261,7 @@ export function SupportedChainLogos({
           title={chain.label}
         >
           <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-line bg-void/70 sm:h-10 sm:w-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={chain.logo}
-              alt=""
-              width={28}
-              height={28}
-              className="h-6 w-6 object-contain sm:h-7 sm:w-7"
-              aria-hidden
-            />
+            <DegenLandingChainLogo chain={chain.id} size={26} />
           </span>
           <span className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-muted-dim sm:text-[0.7rem]">
             {chain.label}

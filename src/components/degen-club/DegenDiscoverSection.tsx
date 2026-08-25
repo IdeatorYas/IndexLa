@@ -2,6 +2,7 @@
 
 import { FadeIn } from "@/components/ui/FadeIn";
 import { LandingBasketDonut } from "@/components/degen-club/LandingBasketDonut";
+import { DegenLandingChainLogo } from "@/components/degen-club/DegenLandingChainLogo";
 import {
   MemeCoinLogo,
   SupportedChainLogos,
@@ -36,47 +37,46 @@ function CategoryHeading({ children }: { children: ReactNode }) {
 
 function ChainLogoMark({
   chainId,
-  size = "md",
+  size = 28,
 }: {
   chainId: DegenChainId;
-  size?: "sm" | "md";
+  size?: number;
 }) {
   const chain = getChainMeta(chainId);
-  const dim = size === "sm" ? "h-6 w-6" : "h-7 w-7 sm:h-8 sm:w-8";
-  const img = size === "sm" ? "h-4 w-4" : "h-[1.15rem] w-[1.15rem] sm:h-5 sm:w-5";
   return (
     <span
-      className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-void/80 ${dim}`}
+      className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-void/80 p-1"
+      style={{ width: size + 8, height: size + 8 }}
       title={chain.label}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={chain.logo}
-        alt=""
-        className={`${img} object-contain`}
-        aria-hidden
-      />
+      <DegenLandingChainLogo chain={chainId} size={size} />
     </span>
   );
 }
 
-function BasketCard({ basket }: { basket: DegenLandingBasket }) {
+function BasketTitleBox({ basket }: { basket: DegenLandingBasket }) {
   const chains = basketChainIds(basket);
 
   return (
-    <article className="flex h-full min-w-0 flex-col rounded-2xl border border-line bg-void/45 p-4 sm:p-5">
-      <div className="flex items-start gap-2.5">
-        <div className="mt-0.5 flex shrink-0 items-center gap-1">
-          {chains.map((id) => (
-            <ChainLogoMark key={id} chainId={id} />
-          ))}
-        </div>
-        <h3 className="display min-w-0 flex-1 text-[1.12rem] leading-snug tracking-[-0.02em] text-ink sm:text-[1.22rem]">
-          {basket.title}
-        </h3>
+    <div className="flex items-center gap-3 rounded-xl border border-line bg-deep/70 px-3.5 py-3 sm:gap-3.5 sm:px-4 sm:py-3.5">
+      <div className="flex shrink-0 items-center gap-1.5">
+        {chains.map((id) => (
+          <ChainLogoMark key={id} chainId={id} size={26} />
+        ))}
       </div>
+      <h3 className="display min-w-0 flex-1 text-[1.2rem] leading-snug tracking-[-0.02em] text-ink sm:text-[1.35rem]">
+        {basket.title}
+      </h3>
+    </div>
+  );
+}
 
-      <p className="mt-2 text-[0.88rem] leading-relaxed text-muted sm:text-[0.94rem]">
+function BasketCard({ basket }: { basket: DegenLandingBasket }) {
+  return (
+    <article className="flex h-full min-w-0 flex-col rounded-2xl border border-line bg-void/45 p-4 sm:p-5">
+      <BasketTitleBox basket={basket} />
+
+      <p className="mt-3 text-[0.88rem] leading-relaxed text-muted sm:text-[0.94rem]">
         {basket.description}
       </p>
 
