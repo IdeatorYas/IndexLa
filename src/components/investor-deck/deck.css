@@ -1,0 +1,239 @@
+@import "../../app/globals.css";
+
+.deck-body {
+  margin: 0;
+  background: #07040f;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+/* Site chrome is already omitted on /investor-deck via SiteChrome.
+   Do NOT hide slide <header>/<footer> — those render the official headlines. */
+body:has(#investor-deck-root) {
+  background: #07040f;
+}
+
+.deck-viewport {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem 4rem;
+}
+
+.deck-canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.deck-slide {
+  background: #0a0614;
+}
+
+.deck-slide::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 12%, rgba(56, 189, 248, 0.14), transparent 58%),
+    radial-gradient(ellipse 55% 45% at 8% 88%, rgba(124, 58, 237, 0.16), transparent 55%),
+    radial-gradient(ellipse 40% 35% at 50% 50%, rgba(167, 139, 250, 0.05), transparent 60%);
+}
+
+.deck-slide::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(167, 139, 250, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 250, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, black 20%, transparent 100%);
+}
+
+.deck-slide-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+
+.deck-grid-bg {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(56, 189, 248, 0.08), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(124, 58, 237, 0.12), transparent 60%);
+}
+
+.deck-hero-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 30%, rgba(56, 189, 248, 0.12), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(124, 58, 237, 0.14), transparent 55%);
+}
+
+.deck-hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.deck-flow-node {
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.1), rgba(124, 58, 237, 0.06));
+  border-radius: 4px;
+  box-shadow: 0 0 32px rgba(56, 189, 248, 0.08);
+}
+
+.deck-flow-accent {
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.18), rgba(124, 58, 237, 0.1));
+  border-radius: 4px;
+  box-shadow: 0 0 48px rgba(56, 189, 248, 0.14);
+}
+
+.deck-accent-line {
+  height: 4px;
+  width: 96px;
+  background: linear-gradient(90deg, #38bdf8, #7c3aed);
+  border-radius: 2px;
+}
+
+.deck-flow-node {
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.12), rgba(124, 58, 237, 0.08));
+  box-shadow:
+    0 0 40px rgba(56, 189, 248, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.deck-surface {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(160deg, rgba(26, 15, 46, 0.75), rgba(10, 6, 20, 0.85));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.deck-surface-accent {
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  background: linear-gradient(160deg, rgba(56, 189, 248, 0.1), rgba(124, 58, 237, 0.06));
+  box-shadow:
+    0 0 48px rgba(56, 189, 248, 0.08),
+    inset 0 1px 0 rgba(56, 189, 248, 0.12);
+}
+
+.deck-surface-light {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(160deg, rgba(244, 241, 255, 0.06), rgba(244, 241, 255, 0.02));
+}
+
+.deck-footer {
+  position: absolute;
+  bottom: 36px;
+  left: 96px;
+  right: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+}
+
+.deck-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1.38rem;
+}
+
+.deck-table th,
+.deck-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 16px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.35;
+}
+
+.deck-table th:first-child,
+.deck-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.32rem;
+  color: var(--color-ink);
+  width: 22%;
+}
+
+.deck-table thead th {
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-dim);
+  background: rgba(10, 6, 20, 0.8);
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.deck-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.deck-table .col-indexla {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--color-electric);
+  font-weight: 600;
+}
+
+.deck-arrow {
+  color: rgba(56, 189, 248, 0.75);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+@media print {
+  .deck-viewport {
+    padding: 0 !important;
+  }
+
+  .deck-slide {
+    overflow: hidden;
+    max-height: 1080px;
+  }
+
+  @page {
+    size: 1920px 1080px;
+    margin: 0;
+  }
+
+  .deck-body {
+    background: #0a0614;
+    padding: 0;
+  }
+
+  .deck-viewport {
+    padding: 0;
+    gap: 0;
+  }
+
+  .deck-canvas {
+    gap: 0;
+  }
+
+  .deck-slide {
+    page-break-after: always;
+    break-after: page;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .deck-slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .deck-no-print {
+    display: none !important;
+  }
+}

@@ -1,12 +1,12 @@
 export const LOGO_DARK = "/logo/indexla-logo-transparent.png";
 export const LOGO_TRANSPARENT = "/logo/indexla-logo-transparent.png";
+export const LOGO_LIGHT = "/logo/indexla tranparent logo background.jpg";
 /** Light-colored mark for dark backgrounds */
 export const LOGO_ON_DARK = "/logo/indexla-logo-transparent.png";
-/** Dark-colored mark for light backgrounds */
-export const LOGO_ON_LIGHT = "/logo/INDEXLA LOGO 2.png";
+/** Dark-colored mark for light backgrounds (official transparent logo) */
+export const LOGO_ON_LIGHT = LOGO_LIGHT;
 /** Transparent high-quality INDEXLA logo for deck / print (RGBA / palette+tRNS) */
 export const LOGO_DECK = "/logo/indexla-logo-transparent.png";
-export const LOGO_LIGHT = "/logo/indexla tranparent logo background.jpg";
 
 export type NavChildLink = {
   href: string;

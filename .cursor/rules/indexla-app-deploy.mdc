@@ -1,0 +1,37 @@
+---
+description: Always deploy IndexLa-App to app.indexla.tech when finishing app tasks
+alwaysApply: true
+---
+
+# INDEXLA APP — ALWAYS DEPLOY ON TASK COMPLETION
+
+When any IndexLa-App task is finished (UI, routes, tests, content, or ops for the separate app):
+
+## Required completion flow
+
+1. Work only in `C:/Users/hp/Desktop/IndexLa-App` (never push app code into the website repo).
+2. Run local verification relevant to the change (`typecheck` / `lint` / `test` / `build` / Playwright as needed).
+3. Commit and push to `https://github.com/IdeatorYas/IndexlaApp` on branch `main`.
+4. Deploy to production preview with the existing zero-downtime process only:
+   - Package/upload app to `/var/www/IndexLa-App`
+   - Run `/usr/local/bin/deploy-indexla-app.sh`
+5. Verify live:
+   - `https://app.indexla.tech/app` returns 200 and shows the intended change
+   - `https://indexla.tech` remains healthy and untouched
+6. Do not declare the app task complete until `app.indexla.tech` is verified live.
+
+## Hard boundaries
+
+- PM2 process: `indexla-app` on port **3001** only
+- Website PM2 `indexla` on port **3000** must not be restarted or modified for app work
+- Never deploy unfinished/failing builds over a healthy preview
+- On deploy failure: keep previous known-good (`deploy-indexla-app.sh --restore-good`)
+
+## Report when finished
+
+Always include:
+
+- Git commit hash + push status
+- Deploy status
+- Live URL confirmation for `app.indexla.tech`
+- Confirmation that `indexla.tech` is still healthy

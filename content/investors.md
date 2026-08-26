@@ -1,234 +1,299 @@
-# **Investors**
+# INVESTORS
 
-## **You Know What You Should Do. You Just Don't Do It.**
+## You Know What You Should Do.
 
-Buy when fear is high.
+## You Just Don’t Do It.
 
-Take profits when markets get euphoric.
+Buy when fear is high.  
+Take profits when markets become euphoric.  
+Rebalance when allocations drift.
 
-Rebalance when your portfolio drifts.
+But when markets move, emotions take control.
 
-Then the market moves. You hesitate, FOMO, panic, or simply miss the moment.
+You hesitate. You chase. You panic. You miss the moment.
 
-### **Stop letting emotions manage your portfolio.**
+### Stop Letting Emotions Manage Your Capital.
 
-### **Define your rules once. Let INDEXLA execute them 24/7.**
-
-**Build Your First Portfolio**  
-**Explore Marketplace**
-
-**Connect MetaMask, Phantom, Backpack, or other leading wallets.**
-
----
-
-# **YOUR CONVICTION. AUTOMATED.**
-
-Most investors know what they should do.
-
-Few execute consistently when the market gets emotional.
-
-INDEXLA closes the gap between your thesis and execution.
-
-Markets don't wait for you.
-
-INDEXLA turns your investment thesis into a portfolio with rules that respond to the conditions you define.
-
-**AI monitors the market.**  
-**Your strategy determines the action.**  
-**INDEXLA coordinates execution.**
-
-### **INDEXLA doesn't decide what you invest in. You define the rules. We coordinate the execution.**
-
----
-
-# **BUILD. DEFINE. AUTOMATE.**  
-
-
-**Build your portfolio. Define your strategy. Automate it** 
-
- **all in under 5 minutes.** 
-
-### **01 — BUILD**
-
-Choose your assets, allocations, and portfolio.
-
-### **02 — DEFINE**
-
-Set the conditions that determine when your portfolio should act.
-
-### **03 — AUTOMATE**
-
-Approve your strategy and let INDEXLA monitor conditions and coordinate execution.
+Set your rules while you’re calm. When conditions are met, INDEXLA triggers only the execution you approved.
 
   
 
 
-**Build Your First Portfolio**
+[Choose Your Investment Path]
+
+
+
+---
+
+
+
+# SAME CAPITAL. SAME MARKET. DIFFERENT BEHAVIOR.
+
+Watch what happens when one investor reacts and another follows a predefined plan.
+
+Illustrative Example · Same Market · Same Starting Capital
+
+## Emotional Investor
+
+Reacts to Emotion
+
+Market Falls → Sells in Fear  
+Market Calms → Waits  
+Market Rises → Buys Late  
+Market Peaks → Chases  
+Fear Returns → Sells Again
+
+### Emotion Controls Every Decision.
+
+## Disciplined Investor
+
+Follows a Plan
+
+Market Falls → Accumulates  
+Market Calms → Holds  
+Market Rises → Takes Profit  
+Market Peaks → Reduces Exposure  
+Fear Returns → Accumulates Again
+
+### Predefined Rules Control Every Response.
+
+## You Cannot Control the Market.
+
+## You Can Control How You Respond.
+
+
+
+---
+
+
+
+# THREE WAYS TO PUT YOUR CAPITAL TO WORK.
+
+Different goals. Different risk levels. Different ways to invest.
+
+## INDEXLA CORE
+
+### For Long-Term Investors
+
+Build diversified portfolios across crypto, tokenized stocks, commodities and real-world assets.
+
+Define allocations, automate portfolio actions and own the underlying assets directly.
+
+Diversify · DCA · Rebalance · Take Profit
+
+[Explore How It Works ]
+
+## STABLE CLUB
+
+### For Stablecoin Yield Seekers
+
+Supply stablecoins to decentralized exchanges and earn trading fees while INDEXLA automates the liquidity position.
+
+DEX Trading Fees · No Lending · No Borrowing · No Extra Vault
+
+[Explore Stable Club]
+
+## DEGEN CLUB
+
+### For High-Risk Traders
+
+Build a basket of memecoins and give yourself more chances to catch the next 100x.
+
+Multiple Coins · Multiple Shots · High Risk
 
   
 
 
----
+[Explore Degen Club]
 
-# **STRATEGIES BUILT AROUND YOUR THESIS.**
 
-Most portfolios sit still while the market moves.
-
-### **Yours doesn't have to.**
-
-Define exactly how you want your portfolio to respond — then let it run.
-
-Choose from proven rule-based strategies or combine conditions to build your own.
-
-### **BUY FEAR — DCA IN**
-
-Accumulate through DCA when market sentiment reaches **Extreme Fear**.
-
-### **SELL GREED — DCA OUT**
-
-Reduce exposure through DCA as market sentiment moves into **Greed** and **Extreme Greed**.
-
-### **TAKE PROFIT**
-
-Scale out when predefined price or profit targets are reached.
-
-### **STOP LOSS**
-
-Reduce or exit a position automatically when a predefined price or percentage threshold is reached.
-
-### **REBALANCE**
-
-Restore target allocations when portfolio positions drift beyond your defined range.
-
-### **MOMENTUM**
-
-Follow changing market trends.
-
-When the indicator **Momentum Money Line** flips bullish, increase exposure through DCA.
-
-When it flips bearish, reduce exposure through DCA.
-
-### **RSI**
-
-React to longer-term market conditions using weekly RSI.
-
-When weekly RSI enters **Oversold** territory, accumulate through DCA.
-
-When weekly RSI enters **Overbought** territory, reduce exposure through DCA.
-
-### **Combine conditions. Define thresholds. Build the response that fits your thesis.**
-
-**Build Your First Portfolio**
 
 ---
 
-# **ONE PORTFOLIO. EVERY MARKET. EVERY CHAIN.**
 
-Managing a multi-asset portfolio can mean moving between wallets, networks, bridges, exchanges, and platforms.
 
-### **INDEXLA brings supported assets and markets into one portfolio experience with cross-chain execution underneath.**
+# SIMPLE, TRANSPARENT FEES.
 
-**Crypto · Tokenized Stocks · Commodities · RWAs · Hybrid Portfolios**
+0% Management · 0% Performance · 0% Exit
 
-Build across one asset class or combine multiple markets into a single strategy.
+## Only 1% Execution Fee When Trades Occur.
 
-### **One portfolio. Multiple assets. Multiple chains.**
+### No Trade. No Execution Fee.
 
-**Ethereum · Base · Arbitrum · BNB Chain · Sui**
 
-Access supported tokenized assets across the markets INDEXLA connects to.
 
 ---
 
-# **OWN THE ASSETS. NOT A WRAPPER.**
 
-### **Non-custodial by design. Your assets stay in your wallet.**
 
-INDEXLA provides the infrastructure to coordinate portfolio execution according to your strategy. It does not take custody of your assets or manage your portfolio for you.
+# DIFFERENT GOALS. THE SAME ADVANTAGE.
 
-No centralized custody.
+Long-term exposure. Stablecoin liquidity. High-risk opportunities.
 
-No wrapper token representing your portfolio.
+Whatever your investment style, predefined rules help reduce hesitation, panic and impulsive decisions.
 
-No surrendering your assets to a manager.
+You Choose the Capital · You Define the Risk · You Approve the Execution
 
-**You choose the assets.**  
-**You choose the allocations.**  
-**You choose the strategy.**
 
-### **Your assets remain under your control.**
-
-**No lock-ups. No fund manager. No surrendering control.**
-
-**Your capital. Your rules. Your wallet.**
 
 ---
 
-# **DISCOVER. FOLLOW. CUSTOMIZE. OR BUILD.**
 
-Explore portfolios created by investors and creators across different markets and strategies.
 
-### **DISCOVER**
+# BUILD. DEFINE. AUTOMATE.
 
-Find portfolios built around different assets and investment theses.
+## 01 — BUILD
 
-### **FOLLOW**
+Connect your wallet, choose your assets and define your allocations.
 
-Choose a strategy that matches your conviction.
+## 02 — DEFINE
 
-### **CUSTOMIZE**
+Set your conditions, thresholds, percentages, limits and expiry.
 
-Adjust the assets, allocations, and rules to fit your strategy.
+## 03 — AUTOMATE
 
-### **BUILD**
+Approve the permissions. INDEXLA monitors your selected conditions and triggers execution when your rules are met.
 
-Create your own portfolio from scratch.
+### Your Decision → Automated Monitoring → Approved Execution
 
-### **Your capital. Your strategy. Your choice.**
+Smart contracts enforce the permissions and limits you define.
 
-**Explore Marketplace**
+If data is stale, conditions are invalid or approved limits are exceeded, execution does not proceed.
 
----
 
-# **PORTFOLIO MANAGEMENT WITHOUT THE MANAGEMENT FEES.**
-
-Traditional portfolio management can charge a percentage of your assets and profits.
-
-INDEXLA doesn't.
-
-### **0% MANAGEMENT FEES**
-
-No recurring percentage of your portfolio.
-
-### **0% PERFORMANCE FEES**
-
-No percentage of your gains.
-
-### **0% EXIT FEES**
-
-No fee for leaving.
-
-You pay a **1% execution fee** when transactions are executed through the platform.
-
-### **More of what you make stays yours.**
 
 ---
 
-# WRITE THE RULES BEFORE THE MARKET TESTS YOU
 
-The market won't wait for you to get disciplined.
 
-Write the rules now.
+# AUTOMATION BUILT AROUND YOUR THESIS.
 
-Let INDEXLA execute them while everyone else is still hesitating.
+Choose rule-based strategies or combine conditions around your investment plan.
 
-**Build Your First Portfolio**  
-**Explore Marketplace**
+## Accumulate During Fear
+
+Use Buy Fear , DCA In or RSI Oversold conditions to accumulate gradually.
+
+## Lock In Gains
+
+Use Sell Greed , DCA Out, RSI Overbought or Take Profit rules to reduce exposure systematically.
+
+## Protect Your Downside
+
+Use Stop Loss rules when predefined downside thresholds are reached.
+
+## Maintain Your Allocations
+
+Use Rebalancing rules when portfolio weights move outside your approved range.
+
+## Respond to Market Strength
+
+Use Momentum rules when predefined trend conditions change.
+
+## Build Advanced Strategies
+
+Combine conditions, thresholds and actions into one approved strategy.
+
+# YOUR THESIS BECOMES A PROGRAMMABLE STRATEGY.
+
+[Explore All Strategies]
+
+
 
 ---
 
-# **Investment Disclaimer**
 
-*INDEXLA provides technology and infrastructure for managing and automating multi-chain, multi-asset portfolios. We are not financial advisers and do not provide investment advice or recommendations.*
 
-*Investing involves risk, including the possible loss of capital. Past performance does not guarantee future results. You are solely responsible for your investment decisions and should conduct your own research or consult a qualified financial professional before investing.*
+# DISCOVER. CUSTOMIZE. BUILD.
+
+You don’t always need to start from scratch.
+
+## Discover
+
+Explore portfolios built around different assets, markets and strategies.
+
+## Customize
+
+Adjust assets, allocations and automation rules around your conviction.
+
+## Build
+
+Create your own portfolio and strategy from the ground up.
+
+### Don’t Blindly Copy Someone Else’s Conviction. Make It Yours.
+
+[Explore Marketplace]
+
+
+
+---
+
+
+
+# MANAGE EVERYTHING FROM ONE LAYER.
+
+Stop jumping between wallets, exchanges, DEXs, bridges and networks to manage one investment plan.
+
+Multiple Products · Multiple Assets · Multiple Networks · One Control Layer
+
+
+
+---
+
+
+
+# OWN THE ASSETS. KEEP CONTROL.
+
+INDEXLA never takes custody of your capital.
+
+With INDEXLA Core, you own the underlying assets directly through your wallet.
+
+No Index Token · No Wrapper · No Custody
+
+You choose the assets, allocations, rules, limits and permissions.
+
+INDEXLA triggers only the execution you approve. Smart contracts enforce your boundaries.
+
+
+
+---
+
+
+
+# WHAT INDEXLA DOES NOT DO.
+
+## No Custody
+
+INDEXLA does not take control of your wallet or capital.
+
+## No Black-Box Decisions
+
+AI does not create, change or override your investment strategy.
+
+## No Unauthorized Execution
+
+Actions remain restricted by your approved rules, limits, permissions and expiry.
+
+## No Guaranteed Returns
+
+INDEXLA provides execution infrastructure—not financial advice or return guarantees.
+
+
+
+---
+
+
+
+# YOUR CAPITAL. YOUR CONVICTION. YOUR PATH.
+
+Choose how you want to invest. Define how your capital should respond. Keep control throughout execution.
+
+[Choose Your Investment Path]
+
+INDEXLA Core · Stable Club · Degen Club
+
+### Investment Disclaimer
+
+*INDEXLA provides technology and infrastructure for managing and automating multi-chain, multi-asset portfolios and liquidity positions. It does not provide financial advice, investment recommendations or guaranteed returns. Investing involves risk, including possible loss of capital. Memecoins and liquidity provision involve additional risks, including high volatility and potential losses. You remain solely responsible for your investment decisions.*
+
+  
