@@ -100,14 +100,15 @@ export type Portfolio = {
   type: PortfolioType;
   assets: AssetKey[];
   strategy: string;
-  aum: string;
-  performance: string;
-  performancePositive: boolean;
-  allocation: { label: string; pct: number }[];
-  activity: string;
+  /** Per-asset weights derived from approved category totals (sum = 100). */
+  assetAllocation: { key: AssetKey; pct: number }[];
 };
 
-/** Demo / illustrative values clearly labeled in UI — from approved home.md */
+/**
+ * Illustrative portfolios — names/assets/strategies from approved home content.
+ * Per-asset weights preserve existing category totals:
+ * AI 55/45 · Macro 48/32/20 · Big Tech 72/28 (evenly within each category).
+ */
 export const PORTFOLIOS: Portfolio[] = [
   {
     id: "ai-power-mix",
@@ -115,14 +116,13 @@ export const PORTFOLIOS: Portfolio[] = [
     type: "Hybrid Index",
     assets: ["tao", "near", "icp", "google", "nvidia"],
     strategy: "Buy Fear / Sell Greed",
-    aum: "$4.2M",
-    performance: "+18.4%",
-    performancePositive: true,
-    allocation: [
-      { label: "Crypto AI", pct: 55 },
-      { label: "Equities", pct: 45 },
+    assetAllocation: [
+      { key: "tao", pct: 18 },
+      { key: "near", pct: 18 },
+      { key: "icp", pct: 19 },
+      { key: "google", pct: 22 },
+      { key: "nvidia", pct: 23 },
     ],
-    activity: "Rebalanced 2d ago",
   },
   {
     id: "mix-dream-team",
@@ -130,15 +130,15 @@ export const PORTFOLIOS: Portfolio[] = [
     type: "Hybrid Portfolio",
     assets: ["btc", "sol", "eth", "sp500", "nvidia", "tao", "gold"],
     strategy: "RSI Weekly Signal",
-    aum: "$12.8M",
-    performance: "+24.1%",
-    performancePositive: true,
-    allocation: [
-      { label: "Crypto", pct: 48 },
-      { label: "Equities", pct: 32 },
-      { label: "Commodities", pct: 20 },
+    assetAllocation: [
+      { key: "btc", pct: 12 },
+      { key: "sol", pct: 12 },
+      { key: "eth", pct: 12 },
+      { key: "tao", pct: 12 },
+      { key: "sp500", pct: 16 },
+      { key: "nvidia", pct: 16 },
+      { key: "gold", pct: 20 },
     ],
-    activity: "Signal fired 6h ago",
   },
   {
     id: "stocks-power-house",
@@ -146,17 +146,38 @@ export const PORTFOLIOS: Portfolio[] = [
     type: "Stocks Portfolio",
     assets: ["nvidia", "google", "sp500", "microsoft", "apple"],
     strategy: "Momentum Shifts",
-    aum: "$8.6M",
-    performance: "+11.2%",
-    performancePositive: true,
-    allocation: [
-      { label: "Tech", pct: 72 },
-      { label: "Index", pct: 28 },
+    assetAllocation: [
+      { key: "nvidia", pct: 18 },
+      { key: "google", pct: 18 },
+      { key: "microsoft", pct: 18 },
+      { key: "apple", pct: 18 },
+      { key: "sp500", pct: 28 },
     ],
-    activity: "Momentum update 1d ago",
   },
 ];
 
+/** Dominant brand colors for portfolio donut segments. */
+export const ASSET_BRAND_COLORS: Record<AssetKey, string> = {
+  btc: "#F7931A",
+  eth: "#627EEA",
+  sol: "#9945FF",
+  bnb: "#F3BA2F",
+  tao: "#24EE89",
+  apple: "#A2AAAD",
+  nvidia: "#76B900",
+  google: "#4285F4",
+  microsoft: "#00A4EF",
+  sp500: "#3B82F6",
+  nasdaq: "#0A1F44",
+  gold: "#D4AF37",
+  silver: "#C0C0C0",
+  near: "#00C08B",
+  icp: "#29ABE2",
+  hype: "#97FCE4",
+  peaq: "#5B8DEF",
+  chainlink: "#2A5ADA",
+  ondo: "#1A3CFF",
+};
 export const TYPE_STYLES: Record<
   PortfolioType,
   { label: string; className: string }

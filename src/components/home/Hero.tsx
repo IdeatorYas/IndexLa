@@ -4,6 +4,13 @@ import { motion, useReducedMotion } from "framer-motion";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { homeBody, homeCta, homeEyebrow } from "@/components/home/homeRhythm";
 
+const TRUST = [
+  "Non-Custodial",
+  "Revocable Permissions",
+  "Private",
+  "No INDEXLA KYC",
+] as const;
+
 export function Hero() {
   const reduce = useReducedMotion();
 
@@ -49,8 +56,7 @@ export function Hero() {
           </div>
 
           <p className="mx-auto mt-5 max-w-[36rem] text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-electric text-balance sm:text-[1.15rem]">
-            0% Management · 0% Performance · 0% Exit · 1% Only When Trades
-            Execute
+            0% Management · 0% Performance · 0% Exit · 1% Flat Fee
           </p>
 
           <div className="mt-7 flex w-full flex-col items-center justify-center">
@@ -61,9 +67,18 @@ export function Hero() {
             </EarlyAccessCta>
           </div>
 
-          <p className="mt-4 max-w-[38rem] text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-ink/75 text-balance sm:text-[0.85rem] sm:tracking-[0.12em]">
-            Non-Custodial · Revocable Permissions · Private · No INDEXLA KYC
-          </p>
+          <ul className="mt-7 grid w-full max-w-[40rem] grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+            {TRUST.map((item) => (
+              <li
+                key={item}
+                className="flex min-h-[3.75rem] items-center justify-center rounded-xl border border-electric/30 bg-electric/[0.07] px-2.5 py-3 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:min-h-[4.25rem] sm:px-3"
+              >
+                <span className="text-[0.72rem] font-semibold uppercase leading-snug tracking-[0.08em] text-ink/90 text-balance sm:text-[0.78rem] sm:tracking-[0.1em]">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </div>
     </section>

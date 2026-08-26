@@ -1,5 +1,5 @@
-import { AssetLogo } from "@/components/ui/AssetLogo";
-import { ASSETS, TYPE_STYLES, type Portfolio } from "@/lib/site";
+import { HomePortfolioDonut } from "@/components/home/HomePortfolioDonut";
+import { ASSETS, ASSET_BRAND_COLORS, TYPE_STYLES, type Portfolio } from "@/lib/site";
 
 type PortfolioCardProps = {
   portfolio: Portfolio;
@@ -8,6 +8,7 @@ type PortfolioCardProps = {
 
 export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProps) {
   const typeStyle = TYPE_STYLES[portfolio.type];
+  const rows = portfolio.assetAllocation;
 
   return (
     <article
@@ -26,23 +27,6 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
         </h3>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-1.5">
-        {portfolio.assets.map((key) => (
-          <div
-            key={key}
-            className="flex items-center gap-1.5 rounded-full border border-line bg-void/50 py-0.5 pl-1 pr-2"
-            title={ASSETS[key].name}
-          >
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-panel/80">
-              <AssetLogo asset={key} size={14} />
-            </span>
-            <span className="text-[0.7rem] font-semibold tracking-[-0.01em] text-ink/85">
-              {ASSETS[key].ticker}
-            </span>
-          </div>
-        ))}
-      </div>
-
       <div className="mt-5 rounded-xl bg-void/35 px-3.5 py-3">
         <p className="text-[0.62rem] uppercase tracking-[0.12em] text-muted-dim">
           Strategy
@@ -52,25 +36,46 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
         </p>
       </div>
 
-      <div className="mt-4 space-y-2.5">
-        <p className="text-[0.62rem] uppercase tracking-[0.12em] text-muted-dim">
-          Allocation
-        </p>
-        {portfolio.allocation.map((row) => (
-          <div key={row.label}>
-            <div className="mb-1 flex justify-between text-[0.88rem] text-muted">
-              <span>{row.label}</span>
-              <span>{row.pct}%</span>
-            </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-white/5">
-              <div
-                className="h-full origin-left rounded-full bg-gradient-to-r from-purple/80 to-electric/80 motion-safe:animate-[bar-fill_0.9s_cubic-bezier(0.22,1,0.36,1)_both]"
-                style={{ width: `${row.pct}%` }}
-              />
-            </div>
-          </div>
-        ))}
+      <div className="mt-6 flex justify-center">
+        <HomePortfolioDonut segments={rows} size={212} />
       </div>
+
+      <ul className="mt-5 space-y-2">
+        {rows.map((row) => {
+          const meta = ASSETS[row.key];
+          return (
+            <li
+              key={row.key}
+              className="flex items-center justify-between gap-3 rounded-lg border border-white/[0.05] bg-void/30 px-3 py-2"
+            >
+              <div className="flex min-w-0 items-center gap-2.5">
+                <span
+                  className="h-2.5 w-2.5 shrink-0 rounded-full"
+                  style={{ background: ASSET_BRAND_COLORS[row.key] }}
+                  aria-hidden
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={meta.src}
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="object-contain"
+                  loading="lazy"
+                  decoding="async"
+                  aria-hidden
+                />
+                <span className="truncate text-[0.92rem] font-semibold text-ink">
+                  {meta.ticker}
+                </span>
+              </div>
+              <span className="shrink-0 text-[0.92rem] font-semibold tabular-nums text-electric">
+                {row.pct}%
+              </span>
+            </li>
+          );
+        })}
+      </ul>
     </article>
   );
 }

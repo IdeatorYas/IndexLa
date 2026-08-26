@@ -5,7 +5,6 @@ import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   homeBody,
   homeCta,
-  homeH2,
   homeMeasure,
   homeSection,
 } from "@/components/home/homeRhythm";
@@ -27,9 +26,16 @@ export function FinalCtaSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className={`${homeH2} ${homeMeasure}`}>
-            Build It. Automate It.{" "}
-            <span className="gradient-text">Own It.</span>
+          <h2 className="display mx-auto max-w-[40rem] text-[clamp(2rem,5.4vw,3.4rem)] font-semibold tracking-[-0.035em] leading-[1.08]">
+            <span className="block text-ink sm:inline sm:whitespace-nowrap">
+              Build It.
+            </span>{" "}
+            <span className="mt-1 block text-ink sm:mt-0 sm:inline sm:whitespace-nowrap">
+              Automate It.
+            </span>{" "}
+            <span className="mt-1 block gradient-text sm:mt-0 sm:inline sm:whitespace-nowrap">
+              Own It.
+            </span>
           </h2>
           <div className={`mt-6 space-y-3 ${homeMeasure} ${homeBody}`}>
             <p>
