@@ -2,6 +2,7 @@
  * Homepage Discover products — sourced from IndexLa-App index-catalog.ts.
  * Allocations use the app's equalAllocations (10 assets → 10% each).
  * Strategies from strategyIdForIndexOrdinal at catalog build time.
+ * Logos: verified local brand assets under /images/assets/.
  */
 
 export type HomeDiscoverAsset = {
@@ -54,14 +55,14 @@ function equalAssets(
 
 /** AI & Compute Index — ai-compute-index (ordinal 18 → Momentum Trend) */
 const AI_COMPUTE = equalAssets([
-  { ticker: "TAO", color: "#FFFFFF", src: "/images/assets/demo/crypto/tao.svg" },
+  { ticker: "TAO", color: "#FFFFFF", src: "/images/assets/demo/crypto/tao.png" },
   { ticker: "RENDER", color: "#C40000", src: "/images/assets/demo/crypto/rndr.png" },
-  { ticker: "FET", color: "#1E3448", src: "/images/assets/demo/crypto/fet.jpg" },
-  { ticker: "AKT", color: "#ED3524", src: "/images/assets/demo/crypto/akt.svg" },
-  { ticker: "NVDA", color: "#76B900", src: "/images/assets/demo/stocks/nvda.svg" },
-  { ticker: "MSFT", color: "#00A4EF", src: "/images/assets/demo/stocks/msft.svg" },
+  { ticker: "FET", color: "#1E3448", src: "/images/assets/demo/crypto/fet.png" },
+  { ticker: "AKT", color: "#ED3524", src: "/images/assets/demo/crypto/akt.png" },
+  { ticker: "NVDA", color: "#76B900", src: "/images/assets/demo/stocks/nvda.png" },
+  { ticker: "MSFT", color: "#00A4EF", src: "/images/assets/demo/stocks/msft.png" },
   { ticker: "GOOGL", color: "#4285F4", src: "/images/assets/demo/stocks/googl.svg" },
-  { ticker: "AMZN", color: "#FF9900", src: "/images/assets/demo/stocks/amzn.svg" },
+  { ticker: "AMZN", color: "#FF9900", src: "/images/assets/demo/stocks/amzn.png" },
   { ticker: "PLTR", color: "#101010", src: "/images/assets/demo/stocks/pltr.png" },
   { ticker: "ARM", color: "#0091BD", src: "/images/assets/demo/stocks/arm.png" },
 ]);
@@ -74,7 +75,7 @@ const LAYER_1 = equalAssets([
   { ticker: "BNB", color: "#F3BA2F", src: "/images/assets/demo/crypto/bnb.svg" },
   { ticker: "SOL", color: "#14F195", src: "/images/assets/solana.svg" },
   { ticker: "TRX", color: "#FF0013", src: "/images/assets/demo/crypto/trx.svg" },
-  { ticker: "HYPE", color: "#97FCE4", src: "/images/assets/demo/crypto/hype.svg" },
+  { ticker: "HYPE", color: "#97FCE4", src: "/images/assets/demo/crypto/hype.png" },
   { ticker: "ADA", color: "#0033AD", src: "/images/assets/demo/crypto/ada.svg" },
   { ticker: "AVAX", color: "#E84142", src: "/images/assets/demo/crypto/avax.svg" },
   { ticker: "SUI", color: "#4DA2FF", src: "/images/assets/sui.svg" },
@@ -82,16 +83,16 @@ const LAYER_1 = equalAssets([
 
 /** DeFi Index — defi-index (ordinal 7 → Momentum Trend) */
 const DEFI = equalAssets([
-  { ticker: "LINK", color: "#2A5ADA", src: "/images/assets/chainlink.svg" },
-  { ticker: "UNI", color: "#FF007A", src: "/images/assets/demo/crypto/uni.svg" },
-  { ticker: "AAVE", color: "#B6509E", src: "/images/assets/demo/crypto/aave.svg" },
-  { ticker: "HYPE", color: "#97FCE4", src: "/images/assets/demo/crypto/hype.svg" },
+  { ticker: "LINK", color: "#2A5ADA", src: "/images/assets/demo/crypto/link.png" },
+  { ticker: "UNI", color: "#FF007A", src: "/images/assets/demo/crypto/uni.png" },
+  { ticker: "AAVE", color: "#B6509E", src: "/images/assets/demo/crypto/aave.png" },
+  { ticker: "HYPE", color: "#97FCE4", src: "/images/assets/demo/crypto/hype.png" },
   { ticker: "ENA", color: "#5CE1E6", src: "/images/assets/demo/crypto/ena.png" },
-  { ticker: "ONDO", color: "#183CFF", src: "/images/assets/ondo.svg" },
+  { ticker: "ONDO", color: "#183CFF", src: "/images/assets/demo/crypto/ondo.png" },
   { ticker: "JUP", color: "#00D18C", src: "/images/assets/demo/crypto/jup.png" },
-  { ticker: "PENDLE", color: "#1A1A1A", src: "/images/assets/demo/crypto/pendle.svg" },
+  { ticker: "PENDLE", color: "#1A1A1A", src: "/images/assets/demo/crypto/pendle.png" },
   { ticker: "MORPHO", color: "#2470FF", src: "/images/assets/demo/crypto/morpho.png" },
-  { ticker: "CRV", color: "#FF0000", src: "/images/assets/demo/crypto/crv.svg" },
+  { ticker: "CRV", color: "#FF0000", src: "/images/assets/demo/crypto/crv.png" },
 ]);
 
 export const HOME_DISCOVER_PRODUCTS: HomeDiscoverProduct[] = [

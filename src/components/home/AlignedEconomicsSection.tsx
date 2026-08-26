@@ -29,8 +29,8 @@ const PANELS = [
   },
   {
     title: "$DEXLA Token",
-    lead: "Turn platform usage into demand, burns, and permanent supply reduction.",
-    support: "Six Burn Mechanisms · Deflationary by Design · Fixed Supply",
+    lead: "Platform usage drives demand, burns and permanent supply reduction.",
+    support: "Six Burn Mechanisms · Deflationary Design · Fixed Supply",
   },
 ] as const;
 
@@ -49,7 +49,6 @@ const FLYWHEEL_STEPS = [
   { arrow: "↓", label: "Creator Earnings" },
   { arrow: "↓", label: "$DEXLA Buybacks + Burns" },
   { arrow: "↓", label: "Stronger Incentives" },
-  { arrow: "↻", label: "More Creators + Investors" },
 ] as const;
 
 export function AlignedEconomicsSection() {
@@ -90,7 +89,7 @@ export function AlignedEconomicsSection() {
               <p className="display text-[1.1rem] font-semibold text-electric">
                 {FLYWHEEL_HUB.title}
               </p>
-              <p className="mt-2 text-[0.92rem] font-medium text-ink">
+              <p className="mt-2 whitespace-nowrap text-[0.92rem] font-medium text-ink">
                 {FLYWHEEL_HUB.detail}
               </p>
             </div>
@@ -134,11 +133,11 @@ export function AlignedEconomicsSection() {
               />
             </svg>
 
-            <div className="absolute left-1/2 top-1/2 z-20 w-[11.5rem] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-electric/45 bg-void/95 px-4 py-4 text-center shadow-[0_16px_40px_-18px_rgba(56,189,248,0.7)] backdrop-blur-sm">
+            <div className="absolute left-1/2 top-1/2 z-20 w-[12.5rem] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-electric/45 bg-void/95 px-3 py-4 text-center shadow-[0_16px_40px_-18px_rgba(56,189,248,0.7)] backdrop-blur-sm xl:w-[13.5rem]">
               <p className="display text-[1rem] font-semibold text-electric">
                 {FLYWHEEL_HUB.title}
               </p>
-              <p className="mt-2 text-[0.78rem] font-medium leading-snug text-ink">
+              <p className="mt-2 whitespace-nowrap text-[0.72rem] font-medium text-ink xl:text-[0.78rem]">
                 {FLYWHEEL_HUB.detail}
               </p>
             </div>

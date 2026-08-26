@@ -39,19 +39,15 @@ export function PortfolioExamplesSection() {
         </div>
 
         <FadeIn className="mx-auto mt-8 max-w-3xl text-center">
-          <div className={`space-y-4 ${homeBody}`}>
-            <p>
-              Choose a portfolio and allocate USDC. INDEXLA acquires the
-              underlying assets into your controlled wallet and executes only
-              the approved rules.
+          <div className={`space-y-3 ${homeBody}`}>
+            <p className="font-semibold text-ink text-balance">
+              Choose a portfolio. Invest with stables. Own the assets. Automate
+              your rules.
             </p>
-            <p className="font-semibold text-ink">
-              Investors own the assets. Creators earn when trades execute.
+            <p className="text-[0.95rem] font-medium italic leading-snug text-muted text-balance sm:text-[1.02rem]">
+              Illustrative portfolios. Not live performance.
             </p>
           </div>
-          <p className="mt-6 text-[0.95rem] font-medium italic leading-snug text-muted text-balance sm:text-[1.02rem]">
-            Illustrative portfolios only. Not live performance.
-          </p>
           <div className="mt-8 flex justify-center">
             <EarlyAccessCta className={homeCta}>Reserve Early Access</EarlyAccessCta>
           </div>

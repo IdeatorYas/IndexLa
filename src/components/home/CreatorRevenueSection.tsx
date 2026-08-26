@@ -58,7 +58,7 @@ export function CreatorRevenueSection() {
         <FadeIn className="mt-12 text-center">
           <div className="mx-auto mb-5 flex max-w-5xl justify-center">
             <div className="rounded-2xl border border-electric/40 bg-electric/[0.1] px-6 py-3.5 shadow-[inset_0_1px_0_rgba(56,189,248,0.18)] sm:px-8">
-              <h3 className="display text-[clamp(1.25rem,2.6vw,1.55rem)] font-semibold tracking-[-0.025em] text-electric">
+              <h3 className="display text-[clamp(1.25rem,2.6vw,1.55rem)] font-semibold tracking-[-0.025em] text-ink">
                 Four Ways to Earn
               </h3>
             </div>

@@ -182,7 +182,7 @@ export function InvestmentStylesSection() {
                   {style.description}
                 </p>
 
-                <p className="relative z-10 mt-6 text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
+                <p className="relative z-10 mt-6 flex min-h-[3.25rem] items-center justify-center text-[0.98rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:min-h-[3.5rem] sm:text-[1.05rem]">
                   {style.benefit}
                 </p>
 
