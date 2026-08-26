@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { InvestorAdvantageSection } from "@/components/investors/InvestorAdvantageSection";
 import { InvestorBuildSection } from "@/components/investors/InvestorBuildSection";
+import { InvestorCapitalBanner } from "@/components/investors/InvestorCapitalBanner";
 import { InvestorDisclaimer } from "@/components/investors/InvestorDisclaimer";
 import { InvestorDoesNotDoSection } from "@/components/investors/InvestorDoesNotDoSection";
 import { InvestorFeesSection } from "@/components/investors/InvestorFeesSection";
@@ -24,7 +24,7 @@ export default function InvestorsPage() {
       <InvestorHero />
       <InvestorPathsSection />
       <InvestorFeesSection />
-      <InvestorAdvantageSection />
+      <InvestorCapitalBanner />
       <InvestorBuildSection />
       <InvestorThesisSection />
       <MarketplaceSection />

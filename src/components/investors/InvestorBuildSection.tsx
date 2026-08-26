@@ -12,17 +12,17 @@ const STEPS = [
   {
     n: "01",
     title: "BUILD",
-    body: "Connect your wallet, choose your assets and define your allocations.",
+    body: "Connect your wallet, choose assets and define allocations across your portfolio.",
   },
   {
     n: "02",
     title: "DEFINE",
-    body: "Set your conditions, thresholds, percentages, limits and expiry.",
+    body: "Set your strategy conditions, thresholds, percentages and execution limits.",
   },
   {
     n: "03",
     title: "AUTOMATE",
-    body: "Approve the permissions. INDEXLA monitors your selected conditions and triggers execution when your rules are met.",
+    body: "Approve permissions. INDEXLA monitors conditions and triggers execution when rules match.",
   },
 ] as const;
 

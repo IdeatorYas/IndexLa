@@ -1,5 +1,7 @@
-import Link from "next/link";
+"use client";
+
 import { FadeIn } from "@/components/ui/FadeIn";
+import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   invBody,
   invGreenBox,
@@ -13,18 +15,18 @@ import { homeCta } from "@/components/home/homeRhythm";
 const STEPS = [
   {
     n: "01",
-    title: "Discover",
-    body: "Explore portfolios built around different assets, markets and strategies.",
+    title: "Browse",
+    body: "Explore portfolios published by INDEXLA creators.",
   },
   {
     n: "02",
-    title: "Customize",
-    body: "Adjust assets, allocations and automation rules around your conviction.",
+    title: "Compare",
+    body: "Review assets, allocations, strategies and performance.",
   },
   {
     n: "03",
-    title: "Build",
-    body: "Create your own portfolio and strategy from the ground up.",
+    title: "Customize",
+    body: "Choose a portfolio and adjust it around your conviction.",
   },
 ] as const;
 
@@ -34,11 +36,12 @@ export function MarketplaceSection() {
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${invH2} uppercase`}>
-            Discover. Customize.{" "}
-            <span className="gradient-text">Build.</span>
+            Discover Creator{" "}
+            <span className="gradient-text">Portfolios.</span>
           </h2>
           <p className={`mt-5 ${invBody}`}>
-            You don&apos;t always need to start from scratch.
+            Browse portfolios created around different markets, assets and
+            investment strategies.
           </p>
         </FadeIn>
 
@@ -50,7 +53,7 @@ export function MarketplaceSection() {
                 className="flex flex-col gap-3 xl:min-w-0 xl:flex-1 xl:flex-row xl:items-stretch"
               >
                 <article
-                  className={`${invPremiumSurface} flex h-full min-h-[13.5rem] flex-1 flex-col items-center px-5 py-7 text-center sm:px-6 sm:py-8`}
+                  className={`${invPremiumSurface} flex h-full min-h-[12.5rem] flex-1 flex-col items-center px-5 py-7 text-center sm:px-6 sm:py-8`}
                 >
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-electric">
                     {step.n} · {step.title}
@@ -81,14 +84,13 @@ export function MarketplaceSection() {
         <FadeIn className="mx-auto mt-10 max-w-3xl text-center" delay={0.08}>
           <div className={invGreenBox}>
             <p className={invGreenText}>
-              Don&apos;t Blindly Copy Someone Else&apos;s Conviction. Make It
-              Yours.
+              Discover the Idea. Make It Yours.
             </p>
           </div>
           <div className="mt-7 flex justify-center">
-            <Link href="/#discover-portfolios" className={`${homeCta} inline-flex`}>
-              Explore Marketplace
-            </Link>
+            <EarlyAccessCta className={`${homeCta} inline-flex`}>
+              Reserve Early Access
+            </EarlyAccessCta>
           </div>
         </FadeIn>
       </div>
