@@ -18,16 +18,16 @@ export function BrandLogo({ className = "", priority = false }: BrandLogoProps) 
     <Link
       href="/"
       aria-label="INDEXLA home"
-      className={`relative inline-flex shrink-0 items-center ${className}`}
+      className={`relative inline-flex shrink-0 items-center bg-transparent ${className}`}
     >
-      <span className="relative block h-[3.65rem] w-[10.25rem] sm:h-16 sm:w-[11.75rem]">
+      <span className="relative block h-[3.65rem] w-[10.25rem] bg-transparent sm:h-16 sm:w-[11.75rem]">
         <Image
           src={src}
           alt="INDEXLA"
           fill
           sizes="(max-width: 640px) 164px, 188px"
           priority={priority}
-          className="object-contain object-left"
+          className="bg-transparent object-contain object-left"
         />
       </span>
     </Link>

@@ -3,8 +3,8 @@ export const LOGO_TRANSPARENT = "/logo/indexla-logo-transparent.png";
 export const LOGO_LIGHT = "/logo/indexla tranparent logo background.jpg";
 /** Light-colored mark for dark backgrounds */
 export const LOGO_ON_DARK = "/logo/indexla-logo-transparent.png";
-/** Dark-colored mark for light backgrounds (official transparent logo) */
-export const LOGO_ON_LIGHT = LOGO_LIGHT;
+/** Transparent PNG mark for light backgrounds (dark text, clean alpha) */
+export const LOGO_ON_LIGHT = "/logo/indexla-logo-on-light.png";
 /** Transparent high-quality INDEXLA logo for deck / print (RGBA / palette+tRNS) */
 export const LOGO_DECK = "/logo/indexla-logo-transparent.png";
 
