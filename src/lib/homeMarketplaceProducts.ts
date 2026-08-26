@@ -1,6 +1,5 @@
 /**
- * Homepage Discover products — sourced from IndexLa-App index-catalog.ts.
- * Allocations use the app's equalAllocations (10 assets → 10% each).
+ * Homepage Discover products — illustrative allocations for portfolio cards.
  * Strategies from strategyIdForIndexOrdinal at catalog build time.
  * Logos: verified local brand assets under /images/assets/.
  */
@@ -40,59 +39,61 @@ function donutColor(raw: string): string {
   return raw;
 }
 
-function equalAssets(
-  rows: { ticker: string; color: string; src: string }[],
+function weightedAssets(
+  rows: { ticker: string; percent: number; color: string; src: string }[],
 ): HomeDiscoverAsset[] {
-  const pct = Math.floor(100 / rows.length);
-  const remainder = 100 - pct * rows.length;
-  return rows.map((row, i) => ({
+  const total = rows.reduce((sum, row) => sum + row.percent, 0);
+  if (total !== 100) {
+    throw new Error(`Homepage portfolio allocations must total 100%, got ${total}`);
+  }
+  return rows.map((row) => ({
     ticker: row.ticker,
-    percent: i === 0 ? pct + remainder : pct,
+    percent: row.percent,
     color: donutColor(row.color),
     src: row.src,
   }));
 }
 
-/** AI & Compute Index — ai-compute-index (ordinal 18 → Momentum Trend) */
-const AI_COMPUTE = equalAssets([
-  { ticker: "TAO", color: "#FFFFFF", src: "/images/assets/demo/crypto/tao.png" },
-  { ticker: "RENDER", color: "#C40000", src: "/images/assets/demo/crypto/rndr.png" },
-  { ticker: "FET", color: "#1E3448", src: "/images/assets/demo/crypto/fet.png" },
-  { ticker: "AKT", color: "#ED3524", src: "/images/assets/demo/crypto/akt.png" },
-  { ticker: "NVDA", color: "#76B900", src: "/images/assets/demo/stocks/nvda.png" },
-  { ticker: "MSFT", color: "#00A4EF", src: "/images/assets/demo/stocks/msft.png" },
-  { ticker: "GOOGL", color: "#4285F4", src: "/images/assets/demo/stocks/googl.png" },
-  { ticker: "AMZN", color: "#FF9900", src: "/images/assets/demo/stocks/amzn.png" },
-  { ticker: "PLTR", color: "#101010", src: "/images/assets/demo/stocks/pltr.png" },
-  { ticker: "ARM", color: "#0091BD", src: "/images/assets/demo/stocks/arm.png" },
+/** AI & Compute Index — Momentum Trend */
+const AI_COMPUTE = weightedAssets([
+  { ticker: "NVDA", percent: 18, color: "#76B900", src: "/images/assets/demo/stocks/nvda.png" },
+  { ticker: "MSFT", percent: 14, color: "#00A4EF", src: "/images/assets/demo/stocks/msft.png" },
+  { ticker: "GOOGL", percent: 12, color: "#4285F4", src: "/images/assets/demo/stocks/googl.png" },
+  { ticker: "TAO", percent: 10, color: "#FFFFFF", src: "/images/assets/demo/crypto/tao.png" },
+  { ticker: "RENDER", percent: 9, color: "#C40000", src: "/images/assets/demo/crypto/rndr.png" },
+  { ticker: "PLTR", percent: 9, color: "#101010", src: "/images/assets/demo/stocks/pltr.png" },
+  { ticker: "AMZN", percent: 8, color: "#FF9900", src: "/images/assets/demo/stocks/amzn.png" },
+  { ticker: "FET", percent: 7, color: "#1E3448", src: "/images/assets/demo/crypto/fet.png" },
+  { ticker: "ARM", percent: 7, color: "#0091BD", src: "/images/assets/demo/stocks/arm.png" },
+  { ticker: "AKT", percent: 6, color: "#ED3524", src: "/images/assets/demo/crypto/akt.png" },
 ]);
 
-/** Layer 1 Index — layer-1-index live app assets (ordinal 0 → Buy Fear / Sell Greed) */
-const LAYER_1 = equalAssets([
-  { ticker: "BTC", color: "#F7931A", src: "/images/assets/demo/crypto/btc.png" },
-  { ticker: "ETH", color: "#627EEA", src: "/images/assets/demo/crypto/eth.png" },
-  { ticker: "XRP", color: "#23292F", src: "/images/assets/demo/crypto/xrp.png" },
-  { ticker: "BNB", color: "#F3BA2F", src: "/images/assets/demo/crypto/bnb.png" },
-  { ticker: "SOL", color: "#14F195", src: "/images/assets/demo/crypto/sol.png" },
-  { ticker: "TRX", color: "#FF0013", src: "/images/assets/demo/crypto/trx.png" },
-  { ticker: "HYPE", color: "#97FCE4", src: "/images/assets/demo/crypto/hype.png" },
-  { ticker: "ADA", color: "#0033AD", src: "/images/assets/demo/crypto/ada.png" },
-  { ticker: "AVAX", color: "#E84142", src: "/images/assets/demo/crypto/avax.png" },
-  { ticker: "SUI", color: "#4DA2FF", src: "/images/assets/demo/crypto/sui.png" },
+/** Layer 1 Index — Buy Fear / Sell Greed */
+const LAYER_1 = weightedAssets([
+  { ticker: "BTC", percent: 22, color: "#F7931A", src: "/images/assets/demo/crypto/btc.png" },
+  { ticker: "ETH", percent: 18, color: "#627EEA", src: "/images/assets/demo/crypto/eth.png" },
+  { ticker: "SOL", percent: 14, color: "#14F195", src: "/images/assets/demo/crypto/sol.png" },
+  { ticker: "BNB", percent: 10, color: "#F3BA2F", src: "/images/assets/demo/crypto/bnb.png" },
+  { ticker: "XRP", percent: 8, color: "#23292F", src: "/images/assets/demo/crypto/xrp.png" },
+  { ticker: "AVAX", percent: 7, color: "#E84142", src: "/images/assets/demo/crypto/avax.png" },
+  { ticker: "SUI", percent: 6, color: "#4DA2FF", src: "/images/assets/demo/crypto/sui.png" },
+  { ticker: "ADA", percent: 5, color: "#0033AD", src: "/images/assets/demo/crypto/ada.png" },
+  { ticker: "TRX", percent: 5, color: "#FF0013", src: "/images/assets/demo/crypto/trx.png" },
+  { ticker: "HYPE", percent: 5, color: "#97FCE4", src: "/images/assets/demo/crypto/hype.png" },
 ]);
 
-/** DeFi Index — defi-index (ordinal 7 → Momentum Trend) */
-const DEFI = equalAssets([
-  { ticker: "LINK", color: "#2A5ADA", src: "/images/assets/demo/crypto/link.png" },
-  { ticker: "UNI", color: "#FF007A", src: "/images/assets/demo/crypto/uni.png" },
-  { ticker: "AAVE", color: "#B6509E", src: "/images/assets/demo/crypto/aave.png" },
-  { ticker: "HYPE", color: "#97FCE4", src: "/images/assets/demo/crypto/hype.png" },
-  { ticker: "ENA", color: "#5CE1E6", src: "/images/assets/demo/crypto/ena.png" },
-  { ticker: "ONDO", color: "#183CFF", src: "/images/assets/demo/crypto/ondo.png" },
-  { ticker: "JUP", color: "#00D18C", src: "/images/assets/demo/crypto/jup.png" },
-  { ticker: "PENDLE", color: "#1A1A1A", src: "/images/assets/demo/crypto/pendle.png" },
-  { ticker: "MORPHO", color: "#2470FF", src: "/images/assets/demo/crypto/morpho.png" },
-  { ticker: "CRV", color: "#FF0000", src: "/images/assets/demo/crypto/crv.png" },
+/** DeFi Index — Momentum Trend */
+const DEFI = weightedAssets([
+  { ticker: "LINK", percent: 15, color: "#2A5ADA", src: "/images/assets/demo/crypto/link.png" },
+  { ticker: "AAVE", percent: 13, color: "#B6509E", src: "/images/assets/demo/crypto/aave.png" },
+  { ticker: "UNI", percent: 12, color: "#FF007A", src: "/images/assets/demo/crypto/uni.png" },
+  { ticker: "ONDO", percent: 10, color: "#183CFF", src: "/images/assets/demo/crypto/ondo.png" },
+  { ticker: "JUP", percent: 9, color: "#00D18C", src: "/images/assets/demo/crypto/jup.png" },
+  { ticker: "PENDLE", percent: 9, color: "#1A1A1A", src: "/images/assets/demo/crypto/pendle.png" },
+  { ticker: "ENA", percent: 8, color: "#5CE1E6", src: "/images/assets/demo/crypto/ena.png" },
+  { ticker: "MORPHO", percent: 8, color: "#2470FF", src: "/images/assets/demo/crypto/morpho.png" },
+  { ticker: "HYPE", percent: 8, color: "#97FCE4", src: "/images/assets/demo/crypto/hype.png" },
+  { ticker: "CRV", percent: 8, color: "#FF0000", src: "/images/assets/demo/crypto/crv.png" },
 ]);
 
 export const HOME_DISCOVER_PRODUCTS: HomeDiscoverProduct[] = [
