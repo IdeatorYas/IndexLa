@@ -10,13 +10,12 @@ import {
 
 type StyleCard = {
   id: string;
-  eyebrow: string;
-  body: string[];
-  highlight: string | null;
-  risk: string | null;
+  title: string;
+  description: string;
+  benefit: string;
   cta: { href: string; label: string };
   shell: string;
-  eyebrowClass: string;
+  titleClass: string;
   glow: string;
   assets: { src: string; alt: string }[];
 };
@@ -24,16 +23,14 @@ type StyleCard = {
 const STYLES: StyleCard[] = [
   {
     id: "core",
-    eyebrow: "INDEXLA CORE",
-    body: [
-      "Build long-term exposure through diversified portfolios across crypto, tokenized stocks, commodities and real-world assets.",
-    ],
-    highlight: null,
-    risk: null,
-    cta: { href: "#discover-portfolios", label: "Explore Portfolios →" },
+    title: "INDEXLA CORE",
+    description:
+      "Build diversified portfolios across crypto, tokenized stocks, commodities and real-world assets. Automate your strategy while retaining direct ownership.",
+    benefit: "Long-Term · Diversified · Direct Ownership",
+    cta: { href: "/#discover-portfolios", label: "Explore Portfolios →" },
     shell:
       "border-blue/45 bg-gradient-to-b from-blue/[0.16] via-electric/[0.06] to-deep/80 shadow-[inset_0_1px_0_rgba(59,130,246,0.22)]",
-    eyebrowClass: "text-electric",
+    titleClass: "text-electric",
     glow: "from-blue/25 via-electric/10 to-transparent",
     assets: [
       { src: ASSETS.btc.src, alt: "Bitcoin" },
@@ -47,17 +44,14 @@ const STYLES: StyleCard[] = [
   },
   {
     id: "stable",
-    eyebrow: "STABLE CLUB",
-    body: [
-      "Put your stablecoins to work by supplying liquidity to decentralized exchanges.",
-      "Earn trading fees while INDEXLA automates the position.",
-    ],
-    highlight: "No Lending · No Borrowing · No Extra Vault",
-    risk: null,
+    title: "STABLE CLUB",
+    description:
+      "Supply stablecoin liquidity to decentralized exchanges and earn trading fees. INDEXLA automates your position while you retain control.",
+    benefit: "No Lending · No Borrowing · No Extra Vault",
     cta: { href: "/stable-club", label: "Explore Stable Club →" },
     shell:
       "border-cyan/45 bg-gradient-to-b from-cyan/[0.14] via-success/[0.07] to-deep/80 shadow-[inset_0_1px_0_rgba(34,211,238,0.2)]",
-    eyebrowClass: "text-cyan",
+    titleClass: "text-cyan",
     glow: "from-cyan/25 via-success/10 to-transparent",
     assets: [
       { src: "/images/assets/usdc.svg", alt: "USDC" },
@@ -66,18 +60,14 @@ const STYLES: StyleCard[] = [
   },
   {
     id: "degen",
-    eyebrow: "DEGEN CLUB",
-    body: [
-      "A new way to chase the next 100x.",
-      "Diversify across a basket of memecoins.",
-    ],
-    highlight:
-      "Multiple Coins · Multiple Opportunities · More Chances to Catch a Winner",
-    risk: "High Risk · High Volatility",
+    title: "DEGEN CLUB",
+    description:
+      "Build diversified memecoin baskets to chase high-upside opportunities. Multiply your chances instead of betting everything on one coin.",
+    benefit: "Multiple Coins · Multiple Opportunities · High Volatility",
     cta: { href: "/degen-club", label: "Explore Degen Club →" },
     shell:
       "border-amber-400/40 bg-gradient-to-b from-amber-400/[0.14] via-orange-500/[0.08] to-deep/80 shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]",
-    eyebrowClass: "text-amber-300",
+    titleClass: "text-amber-300",
     glow: "from-amber-400/25 via-orange-500/10 to-transparent",
     assets: [
       { src: DEGEN_MEME_LOGOS.DOGE, alt: "DOGE" },
@@ -95,7 +85,7 @@ function CardAssetBackdrop({
 }) {
   return (
     <div
-      className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl"
+      className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.5rem]"
       aria-hidden
     >
       <div className="absolute inset-0 opacity-[0.14] sm:opacity-[0.16]">
@@ -148,48 +138,42 @@ export function InvestmentStylesSection() {
           </p>
         </FadeIn>
 
-        <div className="mx-auto mt-10 grid max-w-6xl gap-5 lg:grid-cols-3 lg:gap-6">
+        <div className="mx-auto mt-10 grid max-w-6xl auto-rows-fr gap-5 lg:grid-cols-3 lg:gap-6">
           {STYLES.map((style, i) => (
             <FadeIn key={style.id} delay={i * 0.05} className="h-full">
               <article
-                className={`relative flex h-full min-h-[28rem] flex-col overflow-hidden rounded-[1.5rem] border px-6 py-9 text-center sm:min-h-[30rem] sm:px-7 sm:py-10 ${style.shell}`}
+                className={`relative grid h-full overflow-hidden rounded-[1.5rem] border px-6 py-9 text-center sm:px-7 sm:py-10 ${style.shell}`}
+                style={{
+                  gridTemplateRows: "auto 1fr auto auto",
+                }}
               >
                 <div
                   className={`pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b ${style.glow}`}
                   aria-hidden
                 />
                 <CardAssetBackdrop assets={style.assets} />
-                <div className="relative z-10 flex h-full flex-col">
-                  <p
-                    className={`display text-[1.15rem] font-bold uppercase tracking-[0.14em] sm:text-[1.3rem] ${style.eyebrowClass}`}
+
+                <p
+                  className={`relative z-10 display min-h-[2rem] text-[1.15rem] font-bold uppercase leading-none tracking-[0.14em] sm:min-h-[2.2rem] sm:text-[1.3rem] ${style.titleClass}`}
+                >
+                  {style.title}
+                </p>
+
+                <p className="relative z-10 mt-6 text-[1.08rem] font-medium leading-[1.55] text-muted text-balance sm:text-[1.15rem]">
+                  {style.description}
+                </p>
+
+                <p className="relative z-10 mt-6 text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
+                  {style.benefit}
+                </p>
+
+                <div className="relative z-10 mt-8 flex justify-center">
+                  <Link
+                    href={style.cta.href}
+                    className="inline-flex items-center text-[1.1rem] font-semibold leading-none text-electric transition-colors hover:text-ink"
                   >
-                    {style.eyebrow}
-                  </p>
-                  <div className={`mt-6 flex-1 space-y-3.5 text-[1.08rem] leading-relaxed text-muted sm:text-[1.15rem]`}>
-                    {style.body.map((line) => (
-                      <p key={line} className="text-balance">
-                        {line}
-                      </p>
-                    ))}
-                  </div>
-                  {style.highlight ? (
-                    <p className="mt-6 text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
-                      {style.highlight}
-                    </p>
-                  ) : null}
-                  {style.risk ? (
-                    <p className="mt-3 text-[0.92rem] font-semibold uppercase tracking-[0.08em] text-amber-300/90">
-                      {style.risk}
-                    </p>
-                  ) : null}
-                  <div className="mt-8">
-                    <Link
-                      href={style.cta.href}
-                      className="inline-flex items-center text-[1.1rem] font-semibold text-electric transition-colors hover:text-ink"
-                    >
-                      {style.cta.label}
-                    </Link>
-                  </div>
+                    {style.cta.label}
+                  </Link>
                 </div>
               </article>
             </FadeIn>
