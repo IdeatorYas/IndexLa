@@ -206,15 +206,22 @@ export function splitWhitepaperSections(bodyMarkdown: string): WhitepaperSection
   });
 }
 
+/** Remove embedded diagram source blocks replaced by React visuals */
+export function stripEmbeddedDiagramBlocks(markdown: string): string {
+  return markdown
+    .replace(/\nflowchart TD[\s\S]*?(?=\n##|\n#|\n---|\s*$)/i, "\n\n")
+    .replace(/\npie showData[\s\S]*?(?=\n##|\n#|\n---|\s*$)/i, "\n\n");
+}
+
 /** Remove the competitor markdown table; rendered by CompetitorComparisonTable instead */
 export function stripCompetitorMarkdownTable(markdown: string): string {
   return markdown
     .replace(
-      /\n\|[^\n]*Capability[\s\S]*?\| Exit fee[^\n]*\|\n+/i,
+      /\n\|[^\n]*\*\*Feature\*\*[\s\S]*?\| Non-Custodial[^\n]*\|\n+/i,
       "\n\n",
     )
     .replace(
-      /\*Competitive features reflect publicly available product positioning and may evolve over time\.\*\n*/i,
+      /\*Comparison reflects publicly available product positioning and may change as platforms evolve\.\*\n*/i,
       "",
     );
 }
@@ -256,8 +263,16 @@ export function prepareBodyMarkdown(
     section.number,
     section.headline,
   );
-  if (edition === "whitepaper" && section.slug === "5-competitive-landscape") {
-    body = stripCompetitorMarkdownTable(body);
+  if (edition === "whitepaper") {
+    if (section.slug === "16-competition") {
+      body = stripCompetitorMarkdownTable(body);
+    }
+    if (
+      section.slug === "12-dexla-utility-and-tokenomics" ||
+      section.slug === "13-architecture-and-execution"
+    ) {
+      body = stripEmbeddedDiagramBlocks(body);
+    }
   }
   return body;
 }

@@ -8,13 +8,13 @@ type PortfolioCardProps = {
 export function PortfolioCard({ product }: PortfolioCardProps) {
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-deep/45 p-5 transition-transform duration-300 ease-out hover:-translate-y-[3px] sm:p-6">
-      <div>
+      <div className="text-center">
         <span
           className={`inline-flex rounded-full border px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.12em] ${product.typeClassName}`}
         >
           {product.typeLabel}
         </span>
-        <h3 className="display mt-3 text-[clamp(1.2rem,2.4vw,1.45rem)] tracking-[-0.02em] text-ink text-balance text-pretty">
+        <h3 className="display mt-3 text-[clamp(1.2rem,2.4vw,1.45rem)] font-semibold tracking-[-0.02em] text-electric text-balance text-pretty">
           {product.name}
         </h3>
       </div>

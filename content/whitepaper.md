@@ -1,1076 +1,1138 @@
-# INDEXLA Whitepaper
+# **INDEXLA Whitepaper**
 
-## Invest in Everything. Own Everything. Control Everything.
+## **The Decentralized Portfolio Management & Distribution Layer**
 
----
+### **One Portfolio. Every Asset. Every Chain.**
 
-# 1. Executive Summary
+**Version: August 2026**
 
-Financial markets are becoming fragmented across assets, chains, liquidity and platforms.
 
-INDEXLA is a decentralized, non-custodial portfolio management and automation platform designed to bring them together.
-
-Users can build portfolios across supported crypto assets, tokenized securities, commodities, real estate, RWAs and other eligible assets while retaining control of their underlying assets.
-
-Instead of managing positions across multiple chains, wallets, DEXs and interfaces, INDEXLA provides one portfolio layer where users define allocations, strategies and execution permissions.
-
-Creators can turn investment theses and strategies into portfolios, distribute them through the Marketplace, list proprietary strategies in the Creator Strategy Marketplace and earn from portfolio activity.
-
-Three structural shifts are converging:
-
-Assets are moving on-chain.  
- Investment distribution is moving toward creators.  
- Portfolio management is becoming programmable.
-
-The opportunity is not to rebuild every primitive.
-
-It is to connect them.
-
-INDEXLA can onboard users and begin product testing before $DEXLA utility activation. Token-dependent creator utilities activate when $DEXLA utility is enabled.
-
-## What INDEXLA Is Not
-
-INDEXLA is not:
-• A custodial platform
-• A traditional investment manager
-• A vault or pooled basket
-• A wrapper token representing a portfolio
-• A guarantee of investment performance
-• Financial, investment, legal or tax advice
-
-Users retain control of their assets and authorize the permissions used for automation.
 
 ---
 
-# 2. The Problem
 
-Modern investing is fragmented.
 
-Your assets sit across different chains, wallets, protocols and platforms. Building one diversified portfolio often means moving between multiple interfaces, bridges, swaps and execution venues.
+## **Important Notice**
 
-### Fragmented Investing
+This whitepaper describes the intended design, utility, economics and development direction of INDEXLA.
 
-**One portfolio. Multiple systems.**
+Features, integrations, supported assets, networks, fees, timelines and token utilities remain subject to technical, security, legal and market review before activation.
 
-Separate wallets. Multiple bridges. Different execution venues. Manual rebalancing. Fragmented visibility.
 
-What should be one coherent portfolio becomes a collection of disconnected transactions.
-
-### The Wrapper Problem
-
-Most basket products solve diversification by issuing a single token that represents a basket of assets.
-
-That creates another layer between the investor and the assets:
-
-• One token represents the entire portfolio
-• Underlying assets sit inside a vault or contract
-• Rebalancing depends on the basket mechanism
-• The token's market price can diverge from the underlying basket's NAV
-• Holdings, fees and execution can be harder to verify directly
-
-**You own the representation of the portfolio — not the assets themselves.**
-
-### Strategies Without Execution
-
-Investors often know exactly what they want to do. Markets do not wait.
-
-DCA, rebalancing, take-profit, stop-loss and signal-based strategies only work when they are executed consistently at the right moment.
-
-**Knowing the strategy is easy. Executing it every time is the real problem.**
-
-### Creators Have Influence, Not Infrastructure
-
-Creators already produce research, market views and investment theses that audiences trust.
-
-But most of that value stops at content, followers and engagement.
-
-They lack the infrastructure to turn a thesis into an investable portfolio, automate it, distribute it and build real economics around it.
-
-**The audience exists. The thesis exists. The portfolio infrastructure is missing.**
 
 ---
 
-# 3. The INDEXLA Solution
 
-INDEXLA is a non-custodial portfolio layer connecting:
 
-**Assets → Portfolios → Strategies → Permissions → Monitoring → Execution**
+# **1. Executive Summary**
 
-### Direct Asset Ownership
+Financial assets are moving on-chain, but investing remains fragmented across assets, networks, wallets, liquidity venues and interfaces.  
+INDEXLA is building a decentralized, non-custodial portfolio management and distribution layer that connects investors, creators, assets, strategies and execution infrastructure.  
+The platform is designed around one principle:
 
-INDEXLA does not issue a single token representing your portfolio.
+Investors should be able to build, discover and automate portfolios without giving up ownership of the underlying assets.
 
-It buys and holds the individual underlying assets.
+INDEXLA serves different investor ambitions and risk profiles through three products:
 
-**BTC + ETH + NVDA + Gold + RWAs** means you actually hold those assets in your non-custodial account.
+### **INDEXLA Core**
 
-**No basket wrapper. No single token replacing the assets.**
+For long-term investors seeking diversified exposure across crypto, tokenized stocks, commodities and real-world assets.
 
-### One Portfolio Layer
+### **Stable Club**
 
-Combine crypto, tokenized stocks, commodities, real estate and RWAs inside one portfolio architecture.
+For stablecoin holders seeking to supply liquidity to decentralized exchanges and earn trading fees through automated liquidity positions.  
+**No lending. No borrowing. No extra vault.**
 
-### Programmable Automation
+### **Degen Club**
 
-Turn defined rules into authorized automated actions:
+For high-risk traders seeking diversified memecoin baskets across multiple assets, communities and chains instead of relying on one opportunity.  
+**Multiple coins. Multiple shots. High risk.**  
+Across all three products, users choose their capital, assets, risk, rules and permissions. INDEXLA monitors approved conditions and coordinates execution within defined limits.  
+Creators can turn investment theses into distributable portfolios, reach investors and earn through execution fees, strategy access, monthly rewards and $DEXLA tips.  
+$DEXLA connects platform utility to permanent supply reduction through publishing, featuring, strategy monetization, fee savings, tips and six burn mechanisms.  
+INDEXLA can onboard users and begin product testing before $DEXLA utility activation. Token-dependent utilities activate only when $DEXLA utility is enabled.
 
-**DCA · Rebalancing · Take Profit · Stop Loss · Fear & Greed · RSI · Momentum**
 
-### Non-Custodial
-
-INDEXLA never takes custody of user assets.
-
-Users retain ownership of their assets. Automation only operates inside the exact permissions they authorize.
-
-**Your keys. Your assets. Your permissions.**
-
-### Cross-Chain
-
-Portfolio activity is coordinated across supported networks and decentralized liquidity infrastructure.
-
-### Creator Portfolios
-
-Creators turn investment theses into portfolios that users can discover, follow and invest in.
-
-They receive **50% of applicable execution fees** generated by their portfolios.
-
-**From audience → portfolio → activity → recurring economics.**
 
 ---
 
-## The Difference
 
-**Traditional basket:** One token represents the portfolio.
 
-**INDEXLA:** The portfolio contains the assets.
+# **2. The Market Shift**
 
----
+Three structural changes are converging.
 
-# 4. Why Now
+## **2.1 Assets Are Moving On-Chain**
 
-Three infrastructure shifts are converging.
+Crypto, stablecoins, tokenized securities, commodities, real estate and other real-world assets are becoming accessible through programmable infrastructure.  
+As more assets move on-chain, more portfolios can become programmable.
 
-### Tokenization
+## **2.2 Investment Distribution Is Moving Toward Creators**
 
-Traditional financial assets are increasingly represented on-chain.
+Investors increasingly discover ideas through creators, research communities, X, YouTube, newsletters and specialist networks.  
+Creators already influence capital allocation, but most lack the infrastructure to turn that influence into transparent, investable portfolio products.
 
-Tokenized securities, commodities, real estate and RWAs expand the universe of programmable portfolios.
+## **2.3 Portfolio Management Is Becoming Programmable**
 
-### Creator Distribution
+Investors no longer need to rely entirely on manual execution. Allocations, rebalancing, DCA, profit taking and risk limits can be expressed as predefined rules.  
+Assets are becoming programmable. Portfolios should be too.
 
-Investment research increasingly reaches audiences through creators, X, YouTube, communities and newsletters.
 
-INDEXLA turns that influence into portfolio products.
-
-### Programmable Finance
-
-Financial actions can increasingly be expressed through programmable rules rather than manual transactions.
-
-Assets are programmable. Portfolios should be too.
 
 ---
 
-# 5. Why INDEXLA Differs
-
-INDEXLA connects capabilities that are usually separated:
-
-Direct asset ownership  
- Non-custodial portfolio management  
- Scoped automation  
- Multi-asset portfolios  
- Cross-chain execution  
- Creator Marketplace  
- Strategy monetization  
- $DEXLA utility
-
-Existing platforms may offer individual pieces.
-
-INDEXLA connects them into one portfolio layer.
-
----
-
-# 6. Competition
-
-## Own the Assets. Not a Wrapper.
-
-Most basket-based platforms place a representation between the user and the underlying portfolio.
-
-Velvet → Vault tokens  
- SoSoValue → SSI index tokens  
- Reserve → DTF tokens  
- Autopilot → Brokerage-held securities
-
-INDEXLA is designed differently:
-
-Users hold the underlying assets while automation operates through scoped, revocable permissions.
-
-### Competitive Comparison
 
 
-|                             |                                        |               |               |                         |                       |
-| --------------------------- | -------------------------------------- | ------------- | ------------- | ----------------------- | --------------------- |
-| Feature                     | INDEXLA                                | Velvet        | SoSoValue     | Reserve                 | Autopilot             |
-| Direct Underlying Ownership | ✓                                      | Vault Token   | SSI Token     | DTF Token               | Brokerage             |
-| Cross-Chain                 | ✓                                      | ✓             | ✓             | Multi-chain deployments | —                     |
-| Cross-Asset                 | ✓ Crypto + Stocks + Commodities + RWAs | Crypto + DeFi | Crypto        | Crypto + Yield Assets   | Stocks + ETFs         |
-| Personal Automation         | ✓                                      | ✓             | —             | —                       | ✓                     |
-| AI-Assisted Strategy Logic  | ✓                                      | ✓             | AI Research   | —                       | —                     |
-| Creator Marketplace         | ✓                                      | Fund/Vault    | —             | —                       | Portfolio Marketplace |
-| Wallet-First Access         | ✓                                      | ✓*            | Account-based | ✓                       | —                     |
-| MEV-Protected Execution     | ✓ CoW                                  | Partial       | Not disclosed | ✓ Batch Auctions        | —                     |
-| Non-Custodial               | ✓                                      | ✓             | ✓             | ✓                       | —                     |
+# **3. The Problem**
+
+## **3.1 Fragmented Investing**
+
+One investment plan can require multiple wallets, networks, bridges, exchanges, DEXs and interfaces.  
+What should be one portfolio becomes a collection of disconnected transactions with fragmented visibility and manual execution.
+
+## **3.2 The Wrapper Problem**
+
+Many basket products create a token, vault share or other representation of a portfolio. The investor owns the representation while the underlying assets sit inside another structure.  
+This can introduce:
+
+- An additional layer between the investor and the assets
+- Dependence on the wrapper or vault mechanism
+- Potential divergence between market price and underlying value
+- Less direct visibility into holdings and execution
+- Additional custody, liquidity or redemption assumptions
+
+INDEXLA Core is designed around direct underlying ownership rather than a single index token replacing the portfolio assets.
+
+## **3.3 Strategies Without Consistent Execution**
+
+Investors often know what they intend to do:
+
+- Accumulate during fear
+- Hold through neutral conditions
+- Take profits during greed
+- Rebalance when allocations drift
+- Reduce exposure when risk limits are reached
+
+The difficulty is executing those decisions consistently when markets move and emotions take control.
+
+## **3.4 Stablecoins Without a Clear Product Path**
+
+Stablecoin holders often face a choice between leaving capital idle or entering lending, borrowing or multi-layer vault structures they may not want.  
+There is demand for a simpler path to decentralized-exchange liquidity and trading-fee generation with transparent position management.
+
+## **3.5 Concentrated Memecoin Risk**
+
+High-risk traders often concentrate capital in a single memecoin while searching for asymmetric upside.  
+One failed position can destroy the entire allocation. A basket does not remove memecoin risk, but it can distribute exposure across multiple opportunities.
+
+## **3.6 Creators Have Influence, Not Infrastructure**
+
+Creators produce research, market views and investment theses, but their value often stops at content and engagement.  
+They need infrastructure to build portfolios, distribute them, automate rules and participate in the economics generated by genuine portfolio activity.
 
 
-### Five Layers
-
-1. Direct Ownership
-  old the underlying assets.
-2. Cross-Chain + Cross-Asset
-  uild across supported networks and asset classes.
-3. Personal Automation
-  pply defined investment rules.
-4. Creator Marketplace
-  ublish strategies and earn from portfolio activity.
-5. Privacy + MEV Protection
-  allet-first access with MEV-aware execution.
-
-### The Security Difference
-
-AI proposes and monitors. Deterministic permissions enforce what can execute.
-
-AI cannot expand permissions or override user-defined rules.
-
-### The Economic Difference
-
-0% Management  
- 0% Performance  
- 0% Exit  
- 1% Execution
-
-The model monetizes platform activity rather than AUM extraction.
-
-### Competitive Reality
-
-Every competitor has meaningful strengths.
-
-Velvet: live product, AI infrastructure and ecosystem backing.  
- SoSoValue: large user base and research infrastructure.  
- Reserve: established on-chain basket infrastructure and significant TVL.  
- Autopilot: proven automated investing and mainstream brokerage adoption.
-
-INDEXLA is still proving execution, security, liquidity and adoption.
-
-The differentiation is therefore architectural, not a claim of traction.
-
-### The INDEXLA Moat
-
-The moat is the full-stack combination of true underlying ownership, scoped permissions, execution infrastructure, creator distribution and token economics. No single competitor currently owns this intersection. The moat can strengthen through network effects as more creators, portfolios and capital join the platform.
-
-### The INDEXLA Challenge
-
-No live product currently combines:
-
-Direct underlying ownership  
- Multi-chain, multi-asset portfolios  
- Personal rule-based automation  
- Creator Marketplace  
- Wallet-first access  
- MEV-protected execution
-
-Based on publicly available products today, this combination does not exist elsewhere.
-
-If you know a platform that genuinely offers all of the above, show us.
-
-*Velvet currently supports wallet-based access without mandatory KYC for its public product, while its terms reserve the ability to collect identity information where required.
 
 ---
 
-# 7. Why the Architecture Gap Is Structural
 
-The difference is architectural, not cosmetic.
 
-### 01 — Individual Ownership
+# **4. The INDEXLA Solution**
 
-Vault models are built around assets being deposited into shared contracts.
+INDEXLA connects:  
+**Assets → Portfolios → Strategies → Permissions → Monitoring → Execution → Distribution**
 
-INDEXLA is built around users retaining their underlying assets.
+## **4.1 Portfolio Management Layer**
 
-Changing from pooled custody to individual ownership changes the core custody and execution model.
+Users can build or discover portfolios, define allocations, select strategies and manage approved automation through one interface.
 
-### 02 — Scoped Permissions
+## **4.2 Distribution Layer**
 
-INDEXLA can authorize specific execution actions without taking ownership of user assets.
+Creators can publish portfolios and strategies through the INDEXLA Marketplace. Investors can discover, compare, customize and invest in products aligned with their goals and risk appetite.
 
-Execute within limits. Never exceed permission.
+## **4.3 Direct Ownership**
 
-### 03 — Execution-Level Creator Economics
+INDEXLA Core does not replace a portfolio with a single index token. Users own the eligible underlying assets through their non-custodial wallet structure.
 
-Creator economics are connected directly to portfolio execution activity.
+## **4.4 Scoped Automation**
 
-Per-portfolio fee routing is part of the execution model rather than simply a marketplace feature.
+Automation operates only within user-approved assets, chains, actions, spending limits, slippage limits, expiry and other controls.
 
-A competitor can build a similar product.
+## **4.5 Cross-Asset and Cross-Chain Design**
 
-But retrofitting these capabilities can require rebuilding core custody, permission, execution and fee-routing assumptions.
+INDEXLA is designed to coordinate eligible portfolio activity across supported assets, networks and liquidity infrastructure.
 
-That is a different platform model.
+## **4.6 Creator Economics**
 
----
+Creator economics are connected directly to portfolio distribution and execution activity.  
+The result is a platform where:
 
-# 8. Market Opportunity
+- Investors own and control their positions
+- Creators distribute investment products and earn from activity
+- INDEXLA earns when products are used
+- $DEXLA utility and burns grow with eligible platform activity
 
-INDEXLA sits at the intersection of:
 
-Global investable assets + tokenization + crypto + programmable portfolios
-
-### TAM
-
-Global investable assets span hundreds of trillions of dollars across equities, fixed income, commodities, real estate, alternatives, crypto and other assets.
-
-INDEXLA is building toward programmable portfolios across these asset classes.
-
-### SAM
-
-Near-term programmable assets include:
-
-Crypto  
- Tokenized securities  
- Tokenized stocks  
- Tokenized commodities  
- Tokenized real estate  
- RWAs  
- Stablecoins  
- On-chain investment products  
- Hybrid portfolios
-
-### SOM
-
-Initial focus:
-
-Crypto-native investors + portfolio creators + users seeking automated multi-asset investing.
-
-The objective is to prove product-market fit before expanding supported assets and networks.
-
-More assets become tokenized → more assets become programmable → more portfolios can be automated.
 
 ---
 
-# 9. How INDEXLA Works
-
-### 1. Build
-
-Select assets and define portfolio allocations.
-
-### 2. Configure
-
-Choose your strategy and set its rules, triggers, and execution parameters.
-
-### 3. Authorize
-
-Grant scoped permissions for the actions the automation is allowed to perform.
-
-### 4. Monitor
-
-INDEXLA continuously monitors market conditions, portfolio state, and strategy triggers.
-
-### 5. Execute
-
-When conditions are met, INDEXLA coordinates authorized transactions through connected execution and liquidity infrastructure.
-
-### 6. Manage
-
-Review performance, adjust allocations or strategy rules, pause automation, or revoke permissions at any time.
-
-**You define the strategy.**
-**You control the permissions.**
-**INDEXLA coordinates the execution.**
-
----
-
-# 10. Business Model
-
-INDEXLA has two complementary revenue engines:
-
-Platform execution fees + Treasury activity
-
-## 1% Execution Fee
-
-0% Management  
- 0% Subscription  
- 0% Performance  
- 0% Exit
-
-### Fee Distribution
 
 
-|                   |         |          |          |         |                |
-| ----------------- | ------- | -------- | -------- | ------- | -------------- |
-| Portfolio         | Creator | Platform | Treasury | Rewards | Buyback & Burn |
-| INDEXLA Portfolio | —       | 50%      | 20%      | 20%     | 10%            |
-| Creator Portfolio | 50%     | 20%      | 10%      | 10%     | 10%            |
+# **5. Three Products for Different Investor Behaviors**
 
+## **5.1 INDEXLA Core**
 
-Creator portfolios give creators 50% of applicable execution fees generated by their portfolios.
+### **Built for Long-Term Exposure**
 
-### Treasury
+INDEXLA Core enables diversified portfolios across eligible crypto assets, tokenized stocks, commodities and RWAs.  
+Investors can:
 
-Following the planned fundraising rounds, INDEXLA plans to capitalize the Treasury with approximately $500,000, subject to final capital raised and market conditions.
+- Build a portfolio from the ground up
+- Discover creator portfolios
+- Define asset allocations
+- Apply rule-based strategies
+- Rebalance when allocations drift
+- Automate DCA, profit taking and risk controls
+- Retain direct ownership of eligible underlying assets
 
-Treasury capital may support:
+Examples of eligible portfolio themes may include Layer 1 networks, AI and compute, DeFi, tokenized technology stocks, commodities, RWAs and hybrid portfolios.
 
-Operations · Development · Security · Infrastructure · Marketing · Partnerships · Ecosystem Growth
+## **5.2 Stable Club**
 
-25% of realized Treasury profits → $DEXLA Buyback & Burn
+### **Built for Stablecoin Liquidity**
 
----
+Stable Club is designed for users who want to put supported stablecoins to work by supplying liquidity to decentralized exchanges.  
+INDEXLA coordinates the position within approved parameters while the user retains control of the wallet and permissions.  
+Core positioning:
 
-# 11. Investor Experience
+- Earn decentralized-exchange trading fees
+- Automated liquidity-position management
+- No lending
+- No borrowing
+- No extra INDEXLA vault
 
-INDEXLA gives investors control over what they own, how their portfolios behave, and when predefined rules are executed. AI monitors the selected strategy while the investor remains in control.
+Stablecoin liquidity is not risk-free. Positions can face smart-contract risk, liquidity risk, depegging risk, impermanent loss, range-management risk and execution risk.
 
-**User → Portfolio → Strategy → AI Monitoring → Execution**
+## **5.3 Degen Club**
 
-**01 — User**
+### **Built for High-Risk Memecoin Exposure**
 
-→
+Degen Club enables investors to build or discover memecoin baskets across supported assets and networks.  
+The product is designed around a simple behavioral insight:
 
-**02 — Portfolio**
-
-→
-
-**03 — Strategy**
-
-→
-
-**04 — AI Monitoring**
-
-→
-
-**05 — Execution**
+Multiple coins create multiple opportunities. They do not remove the risk.
 
 Investors can:
 
-- Build their own portfolios
+- Spread exposure across multiple memecoins
+- Build chain-specific or multi-chain baskets
+- Define allocations and execution rules
+- Discover creator-built memecoin portfolios
+- Maintain non-custodial control
+
+Memecoins are highly speculative. Many lose most or all of their value. Degen Club does not guarantee diversification benefits, performance or the discovery of a high-return asset.
+
+
+
+---
+
+
+
+# **6. How INDEXLA Works**
+
+## **6.1 Build or Discover**
+
+Choose eligible assets and define allocations, or discover a portfolio published through the Marketplace.
+
+## **6.2 Define**
+
+Select a strategy and set conditions, thresholds, percentages, limits and expiry.
+
+## **6.3 Authorize**
+
+Approve scoped permissions for the assets, networks and actions the automation may use.
+
+## **6.4 Monitor**
+
+INDEXLA monitors selected market conditions, portfolio state and strategy triggers through approved data sources.
+
+## **6.5 Execute**
+
+When valid conditions are met, INDEXLA coordinates authorized transactions through connected on-chain execution and liquidity infrastructure.
+
+## **6.6 Manage**
+
+Review portfolio activity, adjust allocations or rules, pause automation or revoke permissions.  
+**You define the strategy. You control the permissions. INDEXLA coordinates execution.**
+
+
+
+---
+
+
+
+# **7. Strategy Automation**
+
+INDEXLA is designed to help investors execute predefined plans consistently rather than make discretionary investment decisions for them.  
+AI-assisted monitoring does not choose what users should buy or sell. It cannot create, change or override approved strategies or expand permissions.
+
+## **7.1 INDEXLA Strategies**
+
+INDEXLA provides a core library of rule-based strategy frameworks for investors and creators to use without a separate strategy-access fee.
+
+### **DCA**
+
+Invest a defined amount at scheduled intervals.
+
+### **Buy Fear — DCA In**
+
+Accumulate when a selected market-sentiment indicator reaches an approved fear threshold.
+
+### **Sell Greed — DCA Out**
+
+Reduce exposure when a selected market-sentiment indicator reaches an approved greed threshold.
+
+### **Take Profit**
+
+Reduce part or all of a position when a predefined profit target is reached.
+
+### **Stop Loss**
+
+Reduce part or all of a position when a predefined downside threshold is reached.
+
+### **RSI**
+
+Use daily or weekly RSI conditions to identify approved oversold or overbought triggers.
+
+### **Momentum**
+
+Increase or reduce exposure when predefined momentum conditions change.
+
+### **Rebalancing**
+
+Restore target allocations when portfolio weights move outside approved bands.
+
+### **Combine Conditions**
+
+Combine multiple indicators, thresholds and actions into one approved strategy.  
+Strategies can be used individually or combined where supported.
+
+## **7.2 Creator Strategies**
+
+Creators can turn proprietary strategy logic into reusable products listed in the Creator Strategy Marketplace.  
+**List → Set Access Price → Other Creators Access → Use in Portfolios**
+
+- Listing fee: 500 $DEXLA, permanently burned
+- Access price: Set by the strategy creator in $DEXLA
+- Access payment: 50% to the creator and 50% permanently burned
+- Investor access: Investors use creator strategies through portfolios without a separate access payment
+- Usage economics: The strategy creator receives additional 10% of applicable execution fees generated by other creators' portfolios using the strategy
+
+The objective is not to predict every market move. It is to execute defined strategies consistently.
+
+
+
+---
+
+
+
+# **8. Investor Experience**
+
+INDEXLA gives investors control over what they own, how their portfolios behave and when approved actions can execute.  
+**Investor → Product → Portfolio or Position → Strategy → Monitoring → Execution**  
+Investors can:
+
+- Choose between INDEXLA Core, Stable Club and Degen Club
+- Build personal portfolios
 - Discover creator portfolios
-- Use INDEXLA Strategies for free
-- Use Creator Strategies through portfolios for free
-- Combine different asset categories
-- Automate predefined investment rules
-- Manage portfolios through one interface
+- Customize eligible assets and allocations
+- Apply INDEXLA strategies
+- Invest in portfolios using creator strategies
+- Automate predefined actions
+- Manage supported assets and networks through one interface
 - Hold $DEXLA for execution-fee discounts
-- Tip creators directly in $DEXLA
-- Invest in creator portfolios
-- Become eligible for the investor share of the monthly Creator Rewards Pool
+- Tip creators in $DEXLA
+- Qualify for the investor share of monthly creator rewards
 
-### Creator Rewards Eligibility
+## **8.1 Creator Rewards Eligibility**
 
-Investors become eligible for the investor share when:
+Investor eligibility requires:  
+**Invest in a Creator Portfolio + Tip the Creator in $DEXLA + Hold for at Least 7 Days**  
+If the portfolio ranks in the monthly Top 10, eligible investors share 50% of the reward allocated to that portfolio.
 
-**Invest in a Creator Portfolio + Tip the Creator in $DEXLA + Hold ≥ 7 Days**
+- 50% to the creator
+- 50% to eligible investors
 
-If the portfolio ranks in the **Top 10**, eligible investors receive a share of the monthly Creator Rewards Pool.
+Investor reward weighting:
 
-**50% → Creator**
+- 80% based on amount invested
+- 20% based on amount tipped
 
-**50% → Eligible Investors**
 
-Investor rewards are weighted:
-
-**80% → Amount Invested**
-
-**20% → Amount Tipped**
-
-The principle is simple:
-
-**Choose your assets. Choose your strategy. Invest. Support creators. Share in the rewards. Keep control.**
 
 ---
 
-# 12. Strategies
 
-## INDEXLA Strategies
 
-INDEXLA provides a core library of battle-tested strategy frameworks, available for investors and creators to use at no cost.
+# **9. Creator Economy**
 
-Each strategy converts clear market rules into automated portfolio actions, helping investors execute consistently without relying on emotion or trying to predict every market move.
+## **Turn a Thesis Into a Portfolio Business**
 
-### DCA
+INDEXLA gives creators infrastructure to transform research, strategies and investment expertise into distributable portfolios.  
+**Create → Publish → Attract Capital → Generate Activity → Earn → Grow**  
+Creators can build across eligible categories including crypto, AI, DeFi, macro assets, tokenized stocks, commodities, RWAs, stablecoins, memecoins and hybrid portfolios.
 
-Invest a fixed amount at regular intervals, regardless of whether the market is rising or falling.
+## **9.1 Four Ways to Earn**
 
-### Buy Fear
-
-Increase buying when market fear reaches extreme levels or the market experiences significant drawdowns.
-
-### Sell Greed
-
-Reduce exposure when market greed reaches extreme levels or the market enters predefined profit zones.
-
-### Take Profit
-
-Automatically reduce a position when it reaches a predefined profit target.
-
-### Stop Loss
-
-Automatically reduce or exit a position when the price falls below a predefined loss threshold.
-
-### RSI
-
-Use RSI readings on a daily or weekly timeframe to identify overbought or oversold conditions and trigger portfolio actions.
-
-### Momentum
-
-Follow the market trend. Buy or increase exposure when momentum turns bullish, and reduce or exit exposure when momentum turns bearish.
-
-### Rebalancing
-
-Automatically buy or sell assets to restore the portfolio to its target allocation when allocations move away from their desired weights.
-
-Strategies can be used individually or combined within a portfolio.
-
-## Creator Strategy Marketplace
-
-Creators can turn proprietary strategy logic into a reusable strategy product listed in the Creator Strategy Marketplace.
-
-Creators pay 500 $DEXLA to list a strategy in the Creator Strategy Marketplace.
-
-Creators set the strategy access price.
-
-Other creators pay the creator’s set access price in $DEXLA to access and use the strategy.
-
-Investors use creator strategies through portfolios for free.
-
-50% → Creator · 50% → Permanently Burned
-
-Creators also earn 10% of applicable execution fees generated by other creators’ portfolios when their strategy is used.
-
-**INDEXLA Strategies → Free for Investors**  
-**Creator Strategies → Paid access for other creators**
-
-The goal is not to predict every market move.  
-The goal is to execute defined strategies consistently.
-
----
-
-# 13. Creator Economy
-
-## Turn Your Thesis Into a Portfolio Business
-
-INDEXLA gives creators the infrastructure to turn research, market strategies, and investment expertise into investable portfolios.
-
-Create → Publish → Attract Capital → Earn → Grow
-
-Creators can build portfolios across:
-
-Crypto · AI · DeFi · Macro Assets · Tokenized Stocks · Tokenized Commodities · RWAs · Hybrid Assets
-
-## 4 Ways to Earn
-
-### 01 — Portfolio Execution Fees
+### **1. Portfolio Execution Fees**
 
 Creators receive 50% of applicable execution fees generated by their portfolios.
 
-More Adoption → More Activity → More Creator Revenue
+### **2. Strategy Access**
 
-### 02 — Strategy Revenue
+Creators can earn from access payments for proprietary strategies and receive 10% of applicable execution fees when their strategy is used in another creator's portfolio.
 
-Creators can monetize proprietary strategies through the Creator Strategy Marketplace.
+### **3. Monthly Creator Rewards**
 
-Strategy Access Fees + 10% of applicable execution fees generated when their strategy is used by other creators.
+A portion of applicable protocol fees funds the monthly Creator Rewards Pool. The monthly Top 10 portfolios qualify based on the Creator Leaderboard.  
+Each winning portfolio's reward is used to acquire its underlying assets according to its current allocation:
 
-### 03 — Tips
+- 50% to the creator
+- 50% to eligible investors
 
-Community members can tip creators directly in $DEXLA.
+Creators may invest in their own portfolios and that capital can count toward ranking, but creators cannot receive the investor share.
 
-Tips contribute to Creator Leaderboard ranking and reward eligibility.
+### **4. $DEXLA Tips**
 
-Discover → Follow → Invest → Tip → Rank
+Investors can tip creators directly in $DEXLA. Tips contribute to leaderboard ranking and investor reward eligibility.
 
-### 04 — Monthly Creator Rewards
+## **9.2 Creator Leaderboard**
 
-A portion of protocol fees generated across INDEXLA activity funds the monthly Creator Rewards Pool.
+Monthly ranking weights:
 
-Each month, the Top 10 portfolios qualify based on Creator Leaderboard ranking.
 
-The reward for each winning portfolio is used to purchase its underlying assets according to its current allocation.
+|             |            |                                          |
+| ----------- | ---------- | ---------------------------------------- |
+| **Factor**  | **Weight** | **Purpose**                              |
+| Performance | 50%        | Portfolio performance                    |
+| AUM         | 25%        | Capital invested in the portfolio        |
+| Volume      | 15%        | Genuine portfolio execution activity     |
+| $DEXLA Tips | 10%        | Community support from portfolio holders |
 
-50% → Creator  
-50% → Eligible Investors
 
-To receive the investor share, users must hold the portfolio for at least 7 days and tip its creator in $DEXLA.
+Artificial activity, wash trading and self-tipping do not qualify.
 
-Creators can invest in their own portfolios and their capital counts toward ranking, but creators cannot receive the investor share.
+## **9.3 Creator Utilities**
 
-## Creator Leaderboard Ranking
 
-**The Creator Leaderboard is designed to reward real portfolio performance and genuine investor activity, providing a fair and balanced ranking system.**
+|               |              |                                          |
+| ------------- | ------------ | ---------------------------------------- |
+| Utility       | Requirement  | Result                                   |
+| Publish       | 1,000 $DEXLA | Publish a public portfolio               |
+| Feature       | 2,500 $DEXLA | Featured placement for 7 days            |
+| List Strategy | 500 $DEXLA   | List a strategy and set its access price |
 
-Performance — 50%  
-Portfolio performance.
 
-AUM — 25%  
-Assets following the portfolio.
+Private portfolios are free. Early creators may receive up to three free public portfolio publications under launch programs.
 
-Volume — 15%  
-Portfolio execution activity.
 
-$DEXLA Tips — 10%  
-Community support from portfolio holders.
-
-Performance + AUM + Volume + Tips → Creator Leaderboard → Top 10
-
-These mechanisms are designed to minimize gaming and reward genuine portfolio activity. Artificial activity, wash trading, and self-tipping do not qualify.
-
-## Creator Marketplace Utilities
-
-Publish  
-1,000 $DEXLA → Public Portfolio
-
-Feature  
-2,500 $DEXLA → 7 Days Featured
-
-Monetize  
-500 $DEXLA → List Strategy · Set Access Price
-
-These are creator utilities, not revenue streams. The full $DEXLA utility and burn mechanics are detailed in Section 14.
-
-## Creator Flywheel
-
-Create → Publish → Attract → Perform → Earn → Grow
-
-Better Portfolios → More Capital → More Activity → More Creator Revenue
 
 ---
 
-# 14. $DEXLA Utility & Tokenomics
 
-## The Economic Engine of INDEXLA
 
-$DEXLA is built around INDEXLA usage.
+# **10. Business Model**
 
-The token connects creators, investors, and platform activity through practical utilities and permanent supply-reduction mechanisms.
+INDEXLA earns only when real portfolio activity occurs. No management fees. No performance fees. No exit fees.
 
-**5 Token Utilities · 6 Burn Mechanisms**
+## **10.1 Three Product Engines**
+
+### **INDEXLA Core — Long-Term AUM**
+
+Builds durable AUM and recurring execution through DCA, rebalancing and other approved portfolio actions.
+
+### **Stable Club — Scalable Liquidity**
+
+Scales stablecoin liquidity and position-management volume while users earn DEX trading fees.
+
+### **Degen Club — Higher-Frequency Execution**
+
+Drives higher-frequency execution and fee generation through high-risk memecoin portfolio activity.  
+**Core builds AUM. Stable Club scales liquidity. Degen Club drives volume.**
+
+## **10.2 Simple, Transparent Fees**
+
+- 0% management fee
+- 0% performance fee
+- 0% exit fee
+- 1% execution fee when trades occur
+
+**No trade. No execution fee.**  
+Product-specific costs, network fees, liquidity-provider economics and third-party fees are disclosed separately where applicable.
+
+## **10.3 Execution-Fee Distribution**
+
+
+|                    |             |              |              |             |                    |
+| ------------------ | ----------- | ------------ | ------------ | ----------- | ------------------ |
+| **Portfolio Type** | **Creator** | **Platform** | **Treasury** | **Rewards** | **Buyback & Burn** |
+| INDEXLA Portfolio  | —           | 50%          | 20%          | 20%         | 10%                |
+| Creator Portfolio  | 50%         | 20%          | 10%          | 10%         | 10%                |
+
+
+Each row totals 100% of the applicable 1% execution fee.
+
+## **10.4 Treasury**
+
+Treasury capital supports development, security, infrastructure, operations, marketing and ecosystem growth.  
+The Treasury is capitalized through fundraising. Its final size and allocation will be disclosed after the relevant rounds are completed.  
+**25% of realized Treasury profits → $DEXLA Buyback & Burn**
+
+
 
 ---
 
-## 5 Core Utilities
-
-### 01 — Publish
-
-Creators use $DEXLA to publish portfolios on the Marketplace.
-
-Publish portfolios to attract investors and earn from portfolio activity.
-
-**1,000 $DEXLA → Public Portfolio**
-
-### 02 — Feature
-
-Creators use $DEXLA to promote portfolios on the Marketplace.
-
-Featured portfolios appear at the top of the Marketplace for greater visibility.
-
-**2,500 $DEXLA → 7 Days Featured**
-
-### 03 — Monetize
-
-Creators use $DEXLA to list strategies in the Creator Strategy Marketplace.
-
-Other creators pay $DEXLA to access and use listed strategies.
-
-**500 $DEXLA → List Strategy · Set Access Price**
-
-### 04 — Save
-
-Investors use $DEXLA to receive lower execution fees.
-
-Higher balances unlock greater fee discounts.
 
 
-| $DEXLA Held | Execution Fee Discount |
+# **11. The INDEXLA Flywheel**
+
+$DEXLA Utility → More Creators → More Indexes + Portfolios → More Investors + Capital → More Execution Volume → More Fees → INDEXLA Revenue → Creator Earnings → $DEXLA Buybacks + Burns → Stronger Incentives
+
+
+
+---
+
+
+
+# **12. $DEXLA Utility and Tokenomics**
+
+## **12.1 Purpose**
+
+$DEXLA is a Solana-native utility token designed around practical platform use, creator activity, fee savings and permanent supply reduction.  
+It does not provide equity, governance, protocol revenue sharing, Treasury claims, dividends, profit rights, interest or staking rewards.
+
+## **12.2 Five Core Utilities**
+
+### **Publish**
+
+1,000 $DEXLA to publish a public portfolio.
+
+### **Feature**
+
+2,500 $DEXLA for seven days of featured Marketplace placement.
+
+### **Monetize and Access**
+
+500 $DEXLA to list a creator strategy. Other creators pay the creator's selected access price in $DEXLA.
+
+### **Save**
+
+Hold $DEXLA to receive execution-fee discounts:
+
+
+|             |                        |
 | ----------- | ---------------------- |
+| $DEXLA Held | Execution-Fee Discount |
 | 2,500       | 10%                    |
 | 5,000       | 20%                    |
 | 10,000      | 30%                    |
 
 
-### 05 — Tip
+### **Tip**
 
-Investors use $DEXLA to directly support valuable creators.
+Tip creators directly in $DEXLA. Tips support creators, contribute to leaderboard ranking and form part of investor reward eligibility.
 
-Tips contribute to Creator Leaderboard ranking and reward eligibility.
+## **12.3 Six Burn Mechanisms**
 
-**Discover → Follow → Invest → Tip**
 
----
+|                                  |                                                                |
+| -------------------------------- | -------------------------------------------------------------- |
+| Mechanism                        | Burn                                                           |
+| Publishing Burn                  | 1,000 $DEXLA, 100% burned                                      |
+| Featuring Burn                   | 2,500 $DEXLA, 100% burned                                      |
+| Strategy Listing Burn            | 500 $DEXLA, 100% burned                                        |
+| Strategy Access Burn             | 50% of access payment burned                                   |
+| Execution-Fee Buyback and Burn   | 10% of applicable execution fees allocated to buyback and burn |
+| Treasury-Profit Buyback and Burn | 25% of realized Treasury profits allocated to buyback and burn |
 
-## 6 Burn Mechanisms
 
-### 01 — Publishing Burn
+## **12.4 Multi-Chain Utility**
 
-Every public portfolio requires 1,000 $DEXLA to enter the Marketplace.
+$DEXLA is native to Solana. Use from other supported networks depends on bridging, routing and execution infrastructure available when each utility is activated.  
+INDEXLA does not assume a Solana-native token is automatically available on every network.  
+The planned activation path is:
 
-**Published Portfolio → 100% Burned**
+1. Validate the required utility on the destination network
+2. Confirm supported bridging or routing infrastructure
+3. Complete security, liquidity and execution testing
+4. Activate only the utilities that can be supported safely
 
-### 02 — Featured Burn
+Until a route is activated, users may need to acquire or use $DEXLA through Solana-supported infrastructure.
 
-Creators use 2,500 $DEXLA to secure Featured placement for seven days.
+## **12.5 Supply**
 
-**Featured Portfolio → 100% Burned**
+**Maximum supply: 100,000,000 $DEXLA**  
+**Native network: Solana**
 
-### 03 — Strategy Listing Burn
 
-Creators pay 500 $DEXLA to list a strategy in the Creator Strategy Marketplace.
+|                        |          |                 |
+| ---------------------- | -------- | --------------- |
+| Allocation             | Share    | Tokens          |
+| Pre-Seed               | 2.5%     | 2,500,000       |
+| Seed                   | 6%       | 6,000,000       |
+| Private                | 14%      | 14,000,000      |
+| Public                 | 20%      | 20,000,000      |
+| Community and Airdrops | 15%      | 15,000,000      |
+| Team                   | 15%      | 15,000,000      |
+| Treasury               | 10%      | 10,000,000      |
+| DEX Liquidity          | 10%      | 10,000,000      |
+| CEX and Market Making  | 5%       | 5,000,000       |
+| Advisors               | 2.5%     | 2,500,000       |
+| **Total**              | **100%** | **100,000,000** |
 
-**Strategy Listing → 500 $DEXLA → 100% Burned**
 
-### 04 — Strategy Access Burn
+pie showData  
+    title $DEXLA Allocation  
+    "Pre-Seed" : 2.5  
+    "Seed" : 6  
+    "Private" : 14  
+    "Public" : 20  
+    "Community and Airdrops" : 15  
+    "Team" : 15  
+    "Treasury" : 10  
+    "DEX Liquidity" : 10  
+    "CEX and Market Making" : 5  
+    "Advisors" : 2.5
 
-When another creator purchases access to a listed strategy, the $DEXLA payment is split between the strategy creator and the burn.
+## **12.6 Vesting and Release**
 
-**Strategy Access → 50% Creator · 50% Burned**
 
-### 05 — Execution Fee Buyback & Burn
+|                        |      |                                              |
+| ---------------------- | ---- | -------------------------------------------- |
+| Allocation             | TGE  | Vesting or Release                           |
+| Pre-Seed               | 10%  | 3-month cliff, then 18-month linear release  |
+| Seed                   | 10%  | 3-month cliff, then 18-month linear release  |
+| Private                | 10%  | 3-month cliff, then 18-month linear release  |
+| Public                 | 15%  | Remaining allocation over 6 months           |
+| DEX Liquidity          | 100% | Available at TGE                             |
+| Treasury               | 0%   | 36-month lock                                |
+| Team                   | 0%   | 12-month cliff, then 24-month linear release |
+| Community and Airdrops | 0%   | Progressive release                          |
+| Advisors               | 0%   | 6-month cliff, then 12-month linear release  |
+| CEX and Market Making  | 0%   | Progressive release                          |
 
-INDEXLA directs 10% of execution fee revenue toward $DEXLA buybacks.
 
-**Execution Fees → 10% Buyback & Burn**
+Based on these planned release terms, estimated initial circulation is **15,250,000 $DEXLA**, equal to **15.25%** of maximum supply.
 
-### 06 — Treasury Buyback & Burn
+Final circulation remains subject to launch structure and market-making requirements.
 
-INDEXLA directs 25% of realized Treasury profits toward $DEXLA buybacks.
+## **12.7 Utility-Only Position**
 
-**Treasury Profits → 25% Buyback & Burn**
+$DEXLA does not provide:
 
----
+- Governance rights
+- Staking rewards
+- Protocol revenue sharing
+- Equity or ownership rights
+- Treasury claims
+- Profit, dividend or interest rights
 
-## Why $DEXLA Exists
+No token utility or burn mechanism guarantees demand, scarcity value or price appreciation.
 
-The token is embedded directly into INDEXLA’s platform economy.
 
-Creators use it to publish portfolios.
-
-Creators use it to feature portfolios and increase visibility.
-
-Creators use it to monetize their strategies.
-
-Creators use it to access strategies from other creators.
-
-Investors use it to reduce execution costs.
-
-Investors use it to support creators.
-
-Platform activity creates direct burns and buyback demand.
-
-**That is the INDEXLA token economy.**
-
----
-
-## Multi-Chain $DEXLA Utility
-
-$DEXLA is Solana-native.
-
-For users operating on other supported networks, cross-chain $DEXLA utility will depend on the supported bridging and execution infrastructure available at launch.
-
-The platform does not assume that a Solana-native token is automatically available on every network.
-
----
-
-## Utility
-
-**Creators use $DEXLA to:**  
-Publish · Feature · Monetize · Access
-
-**Investors use it to:**  
-Save · Tip
-
-**Platform activity creates:**  
-Buyback + Burn
-
----
-
-## The $DEXLA Economic Engine
-
-**01 — CREATE**  
-Portfolio or Index + Strategy
-
-**02 — USE $DEXLA**  
-Publish · Feature · Monetize · Save · Tip
-
-**03 — ACTIVITY + REVENUE**  
-AUM · Volume · Fees · Strategy Access
-
-**04 — SUPPLY REDUCTION**  
-Burns + Buybacks
-
-**LOOP**  
-**More Platform Activity → More $DEXLA Utility → More Token Burns**
 
 ---
 
-# 15. Security, Privacy & MEV Protection
 
-Security is a core requirement.
 
-### Execution Lifecycle
+# **13. Architecture and Execution**
 
-Authorization → Permission Controls → Risk Checks → Route Validation → Simulation → Execution → Monitoring → Emergency Controls
+INDEXLA is designed as an orchestration layer connecting user permissions, strategy monitoring, market data and external execution infrastructure.  
+flowchart TD  
+    U["User Wallet"] --> P["Scoped Permissions"]  
+    P --> M["Strategy Monitoring"]  
+    M --> R["Execution Routing"]  
+    R --> A["Underlying Assets and Positions"]  
+    A --> U
 
-### Key Protections
+## **13.1 Initial Architecture**
 
-Scoped permissions  
- Assets, chains, spending limits, slippage, expiry and execution restrictions.
+- **Same-chain swaps:** CoW Protocol where supported
+- **Primary cross-chain routing:** [LI.FI](http://LI.FI)
+- **Cross-chain failover:** Across where supported
+- **Permission model:** Safe module with bounded session permissions for EVM deployments
+- **MVP actions:** ERC-20 transfer and exact-input swaps
+- **Initial automation:** DCA
+- **Initial gas model:** User-paid gas
+- **Alpha network:** Base Sepolia
 
-Fail-closed execution  
- Invalid or unauthorized conditions are rejected.
+Infrastructure choices may change following testing, integration availability, audits and security review.
 
-Revocable automation  
- Users can revoke automation.
+## **13.2 Permission Boundaries**
 
-AI boundary  
- AI monitors and assists. It cannot expand permissions or override user rules.
+Approved sessions can be restricted by:
 
-Market-data protection  
- Stale or conflicting data can prevent execution.
+- Assets
+- Networks
+- Actions
+- Spending limits
+- Slippage
+- Expiry
+- Nonce and replay protection
 
-MEV-aware execution  
- Execution mechanisms are designed to reduce front-running and sandwich exposure where supported.
+Users can revoke automation. Protocol-level emergency controls can pause execution without granting INDEXLA access to withdraw user funds.
 
-Monitoring  
- Trigger integrity, deduplication, heartbeats and degraded-state handling.
+## **13.3 Execution Lifecycle**
 
-Emergency controls  
- Protocol-level emergency controls without access to user funds.
+**Authorization → Permission Checks → Data Validation → Risk Checks → Route Validation → Simulation → Execution → Monitoring**  
+If data is stale, conditions are invalid, permissions are missing or approved limits are exceeded, execution fails closed.
 
-### Privacy
+## **13.4 Asset and Network Onboarding**
 
-INDEXLA is designed for wallet-first access without requiring a traditional account or identity for the non-custodial core experience.
+New assets and networks are not added solely because they are popular. Onboarding decisions are designed to consider:
 
-This does not mean anonymity.
+- Technical compatibility
+- Reliable market data
+- Sufficient liquidity and executable routes
+- Asset, issuer and counterparty risk
+- Smart-contract and bridge risk
+- Regulatory and jurisdictional restrictions
+- Monitoring and emergency-control coverage
+- Operational support requirements
 
-Blockchain addresses, transactions and holdings can remain publicly observable.
+An asset or network can be restricted, paused or removed when these requirements are no longer satisfied.
 
-The objective is:
+## **13.5 Protocol Parameters and Administrative Controls**
 
-Minimize unnecessary platform-level identity exposure + protect execution where supported.
+Fees, supported networks, approved assets, execution adapters, risk limits and emergency controls require explicit administrative authority before broader decentralization can be considered.  
+Before production launch, INDEXLA intends to publish:
 
-### Security Reviews
+- The roles authorized to change protocol parameters
+- The production multisignature or equivalent control structure, if used
+- Approval thresholds and operational boundaries
+- Emergency-pause authority and recovery procedures
+- Upgrade and change-management processes
 
-Independent reviews, smart-contract audits and a public bug bounty are planned before broad production deployment.
+$DEXLA does not provide governance rights. No future governance model is promised or implied.
 
-No security, privacy or MEV mechanism eliminates all risk.
+
 
 ---
 
-# 16. Regulatory Approach
 
-INDEXLA's initial model is decentralized, non-custodial portfolio infrastructure.
 
+# **14. Security, Privacy and MEV Protection**
+
+## **14.1 Security Principles**
+
+- Non-custodial control
+- Scoped, revocable permissions
+- Deterministic enforcement
+- Fail-closed execution
+- Data freshness checks
+- Trigger deduplication
+- Heartbeats and degraded-state handling
+- Emergency pause controls
+- No AI permission expansion
+
+## **14.2 AI Boundary**
+
+AI-assisted systems may monitor selected conditions and coordinate approved workflows.
+
+They cannot choose a user's investments, change a strategy, expand permissions or override enforced limits.
+
+## **14.3 MEV-Aware Execution**
+
+INDEXLA intends to use MEV-aware execution mechanisms where supported to reduce exposure to front-running and sandwich attacks. No mechanism can eliminate all MEV or execution risk.
+
+## **14.4 Privacy**
+
+INDEXLA is designed for wallet-first access without requiring a traditional platform account for the non-custodial core experience.  
+This does not mean anonymity. Blockchain addresses, transactions and holdings may remain publicly observable.  
+The objective is to minimize unnecessary platform-level identity exposure while protecting execution where supported.
+
+## **14.5 Reviews**
+
+Independent smart-contract reviews, audits and a public bug bounty are planned before broad production deployment.
+
+
+
+---
+
+
+
+# **15. Supported Asset and Network Direction**
+
+## **15.1 Asset Categories**
+
+INDEXLA is designed to support eligible:
+
+- Crypto assets
+- Stablecoins
+- Tokenized stocks
+- Tokenized commodities
+- Tokenized real estate
+- Real-world assets
+- Hybrid portfolios
+- Memecoins
+
+Availability depends on liquidity, issuer restrictions, network support, legal eligibility and technical integration.
+
+## **15.2 Network Direction**
+
+Planned network coverage includes:
+
+- Ethereum
+- Base
+- Arbitrum
+- BNB Chain
+- Solana
+- Sui
+- Robinhood Chain
+- Sei
+- Bittensor / Tao ecosystem where technically applicable
+
+The MVP Alpha begins on Base Sepolia. A network's inclusion in the roadmap does not mean it is live or fully supported.
+
+
+
+---
+
+
+
+# **16. Competition**
+
+## **Own the Assets. Not a Wrapper.**
+
+Most basket-based platforms place a representation between the investor and the underlying assets.
+
+**Velvet → Vault Tokens**  
+**SoSoValue → SSI Index Tokens**  
+**Reserve → DTF Tokens**  
+**Autopilot → Brokerage-Held Securities**
+
+INDEXLA is designed differently.
+
+Users own the underlying assets while automation operates through scoped, revocable permissions.
+
+## **Competitive Comparison**
+
+
+|                             |                                        |               |               |                         |                       |
+| --------------------------- | -------------------------------------- | ------------- | ------------- | ----------------------- | --------------------- |
+| **Feature**                 | **INDEXLA**                            | **Velvet**    | **SoSoValue** | **Reserve**             | **Autopilot**         |
+| Direct Underlying Ownership | ✓                                      | Vault Token   | SSI Token     | DTF Token               | Brokerage             |
+| Cross-Chain                 | ✓                                      | ✓             | ✓             | Multi-Chain Deployments | —                     |
+| Cross-Asset                 | ✓ Crypto + Stocks + Commodities + RWAs | Crypto + DeFi | Crypto        | Crypto + Yield Assets   | Stocks + ETFs         |
+| Personal Automation         | ✓                                      | ✓             | —             | —                       | ✓                     |
+| AI-Assisted Strategy Logic  | ✓                                      | ✓             | AI Research   | —                       | —                     |
+| Creator Marketplace         | ✓                                      | Fund/Vault    | —             | —                       | Portfolio Marketplace |
+| Wallet-First Access         | ✓                                      | ✓*            | Account-Based | ✓                       | —                     |
+| MEV-Aware Execution         | ✓ CoW                                  | Partial       | Not Disclosed | ✓ Batch Auctions        | —                     |
+| Non-Custodial               | ✓                                      | ✓             | ✓             | ✓                       | —                     |
+
+
+*Comparison reflects publicly available product positioning and may change as platforms evolve.*
+
+## **The Full-Ecosystem Difference**
+
+INDEXLA is more than a portfolio builder. It connects three investor markets through one decentralized management and distribution layer:
+
+- **INDEXLA Core** — Long-term, multi-asset portfolios
+- **Stable Club** — Automated stablecoin liquidity positions
+- **Degen Club** — High-risk memecoin baskets
+
+One ecosystem connects ownership, automation, creator distribution, execution infrastructure and $DEXLA utility.
+
+## **The Security Difference**
+
+AI monitors approved conditions. Deterministic permissions enforce what can execute.
+
+AI cannot expand permissions, change strategies or override user-defined limits.
+
+## **The Economic Difference**
+
+**0% Management · 0% Performance · 0% Exit · 1% Execution**
+
+INDEXLA monetizes real platform activity rather than extracting fees from passive AUM.
+
+## **Competitive Reality**
+
+Every competitor has meaningful strengths.
+
+**Velvet:** Live product, AI infrastructure and ecosystem backing.  
+**SoSoValue:** Large user base and research infrastructure.  
+**Reserve:** Established on-chain basket infrastructure and significant TVL.  
+**Autopilot:** Proven automated investing and mainstream brokerage adoption.
+
+INDEXLA is still proving execution, security, liquidity and adoption.
+
+Its differentiation is architectural—not a claim of superior traction.
+
+## **The INDEXLA Moat**
+
+The moat is the full-stack combination of:
+
+**Direct Ownership · Scoped Permissions · Multi-Asset Execution · Three Product Engines · Creator Distribution · Token Utility**
+
+This moat can strengthen as more creators publish portfolios, more investors allocate capital and more activity flows through the ecosystem.
+
+## **The INDEXLA Challenge**
+
+No live product currently combines:
+
+- Direct underlying ownership
+- Multi-chain, multi-asset portfolios
+- Personal rule-based automation
+- Long-term portfolio infrastructure
+- Automated stablecoin liquidity positions
+- High-risk memecoin baskets
+- Creator portfolio distribution
+- Strategy monetization
+- Wallet-first access
+- MEV-aware execution
+- Usage-linked token utility and burns
+
+No single platform currently delivers the complete ecosystem INDEXLA is building.
+
+Based on publicly available products today, this combination does not exist elsewhere.
+
+**If you know a platform that genuinely offers all of the above, show us.**
+
+*Velvet currently supports wallet-based access without mandatory KYC for its public product, while its terms reserve the ability to collect identity information where required.
+
+
+
+---
+
+
+
+# **17. Market Opportunity**
+
+INDEXLA sits at the intersection of tokenization, crypto, stablecoins, programmable portfolios and creator-led distribution.
+
+## **17.1 Total Addressable Direction**
+
+Global investable assets span equities, fixed income, commodities, real estate, alternatives and crypto. Together, these markets are measured in the hundreds of trillions of dollars.
+
+INDEXLA does not claim immediate access to that full market. It is building toward broader programmable portfolios as eligible assets move on-chain.
+
+## **17.2 Near-Term Serviceable Market**
+
+- Crypto assets
+- Stablecoins
+- Tokenized securities
+- Tokenized commodities
+- Tokenized real estate
+- RWAs
+- On-chain investment products
+- Hybrid portfolios
+- Creator-distributed portfolios
+
+## **17.3 Initial Focus**
+
+The initial audience includes crypto-native investors, stablecoin holders, high-risk memecoin traders and portfolio creators.
+
+The objective is to prove product-market fit before expanding supported assets, networks and jurisdictions.
+
+
+
+---
+
+
+
+# **18. Regulatory Approach**
+
+INDEXLA's initial model is decentralized, non-custodial software and portfolio infrastructure.  
 INDEXLA does not initially operate as a:
 
-Custodian  
- Broker-dealer  
- Securities issuer  
- Traditional investment manager
+- Custodian
+- Broker-dealer
+- Securities issuer
+- Traditional investment manager
+- Investment adviser
 
-Where regulated assets or tokenized securities are supported, access may depend on:
-
-Issuer requirements · Jurisdiction · Eligibility · KYC/AML · Licensing · Applicable law
-
+Where regulated assets or tokenized securities are supported, access may depend on issuer requirements, jurisdiction, eligibility, KYC/AML, licensing and applicable law.  
 Features or assets may be restricted where an appropriate legal or regulatory pathway does not exist.
 
-INDEXLA will assess applicable requirements before enabling regulated asset features.
+
 
 ---
 
-# 17. Go-To-Market
 
-INDEXLA grows through three channels.
 
-### Creator Distribution
+# **19. Go-to-Market**
 
-Target:
+INDEXLA grows through creators, direct acquisition and strategic partnerships.
 
-50–100 credible creators and KOLs
+## **19.1 Creator Distribution**
 
-Creators → Portfolios → Investors → AUM → Execution → Creator Revenue
+Initial target: 50 to 100 credible creators and KOLs.  
+**Creators → Portfolios → Investors → Capital → Execution → Creator Earnings**
 
-### Direct Acquisition
+## **19.2 Direct Acquisition**
 
-Social · Performance Marketing · Search · SEO · Education · Crypto & Finance Communities
+Social content, performance marketing, search, SEO, education and crypto and finance communities.
 
-Positioning:
+## **19.3 Strategic Partnerships**
 
-Programmable multi-asset portfolio management.
+Wallets, blockchain ecosystems, DeFi protocols, infrastructure providers, fintech platforms and tokenization providers.  
+The long-term objective is to become the portfolio layer connecting users, creators, assets, strategies and liquidity.
 
-### Strategic Partnerships
 
-Wallets · Blockchain Ecosystems · DeFi · Infrastructure · Fintech · Tokenization Providers
-
-The goal:
-
-Become the portfolio layer connecting users, creators, assets and liquidity.
 
 ---
 
-# 18. Progressive Deployment & Roadmap
 
-### Phase 1 — Foundation
 
-Target: Q3 2026
+# **20. Progressive Deployment and Roadmap**
 
-R&D, product validation, competitive research, team development and protocol architecture.
+## **Q3 2026 — Foundation**
 
-### Phase 2 — Architecture & MVP
+Research, product validation, competitive analysis, team development and protocol architecture.
 
-Target: Q4 2026
+## **Q4 2026 — MVP and Private Beta**
 
-Portfolio creation, investment functionality and initial strategies.
+Launch the Base Sepolia Alpha with portfolio creation, investment flows, scoped permissions and initial DCA automation. Begin creator and user testing.
 
-Begin creator and user testing.
+## **Q1 2027 — Public Launch**
 
-### Phase 3 — Testing & Full Platform Launch
+Expand functionality, incorporate testing feedback, complete required security work and prepare broader platform availability.
 
-Target: Q1 2027
+## **Q2 2027 — Expansion**
 
-Expand functionality, incorporate feedback, complete security audits and prepare broad platform launch.
+Expand eligible assets, networks, strategies and partnerships. Activate $DEXLA utilities only when product, security, liquidity and legal requirements are satisfied.
 
-### Phase 4 — Partnerships, Token & Scale
+## **Q3 2027 and Beyond — Mobile and Global Expansion**
 
-Target: Q2 2027
-
-Expand supported assets and networks, establish partnerships and activate $DEXLA utility.
-
-### Phase 5 — Mobile & Global Expansion
-
-Target: Q3 2027
-
-Expand mobile access, partnerships, assets, networks, creators and users.
-
+Expand mobile access, supported regions, networks, assets, creators and ecosystem partnerships.  
 Roadmap dates are targets, not commitments.
 
+
+
 ---
 
-# 19. Risk Factors
 
-### Smart Contract Risk
 
-Smart contracts can contain vulnerabilities despite testing and audits.
+# **21. Risk Factors**
 
-### Cross-Chain Risk
+## **Smart-Contract Risk**
 
-Bridges, routing infrastructure and networks can fail or become congested.
+Smart contracts and on-chain programs can contain vulnerabilities despite testing, reviews and audits.
 
-### Liquidity Risk
+## **Cross-Chain Risk**
 
-Insufficient liquidity can materially affect execution.
+Bridges, routers, relayers and networks can fail, become congested or suffer security incidents.
 
-### Tokenized Asset Liquidity
+## **Liquidity and Execution Risk**
 
-Tokenized stocks, commodities, real estate and other RWAs may have:
+Insufficient liquidity, slippage, MEV, failed transactions and network conditions can materially affect execution.
 
-Fragmented liquidity  
- Wider spreads  
- Limited trading windows  
- Issuer restrictions  
- Redemption or settlement constraints
+## **Stablecoin and Liquidity-Position Risk**
 
-INDEXLA depends on the actual liquidity and availability of supported assets.
+Stablecoins can depeg. Liquidity positions may face impermanent loss, range risk, smart-contract risk and reduced fee generation.
 
-### Market Risk
+## **Memecoin Risk**
+
+Memecoins are highly volatile, speculative and vulnerable to manipulation, concentration, liquidity loss and total capital loss.
+
+## **Tokenized-Asset Risk**
+
+Tokenized stocks, commodities, real estate and other RWAs may face fragmented liquidity, limited trading windows, issuer restrictions, redemption constraints and settlement risk.
+
+## **Market Risk**
 
 Asset prices can move rapidly and cause significant losses.
 
-### Oracle & Data Risk
+## **Oracle and Data Risk**
 
-Incorrect, stale or manipulated data can affect automated execution.
+Incorrect, stale, manipulated or unavailable data can affect monitoring and execution.
 
-### Asset & Issuer Risk
+## **Asset and Issuer Risk**
 
-Tokenized assets depend on their issuers, legal structures, liquidity and infrastructure.
+Tokenized assets depend on issuers, custodians, legal structures, liquidity providers and supporting infrastructure.
 
-### Regulatory Risk
+## **Regulatory Risk**
 
-Digital-asset and tokenization regulation continues to evolve.
+Digital-asset, tokenization and financial-services regulation continues to evolve and may restrict products, assets or jurisdictions.
 
-### Operational & Third-Party Risk
+## **Operational and Third-Party Risk**
 
-Infrastructure providers, liquidity venues, blockchain networks and routing systems can fail.
+Infrastructure providers, liquidity venues, data providers, wallets, networks and routing systems can fail.
 
-No system eliminates these risks.
+## **Token Risk**
 
-INDEXLA's objective is to identify, constrain, monitor and progressively reduce them.
+$DEXLA may have limited utility, liquidity or market value. Burns do not guarantee demand or appreciation.  
+No system eliminates these risks. INDEXLA's objective is to identify, constrain, monitor and progressively reduce them.
 
----
 
-# 20. Investment Thesis
-
-Three structural shifts are converging:
-
-Assets moving on-chain.  
- Investment distribution moving toward creators.  
- Portfolio management becoming programmable.
-
-INDEXLA's opportunity is to connect these existing primitives into one portfolio layer.
-
-Success depends on:
-
-Reliable execution  
- Strong security  
- Broad asset coverage  
- Creator distribution  
- Sustainable economics  
- Recurring portfolio activity
-
-The thesis remains unproven until validated by real product usage, real creators and real capital.
 
 ---
 
-# 21. Conclusion
 
-Financial markets are becoming more programmable.
 
-Assets are moving on-chain.  
- Liquidity is distributed across networks.  
- Investment discovery is moving toward creators.  
- Portfolio management is becoming automated.
+# **22. Investment Thesis**
 
-INDEXLA connects these trends through one decentralized portfolio layer.
+INDEXLA's thesis is that on-chain assets, creator-led distribution and programmable portfolio management are converging into a new investment layer.
 
-Build the portfolio.  
- Define the strategy.  
- Keep control.
+Success requires reliable execution, strong security, clear product-market fit, responsible asset coverage, creator distribution, sustainable economics and regulatory readiness.
 
-# Invest in Everything.
+The thesis remains unproven until validated by a secure product, real creators, real users and real capital.
 
-# Own Everything.
 
-# Control Everything.
 
 ---
 
-# Comprehensive Disclaimer
 
-INDEXLA is a decentralized, non-custodial software and portfolio infrastructure platform. INDEXLA does not take custody of user assets and does not represent itself as a custodian, broker-dealer, securities issuer, traditional investment manager, financial adviser, investment adviser, tax adviser or legal adviser.
+
+# **23. Conclusion**
+
+Different investors pursue different outcomes: long-term exposure, stablecoin productivity or high-risk memecoin upside.
+
+INDEXLA brings those behaviors into one decentralized portfolio management and distribution layer:
+
+- **INDEXLA Core** for diversified long-term portfolios
+- **Stable Club** for decentralized-exchange stablecoin liquidity
+- **Degen Club** for high-risk memecoin baskets
+
+Across every product, the foundation remains the same:
+
+**User ownership. Defined rules. Scoped permissions. Transparent execution.**
+
+# **Build the Portfolio.**
+
+# **Define the Strategy.**
+
+# **Keep Control.**
+
+
+
+---
+
+
+
+# **Comprehensive Disclaimer**
+
+INDEXLA is a decentralized, non-custodial software and portfolio infrastructure platform.
+
+INDEXLA does not take custody of user assets or represent itself as a custodian, broker-dealer, securities issuer, traditional investment manager, financial adviser, investment adviser, tax adviser or legal adviser.
 
 INDEXLA does not provide financial, investment, legal, tax, accounting or regulatory advice.
 
-Nothing in this whitepaper constitutes personalized investment advice, a recommendation to purchase or sell any asset, an offer to sell, or a solicitation to purchase any security or financial product.
+Nothing in this whitepaper constitutes personalized investment advice, a recommendation to purchase or sell any asset, an offer to sell, or a solicitation to purchase any security or financial product.  
+All investment activity involves substantial risk, including possible loss of capital. INDEXLA does not guarantee performance, profitability, liquidity, availability or execution quality.  
+Automated strategies can execute during volatile or unfavorable conditions.
 
-All investment activity involves substantial risk, including possible loss of capital.
+Transactions can fail, be delayed, execute at unfavorable prices or become irreversible depending on blockchains, DEXs, bridges, routing infrastructure, smart contracts, liquidity and third-party systems.  
+Stablecoin liquidity positions can experience depegging, impermanent loss, smart-contract vulnerabilities, range risk, reduced trading fees and loss of capital.  
+Memecoins are highly speculative and can lose most or all of their value. Building a basket does not eliminate volatility, correlation, liquidity, manipulation or total-loss risk.  
+Tokenized securities, commodities, real estate and other regulated assets may face issuer restrictions, KYC/AML requirements, geographic limits, securities laws and licensing requirements.  
+$DEXLA is intended as a utility token within the INDEXLA ecosystem.
 
-INDEXLA does not guarantee performance, profitability, liquidity, availability or execution quality.
+It does not represent equity, ownership, Treasury assets, dividends, profits, revenue, interest, staking rewards or governance rights.
 
-Automated strategies can execute during volatile or unfavorable conditions. Transactions can fail, be delayed, execute at unfavorable prices or become irreversible depending on blockchains, DEXs, bridges, routing infrastructure, smart contracts, liquidity and third-party systems.
-
-Tokenized securities, commodities, real estate and other regulated assets may be subject to issuer restrictions, KYC/AML requirements, geographic restrictions, securities laws, licensing requirements and other applicable conditions.
-
-$DEXLA is intended as a utility token within the INDEXLA ecosystem. It does not represent equity, ownership, Treasury assets, dividends, profits, revenue, interest, staking rewards or governance rights.
-
-No representation is made that $DEXLA will increase in value or retain any particular value.
-
-Roadmap dates, market opportunities, creator targets, AUM objectives, revenue scenarios and adoption expectations are planning assumptions and are not guarantees or forecasts.
-
-Supported assets, networks, integrations, strategies, fees, token utilities, timelines and product functionality may change, be delayed, restricted, suspended or discontinued.
-
+No representation is made that $DEXLA will increase in value or retain any particular value.  
+Roadmap dates, market opportunities, creator targets, AUM objectives, revenue scenarios and adoption expectations are planning assumptions and are not guarantees or forecasts.  
+Supported assets, networks, integrations, strategies, fees, token utilities, timelines and product functionality may change, be delayed, restricted, suspended or discontinued.  
 Users interact with INDEXLA and associated decentralized infrastructure at their own risk and remain responsible for their assets, transactions, decisions and compliance with applicable laws.
+
+  

@@ -1,55 +1,33 @@
+import Link from "next/link";
 import { FadeIn } from "@/components/ui/FadeIn";
-import {
-  invBody,
-  invH2,
-  invPremiumSurface,
-  invSection,
-} from "@/components/investors/investorRhythm";
+import { invSection } from "@/components/investors/investorRhythm";
 
-const ITEMS = [
-  {
-    title: "No Custody",
-    body: "INDEXLA does not take control of your wallet or capital.",
-  },
-  {
-    title: "No Black-Box Decisions",
-    body: "AI does not create, change or override your investment strategy.",
-  },
-  {
-    title: "No Unauthorized Execution",
-    body: "Actions remain restricted by your approved rules, limits, permissions and expiry.",
-  },
-  {
-    title: "No Guaranteed Returns",
-    body: "INDEXLA provides execution infrastructure—not financial advice or return guarantees.",
-  },
-] as const;
+const TRUST_POINTS =
+  "No Custody · No Black-Box Decisions · No Unauthorized Execution · No Guaranteed Returns";
 
 export function InvestorDoesNotDoSection() {
   return (
     <section className={`${invSection} bg-deep`}>
       <div className="section-pad container-max">
-        <FadeIn className="mx-auto max-w-3xl text-center">
-          <h2 className={`${invH2} uppercase`}>
-            What INDEXLA{" "}
-            <span className="gradient-text">Does Not Do.</span>
-          </h2>
-        </FadeIn>
-
-        <FadeIn className="mt-10" delay={0.04}>
-          <div className="mx-auto grid max-w-5xl auto-rows-fr gap-3 sm:grid-cols-2">
-            {ITEMS.map((item) => (
-              <article
-                key={item.title}
-                className={`${invPremiumSurface} flex h-full min-h-[11rem] flex-col px-5 py-7 text-center sm:px-6 sm:py-8`}
+        <FadeIn className="mx-auto max-w-3xl">
+          <article className="rounded-2xl border border-electric/35 bg-gradient-to-b from-electric/[0.1] via-void/60 to-void/80 px-5 py-7 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.14),0_16px_40px_rgba(0,0,0,0.18)] sm:px-8 sm:py-8">
+            <h2 className="display text-[clamp(1.15rem,3.2vw,1.45rem)] font-semibold uppercase tracking-[0.06em] text-ink text-balance">
+              Built Around{" "}
+              <span className="gradient-text">Your Control.</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-[0.92rem] font-semibold leading-snug tracking-[-0.01em] text-muted text-balance sm:text-[1rem]">
+              {TRUST_POINTS}
+            </p>
+            <div className="mt-6 flex justify-center">
+              <Link
+                href="/whitepaper/14-security-privacy-and-mev-protection"
+                className="inline-flex items-center gap-2 rounded-lg border border-electric/35 bg-electric/10 px-4 py-3 text-[0.95rem] font-semibold tracking-[-0.01em] text-electric transition-colors hover:border-electric/55 hover:bg-electric/15 hover:text-ink"
               >
-                <h3 className="display text-[1.2rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.3rem]">
-                  {item.title}
-                </h3>
-                <p className={`mt-4 flex-1 ${invBody}`}>{item.body}</p>
-              </article>
-            ))}
-          </div>
+                Read Security &amp; Permissions
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </article>
         </FadeIn>
       </div>
     </section>

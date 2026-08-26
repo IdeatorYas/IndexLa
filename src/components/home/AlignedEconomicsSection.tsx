@@ -82,15 +82,15 @@ export function AlignedEconomicsSection() {
             ))}
           </div>
 
-          <FadeIn delay={0.12} className="mt-3">
-            <article className="flex min-h-[11.5rem] flex-col items-center justify-center rounded-2xl border border-electric/40 bg-gradient-to-b from-electric/[0.14] via-electric/[0.06] to-transparent px-6 py-7 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.16)] sm:min-h-[12.5rem] sm:px-10 sm:py-8">
-              <h3 className="display text-[1.15rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.3rem]">
+          <FadeIn delay={0.12} className="mt-3 flex justify-center">
+            <article className="flex w-full max-w-md flex-col items-center rounded-2xl border border-electric/40 bg-gradient-to-b from-electric/[0.14] via-electric/[0.06] to-transparent px-5 py-5 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.16)] sm:max-w-lg sm:px-6 sm:py-6">
+              <h3 className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.15rem]">
                 {INDEXLA_PANEL.title}
               </h3>
-              <p className="mt-3 max-w-3xl text-[1rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1.08rem]">
+              <p className="mt-2.5 text-[0.92rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[0.98rem]">
                 {INDEXLA_PANEL.lead}
               </p>
-              <p className="mt-3 text-[0.82rem] font-medium leading-snug text-muted text-balance sm:text-[0.9rem]">
+              <p className="mt-2.5 text-[0.76rem] font-medium leading-snug text-muted text-balance sm:text-[0.82rem]">
                 {INDEXLA_PANEL.support}
               </p>
             </article>

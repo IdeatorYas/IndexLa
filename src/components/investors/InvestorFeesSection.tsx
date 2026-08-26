@@ -16,9 +16,6 @@ export function InvestorFeesSection() {
             Simple, Transparent{" "}
             <span className="gradient-text">Fees.</span>
           </h2>
-          <p className="mt-5 text-[1.05rem] font-semibold tracking-[-0.015em] text-electric sm:text-[1.15rem]">
-            0% Management · 0% Performance · 0% Exit
-          </p>
           <div className="mt-8 grid auto-rows-fr gap-3 sm:grid-cols-3">
             {[
               { value: "0%", label: "Management" },

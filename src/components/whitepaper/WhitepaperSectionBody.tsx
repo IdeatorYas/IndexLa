@@ -14,25 +14,24 @@ type Block = {
 
 /** Sections where ### or ## topics become scannable concept cards */
 const CARDIFY_SECTIONS: Record<string, number> = {
-  "2-the-problem": 3,
-  "3-the-indexla-solution": 3,
-  "4-why-now": 3,
-  "7-why-the-architecture-gap-is-structural": 3,
-  "8-market-opportunity": 3,
-  "9-how-indexla-works": 3,
-  "12-strategies": 3,
-  "13-creator-economy": 3,
-  "18-risk-factors": 3,
+  "2-the-market-shift": 3,
+  "3-the-problem": 3,
+  "4-the-indexla-solution": 3,
+  "17-market-opportunity": 3,
+  "6-how-indexla-works": 3,
+  "7-strategy-automation": 3,
+  "9-creator-economy": 3,
+  "21-risk-factors": 3,
 };
 
 /** Sections where bullet lists become accent concept tiles */
 const ACCENT_LIST_SECTIONS = new Set([
-  "2-the-problem",
-  "5-why-indexla-differs",
-  "9-business-model",
-  "11-investor-experience",
-  "13-creator-economy",
-  "14-dexla-utility-tokenomics",
+  "3-the-problem",
+  "10-business-model",
+  "8-investor-experience",
+  "9-creator-economy",
+  "12-dexla-utility-and-tokenomics",
+  "16-competition",
 ]);
 
 function plainHeading(raw: string): string {
@@ -87,17 +86,33 @@ function visualsAfter(
 function ConceptCard({
   children,
   index,
+  lightTheme,
 }: {
   children: ReactNode;
   index: number;
+  lightTheme: boolean;
 }) {
   return (
-    <div className="relative my-4 overflow-hidden rounded-xl border border-line bg-deep/45 px-4 py-4 sm:px-5 sm:py-5">
+    <div
+      className={`relative my-4 overflow-hidden rounded-xl border px-4 py-4 sm:px-5 sm:py-5 ${
+        lightTheme
+          ? "border-[#dbe4f0] bg-white shadow-sm"
+          : "border-line bg-deep/45"
+      }`}
+    >
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b from-electric via-purple-bright/80 to-transparent"
+        className={`pointer-events-none absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b ${
+          lightTheme
+            ? "from-[#2563eb] via-[#6366f1]/80 to-transparent"
+            : "from-electric via-purple-bright/80 to-transparent"
+        }`}
         aria-hidden
       />
-      <p className="mb-2 text-[0.65rem] font-semibold tabular-nums tracking-[0.14em] text-electric">
+      <p
+        className={`mb-2 text-[0.65rem] font-semibold tabular-nums tracking-[0.14em] ${
+          lightTheme ? "text-[#2563eb]" : "text-electric"
+        }`}
+      >
         {String(index + 1).padStart(2, "0")}
       </p>
       {children}
@@ -108,9 +123,11 @@ function ConceptCard({
 export function WhitepaperSectionBody({
   slug,
   markdown,
+  lightTheme = false,
 }: {
   slug: string;
   markdown: string;
+  lightTheme?: boolean;
 }) {
   const visuals = getSectionVisuals(slug);
   const before = visuals.filter(
@@ -122,17 +139,22 @@ export function WhitepaperSectionBody({
   const prologueVisuals = visualsAfter(visuals, null);
   const cardifyLevel = CARDIFY_SECTIONS[slug] ?? null;
   const accentLists = ACCENT_LIST_SECTIONS.has(slug);
+  const isDisclaimer = slug === "disclaimer";
 
   let cardIndexCounter = 0;
 
   return (
-    <div>
+    <div className={isDisclaimer && lightTheme ? "wp-disclaimer" : undefined}>
       {before.map((v) => (
         <div key={v.id}>{v.node}</div>
       ))}
 
       {blocks.length === 0 ? (
-        <WhitepaperMarkdown markdown={markdown} accentLists={accentLists} />
+        <WhitepaperMarkdown
+          markdown={markdown}
+          accentLists={accentLists}
+          lightTheme={lightTheme}
+        />
       ) : (
         blocks.map((block, index) => {
           const asCard =
@@ -144,13 +166,16 @@ export function WhitepaperSectionBody({
               resetTop={index === 0 || asCard}
               card={asCard}
               accentLists={accentLists && !asCard}
+              lightTheme={lightTheme}
             />
           );
 
           return (
             <div key={`${block.id ?? "block"}-${index}`}>
               {asCard ? (
-                <ConceptCard index={cardIndex}>{content}</ConceptCard>
+                <ConceptCard index={cardIndex} lightTheme={lightTheme}>
+                  {content}
+                </ConceptCard>
               ) : (
                 content
               )}

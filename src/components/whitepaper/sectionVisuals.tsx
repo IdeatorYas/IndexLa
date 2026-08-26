@@ -1,20 +1,24 @@
 import type { ReactNode } from "react";
+import { CompetitorComparisonTable } from "@/components/whitepaper/CompetitorComparisonTable";
 import { WhitepaperExploreCta } from "@/components/whitepaper/WhitepaperExploreCta";
 import {
-  ArchitectureGapDiagram,
-  DexlaUtilityBurnLoopDiagram,
-  EconomicFlywheelDiagram,
-  FeeDistributionDiagram,
-  GtmGrowthFlywheelDiagram,
-  HowIndexlaWorksDiagram,
-  IndexlaArchitectureDiagram,
-  MarketOpportunityDiagram,
-  NonCustodialFlowDiagram,
-  RoadmapPhasesDiagram,
-  SecurityRiskDiagram,
-  SolutionFlowDiagram,
-  StrategyEngineDiagram,
-} from "@/components/whitepaper/diagrams/WhitepaperDiagrams";
+  BuildDefineExecuteFlowDiagram,
+  CreatorRevenueStreamsDiagram,
+  DexlaUtilityFlowDiagram,
+  ExecutionFeeDistributionDiagram,
+  IndexlaFlywheelDiagram,
+  NetworkAssetCoverageDiagram,
+  PermissionLifecycleDiagram,
+  PortfolioArchitectureDiagram,
+  RegulatoryFrameworkDiagram,
+  RiskFrameworkDiagram,
+  RoadmapTimelineDiagram,
+  SixBurnMechanismsDiagram,
+  ThreeProductBusinessDiagram,
+  ThreeProductEcosystemDiagram,
+  TokenAllocationDonutDiagram,
+  VestingTimelineDiagram,
+} from "@/components/whitepaper/diagrams/WhitepaperInstitutionalDiagrams";
 
 export type VisualPlacement = "before" | "after" | "end";
 
@@ -25,57 +29,31 @@ export type SectionVisual = {
   node: ReactNode;
 };
 
-/**
- * Visuals keyed by section slug. Labels/numbers match whitepaper content only.
- */
+/** Visuals keyed by section slug. Labels and numbers match whitepaper content only. */
 export function getSectionVisuals(slug: string): SectionVisual[] {
   switch (slug) {
-    case "3-the-indexla-solution":
+    case "4-the-indexla-solution":
       return [
         {
-          id: "solution-flow",
+          id: "portfolio-architecture",
           placement: "before",
-          node: <SolutionFlowDiagram />,
-        },
-        {
-          id: "non-custodial",
-          placement: "after",
-          afterHeadingId: "non-custodial-by-design",
-          node: <NonCustodialFlowDiagram />,
+          node: <PortfolioArchitectureDiagram />,
         },
       ];
-    case "7-why-the-architecture-gap-is-structural":
+    case "5-three-products-for-different-investor-behaviors":
       return [
         {
-          id: "architecture-gap",
+          id: "three-product-ecosystem",
           placement: "before",
-          node: <ArchitectureGapDiagram />,
-        },
-        {
-          id: "explore-technical-paper-architecture",
-          placement: "end",
-          node: (
-            <WhitepaperExploreCta
-              href="/whitepaper/technical"
-              label="Read Full Technical Paper →"
-            />
-          ),
+          node: <ThreeProductEcosystemDiagram />,
         },
       ];
-    case "8-market-opportunity":
+    case "6-how-indexla-works":
       return [
         {
-          id: "tam-sam-som",
+          id: "build-define-execute",
           placement: "before",
-          node: <MarketOpportunityDiagram />,
-        },
-      ];
-    case "9-how-indexla-works":
-      return [
-        {
-          id: "how-works",
-          placement: "before",
-          node: <HowIndexlaWorksDiagram />,
+          node: <BuildDefineExecuteFlowDiagram />,
         },
         {
           id: "explore-how-it-works",
@@ -88,22 +66,20 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           ),
         },
       ];
-    case "10-business-model":
+    case "7-strategy-automation":
       return [
         {
-          id: "fee-dist",
-          placement: "after",
-          afterHeadingId: "fee-distribution",
-          node: <FeeDistributionDiagram />,
-        },
-        {
-          id: "flywheel",
-          placement: "after",
-          afterHeadingId: "treasury",
-          node: <EconomicFlywheelDiagram />,
+          id: "explore-strategies",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/strategies"
+              label="Explore INDEXLA Strategies →"
+            />
+          ),
         },
       ];
-    case "11-investor-experience":
+    case "8-investor-experience":
       return [
         {
           id: "explore-investors",
@@ -116,26 +92,14 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           ),
         },
       ];
-    case "12-strategies":
+    case "9-creator-economy":
       return [
         {
-          id: "strategy-engine",
-          placement: "before",
-          node: <StrategyEngineDiagram />,
+          id: "creator-revenue",
+          placement: "after",
+          afterHeadingId: "92-creator-leaderboard",
+          node: <CreatorRevenueStreamsDiagram />,
         },
-        {
-          id: "explore-strategies",
-          placement: "end",
-          node: (
-            <WhitepaperExploreCta
-              href="/strategies"
-              label="Explore INDEXLA Strategies →"
-            />
-          ),
-        },
-      ];
-    case "13-creator-economy":
-      return [
         {
           id: "explore-creators",
           placement: "end",
@@ -147,13 +111,54 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           ),
         },
       ];
-    case "14-dexla-utility-tokenomics":
+    case "10-business-model":
       return [
         {
-          id: "dexla-utility-burn-loop",
+          id: "three-product-engines",
           placement: "after",
-          afterHeadingId: "the-dexla-economic-engine",
-          node: <DexlaUtilityBurnLoopDiagram />,
+          afterHeadingId: "101-three-product-engines",
+          node: <ThreeProductBusinessDiagram />,
+        },
+        {
+          id: "execution-fee-dist",
+          placement: "after",
+          afterHeadingId: "103-execution-fee-distribution",
+          node: <ExecutionFeeDistributionDiagram />,
+        },
+      ];
+    case "11-the-indexla-flywheel":
+      return [
+        {
+          id: "flywheel",
+          placement: "before",
+          node: <IndexlaFlywheelDiagram />,
+        },
+      ];
+    case "12-dexla-utility-and-tokenomics":
+      return [
+        {
+          id: "dexla-utility",
+          placement: "after",
+          afterHeadingId: "122-five-core-utilities",
+          node: <DexlaUtilityFlowDiagram />,
+        },
+        {
+          id: "six-burns",
+          placement: "after",
+          afterHeadingId: "123-six-burn-mechanisms",
+          node: <SixBurnMechanismsDiagram />,
+        },
+        {
+          id: "token-allocation",
+          placement: "after",
+          afterHeadingId: "125-supply",
+          node: <TokenAllocationDonutDiagram />,
+        },
+        {
+          id: "vesting",
+          placement: "after",
+          afterHeadingId: "126-vesting-and-release",
+          node: <VestingTimelineDiagram />,
         },
         {
           id: "explore-tokenomics",
@@ -166,20 +171,29 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           ),
         },
       ];
-    case "15-security-privacy-mev-protection":
+    case "13-architecture-and-execution":
       return [
         {
-          id: "indexla-architecture",
-          placement: "before",
-          node: <IndexlaArchitectureDiagram />,
-        },
-        {
-          id: "security-risk",
-          placement: "before",
-          node: <SecurityRiskDiagram />,
+          id: "permission-lifecycle",
+          placement: "after",
+          afterHeadingId: "133-execution-lifecycle",
+          node: <PermissionLifecycleDiagram />,
         },
         {
           id: "explore-technical-paper",
+          placement: "end",
+          node: (
+            <WhitepaperExploreCta
+              href="/whitepaper/technical"
+              label="Read Full Technical Paper →"
+            />
+          ),
+        },
+      ];
+    case "14-security-privacy-and-mev-protection":
+      return [
+        {
+          id: "explore-technical-paper-security",
           placement: "end",
           node: (
             <WhitepaperExploreCta
@@ -189,20 +203,45 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           ),
         },
       ];
-    case "17-go-to-market":
+    case "15-supported-asset-and-network-direction":
       return [
         {
-          id: "gtm-flywheel",
+          id: "network-asset-coverage",
           placement: "before",
-          node: <GtmGrowthFlywheelDiagram />,
+          node: <NetworkAssetCoverageDiagram />,
         },
       ];
-    case "18-progressive-deployment-roadmap":
+    case "16-competition":
+      return [
+        {
+          id: "competitor-table",
+          placement: "after",
+          afterHeadingId: "competitive-comparison",
+          node: <CompetitorComparisonTable />,
+        },
+      ];
+    case "18-regulatory-approach":
+      return [
+        {
+          id: "regulatory-framework",
+          placement: "before",
+          node: <RegulatoryFrameworkDiagram />,
+        },
+      ];
+    case "20-progressive-deployment-and-roadmap":
       return [
         {
           id: "roadmap",
           placement: "before",
-          node: <RoadmapPhasesDiagram />,
+          node: <RoadmapTimelineDiagram />,
+        },
+      ];
+    case "21-risk-factors":
+      return [
+        {
+          id: "risk-framework",
+          placement: "before",
+          node: <RiskFrameworkDiagram />,
         },
       ];
     default:

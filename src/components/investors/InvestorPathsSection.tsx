@@ -19,6 +19,7 @@ const PATHS = [
     accent: "border-electric/35 from-electric/[0.12]",
     badge:
       "border-electric/45 bg-electric/[0.16] text-electric shadow-[inset_0_1px_0_rgba(56,189,248,0.22)]",
+    tagsClass: "text-electric",
     productClass: "text-electric",
   },
   {
@@ -29,10 +30,12 @@ const PATHS = [
     body: "Supply stablecoins to decentralized exchanges and automate your liquidity positions.",
     product: "Stable Club",
     cta: { href: "/stable-club", label: "Explore Stable Club" },
-    accent: "border-cyan/35 from-cyan/[0.12]",
+    accent:
+      "border-success/40 from-success/[0.14] via-emerald-500/[0.06]",
     badge:
-      "border-cyan/45 bg-cyan/[0.16] text-cyan shadow-[inset_0_1px_0_rgba(34,211,238,0.2)]",
-    productClass: "text-cyan",
+      "border-success/50 bg-success/[0.18] text-success shadow-[inset_0_1px_0_rgba(52,211,153,0.22)]",
+    tagsClass: "text-success",
+    productClass: "text-success",
   },
   {
     id: "degen",
@@ -45,6 +48,7 @@ const PATHS = [
     accent: "border-amber-400/35 from-amber-400/[0.12]",
     badge:
       "border-amber-400/45 bg-amber-400/[0.16] text-amber-200 shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]",
+    tagsClass: "text-amber-300",
     productClass: "text-amber-300",
   },
 ] as const;
@@ -84,7 +88,9 @@ export function InvestorPathsSection() {
                       {path.headline}
                     </h3>
 
-                    <p className="mt-3 text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-electric sm:text-[1.02rem]">
+                    <p
+                      className={`mt-3 text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] sm:text-[1.02rem] ${path.tagsClass}`}
+                    >
                       {path.tags}
                     </p>
 
