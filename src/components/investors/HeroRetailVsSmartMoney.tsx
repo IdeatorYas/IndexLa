@@ -6,50 +6,50 @@ import { useEffect, useMemo, useState } from "react";
 const PHASES = [
   {
     id: "falls",
-    label: "Market falls / Fear",
-    shortLabel: "Falls / Fear",
-    emotionalAction: "Sells in panic",
-    disciplinedAction: "Buys carefully",
+    label: "Market Falls → Fear",
+    shortLabel: "Falls",
+    emotionalAction: "Sells in Fear",
+    disciplinedAction: "Accumulates",
     emotionalValue: 3_000,
     disciplinedValue: 15_000,
     pathEnd: 0.18,
   },
   {
     id: "calms",
-    label: "Market calms / Neutral",
-    shortLabel: "Calms / Neutral",
-    emotionalAction: "Waits and hesitates",
-    disciplinedAction: "Adjusts the plan",
+    label: "Market Calms",
+    shortLabel: "Calms",
+    emotionalAction: "Waits",
+    disciplinedAction: "Holds",
     emotionalValue: 2_800,
     disciplinedValue: 22_000,
     pathEnd: 0.36,
   },
   {
     id: "rises",
-    label: "Market rises / Greed",
-    shortLabel: "Rises / Greed",
-    emotionalAction: "Buys because others are buying",
-    disciplinedAction: "Takes some profit",
+    label: "Market Rises",
+    shortLabel: "Rises",
+    emotionalAction: "Buys Late",
+    disciplinedAction: "Takes Profit",
     emotionalValue: 5_500,
     disciplinedValue: 35_000,
     pathEnd: 0.55,
   },
   {
     id: "peaks",
-    label: "Market peaks / Euphoria",
-    shortLabel: "Peaks / Euphoria",
-    emotionalAction: "Buys at the top",
-    disciplinedAction: "Cash Out",
+    label: "Market Peaks",
+    shortLabel: "Peaks",
+    emotionalAction: "Chases",
+    disciplinedAction: "Reduces Exposure",
     emotionalValue: 8_000,
     disciplinedValue: 48_000,
     pathEnd: 0.74,
   },
   {
     id: "falls-again",
-    label: "Market falls again / Fear",
-    shortLabel: "Falls again / Fear",
-    emotionalAction: "Sells in fear",
-    disciplinedAction: "Buys again",
+    label: "Fear Returns",
+    shortLabel: "Fear Returns",
+    emotionalAction: "Sells Again",
+    disciplinedAction: "Accumulates Again",
     emotionalValue: 1_000,
     disciplinedValue: 60_000,
     pathEnd: 1,
@@ -381,28 +381,28 @@ export function HeroRetailVsSmartMoney() {
 
   const phaseHint =
     activePhase?.id === "falls-again"
-      ? "Fear returns. Cash from the peak can buy again."
+      ? "Fear returns. One sells again. The other accumulates again."
       : activePhase?.id === "peaks"
-        ? "At the peak, one locks gains. The other buys more."
-        : "Same ups and downs. Only their choices change.";
+        ? "At the peak, one chases. The other reduces exposure."
+        : "Same capital. Same market. Only their responses change.";
 
   return (
     <div
       className="rounded-[1.25rem] border border-line bg-deep/80 p-3.5 sm:p-4"
-      aria-label="Illustrative story: two investors start with the same money in the same repeating market cycle and end with different outcomes"
+      aria-label="Illustrative story: same capital, same market, different investor behavior"
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <div className="min-w-0 max-w-[20rem] sm:max-w-none">
+        <div className="min-w-0 max-w-[22rem] sm:max-w-none">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-electric sm:text-[0.75rem]">
-            Same {formatUsd(START)}. Same market. Different behavior.
+            Same Capital. Same Market. Different Behavior.
           </p>
           <p className="mt-1 text-[0.75rem] leading-snug text-muted">
-            Watch what happens when one person reacts… and the other follows a
-            plan.
+            Watch what happens when one investor reacts and another follows a
+            predefined plan.
           </p>
         </div>
-        <p className="rounded-full border border-line bg-void/50 px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-          Illustrative example
+        <p className="rounded-full border border-line bg-void/50 px-2.5 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-muted-dim sm:text-[0.62rem] sm:tracking-[0.1em]">
+          Illustrative Example · Same Market · Same Starting Capital
         </p>
       </div>
 
@@ -414,7 +414,7 @@ export function HeroRetailVsSmartMoney() {
         <DeskColumn
           title="Emotional Investor"
           monogram="E"
-          subtitle="Reacts to emotion"
+          subtitle="Reacts to Emotion"
           action={emotionalAction}
           value={emotionalValue}
           history={emotionalHistory}
@@ -426,7 +426,7 @@ export function HeroRetailVsSmartMoney() {
         <DeskColumn
           title="Disciplined Investor"
           monogram="D"
-          subtitle="Follows a plan"
+          subtitle="Follows a Plan"
           action={disciplinedAction}
           value={disciplinedValue}
           history={disciplinedHistory}
@@ -447,17 +447,23 @@ export function HeroRetailVsSmartMoney() {
             transition={{ duration: 0.45 }}
             className="mt-4 space-y-3 text-center"
           >
+            <div className="mx-auto grid max-w-[28rem] gap-2 sm:grid-cols-2 sm:gap-3">
+              <p className="text-[0.78rem] font-semibold leading-snug text-danger sm:text-[0.82rem]">
+                Emotion Controls Every Decision.
+              </p>
+              <p className="text-[0.78rem] font-semibold leading-snug text-success sm:text-[0.82rem]">
+                Predefined Rules Control Every Response.
+              </p>
+            </div>
             <p className="mx-auto max-w-[22rem] text-balance text-[0.95rem] font-semibold leading-snug tracking-[-0.015em] text-ink sm:max-w-[28rem] sm:text-[1.05rem]">
-              Same {formatUsd(START)}. Same market. Different behavior.{" "}
-              <span className="gradient-text">Different outcome.</span>
-            </p>
-            <p className="mx-auto max-w-[22rem] text-pretty text-[0.85rem] font-semibold leading-snug text-electric sm:max-w-[28rem] sm:text-[0.9rem]">
-              Pick your assets. Set your strategy. Let INDEXLA automate the
-              execution.
+              You Cannot Control the Market.
+              <br />
+              <span className="gradient-text">
+                You Can Control How You Respond.
+              </span>
             </p>
             <p className="text-[0.62rem] leading-snug text-muted-dim">
-              Illustrative example — not a prediction or INDEXLA performance
-              claim.
+              Illustrative Example · Same Market · Same Starting Capital
             </p>
           </motion.div>
         ) : (

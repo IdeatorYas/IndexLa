@@ -9,18 +9,21 @@ import {
 
 export function InvestorFeesSection() {
   return (
-    <section className={`${invSection} bg-deep`}>
+    <section className={`${invSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${invH2} uppercase`}>
             Simple, Transparent{" "}
             <span className="gradient-text">Fees.</span>
           </h2>
+          <p className="mt-5 text-[1.05rem] font-semibold tracking-[-0.015em] text-electric sm:text-[1.15rem]">
+            0% Management · 0% Performance · 0% Exit
+          </p>
           <div className="mt-8 grid auto-rows-fr gap-3 sm:grid-cols-3">
             {[
-              { value: "0%", label: "Management Fees" },
-              { value: "0%", label: "Performance Fees" },
-              { value: "0%", label: "Exit Fees" },
+              { value: "0%", label: "Management" },
+              { value: "0%", label: "Performance" },
+              { value: "0%", label: "Exit" },
             ].map((item) => (
               <div
                 key={item.label}
@@ -38,10 +41,13 @@ export function InvestorFeesSection() {
           <div className="mt-8 inline-flex justify-center">
             <div className={invGreenBox}>
               <p className={invGreenText}>
-                Only 1% execution fee when trades occur.
+                Only 1% Execution Fee When Trades Occur.
               </p>
             </div>
           </div>
+          <p className="mt-4 text-[1.02rem] font-semibold text-ink sm:text-[1.08rem]">
+            No Trade. No Execution Fee.
+          </p>
         </FadeIn>
       </div>
     </section>

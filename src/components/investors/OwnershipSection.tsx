@@ -1,16 +1,15 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   invBody,
-  invBodyStrong,
   invH2,
   invPremiumAccent,
   invSection,
 } from "@/components/investors/investorRhythm";
 
 const pillars = [
-  "No index token",
-  "No wrapper",
-  "No custody",
+  "No Index Token",
+  "No Wrapper",
+  "No Custody",
 ] as const;
 
 export function OwnershipSection() {
@@ -20,15 +19,13 @@ export function OwnershipSection() {
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${invH2} uppercase`}>
             Own the Assets.{" "}
-            <span className="gradient-text">Keep Full Control.</span>
+            <span className="gradient-text">Keep Control.</span>
           </h2>
-          <div className={`mx-auto mt-6 max-w-2xl space-y-3 ${invBody}`}>
-            <p className="font-semibold text-ink">
-              Your assets stay in your wallet.
-            </p>
+          <div className={`mx-auto mt-6 max-w-2xl space-y-4 ${invBody}`}>
+            <p>INDEXLA never takes custody of your capital.</p>
             <p>
-              No index token. No wrapper. No custody. You own the underlying
-              assets.
+              With INDEXLA Core, you own the underlying assets directly through
+              your wallet.
             </p>
           </div>
         </FadeIn>
@@ -49,12 +46,12 @@ export function OwnershipSection() {
         </FadeIn>
 
         <FadeIn className="mx-auto mt-10 max-w-2xl space-y-4 text-center">
-          <p className={invBodyStrong}>
-            You own the actual underlying assets across chains.
+          <p className={`${invBody} font-semibold text-ink`}>
+            You choose the assets, allocations, rules, limits and permissions.
           </p>
-          <p className="text-[1.05rem] leading-relaxed text-muted sm:text-[1.1rem]">
-            Unlike basket tokens or custodial products, you hold the real
-            underlying assets in your own wallet.
+          <p className={invBody}>
+            INDEXLA triggers only the execution you approve. Smart contracts
+            enforce your boundaries.
           </p>
         </FadeIn>
       </div>

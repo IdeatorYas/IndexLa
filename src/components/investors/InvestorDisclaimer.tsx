@@ -8,11 +8,13 @@ export function InvestorDisclaimer() {
           </h2>
           <p className="mt-4 text-[0.9rem] italic leading-relaxed text-muted-dim">
             INDEXLA provides technology and infrastructure for managing and
-            automating multi-chain, multi-asset portfolios. It does not provide
-            financial advice, investment recommendations, or guarantee returns.
-            Investing involves risk, including possible loss of capital. Past
-            performance does not guarantee future results. You are solely
-            responsible for your investment decisions.
+            automating multi-chain, multi-asset portfolios and liquidity
+            positions. It does not provide financial advice, investment
+            recommendations or guaranteed returns. Investing involves risk,
+            including possible loss of capital. Memecoins and liquidity
+            provision involve additional risks, including high volatility and
+            potential losses. You remain solely responsible for your investment
+            decisions.
           </p>
         </div>
       </div>

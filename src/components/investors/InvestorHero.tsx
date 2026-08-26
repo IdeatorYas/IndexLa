@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { HeroRetailVsSmartMoney } from "@/components/investors/HeroRetailVsSmartMoney";
 import {
   invBody,
@@ -10,6 +9,7 @@ import {
   invGreenText,
   invH1,
 } from "@/components/investors/investorRhythm";
+import { homeCta } from "@/components/home/homeRhythm";
 
 export function InvestorHero() {
   const reduce = useReducedMotion();
@@ -42,40 +42,45 @@ export function InvestorHero() {
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className={`${invH1} text-[clamp(2rem,5.2vw,3.65rem)] leading-[1.06]`}>
-              <span className="block">You Know What You Should Do</span>
+              <span className="block">You Know What You Should Do.</span>
               <span className="mt-[0.14em] block gradient-text">
-                You Just Don&apos;t
+                You Just Don&apos;t Do It.
               </span>
             </h1>
 
             <div className="mt-5 space-y-1.5 lg:mt-6">
               <p className={invBody}>Buy when fear is high.</p>
-              <p className={invBody}>Take profits at euphoria.</p>
+              <p className={invBody}>
+                Take profits when markets become euphoric.
+              </p>
               <p className={invBody}>Rebalance when allocations drift.</p>
             </div>
 
             <p className={`mt-4 ${invBody}`}>
-              Then the market moves, and you hesitate, chase, panic, and miss
-              it.
+              But when markets move, emotions take control.
+            </p>
+
+            <p className={`mt-3 ${invBody}`}>
+              You hesitate. You chase. You panic. You miss the moment.
             </p>
 
             <div className="mt-5 lg:mt-6">
               <div className={invGreenBox}>
                 <p className={invGreenText}>
-                  Stop letting emotions manage your portfolio.
+                  Stop Letting Emotions Manage Your Capital.
                 </p>
               </div>
             </div>
 
             <p className={`mt-4 max-w-xl ${invBody} text-pretty`}>
-              Your assets stay in your wallet. The protocol cannot withdraw your
-              funds.
+              Set your rules while you&apos;re calm. When conditions are met,
+              INDEXLA triggers only the execution you approved.
             </p>
 
             <div className="mt-6 lg:mt-7">
-              <EarlyAccessCta className="min-w-[14.5rem] px-7 py-3.5 text-[1rem] shadow-[0_16px_48px_rgba(59,130,246,0.38)]">
-                Build Your Automated Portfolio
-              </EarlyAccessCta>
+              <Link href="#investment-path" className={`${homeCta} inline-flex`}>
+                Choose Your Investment Path
+              </Link>
             </div>
           </motion.div>
 

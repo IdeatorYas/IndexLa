@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   invBody,
   invH1,
@@ -39,20 +39,26 @@ export function InvestorFinalOwnership() {
           <h2 className={`${invH1} uppercase leading-[1.08]`}>
             <span className="block">Your Capital.</span>
             <span className="mt-[0.12em] block">Your Conviction.</span>
-            <span className="mt-[0.12em] block gradient-text">Your Rules.</span>
+            <span className="mt-[0.12em] block gradient-text">Your Path.</span>
           </h2>
 
           <p className={`mx-auto mt-8 max-w-2xl ${invBody}`}>
-            Build your strategy around your own thesis, define how your
-            portfolio should respond, and automate execution without giving up
-            control of your assets.
+            Choose how you want to invest. Define how your capital should
+            respond. Keep control throughout execution.
           </p>
 
-          <div className="mt-12 flex justify-center">
-            <EarlyAccessCta className={`${homeCta} w-full max-w-[22rem]`}>
-              Build Your Automated Portfolio
-            </EarlyAccessCta>
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="#investment-path"
+              className={`${homeCta} inline-flex w-full max-w-[22rem]`}
+            >
+              Choose Your Investment Path
+            </Link>
           </div>
+
+          <p className="mt-6 text-[0.95rem] font-semibold tracking-[-0.01em] text-electric sm:text-[1.02rem]">
+            INDEXLA Core · Stable Club · Degen Club
+          </p>
         </motion.div>
       </div>
     </section>

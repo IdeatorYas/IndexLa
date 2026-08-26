@@ -6,8 +6,8 @@ import { AssetLogo } from "@/components/ui/AssetLogo";
 import type { AssetKey } from "@/lib/site";
 import {
   invBody,
-  invBodyStrong,
   invH2,
+  invPremiumAccent,
   invSection,
 } from "@/components/investors/investorRhythm";
 
@@ -36,16 +36,21 @@ export function OnePortfolioLayerSection() {
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${invH2} uppercase`}>
-            Manage Your Portfolio From{" "}
+            Manage Everything From{" "}
             <span className="gradient-text">One Layer.</span>
           </h2>
           <p className={`mt-5 ${invBody}`}>
-            Stop jumping between wallets, exchanges, DEXs, bridges, and networks
-            just to manage one portfolio.
+            Stop jumping between wallets, exchanges, DEXs, bridges and networks
+            to manage one investment plan.
           </p>
-          <p className={`mt-4 ${invBodyStrong}`}>
-            One portfolio. Multiple assets. Multiple networks.
-          </p>
+          <div className="mt-6 inline-flex justify-center">
+            <div className={`${invPremiumAccent} px-5 py-3.5 sm:px-7`}>
+              <p className="text-[0.95rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.05rem]">
+                Multiple Products · Multiple Assets · Multiple Networks · One
+                Control Layer
+              </p>
+            </div>
+          </div>
         </FadeIn>
 
         <FadeIn className="mt-10" delay={0.04}>
@@ -83,68 +88,26 @@ export function OnePortfolioLayerSection() {
               </div>
             </div>
 
-            <div className="grid gap-0 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
-              <div className="space-y-3 border-b border-line p-5 sm:p-6 lg:border-b-0 lg:border-r">
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                  Asset categories
-                </p>
-                <div className="space-y-2.5">
-                  {categories.map((cat, i) => (
-                    <motion.div
-                      key={cat.label}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-line bg-deep/50 px-3 py-2.5"
-                      initial={reduce ? false : { opacity: 0, x: -8 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.08 + i * 0.05 }}
-                    >
-                      <span className="text-[0.88rem] font-semibold text-ink">
-                        {cat.label}
-                      </span>
-                      <div className="flex -space-x-1.5">
-                        {cat.assets.map((key) => (
-                          <span
-                            key={key}
-                            className="flex h-7 w-7 items-center justify-center rounded-full border border-line bg-panel"
-                          >
-                            <AssetLogo asset={key} size={14} />
-                          </span>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center justify-center gap-3 border-b border-line px-6 py-8 lg:border-b-0">
-                <span className="hidden text-electric/50 lg:block" aria-hidden>
-                  →
-                </span>
-                <span className="text-electric/50 lg:hidden" aria-hidden>
-                  ↓
-                </span>
-                <div className="rounded-[1.25rem] border border-electric/45 bg-gradient-to-br from-electric/15 via-purple/10 to-transparent px-7 py-6 text-center">
-                  <p className="display text-[clamp(1.35rem,2.8vw,1.75rem)] gradient-text">
-                    INDEXLA
-                  </p>
-                  <p className="mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted">
-                    Portfolio layer
-                  </p>
-                </div>
-                <span className="text-electric/50" aria-hidden>
-                  ↓
-                </span>
-              </div>
-
-              <div className="flex flex-col items-center justify-center p-5 sm:p-6 lg:border-l lg:border-line">
-                <div className="w-full rounded-[1.25rem] border border-success/35 bg-success/[0.08] px-5 py-6 text-center">
-                  <p className="display text-[1.15rem] tracking-[-0.02em] text-ink sm:text-[1.3rem]">
-                    One INDEXLA Portfolio
-                  </p>
-                  <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
-                    One portfolio. Multiple assets. Multiple networks.
-                  </p>
-                </div>
+            <div className="px-5 py-5 sm:px-7 sm:py-6">
+              <p className="text-center text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
+                Asset categories
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {categories.map((cat) => (
+                  <div
+                    key={cat.label}
+                    className="rounded-xl border border-line bg-deep/50 px-4 py-3.5"
+                  >
+                    <p className="text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-electric">
+                      {cat.label}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {cat.assets.map((key) => (
+                        <AssetLogo key={key} asset={key} size={28} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

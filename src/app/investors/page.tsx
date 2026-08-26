@@ -1,37 +1,37 @@
 import type { Metadata } from "next";
+import { InvestorAdvantageSection } from "@/components/investors/InvestorAdvantageSection";
+import { InvestorBuildSection } from "@/components/investors/InvestorBuildSection";
 import { InvestorDisclaimer } from "@/components/investors/InvestorDisclaimer";
+import { InvestorDoesNotDoSection } from "@/components/investors/InvestorDoesNotDoSection";
 import { InvestorFeesSection } from "@/components/investors/InvestorFeesSection";
-import { InvestorFinalCta } from "@/components/investors/InvestorFinalCta";
 import { InvestorFinalOwnership } from "@/components/investors/InvestorFinalOwnership";
 import { InvestorHero } from "@/components/investors/InvestorHero";
-import { InvestorOneActionSection } from "@/components/investors/InvestorOneActionSection";
-import { MarketCyclesSection } from "@/components/investors/MarketCyclesSection";
+import { InvestorPathsSection } from "@/components/investors/InvestorPathsSection";
+import { InvestorThesisSection } from "@/components/investors/InvestorThesisSection";
 import { MarketplaceSection } from "@/components/investors/MarketplaceSection";
 import { OnePortfolioLayerSection } from "@/components/investors/OnePortfolioLayerSection";
 import { OwnershipSection } from "@/components/investors/OwnershipSection";
-import { InvestorPrivacySection } from "@/components/investors/InvestorPrivacySection";
-import { StrategyWorksSection } from "@/components/investors/StrategyWorksSection";
 
 export const metadata: Metadata = {
   title: "Investors | INDEXLA",
   description:
-    "Define your rules when you're calm. Let INDEXLA coordinate execution when the market moves. Build rule-based portfolios across crypto, tokenized stocks, commodities, and RWAs.",
+    "Set your rules while you're calm. When conditions are met, INDEXLA triggers only the execution you approved. Choose INDEXLA Core, Stable Club or Degen Club.",
 };
 
 export default function InvestorsPage() {
   return (
     <main>
       <InvestorHero />
+      <InvestorPathsSection />
       <InvestorFeesSection />
-      <MarketCyclesSection />
-      <StrategyWorksSection />
-      <InvestorOneActionSection />
+      <InvestorAdvantageSection />
+      <InvestorBuildSection />
+      <InvestorThesisSection />
+      <MarketplaceSection />
       <OnePortfolioLayerSection />
       <OwnershipSection />
-      <InvestorPrivacySection />
-      <MarketplaceSection />
+      <InvestorDoesNotDoSection />
       <InvestorFinalOwnership />
-      <InvestorFinalCta />
       <InvestorDisclaimer />
     </main>
   );
