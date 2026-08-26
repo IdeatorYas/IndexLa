@@ -25,6 +25,7 @@ export function BrandLogo({ className = "", priority = false }: BrandLogoProps) 
           src={src}
           alt="INDEXLA"
           fill
+          unoptimized
           sizes="(max-width: 640px) 164px, 188px"
           priority={priority}
           className="bg-transparent object-contain object-left"
