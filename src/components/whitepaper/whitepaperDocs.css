@@ -1,112 +1,19 @@
-/* INDEXLA Whitepaper — scoped light institutional theme + print */
+/* INDEXLA Whitepaper — docs surfaces + print */
 
 .wp-docs {
-  --wp-bg: #f4f7fb;
-  --wp-bg-elevated: #ffffff;
-  --wp-bg-soft: #eef4fc;
-  --wp-text: #0f172a;
-  --wp-text-muted: #475569;
-  --wp-text-dim: #64748b;
-  --wp-border: #dbe4f0;
-  --wp-border-strong: #c7d5e8;
-  --wp-accent: #2563eb;
-  --wp-accent-soft: #eff6ff;
-  --wp-accent-mid: #3b82f6;
-  --wp-purple: #6366f1;
-  --wp-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
-  --wp-shadow-lg: 0 4px 6px rgba(15, 23, 42, 0.04), 0 20px 48px rgba(15, 23, 42, 0.08);
-  color: var(--wp-text);
-  background: linear-gradient(180deg, #f8fafc 0%, var(--wp-bg) 12rem, var(--wp-bg) 100%);
+  color: var(--wp-text, var(--idx-ink));
 }
 
-.wp-docs .wp-surface {
-  background: var(--wp-bg-elevated);
-  border: 1px solid var(--wp-border);
-  box-shadow: var(--wp-shadow);
+.wp-accent-text {
+  color: var(--wp-accent, var(--idx-electric));
 }
 
-.wp-docs .wp-muted {
-  color: var(--wp-text-muted);
+.wp-muted {
+  color: var(--wp-text-muted, var(--idx-muted));
 }
 
-.wp-docs .wp-dim {
-  color: var(--wp-text-dim);
-}
-
-.wp-docs .wp-accent-text {
-  color: var(--wp-accent);
-}
-
-.wp-docs .wp-gradient-text {
-  background: linear-gradient(135deg, #2563eb 0%, #6366f1 55%, #0ea5e9 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.wp-docs .wp-progress-track {
-  background: #e2e8f0;
-}
-
-.wp-docs .wp-progress-fill {
-  background: linear-gradient(90deg, #2563eb, #6366f1);
-}
-
-.wp-docs .wp-nav-active {
-  background: var(--wp-accent-soft);
-  color: var(--wp-accent);
-}
-
-.wp-docs .wp-diagram {
-  background: var(--wp-bg-elevated);
-  border: 1px solid var(--wp-border);
-  box-shadow: var(--wp-shadow);
-}
-
-.wp-docs .wp-diagram-cap {
-  border-bottom: 1px solid var(--wp-border);
-  color: var(--wp-text-dim);
-  background: var(--wp-bg-soft);
-}
-
-.wp-docs .wp-card {
-  background: var(--wp-bg-elevated);
-  border: 1px solid var(--wp-border);
-}
-
-.wp-docs .wp-card-accent {
-  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
-  border: 1px solid #bfdbfe;
-}
-
-.wp-docs .wp-keyline {
-  border-color: var(--wp-border);
-}
-
-.wp-docs .wp-strong-callout {
-  background: var(--wp-accent-soft);
-  border: 1px solid #bfdbfe;
-  color: var(--wp-text);
-}
-
-.wp-docs .wp-table-wrap {
-  background: var(--wp-bg-elevated);
-  border: 1px solid var(--wp-border);
-}
-
-.wp-docs .wp-table-head {
-  background: var(--wp-bg-soft);
-  color: var(--wp-text-dim);
-}
-
-.wp-docs .wp-table-row-alt {
-  background: #f8fafc;
-}
-
-.wp-docs .wp-sticky-progress {
-  backdrop-filter: blur(10px);
-  background: rgba(248, 250, 252, 0.92);
-  border-bottom: 1px solid var(--wp-border);
+.wp-dim {
+  color: var(--wp-text-dim, var(--idx-muted-dim));
 }
 
 .wp-docs .wp-disclaimer p {

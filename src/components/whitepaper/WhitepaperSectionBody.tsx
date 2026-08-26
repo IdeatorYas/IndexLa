@@ -86,33 +86,17 @@ function visualsAfter(
 function ConceptCard({
   children,
   index,
-  lightTheme,
 }: {
   children: ReactNode;
   index: number;
-  lightTheme: boolean;
 }) {
   return (
-    <div
-      className={`relative my-4 overflow-hidden rounded-xl border px-4 py-4 sm:px-5 sm:py-5 ${
-        lightTheme
-          ? "border-[#dbe4f0] bg-white shadow-sm"
-          : "border-line bg-deep/45"
-      }`}
-    >
+    <div className="relative my-4 overflow-hidden rounded-xl border border-line bg-deep px-4 py-4 shadow-sm sm:px-5 sm:py-5">
       <div
-        className={`pointer-events-none absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b ${
-          lightTheme
-            ? "from-[#2563eb] via-[#6366f1]/80 to-transparent"
-            : "from-electric via-purple-bright/80 to-transparent"
-        }`}
+        className="pointer-events-none absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b from-electric via-purple-bright/80 to-transparent"
         aria-hidden
       />
-      <p
-        className={`mb-2 text-[0.65rem] font-semibold tabular-nums tracking-[0.14em] ${
-          lightTheme ? "text-[#2563eb]" : "text-electric"
-        }`}
-      >
+      <p className="mb-2 text-[0.65rem] font-semibold tabular-nums tracking-[0.14em] text-electric">
         {String(index + 1).padStart(2, "0")}
       </p>
       {children}
@@ -123,38 +107,32 @@ function ConceptCard({
 export function WhitepaperSectionBody({
   slug,
   markdown,
-  lightTheme = false,
 }: {
   slug: string;
   markdown: string;
-  lightTheme?: boolean;
 }) {
   const visuals = getSectionVisuals(slug);
   const before = visuals.filter(
     (v) => v.placement === "before" && !v.afterHeadingId,
   );
   const end = visuals.filter((v) => v.placement === "end");
+  const isDisclaimer = slug === "disclaimer";
 
   const blocks = splitIntoHeadingBlocks(markdown);
   const prologueVisuals = visualsAfter(visuals, null);
   const cardifyLevel = CARDIFY_SECTIONS[slug] ?? null;
   const accentLists = ACCENT_LIST_SECTIONS.has(slug);
-  const isDisclaimer = slug === "disclaimer";
 
   let cardIndexCounter = 0;
 
   return (
-    <div className={isDisclaimer && lightTheme ? "wp-disclaimer" : undefined}>
+    <div className={isDisclaimer ? "wp-disclaimer" : undefined}>
       {before.map((v) => (
         <div key={v.id}>{v.node}</div>
       ))}
 
       {blocks.length === 0 ? (
-        <WhitepaperMarkdown
-          markdown={markdown}
-          accentLists={accentLists}
-          lightTheme={lightTheme}
-        />
+        <WhitepaperMarkdown markdown={markdown} accentLists={accentLists} />
       ) : (
         blocks.map((block, index) => {
           const asCard =
@@ -166,16 +144,13 @@ export function WhitepaperSectionBody({
               resetTop={index === 0 || asCard}
               card={asCard}
               accentLists={accentLists && !asCard}
-              lightTheme={lightTheme}
             />
           );
 
           return (
             <div key={`${block.id ?? "block"}-${index}`}>
               {asCard ? (
-                <ConceptCard index={cardIndex} lightTheme={lightTheme}>
-                  {content}
-                </ConceptCard>
+                <ConceptCard index={cardIndex}>{content}</ConceptCard>
               ) : (
                 content
               )}

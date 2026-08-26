@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Source_Sans_3 } from "next/font/google";
 import { EarlyAccessProvider } from "@/components/early-access/EarlyAccessProvider";
 import { SiteChrome } from "@/components/layout/SiteChrome";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { ThemeScript } from "@/components/theme/ThemeScript";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({
@@ -70,11 +72,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${body.variable}`}
+      data-theme="dark"
+      suppressHydrationWarning
+    >
+      <head>
+        <ThemeScript />
+      </head>
       <body className="min-h-screen antialiased">
-        <EarlyAccessProvider>
-          <SiteChrome>{children}</SiteChrome>
-        </EarlyAccessProvider>
+        <ThemeProvider>
+          <EarlyAccessProvider>
+            <SiteChrome>{children}</SiteChrome>
+          </EarlyAccessProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

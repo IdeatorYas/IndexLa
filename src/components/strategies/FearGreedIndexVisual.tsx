@@ -66,14 +66,14 @@ export function FearGreedIndexVisual() {
                 y1={y1}
                 x2={x2}
                 y2={y2}
-                stroke="rgba(244,241,255,0.35)"
+                stroke="color-mix(in srgb, var(--idx-ink) 35%, transparent)"
                 strokeWidth="1.5"
               />
             );
           })}
 
           {/* Value marker on the arc at exactly 10 */}
-          <circle cx={markX} cy={markY} r="6" fill="#f87171" stroke="#0a0614" strokeWidth="2" />
+          <circle cx={markX} cy={markY} r="6" fill="#f87171" stroke="var(--idx-void)" strokeWidth="2" />
 
           {/* Needle from hub to value 10 */}
           <line
@@ -81,12 +81,12 @@ export function FearGreedIndexVisual() {
             y1={cy}
             x2={tipX}
             y2={tipY}
-            stroke="#f4f1ff"
+            stroke="var(--idx-ink)"
             strokeWidth="2.5"
             strokeLinecap="round"
           />
-          <circle cx={cx} cy={cy} r="6" fill="#0a0614" stroke="#38bdf8" strokeWidth="2" />
-          <circle cx={cx} cy={cy} r="2" fill="#38bdf8" />
+          <circle cx={cx} cy={cy} r="6" fill="var(--idx-void)" stroke="var(--idx-electric)" strokeWidth="2" />
+          <circle cx={cx} cy={cy} r="2" fill="var(--idx-electric)" />
         </svg>
       </div>
 

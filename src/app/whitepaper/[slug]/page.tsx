@@ -41,7 +41,6 @@ export default async function WhitepaperSectionPage({
       <WhitepaperSectionBody
         slug={section.slug}
         markdown={prepareBodyMarkdown("whitepaper", section)}
-        lightTheme
       />
     </WhitepaperShell>
   );

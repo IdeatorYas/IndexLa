@@ -149,3 +149,62 @@
     animation: none;
   }
 }
+
+/* Light theme — align Stable Club with global INDEXLA palette */
+html[data-theme="light"] .stable-club-page {
+  --sc-bg: #f4f7fb;
+  --sc-bg-alt: #ffffff;
+  --sc-surface: rgba(255, 255, 255, 0.92);
+  --sc-surface-elevated: #ffffff;
+  --sc-navy: #0f172a;
+  --sc-navy-muted: #475569;
+  --sc-muted: #475569;
+  --sc-muted-dim: #64748b;
+  --sc-blue: #2563eb;
+  --sc-blue-soft: rgba(37, 99, 235, 0.1);
+  --sc-teal: #0891b2;
+  --sc-teal-soft: rgba(8, 145, 178, 0.1);
+  --sc-green: #059669;
+  --sc-green-soft: rgba(5, 150, 105, 0.1);
+  --sc-line: rgba(37, 99, 235, 0.12);
+  --sc-line-strong: rgba(37, 99, 235, 0.28);
+  --sc-shadow: 0 8px 24px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --sc-shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+html[data-theme="light"] .stable-club-page .sc-gradient-text {
+  background-image: linear-gradient(
+    135deg,
+    #2563eb 0%,
+    #6366f1 55%,
+    #0ea5e9 100%
+  );
+}
+
+html[data-theme="light"] .stable-club-page .sc-hero-glow {
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 50% 35%,
+      rgba(37, 99, 235, 0.1),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at 75% 55%,
+      rgba(99, 102, 241, 0.08),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 40% 35% at 20% 70%,
+      rgba(14, 165, 233, 0.06),
+      transparent 50%
+    ),
+    linear-gradient(180deg, #f8fafc 0%, #f4f7fb 100%);
+}
+
+html[data-theme="light"] .stable-club-page .sc-highlight-band {
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  background: rgba(37, 99, 235, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}

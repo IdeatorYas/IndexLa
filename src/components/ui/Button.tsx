@@ -24,9 +24,9 @@ const variants = {
   primary:
     "bg-gradient-to-r from-purple to-blue text-white shadow-[0_12px_40px_rgba(59,130,246,0.28)] hover:brightness-110",
   secondary:
-    "border border-white/15 bg-white/[0.04] text-white backdrop-blur-sm hover:border-electric/40 hover:bg-white/[0.07]",
+    "border border-line bg-panel/40 text-ink backdrop-blur-sm hover:border-electric/40 hover:bg-panel/70",
   ghost:
-    "border border-white/12 bg-transparent text-ink hover:border-purple-bright/40 hover:bg-white/[0.04]",
+    "border border-line bg-transparent text-ink hover:border-purple-bright/40 hover:bg-panel/50",
 };
 
 const baseClass =

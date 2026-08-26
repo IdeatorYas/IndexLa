@@ -1,0 +1,310 @@
+/* INDEXLA light theme — premium institutional palette (matches whitepaper) */
+
+html[data-theme="light"] {
+  --idx-void: #f4f7fb;
+  --idx-deep: #ffffff;
+  --idx-panel: #eef4fc;
+  --idx-panel-elevated: #ffffff;
+  --idx-purple: #6366f1;
+  --idx-purple-bright: #818cf8;
+  --idx-purple-deep: #4338ca;
+  --idx-blue: #2563eb;
+  --idx-electric: #2563eb;
+  --idx-cyan: #0891b2;
+  --idx-ink: #0f172a;
+  --idx-muted: #475569;
+  --idx-muted-dim: #64748b;
+  --idx-line: rgba(37, 99, 235, 0.12);
+  --idx-line-strong: rgba(37, 99, 235, 0.28);
+  --idx-success: #059669;
+  --idx-danger: #dc2626;
+  --idx-surface-hover: rgba(37, 99, 235, 0.06);
+  --idx-header-scrolled-bg: rgba(248, 250, 252, 0.92);
+  --idx-header-scrolled-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --idx-gradient-text: linear-gradient(
+    135deg,
+    #2563eb 0%,
+    #6366f1 55%,
+    #0ea5e9 100%
+  );
+  --idx-hero-glow:
+    radial-gradient(ellipse 70% 55% at 50% 20%, rgba(37, 99, 235, 0.1), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 80% 50%, rgba(99, 102, 241, 0.08), transparent 55%),
+    radial-gradient(ellipse 40% 35% at 15% 65%, rgba(14, 165, 233, 0.06), transparent 50%);
+  --idx-glass-bg: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(239, 246, 255, 0.88) 100%
+  );
+  --idx-glass-border: rgba(37, 99, 235, 0.14);
+  --idx-glass-shadow: 0 8px 24px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --idx-glass-soft-bg: rgba(255, 255, 255, 0.88);
+  --idx-selection-fg: #0f172a;
+}
+
+/* Whitepaper / docs surfaces follow global light theme */
+html[data-theme="light"] .wp-docs {
+  color: var(--idx-ink);
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    var(--idx-void) 12rem,
+    var(--idx-void) 100%
+  );
+}
+
+html[data-theme="light"] .wp-docs {
+  --wp-bg: var(--idx-void);
+  --wp-bg-elevated: #ffffff;
+  --wp-bg-soft: var(--idx-panel);
+  --wp-text: var(--idx-ink);
+  --wp-text-muted: var(--idx-muted);
+  --wp-text-dim: var(--idx-muted-dim);
+  --wp-border: #dbe4f0;
+  --wp-accent: var(--idx-electric);
+  --wp-accent-soft: #eff6ff;
+}
+
+html[data-theme="dark"] .wp-docs {
+  color: var(--idx-ink);
+  background: var(--idx-void);
+}
+
+html[data-theme="dark"] .wp-docs {
+  --wp-bg: var(--idx-void);
+  --wp-bg-elevated: var(--idx-deep);
+  --wp-bg-soft: var(--idx-panel);
+  --wp-text: var(--idx-ink);
+  --wp-text-muted: var(--idx-muted);
+  --wp-text-dim: var(--idx-muted-dim);
+  --wp-border: color-mix(in srgb, var(--idx-line) 100%, transparent);
+  --wp-accent: var(--idx-electric);
+  --wp-accent-soft: color-mix(in srgb, var(--idx-electric) 12%, transparent);
+}
+
+html[data-theme="light"] .wp-diagram {
+  background: #ffffff;
+  border-color: #dbe4f0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="dark"] .wp-diagram {
+  background: color-mix(in srgb, var(--idx-deep) 85%, transparent);
+  border-color: var(--idx-line);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+}
+
+html[data-theme="dark"] .wp-diagram-cap {
+  border-bottom-color: var(--idx-line);
+  color: var(--idx-muted-dim);
+  background: color-mix(in srgb, var(--idx-panel) 80%, transparent);
+}
+
+html[data-theme="light"] .wp-progress-track {
+  background: #e2e8f0;
+}
+
+html[data-theme="dark"] .wp-progress-track {
+  background: var(--idx-panel);
+}
+
+html[data-theme="light"] .wp-progress-fill {
+  background: linear-gradient(90deg, #2563eb, #6366f1);
+}
+
+html[data-theme="dark"] .wp-progress-fill {
+  background: linear-gradient(90deg, var(--idx-electric), var(--idx-purple-bright));
+}
+
+html[data-theme="light"] .wp-sticky-progress {
+  backdrop-filter: blur(10px);
+  background: rgba(248, 250, 252, 0.92);
+  border-bottom: 1px solid #dbe4f0;
+}
+
+html[data-theme="dark"] .wp-sticky-progress {
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--idx-void) 92%, transparent);
+  border-bottom: 1px solid var(--idx-line);
+}
+
+html[data-theme="light"] .wp-table-row-alt {
+  background: #f8fafc;
+}
+
+html[data-theme="dark"] .wp-table-row-alt {
+  background: color-mix(in srgb, var(--idx-panel) 55%, transparent);
+}
+
+html[data-theme="light"] .wp-table-head {
+  background: var(--idx-panel);
+  color: var(--idx-muted-dim);
+}
+
+html[data-theme="dark"] .wp-table-head {
+  background: color-mix(in srgb, var(--idx-panel) 80%, transparent);
+  color: var(--idx-muted-dim);
+}
+
+/* Light theme: improve contrast on white/opacity utilities used in nav & cards */
+html[data-theme="light"] .bg-white\/5,
+html[data-theme="light"] .hover\:bg-white\/5:hover {
+  background-color: rgba(37, 99, 235, 0.06) !important;
+}
+
+html[data-theme="light"] .border-white\/12 {
+  border-color: var(--idx-line) !important;
+}
+
+html[data-theme="light"] .border-white\/\[0\.05\] {
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="light"] .bg-void\/35,
+html[data-theme="light"] .bg-void\/30,
+html[data-theme="light"] .bg-void\/50,
+html[data-theme="light"] .bg-void\/80 {
+  background-color: color-mix(
+    in srgb,
+    var(--idx-panel) 88%,
+    transparent
+  ) !important;
+}
+
+html[data-theme="light"] .ring-white\/10 {
+  --tw-ring-color: rgba(37, 99, 235, 0.12) !important;
+}
+
+html[data-theme="light"] .shadow-\[0_16px_48px_rgba\(0\,0\,0\,0\.45\)\] {
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1) !important;
+}
+
+html[data-theme="light"] .shadow-\[inset_0_1px_0_rgba\(255\,255\,255\,0\.03\)\] {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Institutional diagram cards — dark theme variants */
+html[data-theme="dark"] .wp-diagram [class*="border-[#dbe4f0]"] {
+  border-color: var(--idx-line) !important;
+}
+
+html[data-theme="dark"] .wp-diagram [class*="bg-[#eff6ff]"],
+html[data-theme="dark"] .wp-diagram [class*="bg-white"] {
+  background-color: color-mix(in srgb, var(--idx-panel) 70%, transparent) !important;
+}
+
+html[data-theme="dark"] .wp-diagram [class*="text-[#0f172a]"] {
+  color: var(--idx-ink) !important;
+}
+
+html[data-theme="dark"] .wp-diagram [class*="text-[#475569]"],
+html[data-theme="dark"] .wp-diagram [class*="text-[#64748b]"] {
+  color: var(--idx-muted) !important;
+}
+
+html[data-theme="dark"] .wp-diagram [class*="text-[#2563eb]"] {
+  color: var(--idx-electric) !important;
+}
+
+html[data-theme="dark"] .wp-diagram [class*="border-[#bfdbfe]"] {
+  border-color: color-mix(in srgb, var(--idx-electric) 28%, transparent) !important;
+}
+
+html[data-theme="light"] .wp-explore-cta {
+  border-color: #dbe4f0;
+}
+
+html[data-theme="dark"] .wp-explore-cta {
+  border-color: var(--idx-line);
+}
+
+html[data-theme="dark"] .wp-explore-cta a {
+  border-color: color-mix(in srgb, var(--idx-electric) 35%, transparent);
+  background: color-mix(in srgb, var(--idx-electric) 10%, transparent);
+  color: var(--idx-electric);
+}
+
+html[data-theme="dark"] .wp-explore-cta a:hover {
+  border-color: color-mix(in srgb, var(--idx-electric) 55%, transparent);
+  background: color-mix(in srgb, var(--idx-electric) 15%, transparent);
+  color: var(--idx-ink);
+}
+
+/* Whitepaper sidebar active link */
+html[data-theme="light"] .wp-nav-active {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+html[data-theme="dark"] .wp-nav-active {
+  background: color-mix(in srgb, var(--idx-electric) 12%, transparent);
+  color: var(--idx-electric);
+}
+
+/* Light theme: remap common dark-era opacity utilities site-wide */
+html[data-theme="light"] .border-white\/10,
+html[data-theme="light"] .border-white\/12,
+html[data-theme="light"] .border-white\/15,
+html[data-theme="light"] .border-white\/18,
+html[data-theme="light"] .border-white\/20 {
+  border-color: var(--idx-line) !important;
+}
+
+html[data-theme="light"] .border-white\/\[0\.05\],
+html[data-theme="light"] .border-white\/\[0\.06\],
+html[data-theme="light"] .border-white\/\[0\.07\],
+html[data-theme="light"] .border-white\/\[0\.08\],
+html[data-theme="light"] .border-white\/\[0\.09\],
+html[data-theme="light"] .border-white\/\[0\.1\] {
+  border-color: var(--idx-line) !important;
+}
+
+html[data-theme="light"] .divide-white\/\[0\.06\] > :not([hidden]) ~ :not([hidden]),
+html[data-theme="light"] .divide-white\/\[0\.07\] > :not([hidden]) ~ :not([hidden]),
+html[data-theme="light"] .divide-white\/\[0\.08\] > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--idx-line) !important;
+}
+
+html[data-theme="light"] .bg-white\/\[0\.03\],
+html[data-theme="light"] .bg-white\/\[0\.035\],
+html[data-theme="light"] .bg-white\/\[0\.04\],
+html[data-theme="light"] .bg-white\/\[0\.06\],
+html[data-theme="light"] .bg-white\/\[0\.07\] {
+  background-color: rgba(37, 99, 235, 0.04) !important;
+}
+
+html[data-theme="light"] .bg-white\/10,
+html[data-theme="light"] .bg-white\/15,
+html[data-theme="light"] .bg-white\/25 {
+  background-color: rgba(37, 99, 235, 0.08) !important;
+}
+
+html[data-theme="light"] .hover\:border-white\/15:hover,
+html[data-theme="light"] .hover\:border-white\/16:hover,
+html[data-theme="light"] .hover\:border-white\/18:hover,
+html[data-theme="light"] .hover\:border-white\/20:hover {
+  border-color: var(--idx-line-strong) !important;
+}
+
+html[data-theme="light"] .hover\:bg-white\/\[0\.03\]:hover,
+html[data-theme="light"] .hover\:bg-white\/\[0\.06\]:hover,
+html[data-theme="light"] .hover\:bg-white\/\[0\.07\]:hover {
+  background-color: rgba(37, 99, 235, 0.06) !important;
+}
+
+html[data-theme="light"] .shadow-\[0_16px_48px_rgba\(0\,0\,0\,0\.22\)\],
+html[data-theme="light"] .shadow-\[0_16px_48px_rgba\(0\,0\,0\,0\.24\)\],
+html[data-theme="light"] .shadow-\[0_24px_80px_rgba\(0\,0\,0\,0\.35\)\],
+html[data-theme="light"] .shadow-\[0_24px_80px_rgba\(0\,0\,0\,0\.4\)\],
+html[data-theme="light"] .shadow-\[0_28px_72px_rgba\(0\,0\,0\,0\.65\)\] {
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="light"] .shadow-\[inset_0_1px_0_rgba\(255\,255\,255\,0\.04\)\] {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+html[data-theme="light"] .shadow-\[0_0_28px_rgba\(56\,189\,248\,0\.12\)\] {
+  box-shadow: 0 0 28px rgba(37, 99, 235, 0.12) !important;
+}

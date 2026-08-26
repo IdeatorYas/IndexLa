@@ -11,6 +11,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { NAV_LINKS, type NavLink } from "@/lib/site";
 
 function linkIsActive(href: string, pathname: string) {
@@ -177,8 +178,8 @@ function WhitepaperDesktopDropdown({
                   data-nav-dropdown-item
                   className={`block whitespace-nowrap px-4 py-2.5 text-[1rem] font-medium tracking-[-0.01em] transition-colors ${
                     childActive
-                      ? "bg-white/5 text-ink"
-                      : "text-muted hover:bg-white/5 hover:text-ink"
+                      ? "bg-panel/60 text-ink"
+                      : "text-muted hover:bg-panel/60 hover:text-ink"
                   }`}
                   onClick={close}
                 >
@@ -223,7 +224,7 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-line bg-void/80 shadow-[0_12px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl"
+          ? "header-scrolled border-b border-line backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
@@ -251,11 +252,14 @@ export function SiteHeader() {
               </Link>
             )
           )}
+          <ThemeToggle className="hidden lg:inline-flex" />
         </nav>
 
-        <button
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/12 lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line"
           aria-expanded={open}
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
@@ -266,6 +270,7 @@ export function SiteHeader() {
             <span className="h-px w-3 bg-ink" />
           </div>
         </button>
+        </div>
       </div>
 
       {open && (
@@ -278,7 +283,7 @@ export function SiteHeader() {
                   <div key={link.href} className="flex flex-col">
                     <button
                       type="button"
-                      className={`flex items-center justify-between rounded-lg px-3 py-3.5 text-left text-[1.1rem] font-medium transition-colors hover:bg-white/5 hover:text-ink ${
+                      className={`flex items-center justify-between rounded-lg px-3 py-3.5 text-left text-[1.1rem] font-medium transition-colors hover:bg-panel/60 hover:text-ink ${
                         active ? "text-ink" : "text-muted"
                       }`}
                       aria-expanded={mobileWhitepaperOpen}
@@ -312,7 +317,7 @@ export function SiteHeader() {
                             <Link
                               key={`${child.href}-${child.label}`}
                               href={child.href}
-                              className={`rounded-lg px-3 py-3 text-[1.05rem] font-medium transition-colors hover:bg-white/5 hover:text-ink ${
+                              className={`rounded-lg px-3 py-3 text-[1.05rem] font-medium transition-colors hover:bg-panel/60 hover:text-ink ${
                                 childActive ? "text-ink" : "text-muted"
                               }`}
                               onClick={() => setOpen(false)}
@@ -332,7 +337,7 @@ export function SiteHeader() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-lg px-3 py-3.5 text-[1.1rem] font-medium transition-colors hover:bg-white/5 hover:text-ink ${
+                  className={`rounded-lg px-3 py-3.5 text-[1.1rem] font-medium transition-colors hover:bg-panel/60 hover:text-ink ${
                     active ? "text-ink" : "text-muted"
                   }`}
                   onClick={() => setOpen(false)}

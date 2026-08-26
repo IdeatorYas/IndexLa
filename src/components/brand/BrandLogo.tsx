@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { LOGO_TRANSPARENT } from "@/lib/site";
+import { useTheme } from "@/components/theme/ThemeProvider";
+import { LOGO_ON_DARK, LOGO_ON_LIGHT } from "@/lib/site";
 
 type BrandLogoProps = {
   className?: string;
@@ -8,6 +11,9 @@ type BrandLogoProps = {
 };
 
 export function BrandLogo({ className = "", priority = false }: BrandLogoProps) {
+  const { theme } = useTheme();
+  const src = theme === "light" ? LOGO_ON_LIGHT : LOGO_ON_DARK;
+
   return (
     <Link
       href="/"
@@ -16,7 +22,7 @@ export function BrandLogo({ className = "", priority = false }: BrandLogoProps) 
     >
       <span className="relative block h-[3.65rem] w-[10.25rem] sm:h-16 sm:w-[11.75rem]">
         <Image
-          src={LOGO_TRANSPARENT}
+          src={src}
           alt="INDEXLA"
           fill
           sizes="(max-width: 640px) 164px, 188px"

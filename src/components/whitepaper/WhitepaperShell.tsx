@@ -42,7 +42,6 @@ export function WhitepaperShell({
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const basePath = docsBasePath(edition);
-  const light = edition === "whitepaper";
 
   const activeIndex = Math.max(
     0,
@@ -61,7 +60,6 @@ export function WhitepaperShell({
   }, [section.slug, edition]);
 
   useEffect(() => {
-    if (!light) return;
     const onScroll = () => {
       const el = document.documentElement;
       const max = el.scrollHeight - el.clientHeight;
@@ -70,7 +68,7 @@ export function WhitepaperShell({
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [light, section.slug]);
+  }, [section.slug]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -103,57 +101,33 @@ export function WhitepaperShell({
   const sectionProgress = ((activeIndex + 1) / total) * 100;
 
   return (
-    <main
-      className={`relative min-h-screen ${
-        light ? "wp-docs" : "bg-void"
-      }`}
-    >
-      {light ? (
-        <div
-          className="wp-no-print pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]"
-          aria-hidden
-        >
-          <div
-            className="wp-progress-fill h-full transition-[width] duration-150"
-            style={{ width: `${scrollProgress}%` }}
-          />
-        </div>
-      ) : (
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-[22rem] hero-glow opacity-35"
-          aria-hidden
-        />
-      )}
-
+    <main className="wp-docs relative min-h-screen">
       <div
-        className={`wp-no-print sticky top-0 z-50 ${
-          light ? "wp-sticky-progress" : "bg-void/90 backdrop-blur-md"
-        }`}
+        className="wp-no-print pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]"
+        aria-hidden
       >
+        <div
+          className="wp-progress-fill h-full transition-[width] duration-150"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
+      <div className="wp-no-print wp-sticky-progress sticky top-0 z-50">
         <div className="section-pad mx-auto max-w-[84rem] pt-[5.25rem] pb-4 lg:pt-[5.5rem]">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--wp-border,#1e293b)] pb-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
             <DocsEditionSwitcher
               edition={edition}
               whitepaperHref={switcherHrefs.whitepaper}
               technicalHref={switcherHrefs.technical}
-              light={light}
             />
             <div className="flex flex-wrap items-center gap-3">
-              <p
-                className={`text-[0.85rem] font-semibold tabular-nums ${
-                  light ? "wp-accent-text" : "text-electric"
-                }`}
-              >
+              <p className="wp-accent-text text-[0.85rem] font-semibold tabular-nums">
                 {formatProgress(activeIndex, total)}
               </p>
               <button
                 type="button"
                 onClick={() => setMobileOpen(true)}
-                className={`inline-flex items-center gap-2 rounded-md border px-3.5 py-2 text-sm font-semibold transition-colors lg:hidden ${
-                  light
-                    ? "border-[#dbe4f0] bg-white text-[#0f172a] hover:border-[#2563eb]/40 hover:text-[#2563eb]"
-                    : "border-line bg-deep/80 text-ink hover:border-electric/40 hover:text-electric"
-                }`}
+                className="inline-flex items-center gap-2 rounded-md border border-line bg-deep px-3.5 py-2 text-sm font-semibold text-ink transition-colors hover:border-electric/40 hover:text-electric lg:hidden"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
                   <path
@@ -169,26 +143,14 @@ export function WhitepaperShell({
           </div>
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-            <p
-              className={`text-[0.68rem] font-semibold uppercase tracking-[0.16em] ${
-                light ? "wp-dim" : "text-muted-dim"
-              }`}
-            >
+            <p className="wp-dim text-[0.68rem] font-semibold uppercase tracking-[0.16em]">
               {docTitle}
             </p>
           </div>
 
-          <div
-            className={`mt-3 h-1 overflow-hidden rounded-full ${
-              light ? "wp-progress-track" : "bg-panel"
-            }`}
-          >
+          <div className="wp-progress-track mt-3 h-1 overflow-hidden rounded-full">
             <div
-              className={`h-full rounded-full transition-all duration-500 ${
-                light
-                  ? "wp-progress-fill"
-                  : "bg-gradient-to-r from-electric to-purple-bright"
-              }`}
+              className="wp-progress-fill h-full rounded-full transition-all duration-500"
               style={{ width: `${sectionProgress}%` }}
             />
           </div>
@@ -202,27 +164,14 @@ export function WhitepaperShell({
           activeSlug={section.slug}
           mobileOpen={mobileOpen}
           onMobileClose={() => setMobileOpen(false)}
-          light={light}
         />
 
         <article className="min-w-0">
-          <header
-            className={`mb-8 border-b pb-6 ${
-              light ? "border-[#dbe4f0]" : "border-line"
-            }`}
-          >
-            <p
-              className={`text-[0.7rem] font-semibold uppercase tracking-[0.18em] ${
-                light ? "wp-accent-text" : "text-electric"
-              }`}
-            >
+          <header className="mb-8 border-b border-line pb-6">
+            <p className="wp-accent-text text-[0.7rem] font-semibold uppercase tracking-[0.18em]">
               Section {sectionLabel}
             </p>
-            <h1
-              className={`display mt-3 text-[clamp(1.85rem,3.6vw,2.65rem)] tracking-[-0.03em] text-balance ${
-                light ? "text-[#0f172a]" : "text-ink"
-              }`}
-            >
+            <h1 className="display mt-3 text-[clamp(1.85rem,3.6vw,2.65rem)] tracking-[-0.03em] text-balance text-ink">
               {section.headline}
             </h1>
           </header>
@@ -231,16 +180,10 @@ export function WhitepaperShell({
 
           <nav
             aria-label="Section pagination"
-            className={`mt-14 border-t pt-6 ${
-              light ? "border-[#dbe4f0]" : "border-line"
-            }`}
+            className="mt-14 border-t border-line pt-6"
           >
             <div className="mb-4 flex items-center justify-between gap-3">
-              <p
-                className={`text-[0.8rem] font-semibold tabular-nums ${
-                  light ? "wp-muted" : "text-muted"
-                }`}
-              >
+              <p className="wp-muted text-[0.8rem] font-semibold tabular-nums">
                 {formatProgress(activeIndex, total)}
               </p>
             </div>
@@ -248,24 +191,12 @@ export function WhitepaperShell({
               {prev ? (
                 <Link
                   href={`${basePath}/${prev.slug}`}
-                  className={`rounded-xl border px-4 py-3.5 transition-colors ${
-                    light
-                      ? "border-[#dbe4f0] bg-white hover:border-[#2563eb]/35 shadow-sm"
-                      : "border-line bg-deep/60 hover:border-electric/40"
-                  }`}
+                  className="rounded-xl border border-line bg-deep px-4 py-3.5 shadow-sm transition-colors hover:border-electric/35"
                 >
-                  <p
-                    className={`text-[0.68rem] font-semibold uppercase tracking-[0.12em] ${
-                      light ? "wp-dim" : "text-muted-dim"
-                    }`}
-                  >
+                  <p className="wp-dim text-[0.68rem] font-semibold uppercase tracking-[0.12em]">
                     Previous
                   </p>
-                  <p
-                    className={`mt-1 text-[0.95rem] font-semibold ${
-                      light ? "text-[#0f172a]" : "text-ink"
-                    }`}
-                  >
+                  <p className="mt-1 text-[0.95rem] font-semibold text-ink">
                     {prev.headline}
                   </p>
                 </Link>
@@ -275,24 +206,12 @@ export function WhitepaperShell({
               {next ? (
                 <Link
                   href={`${basePath}/${next.slug}`}
-                  className={`rounded-xl border px-4 py-3.5 transition-colors sm:text-right ${
-                    light
-                      ? "border-[#dbe4f0] bg-white hover:border-[#2563eb]/35 shadow-sm"
-                      : "border-line bg-deep/60 hover:border-electric/40"
-                  }`}
+                  className="rounded-xl border border-line bg-deep px-4 py-3.5 shadow-sm transition-colors hover:border-electric/35 sm:text-right"
                 >
-                  <p
-                    className={`text-[0.68rem] font-semibold uppercase tracking-[0.12em] ${
-                      light ? "wp-dim" : "text-muted-dim"
-                    }`}
-                  >
+                  <p className="wp-dim text-[0.68rem] font-semibold uppercase tracking-[0.12em]">
                     Next
                   </p>
-                  <p
-                    className={`mt-1 text-[0.95rem] font-semibold ${
-                      light ? "text-[#0f172a]" : "text-ink"
-                    }`}
-                  >
+                  <p className="mt-1 text-[0.95rem] font-semibold text-ink">
                     {next.headline}
                   </p>
                 </Link>
