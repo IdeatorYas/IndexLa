@@ -1,20 +1,17 @@
 import { cookies } from "next/headers";
+import { AlignedEconomicsSection } from "@/components/home/AlignedEconomicsSection";
 import { BuildAutomateSection } from "@/components/home/BuildAutomateSection";
-import { ContactUsSection } from "@/components/home/ContactUsSection";
-import { CreatorsSection } from "@/components/home/CreatorsSection";
-import { DexlaSection } from "@/components/home/DexlaSection";
-import { DistributionSection } from "@/components/home/DistributionSection";
-import { FeesSection } from "@/components/home/FeesSection";
+import { CreatorRevenueSection } from "@/components/home/CreatorRevenueSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { Hero } from "@/components/home/Hero";
+import { HomeDisclaimerSection } from "@/components/home/HomeDisclaimerSection";
 import { HomeFaqSection } from "@/components/home/HomeFaqSection";
 import { HomeRevealGate } from "@/components/home/reveal/HomeRevealGate";
 import { REVEAL_COOKIE } from "@/components/home/reveal/revealAssets";
+import { InvestmentStylesSection } from "@/components/home/InvestmentStylesSection";
+import { MissingLayerSection } from "@/components/home/MissingLayerSection";
 import { PortfolioExamplesSection } from "@/components/home/PortfolioExamplesSection";
-import { SecurityControlSection } from "@/components/home/SecurityControlSection";
-import { TokenizationSection } from "@/components/home/TokenizationSection";
-import { WhatIsIndexlaSection } from "@/components/home/WhatIsIndexlaSection";
-import { WhyIndexlaDifferentSection } from "@/components/home/WhyIndexlaDifferentSection";
+import { WhyNowSection } from "@/components/home/WhyNowSection";
 
 export default async function Home({
   searchParams,
@@ -29,19 +26,16 @@ export default async function Home({
   const page = (
     <main>
       <Hero />
-      <WhatIsIndexlaSection />
-      <WhyIndexlaDifferentSection />
-      <DistributionSection />
-      <TokenizationSection />
+      <MissingLayerSection />
+      <WhyNowSection />
+      <InvestmentStylesSection />
+      <CreatorRevenueSection />
       <BuildAutomateSection />
       <PortfolioExamplesSection />
-      <SecurityControlSection />
-      <CreatorsSection />
-      <FeesSection />
-      <DexlaSection />
+      <AlignedEconomicsSection />
       <FinalCtaSection />
       <HomeFaqSection />
-      <ContactUsSection />
+      <HomeDisclaimerSection />
     </main>
   );
 

@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
-import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
   homeBody,
   homeCta,
@@ -29,42 +28,22 @@ export function FinalCtaSection() {
           transition={{ duration: 0.7 }}
         >
           <h2 className={`${homeH2} ${homeMeasure}`}>
-            Invest in Everything. Own Everything.{" "}
-            <span className="gradient-text">Control Everything.</span>
+            Build It. Automate It.{" "}
+            <span className="gradient-text">Own It.</span>
           </h2>
-          <p className={`mt-6 ${homeMeasure} ${homeBody}`}>
-            Build programmable portfolios across the evolving on-chain financial
-            system while keeping ownership of your assets.
-          </p>
+          <div className={`mt-6 space-y-3 ${homeMeasure} ${homeBody}`}>
+            <p>
+              Diversified portfolios. Stablecoin liquidity. High-risk memecoin
+              baskets.
+            </p>
+            <p className="font-semibold text-ink">One platform. Full control.</p>
+          </div>
           <div className="mt-10 flex flex-col items-center justify-center">
             <EarlyAccessCta
               className={`${homeCta} w-full max-w-[22rem] sm:w-auto`}
             >
               Reserve Early Access
             </EarlyAccessCta>
-          </div>
-
-          <div
-            className={`mt-14 border-t border-line pt-10 text-left sm:text-center ${homeMeasure}`}
-          >
-            <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-muted-dim">
-              Disclaimer
-            </p>
-            <p className="mt-4 text-[0.92rem] leading-relaxed text-muted text-pretty text-balance sm:text-[0.98rem]">
-              Digital assets, tokenized assets and automated strategies involve
-              significant risk, including possible loss of capital. Nothing on
-              this website constitutes investment, financial, legal or tax
-              advice. Past performance does not guarantee future results. Asset
-              availability, functionality and eligibility may vary by
-              jurisdiction. INDEXLA does not guarantee investment returns or
-              execution outcomes.
-            </p>
-            <div className="mt-5 text-center">
-              <HomeReadMore
-                href="/whitepaper/disclaimer"
-                label="Full Disclaimer →"
-              />
-            </div>
           </div>
         </motion.div>
       </div>

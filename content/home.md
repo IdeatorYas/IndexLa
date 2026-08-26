@@ -2,95 +2,144 @@
 
 ## 1. HERO
 
-### **One Portfolio. Every Asset. Every Chain.**
+DECENTRALIZED PORTFOLIO MANAGEMENT & DISTRIBUTION
 
-Hold the real assets in your wallet. Set the rules once. Automate execution 
+### One Portfolio. Every Asset. Every Chain.
 
-keys never leave your control.
+Automated Portfolios and Indexes. Direct Ownership.
 
-Build diversified portfolios across crypto and tokenized assets.
+Creators build. INDEXLA automates. Investors own.
 
-0% Management · 0% Performance · 0% Exit · Only 1% When Trades Execute
+0% Management · 0% Performance · 0% Exit · 1% Only When Trades Execute
 
-Reserve Early Access
+Reserve Early Access →
 
-Non-Custodial · Revocable Permissions · No Admin Access to User Funds
-
-
-
----
-
-## 2. WHAT IS INDEXLA?
-
-INDEXLA is a decentralized portfolio management platform for crypto and tokenized assets.
-
-Build your own portfolio, discover creator strategies, or automate your investment rules from one interface.
-
-Crypto + Tokenized Assets → One Portfolio → One Interface
-
-Your assets remain in your wallet. INDEXLA can never touch your funds.
-
-Investor Guide → · Creator Guide → · Strategies →
+Non-Custodial · Revocable Permissions · Private · No INDEXLA KYC
 
 
 
 ---
 
-## 3. PROBLEM → SOLUTION
 
-### Investing Is Fragmented. INDEXLA Connects It.
 
-Fragmented Markets  
-Assets are spread across chains, wallets and platforms.  
-→ One portfolio across supported assets and networks.
+## 2. THE MISSING LAYER
 
-Opaque Products  
-Many index products package exposure into a wrapper.  
-→ Own the underlying assets directly.
+### Financial Assets Are Moving On-Chain. Investing Remains Fragmented.
 
-Manual Investing  
-Managing allocations requires constant monitoring and execution.  
-→ Define rules and automate authorized execution.
+Crypto,Tokenized stocks, gold, commodities and real-world assets sit across different chains, wallets and platforms.
 
-### Creators Have No Distribution Layer
+INDEXLA connects them through automated, non-custodial portfolios.
 
-Creators share investment ideas, but their theses get lost in posts and content.
-
-→ Turn your thesis into a public portfolio your audience can discover and invest in.
+Ethereum · Base · Arbitrum · BNB Chain · Solana · Sui · Robinhood
 
 
 
 ---
 
-## 4. THE MISSING LAYER
 
-### The Missing Layer: Distribution
 
-Tokenization is creating the assets. Creators are creating the ideas. Investors need a way to discover and access them.
+## 3. WHY NOW
 
-Assets → Creators → Portfolios → Investors → Execution
+### Capital Is Moving On-Chain.
 
-Learn How INDEXLA Works →
+$302B+  
+Stablecoin Value
+
+$38B+  
+Distributed RWA Value
+
+2.9M+  
+RWA Holders
+
+0.39%  
+U.S. National Average Savings Rate
+
+Demand is growing for direct asset ownership, portfolio automation and better ways to put stablecoins to work.
+
+Sources: [++RWA.xyz](https://app.rwa.xyz/)++ · [++FDIC](https://www.fdic.gov/resources/bankers/national-rates/)++
 
 
 
 ---
 
-## 5. WHY NOW?
 
-### WHY NOW
 
-Crypto adoption is growing while traditional assets are moving on-chain.
+## 4. ONE PLATFORM. EVERY INVESTMENT STYLE.
 
-$38B+ · $373B+ · 1.7M+  
-*Distributed Asset Value · Represented Asset Value · Asset Holders*  
-*Source: [RWA.xyz](http://RWA.xyz)*
+### Long-Term Investors · Stablecoin Yield Seekers · High-Risk Traders
 
-For the first time, crypto + tokenized assets can be combined into hybrid portfolios.
+#### INDEXLA CORE
 
-But assets remain fragmented across chains, making cross-chain investing difficult for users.
+### Build long-term exposure through diversified portfolios across crypto, tokenized stocks, commodities and real-world assets.
 
-Tokenization creates the assets. Cross-chain infrastructure connects them. INDEXLA makes them investable together through one programmable portfolio.
+### Explore Portfolios →
+
+#### STABLE CLUB
+
+### Put your stablecoins to work through non-custodial USDC and USDT liquidity strategies.
+
+### Earn trading fees and incentives without lending or borrowing.
+
+### No Lending · No Borrowing · No Extra Vault
+
+### Explore Stable Club →
+
+#### DEGEN CLUB
+
+### A new way to chase the next 100x.
+
+### Diversify across a basket of memecoins.
+
+### Multiple Coins · Multiple Opportunities · More Chances to Catch a Winner
+
+### High Risk · High Volatility
+
+### Explore Degen Club →
+
+  
+  
+
+
+#### DEGEN CLUB
+
+A new way to chase the next 100x.
+
+Diversify across a basket of memecoins.
+
+Multiple Coins · Multiple Opportunities · More Chances to Catch a Winner
+
+High Risk · High Volatility
+
+Explore Degen Club →
+
+  
+
+
+### One Platform. Every Investment Style.
+
+  
+
+
+.
+
+
+
+---
+
+
+
+## 5. YOUR THESIS. YOUR PRODUCT. YOUR REVENUE. 
+
+  
+
+
+Build, publish and distribute investable portfolios while investors retain ownership of the underlying assets.
+
+### Four Ways to Earn
+
+50% Execution Fees · Strategy Access · Monthly Rewards · $DEXLA Tips
+
+Become a Creator →
 
 
 
@@ -100,121 +149,18 @@ Tokenization creates the assets. Cross-chain infrastructure connects them. INDEX
 
 ## 6. BUILD & AUTOMATE
 
-### Your Assets. Your Allocation. Your Rules.
+### Set the Rules Once. Let INDEXLA Execute.
 
-Build and automate portfolios with strategies designed for different market conditions.
+DCA · Rebalancing · Buy Fear · Sell Greed · RSI · Momentum · Take Profit · Stop Loss
 
-DCA · Rebalancing · Buy Fear · Sell Greed · Momentum · Take Profit / Stop Loss
+### Connect → Build or Discover → Set Rules → Activate
 
-Explore Strategies →
-
-
-
----
-
-## 7. HOW IT WORKS
-
-### Connect → Allocate → Automate → Fund & Activate
-
-Your assets never leave your wallet. INDEXLA only receives the limited permissions you approve.
-
-01 — Connect  
-Connect your wallet.
-
-02 — Allocate  
-Choose assets and target allocations.
-
-03 — Automate  
-Set your rules and approve permissions.
-
-04 — Fund & Activate  
-Fund your portfolio and activate your strategy.
-
-Your assets remain in your wallet. Execution follows only the permissions you approve.
-
-Read the Technical Architecture →
-
-
-
----
-
-## 8. DISCOVER PORTFOLIOS
-
-### Discover Investment Ideas. Choose What Fits You.
-
-Explore portfolios built around different strategies, markets and investment theses.
-
-DeFi · AI · Crypto Cycles · Macro · RWAs · Hybrid Assets
-
-Creators publish portfolios. Investors discover strategies that fit their objectives and risk preferences.
-
-Explore Portfolios →
-
-
-
----
-
-## 9. SECURITY & CONTROL
-
-### Your Keys. Your Assets. Your Permissions.
-
-The protocol cannot withdraw your funds.
-
-The protocol cannot expand its own permissions.
-
+INDEXLA can execute approved actions.  
+INDEXLA cannot withdraw your funds.  
+INDEXLA cannot expand its permissions.  
 You can revoke access at any time.
 
-Execution only happens inside the rules you set.
-
-Security & Permissions →
-
-
-
----
-
-## 10. CREATOR MARKETPLACE
-
-### Turn Your Thesis Into a Portfolio
-
-Publish your strategy, build an audience and earn from your portfolio.
-
-### 3 Ways to Earn
-
-50% Execution Fees  
-Earn 50% of applicable execution fees generated by your portfolios.
-
-Monthly Rewards  
-Earn marketplace rewards based on applicable activity and performance criteria.
-
-Creator Tips  
-Receive tips directly from your audience.
-
-Create. Share. Earn.
-
-Creator Guide →
-
-
-
----
-
-## 11. BUSINESS MODEL
-
-### Simple. Multiple Revenue Streams.
-
-Platform Execution Fees  
-1% execution fee when portfolio trades execute.
-
-0% Management · 0% Performance · 0% Exit
-
-50% → Creator · 50% → INDEXLA
-
-### INDEXLA Treasury Portfolio
-
-INDEXLA manages one dedicated treasury portfolio. Profits from this portfolio provide an additional source of protocol revenue.
-
-Revenue comes from real platform execution + INDEXLA treasury growth.
-
-Read the Business Model →
+Explore Strategies → · Technical Architecture → · Security & Permissions →
 
 
 
@@ -222,21 +168,62 @@ Read the Business Model →
 
 
 
-## 12. $DEXLA
+## 7. DISCOVER PORTFOLIOS
 
-### The Utility & Deflation Engine
+### Investment Ideas for Different Markets.
 
-$DEXLA powers core platform and creator mechanics.
+AI · DeFi · Macro · RWAs · Tech Stocks · Memecoins
 
-4 Core Utilities  
-Publish · Feature · Fee Discounts · Tips & Ranking
+#### AI Infrastructure Index
 
-4 Burn Mechanisms  
-Creator Publishing (100%) · Protocol Fees (10%) · Promotion (100%) · Treasury Profits (25%)
+TAO · NEAR · ICP · GOOGL · NVDA  
+Strategy: Buy Fear / Sell Greed
 
-Fixed Supply · Real Utility · Usage-Linked Value Accrual
+#### Diversified Macro Portfolio
 
-Read Tokenomics →
+BTC · SOL · ETH · SPX · NVDA · XAU  
+Strategy: Weekly RSI
+
+#### Big Tech Momentum
+
+NVDA · GOOGL · SPX · MSFT · AAPL  
+Strategy: Momentum Shifts
+
+Choose a portfolio and allocate USDC. INDEXLA acquires the underlying assets into your controlled wallet and executes only the approved rules.
+
+Investors own the assets. Creators earn when trades execute.
+
+*Illustrative portfolios only. Not live performance.*
+
+Reserve Early Access →
+
+
+
+---
+
+
+
+## 8. ALIGNED ECONOMICS
+
+### Growth Rewards the Entire Ecosystem.
+
+Investors  
+0% management · 0% performance · 0% exit · 1% on execution.
+
+Creators  
+Earn from fees, strategy access, rewards and $DEXLA tips.
+
+$DEXLA Holders  
+Unlock access, fee discounts and scarcity through six usage-linked burn mechanisms.
+
+INDEXLA  
+Earns from execution fees and treasury growth.
+
+### The Flywheel
+
+Creators → Portfolios → Investors → Execution → Revenue + Rewards + $DEXLA Burns
+
+Business Model → · Tokenomics →
 
 
 
@@ -244,52 +231,54 @@ Read Tokenomics →
 
 
 
-## 13. FINAL CTA
+## 9. FINAL CTA
 
-### Invest in Everything. Own Everything. Control Everything.
+### Build It. Automate It. Own It.
 
-Build programmable portfolios across the evolving on-chain financial system while keeping ownership of your assets.
+Diversified portfolios. Stablecoin liquidity. High-risk memecoin baskets.
 
-Reserve Early Access
+One platform. Full control.
 
-
-
----
-
-# DISCLAIMER
-
-Digital assets, tokenized assets and automated strategies involve significant risk, including possible loss of capital. Nothing on this website constitutes investment, financial, legal or tax advice. Past performance does not guarantee future results. Asset availability, functionality and eligibility may vary by jurisdiction. INDEXLA does not guarantee investment returns or execution outcomes.
-
-Full Disclaimer →
+Reserve Early Access →
 
 
 
 ---
 
-## 14. FAQ
 
-### Frequently Asked Questions
+
+## FAQ
 
 Is INDEXLA custodial?  
-No. Your assets remain under your control in your wallet.
+No. You retain control of your assets and permissions.
 
-Can INDEXLA or AI take my money?  
-No. Execution is limited to the permissions and rules you authorize. The protocol cannot withdraw your funds or expand its own permissions.
+Do I own the underlying assets?  
+Yes. INDEXLA is built around direct ownership, not a portfolio wrapper.
 
-What are the real fees?  
-0% management · 0% performance · 0% exit · 1% when trades execute.
+Can INDEXLA withdraw my funds?  
+No. Execution is restricted to the actions and limits you authorize.
 
-Do I hold the actual assets or a wrapper?  
-You hold the underlying assets directly. INDEXLA is designed around direct asset ownership rather than a single portfolio wrapper.
+Can I stop automation?  
+Yes. Revoke permissions at any time.
 
-Can I turn automation off?  
-Yes. You can revoke authorized permissions at any time.
+What are the fees?  
+0% management, performance and exit fees. A 1% fee applies only when trades execute.
 
-How do creators get paid?  
-Eligible creators receive 50% of applicable execution fees generated by their portfolios.
+How do creators earn?  
+Through execution-fee sharing, strategy access, marketplace rewards and $DEXLA tips.
 
 View All FAQs →
 
+
+
+---
+
+
+
+## DISCLAIMER
+
+Digital assets, tokenized assets, liquidity strategies and automated execution involve significant risk, including possible loss of capital. Nothing on this website constitutes investment, financial, legal or tax advice. Returns are not guaranteed. Availability may vary by jurisdiction.
+
+Full Disclaimer →
+
   
-
-
