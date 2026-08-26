@@ -1,7 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
-  homeBody,
   homeH2,
   homeH3,
   homeSection,
@@ -10,26 +9,23 @@ import {
 const PANELS = [
   {
     title: "Investors",
-    lines: [
-      "Own the assets. Automate the strategy. Keep 100% of any gains.",
-      "0% Management · 0% Performance · 0% Exit · 1% on Execution",
-    ],
+    lead: "Own assets. Automate strategies. Keep 100% of any gains.",
+    support: "0% Management · 0% Performance · 0% Exit · 1% Execution",
   },
   {
     title: "Creators",
-    lines: ["Earn from fees, strategy access, rewards and $DEXLA tips."],
+    lead: "Build portfolios. Reach investors. Earn across four revenue streams.",
+    support: "Execution Fees · Strategy Access · Rewards · $DEXLA Tips",
   },
   {
     title: "$DEXLA Holders",
-    lines: [
-      "Unlock access, fee discounts and scarcity through six usage-linked burn mechanisms.",
-    ],
+    lead: "Unlock access. Save on fees. Benefit from usage-linked scarcity.",
+    support: "Six Burn Mechanisms",
   },
   {
     title: "INDEXLA",
-    lines: [
-      "Earns from execution across INDEXLA Core, Stable Club and Degen Club—plus treasury growth.",
-    ],
+    lead: "Earn across all three products—plus dedicated treasury growth.",
+    support: "INDEXLA Core · Stable Club · Degen Club",
   },
 ] as const;
 
@@ -54,25 +50,17 @@ export function AlignedEconomicsSection() {
 
         <div className="mx-auto mt-10 grid max-w-5xl gap-3 sm:grid-cols-2">
           {PANELS.map((panel, i) => (
-            <FadeIn key={panel.title} delay={i * 0.04}>
-              <article className="flex h-full flex-col rounded-2xl border border-electric/25 bg-electric/[0.06] px-5 py-6 text-center sm:px-6 sm:py-7">
-                <h3 className="display text-[1.2rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.35rem]">
+            <FadeIn key={panel.title} delay={i * 0.04} className="h-full">
+              <article className="flex h-full min-h-[11.5rem] flex-col rounded-2xl border border-electric/25 bg-electric/[0.06] px-5 py-6 text-center sm:min-h-[12.5rem] sm:px-6 sm:py-7">
+                <h3 className="display text-[1.25rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.4rem]">
                   {panel.title}
                 </h3>
-                <div className={`mt-3 flex-1 space-y-2.5 ${homeBody}`}>
-                  {panel.lines.map((line) => (
-                    <p
-                      key={line}
-                      className={
-                        line.startsWith("0%")
-                          ? "font-semibold text-ink text-balance"
-                          : "text-balance"
-                      }
-                    >
-                      {line}
-                    </p>
-                  ))}
-                </div>
+                <p className="mt-3 flex-1 text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
+                  {panel.lead}
+                </p>
+                <p className="mt-3 text-[0.92rem] font-medium leading-snug text-muted text-balance sm:whitespace-nowrap sm:text-[0.98rem]">
+                  {panel.support}
+                </p>
               </article>
             </FadeIn>
           ))}
@@ -80,15 +68,16 @@ export function AlignedEconomicsSection() {
 
         <FadeIn className="mx-auto mt-12 max-w-4xl text-center">
           <h3 className={homeH3}>The Flywheel</h3>
-          <div className="relative mx-auto mt-8 max-w-[34rem]">
+          <div className="relative mx-auto mt-8 max-w-[36rem]">
             <div
-              className="pointer-events-none absolute inset-[12%] rounded-full border border-electric/25 bg-gradient-to-br from-electric/[0.08] via-purple/[0.06] to-transparent"
+              className="pointer-events-none absolute inset-[10%] rounded-full border border-electric/25 bg-gradient-to-br from-electric/[0.1] via-purple/[0.06] to-transparent"
               aria-hidden
             />
             <div
               className="pointer-events-none absolute inset-[22%] rounded-full border border-dashed border-electric/20"
               aria-hidden
             />
+
             <ol className="relative grid grid-cols-1 gap-3 sm:hidden">
               {FLYWHEEL.map((node, i) => (
                 <li key={node} className="flex flex-col items-center gap-2">
@@ -118,18 +107,18 @@ export function AlignedEconomicsSection() {
                 return (
                   <div
                     key={node}
-                    className="absolute z-10 w-[9.5rem] -translate-x-1/2 -translate-y-1/2 lg:w-[10.5rem]"
+                    className="absolute z-10 w-[10rem] -translate-x-1/2 -translate-y-1/2 lg:w-[11rem]"
                     style={{ left: `${x}%`, top: `${y}%` }}
                   >
-                    <div className="rounded-2xl border border-electric/40 bg-void/90 px-3 py-3 text-center shadow-[0_12px_36px_-16px_rgba(56,189,248,0.65)] backdrop-blur-sm">
-                      <p className="text-[0.88rem] font-semibold leading-snug text-ink text-balance lg:text-[0.95rem]">
+                    <div className="rounded-2xl border border-electric/40 bg-void/90 px-3 py-3.5 text-center shadow-[0_12px_36px_-16px_rgba(56,189,248,0.65)] backdrop-blur-sm">
+                      <p className="text-[0.9rem] font-semibold leading-snug text-ink text-balance lg:text-[0.98rem]">
                         {node}
                       </p>
                     </div>
                   </div>
                 );
               })}
-              <div className="absolute left-1/2 top-1/2 z-0 flex h-[7.5rem] w-[7.5rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-electric/35 bg-gradient-to-br from-electric/20 to-purple/15 text-center shadow-[0_0_40px_-10px_rgba(56,189,248,0.55)]">
+              <div className="absolute left-1/2 top-1/2 z-0 flex h-[8rem] w-[8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-electric/35 bg-gradient-to-br from-electric/20 to-purple/15 text-center shadow-[0_0_40px_-10px_rgba(56,189,248,0.55)]">
                 <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-electric">
                   INDEXLA
                 </p>
@@ -138,29 +127,22 @@ export function AlignedEconomicsSection() {
                 </p>
               </div>
               <svg
-                className="pointer-events-none absolute inset-[18%] text-electric/50"
+                className="pointer-events-none absolute inset-[16%] text-electric/55"
                 viewBox="0 0 100 100"
                 aria-hidden
               >
                 <circle
                   cx="50"
                   cy="50"
-                  r="42"
+                  r="44"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="0.8"
                   strokeDasharray="3 4"
                 />
-                <path
-                  d="M88 50 A38 38 0 0 1 50 88"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  markerEnd="url(#fly-arrow)"
-                />
                 <defs>
                   <marker
-                    id="fly-arrow"
+                    id="fly-arrow-v2"
                     markerWidth="6"
                     markerHeight="6"
                     refX="5"
@@ -170,6 +152,13 @@ export function AlignedEconomicsSection() {
                     <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
                   </marker>
                 </defs>
+                <path
+                  d="M90 50 A40 40 0 0 1 50 90"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  markerEnd="url(#fly-arrow-v2)"
+                />
               </svg>
             </div>
           </div>

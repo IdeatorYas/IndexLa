@@ -4,7 +4,6 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { ASSETS } from "@/lib/site";
 import { DEGEN_MEME_LOGOS } from "@/components/degen-club/memeLogos";
 import {
-  homeBody,
   homeH2,
   homeSection,
 } from "@/components/home/homeRhythm";
@@ -149,24 +148,24 @@ export function InvestmentStylesSection() {
           </p>
         </FadeIn>
 
-        <div className="mx-auto mt-10 grid max-w-6xl gap-4 lg:grid-cols-3 lg:gap-5">
+        <div className="mx-auto mt-10 grid max-w-6xl gap-5 lg:grid-cols-3 lg:gap-6">
           {STYLES.map((style, i) => (
             <FadeIn key={style.id} delay={i * 0.05} className="h-full">
               <article
-                className={`relative flex h-full flex-col overflow-hidden rounded-2xl border px-5 py-7 text-center sm:px-6 sm:py-8 ${style.shell}`}
+                className={`relative flex h-full min-h-[28rem] flex-col overflow-hidden rounded-[1.5rem] border px-6 py-9 text-center sm:min-h-[30rem] sm:px-7 sm:py-10 ${style.shell}`}
               >
                 <div
-                  className={`pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${style.glow}`}
+                  className={`pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b ${style.glow}`}
                   aria-hidden
                 />
                 <CardAssetBackdrop assets={style.assets} />
                 <div className="relative z-10 flex h-full flex-col">
                   <p
-                    className={`text-[0.78rem] font-bold uppercase tracking-[0.16em] ${style.eyebrowClass}`}
+                    className={`display text-[1.15rem] font-bold uppercase tracking-[0.14em] sm:text-[1.3rem] ${style.eyebrowClass}`}
                   >
                     {style.eyebrow}
                   </p>
-                  <div className={`mt-5 flex-1 space-y-3 ${homeBody}`}>
+                  <div className={`mt-6 flex-1 space-y-3.5 text-[1.08rem] leading-relaxed text-muted sm:text-[1.15rem]`}>
                     {style.body.map((line) => (
                       <p key={line} className="text-balance">
                         {line}
@@ -174,19 +173,19 @@ export function InvestmentStylesSection() {
                     ))}
                   </div>
                   {style.highlight ? (
-                    <p className="mt-5 text-[0.98rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.05rem]">
+                    <p className="mt-6 text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
                       {style.highlight}
                     </p>
                   ) : null}
                   {style.risk ? (
-                    <p className="mt-3 text-[0.88rem] font-semibold uppercase tracking-[0.08em] text-amber-300/90">
+                    <p className="mt-3 text-[0.92rem] font-semibold uppercase tracking-[0.08em] text-amber-300/90">
                       {style.risk}
                     </p>
                   ) : null}
-                  <div className="mt-7">
+                  <div className="mt-8">
                     <Link
                       href={style.cta.href}
-                      className="inline-flex items-center text-[1.05rem] font-semibold text-electric transition-colors hover:text-ink"
+                      className="inline-flex items-center text-[1.1rem] font-semibold text-electric transition-colors hover:text-ink"
                     >
                       {style.cta.label}
                     </Link>

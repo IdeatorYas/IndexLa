@@ -1,9 +1,5 @@
 import { FadeIn } from "@/components/ui/FadeIn";
-import {
-  homeBody,
-  homeH2,
-  homeSection,
-} from "@/components/home/homeRhythm";
+import { homeBody, homeSection } from "@/components/home/homeRhythm";
 
 const NETWORKS = [
   { id: "ethereum", label: "Ethereum", src: "/images/networks/ethereum.svg" },
@@ -24,9 +20,13 @@ export function MissingLayerSection() {
       />
       <div className="section-pad container-max relative">
         <FadeIn className="text-center">
-          <h2 className={`${homeH2} mx-auto max-w-4xl`}>
-            Financial Assets Are Moving On-Chain.{" "}
-            <span className="gradient-text">Investing Remains Fragmented.</span>
+          <h2 className="display mx-auto max-w-4xl text-[clamp(1.85rem,4.8vw,3.15rem)] font-semibold tracking-[-0.035em] leading-[1.12]">
+            <span className="block text-ink">
+              Financial Assets Are Moving On-Chain.
+            </span>
+            <span className="mt-2 block gradient-text sm:mt-3">
+              Investing Remains Fragmented.
+            </span>
           </h2>
           <div className={`mx-auto mt-6 max-w-2xl space-y-4 ${homeBody}`}>
             <p>

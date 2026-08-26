@@ -67,13 +67,13 @@ export function Hero() {
             </EarlyAccessCta>
           </div>
 
-          <ul className="mt-7 grid w-full max-w-[40rem] grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+          <ul className="mt-7 grid w-full max-w-[42rem] grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
             {TRUST.map((item) => (
               <li
                 key={item}
-                className="flex min-h-[3.75rem] items-center justify-center rounded-xl border border-electric/30 bg-electric/[0.07] px-2.5 py-3 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.12)] sm:min-h-[4.25rem] sm:px-3"
+                className="flex min-h-[4.25rem] items-center justify-center rounded-xl border border-electric/35 bg-electric/[0.08] px-2.5 py-3.5 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.14)] sm:min-h-[4.75rem] sm:px-3"
               >
-                <span className="text-[0.72rem] font-semibold uppercase leading-snug tracking-[0.08em] text-ink/90 text-balance sm:text-[0.78rem] sm:tracking-[0.1em]">
+                <span className="text-[0.78rem] font-semibold uppercase leading-snug tracking-[0.08em] text-ink text-balance sm:text-[0.88rem] sm:tracking-[0.1em]">
                   {item}
                 </span>
               </li>

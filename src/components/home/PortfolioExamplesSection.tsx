@@ -1,7 +1,7 @@
 import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import { PortfolioCard } from "@/components/home/PortfolioCard";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { PORTFOLIOS } from "@/lib/site";
+import { HOME_DISCOVER_PRODUCTS } from "@/lib/homeMarketplaceProducts";
 import {
   homeBody,
   homeCta,
@@ -31,9 +31,9 @@ export function PortfolioExamplesSection() {
         </FadeIn>
 
         <div className="mx-auto mt-10 grid max-w-6xl auto-rows-fr gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {PORTFOLIOS.slice(0, 3).map((portfolio, i) => (
-            <FadeIn key={portfolio.id} delay={i * 0.04}>
-              <PortfolioCard portfolio={portfolio} />
+          {HOME_DISCOVER_PRODUCTS.map((product, i) => (
+            <FadeIn key={product.id} delay={i * 0.04} className="h-full">
+              <PortfolioCard product={product} />
             </FadeIn>
           ))}
         </div>

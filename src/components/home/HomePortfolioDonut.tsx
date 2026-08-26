@@ -1,11 +1,12 @@
 "use client";
 
 import { useId, useState } from "react";
-import { ASSETS, ASSET_BRAND_COLORS, type AssetKey } from "@/lib/site";
 
 export type HomeDonutSegment = {
-  key: AssetKey;
-  pct: number;
+  ticker: string;
+  percent: number;
+  color: string;
+  src: string;
 };
 
 function polarToCartesian(
@@ -48,54 +49,44 @@ function logoSizeForSegment(
   logoR: number,
   ringThickness: number,
   count: number,
-  size: number,
 ) {
   const chord = 2 * logoR * Math.sin(Math.max(sweep, 0.05) / 2);
-  const byChord = chord * 0.78;
-  const byRing = ringThickness * 0.82;
+  const byChord = chord * 0.68;
+  const byRing = ringThickness * 0.72;
   const byCount =
-    count <= 5
-      ? size * 0.18
-      : count <= 8
-        ? size * 0.14
-        : size * 0.12;
-  return Math.max(16, Math.min(byCount, byChord, byRing));
+    count <= 5 ? 28 : count <= 8 ? 24 : count <= 10 ? 20 : 18;
+  return Math.max(12, Math.min(byCount, byChord, byRing));
 }
 
-function SegmentEmbeddedLogo({
-  src,
+function SegmentLogo({
   ticker,
+  src,
   x,
   y,
   size,
-  maskId,
 }: {
-  src: string;
   ticker: string;
+  src: string;
   x: number;
   y: number;
   size: number;
-  maskId: string;
 }) {
   const [broken, setBroken] = useState(false);
-  const imgSize = size * 1.55;
-  const usable = !broken ? src : null;
+  const imgSize = size * 1.35;
   const initial =
     ticker.replace(/[^A-Za-z0-9]/g, "").slice(0, 2).toUpperCase() || "?";
 
-  if (usable) {
+  if (!broken && src) {
     return (
-      <g mask={`url(#${maskId})`}>
-        <image
-          href={usable}
-          x={x - imgSize / 2}
-          y={y - imgSize / 2}
-          width={imgSize}
-          height={imgSize}
-          preserveAspectRatio="xMidYMid slice"
-          onError={() => setBroken(true)}
-        />
-      </g>
+      <image
+        href={src}
+        x={x - imgSize / 2}
+        y={y - imgSize / 2}
+        width={imgSize}
+        height={imgSize}
+        preserveAspectRatio="xMidYMid slice"
+        onError={() => setBroken(true)}
+      />
     );
   }
 
@@ -107,8 +98,8 @@ function SegmentEmbeddedLogo({
       dominantBaseline="middle"
       fill="#ffffff"
       style={{
-        fontSize: Math.max(9, size * 0.42),
-        fontWeight: 900,
+        fontSize: Math.max(7, size * 0.38),
+        fontWeight: 800,
         letterSpacing: "0.02em",
       }}
     >
@@ -118,7 +109,8 @@ function SegmentEmbeddedLogo({
 }
 
 /**
- * Homepage discover donut: brand-colored segments with logos embedded in the ring.
+ * Homepage discover donut — matches IndexLa-App EmbeddedAllocationDonut:
+ * brand-colored segments with logos embedded in the ring (no logo discs).
  */
 export function HomePortfolioDonut({
   segments,
@@ -128,43 +120,33 @@ export function HomePortfolioDonut({
   size?: number;
 }) {
   const uid = useId().replace(/:/g, "");
-  const positive = segments.filter((s) => s.pct > 0);
-  const chartTotal = positive.reduce((sum, s) => sum + s.pct, 0) || 100;
+  const positive = segments.filter((s) => s.percent > 0);
+  const chartTotal = positive.reduce((sum, s) => sum + s.percent, 0) || 100;
   const cx = size / 2;
   const cy = size / 2;
-  const outerR = size / 2 - 2;
-  const innerR = outerR * 0.48;
+  const outerR = size / 2 - 3;
+  const innerR = outerR * 0.52;
   const ringThickness = outerR - innerR;
   const logoR = (innerR + outerR) / 2;
   const count = Math.max(positive.length, 1);
+  const glowId = `hpDonutGlow-${uid}`;
 
   let cursor = -Math.PI / 2;
   const drawn = positive.map((seg, index) => {
-    const sweep = (seg.pct / chartTotal) * Math.PI * 2;
+    const sweep = (seg.percent / chartTotal) * Math.PI * 2;
     const startAngle = cursor;
     const endAngle = cursor + sweep;
     cursor = endAngle;
     const midAngle = startAngle + sweep / 2;
     const logoPos = polarToCartesian(cx, cy, logoR, midAngle);
-    const iconSize = logoSizeForSegment(
-      sweep,
-      logoR,
-      ringThickness,
-      count,
-      size,
-    );
-    const meta = ASSETS[seg.key];
+    const iconSize = logoSizeForSegment(sweep, logoR, ringThickness, count);
     return {
       seg,
       index,
       logoPos,
       iconSize: Math.floor(iconSize),
-      color: ASSET_BRAND_COLORS[seg.key],
       path: describeDonutSegment(cx, cy, innerR, outerR, startAngle, endAngle),
       clipId: `hp-seg-${uid}-${index}`,
-      fadeId: `hp-fade-${uid}-${index}`,
-      logoSrc: meta.src,
-      ticker: meta.ticker,
     };
   });
 
@@ -179,7 +161,7 @@ export function HomePortfolioDonut({
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
-        className="block h-full w-full drop-shadow-[0_10px_28px_-12px_rgba(56,189,248,0.45)]"
+        className="block h-full w-full drop-shadow-[0_10px_28px_-18px_rgba(0,0,0,0.45)]"
       >
         <defs>
           {drawn.map((segment) => (
@@ -187,95 +169,67 @@ export function HomePortfolioDonut({
               <path d={segment.path} />
             </clipPath>
           ))}
-          {drawn.map((segment) => (
-            <radialGradient
-              key={segment.fadeId}
-              id={segment.fadeId}
-              cx="50%"
-              cy="50%"
-              r="50%"
-            >
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="62%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-            </radialGradient>
-          ))}
-          {drawn.map((segment) => (
-            <mask
-              key={`mask-${segment.fadeId}`}
-              id={`mask-${segment.fadeId}`}
-              maskUnits="userSpaceOnUse"
-            >
-              <circle
-                cx={segment.logoPos.x}
-                cy={segment.logoPos.y}
-                r={segment.iconSize * 0.72}
-                fill={`url(#${segment.fadeId})`}
-              />
-            </mask>
-          ))}
-          <radialGradient id={`hpCenterGlow-${uid}`} cx="50%" cy="40%" r="70%">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.22" />
+          <radialGradient id={glowId} cx="50%" cy="40%" r="70%">
+            <stop offset="0%" stopColor="#f8fafc" stopOpacity="0.06" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
         </defs>
 
         {drawn.map((segment) => (
           <path
-            key={`fill-${segment.seg.key}-${segment.index}`}
+            key={`fill-${segment.seg.ticker}-${segment.index}`}
             d={segment.path}
-            fill={segment.color}
-            stroke="rgba(7,11,24,0.55)"
-            strokeWidth="1.25"
+            fill={segment.seg.color}
+            stroke="#10172a"
+            strokeWidth="1.5"
           />
         ))}
 
         {drawn.map((segment) => (
           <g
-            key={`logo-${segment.seg.key}-${segment.index}`}
+            key={`logo-${segment.seg.ticker}-${segment.index}`}
             clipPath={`url(#${segment.clipId})`}
           >
-            <SegmentEmbeddedLogo
-              ticker={segment.ticker}
-              src={segment.logoSrc}
+            <SegmentLogo
+              ticker={segment.seg.ticker}
+              src={segment.seg.src}
               x={segment.logoPos.x}
               y={segment.logoPos.y}
               size={segment.iconSize}
-              maskId={`mask-${segment.fadeId}`}
             />
           </g>
         ))}
 
-        <circle cx={cx} cy={cy} r={innerR - 1} fill="#10172a" />
+        <circle cx={cx} cy={cy} r={innerR - 1.5} fill="#10172a" />
         <circle
           cx={cx}
           cy={cy}
-          r={innerR - 1}
-          fill={`url(#hpCenterGlow-${uid})`}
-          opacity="0.7"
+          r={innerR - 1.5}
+          fill={`url(#${glowId})`}
+          opacity="0.55"
         />
         <text
           x={cx}
-          y={cy - size * 0.035}
+          y={cy - (size >= 200 ? 6 : 4)}
           textAnchor="middle"
           dominantBaseline="middle"
           fill="#f8fafc"
           style={{
-            fontSize: Math.max(12, size * 0.075),
-            fontWeight: 800,
+            fontSize: Math.max(11, size * 0.045),
+            fontWeight: 700,
           }}
         >
           {segments.length} Assets
         </text>
         <text
           x={cx}
-          y={cy + size * 0.055}
+          y={cy + (size >= 200 ? 12 : 10)}
           textAnchor="middle"
           dominantBaseline="middle"
-          fill="#22d3ee"
+          fill="#94a3b8"
           style={{
-            fontSize: Math.max(11, size * 0.048),
-            fontWeight: 700,
+            fontSize: Math.max(9, size * 0.028),
+            fontWeight: 600,
           }}
         >
           100%

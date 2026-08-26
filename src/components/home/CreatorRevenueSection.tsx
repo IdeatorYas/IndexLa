@@ -5,15 +5,34 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import {
   homeBody,
   homeCta,
-  homeH3,
   homeSection,
 } from "@/components/home/homeRhythm";
 
 const EARN_WAYS = [
-  "50% Execution Fees",
-  "Strategy Access",
-  "Monthly Rewards",
-  "$DEXLA Tips",
+  {
+    label: "50% Execution Fees",
+    shell:
+      "border-electric/45 bg-electric/[0.1] shadow-[inset_0_1px_0_rgba(56,189,248,0.2)]",
+    text: "text-electric",
+  },
+  {
+    label: "Strategy Access",
+    shell:
+      "border-cyan/45 bg-cyan/[0.1] shadow-[inset_0_1px_0_rgba(34,211,238,0.2)]",
+    text: "text-cyan",
+  },
+  {
+    label: "Monthly Rewards",
+    shell:
+      "border-purple-bright/45 bg-purple/[0.12] shadow-[inset_0_1px_0_rgba(167,139,250,0.2)]",
+    text: "text-purple-bright",
+  },
+  {
+    label: "$DEXLA Tips",
+    shell:
+      "border-blue/45 bg-blue/[0.12] shadow-[inset_0_1px_0_rgba(59,130,246,0.2)]",
+    text: "text-blue",
+  },
 ] as const;
 
 export function CreatorRevenueSection() {
@@ -22,13 +41,9 @@ export function CreatorRevenueSection() {
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-4xl text-center">
           <h2 className="display text-[clamp(2rem,5.2vw,3.35rem)] font-semibold tracking-[-0.035em] leading-[1.08]">
-            <span className="block text-ink sm:inline sm:whitespace-nowrap">
-              Your Thesis.
-            </span>{" "}
-            <span className="mt-1 block text-ink sm:mt-0 sm:inline sm:whitespace-nowrap">
-              Your Product.
-            </span>{" "}
-            <span className="mt-1 block gradient-text sm:mt-0 sm:inline sm:whitespace-nowrap">
+            <span className="block text-ink">Your Thesis.</span>
+            <span className="mt-2 block text-ink sm:mt-2.5">Your Product.</span>
+            <span className="mt-2 block gradient-text sm:mt-2.5">
               Your Revenue.
             </span>
           </h2>
@@ -39,16 +54,20 @@ export function CreatorRevenueSection() {
         </FadeIn>
 
         <FadeIn className="mt-12 text-center">
-          <div className="mx-auto max-w-5xl rounded-[1.75rem] border border-electric/30 bg-gradient-to-b from-electric/[0.1] via-purple/[0.06] to-transparent px-4 py-8 sm:px-8 sm:py-10">
-            <h3 className={`${homeH3} text-electric`}>Four Ways to Earn</h3>
+          <div className="mx-auto max-w-5xl rounded-[1.75rem] border border-electric/30 bg-gradient-to-b from-electric/[0.1] via-purple/[0.05] to-transparent px-4 py-8 sm:px-8 sm:py-10">
+            <h3 className="display text-[clamp(1.45rem,3vw,1.9rem)] font-semibold tracking-[-0.025em] text-electric">
+              Four Ways to Earn
+            </h3>
             <div className="mx-auto mt-8 grid max-w-4xl gap-3.5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
               {EARN_WAYS.map((way) => (
                 <div
-                  key={way}
-                  className="flex min-h-[7.5rem] items-center justify-center rounded-2xl border border-electric/40 bg-void/70 px-4 py-6 shadow-[0_12px_40px_-24px_rgba(56,189,248,0.55),inset_0_1px_0_rgba(56,189,248,0.18)] sm:min-h-[8.25rem]"
+                  key={way.label}
+                  className={`flex min-h-[7.75rem] items-center justify-center rounded-2xl border px-3 py-6 sm:min-h-[8.5rem] sm:px-4 ${way.shell}`}
                 >
-                  <p className="display text-[1.15rem] font-semibold tracking-[-0.02em] text-ink text-balance sm:text-[1.25rem]">
-                    {way}
+                  <p
+                    className={`display whitespace-nowrap text-[0.98rem] font-semibold tracking-[-0.02em] sm:text-[1.08rem] ${way.text}`}
+                  >
+                    {way.label}
                   </p>
                 </div>
               ))}

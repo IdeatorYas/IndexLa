@@ -1,29 +1,21 @@
 import { HomePortfolioDonut } from "@/components/home/HomePortfolioDonut";
-import { ASSETS, ASSET_BRAND_COLORS, TYPE_STYLES, type Portfolio } from "@/lib/site";
+import type { HomeDiscoverProduct } from "@/lib/homeMarketplaceProducts";
 
 type PortfolioCardProps = {
-  portfolio: Portfolio;
-  featured?: boolean;
+  product: HomeDiscoverProduct;
 };
 
-export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProps) {
-  const typeStyle = TYPE_STYLES[portfolio.type];
-  const rows = portfolio.assetAllocation;
-
+export function PortfolioCard({ product }: PortfolioCardProps) {
   return (
-    <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-deep/45 p-5 transition-transform duration-300 ease-out hover:-translate-y-[3px] sm:p-6 ${
-        featured ? "md:col-span-2 lg:col-span-1" : ""
-      }`}
-    >
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-deep/45 p-5 transition-transform duration-300 ease-out hover:-translate-y-[3px] sm:p-6">
       <div>
         <span
-          className={`inline-flex rounded-full border px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.12em] ${typeStyle.className}`}
+          className={`inline-flex rounded-full border px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.12em] ${product.typeClassName}`}
         >
-          {typeStyle.label}
+          {product.typeLabel}
         </span>
-        <h3 className="display mt-3 text-[clamp(1.15rem,2.4vw,1.4rem)] tracking-[-0.02em] text-ink text-balance text-pretty">
-          {portfolio.name}
+        <h3 className="display mt-3 text-[clamp(1.2rem,2.4vw,1.45rem)] tracking-[-0.02em] text-ink text-balance text-pretty">
+          {product.name}
         </h3>
       </div>
 
@@ -32,49 +24,54 @@ export function PortfolioCard({ portfolio, featured = false }: PortfolioCardProp
           Strategy
         </p>
         <p className="mt-1.5 text-[1.02rem] font-semibold leading-snug text-ink sm:text-[1.08rem]">
-          {portfolio.strategy}
+          {product.strategy}
         </p>
       </div>
 
       <div className="mt-6 flex justify-center">
-        <HomePortfolioDonut segments={rows} size={212} />
+        <HomePortfolioDonut
+          segments={product.assets.map((a) => ({
+            ticker: a.ticker,
+            percent: a.percent,
+            color: a.color,
+            src: a.src,
+          }))}
+          size={220}
+        />
       </div>
 
-      <ul className="mt-5 space-y-2">
-        {rows.map((row) => {
-          const meta = ASSETS[row.key];
-          return (
-            <li
-              key={row.key}
-              className="flex items-center justify-between gap-3 rounded-lg border border-white/[0.05] bg-void/30 px-3 py-2"
-            >
-              <div className="flex min-w-0 items-center gap-2.5">
-                <span
-                  className="h-2.5 w-2.5 shrink-0 rounded-full"
-                  style={{ background: ASSET_BRAND_COLORS[row.key] }}
-                  aria-hidden
-                />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={meta.src}
-                  alt=""
-                  width={18}
-                  height={18}
-                  className="object-contain"
-                  loading="lazy"
-                  decoding="async"
-                  aria-hidden
-                />
-                <span className="truncate text-[0.92rem] font-semibold text-ink">
-                  {meta.ticker}
-                </span>
-              </div>
-              <span className="shrink-0 text-[0.92rem] font-semibold tabular-nums text-electric">
-                {row.pct}%
+      <ul className="mt-5 grid grid-cols-2 gap-1.5">
+        {product.assets.map((row) => (
+          <li
+            key={row.ticker}
+            className="flex items-center justify-between gap-2 rounded-lg border border-white/[0.05] bg-void/30 px-2.5 py-1.5"
+          >
+            <div className="flex min-w-0 items-center gap-1.5">
+              <span
+                className="h-2 w-2 shrink-0 rounded-full"
+                style={{ background: row.color }}
+                aria-hidden
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={row.src}
+                alt=""
+                width={16}
+                height={16}
+                className="object-contain"
+                loading="lazy"
+                decoding="async"
+                aria-hidden
+              />
+              <span className="truncate text-[0.82rem] font-semibold text-ink">
+                {row.ticker}
               </span>
-            </li>
-          );
-        })}
+            </div>
+            <span className="shrink-0 text-[0.82rem] font-semibold tabular-nums text-electric">
+              {row.percent}%
+            </span>
+          </li>
+        ))}
       </ul>
     </article>
   );
