@@ -42,7 +42,7 @@ export function WhyNowSection() {
 
         <FadeIn className="mt-8 text-center">
           <p className={`mx-auto max-w-3xl ${homeBody}`}>
-            Capital and assets are moving on-chain—creating demand for direct
+            Capital and assets are moving on-chain, creating demand for direct
             ownership, automated portfolios and better ways to put stablecoins
             to work.
           </p>

@@ -6,7 +6,7 @@ import {
   homeSection,
 } from "@/components/home/homeRhythm";
 
-const PANELS = [
+const GRID_PANELS = [
   {
     title: "Investors",
     lead: "Own real assets, automate strategies, and stay fully in control.",
@@ -23,16 +23,17 @@ const PANELS = [
     support: "2,500 = 15% · 5,000 = 25% · 10,000 = 40% Savings",
   },
   {
-    title: "INDEXLA",
-    lead: "Earn across all three products while growing the protocol treasury.",
-    support: "INDEXLA Core · Stable Club · Degen Club · Treasury Growth",
-  },
-  {
     title: "$DEXLA Token",
     lead: "Platform usage drives demand, burns and permanent supply reduction.",
     support: "Six Burn Mechanisms · Deflationary Design · Fixed Supply",
   },
 ] as const;
+
+const INDEXLA_PANEL = {
+  title: "INDEXLA",
+  lead: "Earn across all three products while growing the protocol treasury.",
+  support: "INDEXLA Core · Stable Club · Degen Club · Treasury Growth",
+} as const;
 
 const FLYWHEEL_HUB = {
   title: "$DEXLA Utility",
@@ -62,22 +63,38 @@ export function AlignedEconomicsSection() {
           </h2>
         </FadeIn>
 
-        <div className="mx-auto mt-10 grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {PANELS.map((panel, i) => (
-            <FadeIn key={panel.title} delay={i * 0.03} className="h-full">
-              <article className="flex h-full min-h-[13.5rem] flex-col rounded-2xl border border-electric/30 bg-gradient-to-b from-electric/[0.1] to-transparent px-4 py-5 text-center sm:min-h-[14.5rem] sm:px-4 sm:py-6">
-                <h3 className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.15rem]">
-                  {panel.title}
-                </h3>
-                <p className="mt-3 flex-1 text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1rem]">
-                  {panel.lead}
-                </p>
-                <p className="mt-3 text-[0.78rem] font-medium leading-snug text-muted text-balance sm:text-[0.84rem]">
-                  {panel.support}
-                </p>
-              </article>
-            </FadeIn>
-          ))}
+        <div className="mx-auto mt-10 max-w-6xl">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {GRID_PANELS.map((panel, i) => (
+              <FadeIn key={panel.title} delay={i * 0.03} className="h-full">
+                <article className="flex h-full min-h-[13.5rem] flex-col rounded-2xl border border-electric/30 bg-gradient-to-b from-electric/[0.1] to-transparent px-4 py-5 text-center sm:min-h-[14.5rem] sm:px-4 sm:py-6">
+                  <h3 className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.15rem]">
+                    {panel.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1rem]">
+                    {panel.lead}
+                  </p>
+                  <p className="mt-3 text-[0.78rem] font-medium leading-snug text-muted text-balance sm:text-[0.84rem]">
+                    {panel.support}
+                  </p>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.12} className="mt-3">
+            <article className="flex min-h-[11.5rem] flex-col items-center justify-center rounded-2xl border border-electric/40 bg-gradient-to-b from-electric/[0.14] via-electric/[0.06] to-transparent px-6 py-7 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.16)] sm:min-h-[12.5rem] sm:px-10 sm:py-8">
+              <h3 className="display text-[1.15rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.3rem]">
+                {INDEXLA_PANEL.title}
+              </h3>
+              <p className="mt-3 max-w-3xl text-[1rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1.08rem]">
+                {INDEXLA_PANEL.lead}
+              </p>
+              <p className="mt-3 text-[0.82rem] font-medium leading-snug text-muted text-balance sm:text-[0.9rem]">
+                {INDEXLA_PANEL.support}
+              </p>
+            </article>
+          </FadeIn>
         </div>
 
         <FadeIn className="mx-auto mt-14 max-w-5xl text-center">

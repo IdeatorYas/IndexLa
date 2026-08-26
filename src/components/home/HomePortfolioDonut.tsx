@@ -51,11 +51,11 @@ function logoSizeForSegment(
   count: number,
 ) {
   const chord = 2 * logoR * Math.sin(Math.max(sweep, 0.05) / 2);
-  const byChord = chord * 0.68;
-  const byRing = ringThickness * 0.72;
+  const byChord = chord * 0.72;
+  const byRing = ringThickness * 0.78;
   const byCount =
-    count <= 5 ? 28 : count <= 8 ? 24 : count <= 10 ? 20 : 18;
-  return Math.max(12, Math.min(byCount, byChord, byRing));
+    count <= 5 ? 30 : count <= 8 ? 26 : count <= 10 ? 23 : 20;
+  return Math.max(14, Math.min(byCount, byChord, byRing));
 }
 
 function SegmentLogo({
@@ -64,53 +64,74 @@ function SegmentLogo({
   x,
   y,
   size,
+  clipId,
 }: {
   ticker: string;
   src: string;
   x: number;
   y: number;
   size: number;
+  clipId: string;
 }) {
   const [broken, setBroken] = useState(false);
-  const imgSize = size * 1.35;
+  const discR = size * 0.58;
+  const imgSize = size * 1.05;
   const initial =
     ticker.replace(/[^A-Za-z0-9]/g, "").slice(0, 2).toUpperCase() || "?";
 
   if (!broken && src) {
     return (
-      <image
-        href={src}
-        x={x - imgSize / 2}
-        y={y - imgSize / 2}
-        width={imgSize}
-        height={imgSize}
-        preserveAspectRatio="xMidYMid meet"
-        onError={() => setBroken(true)}
-      />
+      <g>
+        <circle
+          cx={x}
+          cy={y}
+          r={discR}
+          fill="#ffffff"
+          opacity="0.94"
+        />
+        <defs>
+          <clipPath id={clipId}>
+            <circle cx={x} cy={y} r={discR * 0.92} />
+          </clipPath>
+        </defs>
+        <image
+          href={src}
+          x={x - imgSize / 2}
+          y={y - imgSize / 2}
+          width={imgSize}
+          height={imgSize}
+          preserveAspectRatio="xMidYMid meet"
+          clipPath={`url(#${clipId})`}
+          onError={() => setBroken(true)}
+        />
+      </g>
     );
   }
 
   return (
-    <text
-      x={x}
-      y={y + 1}
-      textAnchor="middle"
-      dominantBaseline="middle"
-      fill="#ffffff"
-      style={{
-        fontSize: Math.max(7, size * 0.38),
-        fontWeight: 800,
-        letterSpacing: "0.02em",
-      }}
-    >
-      {initial}
-    </text>
+    <g>
+      <circle cx={x} cy={y} r={discR} fill="#ffffff" opacity="0.94" />
+      <text
+        x={x}
+        y={y + 1}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fill="#0f172a"
+        style={{
+          fontSize: Math.max(7, size * 0.34),
+          fontWeight: 800,
+          letterSpacing: "0.02em",
+        }}
+      >
+        {initial}
+      </text>
+    </g>
   );
 }
 
 /**
- * Homepage discover donut — matches IndexLa-App EmbeddedAllocationDonut:
- * brand-colored segments with logos embedded in the ring (no logo discs).
+ * Homepage discover donut — brand-colored segments with sharp,
+ * centered logos on light discs for clear visibility.
  */
 export function HomePortfolioDonut({
   segments,
@@ -147,6 +168,7 @@ export function HomePortfolioDonut({
       iconSize: Math.floor(iconSize),
       path: describeDonutSegment(cx, cy, innerR, outerR, startAngle, endAngle),
       clipId: `hp-seg-${uid}-${index}`,
+      logoClipId: `hp-logo-${uid}-${index}`,
     };
   });
 
@@ -196,6 +218,7 @@ export function HomePortfolioDonut({
               x={segment.logoPos.x}
               y={segment.logoPos.y}
               size={segment.iconSize}
+              clipId={segment.logoClipId}
             />
           </g>
         ))}

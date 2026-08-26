@@ -61,7 +61,7 @@ const AI_COMPUTE = equalAssets([
   { ticker: "AKT", color: "#ED3524", src: "/images/assets/demo/crypto/akt.png" },
   { ticker: "NVDA", color: "#76B900", src: "/images/assets/demo/stocks/nvda.png" },
   { ticker: "MSFT", color: "#00A4EF", src: "/images/assets/demo/stocks/msft.png" },
-  { ticker: "GOOGL", color: "#4285F4", src: "/images/assets/demo/stocks/googl.svg" },
+  { ticker: "GOOGL", color: "#4285F4", src: "/images/assets/demo/stocks/googl.png" },
   { ticker: "AMZN", color: "#FF9900", src: "/images/assets/demo/stocks/amzn.png" },
   { ticker: "PLTR", color: "#101010", src: "/images/assets/demo/stocks/pltr.png" },
   { ticker: "ARM", color: "#0091BD", src: "/images/assets/demo/stocks/arm.png" },
@@ -69,16 +69,16 @@ const AI_COMPUTE = equalAssets([
 
 /** Layer 1 Index — layer-1-index live app assets (ordinal 0 → Buy Fear / Sell Greed) */
 const LAYER_1 = equalAssets([
-  { ticker: "BTC", color: "#F7931A", src: "/images/assets/bitcoin.svg" },
-  { ticker: "ETH", color: "#627EEA", src: "/images/assets/ethereum.svg" },
-  { ticker: "XRP", color: "#23292F", src: "/images/assets/demo/crypto/xrp.svg" },
-  { ticker: "BNB", color: "#F3BA2F", src: "/images/assets/demo/crypto/bnb.svg" },
-  { ticker: "SOL", color: "#14F195", src: "/images/assets/solana.svg" },
-  { ticker: "TRX", color: "#FF0013", src: "/images/assets/demo/crypto/trx.svg" },
+  { ticker: "BTC", color: "#F7931A", src: "/images/assets/demo/crypto/btc.png" },
+  { ticker: "ETH", color: "#627EEA", src: "/images/assets/demo/crypto/eth.png" },
+  { ticker: "XRP", color: "#23292F", src: "/images/assets/demo/crypto/xrp.png" },
+  { ticker: "BNB", color: "#F3BA2F", src: "/images/assets/demo/crypto/bnb.png" },
+  { ticker: "SOL", color: "#14F195", src: "/images/assets/demo/crypto/sol.png" },
+  { ticker: "TRX", color: "#FF0013", src: "/images/assets/demo/crypto/trx.png" },
   { ticker: "HYPE", color: "#97FCE4", src: "/images/assets/demo/crypto/hype.png" },
-  { ticker: "ADA", color: "#0033AD", src: "/images/assets/demo/crypto/ada.svg" },
-  { ticker: "AVAX", color: "#E84142", src: "/images/assets/demo/crypto/avax.svg" },
-  { ticker: "SUI", color: "#4DA2FF", src: "/images/assets/sui.svg" },
+  { ticker: "ADA", color: "#0033AD", src: "/images/assets/demo/crypto/ada.png" },
+  { ticker: "AVAX", color: "#E84142", src: "/images/assets/demo/crypto/avax.png" },
+  { ticker: "SUI", color: "#4DA2FF", src: "/images/assets/demo/crypto/sui.png" },
 ]);
 
 /** DeFi Index — defi-index (ordinal 7 → Momentum Trend) */

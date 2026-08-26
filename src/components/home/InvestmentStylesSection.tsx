@@ -144,9 +144,6 @@ export function InvestmentStylesSection() {
             One Platform.{" "}
             <span className="gradient-text">Every Investment Style.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-[1.15rem] font-semibold leading-snug text-electric text-balance sm:text-[1.3rem]">
-            Long-Term Investors · Stablecoin Yield Seekers · High-Risk Traders
-          </p>
         </FadeIn>
 
         <div className="mx-auto mt-10 grid max-w-6xl auto-rows-fr gap-5 lg:grid-cols-3 lg:gap-6">
