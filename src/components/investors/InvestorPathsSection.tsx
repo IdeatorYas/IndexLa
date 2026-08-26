@@ -10,32 +10,41 @@ import { homeCta } from "@/components/home/homeRhythm";
 const PATHS = [
   {
     id: "core",
-    eyebrow: "Invest Across Global Markets",
+    type: "Long-Term Investor",
+    headline: "Build Long-Term Exposure",
     tags: "Bitcoin · Gold · Tokenized Stocks · Tokenized RWAs",
     body: "Build diversified portfolios, automate strategies and own the underlying assets.",
     product: "INDEXLA Core",
     cta: { href: "/how-it-works", label: "See How It Works" },
     accent: "border-electric/35 from-electric/[0.12]",
+    badge:
+      "border-electric/45 bg-electric/[0.16] text-electric shadow-[inset_0_1px_0_rgba(56,189,248,0.22)]",
     productClass: "text-electric",
   },
   {
     id: "stable",
-    eyebrow: "Put Stablecoins to Work",
+    type: "Stablecoin Yield Seeker",
+    headline: "Earn with Stablecoins",
     tags: "USDC · USDT · DEX Liquidity · Trading Fees",
     body: "Supply stablecoins to decentralized exchanges and automate your liquidity positions.",
     product: "Stable Club",
     cta: { href: "/stable-club", label: "Explore Stable Club" },
     accent: "border-cyan/35 from-cyan/[0.12]",
+    badge:
+      "border-cyan/45 bg-cyan/[0.16] text-cyan shadow-[inset_0_1px_0_rgba(34,211,238,0.2)]",
     productClass: "text-cyan",
   },
   {
     id: "degen",
-    eyebrow: "Chase the Next Memecoin 100x",
+    type: "High-Risk Trader",
+    headline: "Chase the Next 100x",
     tags: "Multiple Coins · Multiple Chains · Multiple Opportunities",
     body: "Build memecoin baskets and give yourself more chances to catch the next 100x.",
     product: "Degen Club · High Risk",
     cta: { href: "/degen-club", label: "Explore Degen Club" },
     accent: "border-amber-400/35 from-amber-400/[0.12]",
+    badge:
+      "border-amber-400/45 bg-amber-400/[0.16] text-amber-200 shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]",
     productClass: "text-amber-300",
   },
 ] as const;
@@ -63,15 +72,26 @@ export function InvestorPathsSection() {
               >
                 <div className="grid items-center gap-5 md:grid-cols-[1fr_auto] md:gap-8">
                   <div className="min-w-0 text-left">
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-dim">
-                      {path.eyebrow}
-                    </p>
-                    <p className="mt-2.5 text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-electric sm:text-[1.02rem]">
+                    <div className="inline-flex">
+                      <span
+                        className={`inline-flex items-center rounded-xl border px-3.5 py-2 text-[0.78rem] font-semibold uppercase tracking-[0.12em] sm:px-4 sm:text-[0.84rem] ${path.badge}`}
+                      >
+                        {path.type}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-4 display text-[1.35rem] font-semibold tracking-[-0.025em] text-ink text-balance sm:text-[1.55rem]">
+                      {path.headline}
+                    </h3>
+
+                    <p className="mt-3 text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-electric sm:text-[1.02rem]">
                       {path.tags}
                     </p>
+
                     <p className={`mt-3 max-w-2xl ${invBody}`}>{path.body}</p>
+
                     <p
-                      className={`mt-4 display text-[1.2rem] font-semibold tracking-[-0.02em] sm:text-[1.35rem] ${path.productClass}`}
+                      className={`mt-4 display text-[1.15rem] font-semibold tracking-[-0.02em] sm:text-[1.28rem] ${path.productClass}`}
                     >
                       {path.product}
                     </p>
