@@ -89,7 +89,7 @@ const DEFI = equalAssets([
   { ticker: "ENA", color: "#5CE1E6", src: "/images/assets/demo/crypto/ena.png" },
   { ticker: "ONDO", color: "#183CFF", src: "/images/assets/ondo.svg" },
   { ticker: "JUP", color: "#00D18C", src: "/images/assets/demo/crypto/jup.png" },
-  { ticker: "PENDLE", color: "#1A1A1A", src: "/images/assets/demo/crypto/pendle.png" },
+  { ticker: "PENDLE", color: "#1A1A1A", src: "/images/assets/demo/crypto/pendle.svg" },
   { ticker: "MORPHO", color: "#2470FF", src: "/images/assets/demo/crypto/morpho.png" },
   { ticker: "CRV", color: "#FF0000", src: "/images/assets/demo/crypto/crv.svg" },
 ]);

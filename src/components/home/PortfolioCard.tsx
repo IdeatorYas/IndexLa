@@ -46,27 +46,29 @@ export function PortfolioCard({ product }: PortfolioCardProps) {
             key={row.ticker}
             className="flex items-center justify-between gap-2 rounded-lg border border-white/[0.05] bg-void/30 px-2.5 py-1.5"
           >
-            <div className="flex min-w-0 items-center gap-1.5">
-              <span
-                className="h-2 w-2 shrink-0 rounded-full"
-                style={{ background: row.color }}
-                aria-hidden
-              />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={row.src}
-                alt=""
-                width={16}
-                height={16}
-                className="object-contain"
-                loading="lazy"
-                decoding="async"
-                aria-hidden
-              />
-              <span className="truncate text-[0.82rem] font-semibold text-ink">
-                {row.ticker}
-              </span>
-            </div>
+              <div className="flex min-w-0 items-center gap-1.5">
+                <span
+                  className="h-2 w-2 shrink-0 rounded-full"
+                  style={{ background: row.color }}
+                  aria-hidden
+                />
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-void/90 ring-1 ring-white/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={row.src}
+                    alt=""
+                    width={14}
+                    height={14}
+                    className="object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    aria-hidden
+                  />
+                </span>
+                <span className="truncate text-[0.82rem] font-semibold text-ink">
+                  {row.ticker}
+                </span>
+              </div>
             <span className="shrink-0 text-[0.82rem] font-semibold tabular-nums text-electric">
               {row.percent}%
             </span>

@@ -84,7 +84,7 @@ function SegmentLogo({
         y={y - imgSize / 2}
         width={imgSize}
         height={imgSize}
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         onError={() => setBroken(true)}
       />
     );

@@ -10,12 +10,14 @@ import {
 
 type StyleCard = {
   id: string;
+  label: string;
   title: string;
   description: string;
   benefit: string;
   cta: { href: string; label: string };
   shell: string;
   titleClass: string;
+  labelClass: string;
   glow: string;
   assets: { src: string; alt: string }[];
 };
@@ -23,6 +25,7 @@ type StyleCard = {
 const STYLES: StyleCard[] = [
   {
     id: "core",
+    label: "Long-Term Investors",
     title: "INDEXLA CORE",
     description:
       "Build diversified portfolios across crypto, tokenized stocks, commodities and real-world assets. Automate your strategy while retaining direct ownership.",
@@ -31,6 +34,8 @@ const STYLES: StyleCard[] = [
     shell:
       "border-blue/45 bg-gradient-to-b from-blue/[0.16] via-electric/[0.06] to-deep/80 shadow-[inset_0_1px_0_rgba(59,130,246,0.22)]",
     titleClass: "text-electric",
+    labelClass:
+      "border-electric/40 bg-electric/15 text-electric shadow-[inset_0_1px_0_rgba(56,189,248,0.18)]",
     glow: "from-blue/25 via-electric/10 to-transparent",
     assets: [
       { src: ASSETS.btc.src, alt: "Bitcoin" },
@@ -44,6 +49,7 @@ const STYLES: StyleCard[] = [
   },
   {
     id: "stable",
+    label: "Stablecoin Yield Seekers",
     title: "STABLE CLUB",
     description:
       "Supply stablecoin liquidity to decentralized exchanges and earn trading fees. INDEXLA automates your position while you retain control.",
@@ -52,6 +58,8 @@ const STYLES: StyleCard[] = [
     shell:
       "border-cyan/45 bg-gradient-to-b from-cyan/[0.14] via-success/[0.07] to-deep/80 shadow-[inset_0_1px_0_rgba(34,211,238,0.2)]",
     titleClass: "text-cyan",
+    labelClass:
+      "border-cyan/40 bg-cyan/15 text-cyan shadow-[inset_0_1px_0_rgba(34,211,238,0.18)]",
     glow: "from-cyan/25 via-success/10 to-transparent",
     assets: [
       { src: "/images/assets/usdc.svg", alt: "USDC" },
@@ -60,6 +68,7 @@ const STYLES: StyleCard[] = [
   },
   {
     id: "degen",
+    label: "High-Risk Traders",
     title: "DEGEN CLUB",
     description:
       "Build diversified memecoin baskets to chase high-upside opportunities. Multiply your chances instead of betting everything on one coin.",
@@ -68,6 +77,8 @@ const STYLES: StyleCard[] = [
     shell:
       "border-amber-400/40 bg-gradient-to-b from-amber-400/[0.14] via-orange-500/[0.08] to-deep/80 shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]",
     titleClass: "text-amber-300",
+    labelClass:
+      "border-amber-400/40 bg-amber-400/15 text-amber-200 shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]",
     glow: "from-amber-400/25 via-orange-500/10 to-transparent",
     assets: [
       { src: DEGEN_MEME_LOGOS.DOGE, alt: "DOGE" },
@@ -144,7 +155,7 @@ export function InvestmentStylesSection() {
               <article
                 className={`relative grid h-full overflow-hidden rounded-[1.5rem] border px-6 py-9 text-center sm:px-7 sm:py-10 ${style.shell}`}
                 style={{
-                  gridTemplateRows: "auto 1fr auto auto",
+                  gridTemplateRows: "auto auto 1fr auto auto",
                 }}
               >
                 <div
@@ -153,8 +164,16 @@ export function InvestmentStylesSection() {
                 />
                 <CardAssetBackdrop assets={style.assets} />
 
+                <div className="relative z-10 flex justify-center">
+                  <span
+                    className={`inline-flex min-h-[2.25rem] items-center justify-center rounded-xl border px-3.5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.1em] sm:text-[0.78rem] ${style.labelClass}`}
+                  >
+                    {style.label}
+                  </span>
+                </div>
+
                 <p
-                  className={`relative z-10 display min-h-[2rem] text-[1.15rem] font-bold uppercase leading-none tracking-[0.14em] sm:min-h-[2.2rem] sm:text-[1.3rem] ${style.titleClass}`}
+                  className={`relative z-10 mt-5 display min-h-[2rem] text-[1.15rem] font-bold uppercase leading-none tracking-[0.14em] sm:min-h-[2.2rem] sm:text-[1.3rem] ${style.titleClass}`}
                 >
                   {style.title}
                 </p>

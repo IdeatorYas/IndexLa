@@ -8,7 +8,7 @@ const TRUST = [
   "Non-Custodial",
   "Revocable Permissions",
   "Private",
-  "No INDEXLA KYC",
+  "NO KYC",
 ] as const;
 
 export function Hero() {
@@ -37,13 +37,10 @@ export function Hero() {
             Decentralized Portfolio Management &amp; Distribution
           </p>
 
-          <h1 className="display mx-auto mt-4 w-full max-w-[min(100%,42rem)] px-1 text-[clamp(2.1rem,5.6vw,3.75rem)] font-semibold tracking-[-0.04em]">
-            <span className="block leading-[1.05] text-ink sm:whitespace-nowrap">
-              One Portfolio.
-            </span>
-            <span className="mt-1.5 block leading-[1.12] text-electric text-balance sm:mt-2 sm:whitespace-nowrap">
-              Every Asset. Every Chain.
-            </span>
+          <h1 className="display mx-auto mt-4 w-full max-w-[min(100%,42rem)] px-1 text-[clamp(2.1rem,5.6vw,3.75rem)] font-semibold tracking-[-0.04em] leading-[1.08]">
+            <span className="block text-ink">One Portfolio</span>
+            <span className="mt-1.5 block text-electric sm:mt-2">Every Asset</span>
+            <span className="mt-1.5 block text-electric sm:mt-2">Every Chain</span>
           </h1>
 
           <div className={`mx-auto mt-5 max-w-[34rem] space-y-2 ${homeBody}`}>

@@ -9,32 +9,47 @@ import {
 const PANELS = [
   {
     title: "Investors",
-    lead: "Own assets. Automate strategies. Keep 100% of any gains.",
-    support: "0% Management · 0% Performance · 0% Exit · 1% Execution",
+    lead: "Own real assets, automate strategies, and stay fully in control.",
+    support: "0% Management · 0% Performance · 0% Exit · 0.8% Execution",
   },
   {
     title: "Creators",
-    lead: "Build portfolios. Reach investors. Earn across four revenue streams.",
-    support: "Execution Fees · Strategy Access · Rewards · $DEXLA Tips",
+    lead: "Build portfolios, reach investors, and earn across four revenue streams.",
+    support: "Execution Fees · Strategy Access · Creator Rewards · $DEXLA Tips",
   },
   {
     title: "$DEXLA Holders",
-    lead: "Unlock access. Save on fees. Benefit from usage-linked scarcity.",
-    support: "Six Burn Mechanisms",
+    lead: "Hold $DEXLA, reduce execution fees, and save as holdings grow.",
+    support: "2,500 = 15% · 5,000 = 25% · 10,000 = 40% Savings",
   },
   {
     title: "INDEXLA",
-    lead: "Earn across all three products—plus dedicated treasury growth.",
-    support: "INDEXLA Core · Stable Club · Degen Club",
+    lead: "Earn across all three products while growing the protocol treasury.",
+    support: "INDEXLA Core · Stable Club · Degen Club · Treasury Growth",
+  },
+  {
+    title: "$DEXLA Token",
+    lead: "Turn platform usage into demand, burns, and permanent supply reduction.",
+    support: "Six Burn Mechanisms · Deflationary by Design · Fixed Supply",
   },
 ] as const;
 
-const FLYWHEEL = [
-  "Creators",
-  "Portfolios",
-  "Investors",
-  "Execution",
-  "Revenue + Rewards + $DEXLA Burns",
+const FLYWHEEL_HUB = {
+  title: "$DEXLA Utility",
+  detail: "Publish · Feature · Access · Tip",
+} as const;
+
+const FLYWHEEL_STEPS = [
+  { arrow: "↓", label: "More Creators" },
+  { arrow: "↓", label: "More Indexes + Portfolios" },
+  { arrow: "↓", label: "More Investors + Capital" },
+  { arrow: "↓", label: "More Execution Volume" },
+  { arrow: "↓", label: "More Fees" },
+  { arrow: "↓", label: "INDEXLA Revenue" },
+  { arrow: "↓", label: "Creator Earnings" },
+  { arrow: "↓", label: "$DEXLA Buybacks + Burns" },
+  { arrow: "↓", label: "Stronger Incentives" },
+  { arrow: "↻", label: "More Creators + Investors" },
 ] as const;
 
 export function AlignedEconomicsSection() {
@@ -48,17 +63,17 @@ export function AlignedEconomicsSection() {
           </h2>
         </FadeIn>
 
-        <div className="mx-auto mt-10 grid max-w-5xl gap-3 sm:grid-cols-2">
+        <div className="mx-auto mt-10 grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {PANELS.map((panel, i) => (
-            <FadeIn key={panel.title} delay={i * 0.04} className="h-full">
-              <article className="flex h-full min-h-[11.5rem] flex-col rounded-2xl border border-electric/25 bg-electric/[0.06] px-5 py-6 text-center sm:min-h-[12.5rem] sm:px-6 sm:py-7">
-                <h3 className="display text-[1.25rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.4rem]">
+            <FadeIn key={panel.title} delay={i * 0.03} className="h-full">
+              <article className="flex h-full min-h-[13.5rem] flex-col rounded-2xl border border-electric/30 bg-gradient-to-b from-electric/[0.1] to-transparent px-4 py-5 text-center sm:min-h-[14.5rem] sm:px-4 sm:py-6">
+                <h3 className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.15rem]">
                   {panel.title}
                 </h3>
-                <p className="mt-3 flex-1 text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
+                <p className="mt-3 flex-1 text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1rem]">
                   {panel.lead}
                 </p>
-                <p className="mt-3 text-[0.92rem] font-medium leading-snug text-muted text-balance sm:whitespace-nowrap sm:text-[0.98rem]">
+                <p className="mt-3 text-[0.78rem] font-medium leading-snug text-muted text-balance sm:text-[0.84rem]">
                   {panel.support}
                 </p>
               </article>
@@ -66,103 +81,94 @@ export function AlignedEconomicsSection() {
           ))}
         </div>
 
-        <FadeIn className="mx-auto mt-12 max-w-4xl text-center">
-          <h3 className={homeH3}>The Flywheel</h3>
-          <div className="relative mx-auto mt-8 max-w-[36rem]">
-            <div
-              className="pointer-events-none absolute inset-[10%] rounded-full border border-electric/25 bg-gradient-to-br from-electric/[0.1] via-purple/[0.06] to-transparent"
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute inset-[22%] rounded-full border border-dashed border-electric/20"
-              aria-hidden
-            />
+        <FadeIn className="mx-auto mt-14 max-w-5xl text-center">
+          <h3 className={homeH3}>INDEXLA Flywheel</h3>
 
-            <ol className="relative grid grid-cols-1 gap-3 sm:hidden">
-              {FLYWHEEL.map((node, i) => (
-                <li key={node} className="flex flex-col items-center gap-2">
-                  <span className="w-full rounded-2xl border border-electric/35 bg-void/85 px-4 py-3.5 text-[0.95rem] font-semibold text-ink shadow-[0_10px_30px_-18px_rgba(56,189,248,0.55)]">
-                    {node}
+          {/* Mobile / tablet: stacked separate blocks */}
+          <div className="mx-auto mt-8 max-w-xl lg:hidden">
+            <div className="rounded-2xl border border-electric/40 bg-gradient-to-b from-electric/15 to-void/80 px-5 py-5 shadow-[0_12px_36px_-18px_rgba(56,189,248,0.55)]">
+              <p className="display text-[1.1rem] font-semibold text-electric">
+                {FLYWHEEL_HUB.title}
+              </p>
+              <p className="mt-2 text-[0.92rem] font-medium text-ink">
+                {FLYWHEEL_HUB.detail}
+              </p>
+            </div>
+            <ol className="mt-4 space-y-2.5">
+              {FLYWHEEL_STEPS.map((step) => (
+                <li key={step.label} className="flex flex-col items-center gap-2">
+                  <span className="text-[1.05rem] font-semibold text-electric" aria-hidden>
+                    {step.arrow}
                   </span>
-                  {i < FLYWHEEL.length - 1 ? (
-                    <span className="text-electric" aria-hidden>
-                      ↓
-                    </span>
-                  ) : (
-                    <span className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-cyan">
-                      Continuous loop
-                    </span>
-                  )}
+                  <span className="w-full rounded-xl border border-electric/30 bg-void/85 px-4 py-3 text-[0.95rem] font-semibold text-ink shadow-[0_8px_24px_-16px_rgba(56,189,248,0.45)]">
+                    {step.label}
+                  </span>
                 </li>
               ))}
             </ol>
-
-            <div className="relative hidden aspect-square sm:block">
-              {FLYWHEEL.map((node, i) => {
-                const angle = -90 + i * (360 / FLYWHEEL.length);
-                const rad = (angle * Math.PI) / 180;
-                const radius = 38;
-                const x = 50 + radius * Math.cos(rad);
-                const y = 50 + radius * Math.sin(rad);
-                return (
-                  <div
-                    key={node}
-                    className="absolute z-10 w-[10rem] -translate-x-1/2 -translate-y-1/2 lg:w-[11rem]"
-                    style={{ left: `${x}%`, top: `${y}%` }}
-                  >
-                    <div className="rounded-2xl border border-electric/40 bg-void/90 px-3 py-3.5 text-center shadow-[0_12px_36px_-16px_rgba(56,189,248,0.65)] backdrop-blur-sm">
-                      <p className="text-[0.9rem] font-semibold leading-snug text-ink text-balance lg:text-[0.98rem]">
-                        {node}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-              <div className="absolute left-1/2 top-1/2 z-0 flex h-[8rem] w-[8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-electric/35 bg-gradient-to-br from-electric/20 to-purple/15 text-center shadow-[0_0_40px_-10px_rgba(56,189,248,0.55)]">
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-electric">
-                  INDEXLA
-                </p>
-                <p className="mt-1 text-[0.72rem] font-semibold text-ink/80">
-                  Ecosystem Loop
-                </p>
-              </div>
-              <svg
-                className="pointer-events-none absolute inset-[16%] text-electric/55"
-                viewBox="0 0 100 100"
-                aria-hidden
-              >
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="44"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="0.8"
-                  strokeDasharray="3 4"
-                />
-                <defs>
-                  <marker
-                    id="fly-arrow-v2"
-                    markerWidth="6"
-                    markerHeight="6"
-                    refX="5"
-                    refY="3"
-                    orient="auto"
-                  >
-                    <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
-                  </marker>
-                </defs>
-                <path
-                  d="M90 50 A40 40 0 0 1 50 90"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.4"
-                  markerEnd="url(#fly-arrow-v2)"
-                />
-              </svg>
-            </div>
           </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+
+          {/* Desktop: circular flow — every step is its own block */}
+          <div className="relative mx-auto mt-10 hidden aspect-square max-w-[42rem] lg:block">
+            <div
+              className="pointer-events-none absolute inset-[8%] rounded-full border border-electric/20 bg-gradient-to-br from-electric/[0.08] via-purple/[0.05] to-transparent"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-[18%] rounded-full border border-dashed border-electric/25"
+              aria-hidden
+            />
+            <svg
+              className="pointer-events-none absolute inset-[14%] text-electric/40"
+              viewBox="0 0 100 100"
+              aria-hidden
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="46"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.7"
+                strokeDasharray="2.5 3.5"
+              />
+            </svg>
+
+            <div className="absolute left-1/2 top-1/2 z-20 w-[11.5rem] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-electric/45 bg-void/95 px-4 py-4 text-center shadow-[0_16px_40px_-18px_rgba(56,189,248,0.7)] backdrop-blur-sm">
+              <p className="display text-[1rem] font-semibold text-electric">
+                {FLYWHEEL_HUB.title}
+              </p>
+              <p className="mt-2 text-[0.78rem] font-medium leading-snug text-ink">
+                {FLYWHEEL_HUB.detail}
+              </p>
+            </div>
+
+            {FLYWHEEL_STEPS.map((step, i) => {
+              const angle = -90 + i * (360 / FLYWHEEL_STEPS.length);
+              const rad = (angle * Math.PI) / 180;
+              const radius = 42;
+              const x = 50 + radius * Math.cos(rad);
+              const y = 50 + radius * Math.sin(rad);
+              return (
+                <div
+                  key={step.label}
+                  className="absolute z-10 w-[8.75rem] -translate-x-1/2 -translate-y-1/2 xl:w-[9.5rem]"
+                  style={{ left: `${x}%`, top: `${y}%` }}
+                >
+                  <div className="rounded-xl border border-electric/35 bg-void/92 px-2.5 py-2.5 text-center shadow-[0_10px_28px_-14px_rgba(56,189,248,0.55)] backdrop-blur-sm">
+                    <p className="text-[0.72rem] font-semibold leading-none text-electric" aria-hidden>
+                      {step.arrow}
+                    </p>
+                    <p className="mt-1 text-[0.72rem] font-semibold leading-snug text-ink text-balance xl:text-[0.78rem]">
+                      {step.label}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
             <HomeReadMore
               href="/whitepaper/10-business-model"
               label="Business Model →"
