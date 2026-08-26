@@ -11,9 +11,9 @@ import {
 } from "react";
 import {
   applyTheme,
+  DEFAULT_THEME,
   persistTheme,
   readStoredTheme,
-  systemTheme,
   type ThemeMode,
 } from "@/lib/theme";
 
@@ -33,7 +33,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       ) as ThemeMode | null;
       if (attr === "light" || attr === "dark") return attr;
     }
-    return "dark";
+    return DEFAULT_THEME;
   });
 
   const setTheme = useCallback((next: ThemeMode) => {
@@ -46,20 +46,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [setTheme, theme]);
 
   useEffect(() => {
-    const stored = readStoredTheme();
-    const resolved = stored ?? systemTheme();
+    const resolved = readStoredTheme() ?? DEFAULT_THEME;
     setThemeState(resolved);
     applyTheme(resolved);
-
-    const media = window.matchMedia("(prefers-color-scheme: light)");
-    const onChange = () => {
-      if (readStoredTheme()) return;
-      const next = media.matches ? "light" : "dark";
-      setThemeState(next);
-      applyTheme(next);
-    };
-    media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
   }, []);
 
   useEffect(() => {
