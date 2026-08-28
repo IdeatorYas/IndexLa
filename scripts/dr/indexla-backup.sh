@@ -76,6 +76,13 @@ encrypt_env_files() {
   echo "env_encryption=gpg_aes256" >"$out_dir/ENCRYPTION_STATUS"
 }
 
+read_env_value() {
+  local file="$1"
+  local key="$2"
+  [[ -f "$file" ]] || return 1
+  grep -E "^${key}=" "$file" | head -1 | cut -d= -f2- | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//" -e 's/\r$//'
+}
+
 dump_database_if_possible() {
   local out_dir="$1"
   mkdir -p "$out_dir"
@@ -84,11 +91,9 @@ dump_database_if_possible() {
     echo "database=skipped_no_env" >"$out_dir/DATABASE_STATUS"
     return 0
   fi
-  # shellcheck disable=SC1090
-  set +u
-  source "$env_file"
-  set -u
-  if [[ -z "${DATABASE_URL:-}" ]]; then
+  local db_url
+  db_url="$(read_env_value "$env_file" "DATABASE_URL" || true)"
+  if [[ -z "${db_url:-}" ]]; then
     echo "database=skipped_no_database_url" >"$out_dir/DATABASE_STATUS"
     return 0
   fi
@@ -98,7 +103,7 @@ dump_database_if_possible() {
     echo "database_provider_backup_required=true" >>"$out_dir/DATABASE_STATUS"
     return 0
   fi
-  pg_dump "$DATABASE_URL" --no-owner --format=custom --file "${out_dir}/website-postgres.dump"
+  pg_dump "$db_url" --no-owner --format=custom --file "${out_dir}/website-postgres.dump"
   log "DATABASE: pg_dump written"
   echo "database=pg_dump_custom" >"$out_dir/DATABASE_STATUS"
 }

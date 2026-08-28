@@ -50,6 +50,7 @@ fi
 if [[ ! -f "${CONFIG_DIR}/config.env" ]]; then
   if [[ -f "${SRC_DIR}/dr-config.example.env" ]]; then
     cp "${SRC_DIR}/dr-config.example.env" "${CONFIG_DIR}/config.env"
+    sed -i 's/\r$//' "${CONFIG_DIR}/config.env" 2>/dev/null || true
     chmod 600 "${CONFIG_DIR}/config.env"
     log "seeded ${CONFIG_DIR}/config.env — configure offsite destination"
   fi
