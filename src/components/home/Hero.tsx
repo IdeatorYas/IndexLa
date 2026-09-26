@@ -33,8 +33,12 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="display mx-auto w-full max-w-[min(100%,44rem)] px-1 text-[clamp(2.35rem,6vw,4rem)] font-semibold tracking-[-0.04em] leading-[1.08] text-ink text-balance">
-            Decentralized Portfolio Management &amp; Distribution Layer
+          <h1 className="display mx-auto w-full max-w-[min(100%,44rem)] px-1 text-[clamp(2.35rem,6vw,4rem)] font-semibold tracking-[-0.04em] leading-[1.08] text-balance">
+            <span className="text-ink">Decentralized Portfolio Management</span>
+            <span className="text-electric">
+              {" "}
+              &amp; Distribution Layer
+            </span>
           </h1>
 
           <div className={`mx-auto mt-5 max-w-[34rem] ${homeBody}`}>
@@ -62,15 +66,14 @@ export function Hero() {
             </EarlyAccessCta>
           </div>
 
-          <ul className="mt-7 grid w-full max-w-[40rem] grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-2.5">
+          <ul className="mt-7 flex w-full max-w-[44rem] flex-wrap items-center justify-center gap-2 sm:gap-2.5">
             {TRUST.map((item) => (
-              <li
-                key={item}
-                className="flex min-h-[2.85rem] items-center justify-center rounded-lg border border-electric/28 bg-electric/[0.06] px-2 py-2 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.1)] sm:min-h-[3.1rem] sm:px-2.5"
-              >
-                <span className="text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.15rem]">
-                  {item}
-                </span>
+              <li key={item}>
+                <div className="inline-flex items-center justify-center rounded-xl border border-electric/50 bg-electric/[0.14] px-5 py-3 shadow-[inset_0_1px_0_rgba(56,189,248,0.22),0_0_28px_rgba(56,189,248,0.12)] sm:px-7 sm:py-3.5">
+                  <p className="text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink whitespace-nowrap sm:text-[1.15rem]">
+                    {item}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
