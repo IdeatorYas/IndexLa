@@ -46,51 +46,31 @@ export function InvestorHero() {
             <h1
               className={`${invH1} text-[clamp(1.7rem,3.8vw,2.75rem)] leading-[1.04]`}
             >
-              <span className="block">You Know What You Should Do.</span>
+              <span className="block">You Know What to Do.</span>
               <span className="mt-[0.1em] block gradient-text">
-                You Just Don&apos;t Do It.
+                Emotions Get in the Way.
               </span>
             </h1>
 
-            <div className="mt-2.5 space-y-0.5 lg:mt-3">
-              <p className={`${invBody} text-[0.92rem] leading-snug sm:text-[0.98rem]`}>
-                Buy when fear is high.
-              </p>
-              <p className={`${invBody} text-[0.92rem] leading-snug sm:text-[0.98rem]`}>
-                Take profits when markets become euphoric.
-              </p>
-              <p className={`${invBody} text-[0.92rem] leading-snug sm:text-[0.98rem]`}>
-                Rebalance when allocations drift.
-              </p>
-            </div>
-
-            <p className={`mt-2 ${invBody} text-[0.92rem] leading-snug sm:text-[0.98rem]`}>
-              But when markets move, emotions take control.
-            </p>
-
-            <p className={`mt-1.5 ${invBody} text-[0.92rem] leading-snug sm:text-[0.98rem]`}>
-              You hesitate. You chase. You panic. You miss the moment.
+            <p
+              className={`mt-2.5 ${invBody} text-[0.92rem] leading-snug sm:text-[0.98rem] lg:mt-3`}
+            >
+              Buy fear. Take profits. Rebalance on time.
             </p>
 
             <div className="mt-2.5 lg:mt-3">
               <div className={`${invGreenBox} !px-4 !py-2.5`}>
                 <p className={`${invGreenText} text-[0.88rem] sm:text-[0.95rem]`}>
-                  Stop Letting Emotions Manage Your Capital.
+                  INDEXLA automates your rules. You keep ownership and control.
                 </p>
               </div>
             </div>
-
-            <p
-              className={`mt-2.5 max-w-xl ${invBody} text-[0.9rem] leading-snug text-pretty sm:text-[0.96rem]`}
-            >
-              Set your rules. INDEXLA executes only what you approve.
-            </p>
 
             <div className="mt-3.5 lg:mt-4">
               <EarlyAccessCta
                 className={`${homeCta} min-w-[13.5rem] px-6 py-3 text-[0.95rem] shadow-[0_14px_40px_rgba(59,130,246,0.34)]`}
               >
-                Reserve Early Access
+                Reserve Early Access →
               </EarlyAccessCta>
             </div>
           </motion.div>
