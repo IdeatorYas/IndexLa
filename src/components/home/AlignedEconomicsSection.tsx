@@ -19,7 +19,7 @@ const FEE_ROWS = [
 const GROWTH_CARDS = [
   {
     title: "Investors",
-    body: "As INDEXLA grows, explore more portfolios, indexes, and strategies to make money and grow capital. Qualify for monthly rewards when your creator wins.",
+    body: "As INDEXLA grows, explore more portfolios, indexes, and strategies to find more opportunities to grow capital. Qualify for monthly rewards when your creator wins.",
   },
   {
     title: "Creators",
@@ -35,7 +35,7 @@ const GROWTH_CARDS = [
   },
   {
     title: "Treasury",
-    body: "Trading volume grows, the treasury collects more fees and builds reserves to fund security, infrastructure, product expansion, and platform growth.",
+    body: "As trading volume grows, the treasury collects more fees and builds reserves to fund security, infrastructure, product expansion, and platform growth.",
   },
 ] as const;
 
