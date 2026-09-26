@@ -11,8 +11,8 @@ export function CreatorAudiencePortfolioSection() {
       <div className="section-pad container-max">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${crH2} uppercase`}>
-            Your Audience.{" "}
-            <span className="gradient-text">Your Portfolio</span>
+            Your Portfolio. Your Audience.{" "}
+            <span className="gradient-text">Your Revenue.</span>
           </h2>
 
           <p className={`mt-6 ${crBody} text-balance`}>
