@@ -1,7 +1,6 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   tkBody,
-  tkBodyStrong,
   tkH2,
   tkSection,
   tkStat,
@@ -117,24 +116,6 @@ export function TokenDistributionSection() {
                 </div>
               </div>
             </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn className="mx-auto mt-10 max-w-3xl">
-          <div className="rounded-xl border border-electric/25 bg-electric/[0.05] px-5 py-6 text-center sm:px-7 sm:py-7">
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-electric">
-              Treasury Funding
-            </p>
-            <p className={`mt-4 ${tkBody} text-pretty`}>
-              The Treasury receives 20% of the total $DEXLA supply, plus 15% of
-              Private Round proceeds and 10% of Public Round proceeds allocated
-              to Treasury to support long-term protocol sustainability and
-              strategic growth.
-            </p>
-            <p className={`mt-3 ${tkBodyStrong} text-pretty`}>
-              These Treasury allocations are funded from protocol fundraising
-              proceeds, not user assets.
-            </p>
           </div>
         </FadeIn>
 

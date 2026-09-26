@@ -9,10 +9,11 @@ import {
 } from "@/components/tokenomics/tokenomicsRhythm";
 
 const slices = [
-  { label: "Public Sale", pct: "3%", width: "20.34%" },
-  { label: "DEX Liquidity", pct: "10%", width: "67.8%" },
-  { label: "CEX Listings", pct: "0.75%", width: "5.08%" },
-  { label: "Other unlocked allocations", pct: "1%", width: "6.78%" },
+  { label: "DEX Liquidity", pct: "10%", tokens: "10M", width: "65.57%", color: "#22d3ee" },
+  { label: "Pre-seed", pct: "0.25%", tokens: "250K", width: "1.64%", color: "#7c3aed" },
+  { label: "Seed", pct: "0.6%", tokens: "600K", width: "3.93%", color: "#8b5cf6" },
+  { label: "Private", pct: "1.4%", tokens: "1.4M", width: "9.18%", color: "#a78bfa" },
+  { label: "Public", pct: "3%", tokens: "3M", width: "19.67%", color: "#38bdf8" },
 ] as const;
 
 export function TgeCirculatingSection() {
@@ -27,9 +28,9 @@ export function TgeCirculatingSection() {
           <p className="mt-5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted">
             TGE Float
           </p>
-          <p className={`mt-3 ${tkStat} gradient-text`}>14.75%</p>
+          <p className={`mt-3 ${tkStat} gradient-text`}>15.25%</p>
           <p className="mt-2 display text-[clamp(1.2rem,2.5vw,1.55rem)] tracking-[-0.02em] text-ink">
-            14.75M $DEXLA
+            15.25M $DEXLA
           </p>
         </FadeIn>
 
@@ -40,10 +41,13 @@ export function TgeCirculatingSection() {
             </p>
 
             <div className="mt-5 flex h-3 overflow-hidden rounded-full border border-white/[0.08]">
-              <div className="h-full bg-electric" style={{ width: slices[0].width }} />
-              <div className="h-full bg-[#22d3ee]" style={{ width: slices[1].width }} />
-              <div className="h-full bg-[#f87171]" style={{ width: slices[2].width }} />
-              <div className="h-full bg-[#a78bfa]" style={{ width: slices[3].width }} />
+              {slices.map((row) => (
+                <div
+                  key={row.label}
+                  className="h-full"
+                  style={{ width: row.width, background: row.color }}
+                />
+              ))}
             </div>
 
             <ul className="mt-5 grid gap-2 sm:grid-cols-2">
@@ -55,15 +59,15 @@ export function TgeCirculatingSection() {
                   <span className="text-[0.9rem] font-medium text-ink">
                     {row.label}
                   </span>
-                  <span className="display text-[1.1rem] tabular-nums text-electric">
-                    {row.pct}
+                  <span className="display text-right text-[1.05rem] tabular-nums leading-snug text-electric sm:text-[1.1rem]">
+                    {row.pct} / {row.tokens}
                   </span>
                 </li>
               ))}
             </ul>
 
             <p className={`mt-5 text-center ${tkBody}`}>
-              14.75% of total supply at TGE.
+              15.25% of total supply at TGE.
             </p>
           </div>
         </FadeIn>

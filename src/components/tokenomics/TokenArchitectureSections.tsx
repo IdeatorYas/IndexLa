@@ -162,8 +162,7 @@ const utilities: ArchCard[] = [
     n: "03",
     title: "Monetize",
     lines: [
-      "Creators use $DEXLA to list proprietary strategies on the Marketplace.",
-      "Creators use $DEXLA to publish and monetize proprietary strategies. Earn access fees + 10% of applicable execution fees when your strategy is used.",
+      "List your private strategy for other creators to use. Earn access fees and 10% of applicable execution fees when they use it.",
     ],
     metric: "500 $DEXLA → List Strategy · Set Access Price",
   },
