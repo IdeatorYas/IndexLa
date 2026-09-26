@@ -51,10 +51,10 @@ export function CreatorRevenueSection() {
             Crypto &amp; Finance Creators · KOLs · Influencers · YouTubers
           </p>
           <h2 className="display mt-4 text-[clamp(2rem,5.2vw,3.35rem)] font-semibold tracking-[-0.035em] leading-[1.08]">
-            <span className="block text-ink">Your Thesis.</span>
-            <span className="mt-2 block text-ink sm:mt-2.5">Your Product.</span>
+            <span className="block text-ink">Your Thesis</span>
+            <span className="mt-2 block text-ink sm:mt-2.5">Your Product</span>
             <span className="mt-2 block gradient-text sm:mt-2.5">
-              Your Revenue.
+              Your Revenue
             </span>
           </h2>
           <div className={`mx-auto mt-6 max-w-3xl space-y-3 ${homeBody}`}>

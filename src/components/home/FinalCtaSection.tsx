@@ -27,9 +27,9 @@ export function FinalCtaSection() {
           transition={{ duration: 0.7 }}
         >
           <h2 className="display mx-auto max-w-[40rem] text-[clamp(2.1rem,5.6vw,3.5rem)] font-semibold tracking-[-0.035em] leading-[1.08]">
-            <span className="block text-ink">Build It.</span>
-            <span className="mt-2 block text-ink sm:mt-2.5">Automate It.</span>
-            <span className="mt-2 block gradient-text sm:mt-2.5">Own It.</span>
+            <span className="block text-ink">Build It</span>
+            <span className="mt-2 block text-ink sm:mt-2.5">Automate It</span>
+            <span className="mt-2 block gradient-text sm:mt-2.5">Own It</span>
           </h2>
           <div className={`mt-6 space-y-3 ${homeMeasure} ${homeBody}`}>
             <p>

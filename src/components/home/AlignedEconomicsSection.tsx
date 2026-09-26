@@ -15,27 +15,27 @@ const FEE_ROWS = [
   { where: "$DEXLA Buyback & Burn", share: "10%", amount: "$100,000" },
 ] as const;
 
-/** Exactly 17 words / 100 letters each — keep wording for visual balance. */
+/** Growth ecosystem cards — exact homepage copy. */
 const GROWTH_CARDS = [
   {
     title: "Investors",
-    body: "Find smarter strategies to grow capital, automate profit-taking, and qualify for monthly rewards when your creator wins.",
+    body: "As INDEXLA grows, explore more portfolios, indexes, and strategies to make money and grow capital. Qualify for monthly rewards when your creator wins.",
   },
   {
     title: "Creators",
-    body: "Launch more portfolios, drive more trades, earn increased execution fees, attract tips, and grow strategy access revenue.",
+    body: "Launch multiple portfolios and indexes, each its own revenue stream. Share them with your audience, drive trading volume, and earn extra fees and tips.",
   },
   {
     title: "INDEXLA",
-    body: "Increase trading volume, earn platform fees, fund stronger products, and attract more creators and investors to INDEXLA.",
+    body: "More portfolios attract more investors and trades. More executed trades generate platform fees to build products, expand access, and bring in users.",
   },
   {
     title: "$DEXLA",
-    body: "Increase activity, fund additional buybacks and burns from platform fees and treasury profits, and reduce token supply.",
+    body: "As activity grows, publishing, promotion, tips, and strategy access use $DEXLA. The platform fees fund steady buybacks and burns, reducing token supply.",
   },
   {
     title: "Treasury",
-    body: "Build more reserves from trading fees, fund better security and infrastructure, and support buybacks and future growth.",
+    body: "Trading volume grows, the treasury collects more fees and builds reserves to fund security, infrastructure, product expansion, and platform growth.",
   },
 ] as const;
 
@@ -65,10 +65,6 @@ export function AlignedEconomicsSection() {
             Growth Rewards the{" "}
             <span className="gradient-text">Entire Ecosystem.</span>
           </h2>
-          <p className={`mx-auto mt-5 max-w-3xl ${homeBody}`}>
-            Creators can launch more than one portfolio. More portfolios can
-            bring more trades and a larger fee pool to share.
-          </p>
           <p className="mt-5 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-electric">
             Illustrative creator portfolio example
           </p>
@@ -136,7 +132,7 @@ export function AlignedEconomicsSection() {
         </FadeIn>
 
         <FadeIn className="mx-auto mt-14 max-w-6xl text-center">
-          <h3 className={homeH3}>What Growth Means for You</h3>
+          <h3 className={homeH3}>How Growth Benefits the Ecosystem</h3>
           <div className="mt-8 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-3.5">
             {GROWTH_CARDS.map((card, i) => (
               <article

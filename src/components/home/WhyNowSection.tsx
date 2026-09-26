@@ -20,9 +20,6 @@ export function WhyNowSection() {
             On-Chain Investing Is{" "}
             <span className="gradient-text">Growing Fast.</span>
           </h2>
-          <p className={`mx-auto mt-5 max-w-3xl font-semibold text-ink ${homeBody}`}>
-            $302B+ in stablecoins · $38B+ in tokenized RWAs · 2.9M+ RWA holders
-          </p>
         </FadeIn>
 
         <FadeIn className="mt-10">

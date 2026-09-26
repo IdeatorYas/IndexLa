@@ -26,10 +26,10 @@ const STYLES: StyleCard[] = [
   {
     id: "core",
     label: "Long-Term Investors",
-    title: "INDEXLA CORE",
-    description:
+    title: "INDEXLA Core",
+    description: "Diversified portfolios",
+    benefit:
       "Build diversified portfolios across crypto, tokenized stocks, commodities and real-world assets. Automate your strategy while retaining direct ownership.",
-    benefit: "Long-Term · Diversified · Direct Ownership",
     cta: { href: "/how-it-works", label: "See How It Works →" },
     shell:
       "border-blue/45 bg-gradient-to-b from-blue/[0.16] via-electric/[0.06] to-deep/80 shadow-[inset_0_1px_0_rgba(59,130,246,0.22)]",
@@ -50,10 +50,10 @@ const STYLES: StyleCard[] = [
   {
     id: "stable",
     label: "Stablecoin Yield Seekers",
-    title: "STABLE CLUB",
-    description:
+    title: "INDEXLA Stable Club",
+    description: "A selection of top LP farming pools",
+    benefit:
       "Supply stablecoin liquidity to decentralized exchanges and earn trading fees. INDEXLA automates your position while you retain control.",
-    benefit: "No Lending · No Borrowing · No Extra Vault",
     cta: { href: "/stable-club", label: "Explore Stable Club →" },
     shell:
       "border-cyan/45 bg-gradient-to-b from-cyan/[0.14] via-success/[0.07] to-deep/80 shadow-[inset_0_1px_0_rgba(34,211,238,0.2)]",
@@ -69,10 +69,10 @@ const STYLES: StyleCard[] = [
   {
     id: "degen",
     label: "High-Risk Traders",
-    title: "DEGEN CLUB",
-    description:
+    title: "INDEXLA Degen Club",
+    description: "High-risk memecoin baskets",
+    benefit:
       "Build diversified memecoin baskets to chase high-upside opportunities. Multiply your chances instead of betting everything on one coin.",
-    benefit: "Multiple Coins · Multiple Opportunities · High Volatility",
     cta: { href: "/degen-club", label: "Explore Degen Club →" },
     shell:
       "border-amber-400/40 bg-gradient-to-b from-amber-400/[0.14] via-orange-500/[0.08] to-deep/80 shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]",
@@ -152,7 +152,7 @@ export function InvestmentStylesSection() {
               <article
                 className={`relative grid h-full overflow-hidden rounded-[1.5rem] border px-6 py-9 text-center sm:px-7 sm:py-10 ${style.shell}`}
                 style={{
-                  gridTemplateRows: "auto auto 1fr auto auto",
+                  gridTemplateRows: "auto auto auto 1fr auto",
                 }}
               >
                 <div
@@ -170,16 +170,16 @@ export function InvestmentStylesSection() {
                 </div>
 
                 <p
-                  className={`relative z-10 mt-5 display min-h-[2rem] text-[1.15rem] font-bold uppercase leading-none tracking-[0.14em] sm:min-h-[2.2rem] sm:text-[1.3rem] ${style.titleClass}`}
+                  className={`relative z-10 mt-5 display min-h-[2rem] text-[1.15rem] font-bold leading-none tracking-[-0.02em] sm:min-h-[2.2rem] sm:text-[1.3rem] ${style.titleClass}`}
                 >
                   {style.title}
                 </p>
 
-                <p className="relative z-10 mt-6 text-[1.08rem] font-medium leading-[1.55] text-muted text-balance sm:text-[1.15rem]">
+                <p className="relative z-10 mt-3 text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.12rem]">
                   {style.description}
                 </p>
 
-                <p className="relative z-10 mt-6 flex min-h-[3.25rem] items-center justify-center text-[0.98rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:min-h-[3.5rem] sm:text-[1.05rem]">
+                <p className="relative z-10 mt-5 text-[1.02rem] font-medium leading-[1.55] text-muted text-balance sm:text-[1.08rem]">
                   {style.benefit}
                 </p>
 

@@ -111,14 +111,6 @@ export function BuildAutomateSection() {
 
         <FadeIn className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
           <HomeReadMore href="/strategies" label="Explore Strategies →" />
-          <HomeReadMore
-            href="/whitepaper/technical"
-            label="Technical Architecture →"
-          />
-          <HomeReadMore
-            href="/whitepaper/15-security-privacy-mev-protection"
-            label="Security & Permissions →"
-          />
         </FadeIn>
       </div>
     </section>
