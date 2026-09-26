@@ -82,7 +82,7 @@ const LAYER_1 = weightedAssets([
   { ticker: "HYPE", percent: 5, color: "#97FCE4", src: "/images/assets/demo/crypto/hype.png" },
 ]);
 
-/** DeFi Index — Momentum Trend */
+/** DeFi Index — Weekly RSI */
 const DEFI = weightedAssets([
   { ticker: "LINK", percent: 15, color: "#2A5ADA", src: "/images/assets/demo/crypto/link.png" },
   { ticker: "AAVE", percent: 13, color: "#B6509E", src: "/images/assets/demo/crypto/aave.png" },
@@ -118,7 +118,7 @@ export const HOME_DISCOVER_PRODUCTS: HomeDiscoverProduct[] = [
     name: "DeFi Index",
     typeLabel: "Crypto Index",
     typeClassName: "border-purple-bright/40 bg-purple/20 text-purple-bright",
-    strategy: "Momentum Trend",
+    strategy: "Weekly RSI",
     assets: DEFI,
   },
 ];

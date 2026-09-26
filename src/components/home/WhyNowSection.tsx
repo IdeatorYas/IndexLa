@@ -16,10 +16,13 @@ export function WhyNowSection() {
     <section className={`${homeSection} bg-void`}>
       <div className="section-pad container-max">
         <FadeIn className="text-center">
-          <h2 className={`${homeH2} mx-auto max-w-4xl uppercase tracking-[-0.03em]`}>
-            The Investment Economy Is{" "}
-            <span className="gradient-text">Moving On-Chain.</span>
+          <h2 className={`${homeH2} mx-auto max-w-4xl`}>
+            On-Chain Investing Is{" "}
+            <span className="gradient-text">Growing Fast.</span>
           </h2>
+          <p className={`mx-auto mt-5 max-w-3xl font-semibold text-ink ${homeBody}`}>
+            $302B+ in stablecoins · $38B+ in tokenized RWAs · 2.9M+ RWA holders
+          </p>
         </FadeIn>
 
         <FadeIn className="mt-10">
@@ -41,10 +44,8 @@ export function WhyNowSection() {
         </FadeIn>
 
         <FadeIn className="mt-8 text-center">
-          <p className={`mx-auto max-w-3xl ${homeBody}`}>
-            Capital and assets are moving on-chain, creating demand for direct
-            ownership, automated portfolios and better ways to put stablecoins
-            to work.
+          <p className={`mx-auto max-w-3xl font-semibold text-ink ${homeBody}`}>
+            More assets. More chains. One portfolio layer you actually own.
           </p>
         </FadeIn>
       </div>

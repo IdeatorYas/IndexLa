@@ -20,21 +20,21 @@ export function MissingLayerSection() {
       />
       <div className="section-pad container-max relative">
         <FadeIn className="text-center">
-          <h2 className="display mx-auto max-w-4xl text-[clamp(1.85rem,4.8vw,3.15rem)] font-semibold tracking-[-0.035em] leading-[1.12]">
-            <span className="block text-ink">
-              Financial Assets Are Moving On-Chain.
-            </span>
-            <span className="mt-2 block gradient-text sm:mt-3">
-              Investing Remains Fragmented.
-            </span>
+          <h2 className="display mx-auto max-w-4xl text-[clamp(1.85rem,4.8vw,3.15rem)] font-semibold tracking-[-0.035em] leading-[1.12] text-ink">
+            Financial Assets Are Moving On-Chain.
           </h2>
           <div className={`mx-auto mt-6 max-w-2xl space-y-4 ${homeBody}`}>
             <p>
-              Crypto,Tokenized stocks, gold, commodities and real-world assets
-              sit across different chains, wallets and platforms.
+              Tokenized stocks, gold and other assets are spreading across
+              chains. Fake tokens and lookalikes are spreading with them.
+            </p>
+            <p>
+              INDEXLA filters out the spam and gives you access to verified
+              tokenized assets through automated portfolios. You hold the assets
+              directly in your wallet.
             </p>
             <p className="font-semibold text-ink">
-              INDEXLA connects them through automated, non-custodial portfolios.
+              No index token. Non-custodial. Just direct ownership.
             </p>
           </div>
         </FadeIn>

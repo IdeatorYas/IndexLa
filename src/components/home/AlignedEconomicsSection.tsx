@@ -1,39 +1,43 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { HomeReadMore } from "@/components/home/HomeReadMore";
 import {
+  homeBody,
   homeH2,
   homeH3,
   homeSection,
 } from "@/components/home/homeRhythm";
 
-const GRID_PANELS = [
+const FEE_ROWS = [
+  { where: "Creators", share: "50%", amount: "$500,000" },
+  { where: "INDEXLA", share: "20%", amount: "$200,000" },
+  { where: "Treasury", share: "10%", amount: "$100,000" },
+  { where: "Monthly Rewards", share: "10%", amount: "$100,000" },
+  { where: "$DEXLA Buyback & Burn", share: "10%", amount: "$100,000" },
+] as const;
+
+/** Exactly 17 words / 100 letters each — keep wording for visual balance. */
+const GROWTH_CARDS = [
   {
     title: "Investors",
-    lead: "Own real assets, automate strategies, and stay fully in control.",
-    support: "0% Management · 0% Performance · 0% Exit · 0.8% Execution",
+    body: "Find smarter strategies to grow capital, automate profit-taking, and qualify for monthly rewards when your creator wins.",
   },
   {
     title: "Creators",
-    lead: "Build portfolios, reach investors, and earn across four revenue streams.",
-    support: "Execution Fees · Strategy Access · Creator Rewards · $DEXLA Tips",
+    body: "Launch more portfolios, drive more trades, earn increased execution fees, attract tips, and grow strategy access revenue.",
   },
   {
-    title: "$DEXLA Holders",
-    lead: "Hold $DEXLA, reduce execution fees, and save as holdings grow.",
-    support: "2,500 = 15% · 5,000 = 25% · 10,000 = 40% Savings",
+    title: "INDEXLA",
+    body: "Increase trading volume, earn platform fees, fund stronger products, and attract more creators and investors to INDEXLA.",
   },
   {
-    title: "$DEXLA Token",
-    lead: "Platform usage drives demand, burns and permanent supply reduction.",
-    support: "Six Burn Mechanisms · Deflationary Design · Fixed Supply",
+    title: "$DEXLA",
+    body: "Increase activity, fund additional buybacks and burns from platform fees and treasury profits, and reduce token supply.",
+  },
+  {
+    title: "Treasury",
+    body: "Build more reserves from trading fees, fund better security and infrastructure, and support buybacks and future growth.",
   },
 ] as const;
-
-const INDEXLA_PANEL = {
-  title: "INDEXLA",
-  lead: "Earn across all three products while growing the protocol treasury.",
-  support: "INDEXLA Core · Stable Club · Degen Club · Treasury Growth",
-} as const;
 
 const FLYWHEEL_HUB = {
   title: "$DEXLA Utility",
@@ -56,46 +60,100 @@ export function AlignedEconomicsSection() {
   return (
     <section className={`${homeSection} bg-deep`}>
       <div className="section-pad container-max">
-        <FadeIn className="text-center">
+        <FadeIn className="mx-auto max-w-4xl text-center">
           <h2 className={homeH2}>
             Growth Rewards the{" "}
             <span className="gradient-text">Entire Ecosystem.</span>
           </h2>
+          <p className={`mx-auto mt-5 max-w-3xl ${homeBody}`}>
+            Creators can launch more than one portfolio. More portfolios can
+            bring more trades and a larger fee pool to share.
+          </p>
+          <p className="mt-5 text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-electric">
+            Illustrative creator portfolio example
+          </p>
+          <p className="mx-auto mt-4 max-w-3xl text-[clamp(1.15rem,2.8vw,1.45rem)] font-semibold leading-snug tracking-[-0.02em] text-ink text-balance">
+            $100M in trades → $1M in fees → $500K to creators
+          </p>
+          <p className={`mx-auto mt-4 max-w-2xl ${homeBody}`}>
+            The 1% fee is charged only when a trade executes. No trade, no
+            execution fee.
+          </p>
         </FadeIn>
 
-        <div className="mx-auto mt-10 max-w-6xl">
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {GRID_PANELS.map((panel, i) => (
-              <FadeIn key={panel.title} delay={i * 0.03} className="h-full">
-                <article className="flex h-full min-h-[13.5rem] flex-col rounded-2xl border border-electric/30 bg-gradient-to-b from-electric/[0.1] to-transparent px-4 py-5 text-center sm:min-h-[14.5rem] sm:px-4 sm:py-6">
-                  <h3 className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.15rem]">
-                    {panel.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-[0.95rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[1rem]">
-                    {panel.lead}
-                  </p>
-                  <p className="mt-3 text-[0.78rem] font-medium leading-snug text-muted text-balance sm:text-[0.84rem]">
-                    {panel.support}
-                  </p>
-                </article>
-              </FadeIn>
+        <FadeIn className="mx-auto mt-10 max-w-3xl">
+          <div className="overflow-x-auto rounded-2xl border border-electric/30 bg-void/50 shadow-[inset_0_1px_0_rgba(56,189,248,0.12)]">
+            <table className="w-full min-w-[20rem] border-collapse text-left">
+              <thead>
+                <tr className="border-b border-electric/25 bg-electric/[0.08]">
+                  <th className="px-4 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-muted sm:px-5">
+                    Where the fees go
+                  </th>
+                  <th className="px-3 py-3.5 text-right text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-muted sm:px-4">
+                    Share
+                  </th>
+                  <th className="px-4 py-3.5 text-right text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-muted sm:px-5">
+                    Amount
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {FEE_ROWS.map((row) => (
+                  <tr
+                    key={row.where}
+                    className="border-b border-line/80 last:border-b-0"
+                  >
+                    <td className="px-4 py-3.5 text-[0.95rem] font-semibold text-ink sm:px-5 sm:text-[1rem]">
+                      {row.where}
+                    </td>
+                    <td className="px-3 py-3.5 text-right text-[0.95rem] font-medium text-muted sm:px-4 sm:text-[1rem]">
+                      {row.share}
+                    </td>
+                    <td className="px-4 py-3.5 text-right text-[0.95rem] font-semibold text-electric sm:px-5 sm:text-[1rem]">
+                      {row.amount}
+                    </td>
+                  </tr>
+                ))}
+                <tr className="border-t border-electric/35 bg-electric/[0.06]">
+                  <td className="px-4 py-3.5 text-[0.95rem] font-semibold text-ink sm:px-5 sm:text-[1rem]">
+                    Total
+                  </td>
+                  <td className="px-3 py-3.5 text-right text-[0.95rem] font-semibold text-ink sm:px-4 sm:text-[1rem]">
+                    100%
+                  </td>
+                  <td className="px-4 py-3.5 text-right text-[0.95rem] font-semibold text-ink sm:px-5 sm:text-[1rem]">
+                    $1,000,000
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-center text-[0.9rem] leading-relaxed text-muted text-pretty sm:text-[0.95rem]">
+            Illustrative creator portfolio volume before $DEXLA holder
+            discounts. INDEXLA portfolios have no creator share. Strategy access
+            and tips are additional creator income.
+          </p>
+        </FadeIn>
+
+        <FadeIn className="mx-auto mt-14 max-w-6xl text-center">
+          <h3 className={homeH3}>What Growth Means for You</h3>
+          <div className="mt-8 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-3.5">
+            {GROWTH_CARDS.map((card, i) => (
+              <article
+                key={card.title}
+                className="flex h-full min-h-[14.5rem] flex-col rounded-2xl border border-electric/30 bg-gradient-to-b from-electric/[0.1] to-transparent px-3.5 py-5 text-center sm:min-h-[15.5rem] sm:px-4 sm:py-6"
+                style={{ animationDelay: `${i * 0.03}s` }}
+              >
+                <h4 className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.12rem]">
+                  {card.title}
+                </h4>
+                <p className="mt-3 flex-1 text-[0.88rem] font-medium leading-snug tracking-[-0.01em] text-muted text-balance sm:text-[0.92rem]">
+                  {card.body}
+                </p>
+              </article>
             ))}
           </div>
-
-          <FadeIn delay={0.12} className="mt-3 flex justify-center">
-            <article className="flex w-full max-w-md flex-col items-center rounded-2xl border border-electric/40 bg-gradient-to-b from-electric/[0.14] via-electric/[0.06] to-transparent px-5 py-5 text-center shadow-[inset_0_1px_0_rgba(56,189,248,0.16)] sm:max-w-lg sm:px-6 sm:py-6">
-              <h3 className="display text-[1.05rem] font-semibold tracking-[-0.02em] text-electric sm:text-[1.15rem]">
-                {INDEXLA_PANEL.title}
-              </h3>
-              <p className="mt-2.5 text-[0.92rem] font-semibold leading-snug tracking-[-0.01em] text-ink text-balance sm:text-[0.98rem]">
-                {INDEXLA_PANEL.lead}
-              </p>
-              <p className="mt-2.5 text-[0.76rem] font-medium leading-snug text-muted text-balance sm:text-[0.82rem]">
-                {INDEXLA_PANEL.support}
-              </p>
-            </article>
-          </FadeIn>
-        </div>
+        </FadeIn>
 
         <FadeIn className="mx-auto mt-14 max-w-5xl text-center">
           <h3 className={homeH3}>INDEXLA Flywheel</h3>

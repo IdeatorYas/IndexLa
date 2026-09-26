@@ -52,9 +52,16 @@ export function Hero() {
             </p>
           </div>
 
-          <p className="mx-auto mt-5 max-w-[36rem] text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-electric text-balance sm:text-[1.15rem]">
-            0% Management · 0% Performance · 0% Exit · 1% Flat Fee
-          </p>
+          <div className="mx-auto mt-5 flex w-full max-w-[36rem] flex-col items-center gap-3">
+            <p className="text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-electric text-balance sm:text-[1.15rem]">
+              0% Management · 0% Performance · 0% Exit
+            </p>
+            <div className="inline-flex max-w-full items-center justify-center rounded-xl border border-electric/50 bg-electric/[0.14] px-5 py-3 shadow-[inset_0_1px_0_rgba(56,189,248,0.22),0_0_28px_rgba(56,189,248,0.12)] sm:px-7 sm:py-3.5">
+              <p className="text-[1.05rem] font-semibold leading-snug tracking-[-0.015em] text-ink text-balance sm:text-[1.15rem]">
+                1% Flat Execution Fee
+              </p>
+            </div>
+          </div>
 
           <div className="mt-7 flex w-full flex-col items-center justify-center">
             <EarlyAccessCta
