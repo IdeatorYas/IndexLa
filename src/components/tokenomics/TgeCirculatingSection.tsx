@@ -54,7 +54,7 @@ export function TgeCirculatingSection() {
               {slices.map((row) => (
                 <li
                   key={row.label}
-                  className={`${tkSurfaceSoft} flex items-center justify-between gap-3 px-3.5 py-3`}
+                  className={`${tkSurfaceSoft} flex items-center justify-between gap-3 px-3.5 py-3 sm:last:col-span-2 sm:last:mx-auto sm:last:w-[calc(50%-0.25rem)]`}
                 >
                   <span className="text-[0.9rem] font-medium text-ink">
                     {row.label}
