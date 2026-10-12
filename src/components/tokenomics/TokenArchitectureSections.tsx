@@ -160,10 +160,11 @@ const utilities: ArchCard[] = [
   },
   {
     n: "03",
-    title: "Monetize",
+    title: "Strategy Access",
     lines: [
       "List your private strategy for other creators to use.",
-      "Earn access fees and 10% of applicable execution fees when they use it.",
+      "Strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform.",
+      "The strategy creator also receives 10% of applicable execution fees when other creators use it.",
     ],
     metric: "500 $DEXLA → List Strategy · Set Access Price",
   },
@@ -217,14 +218,6 @@ const burns: ArchCard[] = [
   },
   {
     n: "04",
-    title: "Strategy Access Burn",
-    lines: [
-      "When another creator purchases access to a listed strategy, the $DEXLA payment is split between the strategy creator and the burn.",
-    ],
-    metric: "Strategy Access → 50% Creator · 50% Burned",
-  },
-  {
-    n: "05",
     title: "Execution Fee Buyback & Burn",
     lines: [
       "INDEXLA directs 10% of execution fee revenue toward $DEXLA buybacks.",
@@ -233,7 +226,7 @@ const burns: ArchCard[] = [
     metric: "Execution Fees → 10% Buyback & Burn",
   },
   {
-    n: "06",
+    n: "05",
     title: "Treasury Buyback & Burn",
     lines: [
       "INDEXLA directs 25% of realized Treasury profits toward $DEXLA buybacks.",
@@ -281,7 +274,7 @@ export function TokenBurnMechanismSection() {
       <div className="section-pad container-max relative mx-auto max-w-6xl">
         <FadeIn className="mx-auto max-w-3xl text-center">
           <h2 className={`${tkH2} uppercase`}>
-            Six Burn <span className="text-danger">Mechanisms</span>
+            Five Burn <span className="text-danger">Mechanisms</span>
           </h2>
         </FadeIn>
 

@@ -290,7 +290,7 @@ export function DexlaUtilityFlowDiagram() {
     {
       name: "Monetize and Access",
       detail:
-        "500 $DEXLA to list a creator strategy. Other creators pay the creator's selected access price in $DEXLA.",
+        "500 $DEXLA to list a creator strategy. Strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform.",
     },
   ];
 
@@ -555,7 +555,7 @@ export function VestingTimelineDiagram() {
   );
 }
 
-/* ── 11. Six Burn Mechanisms ── */
+/* ── 11. Five Burn Mechanisms ── */
 const BURN_MECHANISMS = [
   {
     mechanism: "Publishing Burn",
@@ -570,10 +570,6 @@ const BURN_MECHANISMS = [
     burn: "500 $DEXLA, 100% burned",
   },
   {
-    mechanism: "Strategy Access Burn",
-    burn: "50% of access payment burned",
-  },
-  {
     mechanism: "Execution-Fee Buyback and Burn",
     burn: "10% of applicable execution fees allocated to buyback and burn",
   },
@@ -585,7 +581,7 @@ const BURN_MECHANISMS = [
 
 export function SixBurnMechanismsDiagram() {
   return (
-    <DiagramFrame title="Six burn mechanisms">
+    <DiagramFrame title="Five burn mechanisms">
       <div className="grid gap-2 sm:grid-cols-2">
         {BURN_MECHANISMS.map((m, i) => (
           <div key={m.mechanism} className={card}>
@@ -618,7 +614,7 @@ export function CreatorRevenueStreamsDiagram() {
       n: "02",
       title: "Strategy Access",
       detail:
-        "Creators can earn from access payments for proprietary strategies and receive 10% of applicable execution fees when their strategy is used in another creator's portfolio.",
+        "Strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform. The strategy creator also receives 10% of applicable execution fees when their strategy is used in another creator's portfolio.",
     },
     {
       n: "03",

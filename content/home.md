@@ -214,7 +214,7 @@ Creators
 Earn from fees, strategy access, rewards and $DEXLA tips.
 
 $DEXLA Holders  
-Unlock access, fee discounts and scarcity through six usage-linked burn mechanisms.
+Unlock access, fee discounts and scarcity through five usage-linked burn mechanisms.
 
 INDEXLA  
 Earns from execution fees and treasury growth.

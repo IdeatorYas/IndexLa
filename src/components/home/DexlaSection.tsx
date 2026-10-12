@@ -11,16 +11,19 @@ const utilities = [
   { n: "02", title: "Feature", body: "Increase portfolio visibility." },
   { n: "03", title: "Save", body: "Hold $DEXLA for lower execution fees." },
   { n: "04", title: "Tip", body: "Tip creators and boost leaderboard ranking." },
-  { n: "05", title: "Monetize", body: "List proprietary strategies and monetize their use." },
+  {
+    n: "05",
+    title: "Strategy Access",
+    body: "Strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform.",
+  },
 ] as const;
 
 const burns = [
   { n: "01", text: "Creator Publishing Fees — 100% Burned" },
   { n: "02", text: "Promotion Fees — 100% Burned" },
   { n: "03", text: "Strategy Listing — 100% Burned" },
-  { n: "04", text: "Strategy Access — 50% Burned" },
-  { n: "05", text: "Protocol Fees — 10% Burned" },
-  { n: "06", text: "Treasury Profits — 25% Burned" },
+  { n: "04", text: "Protocol Fees — 10% Burned" },
+  { n: "05", text: "Treasury Profits — 25% Burned" },
 ] as const;
 
 const panel =
@@ -80,7 +83,7 @@ export function DexlaSection() {
         <FadeIn className="mt-4">
           <div className={panel}>
             <h3 className="display text-[clamp(1.2rem,2.2vw,1.5rem)] font-semibold tracking-[-0.025em] text-danger text-center">
-              6 Burn Mechanisms
+              5 Burn Mechanisms
             </h3>
             <div className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {burns.map((item) => (

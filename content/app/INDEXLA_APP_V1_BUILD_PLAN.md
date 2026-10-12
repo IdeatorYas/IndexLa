@@ -182,7 +182,7 @@ Four revenue streams:
 - Investors use creator strategies through creator portfolios for free.
 - Paid Creator Strategy Marketplace access is creator-to-creator.
 - Another creator pays the strategy creator's chosen access price in $DEXLA.
-- Access payment split: 50% strategy creator · 50% burned.
+- Access payment: strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform.
 - The original strategy creator earns 10% of applicable execution fees generated when another creator uses that strategy.
 - Purchasing access allows the strategy to be copied/applied within approved parameters; it does not transfer ownership.
 

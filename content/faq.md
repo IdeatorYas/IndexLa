@@ -236,11 +236,11 @@ Creators pay 500 $DEXLA to list a strategy. 100% is permanently burned.
 
 ### 51. How do strategy access payments work?
 
-When another Creator purchases access, 50% goes to the strategy creator and 50% is permanently burned.
+Strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform.
 
 ### 52. How does $DEXLA capture value from platform activity?
 
-Platform activity creates $DEXLA utility and permanent supply reduction through creator burns, strategy access burns and buybacks funded by protocol and Treasury activity.
+Platform activity creates $DEXLA utility and permanent supply reduction through publishing, featuring, strategy listing and buybacks funded by protocol and Treasury activity.
 
 ### 53. What are the buyback and burn mechanisms?
 

@@ -381,16 +381,16 @@ export function BurnBuybackFlowDiagram() {
             body: "2,500 $DEXLA → 100% burned per Featured placement",
           },
           {
+            title: "Strategy listing burn",
+            body: "500 $DEXLA → 100% burned to list a strategy",
+          },
+          {
             title: "Execution fee burn",
             body: "10% of execution-fee revenue → buyback & burn",
           },
           {
             title: "Treasury burn",
             body: "25% of realized Treasury profits → buyback & burn",
-          },
-          {
-            title: "Strategy monetization burn",
-            body: "50% of strategy-access payment permanently burned",
           },
         ].map((item) => (
           <div

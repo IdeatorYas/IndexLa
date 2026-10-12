@@ -197,7 +197,6 @@ Publish → List portfolios
 Portfolio Publishing → 100% Burn  
  Featured Placement → 100% Burn  
  Strategy Listing → 100% Burn  
- Strategy Access → 50% Burn  
  Platform Fees → 10% Buyback & Burn  
  Treasury Profits → 25% Buyback & Burn
 

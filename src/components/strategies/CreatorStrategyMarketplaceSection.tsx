@@ -30,6 +30,11 @@ export function CreatorStrategyMarketplaceSection() {
               Creators can list proprietary strategies, set access prices, and
               earn when other creators use them.
             </p>
+            <p className={`mx-auto mt-4 max-w-xl ${stBody}`}>
+              Strategy access fees are paid in $DEXLA and go 100% to the
+              strategy creator. No portion is burned or retained by the
+              platform.
+            </p>
             <div className="mt-6 flex justify-center">
               <div className={stGreenBox}>
                 <p className={`${stGreenText} text-balance`}>

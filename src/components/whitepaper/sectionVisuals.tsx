@@ -143,9 +143,9 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           node: <DexlaUtilityFlowDiagram />,
         },
         {
-          id: "six-burns",
+          id: "five-burns",
           placement: "after",
-          afterHeadingId: "123-six-burn-mechanisms",
+          afterHeadingId: "123-five-burn-mechanisms",
           node: <SixBurnMechanismsDiagram />,
         },
         {
