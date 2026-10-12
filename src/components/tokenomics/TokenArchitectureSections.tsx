@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
-  tkArchBody,
   tkArchCardBurn,
   tkArchCardUtility,
   tkArchMetricBurn,
@@ -14,7 +13,6 @@ import {
   tkArchTitle,
   tkBody,
   tkBurnGlow,
-  tkBurnGrid,
   tkH2,
   tkSection,
   tkUtilityGlow,
@@ -30,43 +28,31 @@ type ArchCard = {
   metric: string;
 };
 
-function ArchCardHeader({
-  n,
-  title,
-  tone,
-}: {
-  n: string;
-  title: string;
-  tone: Tone;
-}) {
-  const accent = tone === "utility" ? "text-success" : "text-danger";
-  return (
-    <div className="flex flex-col items-center gap-2.5 text-center">
-      <span className={`${tkArchNum} ${accent}`}>{n}</span>
-      <h3 className={tkArchTitle}>{title}</h3>
-    </div>
-  );
-}
-
-function UtilityCard({
+function TokenArchCard({
   item,
+  tone,
   delay,
 }: {
   item: ArchCard;
+  tone: Tone;
   delay: number;
 }) {
   const reduce = useReducedMotion();
+  const shell = tone === "utility" ? tkArchCardUtility : tkArchCardBurn;
+  const metricShell =
+    tone === "utility" ? tkArchMetricUtility : tkArchMetricBurn;
+  const accent = tone === "utility" ? "text-success" : "text-danger";
 
   return (
     <FadeIn delay={delay} className="h-full">
       <motion.article
-        className={`${tkArchCardUtility} h-full`}
+        className={`${shell} h-full`}
         initial={reduce ? false : { opacity: 0.8 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
         <div className="flex min-h-[5.5rem] flex-col items-center justify-center gap-1.5 text-center">
-          <span className={`${tkArchNum} text-success`}>{item.n}</span>
+          <span className={`${tkArchNum} ${accent}`}>{item.n}</span>
           <h3 className={tkArchTitle}>{item.title}</h3>
         </div>
 
@@ -81,56 +67,10 @@ function UtilityCard({
           ))}
         </div>
 
-        <div className={tkArchMetricUtility}>
-          <p
-            className={`${tkArchMetricLabel} text-success leading-snug text-balance text-pretty`}
-          >
-            {item.metric}
-          </p>
-        </div>
-      </motion.article>
-    </FadeIn>
-  );
-}
-
-function ArchitectureCard({
-  item,
-  tone,
-  delay,
-}: {
-  item: ArchCard;
-  tone: Tone;
-  delay: number;
-}) {
-  const reduce = useReducedMotion();
-  const shell = tone === "utility" ? tkArchCardUtility : tkArchCardBurn;
-  const metricShell =
-    tone === "utility" ? tkArchMetricUtility : tkArchMetricBurn;
-  const metricAccent = tone === "utility" ? "text-success" : "text-danger";
-
-  return (
-    <FadeIn delay={delay} className="h-full">
-      <motion.article
-        className={`${shell} h-full`}
-        initial={reduce ? false : { opacity: 0.8 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <ArchCardHeader n={item.n} title={item.title} tone={tone} />
-
-        <div className={tkArchBody}>
-          {item.lines.map((line, lineIndex) => (
-            <p
-              key={`${item.n}-${lineIndex}`}
-              className={`${tkBody} text-[1.05rem] sm:text-[1.1rem]`}
-            >
-              {line}
-            </p>
-          ))}
-        </div>
-
         <div className={metricShell}>
-          <p className={`${tkArchMetricLabel} ${metricAccent}`}>
+          <p
+            className={`${tkArchMetricLabel} ${accent} leading-snug text-balance text-pretty`}
+          >
             {item.metric}
           </p>
         </div>
@@ -162,9 +102,8 @@ const utilities: ArchCard[] = [
     n: "03",
     title: "Strategy Access",
     lines: [
-      "List your private strategy for other creators to use.",
-      "Strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform.",
-      "The strategy creator also receives 10% of applicable execution fees when other creators use it.",
+      "Creators use $DEXLA to list strategies other creators can purchase.",
+      "Authors earn 100% of access payments plus 10% of applicable execution fees.",
     ],
     metric: "500 $DEXLA → List Strategy · Set Access Price",
   },
@@ -254,7 +193,12 @@ export function TokenUtilitySection() {
 
         <div className={tkUtilityGrid}>
           {utilities.map((item, i) => (
-            <UtilityCard key={item.n} item={item} delay={i * 0.03} />
+            <TokenArchCard
+              key={item.n}
+              item={item}
+              tone="utility"
+              delay={i * 0.03}
+            />
           ))}
         </div>
       </div>
@@ -278,9 +222,9 @@ export function TokenBurnMechanismSection() {
           </h2>
         </FadeIn>
 
-        <div className={tkBurnGrid}>
+        <div className={tkUtilityGrid}>
           {burns.map((item, i) => (
-            <ArchitectureCard
+            <TokenArchCard
               key={item.n}
               item={item}
               tone="burn"
