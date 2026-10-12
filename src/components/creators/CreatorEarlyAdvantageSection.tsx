@@ -3,8 +3,6 @@ import { EarlyAccessCta } from "@/components/early-access/EarlyAccessCta";
 import {
   crBody,
   crCta,
-  crGreenBox,
-  crGreenText,
   crH2,
   crSection,
 } from "@/components/creators/creatorRhythm";
@@ -20,22 +18,14 @@ export function CreatorEarlyAdvantageSection() {
           </h2>
 
           <p className={`mt-6 ${crBody} text-balance`}>
-            The category is still being built.
+            Early KOLs who sign up for INDEXLA receive three free portfolio
+            publications.
           </p>
 
           <p className={`mt-4 ${crBody} text-balance`}>
-            The first 100 creators with 3,000+ followers to publish a portfolio
-            on INDEXLA will receive additional founding creator rewards at
-            launch.
+            Build your portfolios, attract investors and start growing your
+            creator presence.
           </p>
-
-          <div className="mt-6 flex justify-center">
-            <div className={crGreenBox}>
-              <p className={`${crGreenText} text-balance`}>
-                100 spots. Once they&apos;re gone, they&apos;re gone.
-              </p>
-            </div>
-          </div>
 
           <div className="mt-8 flex justify-center">
             <EarlyAccessCta mode="creator" className={crCta}>
