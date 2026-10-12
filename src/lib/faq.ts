@@ -84,11 +84,27 @@ function parseAnswerBlocks(body: string): FaqBlock[] {
       continue;
     }
 
+    if (/^[-*]\s/.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^[-*]\s/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^[-*]\s+/, ""));
+        i++;
+      }
+      blocks.push({ type: "list", ordered: false, items });
+      continue;
+    }
+
     const paraLines: string[] = [];
     while (i < lines.length) {
       const current = lines[i].trim();
       if (!current) break;
-      if (current.startsWith("|") || /^\d+\.\s/.test(current)) break;
+      if (
+        current.startsWith("|") ||
+        /^\d+\.\s/.test(current) ||
+        /^[-*]\s/.test(current)
+      ) {
+        break;
+      }
       paraLines.push(current.replace(/\s{2,}$/, ""));
       i++;
     }

@@ -12,63 +12,79 @@ INDEXLA brings fragmented investing across wallets, chains, assets, liquidity ve
 
 ### 3. What is INDEXLA’s core value proposition?
 
-Build the portfolio. Define the strategy. Keep control. INDEXLA combines direct asset ownership, automation, cross-chain execution and creator-powered portfolios.
+Build the portfolio. Define the strategy. Keep control. INDEXLA is designed to combine direct asset ownership, automation, cross-chain execution and creator-powered portfolios. Cross-chain execution and creator portfolios are planned. Current Live Beta is limited to buying, adding funds and selling.
 
 ### 4. How is INDEXLA different from existing solutions?
 
-INDEXLA combines underlying asset ownership, multi-asset portfolios, scoped automation, cross-chain execution, creator portfolios, strategy monetization and MEV-aware execution.
+INDEXLA is designed to combine underlying asset ownership, multi-asset portfolios, scoped automation, cross-chain execution, creator portfolios, strategy monetization and MEV-aware execution. Automation, cross-chain routing, creator portfolios and strategy monetization are planned and are not current Live Beta features.
 
 ### 5. Is INDEXLA a live product?
 
-INDEXLA is currently in its Foundation phase. MVP development is targeted for Q4 2026, with broader platform launch targeted for Q1 2027. Roadmap dates are targets, not guarantees.
+Yes. INDEXLA MVP V1 is live for early testing at [https://app.indexla.tech](https://app.indexla.tech). Three products support buying, adding funds and selling. Other showcased products remain demo previews. The MVP has not yet been independently audited.
 
-### 6. How does INDEXLA work?
+### 6. What are INDEXLA’s three products, and which can I test today?
 
-Build → Configure → Authorize → Monitor → Execute → Manage. Users select assets, define rules and authorize specific actions. INDEXLA coordinates execution when conditions are met.
+INDEXLA Core focuses on portfolios of eligible crypto and tokenized assets. Yield Club focuses on baskets of liquidity positions by chain or risk category. Degen Club focuses on memecoin and altcoin portfolios.
 
-### 7. What assets and chains will INDEXLA support?
+Currently available for real execution:
 
-INDEXLA is designed for crypto, tokenized securities, stocks, commodities, real estate, RWAs and other eligible assets across supported networks. Coverage will expand progressively.
+- INDEXLA Core: Robinhood Utility Index on Robinhood Chain.
+- Yield Club: Top Base LPs on Base.
+- Degen Club: Solana Memecoin Index on Solana.
 
-### 8. Can I create my own portfolio?
+These are marked Live Beta. Other showcased products are demo previews.
 
-Yes. Users can select supported assets, set allocations and apply available strategies and rules.
+### 7. What happens if a basket buy or sell only partially completes?
 
-### 9. Can I invest in Creator portfolios?
+The action remains incomplete until all intended trades settle. Check execution status and actual wallet holdings before retrying. Completed trades must not be duplicated, and a partial exit must not be shown as a full exit.
 
-Yes. Users can discover, follow and invest in Creator portfolios through the Marketplace.
+### 8. How does INDEXLA work?
 
-### 10. Can I directly own the underlying assets?
+Build → Configure → Authorize → Monitor → Execute → Manage. Users select assets, define rules and authorize specific actions. INDEXLA coordinates execution when conditions are met. Automated rule execution is planned and is not part of the current Live Beta.
+
+### 9. What assets and chains will INDEXLA support?
+
+INDEXLA is designed for crypto, tokenized securities, stocks, commodities, real estate, RWAs and other eligible assets across supported networks. Coverage will expand progressively. Current Live Beta products each run on their own chain. Cross-chain execution is planned for a later stage.
+
+### 10. Can I create my own portfolio?
+
+Custom portfolio creation is planned. It is not available in the current Live Beta, which uses predefined products.
+
+### 11. Can I invest in Creator portfolios?
+
+This is planned through the Portfolio Marketplace. It is not available in the current Live Beta.
+
+### 12. Can I directly own the underlying assets?
 
 Yes. INDEXLA is designed around ownership of individual underlying assets rather than a single token representing the portfolio.
 
-### 11. Is INDEXLA non-custodial?
+### 13. Is INDEXLA non-custodial?
 
 Yes. INDEXLA does not take custody of user assets. Automation operates only within permissions authorized by the user.
 
-### 12. What strategies does INDEXLA support?
+### 14. What strategies does INDEXLA support?
 
-DCA, Buy Fear, Sell Greed, Take Profit, Stop Loss, RSI, Momentum and Rebalancing. Strategies can be combined.
+DCA, Buy Fear, Sell Greed, Take Profit, Stop Loss, RSI, Momentum and Rebalancing. Strategies can be combined. Automated strategy execution is planned and is not a current Live Beta feature.
 
-### 13. How does rules-based automation work?
+### 15. How does rules-based automation work?
 
-Users define triggers, limits and execution parameters. When predefined conditions are met, authorized transactions can be executed automatically.
+Users define triggers, limits and execution parameters. When predefined conditions are met, authorized transactions can be executed automatically. This automation is planned and is not active in the current Live Beta.
 
-### 14. What does AI actually do?
+### 16. What does AI actually do?
 
-AI assists with strategy monitoring, market-condition analysis and execution coordination. It does not control user assets or permissions.
+AI is planned to assist with strategy monitoring, market-condition analysis and execution coordination. It does not control user assets or permissions, and it is not a current Live Beta feature.
 
-### 15. Can AI execute outside my authorized permissions?
+### 17. Can AI execute outside my authorized permissions?
 
 No. AI cannot expand permissions or override user-defined rules.
 
-### 16. How does INDEXLA prevent bad AI execution?
+### 18. How does INDEXLA prevent bad AI execution?
 
-AI operates within deterministic rules and scoped permissions. Invalid conditions, stale data, failed checks and unauthorized actions can block execution.
+AI is planned to operate within deterministic rules and scoped permissions. Invalid conditions, stale data, failed checks and unauthorized actions can block execution. This control is not a current Live Beta feature.
 
-### 17. Can I disable or revoke automation?
+### 19. Can I disable or revoke automation?
 
-Yes. Users can pause automation, change strategy rules or revoke permissions.
+Yes, once automation is enabled. Users can pause automation, change strategy rules or revoke permissions. Automation is planned and is not active in the current Live Beta.
 
 
 
@@ -78,58 +94,58 @@ Yes. Users can pause automation, change strategy rules or revoke permissions.
 
 # CREATORS
 
-### 18. Who can become an INDEXLA Creator?
+### 20. Who can become an INDEXLA Creator?
 
-Creators, researchers, KOLs, influencers and other eligible users can build portfolios and participate in the Creator ecosystem, subject to platform requirements.
+Creators, researchers, KOLs, influencers and other eligible users can build portfolios and participate in the Creator ecosystem, subject to platform requirements. The Creator ecosystem is planned and is not part of the current Live Beta.
 
-### 19. How can Creators make money?
+### 21. How can Creators make money?
 
-Creators have four revenue opportunities:
+Planned Creator revenue, not active in the current Live Beta:
 
 1. Portfolio execution fees: 50% of applicable execution fees.
-2. Strategy revenue: Access payments plus 10% of applicable execution fees when their strategy is used by other Creators.
-3. $DEXLA tips: Direct community tips.
+2. Strategy revenue: access payments plus a share of applicable execution fees when their strategy is used by other Creators.
+3. $DEXLA tips: direct community tips.
 4. Monthly Creator Rewards: Top 10 portfolios qualify based on Creator Leaderboard ranking.
 
-### 20. How does the Portfolio Marketplace work?
+### 22. How does the Portfolio Marketplace work?
 
-Creators publish portfolios for users to discover, follow and invest in. Publishing requires 1,000 $DEXLA, which is permanently burned.
+Creators will publish portfolios for users to discover, follow and invest in. The Portfolio Marketplace is planned and is not available in the current Live Beta. Publishing cost and burn follow the [Tokenomics page](https://indexla.tech/tokenomics).
 
-### 21. How does the Strategy Marketplace work?
+### 23. How does the Strategy Marketplace work?
 
-Creators pay 500 $DEXLA to list a proprietary strategy, and the full listing amount is burned. Other Creators pay the creator-set access price: 50% goes to the strategy creator and 50% is burned. The strategy creator also earns 10% of applicable execution fees generated when the strategy is used by other Creators.
+The Strategy Marketplace is planned for a later stage. Creators will be able to list proprietary strategies for other Creators to purchase and use. Access payments go 100% to the strategy creator, with no portion burned or retained by INDEXLA. Strategy creators also receive 10% of applicable execution fees generated by other Creators using their strategy, within the existing execution fee. Listing costs follow the [Tokenomics page](https://indexla.tech/tokenomics).
 
-### 22. Can Creators keep their strategies private?
+### 24. Can Creators keep their strategies private?
 
-Yes. Creators can keep strategies private and use them exclusively in their own portfolios. A strategy only needs to be published if the Creator wants to monetize it or allow other Creators to use it.
+Yes. Creators can keep strategies private and use them exclusively in their own portfolios. A strategy only needs to be published if the Creator wants to monetize it or allow other Creators to use it. Strategy publishing is planned and is not a current Live Beta feature.
 
-### 23. How do Creator Rewards work?
+### 25. How do Creator Rewards work?
 
-The Top 10 portfolios qualify monthly based on Creator Leaderboard ranking. 50% of each reward goes to the Creator and 50% to eligible investors. Investors must invest, tip the Creator in $DEXLA and hold for at least 7 days.
+The Top 10 portfolios are planned to qualify monthly based on Creator Leaderboard ranking. 50% of each reward goes to the Creator and 50% to eligible investors. Investors must invest, tip the Creator in $DEXLA and hold for at least 7 days. Creator Rewards are not active in the current Live Beta.
 
-### 24. How are Creator Leaderboard rankings calculated?
+### 26. How are Creator Leaderboard rankings calculated?
 
-Performance 50% · AUM 25% · Volume 15% · $DEXLA Tips 10%. Artificial activity, wash trading and self-tipping do not qualify.
+Planned ranking: Performance 50% · AUM 25% · Volume 15% · $DEXLA Tips 10%. Artificial activity, wash trading and self-tipping do not qualify. The leaderboard is not part of the current Live Beta.
 
-### 25. Can Creators invest in their own portfolios?
+### 27. Can Creators invest in their own portfolios?
 
-Yes. Their capital can count toward ranking, but they cannot receive the investor share of Creator Rewards.
+Yes, under the planned Creator Rewards model. Their capital can count toward ranking, but they cannot receive the investor share of Creator Rewards. This is not active in the current Live Beta.
 
-### 26. How much do Creators earn from portfolio activity?
+### 28. How much do Creators earn from portfolio activity?
 
-Creators receive 50% of applicable execution fees generated by their portfolios.
+Under the planned model, Creators receive 50% of applicable execution fees generated by their portfolios. This share is not active in the current Live Beta.
 
-### 27. How much does a strategy creator earn when another Creator uses their strategy?
+### 29. How much does a strategy creator earn when another Creator uses their strategy?
 
-The strategy creator receives 10% of applicable execution fees generated by other Creators' portfolios using that strategy.
+The strategy creator receives 10% of applicable execution fees generated by other Creators' portfolios using that strategy. It is not active in the current Live Beta.
 
-### 28. Can Creators use INDEXLA's built-in strategies?
+### 30. Can Creators use INDEXLA's built-in strategies?
 
-Yes. INDEXLA's core strategy library is available to Creators at no cost.
+Yes. INDEXLA's core strategy library is planned to be available to Creators at no cost. Automated use of those strategies is not a current Live Beta feature.
 
-### 29. What Creator utilities require $DEXLA?
+### 31. What Creator utilities require $DEXLA?
 
-Creators use $DEXLA to Publish, Feature and Monetize.
+Creators are planned to use $DEXLA to Publish, Feature and Monetize. These utilities are not active in the current Live Beta. Costs follow the [Tokenomics page](https://indexla.tech/tokenomics).
 
 
 
@@ -139,68 +155,71 @@ Creators use $DEXLA to Publish, Feature and Monetize.
 
 # INVESTORS
 
-### 30. Who controls my assets?
+### 32. Who controls my assets?
 
 The user does. INDEXLA does not take custody of user assets.
 
-### 31. Can I invest in Creator portfolios for free?
+### 33. Can I invest in Creator portfolios for free?
 
-Yes. Investors do not pay a separate fee to access Creator portfolios or Creator strategies through portfolios. Applicable portfolio execution fees still apply.
+Under the planned Marketplace, investors do not pay a separate fee to access Creator portfolios or Creator strategies through portfolios. Applicable execution fees still apply. Creator portfolios are not available in the current Live Beta.
 
-### 32. Can I use INDEXLA's strategies for free?
+### 34. Can I use INDEXLA's strategies for free?
 
-Yes. INDEXLA's core strategy library is available at no cost.
+Yes. INDEXLA's core strategy library is planned to be available at no cost. It is not an active Live Beta execution feature.
 
-### 33. Can I use Creator strategies without paying?
+### 35. Can I use Creator strategies without paying?
 
-Yes. Investors use Creator strategies through portfolios for free. The strategy access payment is paid by other Creators who want to use the strategy.
+Under the planned model, investors use Creator strategies through portfolios without a separate access payment. Other Creators who want to use a strategy pay the access price, and that payment goes 100% to the strategy creator. Creator strategies are not available in the current Live Beta.
 
-### 34. What does INDEXLA charge investors?
+### 36. What does INDEXLA charge investors?
 
-INDEXLA charges a 1% execution fee on applicable portfolio execution activity.
+INDEXLA’s fee model is a 1% execution fee on settled value for applicable buys, additions, sells, rebalances and harvest or compound actions. It is not charged on profit. Failed or unsettled portions are not charged, and retries must not duplicate fees for the same settled execution. Applicable fees are shown before confirmation.
 
-### 35. Does INDEXLA charge management, performance, subscription or exit fees?
+### 37. Does INDEXLA charge management, performance, subscription or exit fees?
 
-No. 0% management · 0% performance · 0% subscription · 0% exit.
+No. INDEXLA charges no management, performance, subscription or additional exit fee. Applicable sells and withdrawals still carry the standard execution fee. Network and third-party costs are separate.
 
-### 36. Who pays gas, bridge and routing costs?
+### 38. Who pays gas, bridge and routing costs?
 
-The user pays applicable gas, bridge and routing costs. These are separate from INDEXLA's 1% execution fee and vary by network, route and transaction.
+The user pays applicable network and third-party costs. These are separate from INDEXLA’s execution fee and vary by network, route and transaction. Bridge costs apply only when cross-chain execution is available. Cross-chain execution is planned and is not a current Live Beta feature.
 
-### 37. How do $DEXLA execution-fee discounts work?
+### 39. How do $DEXLA execution-fee discounts work?
 
-Holding $DEXLA provides:  
- 2,500 → 10% discount  
- 5,000 → 20% discount  
- 10,000 → 30% discount
+Holding $DEXLA is planned to provide:
 
-### 38. How do Creator Rewards benefit investors?
+2,500 → 10% discount  
+5,000 → 20% discount  
+10,000 → 30% discount
 
-Eligible investors receive 50% of the reward when a qualifying portfolio enters the Top 10.
+These discounts are not active in the current Live Beta.
 
-### 39. How do I qualify for the investor share?
+### 40. How do Creator Rewards benefit investors?
 
-You must invest in the Creator portfolio, tip its Creator in $DEXLA and hold for at least 7 days.
+Eligible investors are planned to receive 50% of the reward when a qualifying portfolio enters the Top 10. Creator Rewards are not active in the current Live Beta.
 
-### 40. How are investor rewards weighted?
+### 41. How do I qualify for the investor share?
 
-Eligible investor rewards are weighted 80% by amount invested and 20% by amount tipped.
+Under the planned Creator Rewards model, you must invest in the Creator portfolio, tip its Creator in $DEXLA and hold for at least 7 days. This reward is not active in the current Live Beta.
 
-### 41. What happens if INDEXLA goes offline?
+### 42. How are investor rewards weighted?
+
+Eligible investor rewards are planned to be weighted 80% by amount invested and 20% by amount tipped. This weighting is not active in the current Live Beta.
+
+### 43. What happens if INDEXLA goes offline?
 
 Automation may stop or be delayed, but INDEXLA does not take custody of user assets. Users retain control of their assets and permissions.
 
-### 42. What happens if a bridge, execution layer or blockchain fails?
+### 44. What happens if a bridge, execution layer or blockchain fails?
 
-INDEXLA can reject, delay or retry execution through another available path where supported. Third-party and blockchain failures can still affect execution.
+Where cross-chain execution is available, INDEXLA can reject, delay or retry through another supported path. Current Live Beta products run on their own chains, so an outage on that chain can still stop execution. Third-party and blockchain failures can still affect execution.
 
-### 43. How does [LI.FI](http://LI.FI) and Across fit into INDEXLA?
+### 45. How do LI.FI and Across fit into INDEXLA?
 
-INDEXLA uses a dedicated Cross-Chain Execution Layer powered by [LI.FI](http://LI.FI) and Across for cross-chain routing, bridging and execution where supported. INDEXLA handles portfolio logic, strategy rules, permissions and execution coordination.
+Cross-chain execution is planned for a later stage, using [LI.FI](https://li.fi) as the primary routing integration and Across as an independent fallback where supported. Current Live Beta products operate within their respective chains.
 
-### 44. How does DEGEN CLUB contribute to INDEXLA?
+### 46. How does Degen Club contribute to INDEXLA?
 
-Meme coins represent a major source of on-chain trading activity. DEGEN CLUB creates a new way to invest in diversified, automated meme-coin indexes, while providing an additional storefront and distribution channel that can support user acquisition, execution volume and long-term business growth.
+Meme coins represent a major source of on-chain trading activity. Degen Club is the memecoin portfolio product. Its Solana Memecoin Index is the current Live Beta. Broader meme indexes remain demo previews. The product can support user acquisition and execution volume as it expands.
 
 
 
@@ -210,73 +229,59 @@ Meme coins represent a major source of on-chain trading activity. DEGEN CLUB cre
 
 # $DEXLA + TOKENOMICS
 
-### 45. What is $DEXLA?
+### 47. What is $DEXLA?
 
 $DEXLA is the Solana-native utility token of the INDEXLA ecosystem.
 
-### 46. What are the five core utilities?
+### 48. What are the five core utilities?
 
-Publish · Feature · Monetize · Save · Tip.
+Publish · Feature · Monetize · Save · Tip. These utilities are planned and are not part of the current Live Beta.
 
-### 47. Is $DEXLA required to use INDEXLA?
+### 49. Is $DEXLA required to use INDEXLA?
 
-No. Core portfolio functionality can operate without $DEXLA. Token-dependent utilities activate when $DEXLA utility is enabled.
+No. Current Live Beta does not require $DEXLA. Token-dependent utilities are planned and activate when $DEXLA utility is enabled.
 
-### 48. How does the 1,000 $DEXLA publishing burn work?
+### 50. How does the 1,000 $DEXLA publishing burn work?
 
-Creators burn 1,000 $DEXLA to publish a public portfolio. 100% is permanently burned.
+Creators burn 1,000 $DEXLA to publish a public portfolio. 100% is permanently burned. Publishing is planned and is not part of the current Live Beta.
 
-### 49. How does the Featured utility work?
+### 51. How does the Featured utility work?
 
-Creators burn 2,500 $DEXLA for 7 days of Featured placement. 100% is permanently burned.
+Creators burn 2,500 $DEXLA for 7 days of Featured placement. 100% is permanently burned. Featuring is planned and is not part of the current Live Beta.
 
-### 50. How does strategy listing work?
+### 52. How does strategy listing work?
 
-Creators pay 500 $DEXLA to list a strategy. 100% is permanently burned.
+Creators pay 500 $DEXLA to list a strategy. 100% is permanently burned. Strategy listing is planned and is not part of the current Live Beta.
 
-### 51. How do strategy access payments work?
+### 53. How do strategy access payments work?
 
-Strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform.
+Strategy access fees are paid in $DEXLA and go 100% to the strategy creator. No portion is burned or retained by the platform. Strategy access is planned and is not part of the current Live Beta.
 
-### 52. How does $DEXLA capture value from platform activity?
+### 54. How does $DEXLA capture value from platform activity?
 
-Platform activity creates $DEXLA utility and permanent supply reduction through publishing, featuring, strategy listing and buybacks funded by protocol and Treasury activity.
+Platform activity is planned to create $DEXLA utility and permanent supply reduction through publishing, featuring, strategy listing and buybacks funded by protocol and Treasury activity. These mechanisms are not active in the current Live Beta.
 
-### 53. What are the buyback and burn mechanisms?
+### 55. What are the buyback and burn mechanisms?
 
-10% of execution-fee revenue is directed to $DEXLA buybacks, while 25% of realized Treasury profits is directed to $DEXLA buybacks. Creator utilities create additional permanent burns.
+10% of execution-fee revenue is directed to $DEXLA buybacks, while 25% of realized Treasury profits is directed to $DEXLA buybacks. Creator utilities create additional permanent burns. Buybacks are planned and are not active in the current Live Beta.
 
-### 54. What is the total supply?
+### 56. What is the total supply?
 
 100,000,000 $DEXLA.
 
-### 55. What is the planned initial circulation?
+### 57. What is the planned initial circulation?
 
-15.25M $DEXLA, or 15.25% of total supply.
+See our [Tokenomics page](https://indexla.tech/tokenomics) for current initial circulation and release details.
 
-### 56. What are the token allocations and vesting schedules?
+### 58. What are the token allocations and vesting schedules?
 
+See our [Tokenomics page](https://indexla.tech/tokenomics) for the current allocation table and vesting schedules.
 
-|                     |        |                                          |
-| ------------------- | ------ | ---------------------------------------- |
-| Allocation          | Supply | TGE / Release                            |
-| Pre-Seed            | 2.5%   | 10% TGE; 3-month cliff + 18-month linear |
-| Seed                | 7.5%   | 10% TGE; 3-month cliff + 18-month linear |
-| Private             | 12.5%  | 10% TGE; 3-month cliff + 18-month linear |
-| Public              | 20%    | 15% TGE; remainder over 6 months         |
-| Community           | 15%    | Progressive release                      |
-| Team                | 15%    | 6-month cliff + 24-month linear          |
-| Treasury            | 10%    | 36-month lock                            |
-| DEX Liquidity       | 10%    | 100% at TGE                              |
-| CEX / Market Making | 5%     | Progressive release                      |
-| Advisors            | 2.5%   | 6-month cliff + 12-month linear          |
-
-
-### 57. Is there inflation or additional emissions?
+### 59. Is there inflation or additional emissions?
 
 No additional token supply is planned. Maximum supply is 100M $DEXLA. Burns permanently reduce circulating and total supply.
 
-### 58. Does $DEXLA provide ownership or revenue rights?
+### 60. Does $DEXLA provide ownership or revenue rights?
 
 No. $DEXLA does not provide equity, ownership, Treasury claims, dividends, profit sharing, staking rewards or governance rights.
 
@@ -288,73 +293,73 @@ No. $DEXLA does not provide equity, ownership, Treasury claims, dividends, profi
 
 # SECURITY + REGULATIONS
 
-### 59. How are permissions controlled?
+### 61. How are permissions controlled?
 
 Permissions can specify assets, chains, spending limits, slippage, expiry and execution restrictions. Unauthorized actions are rejected.
 
-### 60. Can INDEXLA or an AI agent withdraw my funds?
+### 62. Can INDEXLA or an AI agent withdraw my funds?
 
 No. Automation is restricted by scoped permissions and cannot expand those permissions.
 
-### 61. How does INDEXLA protect against MEV and front-running?
+### 63. How does INDEXLA protect against MEV and front-running?
 
-INDEXLA uses MEV-aware execution, including CoW-based execution where supported, alongside route validation, simulation and slippage controls. No system eliminates all MEV risk.
+The planned architecture includes MEV-aware routing and CoW-based execution where supported. Available protections depend on the chain and venue. CoW integration is not currently a Live Beta feature. No execution method eliminates all MEV risk.
 
-### 62. How does INDEXLA protect privacy?
+### 64. How does INDEXLA protect privacy?
 
 INDEXLA is designed for wallet-first access and minimizes unnecessary identity exposure. Blockchain addresses, transactions and holdings can still be publicly observable.
 
-### 63. What data does INDEXLA collect?
+### 65. What data does INDEXLA collect?
 
 The core non-custodial experience is designed without requiring a traditional identity. Requirements may differ for regulated assets, third-party services and compliance.
 
-### 64. What happens if an underlying asset is paused, blacklisted or exploited?
+### 66. What happens if an underlying asset is paused, blacklisted or exploited?
 
 Execution may be restricted or suspended. Users remain exposed to the risks of the underlying asset, issuer, liquidity and legal structure.
 
-### 65. Has INDEXLA been audited?
+### 67. Has INDEXLA been audited?
 
-Not yet. Independent security reviews, smart-contract audits and a public bug bounty are planned before broad production deployment.
+Not yet. MVP V1 is an early, unaudited release. Independent security reviews and smart-contract audits are planned before broader production launch. For testing, use a separate wallet and a small amount you can afford to lose.
 
-### 66. What are the main risks?
+### 68. What are the main risks?
 
-Smart-contract, market, liquidity, oracle, cross-chain, asset/issuer, regulatory and third-party infrastructure risks.
+Risks include market volatility, smart-contract vulnerabilities, low liquidity, slippage, oracle failures, blockchain outages and third-party infrastructure failures. Cross-chain features carry bridge risks; tokenized assets carry issuer and eligibility risks. LP positions also carry impermanent loss, depeg and concentrated-range risks. APY estimates vary and are not guaranteed.
 
-### 67. Can users lose their entire investment?
+### 69. Can users lose their entire investment?
 
 Yes. Market movements, smart-contract failures, liquidity events, asset failures and other risks can result in partial or total loss.
 
-### 68. What risks can INDEXLA reduce?
+### 70. What risks can INDEXLA reduce?
 
 INDEXLA can reduce certain permission, execution, monitoring and MEV risks. It cannot eliminate market, liquidity, blockchain, issuer, regulatory or third-party risks.
 
-### 69. Is INDEXLA an investment fund?
+### 71. Is INDEXLA an investment fund?
 
 No. INDEXLA is designed as decentralized, non-custodial portfolio infrastructure and does not initially operate as a traditional investment fund.
 
-### 70. Does INDEXLA provide financial advice?
+### 72. Does INDEXLA provide financial advice?
 
 No. INDEXLA does not provide financial, investment, legal, tax, accounting or regulatory advice.
 
-### 71. How does INDEXLA approach regulatory requirements?
+### 73. How does INDEXLA approach regulatory requirements?
 
 INDEXLA assesses applicable requirements before enabling regulated asset features. Access may depend on jurisdiction, issuer requirements, KYC/AML, licensing and applicable law.
 
-### 72. Are there geographic restrictions?
+### 74. Are there geographic restrictions?
 
 Potentially. Certain assets and features may be restricted based on jurisdiction, eligibility, issuer requirements and applicable regulations.
 
-### 73. Does INDEXLA guarantee returns?
+### 75. Does INDEXLA guarantee returns?
 
 No. INDEXLA guarantees no returns, profitability, liquidity or execution quality. Users can lose capital.
 
-### 74. When is TGE and what will be circulating at TGE?
+### 76. When is TGE and what will be circulating at TGE?
 
-$DEXLA utility activation is targeted for Q2 2027. Planned initial circulation is 14.75M $DEXLA (14.75%). Final TGE date, valuation, public-sale price and sale terms have not been officially fixed.
+The final TGE date has not been announced. See our [Tokenomics page](https://indexla.tech/tokenomics) for the latest token release and initial circulation details.
 
-### 75. What fundraising has INDEXLA completed?
+### 77. What fundraising has INDEXLA completed?
 
-The current whitepaper does not state any completed fundraising round or finalized valuation. This will be updated when a round officially closes.
+INDEXLA has closed its pre-seed round. Seed fundraising is the next planned stage.
 
 
 
@@ -369,5 +374,3 @@ INDEXLA is decentralized, non-custodial software and portfolio infrastructure. I
 All investment activity carries risk, including possible loss of capital. INDEXLA does not guarantee returns, profitability, liquidity, availability or execution quality.
 
 Supported assets, networks, integrations, strategies, fees, utilities and timelines may change or be restricted. Users remain responsible for their assets, transactions, investment decisions and compliance with applicable laws.
-
-  
