@@ -39,9 +39,9 @@ const schedules: Schedule[] = [
   {
     title: "Team",
     nodes: [
-      { label: "Cliff", detail: "12 mo", tone: "cliff" },
+      { label: "Cliff", detail: "6 mo", tone: "cliff" },
       { label: "Linear", detail: "24 mo", tone: "linear" },
-      { label: "Fully unlocked", detail: "Month 36", tone: "full" },
+      { label: "Fully unlocked", detail: "Month 30", tone: "full" },
     ],
   },
   {
@@ -55,7 +55,7 @@ const schedules: Schedule[] = [
   {
     title: "Treasury",
     featured: true,
-    nodes: [{ label: "Lock", detail: "36 mo", tone: "lock" }],
+    nodes: [{ label: "Lock", detail: "36 mo lock", tone: "lock" }],
     note: "After lock: ecosystem development, community distributions, or permanent burns per protocol framework.",
   },
   {
@@ -92,64 +92,72 @@ export function VestingScheduleSection() {
           </p>
         </FadeIn>
 
-        <div className="mt-10 divide-y divide-white/[0.07] border-y border-white/[0.08]">
-          {schedules.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 0.015}>
-              <article
-                className={`py-5 sm:py-6 ${
-                  item.featured ? "bg-electric/[0.03]" : ""
-                }`}
-              >
-                <div className="grid gap-4 px-1 sm:px-2 lg:grid-cols-[minmax(11rem,0.9fr)_minmax(0,1.5fr)] lg:items-center lg:gap-10">
+        <div className="mt-6 overflow-hidden rounded-xl border border-white/[0.1] bg-void/40">
+          <div className="hidden grid-cols-[minmax(12rem,1.3fr)_repeat(4,minmax(0,0.7fr))] gap-3 border-b border-white/[0.08] bg-deep/60 px-4 py-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-muted-dim sm:grid sm:px-5">
+            <span>Allocation</span>
+            <span>TGE</span>
+            <span>Cliff</span>
+            <span>Linear</span>
+            <span>Unlocked</span>
+          </div>
+          <div>
+            {schedules.map((item) => {
+              const byLabel = Object.fromEntries(
+                item.nodes.map((node) => [node.label, node]),
+              );
+              const cells = [
+                byLabel.TGE,
+                byLabel.Cliff ?? byLabel.Lock,
+                byLabel.Linear,
+                byLabel["Fully unlocked"] ?? byLabel.Release ?? byLabel.Reserve,
+              ];
+              return (
+                <article
+                  key={item.title}
+                  className={`border-b border-white/[0.06] px-4 py-3 last:border-0 sm:grid sm:grid-cols-[minmax(12rem,1.3fr)_repeat(4,minmax(0,0.7fr))] sm:items-center sm:gap-3 sm:px-5 sm:py-2.5 ${
+                    item.featured ? "bg-electric/[0.04]" : ""
+                  }`}
+                >
                   <h3
-                    className={`display text-[1.05rem] tracking-[-0.02em] sm:text-[1.15rem] ${
+                    className={`text-[0.95rem] font-semibold tracking-[-0.015em] sm:text-[0.98rem] ${
                       item.featured ? "text-electric" : "text-ink"
                     }`}
                   >
                     {item.title}
                   </h3>
-
-                  <div className="min-w-0">
-                    <ol className="flex flex-wrap items-center gap-x-1 gap-y-2">
-                      {item.nodes.map((node, idx) => (
-                        <li
-                          key={`${item.title}-${node.label}`}
-                          className="flex items-center gap-1.5"
+                  <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1.5 sm:contents">
+                    {cells.map((node, index) => (
+                      <p
+                        key={`${item.title}-${index}`}
+                        className="flex items-baseline justify-between gap-2 sm:block"
+                      >
+                        <span className="text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-muted-dim sm:hidden">
+                          {["TGE", "Cliff", "Linear", "Unlocked"][index]}
+                        </span>
+                        <span
+                          className={`display text-[0.95rem] tabular-nums ${
+                            node
+                              ? toneAccent[node.tone ?? "soft"]
+                              : "text-muted-dim"
+                          }`}
                         >
-                          <div className="px-1 py-0.5 text-left sm:px-1.5">
-                            <p className="text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-muted-dim">
-                              {node.label}
-                            </p>
-                            <p
-                              className={`display mt-0.5 text-[1.05rem] tabular-nums sm:text-[1.12rem] ${toneAccent[node.tone ?? "soft"]}`}
-                            >
-                              {node.detail}
-                            </p>
-                          </div>
-                          {idx < item.nodes.length - 1 && (
-                            <span
-                              className="px-0.5 text-muted-dim/50"
-                              aria-hidden
-                            >
-                              →
-                            </span>
-                          )}
-                        </li>
-                      ))}
-                    </ol>
-                    {item.note && (
-                      <p className="mt-2.5 max-w-xl text-[0.88rem] leading-relaxed text-muted text-pretty">
-                        {item.note}
+                          {node?.detail ?? "—"}
+                        </span>
                       </p>
-                    )}
+                    ))}
                   </div>
-                </div>
-              </article>
-            </FadeIn>
-          ))}
+                  {item.note ? (
+                    <p className="mt-2 text-[0.82rem] leading-snug text-muted text-pretty sm:col-span-5">
+                      {item.note}
+                    </p>
+                  ) : null}
+                </article>
+              );
+            })}
+          </div>
         </div>
 
-        <FadeIn className="mt-7 text-center">
+        <FadeIn className="mt-5 text-center">
           <p className={`${tkBody} text-balance`}>
             All applicable unlocks are designed to be transparent and verifiable
             through smart contracts.

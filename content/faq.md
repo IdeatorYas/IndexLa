@@ -252,7 +252,7 @@ Platform activity creates $DEXLA utility and permanent supply reduction through 
 
 ### 55. What is the planned initial circulation?
 
-14.75M $DEXLA, or 14.75% of total supply.
+15.25M $DEXLA, or 15.25% of total supply.
 
 ### 56. What are the token allocations and vesting schedules?
 
@@ -260,16 +260,16 @@ Platform activity creates $DEXLA utility and permanent supply reduction through 
 |                     |        |                                          |
 | ------------------- | ------ | ---------------------------------------- |
 | Allocation          | Supply | TGE / Release                            |
-| Pre-Seed            | 1.5%   | 10% TGE; 3-month cliff + 18-month linear |
-| Seed                | 6%     | 10% TGE; 3-month cliff + 18-month linear |
-| Private             | 10%    | 10% TGE; 3-month cliff + 18-month linear |
+| Pre-Seed            | 2.5%   | 10% TGE; 3-month cliff + 18-month linear |
+| Seed                | 7.5%   | 10% TGE; 3-month cliff + 18-month linear |
+| Private             | 12.5%  | 10% TGE; 3-month cliff + 18-month linear |
 | Public              | 20%    | 15% TGE; remainder over 6 months         |
+| Community           | 15%    | Progressive release                      |
+| Team                | 15%    | 6-month cliff + 24-month linear          |
+| Treasury            | 10%    | 36-month lock                            |
 | DEX Liquidity       | 10%    | 100% at TGE                              |
-| Treasury            | 20%    | 36-month lock                            |
-| Team                | 15%    | 12-month cliff + 24-month linear         |
-| Community           | 10%    | Progressive release                      |
-| Advisors            | 2.5%   | 6-month cliff + 12-month linear          |
 | CEX / Market Making | 5%     | Progressive release                      |
+| Advisors            | 2.5%   | 6-month cliff + 12-month linear          |
 
 
 ### 57. Is there inflation or additional emissions?

@@ -134,14 +134,14 @@ Permanent burns
 |                              |            |
 | ---------------------------- | ---------- |
 | Allocation                   | Percentage |
-| Pre-Seed Round               | 1.5%       |
-| Seed Round                   | 6%         |
-| Private Sale                 | 10%        |
+| Pre-Seed Round               | 2.5%       |
+| Seed Round                   | 7.5%       |
+| Private Sale                 | 12.5%      |
 | Public Sale                  | 20%        |
-| DEX Liquidity                | 10%        |
-| Treasury                     | 20%        |
+| Community Airdrops           | 15%        |
 | Team                         | 15%        |
-| Community Airdrops           | 10%        |
+| Treasury                     | 10%        |
+| DEX Liquidity                | 10%        |
 | CEX Listings & Market Making | 5%         |
 | Advisors                     | 2.5%       |
 | Total                        | 100%       |
@@ -167,9 +167,9 @@ There is no additional minting, inflation, or supply expansion beyond this cap.
 
 ### Team
 
-12-month cliff followed by 24-month linear vesting.
+6-month cliff followed by 24-month linear vesting.
 
-Full unlock at month 36.
+Full unlock at month 30.
 
 ### Advisors
 

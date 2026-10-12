@@ -11,8 +11,8 @@ import {
 const slices = [
   { label: "DEX Liquidity", pct: "10%", tokens: "10M", width: "65.57%", color: "#22d3ee" },
   { label: "Pre-seed", pct: "0.25%", tokens: "250K", width: "1.64%", color: "#7c3aed" },
-  { label: "Seed", pct: "0.6%", tokens: "600K", width: "3.93%", color: "#8b5cf6" },
-  { label: "Private", pct: "1.4%", tokens: "1.4M", width: "9.18%", color: "#a78bfa" },
+  { label: "Seed", pct: "0.75%", tokens: "750K", width: "4.92%", color: "#8b5cf6" },
+  { label: "Private", pct: "1.25%", tokens: "1.25M", width: "8.20%", color: "#a78bfa" },
   { label: "Public", pct: "3%", tokens: "3M", width: "19.67%", color: "#38bdf8" },
 ] as const;
 

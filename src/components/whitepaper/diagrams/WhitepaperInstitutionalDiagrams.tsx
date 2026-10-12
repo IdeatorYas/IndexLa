@@ -355,8 +355,8 @@ export function DexlaUtilityFlowDiagram() {
 /* ── 9. Token Allocation Donut ── */
 const TOKEN_ALLOCATIONS = [
   { label: "Pre-Seed", pct: 2.5, tokens: "2,500,000", color: "#1d4ed8" },
-  { label: "Seed", pct: 6, tokens: "6,000,000", color: "#2563eb" },
-  { label: "Private", pct: 14, tokens: "14,000,000", color: "#3b82f6" },
+  { label: "Seed", pct: 7.5, tokens: "7,500,000", color: "#2563eb" },
+  { label: "Private", pct: 12.5, tokens: "12,500,000", color: "#3b82f6" },
   { label: "Public", pct: 20, tokens: "20,000,000", color: "#60a5fa" },
   {
     label: "Community and Airdrops",
@@ -494,7 +494,7 @@ const VESTING_ROWS = [
   {
     allocation: "Team",
     tge: "0%",
-    release: "12-month cliff, then 24-month linear release",
+    release: "6-month cliff, then 24-month linear release",
   },
   {
     allocation: "Community and Airdrops",

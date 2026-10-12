@@ -235,14 +235,14 @@ export function EconomicFlywheelDiagram() {
 }
 
 const ALLOCATIONS = [
-  { label: "Pre Seed", pct: 1.5, tokens: "1.5M", color: "#7c3aed" },
-  { label: "Seed", pct: 6, tokens: "6M", color: "#a78bfa" },
-  { label: "Private", pct: 10, tokens: "10M", color: "#38bdf8" },
+  { label: "Pre Seed", pct: 2.5, tokens: "2.5M", color: "#7c3aed" },
+  { label: "Seed", pct: 7.5, tokens: "7.5M", color: "#a78bfa" },
+  { label: "Private", pct: 12.5, tokens: "12.5M", color: "#38bdf8" },
   { label: "Public", pct: 20, tokens: "20M", color: "#22d3ee" },
   { label: "DEX Liquidity", pct: 10, tokens: "10M", color: "#34d399" },
-  { label: "Treasury", pct: 20, tokens: "20M", color: "#3b82f6" },
+  { label: "Treasury", pct: 10, tokens: "10M", color: "#3b82f6" },
   { label: "Team", pct: 15, tokens: "15M", color: "#f59e0b" },
-  { label: "Community", pct: 10, tokens: "10M", color: "#f472b6" },
+  { label: "Community", pct: 15, tokens: "15M", color: "#f472b6" },
   { label: "Advisors", pct: 2.5, tokens: "2.5M", color: "#c4b5fd" },
   { label: "CEX / Market Making", pct: 5, tokens: "5M", color: "#94a3b8" },
 ] as const;
@@ -335,7 +335,7 @@ export function VestingTimelineDiagram() {
     { label: "Public", detail: "15% TGE · remaining linear over 6 months" },
     { label: "DEX Liquidity", detail: "100% available at TGE" },
     { label: "Treasury", detail: "36-month lock" },
-    { label: "Team", detail: "12-month cliff · then 24-month linear" },
+    { label: "Team", detail: "6-month cliff · then 24-month linear" },
     { label: "Community", detail: "Progressive release" },
     { label: "Advisors", detail: "6-month cliff · then 12-month linear" },
     { label: "CEX / Market Making", detail: "Progressive release by listing needs" },

@@ -577,8 +577,8 @@ Until a route is activated, users may need to acquire or use $DEXLA through Sola
 | ---------------------- | -------- | --------------- |
 | Allocation             | Share    | Tokens          |
 | Pre-Seed               | 2.5%     | 2,500,000       |
-| Seed                   | 6%       | 6,000,000       |
-| Private                | 14%      | 14,000,000      |
+| Seed                   | 7.5%     | 7,500,000       |
+| Private                | 12.5%    | 12,500,000      |
 | Public                 | 20%      | 20,000,000      |
 | Community and Airdrops | 15%      | 15,000,000      |
 | Team                   | 15%      | 15,000,000      |
@@ -592,8 +592,8 @@ Until a route is activated, users may need to acquire or use $DEXLA through Sola
 pie showData  
     title $DEXLA Allocation  
     "Pre-Seed" : 2.5  
-    "Seed" : 6  
-    "Private" : 14  
+    "Seed" : 7.5  
+    "Private" : 12.5  
     "Public" : 20  
     "Community and Airdrops" : 15  
     "Team" : 15  
@@ -614,7 +614,7 @@ pie showData
 | Public                 | 15%  | Remaining allocation over 6 months           |
 | DEX Liquidity          | 100% | Available at TGE                             |
 | Treasury               | 0%   | 36-month lock                                |
-| Team                   | 0%   | 12-month cliff, then 24-month linear release |
+| Team                   | 0%   | 6-month cliff, then 24-month linear release |
 | Community and Airdrops | 0%   | Progressive release                          |
 | Advisors               | 0%   | 6-month cliff, then 12-month linear release  |
 | CEX and Market Making  | 0%   | Progressive release                          |
