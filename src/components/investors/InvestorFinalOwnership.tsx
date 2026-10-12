@@ -57,7 +57,7 @@ export function InvestorFinalOwnership() {
           </div>
 
           <p className="mt-6 text-[0.95rem] font-semibold tracking-[-0.01em] text-electric sm:text-[1.02rem]">
-            INDEXLA Core · Stable Club · Degen Club
+            INDEXLA Core · Yield Club · Degen Club
           </p>
         </motion.div>
       </div>

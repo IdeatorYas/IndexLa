@@ -15,7 +15,7 @@ import { OwnershipSection } from "@/components/investors/OwnershipSection";
 export const metadata: Metadata = {
   title: "Investors | INDEXLA",
   description:
-    "Set your rules while you're calm. When conditions are met, INDEXLA triggers only the execution you approved. Choose INDEXLA Core, Stable Club or Degen Club.",
+    "Set your rules while you're calm. When conditions are met, INDEXLA triggers only the execution you approved. Choose INDEXLA Core, Yield Club or Degen Club.",
 };
 
 export default function InvestorsPage() {

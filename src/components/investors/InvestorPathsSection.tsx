@@ -28,8 +28,8 @@ const PATHS = [
     headline: "Earn with Stablecoins",
     tags: "USDC · USDT · DEX Liquidity · Trading Fees",
     body: "Supply stablecoins to decentralized exchanges and automate your liquidity positions.",
-    product: "Stable Club",
-    cta: { href: "/stable-club", label: "Explore Stable Club" },
+    product: "Yield Club",
+    cta: { href: "/stable-club", label: "Explore Yield Club" },
     accent:
       "border-success/40 from-success/[0.14] via-emerald-500/[0.06]",
     badge:
