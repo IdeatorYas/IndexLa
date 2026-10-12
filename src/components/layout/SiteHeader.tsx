@@ -228,7 +228,7 @@ export function SiteHeader() {
           : "bg-transparent"
       }`}
     >
-      <div className="flex h-[4.25rem] items-center justify-between gap-2 pl-3 pr-3 sm:h-[4.75rem] sm:gap-3 sm:pl-4 sm:pr-4 lg:pr-5">
+      <div className="flex h-[4.5rem] items-center justify-between gap-2 pl-3 pr-3 sm:h-20 sm:gap-3 sm:pl-4 sm:pr-4 lg:pr-5 2xl:h-[5.25rem]">
         <BrandLogo priority size="header" />
 
         <nav

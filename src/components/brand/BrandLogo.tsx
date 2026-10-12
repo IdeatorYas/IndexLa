@@ -41,8 +41,8 @@ export function BrandLogo({
     <Link
       href="/"
       aria-label="INDEXLA home"
-      className={`inline-flex shrink-0 items-center bg-transparent ${
-        header ? "gap-2 sm:gap-2.5" : "gap-2"
+      className={`inline-flex shrink-0 bg-transparent ${
+        header ? "flex-col items-center" : "items-center gap-2"
       } ${className}`}
     >
       <Image
@@ -54,14 +54,14 @@ export function BrandLogo({
         unoptimized
         className={
           header
-            ? "h-10 w-10 shrink-0 sm:h-12 sm:w-12 xl:h-14 xl:w-14"
+            ? "h-[1.875rem] w-[1.875rem] shrink-0 sm:h-9 sm:w-9 xl:h-[2.625rem] xl:w-[2.625rem]"
             : "h-10 w-10 shrink-0"
         }
       />
       <span
         className={`flex min-w-0 flex-col items-stretch ${
           header
-            ? "w-[13.25rem] sm:w-[13.5rem] xl:w-[16.75rem] 2xl:w-[18.5rem]"
+            ? "mt-1 w-[9.9375rem] sm:w-[10.125rem] xl:mt-0.5 xl:w-[12.5625rem] 2xl:w-[13.875rem]"
             : "w-[11rem]"
         }`}
       >
@@ -81,7 +81,11 @@ export function BrandLogo({
           height={art.taglineSize[1]}
           priority={priority}
           unoptimized
-          className="mt-[0.28rem] block h-auto w-full sm:mt-1.5"
+          className={
+            header
+              ? "mt-1 block h-auto w-full xl:mt-0.5"
+              : "mt-[0.28rem] block h-auto w-full sm:mt-1.5"
+          }
         />
       </span>
     </Link>

@@ -26,7 +26,7 @@ export function InvestorHero() {
         aria-hidden
       />
 
-      <div className="section-pad container-max relative z-10 flex flex-col justify-start pb-5 pt-[4.35rem] lg:h-full lg:pb-4 lg:pt-[4.6rem]">
+      <div className="section-pad container-max relative z-10 flex flex-col justify-start pb-5 pt-[4.35rem] lg:h-full lg:pb-4 lg:pt-20">
         <div className="mb-1.5 lg:mb-2">
           <Link
             href="/"
