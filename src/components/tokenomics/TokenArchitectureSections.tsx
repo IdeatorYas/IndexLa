@@ -4,14 +4,6 @@ import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
-  tkArchCardBurn,
-  tkArchCardUtility,
-  tkArchMetricBurn,
-  tkArchMetricLabel,
-  tkArchMetricUtility,
-  tkArchNum,
-  tkArchTitle,
-  tkBody,
   tkBurnGlow,
   tkH2,
   tkSection,
@@ -38,38 +30,57 @@ function TokenArchCard({
   delay: number;
 }) {
   const reduce = useReducedMotion();
-  const shell = tone === "utility" ? tkArchCardUtility : tkArchCardBurn;
-  const metricShell =
-    tone === "utility" ? tkArchMetricUtility : tkArchMetricBurn;
   const accent = tone === "utility" ? "text-success" : "text-danger";
+  const shell =
+    tone === "utility"
+      ? "border-success/35 bg-panel/35 shadow-[0_16px_48px_rgba(0,0,0,0.22)] hover:border-success/55"
+      : "border-danger/35 bg-panel/35 shadow-[0_16px_48px_rgba(0,0,0,0.22)] hover:border-danger/55";
+  const headerBox =
+    tone === "utility"
+      ? "border-success/30 bg-success/[0.08]"
+      : "border-danger/30 bg-danger/[0.08]";
+  const metricBox =
+    tone === "utility"
+      ? "border-success/35 bg-success/[0.1]"
+      : "border-danger/35 bg-danger/[0.1]";
 
   return (
     <FadeIn delay={delay} className="h-full">
       <motion.article
-        className={`${shell} h-full`}
+        className={`flex h-full flex-col gap-2 rounded-2xl border p-2 transition-[border-color,background-color] duration-300 sm:gap-2.5 sm:p-2.5 ${shell}`}
         initial={reduce ? false : { opacity: 0.8 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        <div className="flex min-h-[5.5rem] flex-col items-center justify-center gap-1.5 text-center">
-          <span className={`${tkArchNum} ${accent}`}>{item.n}</span>
-          <h3 className={tkArchTitle}>{item.title}</h3>
+        <div
+          className={`flex min-h-[6.75rem] shrink-0 flex-col items-center justify-center gap-1 rounded-xl border px-3 py-3.5 text-center sm:min-h-[7.5rem] xl:min-h-[10.25rem] ${headerBox}`}
+        >
+          <span
+            className={`display text-[1.85rem] font-semibold leading-none tabular-nums tracking-[-0.05em] xl:text-[2.05rem] ${accent}`}
+          >
+            {item.n}
+          </span>
+          <h3 className="display text-[0.98rem] font-semibold uppercase leading-tight tracking-[-0.02em] text-ink text-balance sm:text-[1.05rem] xl:text-[1rem]">
+            {item.title}
+          </h3>
         </div>
 
-        <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 text-center">
+        <div className="flex min-h-[7.5rem] flex-1 flex-col items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-void/45 px-3 py-4 text-center">
           {item.lines.map((line, lineIndex) => (
             <p
               key={`${item.n}-${lineIndex}`}
-              className={`${tkBody} text-balance text-pretty text-[1.05rem] leading-snug sm:text-[1.1rem]`}
+              className="text-balance text-pretty text-[0.98rem] leading-snug text-muted sm:text-[1.02rem]"
             >
               {line}
             </p>
           ))}
         </div>
 
-        <div className={metricShell}>
+        <div
+          className={`mt-auto flex min-h-[4.75rem] shrink-0 items-center justify-center rounded-xl border px-3 py-3 text-center xl:min-h-[6.75rem] ${metricBox}`}
+        >
           <p
-            className={`${tkArchMetricLabel} ${accent} leading-snug text-balance text-pretty`}
+            className={`${accent} text-[0.95rem] font-semibold leading-snug tracking-[-0.02em] text-balance text-pretty sm:text-[1rem] xl:text-[1.02rem]`}
           >
             {item.metric}
           </p>
