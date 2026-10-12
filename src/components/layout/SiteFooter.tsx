@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="border-t border-line bg-void">
       <div className="section-pad container-max flex flex-col gap-10 py-14 md:flex-row md:justify-between">
         <div className="max-w-sm">
-          <BrandLogo />
+          <BrandLogo size="footer" />
           <p className="mt-5 text-[1.05rem] leading-relaxed text-muted">
             Own the assets. Own the strategy. Control the execution.
           </p>
