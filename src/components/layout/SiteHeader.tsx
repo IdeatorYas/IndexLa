@@ -258,9 +258,12 @@ export function SiteHeader() {
           <ThemeToggle />
           <a
             href="https://app.indexla.tech"
-            className="inline-flex items-center rounded-full bg-gradient-to-r from-purple to-blue px-2.5 py-2 text-[0.68rem] font-bold tracking-[0.08em] text-white shadow-[0_8px_24px_rgba(59,130,246,0.35)] transition-all hover:brightness-110 sm:px-3 sm:py-2 sm:text-[0.72rem] xl:px-3.5 xl:py-2.5 xl:text-[0.78rem]"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-full bg-gradient-to-r from-purple to-blue px-3.5 py-2.5 text-[0.82rem] font-bold tracking-[0.06em] text-white shadow-[0_10px_28px_rgba(59,130,246,0.45)] transition-all hover:brightness-110 sm:px-4 sm:py-2.5 sm:text-[0.92rem] xl:px-5 xl:py-3 xl:text-[1.05rem]"
           >
             DEMO APP
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
           <button
             type="button"

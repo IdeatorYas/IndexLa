@@ -23,12 +23,12 @@ const body = Source_Sans_3({
 const SITE_URL = "https://indexla.tech";
 
 const OG_IMAGE = {
-  url: "/og.png",
-  secureUrl: `${SITE_URL}/og.png`,
+  url: `${SITE_URL}/og.jpg`,
+  secureUrl: `${SITE_URL}/og.jpg`,
   width: 1200,
   height: 630,
-  type: "image/png",
-  alt: "INDEXLA — Decentralized Portfolio Management. One Portfolio. Every Asset. Every Chain.",
+  type: "image/jpeg",
+  alt: "INDEXLA — Decentralized Portfolio Management",
 } as const;
 
 export const metadata: Metadata = {
