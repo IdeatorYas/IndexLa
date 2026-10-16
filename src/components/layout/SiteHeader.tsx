@@ -35,7 +35,7 @@ function parentIsActive(link: NavLink, pathname: string) {
 }
 
 const navLinkClass = (active: boolean) =>
-  `whitespace-nowrap text-[1.05rem] font-medium tracking-[-0.01em] transition-colors xl:text-[1.1rem] ${
+  `whitespace-nowrap text-[0.95rem] font-medium tracking-[-0.01em] transition-colors xl:text-[1.1rem] ${
     active ? "text-ink" : "text-muted hover:text-ink"
   }`;
 
@@ -232,7 +232,7 @@ export function SiteHeader() {
         <BrandLogo priority size="header" />
 
         <nav
-          className="hidden items-center gap-3.5 lg:flex xl:gap-4 2xl:gap-5"
+          className="hidden items-center gap-2 lg:flex xl:gap-4 2xl:gap-5"
           aria-label="Primary"
         >
           {NAV_LINKS.map((link) =>
@@ -252,14 +252,19 @@ export function SiteHeader() {
               </Link>
             )
           )}
-          <ThemeToggle className="hidden lg:inline-flex" />
         </nav>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
+          <a
+            href="https://app.indexla.tech"
+            className="inline-flex items-center rounded-full bg-gradient-to-r from-purple to-blue px-2.5 py-2 text-[0.68rem] font-bold tracking-[0.08em] text-white shadow-[0_8px_24px_rgba(59,130,246,0.35)] transition-all hover:brightness-110 sm:px-3 sm:py-2 sm:text-[0.72rem] xl:px-3.5 xl:py-2.5 xl:text-[0.78rem]"
+          >
+            DEMO APP
+          </a>
           <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line"
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line lg:hidden"
           aria-expanded={open}
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}

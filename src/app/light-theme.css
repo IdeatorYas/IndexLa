@@ -18,6 +18,7 @@ html[data-theme="light"] {
   --idx-line-strong: rgba(37, 99, 235, 0.28);
   --idx-success: #059669;
   --idx-danger: #dc2626;
+  --idx-risk: #9a3412;
   --idx-surface-hover: rgba(37, 99, 235, 0.06);
   --idx-header-scrolled-bg: rgba(248, 250, 252, 0.92);
   --idx-header-scrolled-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);

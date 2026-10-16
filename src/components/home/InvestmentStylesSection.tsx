@@ -76,9 +76,9 @@ const STYLES: StyleCard[] = [
     cta: { href: "/degen-club", label: "Explore Degen Club →" },
     shell:
       "border-amber-400/40 bg-gradient-to-b from-amber-400/[0.14] via-orange-500/[0.08] to-deep/80 shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]",
-    titleClass: "text-amber-300",
+    titleClass: "text-risk",
     labelClass:
-      "border-amber-400/40 bg-amber-400/15 text-amber-200 shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]",
+      "border-amber-400/45 bg-amber-400/15 text-risk shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]",
     glow: "from-amber-400/25 via-orange-500/10 to-transparent",
     assets: [
       { src: DEGEN_MEME_LOGOS.DOGE, alt: "DOGE" },

@@ -47,9 +47,9 @@ const PATHS = [
     cta: { href: "/degen-club", label: "Explore Degen Club" },
     accent: "border-amber-400/35 from-amber-400/[0.12]",
     badge:
-      "border-amber-400/45 bg-amber-400/[0.16] text-amber-200 shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]",
-    tagsClass: "text-amber-300",
-    productClass: "text-amber-300",
+      "border-amber-400/45 bg-amber-400/[0.16] text-risk shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]",
+    tagsClass: "text-risk",
+    productClass: "text-risk",
   },
 ] as const;
 

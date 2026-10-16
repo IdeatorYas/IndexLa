@@ -20,6 +20,7 @@
   --idx-line-strong: rgba(56, 189, 248, 0.28);
   --idx-success: #34d399;
   --idx-danger: #f87171;
+  --idx-risk: #fbbf24;
   --idx-surface-hover: rgba(255, 255, 255, 0.05);
   --idx-header-scrolled-bg: rgba(10, 6, 20, 0.8);
   --idx-header-scrolled-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
@@ -63,6 +64,7 @@
   --color-line-strong: var(--idx-line-strong);
   --color-success: var(--idx-success);
   --color-danger: var(--idx-danger);
+  --color-risk: var(--idx-risk);
 
   --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-body), ui-sans-serif, system-ui, sans-serif;
