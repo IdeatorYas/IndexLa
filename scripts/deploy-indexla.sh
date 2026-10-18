@@ -239,7 +239,6 @@ health_check() {
     "/creators"
     "/tokenomics"
     "/faq"
-    "/how-it-works"
     "/strategies"
     "/whitepaper/1-executive-summary"
   )
@@ -253,6 +252,17 @@ health_check() {
       failures=$((failures + 1))
     fi
   done
+
+  local redirect_code redirect_location
+  redirect_code="$(curl -s -D /tmp/indexla-health-redirect.txt -o /dev/null -w '%{http_code}' --max-time 20 "http://${HEALTH_HOST}:${PORT}/how-it-works" || echo "000")"
+  redirect_location="$(grep -i '^location:' /tmp/indexla-health-redirect.txt | tail -n 1 | tr -d '\r')"
+  if [[ "$redirect_code" != "301" && "$redirect_code" != "308" ]]; then
+    log "HEALTH FAIL: /how-it-works returned HTTP ${redirect_code}"
+    failures=$((failures + 1))
+  elif [[ "$redirect_location" != *": https://app.indexla.tech"* ]]; then
+    log "HEALTH FAIL: /how-it-works location is ${redirect_location}"
+    failures=$((failures + 1))
+  fi
 
   curl -s -o /tmp/indexla-health-home.html --max-time 20 "http://${HEALTH_HOST}:${PORT}/" >/dev/null || true
   if ! grep -q "HomeRevealGate" /tmp/indexla-health-home.html 2>/dev/null; then

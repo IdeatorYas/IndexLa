@@ -60,7 +60,7 @@ export function getSectionVisuals(slug: string): SectionVisual[] {
           placement: "end",
           node: (
             <WhitepaperExploreCta
-              href="/how-it-works"
+              href="https://app.indexla.tech"
               label="Test the Static Demo →"
             />
           ),

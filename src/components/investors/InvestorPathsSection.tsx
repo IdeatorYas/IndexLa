@@ -15,7 +15,7 @@ const PATHS = [
     tags: "Bitcoin · Gold · Tokenized Stocks · Tokenized RWAs",
     body: "Build diversified portfolios, automate strategies and own the underlying assets.",
     product: "INDEXLA Core",
-    cta: { href: "/how-it-works", label: "See How It Works" },
+    cta: { href: "https://app.indexla.tech/app/core", label: "See How It Works" },
     accent: "border-electric/35 from-electric/[0.12]",
     badge:
       "border-electric/45 bg-electric/[0.16] text-electric shadow-[inset_0_1px_0_rgba(56,189,248,0.22)]",

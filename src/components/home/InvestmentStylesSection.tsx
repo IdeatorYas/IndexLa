@@ -30,7 +30,7 @@ const STYLES: StyleCard[] = [
     description: "Diversified portfolios",
     benefit:
       "Build diversified portfolios across crypto, tokenized stocks, commodities and real-world assets. Automate your strategy while retaining direct ownership.",
-    cta: { href: "/how-it-works", label: "See How It Works →" },
+    cta: { href: "https://app.indexla.tech/app/core", label: "See How It Works →" },
     shell:
       "border-blue/45 bg-gradient-to-b from-blue/[0.16] via-electric/[0.06] to-deep/80 shadow-[inset_0_1px_0_rgba(59,130,246,0.22)]",
     titleClass: "text-electric",

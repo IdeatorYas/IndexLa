@@ -23,7 +23,6 @@ export const NAV_LINKS: readonly NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/investors", label: "Investors" },
   { href: "/creators", label: "Creators" },
-  { href: "/how-it-works", label: "How It Works" },
   { href: "/tokenomics", label: "Tokenomics" },
   { href: "/stable-club", label: "Yield Club" },
   { href: "/degen-club", label: "Degen Club" },

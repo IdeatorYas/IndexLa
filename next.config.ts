@@ -7,6 +7,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["framer-motion"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/how-it-works",
+        destination: "https://app.indexla.tech",
+        permanent: true,
+      },
+      {
+        source: "/how-it-works/:path*",
+        destination: "https://app.indexla.tech",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

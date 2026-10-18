@@ -59,7 +59,7 @@ export function DistributionSection() {
             </div>
 
             <HomeReadMore
-              href="/how-it-works"
+              href="https://app.indexla.tech"
               label="Learn How INDEXLA Works →"
               className="mt-8"
             />
