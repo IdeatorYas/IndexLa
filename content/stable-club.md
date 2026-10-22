@@ -42,23 +42,23 @@ You keep the keys. INDEXLA manages the strategy.
 ### **Stable Pools**
 
 **Lower Risk · Stable ↔ Stable**  
-**Indicative APY: 3–4%**
+**Indicative APY: 3–5%**
 
 Earn trading fees and incentives from deep stablecoin pools with limited price volatility.
 
 ### **Stable-Weighted Range**
 
-**Medium Risk · Stable ↔ ETH or BTC**  
-**Indicative APY: 5–7%**
+**Medium Risk · Stable ↔ Blue-Chip Assets**  
+**Indicative APY: 5–9%**
 
-Start primarily with stables inside a defined price range. Earn fees while active. As price moves through the range, your position may gradually convert into the paired asset.
+Earn trading fees within a defined price range. As prices move, your position may gradually convert into the paired asset.
 
 ### **Growth Pools**
 
-**Higher Risk · Stable + ETH or BTC**  
-**Indicative APY: 8–13%**
+**Higher Risk · Altcoin ↔ Altcoin**  
+**Indicative APY: 10–40%+**
 
-Provide both assets for greater fee potential while accepting full market exposure and impermanent-loss risk.
+Provide liquidity in altcoin-to-altcoin pools. Higher volatility can increase fee potential and impermanent-loss risk.
 
 *APYs are variable estimates based on trading fees and incentives. Returns are not guaranteed and may be reduced by costs, impermanent loss and market movements.*
 
@@ -112,11 +112,25 @@ Before entering, you see the exact protocol, chain, pool, estimated net yield an
 
 ## **How It Works**
 
-**Connect Wallet → Choose Strategy → Sign Limited Permission**
+### **01 · Connect Wallet**
+
+### **02 · Choose Strategy**
+
+Select a pool by chain or risk level.
+
+### **03 · Authorize Limited Permissions**
+
+Approve only the actions required for the strategy.
+
+### **04 · Automated Management**
+
+INDEXLA harvests and compounds fees automatically where supported, and manages positions within the authorized limits.
+
+### **05 · Exit Anytime**
+
+Withdraw your position subject to underlying pool liquidity and standard network costs.
 
 INDEXLA manages the position only within the limits you authorize.
-
-Exit anytime. No INDEXLA lockups or withdrawal fees. Standard network costs and underlying pool liquidity apply.
 
 
 

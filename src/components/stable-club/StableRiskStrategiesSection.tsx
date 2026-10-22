@@ -60,11 +60,11 @@ function parseStrategies(blocks: StableBlock[]): StrategyCard[] {
           : block.text === "Stable-Weighted Range"
             ? [
                 { src: "/images/assets/demo/crypto/dai.svg", label: "Stable" },
-                { src: "/images/assets/ethereum.svg", label: "ETH" },
+                { src: "/images/assets/ethereum.svg", label: "Blue chip" },
               ]
             : [
-                { src: "/images/assets/demo/crypto/dai.svg", label: "Stable" },
-                { src: "/images/assets/bitcoin.svg", label: "BTC" },
+                { src: "/images/assets/solana.svg", label: "Altcoin" },
+                { src: "/images/assets/bnb.svg", label: "Altcoin" },
               ];
       current = { title: block.text, accent, assets } as Partial<StrategyCard>;
       continue;
@@ -113,8 +113,8 @@ function StrategyCardUI({ card }: { card: StrategyCard }) {
       </p>
 
       <div className="mt-5 flex items-center gap-2">
-        {card.assets.map((asset) => (
-          <AssetLogo key={asset.label} src={asset.src} alt={asset.label} size={36} />
+        {card.assets.map((asset, index) => (
+          <AssetLogo key={`${asset.src}-${index}`} src={asset.src} alt={asset.label} size={36} />
         ))}
       </div>
 

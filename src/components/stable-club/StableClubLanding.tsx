@@ -1,3 +1,4 @@
+import { StableChainSection } from "@/components/stable-club/StableChainSection";
 import { StableDisclaimerSection } from "@/components/stable-club/StableDisclaimerSection";
 import { StableFaqSection } from "@/components/stable-club/StableFaqSection";
 import { StableHeroSection } from "@/components/stable-club/StableHeroSection";
@@ -34,6 +35,7 @@ export function StableClubLanding() {
       {byId["choose-your-risk-level"] ? (
         <StableRiskStrategiesSection section={byId["choose-your-risk-level"]} />
       ) : null}
+      <StableChainSection />
       {byId["smarter-pool-selection"] ? (
         <StablePoolSelectionSection section={byId["smarter-pool-selection"]} />
       ) : null}
