@@ -30,7 +30,7 @@ const STYLES: StyleCard[] = [
     description: "Diversified portfolios",
     benefit:
       "Build diversified portfolios across crypto, tokenized stocks, commodities and real-world assets. Automate your strategy while retaining direct ownership.",
-    cta: { href: "https://app.indexla.tech/app/utility-index", label: "Explore INDEXLA Core →" },
+    cta: { href: "https://app.indexla.tech/app/core", label: "Explore INDEXLA Core →" },
     shell:
       "border-blue/45 bg-gradient-to-b from-blue/[0.16] via-electric/[0.06] to-deep/80 shadow-[inset_0_1px_0_rgba(59,130,246,0.22)]",
     titleClass: "text-electric",
@@ -73,7 +73,7 @@ const STYLES: StyleCard[] = [
     description: "High-risk memecoin baskets",
     benefit:
       "Build diversified memecoin baskets to chase high-upside opportunities. Multiply your chances instead of betting everything on one coin.",
-    cta: { href: "https://app.indexla.tech/app/degen-club/product/solana-memecoin-index", label: "Explore Degen Club →" },
+    cta: { href: "https://app.indexla.tech/app/degen-club", label: "Explore Degen Club →" },
     shell:
       "border-amber-400/40 bg-gradient-to-b from-amber-400/[0.14] via-orange-500/[0.08] to-deep/80 shadow-[inset_0_1px_0_rgba(251,191,36,0.18)]",
     titleClass: "text-risk",

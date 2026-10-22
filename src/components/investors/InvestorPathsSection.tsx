@@ -15,7 +15,7 @@ const PATHS = [
     tags: "Bitcoin · Gold · Tokenized Stocks · Tokenized RWAs",
     body: "Build diversified portfolios, automate strategies and own the underlying assets.",
     product: "INDEXLA Core",
-    cta: { href: "https://app.indexla.tech/app/utility-index", label: "Explore INDEXLA Core" },
+    cta: { href: "https://app.indexla.tech/app/core", label: "Explore INDEXLA Core" },
     accent: "border-electric/35 from-electric/[0.12]",
     badge:
       "border-electric/45 bg-electric/[0.16] text-electric shadow-[inset_0_1px_0_rgba(56,189,248,0.22)]",
@@ -44,7 +44,7 @@ const PATHS = [
     tags: "Multiple Coins · Multiple Chains · Multiple Opportunities",
     body: "Build memecoin baskets and give yourself more chances to catch the next 100x.",
     product: "Degen Club · High Risk",
-    cta: { href: "https://app.indexla.tech/app/degen-club/product/solana-memecoin-index", label: "Explore Degen Club" },
+    cta: { href: "https://app.indexla.tech/app/degen-club", label: "Explore Degen Club" },
     accent: "border-amber-400/35 from-amber-400/[0.12]",
     badge:
       "border-amber-400/45 bg-amber-400/[0.16] text-risk shadow-[inset_0_1px_0_rgba(251,191,36,0.2)]",
