@@ -74,7 +74,16 @@ export function StableNoVaultSection({ section }: { section: StableSection }) {
     <section className={scSectionAlt}>
       <div className="section-pad container-max">
         <FadeIn>
-          <h2 className={`mx-auto max-w-3xl text-center ${scH2}`}>{section.title}</h2>
+          <h2 className={`mx-auto max-w-3xl text-center ${scH2}`}>
+            {section.title.includes("One Less Place") ? (
+              <>
+                <span className="block">No Extra Vault</span>
+                <span className="block">One Less Place to Get Hacked</span>
+              </>
+            ) : (
+              section.title
+            )}
+          </h2>
           <div className="mx-auto mt-8 max-w-2xl space-y-3.5">
             {copyBlocks.map((block, i) =>
               block.type === "p" ? (

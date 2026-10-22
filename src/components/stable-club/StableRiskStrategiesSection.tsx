@@ -102,9 +102,9 @@ function StrategyCardUI({ card }: { card: StrategyCard }) {
 
   return (
     <article
-      className={`sc-card-elevated flex h-full flex-col p-6 sm:p-7 ${a.border}`}
+      className={`sc-card-elevated flex h-full flex-col items-center p-6 text-center sm:p-7 ${a.border}`}
     >
-      <div className={`inline-flex self-start rounded-full px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] ${a.badge}`}>
+      <div className={`inline-flex rounded-full px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] ${a.badge}`}>
         {card.risk}
       </div>
       <h3 className={`mt-4 ${scH3}`}>{card.title}</h3>
@@ -112,7 +112,7 @@ function StrategyCardUI({ card }: { card: StrategyCard }) {
         {card.pair}
       </p>
 
-      <div className="mt-5 flex items-center gap-2">
+      <div className="mt-5 flex items-center justify-center gap-2">
         {card.assets.map((asset, index) => (
           <AssetLogo key={`${asset.src}-${index}`} src={asset.src} alt={asset.label} size={36} />
         ))}

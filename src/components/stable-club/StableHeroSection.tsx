@@ -134,28 +134,31 @@ function HeroFlowVisual() {
   );
 }
 
+const HIGHLIGHTS = ["No lending", "No borrowing", "No extra vaults"];
+
+function highlightLabel(text: string) {
+  return text.replace(/\*\*/g, "").replace(/\.$/, "").trim();
+}
+
 function heroBlocks(blocks: StableBlock[]) {
   const h2 = blocks.find((b) => b.type === "h2");
   const cta = blocks.find((b) => b.type === "cta");
-  const highlight = blocks.find(
+  const highlights = blocks.filter(
     (b): b is Extract<StableBlock, { type: "p" }> =>
-      b.type === "p" &&
-      b.text.includes("No lending") &&
-      b.text.includes("No borrowing")
+      b.type === "p" && HIGHLIGHTS.includes(highlightLabel(b.text))
   );
+  const highlightSet = new Set(highlights);
   const body = blocks.filter(
     (b): b is Extract<StableBlock, { type: "p" }> =>
-      b.type === "p" &&
-      b !== highlight &&
-      !b.text.startsWith("**No lending")
+      b.type === "p" && !highlightSet.has(b)
   );
 
-  return { h2, cta, highlight, body };
+  return { h2, cta, highlights, body };
 }
 
 export function StableHeroSection({ section }: { section: StableSection }) {
   const reduce = useReducedMotion();
-  const { h2, cta, highlight, body } = heroBlocks(section.blocks);
+  const { h2, cta, highlights, body } = heroBlocks(section.blocks);
 
   return (
     <section className="relative isolate overflow-hidden sc-hero-glow">
@@ -178,11 +181,15 @@ export function StableHeroSection({ section }: { section: StableSection }) {
             )}
           </div>
 
-          {highlight ? (
-            <div className="sc-highlight-band mt-6">
-              <p className={`text-center sm:text-left ${scBodyStrong}`}>
-                {renderBold(highlight.text)}
-              </p>
+          {highlights.length ? (
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {highlights.map((item) => (
+                <div key={item.text} className="sc-highlight-band">
+                  <p className={`text-center ${scBodyStrong}`}>
+                    {highlightLabel(item.text)}
+                  </p>
+                </div>
+              ))}
             </div>
           ) : null}
 

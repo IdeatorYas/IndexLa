@@ -1,10 +1,14 @@
 # **STABLE CLUB**
 
-## **Put Your Stables to Work.**
+## **Put Your Stables to Work**
 
 Earn trading fees and incentives from carefully selected liquidity pools.
 
-**No lending. No borrowing. No vault hacks**
+**No lending**
+
+**No borrowing**
+
+**No extra vaults**
 
 INDEXLA creates and manages LP positions through limited wallet permissions. Your assets sit in the underlying pool while your wallet owns the resulting position. INDEXLA never holds your funds.
 
@@ -16,7 +20,7 @@ INDEXLA creates and manages LP positions through limited wallet permissions. You
 
 
 
-## **No Extra Vault. One Less Place to Get Hacked.**
+## **No Extra Vault One Less Place to Get Hacked**
 
 Many yield products place an additional vault contract between your wallet and DeFi. That creates another attack surface and another place your funds can be exposed.
 
