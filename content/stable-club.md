@@ -12,7 +12,7 @@ Earn trading fees and incentives from carefully selected liquidity pools.
 
 INDEXLA creates and manages LP positions through limited wallet permissions. Your assets sit in the underlying pool while your wallet owns the resulting position. INDEXLA never holds your funds.
 
-**Explore Stable Strategies →**
+Explore Stable Strategies →
 
 
 

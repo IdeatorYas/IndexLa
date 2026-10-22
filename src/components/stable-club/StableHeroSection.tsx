@@ -3,10 +3,9 @@
 import { motion, useReducedMotion } from "framer-motion";
 import {
   renderBold,
-  StableCta,
   StablecoinBadge,
 } from "@/components/stable-club/StableShared";
-import { scBody, scBodyStrong, scEyebrow, scH1 } from "@/components/stable-club/stableRhythm";
+import { scBody, scBodyStrong, scCta, scEyebrow, scH1 } from "@/components/stable-club/stableRhythm";
 import type { StableBlock, StableSection } from "@/lib/stable-club";
 
 function HeroFlowVisual() {
@@ -195,7 +194,15 @@ export function StableHeroSection({ section }: { section: StableSection }) {
 
           {cta?.type === "cta" ? (
             <div className="mt-8">
-              <StableCta label={cta.text} />
+              <a
+                href="https://app.indexla.tech/app/stable-club"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple to-blue font-semibold tracking-[-0.01em] text-white transition-all duration-300 hover:brightness-110 ${scCta}`}
+              >
+                {cta.text.replace(/\*\*/g, "")}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
             </div>
           ) : null}
         </motion.div>
