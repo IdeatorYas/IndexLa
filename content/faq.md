@@ -12,7 +12,7 @@ INDEXLA brings fragmented investing across wallets, chains, assets, liquidity ve
 
 ### 3. What is INDEXLA’s core value proposition?
 
-Build the portfolio. Define the strategy. Keep control. INDEXLA is designed to combine direct asset ownership, automation, cross-chain execution and creator-powered portfolios. Cross-chain execution and creator portfolios are planned. Current Live Beta is limited to buying, adding funds and selling.
+Build the portfolio. Define the strategy. Keep control. INDEXLA is designed to combine direct asset ownership, automation, cross-chain execution and creator-powered portfolios. Cross-chain execution and creator portfolios are planned. Current Live Beta supports buying, adding funds and selling on INDEXLA Core and Degen Club. Yield Club supports depositing, adding funds and withdrawing.
 
 ### 4. How is INDEXLA different from existing solutions?
 
@@ -20,7 +20,7 @@ INDEXLA is designed to combine underlying asset ownership, multi-asset portfolio
 
 ### 5. Is INDEXLA a live product?
 
-Yes. INDEXLA MVP V1 is live for early testing at [https://app.indexla.tech](https://app.indexla.tech). Three products support buying, adding funds and selling. Other showcased products remain demo previews. The MVP has not yet been independently audited.
+Yes. INDEXLA MVP V1 is live for early testing at [https://app.indexla.tech](https://app.indexla.tech). INDEXLA Core and Degen Club support buying, adding funds and selling. Yield Club supports depositing, adding funds and withdrawing. Other showcased products remain demo previews. The MVP has not yet been independently audited.
 
 ### 6. What are INDEXLA’s three products, and which can I test today?
 
@@ -34,9 +34,9 @@ Currently available for real execution:
 
 These are marked Live Beta. Other showcased products are demo previews.
 
-### 7. What happens if a basket buy or sell only partially completes?
+### 7. What happens if a basket action only partially completes?
 
-The action remains incomplete until all intended trades settle. Check execution status and actual wallet holdings before retrying. Completed trades must not be duplicated, and a partial exit must not be shown as a full exit.
+INDEXLA Core and Degen Club buys and sells remain incomplete until all intended trades settle. Yield Club deposits, added funds and withdrawals remain incomplete until the intended position change settles. Check execution status and actual wallet holdings before retrying. Completed actions must not be duplicated, and a partial exit must not be shown as a full exit.
 
 ### 8. How does INDEXLA work?
 
@@ -185,13 +185,7 @@ The user pays applicable network and third-party costs. These are separate from 
 
 ### 39. How do $DEXLA execution-fee discounts work?
 
-Holding $DEXLA is planned to provide:
-
-2,500 → 10% discount  
-5,000 → 20% discount  
-10,000 → 30% discount
-
-These discounts are not active in the current Live Beta.
+Holding $DEXLA is planned to reduce execution fees. The balance tiers are on the [Tokenomics page](https://indexla.tech/tokenomics). These discounts are not active in the current Live Beta.
 
 ### 40. How do Creator Rewards benefit investors?
 
@@ -241,17 +235,17 @@ Publish · Feature · Monetize · Save · Tip. These utilities are planned and a
 
 No. Current Live Beta does not require $DEXLA. Token-dependent utilities are planned and activate when $DEXLA utility is enabled.
 
-### 50. How does the 1,000 $DEXLA publishing burn work?
+### 50. How does the publishing burn work?
 
-Creators burn 1,000 $DEXLA to publish a public portfolio. 100% is permanently burned. Publishing is planned and is not part of the current Live Beta.
+Creators burn $DEXLA to publish a public portfolio, and that payment is permanently burned. The amount is on the [Tokenomics page](https://indexla.tech/tokenomics). Publishing is planned and is not part of the current Live Beta.
 
 ### 51. How does the Featured utility work?
 
-Creators burn 2,500 $DEXLA for 7 days of Featured placement. 100% is permanently burned. Featuring is planned and is not part of the current Live Beta.
+Creators burn $DEXLA for Featured placement, and that payment is permanently burned. The amount and duration are on the [Tokenomics page](https://indexla.tech/tokenomics). Featuring is planned and is not part of the current Live Beta.
 
 ### 52. How does strategy listing work?
 
-Creators pay 500 $DEXLA to list a strategy. 100% is permanently burned. Strategy listing is planned and is not part of the current Live Beta.
+Creators pay $DEXLA to list a strategy, and that listing payment is permanently burned. The amount is on the [Tokenomics page](https://indexla.tech/tokenomics). Strategy listing is planned and is not part of the current Live Beta.
 
 ### 53. How do strategy access payments work?
 
@@ -263,7 +257,7 @@ Platform activity is planned to create $DEXLA utility and permanent supply reduc
 
 ### 55. What are the buyback and burn mechanisms?
 
-10% of execution-fee revenue is directed to $DEXLA buybacks, while 25% of realized Treasury profits is directed to $DEXLA buybacks. Creator utilities create additional permanent burns. Buybacks are planned and are not active in the current Live Beta.
+A portion of execution-fee revenue and a portion of realized Treasury profits are directed to $DEXLA buybacks. Creator utilities create additional permanent burns. The current shares are on the [Tokenomics page](https://indexla.tech/tokenomics). Buybacks are planned and are not active in the current Live Beta.
 
 ### 56. What is the total supply?
 
@@ -356,10 +350,6 @@ No. INDEXLA guarantees no returns, profitability, liquidity or execution quality
 ### 76. When is TGE and what will be circulating at TGE?
 
 The final TGE date has not been announced. See our [Tokenomics page](https://indexla.tech/tokenomics) for the latest token release and initial circulation details.
-
-### 77. What fundraising has INDEXLA completed?
-
-INDEXLA has closed its pre-seed round. Seed fundraising is the next planned stage.
 
 
 
