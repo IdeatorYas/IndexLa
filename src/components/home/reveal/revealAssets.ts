@@ -60,13 +60,25 @@ function persistRevealCookie(): void {
   }
 }
 
-export function hasSeenReveal(): boolean {
-  if (typeof window === "undefined") return false;
+function hasRevealCookie(): boolean {
+  if (typeof document === "undefined") return false;
   try {
-    return window.localStorage.getItem(REVEAL_STORAGE_KEY) === "1";
+    return document.cookie
+      .split(";")
+      .some((part) => part.trim() === `${REVEAL_COOKIE}=1`);
   } catch {
     return false;
   }
+}
+
+export function hasSeenReveal(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    if (window.localStorage.getItem(REVEAL_STORAGE_KEY) === "1") return true;
+  } catch {
+    /* private mode or blocked storage */
+  }
+  return hasRevealCookie();
 }
 
 export function markRevealSeen(): void {

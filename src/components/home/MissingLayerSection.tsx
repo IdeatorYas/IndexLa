@@ -54,6 +54,8 @@ export function MissingLayerSection() {
                     width={16}
                     height={16}
                     className="h-4 w-4 object-contain"
+                    loading="lazy"
+                    decoding="async"
                     draggable={false}
                   />
                 </span>

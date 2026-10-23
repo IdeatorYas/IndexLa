@@ -229,7 +229,7 @@ export function SiteHeader() {
       }`}
     >
       <div className="flex h-[4.5rem] items-center justify-between gap-2 pl-3 pr-3 sm:h-20 sm:gap-3 sm:pl-4 sm:pr-4 lg:pr-5 2xl:h-[5.25rem]">
-        <BrandLogo priority size="header" />
+        <BrandLogo size="header" />
 
         <nav
           className="hidden items-center gap-2 lg:flex xl:gap-4 2xl:gap-5"

@@ -44,7 +44,7 @@ type HomeRevealGateProps = {
 
 export function HomeRevealGate({ children }: HomeRevealGateProps) {
   const reduceMotion = useReducedMotion();
-  const [phase, setPhase] = useState<Phase>("boot");
+  const [phase, setPhase] = useState<Phase>("done");
   const [visibleCount, setVisibleCount] = useState(0);
   const [enteringIndex, setEnteringIndex] = useState(-1);
   const timers = useRef<number[]>([]);
@@ -64,7 +64,6 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
     const force = shouldForceReveal();
     if (!force && hasSeenReveal()) {
       markRevealSeen();
-      setPhase("done");
       return;
     }
     setPhase("intro");
@@ -158,10 +157,6 @@ export function HomeRevealGate({ children }: HomeRevealGateProps) {
               className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-void via-void/80 to-transparent"
               aria-hidden
             />
-
-            {phase === "boot" ? (
-              <div className="absolute inset-0 z-50 bg-void" aria-hidden />
-            ) : null}
 
             <AnimatePresence>
               {showScreen1 ? (
